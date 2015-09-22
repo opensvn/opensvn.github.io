@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://opensvn.github.io/2015/09/19/hello-world/</loc>
+    <lastmod>2015-09-22T01:25:35.011Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://opensvn.github.io/2015/09/20/cpp_primer_14/</loc>
+    <lastmod>2015-09-22T01:25:23.903Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://opensvn.github.io/2015/09/19/syntax/</loc>
+    <lastmod>2015-09-22T01:25:19.127Z</lastmod>
+  </url>
+  
+  <url>
     <loc>https://opensvn.github.io/404.html</loc>
     <lastmod>2015-09-20T02:03:18.162Z</lastmod>
   </url>
@@ -12,11 +27,6 @@
   </url>
   
   <url>
-    <loc>https://opensvn.github.io/2015/09/19/syntax/</loc>
-    <lastmod>2015-09-19T10:18:32.081Z</lastmod>
-  </url>
-  
-  <url>
     <loc>https://opensvn.github.io/tags/index.html</loc>
     <lastmod>2015-09-19T01:59:39.706Z</lastmod>
   </url>
@@ -24,11 +34,6 @@
   <url>
     <loc>https://opensvn.github.io/categories/index.html</loc>
     <lastmod>2015-09-19T01:59:39.702Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://opensvn.github.io/2015/09/19/hello-world/</loc>
-    <lastmod>2015-09-19T00:33:29.731Z</lastmod>
   </url>
   
 </urlset>

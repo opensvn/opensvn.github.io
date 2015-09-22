@@ -1,0 +1,1005 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>重载操作和转换 | opensvn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="opensvn">
+    
+
+    
+    <meta name="description" content="这是C++ primer第五版第14章的读书笔记。
+基本概念重载操作符是具有特殊名字的函数：关键字operator后面跟着需要被定义的操作符的符号。像其它函数一样，重载操作符有返回值，参数列表和函数体。
+重载操作符的参数和操作符的操作数一样多。除了函数调用操作符，operator()，重载操作符没有默认实参。
+
+注意当重载操作符是成员函数时，this绑定到左操作数。因此，成员操作符函数少一个操作数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重载操作和转换">
+<meta property="og:url" content="https://opensvn.github.io/2015/09/20/cpp_primer_14/index.html">
+<meta property="og:site_name" content="opensvn">
+<meta property="og:description" content="这是C++ primer第五版第14章的读书笔记。
+基本概念重载操作符是具有特殊名字的函数：关键字operator后面跟着需要被定义的操作符的符号。像其它函数一样，重载操作符有返回值，参数列表和函数体。
+重载操作符的参数和操作符的操作数一样多。除了函数调用操作符，operator()，重载操作符没有默认实参。
+
+注意当重载操作符是成员函数时，this绑定到左操作数。因此，成员操作符函数少一个操作数">
+<meta property="og:updated_time" content="2015-09-22T01:25:23.903Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重载操作和转换">
+<meta name="twitter:description" content="这是C++ primer第五版第14章的读书笔记。
+基本概念重载操作符是具有特殊名字的函数：关键字operator后面跟着需要被定义的操作符的符号。像其它函数一样，重载操作符有返回值，参数列表和函数体。
+重载操作符的参数和操作符的操作数一样多。除了函数调用操作符，operator()，重载操作符没有默认实参。
+
+注意当重载操作符是成员函数时，this绑定到左操作数。因此，成员操作符函数少一个操作数">
+
+    
+    <link rel="alternative" href="/atom.xml" title="opensvn" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/author.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/author.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/author.jpg" alt="opensvn" title="opensvn"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="opensvn">opensvn</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:opensvn.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/20/cpp_primer_14/" title="重载操作和转换" itemprop="url">重载操作和转换</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="opensvn" target="_blank" itemprop="author">opensvn</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-20T02:47:02.000Z" itemprop="datePublished"> 发表于 2015-09-20</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#直接调用重载操作符函数"><span class="toc-number">1.1.</span> <span class="toc-text">直接调用重载操作符函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有些操作符不应该重载"><span class="toc-number">1.2.</span> <span class="toc-text">有些操作符不应该重载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用和内置操作符意思一致的定义"><span class="toc-number">1.3.</span> <span class="toc-text">使用和内置操作符意思一致的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择成员或非成员实现"><span class="toc-number">1.4.</span> <span class="toc-text">选择成员或非成员实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输入输出操作符"><span class="toc-number">2.</span> <span class="toc-text">输入输出操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#重载输出操作符_<<"><span class="toc-number">2.1.</span> <span class="toc-text">重载输出操作符 <<</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO操作符必须是非成员函数"><span class="toc-number">2.2.</span> <span class="toc-text">IO操作符必须是非成员函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重载输入操作符_>>"><span class="toc-number">2.3.</span> <span class="toc-text">重载输入操作符 >></span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算术和关系操作符"><span class="toc-number">3.</span> <span class="toc-text">算术和关系操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#相等操作符"><span class="toc-number">3.1.</span> <span class="toc-text">相等操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关系操作符"><span class="toc-number">3.2.</span> <span class="toc-text">关系操作符</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#赋值操作符"><span class="toc-number">4.</span> <span class="toc-text">赋值操作符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#下标操作符"><span class="toc-number">5.</span> <span class="toc-text">下标操作符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#自增和自减操作符"><span class="toc-number">6.</span> <span class="toc-text">自增和自减操作符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#成员访问操作符"><span class="toc-number">7.</span> <span class="toc-text">成员访问操作符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数调用操作符"><span class="toc-number">8.</span> <span class="toc-text">函数调用操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambdas是函数对象"><span class="toc-number">8.1.</span> <span class="toc-text">Lambdas是函数对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类表示Lambdas带捕获成员"><span class="toc-number">8.2.</span> <span class="toc-text">类表示Lambdas带捕获成员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标准库定义的函数对象"><span class="toc-number">8.3.</span> <span class="toc-text">标准库定义的函数对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法中使用标准库函数对象"><span class="toc-number">8.4.</span> <span class="toc-text">算法中使用标准库函数对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可调用对象和函数"><span class="toc-number">8.5.</span> <span class="toc-text">可调用对象和函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标准库function类型"><span class="toc-number">8.5.1.</span> <span class="toc-text">标准库function类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重载函数和function"><span class="toc-number">8.5.2.</span> <span class="toc-text">重载函数和function</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#重载，转换和操作符"><span class="toc-number">9.</span> <span class="toc-text">重载，转换和操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#转换操作符"><span class="toc-number">9.1.</span> <span class="toc-text">转换操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义一个具有转换操作符的类"><span class="toc-number">9.1.1.</span> <span class="toc-text">定义一个具有转换操作符的类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换操作符可以产生惊人的结果"><span class="toc-number">9.1.2.</span> <span class="toc-text">转换操作符可以产生惊人的结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#explicit转换操作符"><span class="toc-number">9.1.3.</span> <span class="toc-text">explicit转换操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换为bool类型"><span class="toc-number">9.1.4.</span> <span class="toc-text">转换为bool类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#避免歧义的转换"><span class="toc-number">9.2.</span> <span class="toc-text">避免歧义的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参数匹配和相互转换"><span class="toc-number">9.2.1.</span> <span class="toc-text">参数匹配和相互转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置类型的多个转换和歧义"><span class="toc-number">9.2.2.</span> <span class="toc-text">内置类型的多个转换和歧义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重载函数和转换构造函数"><span class="toc-number">9.2.3.</span> <span class="toc-text">重载函数和转换构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重载函数和用户定义的转换"><span class="toc-number">9.2.4.</span> <span class="toc-text">重载函数和用户定义的转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数匹配和操作符重载"><span class="toc-number">9.3.</span> <span class="toc-text">函数匹配和操作符重载</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>这是C++ primer第五版第14章的读书笔记。</p>
+<h1 id="基本概念">基本概念</h1><p>重载操作符是具有特殊名字的函数：关键字<code>operator</code>后面跟着需要被定义的操作符的符号。<br>像其它函数一样，重载操作符有返回值，参数列表和函数体。</p>
+<p>重载操作符的参数和操作符的操作数一样多。除了函数调用操作符，<code>operator()</code>，重载操作符<br>没有默认实参。</p>
+<blockquote>
+<p><strong>注意</strong><br>当重载操作符是成员函数时，<code>this</code>绑定到左操作数。因此，成员操作符函数少一个操作数。</p>
+</blockquote>
+<p>操作符函数必须为类的成员或至少有一个类类型参数：</p>
+<pre><code><span class="comment">// error: cannot redefine the built-in operator for ints</span>
+<span class="keyword">int</span> <span class="keyword">operator</span>+(<span class="keyword">int</span>, <span class="keyword">int</span>);
+</code></pre><p>我们可以重载大多数操作符，而且只能重载已经存在的操作符：</p>
+<pre><code>                可以重载的操作符
++       -       *       /       %       ^
+&amp;       |       ~       !       ,       =
+&lt;       &gt;       &lt;=      &gt;=      ++      --
+&lt;&lt;      &gt;&gt;      ==      !=      &amp;&amp;      ||
++=      -=      /=      %=      ^=      &amp;=
+|=      *=      &lt;&lt;=     &gt;&gt;=     []      <span class="function"><span class="params">()</span>
+-&gt;</span><span class="function">      -&gt;*</span>     <span class="keyword">new</span>     <span class="keyword">new</span>[]   <span class="keyword">delete</span>  <span class="keyword">delete</span>[]
+                不能重载的操作符
+        ::      .*      .       ?:
+</code></pre><p>重载操作符和相应的内置操作符有相同的优先级和结合性。</p>
+<h2 id="直接调用重载操作符函数">直接调用重载操作符函数</h2><pre><code><span class="keyword">data</span>1 + <span class="keyword">data</span>2;           // 表达式调用
+operator+(<span class="keyword">data</span>1, <span class="keyword">data</span>2); // 等价的函数调用
+<span class="keyword">data</span>1 += <span class="keyword">data</span>2;          // 表达式调用
+<span class="keyword">data</span>1.operator+=(<span class="keyword">data</span>2); // 等价的成员函数调用
+</code></pre><h2 id="有些操作符不应该重载">有些操作符不应该重载</h2><p>重载操作符不保留求值顺序或短路求值。</p>
+<blockquote>
+<p><strong>最佳实践</strong><br>通常，逗号（,），取地址（&amp;），逻辑与（&amp;&amp;）和逻辑或（||）不应该重载。</p>
+</blockquote>
+<h2 id="使用和内置操作符意思一致的定义">使用和内置操作符意思一致的定义</h2><ul>
+<li>如果类使用IO，定义与内置类型IO操作一致的<code>shift</code>操作符</li>
+<li>如果类有测试相等的操作，定义<code>operator==</code>。如果类有<code>operator==</code>，通常也应该定义<code>operator!=</code>。</li>
+<li>如果类有单一的，自然顺序的操作，定义<code>operator&lt;</code>。如果类有<code>operator&lt;</code>，通常也应该定义其它关系操作符。</li>
+<li>重载操作符的返回类型应该和内置操作符的返回类型兼容：逻辑操作符和关系操作符应该返回<code>bool</code>，算术操作符<br>应该返回类的值，赋值操作符应该返回左操作数的引用。</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong>：明智地使用操作符重载<br>当内置操作符和类的操作有逻辑映射的时候，操作符重载最有用。</p>
+</blockquote>
+<h2 id="选择成员或非成员实现">选择成员或非成员实现</h2><p>以下指导方针能够帮助我们决定是否将一个操作符定义为成员函数或普通的非成员函数：</p>
+<ul>
+<li>赋值操作符（=），下标操作符（[]），调用操作符（()），成员访问操作符（-&gt;）必须定义为成员。</li>
+<li>复合赋值操作符通常应该定义为成员，但是没有要求一定这样。</li>
+<li>改变对象状态或与类对象联系紧密的操作符，通常应该定义为成员。比如++，–和解引用（*）。</li>
+<li>那些可能转换操作数的对称的操作符，比如算术操作符，关系操作符，位操作符，通常应该定义为非成员。</li>
+</ul>
+<h1 id="输入输出操作符">输入输出操作符</h1><h2 id="重载输出操作符_&lt;&lt;">重载输出操作符 &lt;&lt;</h2><pre><code>ostream &amp;operator&lt;&lt;(ostream &amp;os, const Sales_data &amp;<span class="property">item</span>)
+{
+    os &lt;&lt; <span class="property">item</span>.isbn() &lt;&lt; <span class="string">" "</span> &lt;&lt; <span class="property">item</span>.units_sold &lt;&lt; <span class="string">" "</span>
+       &lt;&lt; <span class="property">item</span>.revenue &lt;&lt; <span class="string">" "</span> &lt;&lt; <span class="property">item</span>.avg_price();
+<span class="command">    return</span> os;
+}
+</code></pre><blockquote>
+<p><strong>最佳实践</strong><br>通常输出操作符应该最小格式化输出对象的内容，不应该打印换行。</p>
+</blockquote>
+<h2 id="IO操作符必须是非成员函数">IO操作符必须是非成员函数</h2><p>输入输出操作符遵循库<code>iostream</code>的惯例必须为普通的非成员函数。</p>
+<pre><code><span class="type">Sales_data</span> <span class="typedef"><span class="keyword">data</span>;</span>
+<span class="typedef"><span class="keyword">data</span> &lt;&lt; cout; // 如果operator&lt;&lt;是<span class="type">Sales_data</span>的一个成员</span>
+</code></pre><p>如果这些操作符是任意一个类的成员，那它们应该是<code>istream</code>或<code>ostream</code>的成员，但是我们无法给标准库添加成员。<br>输入输出操作符通常需要读或写非公开的数据成员。因此，IO操作符通常必须声明为<code>friend</code>。</p>
+<h2 id="重载输入操作符_&gt;&gt;">重载输入操作符 &gt;&gt;</h2><pre><code>istream &amp;<span class="keyword">operator</span>&gt;&gt;(istream &amp;<span class="keyword">is</span>, Sales_data &amp;item)
+{
+    <span class="keyword">double</span> price;
+    <span class="keyword">is</span> &gt;&gt; item.bookNo &gt;&gt; item.units_sold &gt;&gt; price;
+    <span class="keyword">if</span> (<span class="keyword">is</span>)        <span class="comment">// 检查输入是否成功</span>
+        item.revenue = item.units_sold * price;
+    <span class="keyword">else</span>
+        item = Sales_data(); <span class="comment">// 输入失败：给对象一个默认值</span>
+    <span class="keyword">return</span> <span class="keyword">is</span>;
+}
+</code></pre><blockquote>
+<p><strong>注意</strong><br>输入操作符必须处理输入失败的可能性。输出操作符通常没有这个困扰。</p>
+</blockquote>
+<p>我们选择在读取了所有数据之后，使用数据之前来检查流状态。</p>
+<blockquote>
+<p><strong>最佳实践</strong><br>输入操作符应该决定做什么错误恢复。当错误发生时，使对象处于一个合法状态尤其重要，因为对象可能被部分修改。</p>
+</blockquote>
+<p>通常输入操作符应该只设置<code>failbit</code>。<code>eofbit</code>和<code>badbit</code>最好是留给IO库去指示。</p>
+<h1 id="算术和关系操作符">算术和关系操作符</h1><p>通常我们将算术和关系操作符定义为非成员函数，以允许转换左右操作符中的一个。这些操作符不需要修改<br>操作数的状态，所以参数通常为<code>const</code>引用。<br>定义了算术操作符的类通常也要定义相应的复合赋值操作符。</p>
+<pre><code>Sales_data
+operator+(<span class="keyword">const</span> Sales_data &amp;lhs, <span class="keyword">const</span> Sales_data &amp;rhs)
+{
+    Sales_data <span class="keyword">sum</span> = lhs;
+    <span class="keyword">sum</span> += rhs;
+    <span class="keyword">return</span> <span class="keyword">sum</span>;
+}
+</code></pre><blockquote>
+<p><strong>提示</strong><br>定义了算术操作符和相应的复合赋值操作符的类，应该使用复合赋值操作符来实现算术操作符。</p>
+</blockquote>
+<h2 id="相等操作符">相等操作符</h2><pre><code><span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> Sales_data &amp;lhs, <span class="keyword">const</span> Sales_data &amp;rhs)
+{
+    <span class="keyword">return</span> lhs.isbn() == rhs.isbn() &amp;&amp;
+           lhs.units_sold == rhs.units_sold &amp;&amp;
+           lhs.revenue == rhs.revenue;
+}
+<span class="keyword">bool</span> <span class="keyword">operator</span>!=(<span class="keyword">const</span> Sales_data &amp;lhs, <span class="keyword">const</span> Sales_data &amp;rhs)
+{
+    <span class="keyword">return</span> !(lhs == rhs);
+}
+</code></pre><p>相等操作符的设计原理：</p>
+<ul>
+<li>如果一个类有一个确定2个对象是否相等的操作，那么该类应该定义<code>operator==</code>，而不是命名函数。<br>而且可以容易使用标准库容器和算法。</li>
+<li>如果一个类定义了<code>operator==</code>，这个操作符通常应该确定给定的对象是否包含相同的数据。</li>
+<li>通常地，相等操作符应该是可传递的， <code>if a == b and b == c, then a == c</code>。</li>
+<li>如果一个类定义了<code>operator==</code>，那也应该定义<code>operator!=</code>，反之也一样。</li>
+<li>相等或不等操作符应该将实际工作委托给另一个。</li>
+</ul>
+<blockquote>
+<p><strong>最佳实践</strong><br>相等性具有逻辑意义的类通常应该定义<code>operator==</code>，定义了<code>operator==</code>的类使得用户容易使用标准库算法。</p>
+</blockquote>
+<h2 id="关系操作符">关系操作符</h2><p>定义了相等操作符的类通常（不总是）也会定义关系操作符。特别地，关系容器和有些算法使用<code>&lt;</code>操作符，<br>定义<code>operator&lt;</code>会很有用。</p>
+<p>通常关系操作符应该：</p>
+<ul>
+<li>定义一个顺序关系和关联容器的key的需求一致。</li>
+<li>定义一个关系和<code>==</code>一致，如果类2种操作符都定义了。特别地，如果2个对象<code>!=</code>，则其中一个应该<code>&lt;</code>另一个。</li>
+</ul>
+<blockquote>
+<p><strong>最佳实践</strong><br>如果只有一个逻辑定义<code>&lt;</code>存在，类通常应该定义<code>&lt;</code>操作符。然而，如果类也有<code>==</code>，只有当<code>&lt;</code>和<code>==</code>产生<br>的结果一致时，定义<code>&lt;</code>。</p>
+</blockquote>
+<h1 id="赋值操作符">赋值操作符</h1><p>除了<code>copy-</code>和<code>move-</code>赋值操作符之外，类还可以定义其它的赋值操作符允许其它类型作为右操作数。</p>
+<pre><code><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; v;
+v = {<span class="string">"a"</span>, <span class="string">"an"</span>, <span class="string">"the"</span>};
+<span class="keyword">class</span> StrVec {
+<span class="keyword">public</span>:
+    StrVec &amp;<span class="keyword">operator</span>=(<span class="built_in">std</span>::initializer_list&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;);
+};
+StrVec &amp;StrVec::<span class="keyword">operator</span>=(initializer_list&lt;<span class="built_in">string</span>&gt; il)
+{
+    <span class="keyword">auto</span> data = alloc_n_copy(il.begin(), il.end());
+    <span class="built_in">free</span>();
+    elements = data.first;
+    first_free = cap = data.second;
+    <span class="keyword">return</span> *<span class="keyword">this</span>;
+}
+</code></pre><p>不像<code>copy-</code>和<code>move-</code>赋值操作符，这个操作符不需要检查自我赋值。</p>
+<blockquote>
+<p><strong>注意</strong><br>赋值操作符可以被重载。不管参数类型是什么，赋值操作符必须定义为成员函数。</p>
+</blockquote>
+<p>复合赋值操作符不需要是类成员。然而，我们倾向于定义所有的赋值操作符，包括复合赋值操作符为类成员。</p>
+<pre><code>Sales_data&amp; Sales_data::<span class="keyword">operator</span>+=(<span class="keyword">const</span> Sales_data &amp;rhs)
+{
+    units_sold += rhs.units_sold;
+    revenue += rhs.revenue;
+    <span class="keyword">return</span> *<span class="keyword">this</span>;
+}
+</code></pre><blockquote>
+<p><strong>最佳实践</strong><br>赋值操作符必须，而且通常复合赋值操作符应该，定义为成员。这些操作符应该返回左操作数的引用。</p>
+</blockquote>
+<h1 id="下标操作符">下标操作符</h1><p>可以通过位置来获取元素的代表容器的类，通常定义下标操作符，<code>operater[]</code>。</p>
+<blockquote>
+<p><strong>注意</strong><br>下标操作符必须为成员函数。</p>
+<p><strong>最佳实践</strong><br>如果一个类有下标操作符，它通常应该定义2个版本：一个返回普通引用，一个返回const引用。</p>
+</blockquote>
+<pre><code><span class="keyword">class</span> StrVec {
+<span class="keyword">public</span>:
+    <span class="built_in">std</span>::<span class="built_in">string</span>&amp; <span class="keyword">operator</span>[](<span class="built_in">std</span>::<span class="keyword">size_t</span> n)
+        { <span class="keyword">return</span> elements[n]; }
+    <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; <span class="keyword">operator</span>[](<span class="built_in">std</span>::<span class="keyword">size_t</span> n) <span class="keyword">const</span>
+        { <span class="keyword">return</span> elements[n]; }
+<span class="keyword">private</span>:
+    <span class="built_in">std</span>::<span class="built_in">string</span> *elements; <span class="comment">// 指向数组第一个元素</span>
+};
+
+<span class="keyword">const</span> StrVec cvec = svec;
+<span class="keyword">if</span> (svec.size() &amp;&amp; svec[<span class="number">0</span>].empty())  {
+    svec[<span class="number">0</span>] = <span class="string">"zero"</span>; <span class="comment">// ok: 返回一个普通引用</span>
+    cvec[<span class="number">0</span>] = <span class="string">"Zip"</span>;  <span class="comment">// error: 返回一个const引用</span>
+}
+</code></pre><h1 id="自增和自减操作符">自增和自减操作符</h1><p>自增和自减操作符最常被迭代器类实现。语言并没要要求这些操作符是成员，但是由于这些操作符改变它们操作<br>的对象的状态，我们选择将它们定义为成员。</p>
+<blockquote>
+<p><strong>最佳实践</strong><br>定义自增或自减操作符的类应该定义<code>prefix</code>和<code>postfix</code>版本。这些操作符应该定义为成员。</p>
+</blockquote>
+<pre><code><span class="keyword">class</span> StrBlobPtr {
+<span class="keyword">public</span>:
+    StrBlobPtr&amp; <span class="keyword">operator</span>++(); <span class="comment">// 前自增操作符</span>
+    StrBlobPtr&amp; <span class="keyword">operator</span>--(); <span class="comment">// 前自减操作符</span>
+};
+
+StrBlobPtr&amp; StrBlobPtr::<span class="keyword">operator</span>++()
+{
+    check(curr, <span class="string">"increment past end of StrBlobPtr"</span>);
+    ++curr;
+    <span class="keyword">return</span> *<span class="keyword">this</span>;
+}
+StrBlobPtr&amp; StrBlobPtr::<span class="keyword">operator</span>--()
+{
+    --curr;
+    check(-<span class="number">1</span>, <span class="string">"decrement past begin of StrBlobPtr"</span>);
+    <span class="keyword">return</span> *<span class="keyword">this</span>;
+}
+</code></pre><blockquote>
+<p><strong>最佳实践</strong><br>为了和内置操作符一致，前置操作符应该返回自增过或自减过的对象的引用。</p>
+</blockquote>
+<pre><code><span class="keyword">class</span> StrBlobPtr {
+<span class="keyword">public</span>:
+    StrBlobPtr <span class="keyword">operator</span>++(<span class="keyword">int</span>);    <span class="comment">// 后置操作符</span>
+    StrBlobPtr <span class="keyword">operator</span>--(<span class="keyword">int</span>);
+};
+
+StrBlobPtr StrBlobPtr::<span class="keyword">operator</span>++(<span class="keyword">int</span>)
+{
+    StrBlobPtr ret = *<span class="keyword">this</span>;
+    ++*<span class="keyword">this</span>;
+    <span class="keyword">return</span> ret;
+}
+StrBlobPtr StrBlobPtr::<span class="keyword">operator</span>--(<span class="keyword">int</span>)
+{
+    StrBlobPtr ret = *<span class="keyword">this</span>;
+    --*<span class="keyword">this</span>;
+    <span class="keyword">return</span> ret;
+}
+</code></pre><blockquote>
+<p><strong>最佳实践</strong><br>为了和内置操作符一致，后置操作符应该返回旧的（未自增或自减）值，而不是引用。</p>
+<p><strong>注意</strong><br><code>int</code>参数没有用到，所以没有给它一个名字。</p>
+</blockquote>
+<pre><code><span class="function">StrBlobPtr <span class="title">p</span><span class="params">(a1)</span></span>;
+p.<span class="keyword">operator</span>++(<span class="number">0</span>);  <span class="comment">// 调用后自增操作符</span>
+p.<span class="keyword">operator</span>++();   <span class="comment">// 调用前自增操作符</span>
+</code></pre><h1 id="成员访问操作符">成员访问操作符</h1><p>解引用（*）和箭头（-&gt;）操作符经常使用在迭代器类和智能指针类中。</p>
+<pre><code><span class="keyword">class</span> StrBlobPtr {
+<span class="keyword">public</span>:
+    <span class="built_in">std</span>::<span class="built_in">string</span>&amp; <span class="keyword">operator</span>*() <span class="keyword">const</span>
+    { 
+        <span class="keyword">auto</span> p = check(curr, <span class="string">"dereference past end"</span>);
+        <span class="keyword">return</span> (*p)[curr];  <span class="comment">// (*p)是这个对象指向的vector</span>
+    }
+    <span class="built_in">std</span>::<span class="built_in">string</span>* <span class="keyword">operator</span>-&gt;() <span class="keyword">const</span>
+    {
+        <span class="keyword">return</span> &amp; <span class="keyword">this</span>-&gt;<span class="keyword">operator</span>*(); <span class="comment">// 将实际工作委托给解引用操作符</span>
+    }
+};
+</code></pre><blockquote>
+<p><strong>注意</strong><br>箭头操作符必须定义为成员，没有要求解引用为成员但通常也应该为成员。</p>
+</blockquote>
+<p>值得注意的是我们定义这些操作符为<code>const</code>成员，获取一个元素不会改变这个对象的状态。</p>
+<pre><code>StrBlob a1 = {<span class="string">"hi"</span>, <span class="string">"bye"</span>, <span class="string">"now"</span>};
+<span class="function">StrBlobPtr <span class="title">p</span><span class="params">(a1)</span></span>;            <span class="comment">// p指向a1里面的vector</span>
+*p = <span class="string">"okay"</span>;                 <span class="comment">// 给a1中第一个元素赋值</span>
+<span class="built_in">cout</span> &lt;&lt; p-&gt;size() &lt;&lt; endl;   <span class="comment">// 第一个元素的size()</span>
+<span class="built_in">cout</span> &lt;&lt; (*p).size() &lt;&lt; endl; <span class="comment">// 等价于p-&gt;size()</span>
+</code></pre><p>当我们写<code>point-&gt;mem</code>时，<code>point</code>必须是指向一个类对象的指针或是一个重载了<code>operator-&gt;</code>的类<br>的对象。取决于<code>point</code>的类型，<code>point-&gt;mem</code>等价于：</p>
+<pre><code>(*<span class="built_in">point</span>).mem;          <span class="comment">// point是一个内置指针类型</span>
+<span class="built_in">point</span>.operator()-&gt;mem; <span class="comment">// point是一个类的对象</span>
+</code></pre><blockquote>
+<p><strong>注意</strong><br>箭头操作符必须返回一个指向类类型的指针或一个定义了自己的箭头操作符的类类型的对象。</p>
+</blockquote>
+<h1 id="函数调用操作符">函数调用操作符</h1><p>重载了函数调用操作符的类允许它的对象像函数一样使用。因为这种类可以保存状态，它们比普通函数更灵活。</p>
+<pre><code><span class="keyword">struct</span> absInt {
+    <span class="built_in">int</span> operator<span class="literal">()</span>(<span class="built_in">int</span> <span class="keyword">val</span>) const {
+        return <span class="keyword">val</span> &lt; <span class="number">0</span> ? -<span class="keyword">val</span> : <span class="keyword">val</span>;
+    }
+};
+</code></pre><p>定义了函数调用操作符的类的对象被称为函数对象，我们可以像函数调用一样提供一个参数列表给函数对象：</p>
+<pre><code><span class="keyword">int</span> i = -<span class="number">42</span>;
+absInt absObj;
+<span class="keyword">int</span> ui = absObj(i);
+</code></pre><blockquote>
+<p><strong>注意</strong><br>函数调用操作符必须是成员函数。一个类可以定义多个版本的调用操作符，每一个参数类型或数量必须不一样。</p>
+</blockquote>
+<p>和其他类一样，一个函数对象类除了<code>operator()</code>，还可以有其它成员。函数对象类通常包含其它成员用来<br>调整函数调用操作符的操作。</p>
+<pre><code><span class="keyword">class</span> PrintString {
+<span class="keyword">public</span>:
+    PrintString(ostream &amp;o = <span class="built_in">cout</span>, <span class="keyword">char</span> c = <span class="string">' '</span>):
+        os(o), sep(c) { }
+    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s)</span> <span class="keyword">const</span> </span>{ os &lt;&lt; s &lt;&lt; sep;}
+<span class="keyword">private</span>:
+    ostream &amp;os;   <span class="comment">// stream on which to write</span>
+    <span class="keyword">char</span> sep;      <span class="comment">// character to print after each output</span>
+};
+
+PrintString printer;   <span class="comment">// uses the defaults; prints to cout</span>
+printer(s);            <span class="comment">// prints s followed by a space on cout</span>
+<span class="function">PrintString <span class="title">errors</span><span class="params">(<span class="built_in">cerr</span>, <span class="string">'\n'</span>)</span></span>;
+errors(s);             <span class="comment">// prints s followed by a newline on cerr</span>
+</code></pre><p>函数对象最常用于泛型算法的参数：</p>
+<pre><code>for_each<span class="list">(<span class="keyword">vs</span>.begin<span class="list">()</span>, vs.end<span class="list">()</span>, PrintString<span class="list">(<span class="keyword">cerr</span>, '\n')</span>)</span><span class="comment">;</span>
+</code></pre><h2 id="Lambdas是函数对象">Lambdas是函数对象</h2><p>当我们写一个<code>lambda</code>时，编译器将表达式翻译成一个匿名类的匿名对象。由<code>lambda</code>生成的类<br>包含了一个重载的函数调用操作符。</p>
+<pre><code>stable_sort<span class="list">(<span class="keyword">words</span>.begin<span class="list">()</span>, words.end<span class="list">()</span>,
+            []<span class="list">(<span class="keyword">const</span> string <span class="keyword">&amp;a</span>, const string <span class="keyword">&amp;b</span>)</span>
+              { return a.size<span class="list">()</span> &lt; b.size<span class="list">()</span><span class="comment">;});</span></span>
+</code></pre><p>行为就像一个匿名对象的类，看起来像：</p>
+<pre><code><span class="keyword">class</span> <span class="title">ShorterString</span> {
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span>(<span class="params"></span>)(<span class="params"><span class="keyword">const</span> <span class="keyword">string</span> &amp;s1, <span class="keyword">const</span> <span class="keyword">string</span> &amp;s2</span>) <span class="keyword">const</span>
+    </span>{ <span class="keyword">return</span> s1.size() &lt; s2.size(); }
+};
+
+stable_sort(words.begin(), words.end(), ShorterString());
+</code></pre><h2 id="类表示Lambdas带捕获成员">类表示Lambdas带捕获成员</h2><pre><code>auto wc = find_if<span class="list">(<span class="keyword">words</span>.begin<span class="list">()</span>, words.end<span class="list">()</span>,
+            [sz]<span class="list">(<span class="keyword">const</span> string <span class="keyword">&amp;a</span>)</span>{ return a.size<span class="list">()</span> &gt;= sz<span class="comment">;});</span></span>
+</code></pre><p>会生成像这样的类：</p>
+<pre><code><span class="keyword">class</span> SizeComp {
+<span class="keyword">public</span>:
+    SizeComp(<span class="keyword">size_t</span> n): sz(n) { } <span class="comment">// parameter for each captured variable</span>
+    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s)</span> <span class="keyword">const</span>
+        </span>{ <span class="keyword">return</span> s.size() &gt;= sz; }
+<span class="keyword">private</span>:
+    <span class="keyword">size_t</span> sz; <span class="comment">// a data member for each variable captured by value</span>
+};
+
+<span class="keyword">auto</span> wc = find_if(words.begin(), words.end(), SizeComp(sz));
+</code></pre><p>由lambda表达式生成的类有一个<code>deleted</code>默认构造函数，<code>deleted</code>赋值操作符和一个默认析构函数。<br>是否有默认的或<code>deleted``copy/move</code>构造函数取决于捕获的数据成员。</p>
+<h2 id="标准库定义的函数对象">标准库定义的函数对象</h2><p>标准库定义了一个类集合，表示算术，关系和逻辑运算符。<br><code>plus</code>类有一个函数调用操作符，应用<code>+</code>操作符。<br><code>modulus</code>类有一个函数调用操作符，应用<code>%</code>操作符。<br><code>equal_to</code>类有一个函数调用操作符，应用<code>==</code>操作符。</p>
+<pre><code>plus&lt;<span class="built_in">int</span>&gt; intAdd;       // <span class="function"><span class="keyword">function</span></span> object that can add two <span class="built_in">int</span> values
+negate&lt;<span class="built_in">int</span>&gt; intNegate;  // <span class="function"><span class="keyword">function</span></span> object that can negate an <span class="built_in">int</span> <span class="keyword">value</span>
+<span class="built_in">int</span> <span class="built_in">sum</span> = intAdd(<span class="number">10</span>, <span class="number">20</span>);         // <span class="built_in">sum</span> = <span class="number">30</span>
+<span class="built_in">sum</span> = intNegate(intAdd(<span class="number">10</span>, <span class="number">20</span>));  // <span class="built_in">sum</span> = -<span class="number">30</span>
+<span class="built_in">sum</span> = intAdd(<span class="number">10</span>, intNegate(<span class="number">10</span>));  // <span class="built_in">sum</span> = <span class="number">0</span>
+</code></pre><h2 id="算法中使用标准库函数对象">算法中使用标准库函数对象</h2><pre><code><span class="comment">// passes a temporary function object that applies the &lt; operator to two strings</span>
+sort(svec.<span class="keyword">begin</span>(), svec.<span class="keyword">end</span>(), greater&lt;<span class="keyword">string</span>&gt;());
+</code></pre><p>标准库函数对象保证对指针也有作用。</p>
+<pre><code>vector&lt;<span class="keyword">string</span> *&gt; nameTable;  <span class="comment">// vector of pointers</span>
+<span class="comment">// error: the pointers in nameTable are unrelated, so &lt; is undefined</span>
+sort(nameTable.<span class="keyword">begin</span>(), nameTable.<span class="keyword">end</span>(),
+     [](<span class="keyword">string</span> *a, <span class="keyword">string</span> *b) <span class="comment">{ return a &lt; b; }</span>);
+<span class="comment">// ok: library guarantees that less on pointer types is well defined</span>
+sort(nameTable.<span class="keyword">begin</span>(), nameTable.<span class="keyword">end</span>(), less&lt;<span class="keyword">string</span>*&gt;());
+</code></pre><p>值得注意的是关联容器使用<code>less&lt;key_type&gt;</code>排序它们的元素。因此，我们能定义一个指针集合，或者使用<br>一个指针作为<code>key</code>的<code>map</code>容器而不用直接指定<code>less</code>。</p>
+<h2 id="可调用对象和函数">可调用对象和函数</h2><p>C++有几种可调用对象：函数和函数指针，lambdas，由<code>bind</code>创建的对象和重载了函数调用操作符的类。</p>
+<p>不同类型可以有相同的调用签名：</p>
+<pre><code><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>{ <span class="keyword">return</span> i + j; } <span class="comment">// 普通函数</span>
+<span class="keyword">auto</span> mod = [](<span class="keyword">int</span> i, <span class="keyword">int</span> j) { <span class="keyword">return</span> i % j; }; <span class="comment">// 匿名函数</span>
+<span class="comment">// 函数对象类</span>
+<span class="keyword">struct</span> div {
+    <span class="function"><span class="keyword">int</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> denominator, <span class="keyword">int</span> divisor)</span> </span>{
+        <span class="keyword">return</span> denominator / divisor;
+    }
+};
+
+<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>(*)(<span class="keyword">int</span>,<span class="keyword">int</span>)&gt; binops;
+
+binops.insert({<span class="string">"+"</span>, add}); <span class="comment">// ok: add是一个指向合适类型的函数指针</span>
+binops.insert({<span class="string">"%"</span>, mod}); <span class="comment">// error: mod不是一个指向函数的指针</span>
+</code></pre><h3 id="标准库function类型">标准库function类型</h3><pre><code><span class="comment">#include &lt;functional&gt;</span>
+
+<span class="function"><span class="keyword">function</span>&lt;<span class="title">T</span>&gt; <span class="title">f</span></span>;          空函数对象。
+<span class="function"><span class="keyword">function</span>&lt;<span class="title">T</span>&gt; <span class="title">f</span><span class="params">(nullptr)</span></span>; 显式构造空函数对象。
+<span class="function"><span class="keyword">function</span>&lt;<span class="title">T</span>&gt; <span class="title">f</span><span class="params">(obj)</span></span>;     保存一个obj的副本。
+f                       <span class="keyword">true</span>当f拥有一个可调用对象，否则<span class="keyword">false</span>。
+f(args)                 传递参数args，调用函数。
+
+定义为<span class="function"><span class="keyword">function</span>&lt;<span class="title">T</span>&gt;的成员的类型
+<span class="title">result_type</span>             可调用对象的返回类型。
+<span class="title">argument_type</span>           当参数为1个或2个时的类型。
+<span class="title">first_argument_type</span>
+<span class="title">second_argument_type</span></span>
+</code></pre><p><code>function</code>是一个模板。和其它模板一样，我们必须指定<code>function</code>的函数类型。</p>
+<pre><code>function&lt;<span class="keyword">int</span>(<span class="keyword">int</span>, <span class="keyword">int</span>)&gt; f1 = add;    <span class="comment">// 函数指针</span>
+function&lt;<span class="keyword">int</span>(<span class="keyword">int</span>, <span class="keyword">int</span>)&gt; f2 = div();  <span class="comment">// 函数对象</span>
+function&lt;<span class="keyword">int</span>(<span class="keyword">int</span>, <span class="keyword">int</span>)&gt; f3 = [](<span class="keyword">int</span> i, <span class="keyword">int</span> j) { <span class="keyword">return</span> i * j;}; <span class="comment">// 匿名函数</span>
+<span class="built_in">cout</span> &lt;&lt; f1(<span class="number">4</span>,<span class="number">2</span>) &lt;&lt; endl; <span class="comment">// prints 6</span>
+<span class="built_in">cout</span> &lt;&lt; f2(<span class="number">4</span>,<span class="number">2</span>) &lt;&lt; endl; <span class="comment">// prints 2</span>
+<span class="built_in">cout</span> &lt;&lt; f3(<span class="number">4</span>,<span class="number">2</span>) &lt;&lt; endl; <span class="comment">// prints 8</span>
+
+<span class="built_in">map</span>&lt;<span class="built_in">string</span>, function&lt;<span class="keyword">int</span>(<span class="keyword">int</span>, <span class="keyword">int</span>)&gt;&gt; binops = {
+    {<span class="string">"+"</span>, add},                  <span class="comment">// function pointer</span>
+    {<span class="string">"-"</span>, <span class="built_in">std</span>::minus&lt;<span class="keyword">int</span>&gt;()},    <span class="comment">// library function object</span>
+    {<span class="string">"/"</span>,  div()},               <span class="comment">// user-defined function object</span>
+    {<span class="string">"*"</span>, [](<span class="keyword">int</span> i, <span class="keyword">int</span> j) { <span class="keyword">return</span> i * j; }}, <span class="comment">// unnamed lambda</span>
+    {<span class="string">"%"</span>, mod} };                <span class="comment">// named lambda object</span>
+
+binops[<span class="string">"+"</span>](<span class="number">10</span>, <span class="number">5</span>); <span class="comment">// calls add(10, 5)</span>
+binops[<span class="string">"-"</span>](<span class="number">10</span>, <span class="number">5</span>); <span class="comment">// uses the call operator of the minus&lt;int&gt; object</span>
+binops[<span class="string">"/"</span>](<span class="number">10</span>, <span class="number">5</span>); <span class="comment">// uses the call operator of the div object</span>
+binops[<span class="string">"*"</span>](<span class="number">10</span>, <span class="number">5</span>); <span class="comment">// calls the lambda function object</span>
+binops[<span class="string">"%"</span>](<span class="number">10</span>, <span class="number">5</span>); <span class="comment">// calls the lambda function object</span>
+</code></pre><h3 id="重载函数和function">重载函数和function</h3><p>我们不能直接保存一个重载函数的函数名：</p>
+<pre><code><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>{ <span class="keyword">return</span> i + j; }
+<span class="function">Sales_data <span class="title">add</span><span class="params">(<span class="keyword">const</span> Sales_data&amp;, <span class="keyword">const</span> Sales_data&amp;)</span></span>;
+<span class="built_in">map</span>&lt;<span class="built_in">string</span>, function&lt;<span class="keyword">int</span>(<span class="keyword">int</span>, <span class="keyword">int</span>)&gt;&gt; binops;
+binops.insert({<span class="string">"+"</span>, add}); <span class="comment">// error: which add?</span>
+</code></pre><p>解决二义性的一个方法是存储函数指针：</p>
+<pre><code><span class="built_in">int</span> (*fp)(<span class="built_in">int</span>,<span class="built_in">int</span>) = <span class="built_in">add</span>;
+binops.insert({<span class="string">"+"</span>, fp});
+</code></pre><p>或者使用lambda消除歧义：</p>
+<pre><code>binops.insert({<span class="string">"+"</span>, [](<span class="keyword">int</span> a, <span class="keyword">int</span> b) {<span class="function"><span class="keyword">return</span> <span class="title">add</span><span class="params">(a, b)</span></span>;}});
+</code></pre><h1 id="重载，转换和操作符">重载，转换和操作符</h1><p>转换构造函数和转换操作符定义了类类型的转换。这种转换又叫做用户定义的转换。</p>
+<h2 id="转换操作符">转换操作符</h2><p>转换操作符是一种特殊的成员函数，将一个类类型的值转换为其它类型的值。一个典型的转换函数具有形式：</p>
+<pre><code><span class="function"><span class="keyword">operator</span> <span class="title">type</span><span class="params">()</span> <span class="keyword">const</span></span>;
+</code></pre><p>转换操作符可以为任意（除了<code>void</code>）函数返回的类型定义转换。不允许转换为数组或函数类型。<br>允许转换为指针（数据指针和函数指针）和引用。</p>
+<blockquote>
+<p><strong>注意</strong><br>转换函数必须是一个成员函数，不能指定返回类型，参数列表必须为空，通常为const。</p>
+</blockquote>
+<h3 id="定义一个具有转换操作符的类">定义一个具有转换操作符的类</h3><pre><code><span class="keyword">class</span> SmallInt {
+<span class="keyword">public</span>:
+    SmallInt(<span class="keyword">int</span> i = <span class="number">0</span>): val(i)
+    {
+        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt; <span class="number">255</span>)
+            <span class="keyword">throw</span> <span class="built_in">std</span>::out_of_range(<span class="string">"Bad SmallInt value"</span>);
+    }
+    <span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span> <span class="keyword">const</span> </span>{ <span class="keyword">return</span> val; }
+<span class="keyword">private</span>:
+    <span class="built_in">std</span>::<span class="keyword">size_t</span> val;
+};
+
+SmallInt si;
+si = <span class="number">4</span>; <span class="comment">// implicitly converts 4 to SmallInt then calls SmallInt::operator=</span>
+si + <span class="number">3</span>; <span class="comment">// implicitly converts si to int followed by integer addition</span>
+</code></pre><p>尽管编译器每次只应用一个用户定义的转换操作，隐式调用用户定义的转换可以在之前或之后跟着一个标准转换。</p>
+<pre><code>SmallInt si = <span class="number">3.14</span>;
+si + <span class="number">3.14</span>;
+</code></pre><p>因为转换操作符是隐式调用的，没有办法给它们传递参数。因此，转换操作符不带参数。尽管转换函数没有<br>指定返回值，每一个转换函数必须返回相应的转换类型。</p>
+<pre><code><span class="keyword">class</span> SmallInt {
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">int</span> <span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span> <span class="keyword">const</span></span>;            <span class="comment">// error: return type</span>
+    <span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">(<span class="keyword">int</span> = <span class="number">0</span>)</span> <span class="keyword">const</span></span>;         <span class="comment">// error: parameter list</span>
+    <span class="keyword">operator</span> <span class="keyword">int</span>*() <span class="keyword">const</span> { <span class="keyword">return</span> <span class="number">42</span>; } <span class="comment">// error: 42 is not a pointer</span>
+};
+<span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">(SmallInt&amp;)</span></span>;                 <span class="comment">// error: nonmember</span>
+</code></pre><blockquote>
+<p><strong>警告</strong><br>避免滥用转换函数。</p>
+</blockquote>
+<h3 id="转换操作符可以产生惊人的结果">转换操作符可以产生惊人的结果</h3><p>实际上，类很少定义转换操作符。然而一个例外是：类定义转换为bool类型并不罕见。</p>
+<pre><code><span class="keyword">int</span> i = <span class="number">42</span>;
+<span class="built_in">cin</span> &lt;&lt; i; <span class="comment">// this code would be legal if the conversion to bool were not explicit!</span>
+</code></pre><h3 id="explicit转换操作符">explicit转换操作符</h3><p>为了防止前面的问题，新标准引入<code>explicit</code>转换。</p>
+<pre><code><span class="keyword">class</span> SmallInt {
+<span class="keyword">public</span>:
+    <span class="comment">// the compiler won't automatically apply this conversion</span>
+    <span class="function"><span class="keyword">explicit</span> <span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span> <span class="keyword">const</span> </span>{ <span class="keyword">return</span> val; }
+};
+
+SmallInt si = <span class="number">3</span>;  <span class="comment">// ok: the SmallInt constructor is not explicit</span>
+si + <span class="number">3</span>; <span class="comment">// error: implicit conversion is required, but operator int is explicit</span>
+<span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(si) + <span class="number">3</span>; <span class="comment">// ok: explicitly request the conversion</span>
+</code></pre><p>如果转换操作符是<code>explicit</code>的，我们只能通过<code>cast</code>来显式转换。一个例外是编译器会在条件测试中应用显式转换：</p>
+<ul>
+<li><code>if</code>，<code>while</code>或<code>do while</code>条件测试</li>
+<li><code>for</code>的条件表达式</li>
+<li>逻辑非<code>!</code>，逻辑与<code>&amp;&amp;</code>或逻辑或<code>||</code>的操作数</li>
+<li>条件运算符<code>?:</code>条件测试</li>
+</ul>
+<h3 id="转换为bool类型">转换为bool类型</h3><p>当我们在条件测试中使用流对象，我们使用定义在IO类型里面的<code>operator bool</code>转换操作：</p>
+<pre><code><span class="keyword">while</span> (<span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; value)
+</code></pre><blockquote>
+<p><strong>最佳实践</strong><br>通常转换为<code>bool</code>是有意用于条件测试的。因此，<code>operator bool</code>通常应该定义为<code>explicit</code>。</p>
+</blockquote>
+<h2 id="避免歧义的转换">避免歧义的转换</h2><p>有两种方法会发生多个转换路径的情况。第一个就是当2个类提供了相互的转换。第二个就是定义了多个转换，<br>转换类型之间也可以转换。</p>
+<blockquote>
+<p><strong>警告</strong><br>通常，类定义相互转换或定义了多个从算术类型或到算术类型的转换是个坏主意。</p>
+</blockquote>
+<h3 id="参数匹配和相互转换">参数匹配和相互转换</h3><pre><code><span class="keyword">struct</span> B;
+<span class="keyword">struct</span> A {
+    A() = <span class="keyword">default</span>;
+    A(<span class="keyword">const</span> B&amp;);        <span class="comment">// converts a B to an A</span>
+};
+<span class="keyword">struct</span> B {
+    <span class="function"><span class="keyword">operator</span> <span class="title">A</span>(<span class="params"></span>) <span class="keyword">const</span></span>; <span class="comment">// also converts a B to an A</span>
+};
+
+<span class="function">A <span class="title">f</span>(<span class="params"><span class="keyword">const</span> A&amp;</span>)</span>;
+B b;
+A a = f(b); <span class="comment">// error ambiguous: f(B::operator A())</span>
+            <span class="comment">//          or f(A::A(const B&amp;))</span>
+
+A a1 = f(b.<span class="function"><span class="keyword">operator</span> <span class="title">A</span>(<span class="params"></span>))</span>; <span class="comment">// ok: use B's conversion operator</span>
+A a2 = f(A(b));           <span class="comment">// ok: use A's constructor</span>
+</code></pre><p>需要注意的是我们不能通过<code>cast</code>来解决这个二义性，因为<code>cast</code>有着一样的歧义。</p>
+<h3 id="内置类型的多个转换和歧义">内置类型的多个转换和歧义</h3><pre><code><span class="keyword">struct</span> A {
+    A(<span class="keyword">int</span> = <span class="number">0</span>);   <span class="comment">// usually a bad idea to have two</span>
+    A(<span class="keyword">double</span>);    <span class="comment">// conversions from arithmetic types</span>
+    <span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span> <span class="keyword">const</span></span>;    <span class="comment">// usually a bad idea to have two</span>
+    <span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span> <span class="keyword">const</span></span>; <span class="comment">// conversions to arithmetic types</span>
+};
+
+<span class="function"><span class="keyword">void</span> <span class="title">f2</span><span class="params">(<span class="keyword">long</span> <span class="keyword">double</span>)</span></span>;
+A a;
+f2(a); <span class="comment">// error ambiguous: f(A::operator int())</span>
+       <span class="comment">//          or f(A::operator double())</span>
+<span class="keyword">long</span> lg;
+<span class="function">A <span class="title">a2</span><span class="params">(lg)</span></span>; <span class="comment">// error ambiguous: A::A(int) or A::A(double)</span>
+
+<span class="keyword">short</span> s = <span class="number">42</span>;
+<span class="comment">// promoting short to int is better than converting short to double</span>
+<span class="function">A <span class="title">a3</span><span class="params">(s)</span></span>;  <span class="comment">// uses A::A(int)</span>
+</code></pre><blockquote>
+<p><strong>注意</strong><br>当使用2个用户定义的转换时，如果有标准转换，使用标准转换的级别来选择最佳匹配。</p>
+<p>转换和操作符：</p>
+<ul>
+<li>不要定义类之间的相互转换</li>
+<li>避免定义多个到内置算术类型的转换。</li>
+</ul>
+<p>最简单的规则就是：除了显式转换为<code>bool</code>类型外，避免定义转换函数和限制那些看起来对的隐式构造函数。</p>
+</blockquote>
+<h3 id="重载函数和转换构造函数">重载函数和转换构造函数</h3><pre><code><span class="keyword">struct</span> C {
+    C(<span class="keyword">int</span>);
+};
+<span class="keyword">struct</span> D {
+    D(<span class="keyword">int</span>);
+};
+
+<span class="function"><span class="keyword">void</span> <span class="title">manip</span><span class="params">(<span class="keyword">const</span> C&amp;)</span></span>;
+<span class="function"><span class="keyword">void</span> <span class="title">manip</span><span class="params">(<span class="keyword">const</span> D&amp;)</span></span>;
+
+manip(<span class="number">10</span>); <span class="comment">// error ambiguous: manip(C(10)) or manip(D(10))</span>
+manip(C(<span class="number">10</span>)); <span class="comment">// ok: calls manip(const C&amp;)</span>
+</code></pre><blockquote>
+<p><strong>警告</strong><br>需要频繁地在函数调用中使用构造函数或强制转换来转换参数一个坏设计的表现。</p>
+</blockquote>
+<h3 id="重载函数和用户定义的转换">重载函数和用户定义的转换</h3><p>在重载函数调用中，如果有2个或更多用户定义的转换提供可行的匹配，转换被认为是一样好。</p>
+<pre><code><span class="keyword">struct</span> E {
+    E(<span class="keyword">double</span>);
+};
+<span class="function"><span class="keyword">void</span> <span class="title">manip2</span><span class="params">(<span class="keyword">const</span> C&amp;)</span></span>;
+<span class="function"><span class="keyword">void</span> <span class="title">manip2</span><span class="params">(<span class="keyword">const</span> E&amp;)</span></span>;
+<span class="comment">// error ambiguous: two different user-defined conversions could be used</span>
+manip2(<span class="number">10</span>); <span class="comment">// manip2(C(10) or manip2(E(double(10)))</span>
+</code></pre><blockquote>
+<p><strong>注意</strong><br>在重载函数调用中，附加的标准转换级别有作用仅当可行函数是同一个用户定义的转换。如果是不同的用户<br>定义的转换，则调用有歧义。</p>
+</blockquote>
+<h2 id="函数匹配和操作符重载">函数匹配和操作符重载</h2><p>如果a是一个类类型，a sym b表达式可能是：</p>
+<pre><code>a.operatorsym<span class="comment">(b)</span>; <span class="comment">// a has operatorsym as a member function</span>
+operatorsym<span class="comment">(a, b)</span>; <span class="comment">// operatorsym is an ordinary function</span>
+</code></pre><blockquote>
+<p><strong>注意</strong><br>在候选函数集中表达式中的操作符可以是成员或非成员函数。</p>
+</blockquote>
+<pre><code><span class="keyword">class</span> SmallInt {
+    <span class="keyword">friend</span> SmallInt <span class="keyword">operator</span>+(<span class="keyword">const</span> SmallInt&amp;, <span class="keyword">const</span> SmallInt&amp;);
+<span class="keyword">public</span>:
+    SmallInt(<span class="keyword">int</span> = <span class="number">0</span>);                   <span class="comment">// conversion from int</span>
+    <span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span> <span class="keyword">const</span> </span>{ <span class="keyword">return</span> val; } <span class="comment">// conversion to int</span>
+<span class="keyword">private</span>:
+    <span class="built_in">std</span>::<span class="keyword">size_t</span> val;
+};
+
+SmallInt s1, s2;
+SmallInt s3 = s1 + s2;  <span class="comment">// uses overloaded operator+</span>
+<span class="keyword">int</span> i = s3 + <span class="number">0</span>;         <span class="comment">// error: ambiguous</span>
+</code></pre><blockquote>
+<p><strong>警告</strong><br>既提供了到算术类型的转换，又重载了相应的算术操作符，可能会导致二义性。</p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C/">C++</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://opensvn.github.io/2015/09/20/cpp_primer_14/" data-title="重载操作和转换 | opensvn" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/09/19/syntax/"  title="Markdown语法">
+ <strong>下一篇：</strong><br/> 
+ <span>Markdown语法
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/09/20/cpp_primer_14/" data-title="重载操作和转换" data-url="https://opensvn.github.io/2015/09/20/cpp_primer_14/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#直接调用重载操作符函数"><span class="toc-number">1.1.</span> <span class="toc-text">直接调用重载操作符函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有些操作符不应该重载"><span class="toc-number">1.2.</span> <span class="toc-text">有些操作符不应该重载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用和内置操作符意思一致的定义"><span class="toc-number">1.3.</span> <span class="toc-text">使用和内置操作符意思一致的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择成员或非成员实现"><span class="toc-number">1.4.</span> <span class="toc-text">选择成员或非成员实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输入输出操作符"><span class="toc-number">2.</span> <span class="toc-text">输入输出操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#重载输出操作符_<<"><span class="toc-number">2.1.</span> <span class="toc-text">重载输出操作符 <<</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO操作符必须是非成员函数"><span class="toc-number">2.2.</span> <span class="toc-text">IO操作符必须是非成员函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重载输入操作符_>>"><span class="toc-number">2.3.</span> <span class="toc-text">重载输入操作符 >></span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算术和关系操作符"><span class="toc-number">3.</span> <span class="toc-text">算术和关系操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#相等操作符"><span class="toc-number">3.1.</span> <span class="toc-text">相等操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关系操作符"><span class="toc-number">3.2.</span> <span class="toc-text">关系操作符</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#赋值操作符"><span class="toc-number">4.</span> <span class="toc-text">赋值操作符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#下标操作符"><span class="toc-number">5.</span> <span class="toc-text">下标操作符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#自增和自减操作符"><span class="toc-number">6.</span> <span class="toc-text">自增和自减操作符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#成员访问操作符"><span class="toc-number">7.</span> <span class="toc-text">成员访问操作符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数调用操作符"><span class="toc-number">8.</span> <span class="toc-text">函数调用操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambdas是函数对象"><span class="toc-number">8.1.</span> <span class="toc-text">Lambdas是函数对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类表示Lambdas带捕获成员"><span class="toc-number">8.2.</span> <span class="toc-text">类表示Lambdas带捕获成员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标准库定义的函数对象"><span class="toc-number">8.3.</span> <span class="toc-text">标准库定义的函数对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法中使用标准库函数对象"><span class="toc-number">8.4.</span> <span class="toc-text">算法中使用标准库函数对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可调用对象和函数"><span class="toc-number">8.5.</span> <span class="toc-text">可调用对象和函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标准库function类型"><span class="toc-number">8.5.1.</span> <span class="toc-text">标准库function类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重载函数和function"><span class="toc-number">8.5.2.</span> <span class="toc-text">重载函数和function</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#重载，转换和操作符"><span class="toc-number">9.</span> <span class="toc-text">重载，转换和操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#转换操作符"><span class="toc-number">9.1.</span> <span class="toc-text">转换操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义一个具有转换操作符的类"><span class="toc-number">9.1.1.</span> <span class="toc-text">定义一个具有转换操作符的类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换操作符可以产生惊人的结果"><span class="toc-number">9.1.2.</span> <span class="toc-text">转换操作符可以产生惊人的结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#explicit转换操作符"><span class="toc-number">9.1.3.</span> <span class="toc-text">explicit转换操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换为bool类型"><span class="toc-number">9.1.4.</span> <span class="toc-text">转换为bool类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#避免歧义的转换"><span class="toc-number">9.2.</span> <span class="toc-text">避免歧义的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参数匹配和相互转换"><span class="toc-number">9.2.1.</span> <span class="toc-text">参数匹配和相互转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置类型的多个转换和歧义"><span class="toc-number">9.2.2.</span> <span class="toc-text">内置类型的多个转换和歧义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重载函数和转换构造函数"><span class="toc-number">9.2.3.</span> <span class="toc-text">重载函数和转换构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重载函数和用户定义的转换"><span class="toc-number">9.2.4.</span> <span class="toc-text">重载函数和用户定义的转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数匹配和操作符重载"><span class="toc-number">9.3.</span> <span class="toc-text">函数匹配和操作符重载</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m opensvn. <br/>
+			Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/opensvn" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="opensvn">opensvn</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"opensvn"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F86bb0f34aeafce8b9262f5000b269d72' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
