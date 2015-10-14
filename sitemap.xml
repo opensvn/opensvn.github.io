@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://opensvn.github.io/2015/10/12/pyqt-1/</loc>
+    <lastmod>2015-10-14T03:05:18.914Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://opensvn.github.io/2015/10/12/pyqt-4/</loc>
+    <lastmod>2015-10-14T03:05:16.238Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://opensvn.github.io/2015/09/21/cpp_primer_15/</loc>
+    <lastmod>2015-09-30T10:55:41.034Z</lastmod>
+  </url>
+  
+  <url>
     <loc>https://opensvn.github.io/2015/09/19/hello-world/</loc>
     <lastmod>2015-09-22T01:25:35.011Z</lastmod>
   </url>

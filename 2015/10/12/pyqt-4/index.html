@@ -1,0 +1,714 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>PyQt编程第四章 GUI编程介绍 | opensvn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="opensvn">
+    
+
+    
+    <meta name="description" content="一个25行的弹出警告import sys
+import time
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+
+app = QApplication(sys.argv)
+
+try:
+    due = QTime.currentTime()
+    message = &quot;Alert!&quot;
+    if len(sys.argv) &amp;lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyQt编程第四章 GUI编程介绍">
+<meta property="og:url" content="https://opensvn.github.io/2015/10/12/pyqt-4/index.html">
+<meta property="og:site_name" content="opensvn">
+<meta property="og:description" content="一个25行的弹出警告import sys
+import time
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+
+app = QApplication(sys.argv)
+
+try:
+    due = QTime.currentTime()
+    message = &quot;Alert!&quot;
+    if len(sys.argv) &amp;lt;">
+<meta property="og:updated_time" content="2015-10-14T03:05:16.238Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PyQt编程第四章 GUI编程介绍">
+<meta name="twitter:description" content="一个25行的弹出警告import sys
+import time
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+
+app = QApplication(sys.argv)
+
+try:
+    due = QTime.currentTime()
+    message = &quot;Alert!&quot;
+    if len(sys.argv) &amp;lt;">
+
+    
+    <link rel="alternative" href="/atom.xml" title="opensvn" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/author.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/author.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/author.jpg" alt="opensvn" title="opensvn"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="opensvn">opensvn</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:opensvn.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/12/pyqt-4/" title="PyQt编程第四章 GUI编程介绍" itemprop="url">PyQt编程第四章 GUI编程介绍</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="opensvn" target="_blank" itemprop="author">opensvn</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-12T12:34:55.000Z" itemprop="datePublished"> 发表于 2015-10-12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一个25行的弹出警告"><span class="toc-number">1.</span> <span class="toc-text">一个25行的弹出警告</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一个30行的表达式求值程序"><span class="toc-number">2.</span> <span class="toc-text">一个30行的表达式求值程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一个70行的汇率转换器"><span class="toc-number">3.</span> <span class="toc-text">一个70行的汇率转换器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#信号和槽"><span class="toc-number">4.</span> <span class="toc-text">信号和槽</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="一个25行的弹出警告">一个25行的弹出警告</h1><pre><code><span class="keyword">import</span> sys
+<span class="keyword">import</span> time
+<span class="keyword">from</span> PyQt4.QtCore <span class="keyword">import</span> *
+<span class="keyword">from</span> PyQt4.QtGui <span class="keyword">import</span> *
+
+app = QApplication(sys.argv)
+
+<span class="keyword">try</span>:
+    due = QTime.currentTime()
+    message = <span class="string">"Alert!"</span>
+    <span class="keyword">if</span> len(sys.argv) &lt; <span class="number">2</span>:
+        <span class="keyword">raise</span> ValueError
+    hours, mins = sys.argv[<span class="number">1</span>].split(<span class="string">":"</span>)
+    due = QTime(int(hours), int(mins))
+    <span class="keyword">if</span> <span class="keyword">not</span> due.isValid():
+        <span class="keyword">raise</span> ValueError
+    <span class="keyword">if</span> len(sys.argv) &gt; <span class="number">2</span>:
+        message = <span class="string">" "</span>.join(sys.argv[<span class="number">2</span>:])
+<span class="keyword">except</span> ValueError:
+    message = <span class="string">"Usage: alert.pyw HH:MM [optional message]"</span> <span class="comment"># 24hr clock</span>
+
+<span class="keyword">while</span> QTime.currentTime() &lt; due:
+    time.sleep(<span class="number">20</span>) <span class="comment"># 20 seconds</span>
+
+label = QLabel(<span class="string">"&lt;font color=red size=72&gt;&lt;b&gt;"</span> + message + <span class="string">"&lt;/b&gt;&lt;/font&gt;"</span>)
+label.setWindowFlags(Qt.SplashScreen)
+label.show()
+QTimer.singleShot(<span class="number">60000</span>, app.quit) <span class="comment"># 1 minute</span>
+app.exec_()
+</code></pre><p>每一个<code>PyQt</code> GUI程序必须有一个<code>QApplication</code>对象。<br><code>QApplication</code>接受<code>sys.argv</code>作为参数是因为它能识别一些命令行的参数。</p>
+<p>在<code>PyQt</code>中，任何部件都能用作最顶级的窗口，甚至是一个按钮或一个标签。当部件如此使用时，<code>PyQt</code>自动<br>给它一个标题栏。一旦窗口设置好后，就可以调用<code>show()</code>。这个时候，标签窗口没有显示。<code>show()</code><br>仅仅是将一个<code>paint</code>事件加入<code>QApplication</code>对象的事件队列。</p>
+<p>在<code>PyQt</code>的术语中，函数或方法被称为<code>slot</code>，和<code>Python</code>的<code>__slots__</code>是不同的。</p>
+<p><code>app.exec_()</code>开始<code>QApplication</code>对象事件循环。第一个事件是<code>paint</code>事件，因此标签窗口弹出。<br>一分钟后超时事件触发，<code>app.quit()</code>被调用。这个方法执行GUI程序的结束清理工作，关闭窗口，释放<br>资源。</p>
+<p>GUI程序的事件循环，伪代码像这样：</p>
+<pre><code><span class="keyword">while</span> <span class="keyword">True</span>:
+    <span class="keyword">event</span> = getNextEvent()
+    <span class="keyword">if</span> <span class="keyword">event</span>:
+        <span class="keyword">if</span> <span class="keyword">event</span> == Terminate:
+            <span class="keyword">break</span>
+        processEvent(<span class="keyword">event</span>)
+</code></pre><h1 id="一个30行的表达式求值程序">一个30行的表达式求值程序</h1><pre><code><span class="keyword">from</span> __future__ <span class="keyword">import</span> division
+<span class="keyword">import</span> sys
+<span class="keyword">from</span> math <span class="keyword">import</span> *
+<span class="keyword">from</span> PyQt4.QtCore <span class="keyword">import</span> *
+<span class="keyword">from</span> PyQt4.QtGui <span class="keyword">import</span> *
+
+<span class="class"><span class="keyword">class</span> <span class="title">Form</span><span class="params">(QDialog)</span>:</span>
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, parent=None)</span>:</span>
+        super(Form, self).__init__(parent)
+        self.browser = QTextBrowser()
+        self.lineedit = QLineEdit(<span class="string">"Type an expression and press Enter"</span>)
+        self.lineedit.selectAll()
+        layout = QVBoxLayout()
+        layout.addWidget(self.browser)
+        layout.addWidget(self.lineedit)
+        self.setLayout(layout)
+        self.lineedit.setFocus()
+        self.connect(self.lineedit, SIGNAL(<span class="string">"returnPressed()"</span>),
+                     self.updateUi)
+        self.setWindowTitle(<span class="string">"Calculate"</span>)
+
+    <span class="function"><span class="keyword">def</span> <span class="title">updateUi</span><span class="params">(self)</span>:</span>
+        <span class="keyword">try</span>:
+            text = unicode(self.lineedit.text())
+            self.browser.append(<span class="string">"%s = &lt;b&gt;%s&lt;/b&gt;"</span> % (text, eval(text)))
+        <span class="keyword">except</span>:
+            self.browser.append(
+                    <span class="string">"&lt;font color=red&gt;%s is invalid!&lt;/font&gt;"</span> % text)
+
+app = QApplication(sys.argv)
+form = Form()
+form.show()
+app.exec_()
+</code></pre><p><code>QDialog</code>，<code>QMainWindow</code>和所有<code>PyQt</code>的部件，都继承自<code>QWidget</code>，并且都是新风格的类。<br>默认地，当一个部件被关闭时，它仅仅是被隐藏了。当一个窗体隐藏了，<code>PyQt</code>检查到程序没有可见<br>的窗体，而且进一步交互也不可能，<code>PyQt</code>会执行程序的结束清理工作。</p>
+<blockquote>
+<p><strong>对象所有权</strong><br>所有<code>PyQt</code>类继承自<code>QObject</code>，包括所有的部件。一个没有父亲的部件是一个顶级窗口，一个有父亲<br>的部件被包含在父亲里面。父亲拥有孩子。<br><code>PyQt</code>使用父子所有权模型来保证当一个父亲被<code>delete</code>，所有它的孩子也被自动<code>delete</code>。<br>为避免内存泄漏，除了顶级窗口，我们应该保证所有部件都有父亲。<br>布局管理器自动将部件重新绑定到正确的父亲部件上。</p>
+</blockquote>
+<p><code>PyQt</code>提供3种布局管理器：垂直布局，水平布局，网格布局。布局可以嵌套。</p>
+<p>每一个部件通过发射信号声明状态改变。</p>
+<h1 id="一个70行的汇率转换器">一个70行的汇率转换器</h1><pre><code>import sys
+import urllib2
+<span class="keyword">from</span> PyQt4.QtCore import *
+<span class="keyword">from</span> PyQt4.QtGui import *
+
+class Form(QDialog):
+    def __init__(<span class="literal">self</span>, parent=None):
+        super(Form, <span class="literal">self</span>).__init__(parent)
+
+        date = <span class="literal">self</span>.getdata()
+        rates = sorted(<span class="literal">self</span>.rates.keys())
+
+        dateLabel = QLabel(date)
+        <span class="literal">self</span>.<span class="keyword">from</span>ComboBox = QComboBox()
+        <span class="literal">self</span>.<span class="keyword">from</span>ComboBox.addItems(rates)
+        <span class="literal">self</span>.<span class="keyword">from</span>SpinBox = QDoubleSpinBox()
+        <span class="literal">self</span>.<span class="keyword">from</span>SpinBox.<span class="built_in">set</span>Range(<span class="number">0.01</span>, <span class="number">10000000.00</span>)
+        <span class="literal">self</span>.<span class="keyword">from</span>SpinBox.<span class="built_in">set</span>Value(<span class="number">1.00</span>)
+        <span class="literal">self</span>.<span class="keyword">to</span>ComboBox = QComboBox()
+        <span class="literal">self</span>.<span class="keyword">to</span>ComboBox.addItems(rates)
+        <span class="literal">self</span>.<span class="keyword">to</span>Label = QLabel(<span class="string">"1.00"</span>)
+        grid = QGridLayout()
+        grid.addWidget(dateLabel, <span class="number">0</span>, <span class="number">0</span>)
+        grid.addWidget(<span class="literal">self</span>.<span class="keyword">from</span>ComboBox, <span class="number">1</span>, <span class="number">0</span>)
+        grid.addWidget(<span class="literal">self</span>.<span class="keyword">from</span>SpinBox, <span class="number">1</span>, <span class="number">1</span>)
+        grid.addWidget(<span class="literal">self</span>.<span class="keyword">to</span>ComboBox, <span class="number">2</span>, <span class="number">0</span>)
+        grid.addWidget(<span class="literal">self</span>.<span class="keyword">to</span>Label, <span class="number">2</span>, <span class="number">1</span>)
+        <span class="literal">self</span>.<span class="built_in">set</span>Layout(grid)
+        <span class="literal">self</span>.connect(<span class="literal">self</span>.<span class="keyword">from</span>ComboBox,
+                SIGNAL(<span class="string">"currentIndexChanged(int)"</span>), <span class="literal">self</span>.updateUi)
+        <span class="literal">self</span>.connect(<span class="literal">self</span>.<span class="keyword">to</span>ComboBox,
+                SIGNAL(<span class="string">"currentIndexChanged(int)"</span>), <span class="literal">self</span>.updateUi)
+        <span class="literal">self</span>.connect(<span class="literal">self</span>.<span class="keyword">from</span>SpinBox,
+                SIGNAL(<span class="string">"valueChanged(double)"</span>), <span class="literal">self</span>.updateUi)
+        <span class="literal">self</span>.<span class="built_in">set</span>WindowTitle(<span class="string">"Currency"</span>)
+
+    def updateUi(<span class="literal">self</span>):
+        <span class="keyword">to</span> = unicode(<span class="literal">self</span>.<span class="keyword">to</span>ComboBox.currentText())
+        from_ = unicode(<span class="literal">self</span>.<span class="keyword">from</span>ComboBox.currentText())
+        amount = (<span class="literal">self</span>.rates[from_] / <span class="literal">self</span>.rates[<span class="keyword">to</span>]) * \
+                 <span class="literal">self</span>.<span class="keyword">from</span>SpinBox.value()
+        <span class="literal">self</span>.<span class="keyword">to</span>Label.<span class="built_in">set</span>Text(<span class="string">"%0.2f"</span> % amount)
+
+    def getdata(<span class="literal">self</span>): <span class="comment"># Idea taken from the Python Cookbook</span>
+        <span class="literal">self</span>.rates = {}
+        try:
+            date = <span class="string">"Unknown"</span>
+            fh = urllib2.urlopen(<span class="string">"http://www.bankofcanada.ca"</span>
+                                 <span class="string">"/en/markets/csv/exchange_eng.csv"</span>)
+            <span class="keyword">for</span> line <span class="keyword">in</span> fh:
+                line = line.rstrip()
+                if not line or line.startswith((<span class="string">"#"</span>, <span class="string">"Closing "</span>)):
+                    continue
+                fields = line.split(<span class="string">","</span>)
+                if line.startswith(<span class="string">"Date "</span>):
+                    date = fields[-<span class="number">1</span>]
+                else:
+                    try:
+                        value = float(fields[-<span class="number">1</span>])
+                        <span class="literal">self</span>.rates[unicode(fields[<span class="number">0</span>])] = value
+                    except ValueError:
+                        <span class="built_in">pass</span>
+            return <span class="string">"Exchange Rates Date: "</span> + date
+        except Exception, e:
+            return <span class="string">"Failed to download:\n%s"</span> % e
+
+app = QApplication(sys.argv)
+form = Form()
+form.show()
+app.exec_()
+</code></pre><h1 id="信号和槽">信号和槽</h1><p>每一个<code>QObject</code>支持信号和槽机制。所有的<code>PyQt</code>部件都有一组预定义的信号。不管什么时候一个信号<br>发射，<code>PyQt</code>默认简单地将其丢掉。必须将信号连接到槽来捕捉信号。在<code>PyQt</code>中，槽是任何可调用的<br>对象。大多数部件也有预定义好的槽。</p>
+<p><code>connect</code>的语法，s通常是self，w是部件：</p>
+<pre><code>s.<span class="function"><span class="title">connect</span><span class="params">(w, SIGNAL(<span class="string">"signalSignature"</span>)</span></span>, functionName)
+s.<span class="function"><span class="title">connect</span><span class="params">(w, SIGNAL(<span class="string">"signalSignature"</span>)</span></span>, instance.methodName)
+s.<span class="function"><span class="title">connect</span><span class="params">(w, SIGNAL(<span class="string">"signalSignature"</span>)</span></span>, instance, <span class="function"><span class="title">SLOT</span><span class="params">(<span class="string">"slotSignature"</span>)</span></span>)
+</code></pre><p><code>signalSignature</code>是信号的名字，并带一个逗号隔开的参数列表。如果是<code>Qt</code>信号，则参数类型必须<br>是<code>C++</code>类型。当书写信号的<code>C++</code>参数类型时，可以丢弃<code>const</code>和<code>&amp;</code>，但是必须保留<code>*</code>。</p>
+<p><code>PyQt</code>信号当它们发射时被定义，并且它们可以有任意数量，任意类型的参数。</p>
+<p><code>slotSignature</code>和<code>signalSignature</code>有着一样的形式。一个槽的参数可能比信号少。相应的信号<br>和槽的参数必须类型相同。当槽是<code>Qt</code>槽而不是<code>Python</code>方法时，使用<code>SLOT()</code>语法效率更高。</p>
+<pre><code>self.<span class="function"><span class="title">connect</span><span class="params">(dial, SIGNAL(<span class="string">"valueChanged(int)"</span>)</span></span>, spinbox, <span class="function"><span class="title">SLOT</span><span class="params">(<span class="string">"setValue(int)"</span>)</span></span>)
+self.<span class="function"><span class="title">connect</span><span class="params">(spinbox, SIGNAL(<span class="string">"valueChanged(int)"</span>)</span></span>, dial, <span class="function"><span class="title">SLOT</span><span class="params">(<span class="string">"setValue(int)"</span>)</span></span>)
+</code></pre><p>可以将多个信号连接到同一个槽，也可以将一个信号连接到多个槽。尽管很罕见，我们也可以将一个信号连接<br>到另一个信号，这样当第一个信号发射时，将会引起它连接的信号发射。</p>
+<p>通过<code>QObject.connect()</code>建立连接，<code>QObject.disconnect()</code>解除连接。实际上，我们很少需要<br>自己解除连接，<code>PyQt</code>会自动解除已经删除的对象相关的连接。</p>
+<p>使用<code>QObject.emit()</code>发射自定义的信号。</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">ZeroSpinBox</span><span class="params">(QSpinBox)</span>:</span>
+    zeros = <span class="number">0</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, parent=None)</span>:</span>
+        super(ZeroSpinBox, self).__init__(parent)
+        self.connect(self, SIGNAL(<span class="string">'valueChanged(int)'</span>), self.checkzero)
+
+    <span class="function"><span class="keyword">def</span> <span class="title">checkzero</span><span class="params">(self)</span>:</span>
+        <span class="keyword">if</span> self.value() == <span class="number">0</span>:
+            self.zeros += <span class="number">1</span>
+            self.emit(SIGNAL(<span class="string">'atzero'</span>), self.zeros)
+</code></pre><p>一个没有参数(因此没有括号)的信号是一个短路<code>Python</code>信号。当这种信号被发射，任何数据都可以当作<br>额外的参数传给<code>emit()</code>方法，这些参数被当作<code>Python</code>对象传递。<br>至少有一个参数的信号是<code>Qt</code>信号或非短路<code>Python</code>信号，其参数都将转换为<code>C++</code>数据类型。</p>
+<p><code>PyQt</code>的信号和槽机制并不局限于GUI类，任何<code>QObject</code>的子类都可以是用信号和槽。</p>
+<pre><code><span class="keyword">from</span> PyQt4.QtCore <span class="keyword">import</span> *
+
+<span class="class"><span class="keyword">class</span> <span class="title">TaxRate</span><span class="params">(QObject)</span>:</span>
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>
+        super(TaxRate, self).__init__()
+        self.__rate = <span class="number">17.5</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">rate</span><span class="params">(self)</span>:</span>
+        <span class="keyword">return</span> self.__rate
+
+    <span class="function"><span class="keyword">def</span> <span class="title">setRate</span><span class="params">(self, rate)</span>:</span>
+        <span class="keyword">if</span> rate != self.__rate:
+            self.__rate = rate
+            self.emit(SIGNAL(<span class="string">'rateChanged'</span>), self.__rate)
+
+<span class="function"><span class="keyword">def</span> <span class="title">rateChanged</span><span class="params">(value)</span>:</span>
+    <span class="keyword">print</span> <span class="string">'TaxRate changed to %.2f%%'</span> % value
+
+vat = TaxRate()
+vat.connect(vat, SIGNAL(<span class="string">'rateChanged'</span>), rateChanged)
+vat.setRate(<span class="number">17.5</span>)
+vat.setRate(<span class="number">8.5</span>)
+</code></pre><p>多个信号连接到同一个槽时，如何确定谁调用了槽。</p>
+<pre><code><span class="literal">self</span>.connect(button2, SIGNAL(<span class="string">"clicked()"</span>),
+             partial(<span class="literal">self</span>.<span class="literal">any</span>Button, <span class="string">"Two"</span>)) <span class="comment"># WRONG for PyQt 4.0-4.2</span>
+<span class="literal">self</span>.connect(button3, SIGNAL(<span class="string">"clicked()"</span>),
+             lambda who=<span class="string">"Three"</span>: <span class="literal">self</span>.<span class="literal">any</span>Button(who)) <span class="comment"># WRONG before 4.1.1</span>
+</code></pre><p>在<code>PyQt</code>4.3之前，在<code>connect()</code>中创建的封装函数，在<code>connect()</code>函数返回时被垃圾回收。因此<br>需要保存一个引用到封装函数。在<code>PyQt</code>4.1.1之前，在<code>connect</code>中创建的<code>lambda</code>也会被垃圾回收，<br>同样需要保存一个引用。</p>
+<pre><code>self<span class="class">.button2callback</span> = <span class="function"><span class="title">partial</span><span class="params">(self.anyButton, <span class="string">"Two"</span>)</span></span>
+self.<span class="function"><span class="title">connect</span><span class="params">(button2, SIGNAL(<span class="string">"clicked()"</span>)</span></span>, self.button2callback)
+
+self<span class="class">.button3callback</span> = lambda who=<span class="string">"Three"</span>: self.<span class="function"><span class="title">anyButton</span><span class="params">(who)</span></span>
+self.<span class="function"><span class="title">connect</span><span class="params">(button3, SIGNAL(<span class="string">"clicked()"</span>)</span></span>, self.button3callback)
+</code></pre><p>另外一种方法是使用<code>sender()</code>告诉我们是哪个对象。</p>
+<pre><code>self.connect(button4, SIGNAL(<span class="string">"clicked()"</span>), self.clicked)
+self.connect(button5, SIGNAL(<span class="string">"clicked()"</span>), self.clicked)
+<span class="function"><span class="keyword">def</span> <span class="title">clicked</span><span class="params">(self)</span>:</span>
+    button = self.sender()
+    <span class="keyword">if</span> button <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> <span class="keyword">not</span> isinstance(button, QPushButton):
+        <span class="keyword">return</span>
+    self.label.setText(<span class="string">"You clicked button '%s'"</span> % button.text())
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Python/">Python</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://opensvn.github.io/2015/10/12/pyqt-4/" data-title="PyQt编程第四章 GUI编程介绍 | opensvn" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/10/12/pyqt-1/"  title="PyQt编程第一章 数据类型和数据结构">
+ <strong>下一篇：</strong><br/> 
+ <span>PyQt编程第一章 数据类型和数据结构
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/10/12/pyqt-4/" data-title="PyQt编程第四章 GUI编程介绍" data-url="https://opensvn.github.io/2015/10/12/pyqt-4/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一个25行的弹出警告"><span class="toc-number">1.</span> <span class="toc-text">一个25行的弹出警告</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一个30行的表达式求值程序"><span class="toc-number">2.</span> <span class="toc-text">一个30行的表达式求值程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一个70行的汇率转换器"><span class="toc-number">3.</span> <span class="toc-text">一个70行的汇率转换器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#信号和槽"><span class="toc-number">4.</span> <span class="toc-text">信号和槽</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Python/" title="Python">Python<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m opensvn. <br/>
+			Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/opensvn" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="opensvn">opensvn</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"opensvn"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F86bb0f34aeafce8b9262f5000b269d72' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
