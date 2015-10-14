@@ -37,7 +37,7 @@ try:
     due = QTime.currentTime()
     message = &quot;Alert!&quot;
     if len(sys.argv) &amp;lt;">
-<meta property="og:updated_time" content="2015-10-14T03:05:16.238Z">
+<meta property="og:updated_time" content="2015-10-14T05:57:31.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyQt编程第四章 GUI编程介绍">
 <meta name="twitter:description" content="一个25行的弹出警告import sys
@@ -159,11 +159,10 @@ label.setWindowFlags(Qt.SplashScreen)
 label.show()
 QTimer.singleShot(<span class="number">60000</span>, app.quit) <span class="comment"># 1 minute</span>
 app.exec_()
-</code></pre><p>每一个<code>PyQt</code> GUI程序必须有一个<code>QApplication</code>对象。<br><code>QApplication</code>接受<code>sys.argv</code>作为参数是因为它能识别一些命令行的参数。</p>
-<p>在<code>PyQt</code>中，任何部件都能用作最顶级的窗口，甚至是一个按钮或一个标签。当部件如此使用时，<code>PyQt</code>自动<br>给它一个标题栏。一旦窗口设置好后，就可以调用<code>show()</code>。这个时候，标签窗口没有显示。<code>show()</code><br>仅仅是将一个<code>paint</code>事件加入<code>QApplication</code>对象的事件队列。</p>
-<p>在<code>PyQt</code>的术语中，函数或方法被称为<code>slot</code>，和<code>Python</code>的<code>__slots__</code>是不同的。</p>
-<p><code>app.exec_()</code>开始<code>QApplication</code>对象事件循环。第一个事件是<code>paint</code>事件，因此标签窗口弹出。<br>一分钟后超时事件触发，<code>app.quit()</code>被调用。这个方法执行GUI程序的结束清理工作，关闭窗口，释放<br>资源。</p>
-<p>GUI程序的事件循环，伪代码像这样：</p>
+</code></pre><p>每一个PyQt图形程序必须有一个<code>QApplication</code>对象，因为它能识别一些命令行的参数，接受<code>sys.argv</code>作为<br>参数。</p>
+<p>PyQt中任何部件都能用作顶级窗口，比如一个按钮或一个标签。当部件如此使用时，PyQt自动给它一个标题栏。<br>一旦窗口设置好后，就可以调用<code>show</code>方法，这个时候窗口没有显示。<code>show</code>方法仅仅是将一个画图事件加入<br><code>QApplication</code>对象的事件队列。</p>
+<p><code>app.exec_</code>开始<code>QApplication</code>对象事件循环。第一个事件是画图事件，因此标签窗口弹出。一分钟后超时<br>事件触发，<code>app.quit</code>被调用。这个方法执行图形程序的结束清理工作，关闭窗口，释放资源。</p>
+<p>图形程序的事件循环，伪代码如下：</p>
 <pre><code><span class="keyword">while</span> <span class="keyword">True</span>:
     <span class="keyword">event</span> = getNextEvent()
     <span class="keyword">if</span> <span class="keyword">event</span>:
@@ -203,12 +202,17 @@ app = QApplication(sys.argv)
 form = Form()
 form.show()
 app.exec_()
-</code></pre><p><code>QDialog</code>，<code>QMainWindow</code>和所有<code>PyQt</code>的部件，都继承自<code>QWidget</code>，并且都是新风格的类。<br>默认地，当一个部件被关闭时，它仅仅是被隐藏了。当一个窗体隐藏了，<code>PyQt</code>检查到程序没有可见<br>的窗体，而且进一步交互也不可能，<code>PyQt</code>会执行程序的结束清理工作。</p>
+</code></pre><p>所有PyQt的部件，都继承自<code>QWidget</code>，并且都是新风格的类。默认地，当一个部件被关闭时，它仅仅是被隐藏了。<br>当一个窗体隐藏了，如果PyQt检查到程序没有可见窗体，而且进一步交互也不可能，PyQt会执行程序的结束清理工作。</p>
 <blockquote>
-<p><strong>对象所有权</strong><br>所有<code>PyQt</code>类继承自<code>QObject</code>，包括所有的部件。一个没有父亲的部件是一个顶级窗口，一个有父亲<br>的部件被包含在父亲里面。父亲拥有孩子。<br><code>PyQt</code>使用父子所有权模型来保证当一个父亲被<code>delete</code>，所有它的孩子也被自动<code>delete</code>。<br>为避免内存泄漏，除了顶级窗口，我们应该保证所有部件都有父亲。<br>布局管理器自动将部件重新绑定到正确的父亲部件上。</p>
+<p><strong>对象所有权</strong></p>
+<ul>
+<li>所有PyQt类继承自<code>QObject</code>，包括所有的部件。没有父亲的部件是一个顶级窗口，孩子部件被包含在父亲部件<br>里面。父亲部件对孩子部件拥有所有权。</li>
+<li>PyQt使用父子所有权模型来保证当一个父亲部件被销毁，所有它的孩子部件也被自动销毁。</li>
+<li>为避免内存泄漏，除了顶级窗口，我们应该保证所有部件都有父亲。</li>
+<li>布局管理器自动将部件重新绑定到正确的父亲部件上。</li>
+</ul>
 </blockquote>
-<p><code>PyQt</code>提供3种布局管理器：垂直布局，水平布局，网格布局。布局可以嵌套。</p>
-<p>每一个部件通过发射信号声明状态改变。</p>
+<p>PyQt提供3种布局管理器：垂直布局，水平布局，网格布局。布局可以嵌套。<br>每一个部件通过发射信号声明状态改变。</p>
 <h1 id="一个70行的汇率转换器">一个70行的汇率转换器</h1><pre><code>import sys
 import urllib2
 <span class="keyword">from</span> PyQt4.QtCore import *
@@ -279,19 +283,19 @@ app = QApplication(sys.argv)
 form = Form()
 form.show()
 app.exec_()
-</code></pre><h1 id="信号和槽">信号和槽</h1><p>每一个<code>QObject</code>支持信号和槽机制。所有的<code>PyQt</code>部件都有一组预定义的信号。不管什么时候一个信号<br>发射，<code>PyQt</code>默认简单地将其丢掉。必须将信号连接到槽来捕捉信号。在<code>PyQt</code>中，槽是任何可调用的<br>对象。大多数部件也有预定义好的槽。</p>
-<p><code>connect</code>的语法，s通常是self，w是部件：</p>
+</code></pre><h1 id="信号和槽">信号和槽</h1><p>每一个<code>QObject</code>支持信号和槽机制。所有的PyQt部件都有一组预定义的信号。不管什么时候一个信号发射，PyQt<br>默认简单地将其丢掉。必须将信号连接到槽来捕捉信号。在PyQt中，槽是任何可调用的对象。大多数部件也有预定义<br>好的槽。</p>
+<p><code>connect</code>的语法，s通常是<code>self</code>，w是部件：</p>
 <pre><code>s.<span class="function"><span class="title">connect</span><span class="params">(w, SIGNAL(<span class="string">"signalSignature"</span>)</span></span>, functionName)
 s.<span class="function"><span class="title">connect</span><span class="params">(w, SIGNAL(<span class="string">"signalSignature"</span>)</span></span>, instance.methodName)
 s.<span class="function"><span class="title">connect</span><span class="params">(w, SIGNAL(<span class="string">"signalSignature"</span>)</span></span>, instance, <span class="function"><span class="title">SLOT</span><span class="params">(<span class="string">"slotSignature"</span>)</span></span>)
-</code></pre><p><code>signalSignature</code>是信号的名字，并带一个逗号隔开的参数列表。如果是<code>Qt</code>信号，则参数类型必须<br>是<code>C++</code>类型。当书写信号的<code>C++</code>参数类型时，可以丢弃<code>const</code>和<code>&amp;</code>，但是必须保留<code>*</code>。</p>
-<p><code>PyQt</code>信号当它们发射时被定义，并且它们可以有任意数量，任意类型的参数。</p>
-<p><code>slotSignature</code>和<code>signalSignature</code>有着一样的形式。一个槽的参数可能比信号少。相应的信号<br>和槽的参数必须类型相同。当槽是<code>Qt</code>槽而不是<code>Python</code>方法时，使用<code>SLOT()</code>语法效率更高。</p>
+</code></pre><p>signalSignature是信号的名字，并带一个逗号隔开的参数列表。如果是Qt信号，则参数类型必须是C++类型。<br>当书写信号的C++参数类型时，可以丢弃<code>const</code>和<code>&amp;</code>，但是必须保留<code>*</code>。</p>
+<p>PyQt信号发射时被定义，它们可以有任意数量，任意类型的参数。</p>
+<p>slotSignature和signalSignature有着一样的形式。一个槽的参数可能比信号少。相应的信号和槽的参数必须类型相同。<br>如果是Qt槽而不是Python方法时，使用<code>SLOT</code>语法效率更高。</p>
 <pre><code>self.<span class="function"><span class="title">connect</span><span class="params">(dial, SIGNAL(<span class="string">"valueChanged(int)"</span>)</span></span>, spinbox, <span class="function"><span class="title">SLOT</span><span class="params">(<span class="string">"setValue(int)"</span>)</span></span>)
 self.<span class="function"><span class="title">connect</span><span class="params">(spinbox, SIGNAL(<span class="string">"valueChanged(int)"</span>)</span></span>, dial, <span class="function"><span class="title">SLOT</span><span class="params">(<span class="string">"setValue(int)"</span>)</span></span>)
-</code></pre><p>可以将多个信号连接到同一个槽，也可以将一个信号连接到多个槽。尽管很罕见，我们也可以将一个信号连接<br>到另一个信号，这样当第一个信号发射时，将会引起它连接的信号发射。</p>
-<p>通过<code>QObject.connect()</code>建立连接，<code>QObject.disconnect()</code>解除连接。实际上，我们很少需要<br>自己解除连接，<code>PyQt</code>会自动解除已经删除的对象相关的连接。</p>
-<p>使用<code>QObject.emit()</code>发射自定义的信号。</p>
+</code></pre><p>可以将多个信号连接到同一个槽，也可以将一个信号连接到多个槽。尽管很罕见，我们也可以将一个信号连接到另一个<br>信号，这样当第一个信号发射时，将会引起它连接的信号发射。</p>
+<p>通过<code>QObject.connect</code>建立连接，<code>QObject.disconnect</code>解除连接。实际上，我们很少需要自己解除连接，<br>PyQt会自动解除已经销毁的对象相关的连接。</p>
+<p>使用<code>QObject.emit</code>发射自定义的信号。</p>
 <pre><code><span class="class"><span class="keyword">class</span> <span class="title">ZeroSpinBox</span><span class="params">(QSpinBox)</span>:</span>
     zeros = <span class="number">0</span>
 
@@ -303,8 +307,8 @@ self.<span class="function"><span class="title">connect</span><span class="param
         <span class="keyword">if</span> self.value() == <span class="number">0</span>:
             self.zeros += <span class="number">1</span>
             self.emit(SIGNAL(<span class="string">'atzero'</span>), self.zeros)
-</code></pre><p>一个没有参数(因此没有括号)的信号是一个短路<code>Python</code>信号。当这种信号被发射，任何数据都可以当作<br>额外的参数传给<code>emit()</code>方法，这些参数被当作<code>Python</code>对象传递。<br>至少有一个参数的信号是<code>Qt</code>信号或非短路<code>Python</code>信号，其参数都将转换为<code>C++</code>数据类型。</p>
-<p><code>PyQt</code>的信号和槽机制并不局限于GUI类，任何<code>QObject</code>的子类都可以是用信号和槽。</p>
+</code></pre><p>一个没有参数(没有括号)的信号是一个短路Python信号。当这种信号被发射，任何数据都可以当作额外的参数传给<br><code>emit</code>方法，这些参数被当作Python对象传递。<br>至少有一个参数的信号是Qt信号或非短路Python信号，其参数都将转换为C++数据类型。</p>
+<p>PyQt的信号和槽机制并不局限于GUI类，任何<code>QObject</code>的子类都可以使用信号和槽。</p>
 <pre><code><span class="keyword">from</span> PyQt4.QtCore <span class="keyword">import</span> *
 
 <span class="class"><span class="keyword">class</span> <span class="title">TaxRate</span><span class="params">(QObject)</span>:</span>
@@ -332,13 +336,13 @@ vat.setRate(<span class="number">8.5</span>)
              partial(<span class="literal">self</span>.<span class="literal">any</span>Button, <span class="string">"Two"</span>)) <span class="comment"># WRONG for PyQt 4.0-4.2</span>
 <span class="literal">self</span>.connect(button3, SIGNAL(<span class="string">"clicked()"</span>),
              lambda who=<span class="string">"Three"</span>: <span class="literal">self</span>.<span class="literal">any</span>Button(who)) <span class="comment"># WRONG before 4.1.1</span>
-</code></pre><p>在<code>PyQt</code>4.3之前，在<code>connect()</code>中创建的封装函数，在<code>connect()</code>函数返回时被垃圾回收。因此<br>需要保存一个引用到封装函数。在<code>PyQt</code>4.1.1之前，在<code>connect</code>中创建的<code>lambda</code>也会被垃圾回收，<br>同样需要保存一个引用。</p>
+</code></pre><p>在PyQt4.3之前，在<code>connect</code>中创建的函数，在<code>connect</code>返回时被垃圾回收。因此需要保存一个引用到该函数。<br>在PyQt4.1.1之前，在<code>connect</code>中创建的<code>lambda</code>也会被垃圾回收，同样需要保存一个引用。</p>
 <pre><code>self<span class="class">.button2callback</span> = <span class="function"><span class="title">partial</span><span class="params">(self.anyButton, <span class="string">"Two"</span>)</span></span>
 self.<span class="function"><span class="title">connect</span><span class="params">(button2, SIGNAL(<span class="string">"clicked()"</span>)</span></span>, self.button2callback)
 
 self<span class="class">.button3callback</span> = lambda who=<span class="string">"Three"</span>: self.<span class="function"><span class="title">anyButton</span><span class="params">(who)</span></span>
 self.<span class="function"><span class="title">connect</span><span class="params">(button3, SIGNAL(<span class="string">"clicked()"</span>)</span></span>, self.button3callback)
-</code></pre><p>另外一种方法是使用<code>sender()</code>告诉我们是哪个对象。</p>
+</code></pre><p>另外一种方法是使用<code>sender</code>告诉我们是哪个对象。</p>
 <pre><code>self.connect(button4, SIGNAL(<span class="string">"clicked()"</span>), self.clicked)
 self.connect(button5, SIGNAL(<span class="string">"clicked()"</span>), self.clicked)
 <span class="function"><span class="keyword">def</span> <span class="title">clicked</span><span class="params">(self)</span>:</span>
@@ -354,7 +358,7 @@ self.connect(button5, SIGNAL(<span class="string">"clicked()"</span>), self.clic
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Python/">Python</a>
+  <span></span> <a href="/tags/PyQt/">PyQt</a><a href="/tags/Python/">Python</a>
   </div>
 
 </div>
@@ -419,6 +423,10 @@ self.connect(button5, SIGNAL(<span class="string">"clicked()"</span>), self.clic
 			
 		
 			
+				<li><a href="/tags/PyQt/" title="PyQt">PyQt<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
 			
 		
@@ -437,12 +445,6 @@ self.connect(button5, SIGNAL(<span class="string">"clicked()"</span>), self.clic
   <div class="linkslist">
   <p class="asidetitle">友情链接</p>
     <ul>
-        
-          <li>
-            
-            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
-            
-          </li>
         
           <li>
             

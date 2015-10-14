@@ -1,10 +1,10 @@
 
- <!DOCTYPE HTML>
+  <!DOCTYPE HTML>
 <html >
 <head>
   <meta charset="UTF-8">
   
-    <title>Tags | opensvn</title>
+    <title>标签 : PyQt | opensvn</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="opensvn">
@@ -13,13 +13,12 @@
     
     <meta name="description">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Tags">
-<meta property="og:url" content="https://opensvn.github.io/tags/index.html">
+<meta property="og:title" content="opensvn">
+<meta property="og:url" content="https://opensvn.github.io/tags/PyQt/index.html">
 <meta property="og:site_name" content="opensvn">
 <meta property="og:description">
-<meta property="og:updated_time" content="2015-09-19T01:59:39.706Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tags">
+<meta name="twitter:title" content="opensvn">
 <meta name="twitter:description">
 
     
@@ -74,27 +73,44 @@
 </div>
       </header>
       <div id="container">
-          
+        
+
 <div class="archive-title" >
-<h2 class="tag-icon">标签</h2>
-
-<a data-src="/tags/C/" href="#C++" title="C++">C++<sup>2</sup></a>
-
-<a data-src="/tags/Hexo/" href="#Hexo" title="Hexo">Hexo<sup>1</sup></a>
-
-<a data-src="/tags/Markdown/" href="#Markdown" title="Markdown">Markdown<sup>1</sup></a>
-
-<a data-src="/tags/PyQt/" href="#PyQt" title="PyQt">PyQt<sup>2</sup></a>
-
-<a data-src="/tags/Python/" href="#Python" title="Python">Python<sup>2</sup></a>
-
+  <h2 class="tag-icon">PyQt</h2>
+  
 </div>
-<div id="main" class="archive-part">
-<div class="all-list-box"></div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/10/12/pyqt-4/" title="PyQt编程第四章 GUI编程介绍" itemprop="url">
+  
+
+    <time datetime="2015-10-12T12:34:55.000Z" itemprop="datePublished">2015-10-12</time>
+
+
+    <h1 itemprop="name">PyQt编程第四章 GUI编程介绍</h1>
+
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/10/12/pyqt-1/" title="PyQt编程第一章 数据类型和数据结构" itemprop="url">
+  
+
+    <time datetime="2015-10-12T10:57:23.000Z" itemprop="datePublished">2015-10-12</time>
+
+
+    <h1 itemprop="name">PyQt编程第一章 数据类型和数据结构</h1>
+
+  </a>
+</section>
+
+
+  </div>
 </div>
-
-
-
 
       </div>
       <footer><div id="footer" >
@@ -205,24 +221,6 @@ $(document).ready(function(){
 
 
 
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var list    = $('.archive-title a'),
-      box     = $('.all-list-box'),
-      first   = $('.archive-title a:first-of-type');
-      box.load(first.attr('data-src').toString()+' #archive-page');
-      first.addClass('current');
-  list.each(function(){
-    $(this).click(function(){
-      var listSrc=$(this).attr('data-src').toString()+' #archive-page';
-      box.load(listSrc);
-      list.removeClass('current');
-      $(this).addClass('current');
-     });  
-    });
-  }); 
-</script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
