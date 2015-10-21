@@ -1,0 +1,703 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>PyQt编程第五章 对话框 | opensvn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="opensvn">
+    
+
+    
+    <meta name="description" content="对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。对话框以“模式”分类为：模式对话框和无模式对话框。
+应用模式对话框一旦被调用，用户只能与其交互，不能使用程序其它部分。窗口模式对话框和应用模式对话框类似，只是它仅仅阻止与其父窗口交互。无模式对话框允许用户与程序其它部分交互。
+编写对话框另一个重要方面是如何处理有效性检验。我们尽量挑选合适的部件并设置其属性来避免编写有效性检验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyQt编程第五章 对话框">
+<meta property="og:url" content="https://opensvn.github.io/2015/10/14/pyqt-5/index.html">
+<meta property="og:site_name" content="opensvn">
+<meta property="og:description" content="对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。对话框以“模式”分类为：模式对话框和无模式对话框。
+应用模式对话框一旦被调用，用户只能与其交互，不能使用程序其它部分。窗口模式对话框和应用模式对话框类似，只是它仅仅阻止与其父窗口交互。无模式对话框允许用户与程序其它部分交互。
+编写对话框另一个重要方面是如何处理有效性检验。我们尽量挑选合适的部件并设置其属性来避免编写有效性检验">
+<meta property="og:updated_time" content="2015-10-21T01:20:37.116Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PyQt编程第五章 对话框">
+<meta name="twitter:description" content="对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。对话框以“模式”分类为：模式对话框和无模式对话框。
+应用模式对话框一旦被调用，用户只能与其交互，不能使用程序其它部分。窗口模式对话框和应用模式对话框类似，只是它仅仅阻止与其父窗口交互。无模式对话框允许用户与程序其它部分交互。
+编写对话框另一个重要方面是如何处理有效性检验。我们尽量挑选合适的部件并设置其属性来避免编写有效性检验">
+
+    
+    <link rel="alternative" href="/atom.xml" title="opensvn" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/author.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/author.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/author.jpg" alt="opensvn" title="opensvn"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="opensvn">opensvn</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:opensvn.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/14/pyqt-5/" title="PyQt编程第五章 对话框" itemprop="url">PyQt编程第五章 对话框</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="opensvn" target="_blank" itemprop="author">opensvn</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-14T08:20:56.000Z" itemprop="datePublished"> 发表于 2015-10-14</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<p>对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。<br>对话框以“模式”分类为：模式对话框和无模式对话框。</p>
+<p>应用模式对话框一旦被调用，用户只能与其交互，不能使用程序其它部分。<br>窗口模式对话框和应用模式对话框类似，只是它仅仅阻止与其父窗口交互。<br>无模式对话框允许用户与程序其它部分交互。</p>
+<p>编写对话框另一个重要方面是如何处理有效性检验。我们尽量挑选合适的部件并设置其属性来避免编写有效性<br>检验代码。<br>我们称应用到单个部件的检验为部件级确认。当部件之间有相互关系时，称为表级确认。</p>
+<h1 id="“哑巴”对话框">“哑巴”对话框</h1><p>哑巴对话框不知道其部件使用的数据。哑巴对话框通常是带有<code>accept</code>和<code>reject</code>按钮的模式对话框。</p>
+<pre><code>def <span class="function"><span class="title">setPenProperties</span><span class="params">(self)</span></span>:
+    dialog = <span class="function"><span class="title">PenPropertiesDlg</span><span class="params">(self)</span></span>
+    dialog<span class="class">.widthSpinBox</span><span class="class">.setValue</span>(self.<span class="attribute">width</span>)
+    dialog<span class="class">.beveledCheckBox</span><span class="class">.setChecked</span>(self.beveled)
+    dialog<span class="class">.styleComboBox</span><span class="class">.setCurrentIndex</span>(
+            dialog<span class="class">.styleComboBox</span><span class="class">.findText</span>(self.style))
+    <span class="keyword">if</span> dialog.<span class="function"><span class="title">exec_</span><span class="params">()</span></span>:
+        self<span class="class">.width</span> = dialog<span class="class">.widthSpinBox</span><span class="class">.value</span>()
+        self<span class="class">.beveled</span> = dialog<span class="class">.beveledCheckBox</span><span class="class">.isChecked</span>()
+        self<span class="class">.style</span> = <span class="function"><span class="title">unicode</span><span class="params">(dialog.styleComboBox.currentText()</span></span>)
+        self.<span class="function"><span class="title">updateData</span><span class="params">()</span></span>
+</code></pre><p>当我们调用一个对话框的<code>exec_</code>时，则以模式对话框显示。当用户点击<code>accept</code>，<code>exec_</code>返回<code>True</code>，<br>否则返回<code>False</code>。</p>
+<pre><code>class <span class="function">PenPropertiesDlg</span>(QDialog)<span class="value">:
+    def __<span class="function">init__</span>(self, parent=None):
+        <span class="function">super</span>(PenPropertiesDlg, self).__<span class="function">init__</span>(parent)
+        widthLabel = <span class="function">QLabel</span>(<span class="string">"&amp;Width:"</span>)
+        self.widthSpinBox = <span class="function">QSpinBox</span>()
+        widthLabel.<span class="function">setBuddy</span>(self.widthSpinBox)
+        self.widthSpinBox.<span class="function">setAlignment</span>(Qt.AlignRight|Qt.AlignVCenter)
+        self.widthSpinBox.<span class="function">setRange</span>(<span class="number">0</span>, <span class="number">24</span>)
+        self.beveledCheckBox = <span class="function">QCheckBox</span>(<span class="string">"&amp;Beveled edges"</span>)
+        styleLabel = <span class="function">QLabel</span>(<span class="string">"&amp;Style:"</span>)
+        self.styleComboBox = <span class="function">QComboBox</span>()
+        styleLabel.<span class="function">setBuddy</span>(self.styleComboBox)
+        self.styleComboBox.<span class="function">addItems</span>([<span class="string">"Solid"</span>, <span class="string">"Dashed"</span>, <span class="string">"Dotted"</span>,
+                                     <span class="string">"DashDotted"</span>, <span class="string">"DashDotDotted"</span>])
+        okButton = <span class="function">QPushButton</span>(<span class="string">"&amp;OK"</span>)
+        cancelButton = <span class="function">QPushButton</span>(<span class="string">"Cancel"</span>)
+
+        buttonLayout = <span class="function">QHBoxLayout</span>()
+        buttonLayout.<span class="function">addStretch</span>()
+        buttonLayout.<span class="function">addWidget</span>(okButton)
+        buttonLayout.<span class="function">addWidget</span>(cancelButton)
+        layout = <span class="function">QGridLayout</span>()
+        layout.<span class="function">addWidget</span>(widthLabel, <span class="number">0</span>, <span class="number">0</span>)
+        layout.<span class="function">addWidget</span>(self.widthSpinBox, <span class="number">0</span>, <span class="number">1</span>)
+        layout.<span class="function">addWidget</span>(self.beveledCheckBox, <span class="number">0</span>, <span class="number">2</span>)
+        layout.<span class="function">addWidget</span>(styleLabel, <span class="number">1</span>, <span class="number">0</span>)
+        layout.<span class="function">addWidget</span>(self.styleComboBox, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>)
+        layout.<span class="function">addLayout</span>(buttonLayout, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>)
+        self.<span class="function">setLayout</span>(layout)
+
+        self.<span class="function">connect</span>(okButton, <span class="function">SIGNAL</span>(<span class="string">"clicked()"</span>),
+                     self, <span class="function">SLOT</span>(<span class="string">"accept()"</span>))
+        self.<span class="function">connect</span>(cancelButton, <span class="function">SIGNAL</span>(<span class="string">"clicked()"</span>),
+                     self, <span class="function">SLOT</span>(<span class="string">"reject()"</span>))
+        self.<span class="function">setWindowTitle</span>(<span class="string">"Pen Properties"</span>)</span>
+</code></pre><p>在标签文字中的引号(<code>&amp;</code>)有2个可能的含义，一个简单地为字符引号。另一个指示引号后面的字母为键盘<br>加速键，可以使用Alt+字母快速定位。字符引号和加速键的区别是标签有没有一个“伙伴”。</p>
+<p><strong>对话框按钮布局</strong></p>
+<pre><code>buttonBox = QDialogButtonBox(QDialogButtonBox.<span class="built_in">Ok</span>
+                             | QDialogButtonBox.Cancel)
+buttonBox.button(QDialogButtonBox.<span class="built_in">Ok</span>).setDefault(True)
+layout.addWidget(buttonBox, <span class="number">3</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>)
+<span class="keyword">self</span>.connect(buttonBox, SIGNAL(<span class="string">"accepted()"</span>),
+             <span class="keyword">self</span>, SLOT(<span class="string">"accept()"</span>))
+<span class="keyword">self</span>.connect(buttonBox, SIGNAL(<span class="string">"rejected()"</span>),
+             <span class="keyword">self</span>, SLOT(<span class="string">"reject()"</span>))
+</code></pre><p><code>QDialogButtonBox</code>自动处理不同平台的默认外观。<br><code>QDialogButtonBox</code>默认是水平布局，可以传递<code>Qt.Vertical</code>给它构造器设置垂直布局，或者调用<br><code>setOrientation</code>函数。</p>
+<p><code>QGridLayout.addWidget</code>方法的参数是部件，所在行，所在列，和可选的行扩展数，列扩展数。</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>b.addLayout(l)</td>
+<td style="text-align:left">添加QLayout l到QBoxLayout b中, b通常是QHBoxLayout或QVBoxLayout</td>
+</tr>
+<tr>
+<td>b.addSpacing(i)</td>
+<td style="text-align:left">添加一个指定数量为i的QSpacerItem到QBoxLayout b中</td>
+</tr>
+<tr>
+<td>b.addStretch(i)</td>
+<td style="text-align:left">添加一个最小为0且伸展系数为i的QSpacerItem到QBoxLayout b中</td>
+</tr>
+<tr>
+<td>b.addWidget(w)</td>
+<td style="text-align:left">添加QWidget w到QBoxLayout b中</td>
+</tr>
+<tr>
+<td>b.setStretchFactor(x, i)</td>
+<td style="text-align:left">设置QBoxLayout b的伸展系数或QWidget x为i</td>
+</tr>
+<tr>
+<td>g.addLayout(l, r, c)</td>
+<td style="text-align:left">在行r列c添加QLayout l到QGridLayout g; 可以提供附加的行扩展和列扩展参数</td>
+</tr>
+<tr>
+<td>g.addWidget(w, r, c)</td>
+<td style="text-align:left">在行r列c添加QWidget w到QGridLayout g; 可以提供附加的行扩展和列扩展参数</td>
+</tr>
+<tr>
+<td>g.setRowStretch(r, i)</td>
+<td style="text-align:left">设置QGridLayout g行r的伸展为i</td>
+</tr>
+<tr>
+<td>g.setColumnStretch(c, i)</td>
+<td style="text-align:left">设置QGridLayout g列c的伸展为i</td>
+</tr>
+</tbody>
+</table>
+<h1 id="标准对话框">标准对话框</h1><p>我们认为一个对话框是标准对话框，如果它访问部件都是通过类方法，而不是部件本身。</p>
+<h2 id="模式OK/Cancel风格对话框">模式OK/Cancel风格对话框</h2><pre><code>def <span class="function"><span class="title">setNumberFormat1</span><span class="params">(self)</span></span>:
+    dialog = numberformatdlg1.<span class="function"><span class="title">NumberFormatDlg</span><span class="params">(self.format, self)</span></span>
+    <span class="keyword">if</span> dialog.<span class="function"><span class="title">exec_</span><span class="params">()</span></span>:
+        self<span class="class">.format</span> = dialog.<span class="function"><span class="title">numberFormat</span><span class="params">()</span></span>
+        self.<span class="function"><span class="title">refreshTable</span><span class="params">()</span></span>
+</code></pre><table>
+<thead>
+<tr>
+<th>语法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d.addButton(b, r)</td>
+<td style="text-align:left">添加具有QDialogButtonBox.ButtonRole r的QPushButton b到QDialogButtonBox d中</td>
+</tr>
+<tr>
+<td>d.addButton(t, r)</td>
+<td style="text-align:left">添加具有QDialogButtonBox.ButtonRole r且名字为t的QPushButton到QDialogButtonBox d中，返回所添加的按钮</td>
+</tr>
+<tr>
+<td>d.addButton(s)</td>
+<td style="text-align:left">添加由QDialogButtonBox.StandardButton s指定的按钮QDialogButtonBox d中，返回所添加的按钮</td>
+</tr>
+<tr>
+<td>d.setOrientation(o)</td>
+<td style="text-align:left">设置QDialogButtonBox d的方向为Qt.Orientation o(垂直或水平)</td>
+</tr>
+<tr>
+<td>d.button(s)</td>
+<td style="text-align:left">返回QDialogButtonBox d中由StandardButton s指定的按钮，或None</td>
+</tr>
+<tr>
+<td>d.accepted()</td>
+<td style="text-align:left">当角色为QDialogButtonBox.Accept的按钮被点击，发射该信号</td>
+</tr>
+<tr>
+<td>d.rejected()</td>
+<td style="text-align:left">当角色为QDialogButtonBox.Reject的按钮被点击，发射该信号</td>
+</tr>
+</tbody>
+</table>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">accept</span><span class="params">(self)</span>:</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">ThousandsError</span><span class="params">(Exception)</span>:</span> <span class="keyword">pass</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">DecimalError</span><span class="params">(Exception)</span>:</span> <span class="keyword">pass</span>
+    QMessageBox.warning(self, <span class="string">"Decimal Marker Error"</span>, unicode(e))
+    QDialog.accept(self)
+</code></pre><p>为什么这里不使用<code>super</code>来调用基类的<code>accept</code>而是显式使用<code>QDialog</code>？因为在这个环境下使用<code>super</code><br>不起作用。PyQt为了尽可能效率高，使用懒惰属性查找，结果就是此处的<code>super</code>在PyQt的子类中不会像预期<br>那样工作。(见pyqt4ref.html文档，”super and PyQt classes”)</p>
+<h1 id="智能对话框">智能对话框</h1><p>智能对话框通常是无模式的，带有<code>apply</code>和<code>close</code>按钮。</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d.accept()</td>
+<td style="text-align:left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回True。如果设置了Qt.WA_DeleteOnClose，则对话框被删除</td>
+</tr>
+<tr>
+<td>d.reject()</td>
+<td style="text-align:left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回False。</td>
+</tr>
+<tr>
+<td>d.done(i)</td>
+<td style="text-align:left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回i。</td>
+</tr>
+<tr>
+<td>d.exec_()</td>
+<td style="text-align:left">模式显示QDialog d，阻塞直到对话框关闭</td>
+</tr>
+<tr>
+<td>d.show()</td>
+<td style="text-align:left">无模式显示QDialog d；继承自QWidget</td>
+</tr>
+<tr>
+<td>d.setSizeGripEnabled(b)</td>
+<td style="text-align:left">显示或隐藏QDialog d的size grip，基于bool b</td>
+</tr>
+</tbody>
+</table>
+<h2 id="无模式Apply/Close风格对话框">无模式Apply/Close风格对话框</h2><pre><code><span class="function"><span class="keyword">def</span> <span class="title">setNumberFormat2</span><span class="params">(self)</span>:</span>
+    dialog = numberformatdlg2.NumberFormatDlg(self.format, self)
+    self.connect(dialog, SIGNAL(<span class="string">"changed"</span>), self.refreshTable)
+    dialog.show()
+</code></pre><p>尽管dialog超出范围，PyQt足够聪明地保存了一个无模式对话框的引用，因此dialog继续存在。可以设置<br>dialog的属性为Qt.WA_DeleteOnClose，则每次都删除对话框而不是隐藏。</p>
+<pre><code>def __init__(<span class="literal">self</span>, format, parent=None):
+    super(NumberFormatDlg, <span class="literal">self</span>).__init__(parent)
+    <span class="literal">self</span>.<span class="built_in">set</span>Attribute(Qt.WA_DeleteOnClose)
+    punctuationRe = QRegExp(r<span class="string">"[ ,;:.]"</span>)
+    thousandsLabel = QLabel(<span class="string">"&amp;Thousands separator"</span>)
+    <span class="literal">self</span>.thousandsEdit = QLineEdit(format[<span class="string">"thousandsseparator"</span>])
+    thousandsLabel.<span class="built_in">set</span>Buddy(<span class="literal">self</span>.thousandsEdit)
+    <span class="literal">self</span>.thousandsEdit.<span class="built_in">set</span>MaxLength(<span class="number">1</span>)
+    <span class="literal">self</span>.thousandsEdit.<span class="built_in">set</span>Validator(
+            QRegExpValidator(punctuationRe, <span class="literal">self</span>))
+    decimalMarkerLabel = QLabel(<span class="string">"Decimal &amp;marker"</span>)
+    <span class="literal">self</span>.decimalMarkerEdit = QLineEdit(format[<span class="string">"decimalmarker"</span>])
+    decimalMarkerLabel.<span class="built_in">set</span>Buddy(<span class="literal">self</span>.decimalMarkerEdit)
+    <span class="literal">self</span>.decimalMarkerEdit.<span class="built_in">set</span>MaxLength(<span class="number">1</span>)
+    <span class="literal">self</span>.decimalMarkerEdit.<span class="built_in">set</span>Validator(
+            QRegExpValidator(punctuationRe, <span class="literal">self</span>))
+    <span class="literal">self</span>.decimalMarkerEdit.<span class="built_in">set</span>InputMask(<span class="string">"X"</span>)
+    decimalPlacesLabel = QLabel(<span class="string">"&amp;Decimal places"</span>)
+    <span class="literal">self</span>.decimalPlacesSpinBox = QSpinBox()
+    decimalPlacesLabel.<span class="built_in">set</span>Buddy(<span class="literal">self</span>.decimalPlacesSpinBox)
+    <span class="literal">self</span>.decimalPlacesSpinBox.<span class="built_in">set</span>Range(<span class="number">0</span>, <span class="number">6</span>)
+    <span class="literal">self</span>.decimalPlacesSpinBox.<span class="built_in">set</span>Value(format[<span class="string">"decimalplaces"</span>])
+    <span class="literal">self</span>.redNegativesCheckBox = QCheckBox(<span class="string">"&amp;Red negative numbers"</span>)
+    <span class="literal">self</span>.redNegativesCheckBox.<span class="built_in">set</span>Checked(format[<span class="string">"rednegatives"</span>])
+    buttonBox = QDialogButtonBox(QDialogButtonBox.Apply|
+                                 QDialogButtonBox.Close)
+    <span class="literal">self</span>.connect(buttonBox.button(QDialogButtonBox.Apply),
+                 SIGNAL(<span class="string">"clicked()"</span>), <span class="literal">self</span>.apply)
+    <span class="literal">self</span>.connect(buttonBox, SIGNAL(<span class="string">"rejected()"</span>),
+                 <span class="literal">self</span>, SLOT(<span class="string">"reject()"</span>))
+    <span class="literal">self</span>.<span class="built_in">set</span>WindowTitle(<span class="string">"Set Number Format (Modeless)"</span>)
+</code></pre><p><code>QRegExpValidator</code>初始化式需要一个正则表达式和一个<code>parent</code>。<br>一个掩饰“X”说明需要任意一个字符，格式掩饰在<code>QLineEdit.inputMask</code>文档中说明。</p>
+<h2 id="无模式“Live”对话框">无模式“Live”对话框</h2><pre><code>def <span class="function"><span class="title">setNumberFormat3</span><span class="params">(self)</span></span>:
+    <span class="keyword">if</span> self<span class="class">.numberFormatDlg</span> is None:
+        self<span class="class">.numberFormatDlg</span> = numberformatdlg3.NumberFormatDlg(
+                self<span class="class">.format</span>, self<span class="class">.refreshTable</span>, self)
+    self<span class="class">.numberFormatDlg</span><span class="class">.show</span>()
+    self<span class="class">.numberFormatDlg</span><span class="class">.raise_</span>()
+    self<span class="class">.numberFormatDlg</span><span class="class">.activateWindow</span>()
+</code></pre><p><code>raise_</code>将对话框置于其它窗口之上<br><code>activateWindow</code>聚焦于对话框</p>
+<pre><code>self.connect(self<span class="class">.thousandsEdit</span>,
+             <span class="function"><span class="title">SIGNAL</span><span class="params">(<span class="string">"textEdited(QString)"</span>)</span></span>, self.checkAndFix)
+self.connect(self<span class="class">.decimalMarkerEdit</span>,
+             <span class="function"><span class="title">SIGNAL</span><span class="params">(<span class="string">"textEdited(QString)"</span>)</span></span>, self.checkAndFix)
+self.connect(self<span class="class">.decimalPlacesSpinBox</span>,
+             <span class="function"><span class="title">SIGNAL</span><span class="params">(<span class="string">"valueChanged(int)"</span>)</span></span>, self.apply)
+self.connect(self<span class="class">.redNegativesCheckBox</span>,
+             <span class="function"><span class="title">SIGNAL</span><span class="params">(<span class="string">"toggled(bool)"</span>)</span></span>, self.apply)
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/PyQt/">PyQt</a><a href="/tags/Python/">Python</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://opensvn.github.io/2015/10/14/pyqt-5/" data-title="PyQt编程第五章 对话框 | opensvn" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/10/12/pyqt-4/"  title="PyQt编程第四章 GUI编程介绍">
+ <strong>下一篇：</strong><br/> 
+ <span>PyQt编程第四章 GUI编程介绍
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/10/14/pyqt-5/" data-title="PyQt编程第五章 对话框" data-url="https://opensvn.github.io/2015/10/14/pyqt-5/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Python/" title="Python">Python<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PyQt/" title="PyQt">PyQt<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m opensvn. <br/>
+			Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/opensvn" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="opensvn">opensvn</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"opensvn"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F86bb0f34aeafce8b9262f5000b269d72' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

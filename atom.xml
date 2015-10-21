@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="https://opensvn.github.io/"/>
-  <updated>2015-10-14T05:57:31.771Z</updated>
+  <updated>2015-10-21T01:20:37.116Z</updated>
   <id>https://opensvn.github.io/</id>
   
   <author>
@@ -13,6 +13,271 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[PyQt编程第五章 对话框]]></title>
+    <link href="https://opensvn.github.io/2015/10/14/pyqt-5/"/>
+    <id>https://opensvn.github.io/2015/10/14/pyqt-5/</id>
+    <published>2015-10-14T08:20:56.000Z</published>
+    <updated>2015-10-21T01:20:37.116Z</updated>
+    <content type="html"><![CDATA[<p>对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。<br>对话框以“模式”分类为：模式对话框和无模式对话框。</p>
+<p>应用模式对话框一旦被调用，用户只能与其交互，不能使用程序其它部分。<br>窗口模式对话框和应用模式对话框类似，只是它仅仅阻止与其父窗口交互。<br>无模式对话框允许用户与程序其它部分交互。</p>
+<p>编写对话框另一个重要方面是如何处理有效性检验。我们尽量挑选合适的部件并设置其属性来避免编写有效性<br>检验代码。<br>我们称应用到单个部件的检验为部件级确认。当部件之间有相互关系时，称为表级确认。</p>
+<h1 id="“哑巴”对话框">“哑巴”对话框</h1><p>哑巴对话框不知道其部件使用的数据。哑巴对话框通常是带有<code>accept</code>和<code>reject</code>按钮的模式对话框。</p>
+<pre><code>def <span class="function"><span class="title">setPenProperties</span><span class="params">(self)</span></span>:
+    dialog = <span class="function"><span class="title">PenPropertiesDlg</span><span class="params">(self)</span></span>
+    dialog<span class="class">.widthSpinBox</span><span class="class">.setValue</span>(self.<span class="attribute">width</span>)
+    dialog<span class="class">.beveledCheckBox</span><span class="class">.setChecked</span>(self.beveled)
+    dialog<span class="class">.styleComboBox</span><span class="class">.setCurrentIndex</span>(
+            dialog<span class="class">.styleComboBox</span><span class="class">.findText</span>(self.style))
+    <span class="keyword">if</span> dialog.<span class="function"><span class="title">exec_</span><span class="params">()</span></span>:
+        self<span class="class">.width</span> = dialog<span class="class">.widthSpinBox</span><span class="class">.value</span>()
+        self<span class="class">.beveled</span> = dialog<span class="class">.beveledCheckBox</span><span class="class">.isChecked</span>()
+        self<span class="class">.style</span> = <span class="function"><span class="title">unicode</span><span class="params">(dialog.styleComboBox.currentText()</span></span>)
+        self.<span class="function"><span class="title">updateData</span><span class="params">()</span></span>
+</code></pre><p>当我们调用一个对话框的<code>exec_</code>时，则以模式对话框显示。当用户点击<code>accept</code>，<code>exec_</code>返回<code>True</code>，<br>否则返回<code>False</code>。</p>
+<pre><code>class <span class="function">PenPropertiesDlg</span>(QDialog)<span class="value">:
+    def __<span class="function">init__</span>(self, parent=None):
+        <span class="function">super</span>(PenPropertiesDlg, self).__<span class="function">init__</span>(parent)
+        widthLabel = <span class="function">QLabel</span>(<span class="string">"&amp;Width:"</span>)
+        self.widthSpinBox = <span class="function">QSpinBox</span>()
+        widthLabel.<span class="function">setBuddy</span>(self.widthSpinBox)
+        self.widthSpinBox.<span class="function">setAlignment</span>(Qt.AlignRight|Qt.AlignVCenter)
+        self.widthSpinBox.<span class="function">setRange</span>(<span class="number">0</span>, <span class="number">24</span>)
+        self.beveledCheckBox = <span class="function">QCheckBox</span>(<span class="string">"&amp;Beveled edges"</span>)
+        styleLabel = <span class="function">QLabel</span>(<span class="string">"&amp;Style:"</span>)
+        self.styleComboBox = <span class="function">QComboBox</span>()
+        styleLabel.<span class="function">setBuddy</span>(self.styleComboBox)
+        self.styleComboBox.<span class="function">addItems</span>([<span class="string">"Solid"</span>, <span class="string">"Dashed"</span>, <span class="string">"Dotted"</span>,
+                                     <span class="string">"DashDotted"</span>, <span class="string">"DashDotDotted"</span>])
+        okButton = <span class="function">QPushButton</span>(<span class="string">"&amp;OK"</span>)
+        cancelButton = <span class="function">QPushButton</span>(<span class="string">"Cancel"</span>)
+
+        buttonLayout = <span class="function">QHBoxLayout</span>()
+        buttonLayout.<span class="function">addStretch</span>()
+        buttonLayout.<span class="function">addWidget</span>(okButton)
+        buttonLayout.<span class="function">addWidget</span>(cancelButton)
+        layout = <span class="function">QGridLayout</span>()
+        layout.<span class="function">addWidget</span>(widthLabel, <span class="number">0</span>, <span class="number">0</span>)
+        layout.<span class="function">addWidget</span>(self.widthSpinBox, <span class="number">0</span>, <span class="number">1</span>)
+        layout.<span class="function">addWidget</span>(self.beveledCheckBox, <span class="number">0</span>, <span class="number">2</span>)
+        layout.<span class="function">addWidget</span>(styleLabel, <span class="number">1</span>, <span class="number">0</span>)
+        layout.<span class="function">addWidget</span>(self.styleComboBox, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>)
+        layout.<span class="function">addLayout</span>(buttonLayout, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>)
+        self.<span class="function">setLayout</span>(layout)
+
+        self.<span class="function">connect</span>(okButton, <span class="function">SIGNAL</span>(<span class="string">"clicked()"</span>),
+                     self, <span class="function">SLOT</span>(<span class="string">"accept()"</span>))
+        self.<span class="function">connect</span>(cancelButton, <span class="function">SIGNAL</span>(<span class="string">"clicked()"</span>),
+                     self, <span class="function">SLOT</span>(<span class="string">"reject()"</span>))
+        self.<span class="function">setWindowTitle</span>(<span class="string">"Pen Properties"</span>)</span>
+</code></pre><p>在标签文字中的引号(<code>&amp;</code>)有2个可能的含义，一个简单地为字符引号。另一个指示引号后面的字母为键盘<br>加速键，可以使用Alt+字母快速定位。字符引号和加速键的区别是标签有没有一个“伙伴”。</p>
+<p><strong>对话框按钮布局</strong></p>
+<pre><code>buttonBox = QDialogButtonBox(QDialogButtonBox.<span class="built_in">Ok</span>
+                             | QDialogButtonBox.Cancel)
+buttonBox.button(QDialogButtonBox.<span class="built_in">Ok</span>).setDefault(True)
+layout.addWidget(buttonBox, <span class="number">3</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>)
+<span class="keyword">self</span>.connect(buttonBox, SIGNAL(<span class="string">"accepted()"</span>),
+             <span class="keyword">self</span>, SLOT(<span class="string">"accept()"</span>))
+<span class="keyword">self</span>.connect(buttonBox, SIGNAL(<span class="string">"rejected()"</span>),
+             <span class="keyword">self</span>, SLOT(<span class="string">"reject()"</span>))
+</code></pre><p><code>QDialogButtonBox</code>自动处理不同平台的默认外观。<br><code>QDialogButtonBox</code>默认是水平布局，可以传递<code>Qt.Vertical</code>给它构造器设置垂直布局，或者调用<br><code>setOrientation</code>函数。</p>
+<p><code>QGridLayout.addWidget</code>方法的参数是部件，所在行，所在列，和可选的行扩展数，列扩展数。</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>b.addLayout(l)</td>
+<td style="text-align:left">添加QLayout l到QBoxLayout b中, b通常是QHBoxLayout或QVBoxLayout</td>
+</tr>
+<tr>
+<td>b.addSpacing(i)</td>
+<td style="text-align:left">添加一个指定数量为i的QSpacerItem到QBoxLayout b中</td>
+</tr>
+<tr>
+<td>b.addStretch(i)</td>
+<td style="text-align:left">添加一个最小为0且伸展系数为i的QSpacerItem到QBoxLayout b中</td>
+</tr>
+<tr>
+<td>b.addWidget(w)</td>
+<td style="text-align:left">添加QWidget w到QBoxLayout b中</td>
+</tr>
+<tr>
+<td>b.setStretchFactor(x, i)</td>
+<td style="text-align:left">设置QBoxLayout b的伸展系数或QWidget x为i</td>
+</tr>
+<tr>
+<td>g.addLayout(l, r, c)</td>
+<td style="text-align:left">在行r列c添加QLayout l到QGridLayout g; 可以提供附加的行扩展和列扩展参数</td>
+</tr>
+<tr>
+<td>g.addWidget(w, r, c)</td>
+<td style="text-align:left">在行r列c添加QWidget w到QGridLayout g; 可以提供附加的行扩展和列扩展参数</td>
+</tr>
+<tr>
+<td>g.setRowStretch(r, i)</td>
+<td style="text-align:left">设置QGridLayout g行r的伸展为i</td>
+</tr>
+<tr>
+<td>g.setColumnStretch(c, i)</td>
+<td style="text-align:left">设置QGridLayout g列c的伸展为i</td>
+</tr>
+</tbody>
+</table>
+<h1 id="标准对话框">标准对话框</h1><p>我们认为一个对话框是标准对话框，如果它访问部件都是通过类方法，而不是部件本身。</p>
+<h2 id="模式OK/Cancel风格对话框">模式OK/Cancel风格对话框</h2><pre><code>def <span class="function"><span class="title">setNumberFormat1</span><span class="params">(self)</span></span>:
+    dialog = numberformatdlg1.<span class="function"><span class="title">NumberFormatDlg</span><span class="params">(self.format, self)</span></span>
+    <span class="keyword">if</span> dialog.<span class="function"><span class="title">exec_</span><span class="params">()</span></span>:
+        self<span class="class">.format</span> = dialog.<span class="function"><span class="title">numberFormat</span><span class="params">()</span></span>
+        self.<span class="function"><span class="title">refreshTable</span><span class="params">()</span></span>
+</code></pre><table>
+<thead>
+<tr>
+<th>语法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d.addButton(b, r)</td>
+<td style="text-align:left">添加具有QDialogButtonBox.ButtonRole r的QPushButton b到QDialogButtonBox d中</td>
+</tr>
+<tr>
+<td>d.addButton(t, r)</td>
+<td style="text-align:left">添加具有QDialogButtonBox.ButtonRole r且名字为t的QPushButton到QDialogButtonBox d中，返回所添加的按钮</td>
+</tr>
+<tr>
+<td>d.addButton(s)</td>
+<td style="text-align:left">添加由QDialogButtonBox.StandardButton s指定的按钮QDialogButtonBox d中，返回所添加的按钮</td>
+</tr>
+<tr>
+<td>d.setOrientation(o)</td>
+<td style="text-align:left">设置QDialogButtonBox d的方向为Qt.Orientation o(垂直或水平)</td>
+</tr>
+<tr>
+<td>d.button(s)</td>
+<td style="text-align:left">返回QDialogButtonBox d中由StandardButton s指定的按钮，或None</td>
+</tr>
+<tr>
+<td>d.accepted()</td>
+<td style="text-align:left">当角色为QDialogButtonBox.Accept的按钮被点击，发射该信号</td>
+</tr>
+<tr>
+<td>d.rejected()</td>
+<td style="text-align:left">当角色为QDialogButtonBox.Reject的按钮被点击，发射该信号</td>
+</tr>
+</tbody>
+</table>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">accept</span><span class="params">(self)</span>:</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">ThousandsError</span><span class="params">(Exception)</span>:</span> <span class="keyword">pass</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">DecimalError</span><span class="params">(Exception)</span>:</span> <span class="keyword">pass</span>
+    QMessageBox.warning(self, <span class="string">"Decimal Marker Error"</span>, unicode(e))
+    QDialog.accept(self)
+</code></pre><p>为什么这里不使用<code>super</code>来调用基类的<code>accept</code>而是显式使用<code>QDialog</code>？因为在这个环境下使用<code>super</code><br>不起作用。PyQt为了尽可能效率高，使用懒惰属性查找，结果就是此处的<code>super</code>在PyQt的子类中不会像预期<br>那样工作。(见pyqt4ref.html文档，”super and PyQt classes”)</p>
+<h1 id="智能对话框">智能对话框</h1><p>智能对话框通常是无模式的，带有<code>apply</code>和<code>close</code>按钮。</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d.accept()</td>
+<td style="text-align:left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回True。如果设置了Qt.WA_DeleteOnClose，则对话框被删除</td>
+</tr>
+<tr>
+<td>d.reject()</td>
+<td style="text-align:left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回False。</td>
+</tr>
+<tr>
+<td>d.done(i)</td>
+<td style="text-align:left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回i。</td>
+</tr>
+<tr>
+<td>d.exec_()</td>
+<td style="text-align:left">模式显示QDialog d，阻塞直到对话框关闭</td>
+</tr>
+<tr>
+<td>d.show()</td>
+<td style="text-align:left">无模式显示QDialog d；继承自QWidget</td>
+</tr>
+<tr>
+<td>d.setSizeGripEnabled(b)</td>
+<td style="text-align:left">显示或隐藏QDialog d的size grip，基于bool b</td>
+</tr>
+</tbody>
+</table>
+<h2 id="无模式Apply/Close风格对话框">无模式Apply/Close风格对话框</h2><pre><code><span class="function"><span class="keyword">def</span> <span class="title">setNumberFormat2</span><span class="params">(self)</span>:</span>
+    dialog = numberformatdlg2.NumberFormatDlg(self.format, self)
+    self.connect(dialog, SIGNAL(<span class="string">"changed"</span>), self.refreshTable)
+    dialog.show()
+</code></pre><p>尽管dialog超出范围，PyQt足够聪明地保存了一个无模式对话框的引用，因此dialog继续存在。可以设置<br>dialog的属性为Qt.WA_DeleteOnClose，则每次都删除对话框而不是隐藏。</p>
+<pre><code>def __init__(<span class="literal">self</span>, format, parent=None):
+    super(NumberFormatDlg, <span class="literal">self</span>).__init__(parent)
+    <span class="literal">self</span>.<span class="built_in">set</span>Attribute(Qt.WA_DeleteOnClose)
+    punctuationRe = QRegExp(r<span class="string">"[ ,;:.]"</span>)
+    thousandsLabel = QLabel(<span class="string">"&amp;Thousands separator"</span>)
+    <span class="literal">self</span>.thousandsEdit = QLineEdit(format[<span class="string">"thousandsseparator"</span>])
+    thousandsLabel.<span class="built_in">set</span>Buddy(<span class="literal">self</span>.thousandsEdit)
+    <span class="literal">self</span>.thousandsEdit.<span class="built_in">set</span>MaxLength(<span class="number">1</span>)
+    <span class="literal">self</span>.thousandsEdit.<span class="built_in">set</span>Validator(
+            QRegExpValidator(punctuationRe, <span class="literal">self</span>))
+    decimalMarkerLabel = QLabel(<span class="string">"Decimal &amp;marker"</span>)
+    <span class="literal">self</span>.decimalMarkerEdit = QLineEdit(format[<span class="string">"decimalmarker"</span>])
+    decimalMarkerLabel.<span class="built_in">set</span>Buddy(<span class="literal">self</span>.decimalMarkerEdit)
+    <span class="literal">self</span>.decimalMarkerEdit.<span class="built_in">set</span>MaxLength(<span class="number">1</span>)
+    <span class="literal">self</span>.decimalMarkerEdit.<span class="built_in">set</span>Validator(
+            QRegExpValidator(punctuationRe, <span class="literal">self</span>))
+    <span class="literal">self</span>.decimalMarkerEdit.<span class="built_in">set</span>InputMask(<span class="string">"X"</span>)
+    decimalPlacesLabel = QLabel(<span class="string">"&amp;Decimal places"</span>)
+    <span class="literal">self</span>.decimalPlacesSpinBox = QSpinBox()
+    decimalPlacesLabel.<span class="built_in">set</span>Buddy(<span class="literal">self</span>.decimalPlacesSpinBox)
+    <span class="literal">self</span>.decimalPlacesSpinBox.<span class="built_in">set</span>Range(<span class="number">0</span>, <span class="number">6</span>)
+    <span class="literal">self</span>.decimalPlacesSpinBox.<span class="built_in">set</span>Value(format[<span class="string">"decimalplaces"</span>])
+    <span class="literal">self</span>.redNegativesCheckBox = QCheckBox(<span class="string">"&amp;Red negative numbers"</span>)
+    <span class="literal">self</span>.redNegativesCheckBox.<span class="built_in">set</span>Checked(format[<span class="string">"rednegatives"</span>])
+    buttonBox = QDialogButtonBox(QDialogButtonBox.Apply|
+                                 QDialogButtonBox.Close)
+    <span class="literal">self</span>.connect(buttonBox.button(QDialogButtonBox.Apply),
+                 SIGNAL(<span class="string">"clicked()"</span>), <span class="literal">self</span>.apply)
+    <span class="literal">self</span>.connect(buttonBox, SIGNAL(<span class="string">"rejected()"</span>),
+                 <span class="literal">self</span>, SLOT(<span class="string">"reject()"</span>))
+    <span class="literal">self</span>.<span class="built_in">set</span>WindowTitle(<span class="string">"Set Number Format (Modeless)"</span>)
+</code></pre><p><code>QRegExpValidator</code>初始化式需要一个正则表达式和一个<code>parent</code>。<br>一个掩饰“X”说明需要任意一个字符，格式掩饰在<code>QLineEdit.inputMask</code>文档中说明。</p>
+<h2 id="无模式“Live”对话框">无模式“Live”对话框</h2><pre><code>def <span class="function"><span class="title">setNumberFormat3</span><span class="params">(self)</span></span>:
+    <span class="keyword">if</span> self<span class="class">.numberFormatDlg</span> is None:
+        self<span class="class">.numberFormatDlg</span> = numberformatdlg3.NumberFormatDlg(
+                self<span class="class">.format</span>, self<span class="class">.refreshTable</span>, self)
+    self<span class="class">.numberFormatDlg</span><span class="class">.show</span>()
+    self<span class="class">.numberFormatDlg</span><span class="class">.raise_</span>()
+    self<span class="class">.numberFormatDlg</span><span class="class">.activateWindow</span>()
+</code></pre><p><code>raise_</code>将对话框置于其它窗口之上<br><code>activateWindow</code>聚焦于对话框</p>
+<pre><code>self.connect(self<span class="class">.thousandsEdit</span>,
+             <span class="function"><span class="title">SIGNAL</span><span class="params">(<span class="string">"textEdited(QString)"</span>)</span></span>, self.checkAndFix)
+self.connect(self<span class="class">.decimalMarkerEdit</span>,
+             <span class="function"><span class="title">SIGNAL</span><span class="params">(<span class="string">"textEdited(QString)"</span>)</span></span>, self.checkAndFix)
+self.connect(self<span class="class">.decimalPlacesSpinBox</span>,
+             <span class="function"><span class="title">SIGNAL</span><span class="params">(<span class="string">"valueChanged(int)"</span>)</span></span>, self.apply)
+self.connect(self<span class="class">.redNegativesCheckBox</span>,
+             <span class="function"><span class="title">SIGNAL</span><span class="params">(<span class="string">"toggled(bool)"</span>)</span></span>, self.apply)
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。<br>对话框以“模式”分类为：模式对话框和无模式对话框。</p>
+<p>应用模式对话框一旦被调用，用户只能与其交互，不能使用程序其它部分。<br>窗口模式对话框和应用模式对话框类似，只是它仅仅阻止与]]>
+    </summary>
+    
+      <category term="PyQt" scheme="https://opensvn.github.io/tags/PyQt/"/>
+    
+      <category term="Python" scheme="https://opensvn.github.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[PyQt编程第四章 GUI编程介绍]]></title>
@@ -300,7 +565,7 @@ self.connect(button5, SIGNAL(<span class="string">"clicked()"</span>), self.clic
     <link href="https://opensvn.github.io/2015/09/21/cpp_primer_15/"/>
     <id>https://opensvn.github.io/2015/09/21/cpp_primer_15/</id>
     <published>2015-09-21T01:04:53.000Z</published>
-    <updated>2015-09-30T10:55:41.034Z</updated>
+    <updated>2015-10-14T08:23:00.082Z</updated>
     <content type="html"><![CDATA[<p>面向对象编程是基于三个基本概念：数据抽象，继承和动态绑定。</p>
 <h1 id="OOP概述">OOP概述</h1><h2 id="继承">继承</h2><p>通过继承联系的类构成一个层级关系。典型地，有一个基类在层级的顶端，其它类直接或间接继承这个类。<br>这些继承类被称为派生类。基类定义层级中共同的成员。每一个派生类定义它自己特定的成员。</p>
 <pre><code><span class="keyword">class</span> Quote {
@@ -779,7 +1044,7 @@ itemP = <span class="keyword">new</span> Bulk_quote;     <span class="comment">/
     <link href="https://opensvn.github.io/2015/09/20/cpp_primer_14/"/>
     <id>https://opensvn.github.io/2015/09/20/cpp_primer_14/</id>
     <published>2015-09-20T02:47:02.000Z</published>
-    <updated>2015-09-22T01:25:23.903Z</updated>
+    <updated>2015-10-14T08:22:48.446Z</updated>
     <content type="html"><![CDATA[<p>这是C++ primer第五版第14章的读书笔记。</p>
 <h1 id="基本概念">基本概念</h1><p>重载操作符是具有特殊名字的函数：关键字<code>operator</code>后面跟着需要被定义的操作符的符号。<br>像其它函数一样，重载操作符有返回值，参数列表和函数体。</p>
 <p>重载操作符的参数和操作符的操作数一样多。除了函数调用操作符，<code>operator()</code>，重载操作符<br>没有默认实参。</p>
@@ -1324,7 +1589,7 @@ SmallInt s3 = s1 + s2;  <span class="comment">// uses overloaded operator+</span
     <link href="https://opensvn.github.io/2015/09/19/syntax/"/>
     <id>https://opensvn.github.io/2015/09/19/syntax/</id>
     <published>2015-09-19T11:47:02.000Z</published>
-    <updated>2015-09-22T01:25:19.127Z</updated>
+    <updated>2015-10-14T08:23:39.126Z</updated>
     <content type="html"><![CDATA[<p>原文拷贝自<a href="https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md" target="_blank" rel="external">这里</a>.</p>
 <p><a href="http://wowubuntu.com/" target="_blank" rel="external">访问 Wow!Ubuntu</a></p>
 <p><strong>NOTE</strong>: This is Simplelified Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">Markdown: Syntax</a>.</p>
@@ -1856,7 +2121,7 @@ _   底线
     <link href="https://opensvn.github.io/2015/09/19/hello-world/"/>
     <id>https://opensvn.github.io/2015/09/19/hello-world/</id>
     <published>2015-09-19T02:47:02.000Z</published>
-    <updated>2015-09-22T01:25:35.011Z</updated>
+    <updated>2015-10-14T08:23:16.506Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
