@@ -4,29 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>PyQt编程第一章 数据类型和数据结构 | opensvn</title>
+    <title>Pygame第六章 接受用户输入 | opensvn</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="opensvn">
     
 
     
-    <meta name="description" content="执行Python代码print &apos;Hello world&apos;
-Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后运行。对于import的模块，Python首先检查是否存在预编译的字节码(pyo或pyc)，根据时间戳判断是否需要重新编译。在大多数Python的安装过程中，提供的模块都被编译了，来避免使用时编译。
-变量和对象Python变量没有类型限制(动态类型)，而且它们也不需要声">
+    <meta name="description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。
+控制游戏玩过游戏的都知道鼠标和键盘是游戏的不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PyQt编程第一章 数据类型和数据结构">
-<meta property="og:url" content="https://opensvn.github.io/2015/10/12/pyqt-1/index.html">
+<meta property="og:title" content="Pygame第六章 接受用户输入">
+<meta property="og:url" content="https://opensvn.github.io/2015/11/16/pygame-6/index.html">
 <meta property="og:site_name" content="opensvn">
-<meta property="og:description" content="执行Python代码print &apos;Hello world&apos;
-Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后运行。对于import的模块，Python首先检查是否存在预编译的字节码(pyo或pyc)，根据时间戳判断是否需要重新编译。在大多数Python的安装过程中，提供的模块都被编译了，来避免使用时编译。
-变量和对象Python变量没有类型限制(动态类型)，而且它们也不需要声">
-<meta property="og:updated_time" content="2015-10-14T03:34:21.602Z">
+<meta property="og:description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。
+控制游戏玩过游戏的都知道鼠标和键盘是游戏的不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好">
+<meta property="og:updated_time" content="2015-11-19T01:03:57.480Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PyQt编程第一章 数据类型和数据结构">
-<meta name="twitter:description" content="执行Python代码print &apos;Hello world&apos;
-Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后运行。对于import的模块，Python首先检查是否存在预编译的字节码(pyo或pyc)，根据时间戳判断是否需要重新编译。在大多数Python的安装过程中，提供的模块都被编译了，来避免使用时编译。
-变量和对象Python变量没有类型限制(动态类型)，而且它们也不需要声">
+<meta name="twitter:title" content="Pygame第六章 接受用户输入">
+<meta name="twitter:description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。
+控制游戏玩过游戏的都知道鼠标和键盘是游戏的不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好">
 
     
     <link rel="alternative" href="/atom.xml" title="opensvn" type="application/atom+xml">
@@ -86,43 +83,65 @@ Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/10/12/pyqt-1/" title="PyQt编程第一章 数据类型和数据结构" itemprop="url">PyQt编程第一章 数据类型和数据结构</a>
+      <a href="/2015/11/16/pygame-6/" title="Pygame第六章 接受用户输入" itemprop="url">Pygame第六章 接受用户输入</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="opensvn" target="_blank" itemprop="author">opensvn</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-12T10:57:23.000Z" itemprop="datePublished"> 发表于 2015-10-12</time>
+    <time datetime="2015-11-16T08:39:23.000Z" itemprop="datePublished"> 发表于 2015-11-16</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
-		<h1 id="执行Python代码">执行Python代码</h1><pre><code><span class="built_in">print</span> <span class="string">'Hello world'</span>
-</code></pre><p><code>Python</code>读取<code>.py</code>或<code>.pyw</code>文件到内存，解析文件，生成字节码，然后运行。<br>对于<code>import</code>的模块，<code>Python</code>首先检查是否存在预编译的字节码(<code>pyo</code>或<code>pyc</code>)，根据时间戳判断<br>是否需要重新编译。在大多数<code>Python</code>的安装过程中，提供的模块都被编译了，来避免使用时编译。</p>
-<h1 id="变量和对象">变量和对象</h1><p><code>Python</code>变量没有类型限制(动态类型)，而且它们也不需要声明。</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; x = <span class="number">71</span>
-<span class="prompt">&gt;&gt;</span>&gt; y = <span class="string">'Dove'</span>
-</code></pre><p>变量是对象的引用，并不是对象本身。</p>
-<blockquote>
-<p><strong>函数，方法和操作符</strong><br>函数是可以独立执行的子例程。方法是只能绑定到一个对象执行的函数。操作符可以独立或绑定到对象，<br>但是不需要括号。</p>
+		<p>用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。</p>
+<h1 id="控制游戏">控制游戏</h1><p>玩过游戏的都知道鼠标和键盘是游戏的不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好的操作感，加上力反馈等技术，应该说游戏设备越来越丰富，玩家们也是越来越幸福。</p>
+<h1 id="理解键盘控制">理解键盘控制</h1><p>现在大多数键盘都是qwerty键盘。我们可以使用pygame.key模块检测所有的键。</p>
+<h3 id="检测键盘按下">检测键盘按下</h3><p>在Pygame里面有两种方式检测键盘按下。一种方式是处理KEYDOWN事件和KEYUP事件，分别对应键盘按下和键盘松开。当我们使用键盘输入代表移动时，我们只需知道键是否被按下，这种情况可以直接使用pygame.key模块。</p>
+<p>每一个键盘上的键都有一个常量键值关联它。每一个常量以<strong>K_</strong>开头，比如字母是K_a到K_z，数字是K_0到K_9，其它的如K_F1，K_LEFT，K_RETURN等。完整列表参考(<a href="http://www.pygame.org/docs/ref/key.html" target="_blank" rel="external">http://www.pygame.org/docs/ref/key.html</a>)。没有大写字母对应的键值，因为大写字母是小写字母和其它键的组合。</p>
+<p>我们可以使用<strong>pygame.key.get_pressed</strong>函数检查一个键是否被按下。它返回一个布尔值列表，每一个布尔值对应一个键值常量。要查询某一个键，使用其键值常量作为列表下标。比如查看空格是否被按下：</p>
+<pre><code>pressed_keys = pygame.<span class="variable">key</span>.get_pressed()
+<span class="keyword">if</span> pressed_keys[K_SPACE]:
+    # Space <span class="variable">key</span> has been pressed
+    fire()
+</code></pre><blockquote>
+<p><strong>注意</strong> 由于硬件的限制，有些键组合不能被检测。原因请看<a href="http://www.sjbaker.org/steve/omniv/keyboards_are_evil.html" target="_blank" rel="external">http://www.sjbaker.org/steve/omniv/keyboards_are_evil.html</a></p>
 </blockquote>
-<p><code>Python</code>有两种比较对象的方式：通过<strong>身份</strong>和通过<strong>值</strong>。一个对象的身份是内存中的有效地址，<br>这也是对象引用所保存的值。如果使用比较操作符，如<code>==</code>和<code>&lt;</code>，是值的比较。如果使用<code>is</code>，则是<br>身份的比较，这种比较很快。一个对象的身份可以通过<code>id()</code>获取。</p>
-<p><code>Python</code>有一个特殊对象<code>None</code>，可以赋值给任何变量，意思是没有值。<code>None</code>对象只有一个实例，<br>因此<code>is</code>和<code>is not</code>比较<code>None</code>总是很快。</p>
-<p>将一个值赋值给一个变量称为绑定。如果赋值给一个已经存在的变量，称为重新绑定。一旦一个对象没有<br>名字绑定，则加入垃圾回收进程。</p>
-<p><code>Python</code>变量名由<code>ASCII</code>字母，数字和下划线组成。变量名不应该与<code>Python</code>的关键字或内置常量<br>如<code>None</code>，<code>True</code>，<code>False</code>相同。</p>
-<h1 id="数字和字符串">数字和字符串</h1><p><code>Python</code>提供了几种数字类型和两种字符串类型。这些类型都是不可变的。</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; x = <span class="number">5</span>
-<span class="prompt">&gt;&gt;</span>&gt; y = x
-<span class="prompt">&gt;&gt;</span>&gt; x, y
-(<span class="number">5</span>, <span class="number">5</span>)
-<span class="prompt">&gt;&gt;</span>&gt; y += <span class="number">1</span>
-<span class="prompt">&gt;&gt;</span>&gt; x, y
-(<span class="number">5</span>, <span class="number">6</span>)
-</code></pre><p>增量赋值操作符应用到不可变对象只是一个语法糖：它并没有改变对象，而是创建了一个新对象，并重新<br>绑定到新对象。</p>
-<p>我们需要记住<code>=</code>操作符执行绑定操作而不是赋值。</p>
-<h2 id="整数和长整数">整数和长整数</h2><p><code>Python</code>提供3种整数类型：<code>bool</code>，<code>int</code>，<code>long</code>。<br><code>bool</code>类型的值只能是<code>True</code>和<code>False</code>。当用于数字环境时，被当作1和0。<br><code>long</code>类型的长度只局限于机器的可用内存。<br><code>int</code>类型的长度和大多数语言的一样。当<code>int</code>类型有溢出危险时，自动提升为<code>long</code>。</p>
+<pre><code>import pygame
+<span class="keyword">from</span> pygame.locals import *
+<span class="keyword">from</span> sys import <span class="keyword">exit</span>
+
+pygame.init()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+font = pygame.font.SysFont(<span class="comment">'arial', 32)</span>
+font_height = font.get_linesize()
+
+<span class="keyword">while</span> <span class="literal">True</span>:
+    <span class="keyword">for</span> <span class="keyword">event</span> <span class="keyword">in</span> pygame.<span class="keyword">event</span>.<span class="keyword">get</span>():
+        <span class="keyword">if</span> <span class="keyword">event</span>.type == QUIT:
+            <span class="keyword">exit</span>()
+
+    screen.fill((<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))
+
+    pressed_key_text = []
+    pressed_keys = pygame.<span class="keyword">key</span>.get_pressed()
+    y = font_height
+
+    <span class="keyword">for</span> key_constant, pressed <span class="keyword">in</span> enumerate(pressed_keys):
+        <span class="keyword">if</span> pressed:
+            key_name = pygame.<span class="keyword">key</span>.name(key_constant)
+            text_surface = font.render(key_name + <span class="comment">' pressed', True, (0, 0, 0))</span>
+            screen.blit(text_surface, (<span class="number">8</span>, y))
+            y += font_height
+
+    pygame.display.update()
+</code></pre><p>让我们更详细地复习<strong>pygame.key</strong>：</p>
+<ul>
+<li><strong>key.get_focused</strong> - Pygame窗口只有获得焦点后才会接受键事件。<strong>get_focused</strong>函数返回真，如果窗口获得焦点，否则返回假。全屏模式，总是返回真。</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -131,7 +150,7 @@ Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后�
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/PyQt/">PyQt</a><a href="/tags/Python/">Python</a>
+  <span></span> <a href="/tags/Pygame/">Pygame</a><a href="/tags/Python/">Python</a>
   </div>
 
 </div>
@@ -140,7 +159,7 @@ Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://opensvn.github.io/2015/10/12/pyqt-1/" data-title="PyQt编程第一章 数据类型和数据结构 | opensvn" data-tsina="null" class="share clearfix">
+	  <div data-url="https://opensvn.github.io/2015/11/16/pygame-6/" data-title="Pygame第六章 接受用户输入 | opensvn" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -154,18 +173,18 @@ Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后�
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/10/12/pyqt-4/" title="PyQt编程第四章 GUI编程介绍">
+ <a href="/2015/11/19/pygame-doc/" title="Pygame简单帮助文档">
   <strong>上一篇：</strong><br/>
   <span>
-  PyQt编程第四章 GUI编程介绍</span>
+  Pygame简单帮助文档</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/09/21/cpp_primer_15/"  title="面向对象编程">
+<a href="/2015/11/10/pygame-5/"  title="Pygame第五章 让画面动起来">
  <strong>下一篇：</strong><br/> 
- <span>面向对象编程
+ <span>Pygame第五章 让画面动起来
 </span>
 </a>
 </div>
@@ -174,7 +193,7 @@ Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后�
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/10/12/pyqt-1/" data-title="PyQt编程第一章 数据类型和数据结构" data-url="https://opensvn.github.io/2015/10/12/pyqt-1/"></div>
+	<div class="ds-thread" data-thread-key="2015/11/16/pygame-6/" data-title="Pygame第六章 接受用户输入" data-url="https://opensvn.github.io/2015/11/16/pygame-6/"></div>
 </section>
 
 

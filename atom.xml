@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="https://opensvn.github.io/"/>
-  <updated>2015-10-21T01:20:37.116Z</updated>
+  <updated>2015-11-19T06:38:37.556Z</updated>
   <id>https://opensvn.github.io/</id>
   
   <author>
@@ -13,6 +13,2518 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Pygame简单帮助文档]]></title>
+    <link href="https://opensvn.github.io/2015/11/19/pygame-doc/"/>
+    <id>https://opensvn.github.io/2015/11/19/pygame-doc/</id>
+    <published>2015-11-19T06:37:15.000Z</published>
+    <updated>2015-11-19T06:38:37.556Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="Pygame" scheme="https://opensvn.github.io/tags/Pygame/"/>
+    
+      <category term="Python" scheme="https://opensvn.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Pygame第六章 接受用户输入]]></title>
+    <link href="https://opensvn.github.io/2015/11/16/pygame-6/"/>
+    <id>https://opensvn.github.io/2015/11/16/pygame-6/</id>
+    <published>2015-11-16T08:39:23.000Z</published>
+    <updated>2015-11-19T01:03:57.480Z</updated>
+    <content type="html"><![CDATA[<p>用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。</p>
+<h1 id="控制游戏">控制游戏</h1><p>玩过游戏的都知道鼠标和键盘是游戏的不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好的操作感，加上力反馈等技术，应该说游戏设备越来越丰富，玩家们也是越来越幸福。</p>
+<h1 id="理解键盘控制">理解键盘控制</h1><p>现在大多数键盘都是qwerty键盘。我们可以使用pygame.key模块检测所有的键。</p>
+<h3 id="检测键盘按下">检测键盘按下</h3><p>在Pygame里面有两种方式检测键盘按下。一种方式是处理KEYDOWN事件和KEYUP事件，分别对应键盘按下和键盘松开。当我们使用键盘输入代表移动时，我们只需知道键是否被按下，这种情况可以直接使用pygame.key模块。</p>
+<p>每一个键盘上的键都有一个常量键值关联它。每一个常量以<strong>K_</strong>开头，比如字母是K_a到K_z，数字是K_0到K_9，其它的如K_F1，K_LEFT，K_RETURN等。完整列表参考(<a href="http://www.pygame.org/docs/ref/key.html" target="_blank" rel="external">http://www.pygame.org/docs/ref/key.html</a>)。没有大写字母对应的键值，因为大写字母是小写字母和其它键的组合。</p>
+<p>我们可以使用<strong>pygame.key.get_pressed</strong>函数检查一个键是否被按下。它返回一个布尔值列表，每一个布尔值对应一个键值常量。要查询某一个键，使用其键值常量作为列表下标。比如查看空格是否被按下：</p>
+<pre><code>pressed_keys = pygame.<span class="variable">key</span>.get_pressed()
+<span class="keyword">if</span> pressed_keys[K_SPACE]:
+    # Space <span class="variable">key</span> has been pressed
+    fire()
+</code></pre><blockquote>
+<p><strong>注意</strong> 由于硬件的限制，有些键组合不能被检测。原因请看<a href="http://www.sjbaker.org/steve/omniv/keyboards_are_evil.html" target="_blank" rel="external">http://www.sjbaker.org/steve/omniv/keyboards_are_evil.html</a></p>
+</blockquote>
+<pre><code>import pygame
+<span class="keyword">from</span> pygame.locals import *
+<span class="keyword">from</span> sys import <span class="keyword">exit</span>
+
+pygame.init()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+font = pygame.font.SysFont(<span class="comment">'arial', 32)</span>
+font_height = font.get_linesize()
+
+<span class="keyword">while</span> <span class="literal">True</span>:
+    <span class="keyword">for</span> <span class="keyword">event</span> <span class="keyword">in</span> pygame.<span class="keyword">event</span>.<span class="keyword">get</span>():
+        <span class="keyword">if</span> <span class="keyword">event</span>.type == QUIT:
+            <span class="keyword">exit</span>()
+
+    screen.fill((<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))
+
+    pressed_key_text = []
+    pressed_keys = pygame.<span class="keyword">key</span>.get_pressed()
+    y = font_height
+
+    <span class="keyword">for</span> key_constant, pressed <span class="keyword">in</span> enumerate(pressed_keys):
+        <span class="keyword">if</span> pressed:
+            key_name = pygame.<span class="keyword">key</span>.name(key_constant)
+            text_surface = font.render(key_name + <span class="comment">' pressed', True, (0, 0, 0))</span>
+            screen.blit(text_surface, (<span class="number">8</span>, y))
+            y += font_height
+
+    pygame.display.update()
+</code></pre><p>让我们更详细地复习<strong>pygame.key</strong>：</p>
+<ul>
+<li><strong>key.get_focused</strong> - Pygame窗口只有获得焦点后才会接受键事件。<strong>get_focused</strong>函数返回真，如果窗口获得焦点，否则返回假。全屏模式，总是返回真。</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。</p>
+<h1 id="控制游戏">控制游戏</h1><p>玩过游戏的都知道鼠]]>
+    </summary>
+    
+      <category term="Pygame" scheme="https://opensvn.github.io/tags/Pygame/"/>
+    
+      <category term="Python" scheme="https://opensvn.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Pygame第五章 让画面动起来]]></title>
+    <link href="https://opensvn.github.io/2015/11/10/pygame-5/"/>
+    <id>https://opensvn.github.io/2015/11/10/pygame-5/</id>
+    <published>2015-11-10T12:21:33.000Z</published>
+    <updated>2015-11-19T06:52:09.672Z</updated>
+    <content type="html"><![CDATA[<p>这一章描述如何以一种可以预测的方式在屏幕上移动对象，和如何使运动在其他人电脑里面一致。</p>
+<h1 id="理解帧率">理解帧率</h1><p>我们需要知道计算机游戏中关于运动的第一件事情就是<strong>没有什么东西真正在移动</strong>。电脑屏幕或电视机展示给我们一系列图片，当两张图片间隔时间够短时，我们的大脑将这些图片混合在一起从而制造了流畅运动的假象。一张图片称为一帧，FPS(Frame Per Second)是每秒的帧数，也就是帧率。产生流畅运动需要的帧数，因人而异。</p>
+<p>游戏的帧率也受限于显示设备的刷新速度。比如，显示器的刷新速度为60HZ，也就是每秒刷新60次。产生帧的速度比刷新速度快会导致“tearing”现象，即下一个帧混进前一个帧。电脑要做的事情越多，帧率就会越慢。好消息是现在的桌面电脑已经足以产生你想要的视觉效果。</p>
+<p>只需记住几个常量：一般的电视画面是24FPS；30FPS基本可以给玩家提供流畅的体验了；60FPS是LCD常用的刷新率，所以你的游戏的帧率再高也没什么意义了；在70FPS以上，很少有人能察觉任何提升了！</p>
+<h1 id="直线运动">直线运动</h1><pre><code>background_image_filename = <span class="string">'sushiplate.jpg'</span>
+sprite_image_filename = <span class="string">'fugu.png'</span>
+
+import pygame
+<span class="keyword">from</span> pygame.locals import *
+<span class="keyword">from</span> sys import <span class="keyword">exit</span>
+
+pygame.init()
+
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+background = pygame.image.load(background_image_filename).convert()
+sprite = pygame.image.load(sprite_image_filename)
+
+# The x coordinate <span class="keyword">of</span> our sprite
+x = <span class="number">0</span>.
+
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    <span class="keyword">for</span> <span class="keyword">event</span> <span class="keyword">in</span> pygame.<span class="keyword">event</span>.get():
+        <span class="keyword">if</span> <span class="keyword">event</span>.<span class="keyword">type</span> == QUIT:
+            <span class="keyword">exit</span>()
+
+    screen.blit(background, (<span class="number">0</span>, <span class="number">0</span>))
+    screen.blit(sprite, (x, <span class="number">100</span>))
+    x += <span class="number">10</span>.
+
+    # <span class="keyword">If</span> the image goes off the <span class="keyword">end</span> <span class="keyword">of</span> the screen, move it back
+    <span class="keyword">if</span> x &gt; <span class="number">640</span>.:
+        x -= <span class="number">640</span>.
+
+    pygame.display.update()
+</code></pre><p>这段代码有两个问题，第一个是我们不能精确知道画一张图片到屏幕需要多长时间，另一个问题是这个精灵在配置差的机器上移动慢，在配置好的机器上移动更快。</p>
+<h3 id="关于时间">关于时间</h3><p>解决第一个问题的技巧是使运动基于时间。我们需要知道距离上一个帧已经过去多长时间，据此我们能相应地在屏幕上放置任何物体。<strong>pygame.time</strong>模块有一个Clock对象可以用来跟踪时间。使用<strong>pygame.time.Clock()</strong>创建clock对象。</p>
+<pre><code>clock = pygame<span class="class">.time</span><span class="class">.Clock</span>()
+</code></pre><p>一旦创建了clock对象，你应该每一帧调用一次<strong>tick</strong>函数，返回上次调用该函数已过去的时间，单位毫秒。</p>
+<pre><code>time_passed = clock.<span class="function"><span class="title">tick</span><span class="params">()</span></span>
+</code></pre><p><strong>tick</strong>函数也接收一个可选参数表示最大帧率。</p>
+<pre><code><span class="preprocessor"># Game will run at a maximum <span class="number">30</span> frames per second</span>
+time_passed = clock.tick(<span class="number">30</span>)
+time_passed_seconds = time_passed / <span class="number">1000.0</span>
+</code></pre><p>我们要怎样使用这个time_passed_seconds来移动精灵呢？需要做的第一件事就是选择一个精灵移动的速度。接下来只要用这个速度乘于时间就能得出精灵该移动多远。</p>
+<pre><code>background_image_filename = <span class="comment">'sushiplate.jpg'</span>
+sprite_image_filename = <span class="comment">'fugu.png'</span>
+
+import pygame
+<span class="keyword">from</span> pygame.locals import *
+<span class="keyword">from</span> sys import <span class="keyword">exit</span>
+
+pygame.init()
+
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+background = pygame.image.load(background_image_filename).convert()
+sprite = pygame.image.load(sprite_image_filename)
+
+<span class="preprocessor"># Our clock object</span>
+clock = pygame.time.Clock()
+
+<span class="preprocessor"># X coordinate of our sprite</span>
+x = <span class="number">0.</span>
+<span class="preprocessor"># Speed in pixels per second</span>
+speed = <span class="number">250.</span>
+
+<span class="keyword">while</span> <span class="literal">True</span>:
+    <span class="keyword">for</span> <span class="keyword">event</span> <span class="keyword">in</span> pygame.<span class="keyword">event</span>.<span class="keyword">get</span>():
+        <span class="keyword">if</span> <span class="keyword">event</span>.type == QUIT:
+            <span class="keyword">exit</span>()
+
+    screen.blit(background, (<span class="number">0</span>, <span class="number">0</span>))
+    screen.blit(sprite, (x, <span class="number">100</span>))
+
+    time_passed = clock.tick()
+    time_passed_seconds = time_passed / <span class="number">1000.0</span>
+
+    distance_moved = time_passed_seconds * speed
+    x += distance_moved
+
+    <span class="keyword">if</span> x &gt; <span class="number">640.</span>:
+        x -= <span class="number">640.</span>
+
+    pygame.display.update()
+</code></pre><p>理解帧率和精灵移动速度的不同很重要。</p>
+<pre><code>background_image_filename = <span class="string">'sushiplate.jpg'</span>
+sprite_image_filename = <span class="string">'fugu.png'</span>
+
+import pygame
+<span class="built_in">from</span> pygame.locals import *
+<span class="built_in">from</span> sys import exit
+
+pygame.init()
+
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+background = pygame.image.<span class="built_in">load</span>(background_image_filename).<span class="built_in">convert</span>()
+sprite = pygame.image.<span class="built_in">load</span>(sprite_image_filename)
+
+<span class="comment"># Our clock object</span>
+clock = pygame.<span class="built_in">time</span>.Clock()
+
+x1 = <span class="number">0.</span>
+x2 = <span class="number">0.</span>
+<span class="comment"># Speed in pixels per second</span>
+speed = <span class="number">250.</span>
+
+frame_no = <span class="number">0</span>
+
+<span class="keyword">while</span> True:
+    <span class="keyword">for</span> event <span class="operator">in</span> pygame.event.<span class="built_in">get</span>():
+        <span class="keyword">if</span> event.type == QUIT:
+            exit()
+
+    screen.blit(background, (<span class="number">0</span>, <span class="number">0</span>))
+    screen.blit(sprite, (x1, <span class="number">50</span>))
+    screen.blit(sprite, (x2, <span class="number">250</span>))
+
+    time_passed = clock.<span class="built_in">tick</span>(<span class="number">30</span>)
+    time_passed_seconds = time_passed / <span class="number">1000.0</span>
+
+    distance_moved = time_passed_seconds * speed
+    x1 += distance_moved
+
+    <span class="keyword">if</span> frame_no % <span class="number">5</span> == <span class="number">0</span>:
+        distance_moved = time_passed_seconds * speed
+        x2 += distance_moved * <span class="number">5</span>
+
+    <span class="comment"># If the image goes off the end of the screen, move it back</span>
+    <span class="keyword">if</span> x1 &gt; <span class="number">640.</span>:
+        x1 -= <span class="number">640.</span>
+    <span class="keyword">if</span> x2 &gt; <span class="number">640.</span>:
+        x2 -= <span class="number">640.</span>
+
+    pygame.display.update()
+    frame_no += <span class="number">1</span>
+</code></pre><h3 id="斜线运动">斜线运动</h3><p>直线运动很有用，但是一个游戏如果所有物体都水平或垂直移动看起来就很笨。我们需要能够在任何方向移动精灵。可以通过调整每个帧的x和y坐标做到。</p>
+<pre><code>background_image_filename = <span class="symbol">'sushiplate</span>.jpg'
+sprite_image_filename = <span class="symbol">'fugu</span>.png'
+
+import pygame
+from pygame.locals import *
+from sys import exit
+
+pygame.init<span class="literal">()</span>
+
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+background = pygame.image.load(background_image_filename).convert<span class="literal">()</span>
+sprite = pygame.image.load(sprite_image_filename).convert_alpha<span class="literal">()</span>
+
+clock = pygame.time.<span class="type">Clock</span><span class="literal">()</span>
+
+x, y = <span class="number">100.</span>, <span class="number">100.</span>
+speed_x, speed_y = <span class="number">133.</span>, <span class="number">170.</span>
+
+<span class="keyword">while</span> <span class="type">True</span>:
+    for event <span class="keyword">in</span> pygame.event.get<span class="literal">()</span>:
+        <span class="keyword">if</span> event.<span class="keyword">type</span> == <span class="type">QUIT</span>:
+            exit<span class="literal">()</span>
+
+    screen.blit(background, (<span class="number">0</span>, <span class="number">0</span>))
+    screen.blit(sprite, (x, y))
+
+    time_passed = clock.tick(<span class="number">30</span>)
+    time_passed_seconds = time_passed / <span class="number">1000.0</span>
+
+    x += speed_x * time_passed_seconds
+    y += speed_y * time_passed_seconds
+
+    # <span class="type">If</span> the sprite goes off the edge <span class="keyword">of</span> the screen,
+    # make it move <span class="keyword">in</span> the opposite direction
+    <span class="keyword">if</span> x &gt; <span class="number">640</span> - sprite.get_width<span class="literal">()</span>:
+        speed_x = -speed_x
+        x = <span class="number">640</span> - sprite.get_width<span class="literal">()</span>
+    elif x &lt; <span class="number">0</span>:
+        speed_x = -speed_x
+        x = <span class="number">0</span>
+
+    <span class="keyword">if</span> y &gt; <span class="number">480</span> - sprite.get_height<span class="literal">()</span>:
+        speed_y = -speed_y
+        y = <span class="number">480</span> - sprite.get_height<span class="literal">()</span>
+    elif y &lt; <span class="number">0</span>:
+        speed_y = -speed_y
+        y = <span class="number">0</span>
+
+    pygame.display.update<span class="literal">()</span>
+</code></pre><p>为了达到反弹的效果，我们首先必须检查是否撞击到边缘。在坐标上做点简单的算术就行。如果x坐标小于0，则我们超过了屏幕的左边缘。如果x加上精灵的宽度比屏幕的宽度大，则精灵的右边缘超过屏幕的宽度。y坐标的判断类似，只是使用高度而不是宽度。</p>
+<h1 id="探索向量">探索向量</h1><p>游戏开发者从数学借来向量并用到很多领域，比如2D和3D游戏。向量和点类似，它们都有x和y值(在2D中)，但是用途不一样。一个点的坐标(10, 20)在屏幕上总是同一个位置，而一个向量(10, 20)意思是从当前位置x坐标加上10，y坐标加上20。因此你可以认为一个点的坐标就是从原点(0, 0)到该点的向量。</p>
+<h3 id="创建向量">创建向量</h3><p>你可以从任意2个点计算向量，只要用第二个点坐标减去第一个点坐标。比如点A(10, 20)，点B(30, 35)，则向量AB就是(20, 15)。这个向量告诉我们从A到B需要在x方向移动20个单位，在y方向移动15个单位。</p>
+<h3 id="存储向量">存储向量</h3><p>在Python里面没有内置的向量类型，但是你可以将向量存入list，或者自己定义向量类。方便起见，我们选择定义自己的向量类。</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Vector2</span><span class="params">(object)</span>:</span>
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x=<span class="number">0.0</span>, y=<span class="number">0.0</span>)</span>:</span>
+        self.x = x
+        self.y = y
+
+    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span>
+        <span class="keyword">return</span> <span class="string">'(%s, %s)'</span> % (self.x, self.y)
+
+<span class="decorator">    @classmethod</span>
+    <span class="function"><span class="keyword">def</span> <span class="title">from_points</span><span class="params">(cls, P1, P2)</span>:</span>
+        <span class="keyword">return</span> cls(P2[<span class="number">0</span>] - P1[<span class="number">0</span>], P2[<span class="number">1</span>] - P1[<span class="number">1</span>])
+</code></pre><p><code>@classmethod</code>装饰使函数from_points变成一个类方法。类方法是通过类调用的，不是通过类实例调用，比如Vector2.from_points(P1, P2)。将from_points定义为一个类方法是因为它创建一个新的Vector2对象，而不是修改已经存在的对象。</p>
+<h3 id="向量大小">向量大小</h3><p>从A到B的向量大小就是2个点之间的距离。</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">get_magnitude</span><span class="params">(self)</span>:</span>
+    <span class="keyword">return</span> math.sqrt(self.x ** <span class="number">2</span> + self.y ** <span class="number">2</span>)
+</code></pre><h3 id="单位向量">单位向量</h3><p>向量实际描述了两件事情：大小和方向。通常这两个信息绑定在一个向量里面，但有时候你只需其中一个。有一种特殊的向量叫单位向量，它的大小总是为1。我们可以把任意向量缩放到一个单位向量，这叫向量的规格化。</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">normalize</span><span class="params">(self)</span>:</span>
+    magnitude = self.get_magnitude()
+    self.x /= magnitude
+    self.y /= magnitude
+</code></pre><h3 id="向量加法">向量加法</h3><p>向量加法是将两个向量组合产生一个向量，它有两个向量组合的效果。也就是AC=AB+BC。</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self, rhs)</span>:</span>
+    <span class="keyword">return</span> Vector2(self.x + rhs.x, self.y + rhs.y)
+</code></pre><h3 id="向量减法">向量减法</h3><p>向量减法和加法类似。</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">__sub__</span><span class="params">(self, rhs)</span>:</span>
+    <span class="keyword">return</span> Vector2(self.x - rhs.x, self.y - rhs.y)
+</code></pre><h3 id="否定向量">否定向量</h3><p>如果想要改变向量的方向，使向量AB变成向量BA，需要将向量每个元素都改变符号。</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">__neg__</span><span class="params">(self)</span>:</span>
+    <span class="keyword">return</span> Vector2(-self.x, -self.y)
+</code></pre><h3 id="向量乘法和除法">向量乘法和除法</h3><p>将一个向量乘于或除于一个系数(数字)，效果是改变向量的大小。如果向量乘于一个整数，则产生同一方向的向量，如果乘于一个负数，则产生相反方向的向量。</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">__mul__</span><span class="params">(self, scalar)</span>:</span>
+    <span class="keyword">return</span> Vector2(self.x * scalar, self.y * scalar)
+
+<span class="function"><span class="keyword">def</span> <span class="title">__div__</span><span class="params">(self, scalar)</span>:</span>
+    <span class="keyword">return</span> Vector2(self.x / scalar, self.y / scalar)
+</code></pre><blockquote>
+<p><strong>注意</strong> 向量乘于向量也是可以的，但是在游戏中不常用，你可能永远都不需要它。</p>
+</blockquote>
+<p>向量乘法如何使用呢？基于时间把向量分解为很多步，向量乘法很有用。如果我们知道从A到B需要10秒，我们可以计算出每一秒我们到达的坐标。</p>
+<pre><code>A = (<span class="number">10.0</span>, <span class="number">20.0</span>)
+B = (<span class="number">30.0</span>, <span class="number">35.0</span>)
+AB = Vector2.from_points(A, B)
+step = AB * <span class="number">.1</span>
+<span class="keyword">position</span> = Vector2(A.x, A.y)
+for n <span class="type">in</span> <span class="built_in">range</span>(<span class="number">10</span>):
+    <span class="keyword">position</span> += step
+    <span class="built_in">print</span> <span class="keyword">position</span>
+</code></pre><p>当在两个点之间移动，计算中间位置是基本的。你还可以用向量计算在重力，外部作用力和摩擦力作用下很多种现实的运动。</p>
+<h3 id="游戏对象向量类">游戏对象向量类</h3><p>作者已经写了一个二维向量类作为游戏对象的一部分。</p>
+<pre><code>from gameobjects.vector2 import *
+A = (<span class="number">10.0</span>, <span class="number">20.0</span>)
+B = (<span class="number">30.0</span>, <span class="number">35.0</span>)
+AB = Vector2.from_points(A, B)
+print <span class="string">"Vector AB is"</span>, AB
+print <span class="string">"AB * 2 is"</span>, AB * <span class="number">2</span>
+print <span class="string">"AB / 2 is"</span>, AB / <span class="number">2</span>
+print <span class="string">"AB + (-10, 5) is"</span>, AB + (-<span class="number">10</span>, <span class="number">5</span>)
+print <span class="string">"Magnitude of AB is"</span>, AB.get_magnitude()
+print <span class="string">"AB normalized is"</span>, AB.get_normalized()
+</code></pre><h1 id="使用向量创建运动">使用向量创建运动</h1><p>既然我们了解了向量，我们可以使用它以多种方式移动游戏角色，而且可以实现简单的，基于力学的物理现象，使得游戏更加可信。</p>
+<h3 id="斜线运动-1">斜线运动</h3><p>让我们使用向量创建更加精确的斜线运动。</p>
+<pre><code>background_image_filename = <span class="string">'sushiplate.jpg'</span>
+sprite_image_filename = <span class="string">'fugu.png'</span>
+
+from sys <span class="keyword">import</span> exit
+<span class="keyword">import</span> pygame
+from pygame.locals <span class="keyword">import</span> *
+from gameobjects.vector2 <span class="keyword">import</span> Vector2
+
+pygame.init()
+
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+background = pygame.image.load(background_image_filename).convert()
+sprite = pygame.image.load(sprite_image_filename).convert_alpha()
+
+clock = pygame.time.Clock()
+
+position = Vector2(<span class="number">100.0</span>, <span class="number">100.0</span>)
+speed = <span class="number">250</span>
+heading = Vector2()
+
+<span class="keyword">while</span> True:
+    <span class="keyword">for</span> event in pygame.event.<span class="keyword">get</span>():
+        <span class="keyword">if</span> event.type == QUIT:
+            exit()
+        <span class="keyword">if</span> event.type == MOUSEBUTTONDOWN:
+            destination = Vector2(*event.pos) - Vector2(*sprite.get_size()) / 2.
+            heading = Vector2.from_points(position, destination)
+            heading.normalize()
+
+        screen.blit(background, (0, 0))
+        screen.blit(sprite, position)
+
+        time_passed = clock.tick()
+        time_passed_seconds = time_passed / 1000.0
+
+        distance_moved = time_passed_seconds * speed
+        position += heading * distance_moved
+        pygame.display.update()
+</code></pre><p>目的坐标的计算需要解释一下。星号(<code>*</code>)用在函数的参数时，扩展为一个元组或列表。因此Vector2(*event.pos)相当于Vector2(event.pos[0], event.pos[1])。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这一章描述如何以一种可以预测的方式在屏幕上移动对象，和如何使运动在其他人电脑里面一致。</p>
+<h1 id="理解帧率">理解帧率</h1><p>我们需要知道计算机游戏中关于运动的第一件事情就是<strong>没有什么东西真正在移动</strong>。电脑屏幕或电视机展示]]>
+    </summary>
+    
+      <category term="Pygame" scheme="https://opensvn.github.io/tags/Pygame/"/>
+    
+      <category term="Python" scheme="https://opensvn.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[整理代码片段]]></title>
+    <link href="https://opensvn.github.io/2015/11/10/colleague/"/>
+    <id>https://opensvn.github.io/2015/11/10/colleague/</id>
+    <published>2015-11-10T03:18:10.000Z</published>
+    <updated>2015-11-12T03:14:49.539Z</updated>
+    <content type="html"><![CDATA[<h1 id="根据pid获取进程名">根据pid获取进程名</h1><pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;libgen.h&gt;</span></span>
+
+<span class="function"><span class="keyword">void</span> <span class="title">get_process_name_by_pid</span><span class="params">(<span class="keyword">int</span> pid, <span class="keyword">char</span> *name)</span>
+</span>{
+    <span class="keyword">char</span> buf[<span class="number">256</span>] = {<span class="number">0</span>};
+    <span class="keyword">char</span> path[<span class="number">256</span>] = {<span class="number">0</span>};
+
+    <span class="built_in">sprintf</span>(buf, <span class="string">"/proc/%d/exe"</span>, pid);
+    readlink(buf, path, <span class="keyword">sizeof</span>(path));
+
+    <span class="keyword">char</span> *filename = basename(path);
+    <span class="built_in">strcpy</span>(name, filename);
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    <span class="keyword">int</span> pid = getpid();
+    <span class="keyword">char</span> name[<span class="number">256</span>] = {<span class="number">0</span>};
+    get_process_name_by_pid(pid, name);
+    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, name);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><h1 id="C语言变长数组">C语言变长数组</h1><pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span>
+
+<span class="function"><span class="keyword">void</span> <span class="title">test_vla</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str)</span>
+</span>{
+    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);
+
+    <span class="keyword">char</span> a[len + <span class="number">1</span>];
+    <span class="built_in">memset</span>(a, <span class="number">0</span>, <span class="keyword">sizeof</span>(a));
+
+    <span class="built_in">strcpy</span>(a, str);
+
+    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, a);
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    test_vla(<span class="string">"hello"</span>);
+    test_vla(<span class="string">"world!"</span>);
+    test_vla(<span class="string">"Amazing"</span>);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><h1 id="确保路径存在">确保路径存在</h1><pre><code><span class="function"><span class="keyword">bool</span> <span class="title">besure_path</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname)</span>
+</span>{
+    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(pathname);
+
+    <span class="keyword">char</span> buffer[len + <span class="number">1</span>];
+    <span class="built_in">memset</span>(buffer, <span class="number">0</span>, <span class="keyword">sizeof</span>(buffer));
+
+    <span class="built_in">strcpy</span>(buffer, pathname);
+
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i)
+    {
+        <span class="keyword">if</span> (buffer[i] == <span class="string">'/'</span>)
+        {
+            buffer[i] = <span class="number">0</span>;
+
+            <span class="keyword">if</span> (access(buffer, F_OK) &lt; <span class="number">0</span>)
+            {
+                <span class="keyword">if</span> (mkdir(buffer, <span class="number">0755</span>) &lt; <span class="number">0</span>)
+                {
+                    <span class="keyword">return</span> <span class="literal">false</span>;
+                }
+            }
+
+            buffer[i] = <span class="string">'/'</span>;
+        }
+    }
+
+    <span class="keyword">return</span> <span class="literal">true</span>;
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="根据pid获取进程名">根据pid获取进程名</h1><pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdi]]>
+    </summary>
+    
+      <category term="C" scheme="https://opensvn.github.io/tags/C/"/>
+    
+      <category term="Linux" scheme="https://opensvn.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Pygame第四章 创建视觉]]></title>
+    <link href="https://opensvn.github.io/2015/11/07/pygame-4/"/>
+    <id>https://opensvn.github.io/2015/11/07/pygame-4/</id>
+    <published>2015-11-07T13:28:44.000Z</published>
+    <updated>2015-11-19T06:20:46.008Z</updated>
+    <content type="html"><![CDATA[<p>电脑游戏倾向于视觉上很自然，游戏开发者花费很多精力在处理图像和提升视觉效果来创建最令人愉快的体验上。</p>
+<h1 id="像素的威力">像素的威力</h1><p>显示器里的一个独立的点称为一个图像单元或像素。如果一个显示器分辨率为1280x1024，则像素总数为1310720。一个屏幕上像素越多，则图片的质量越好。典型的家用电脑可以显示的颜色数量最高为16.7百万个。如果你想显示每一种颜色，你需要一个分辨率4096x4096的显示器。</p>
+<pre><code>import pygame
+pygame.init()
+
+screen = pygame.<span class="keyword">display</span>.set_mode((640, 480))
+
+all_colors = pygame.Surface((4096, 4096), depth=24)
+
+<span class="keyword">for</span> r <span class="keyword">in</span> xrange(256):
+    <span class="keyword">print</span> r + 1, '<span class="keyword">out</span> of 256'
+    x = (r &amp; 15) * 256
+    y = (r &gt;&gt; 4) * 256
+    <span class="keyword">for</span> <span class="keyword">g</span> <span class="keyword">in</span> xrange(256):
+        <span class="keyword">for</span> b <span class="keyword">in</span> xrange(256):
+            all_colors.set_at((x + <span class="keyword">g</span>, y + b), (r, <span class="keyword">g</span>, b))
+
+pygame.image.<span class="keyword">save</span>(all_colors, 'allcolors.bmp')
+</code></pre><p>上面程序用到的类或方法：</p>
+<pre><code>class Surface(__builtin__.object)
+ |  pygame.Surface((<span class="variable">width</span>, <span class="variable">height</span>), flags=<span class="number">0</span>, depth=<span class="number">0</span>, masks=None): <span class="keyword">return</span> Surface
+ |  pygame.Surface((<span class="variable">width</span>, <span class="variable">height</span>), flags=<span class="number">0</span>, Surface): <span class="keyword">return</span> Surface
+ |  pygame object <span class="keyword">for</span> representing images
+
+set_at(...)
+    Surface.set_at((x, y), Color): <span class="keyword">return</span> None
+    <span class="built_in">set</span> the <span class="built_in">color</span> value <span class="keyword">for</span> a single pixel
+
+<span class="built_in">save</span>(...)
+    pygame.<span class="built_in">image</span>.<span class="built_in">save</span>(Surface, filename): <span class="keyword">return</span> None
+    <span class="built_in">save</span> an <span class="built_in">image</span> to disk
+</code></pre><h1 id="和颜色打交道">和颜色打交道</h1><h3 id="Pygame中表示颜色">Pygame中表示颜色</h3><p>当Pygame需要一种颜色，你需要传进一个包含三个数字的元组，分别对应红绿蓝三种颜色，每个数值范围为[0, 255]。</p>
+<table>
+<thead>
+<tr>
+<th>颜色</th>
+<th style="text-align:left">红色</th>
+<th style="text-align:left">绿色</th>
+<th style="text-align:left">蓝色</th>
+<th style="text-align:left">元组</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>黑(Black)</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">(0, 0, 0)</td>
+</tr>
+<tr>
+<td>蓝(Blue)</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">255</td>
+<td style="text-align:left">(0, 0, 255)</td>
+</tr>
+<tr>
+<td>绿(Green)</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">255</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">(0, 255, 0)</td>
+</tr>
+<tr>
+<td>蓝绿(Cyan)</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">255</td>
+<td style="text-align:left">255</td>
+<td style="text-align:left">(0, 255, 255)</td>
+</tr>
+<tr>
+<td>红(Red)</td>
+<td style="text-align:left">255</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">(255, 0, 0)</td>
+</tr>
+<tr>
+<td>洋红(Magenta)</td>
+<td style="text-align:left">255</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">255</td>
+<td style="text-align:left">(255, 0, 255)</td>
+</tr>
+<tr>
+<td>黄(Yellow)</td>
+<td style="text-align:left">255</td>
+<td style="text-align:left">255</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">(255, 255, 0)</td>
+</tr>
+<tr>
+<td>白(White)</td>
+<td style="text-align:left">255</td>
+<td style="text-align:left">255</td>
+<td style="text-align:left">255</td>
+<td style="text-align:left">(255, 255, 255)</td>
+</tr>
+</tbody>
+</table>
+<pre><code><span class="keyword">import</span> pygame
+from pygame.locals <span class="keyword">import</span> *
+from sys <span class="keyword">import</span> <span class="built_in">exit</span>
+
+pygame.init()
+
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+# Creates images with <span class="built_in">smooth</span> gradients
+def create_scales(<span class="variable">height</span>):
+    red_scale_surface = pygame.surface.Surface((<span class="number">640</span>, <span class="variable">height</span>))
+    green_scale_surface = pygame.surface.Surface((<span class="number">640</span>, <span class="variable">height</span>))
+    blue_scale_surface = pygame.surface.Surface((<span class="number">640</span>, <span class="variable">height</span>))
+    <span class="keyword">for</span> x in range(<span class="number">640</span>):
+        c = <span class="built_in">int</span>((x / <span class="number">639.</span>) * <span class="number">255.</span>)
+        <span class="built_in">red</span> = (c, <span class="number">0</span>, <span class="number">0</span>)
+        <span class="built_in">green</span> = (<span class="number">0</span>, c, <span class="number">0</span>)
+        <span class="built_in">blue</span> = (<span class="number">0</span>, <span class="number">0</span>, c)
+        line_rect = Rect(x, <span class="number">0</span>, <span class="number">1</span>, <span class="variable">height</span>)
+        pygame.<span class="title">draw</span>.<span class="built_in">rect</span>(red_scale_surface, <span class="built_in">red</span>, line_rect)
+        pygame.<span class="title">draw</span>.<span class="built_in">rect</span>(green_scale_surface, <span class="built_in">green</span>, line_rect)
+        pygame.<span class="title">draw</span>.<span class="built_in">rect</span>(blue_scale_surface, <span class="built_in">blue</span>, line_rect)
+    <span class="keyword">return</span> red_scale_surface, green_scale_surface, blue_scale_surface
+
+red_scale, green_scale, blue_scale = create_scales(<span class="number">80</span>)
+
+<span class="built_in">color</span> = [<span class="number">127</span>, <span class="number">127</span>, <span class="number">127</span>]
+
+<span class="keyword">while</span> True:
+    <span class="keyword">for</span> event in pygame.event.<span class="built_in">get</span>():
+        <span class="keyword">if</span> event.type == QUIT:
+            <span class="built_in">exit</span>()
+
+    screen.<span class="built_in">fill</span>((<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))
+
+    # Draw the scales to the screen
+    screen.blit(red_scale, (<span class="number">0</span>, <span class="number">0</span>))
+    screen.blit(green_scale, (<span class="number">0</span>, <span class="number">80</span>))
+    screen.blit(blue_scale, (<span class="number">0</span>, <span class="number">160</span>))
+
+    x, y = pygame.mouse.get_pos()
+
+    # If the mouse was pressed on one of the sliders, adjust the <span class="built_in">color</span> component
+    <span class="keyword">if</span> pygame.mouse.get_pressed()[<span class="number">0</span>]:
+        <span class="keyword">for</span> component in range(<span class="number">3</span>):
+            <span class="keyword">if</span> y &gt; component * <span class="number">80</span> and y &lt; (component + <span class="number">1</span>) * <span class="number">80</span>:
+                <span class="built_in">color</span>[component] = <span class="built_in">int</span>((x / <span class="number">639.</span>) * <span class="number">255.</span>)
+        pygame.display.set_caption(<span class="string">'Pygame Color Test - '</span> + <span class="built_in">str</span>(tuple(<span class="built_in">color</span>)))
+
+    # Draw a circle <span class="keyword">for</span> each slider to represent the current setting
+    <span class="keyword">for</span> component in range(<span class="number">3</span>):
+        pos = (<span class="built_in">int</span>((<span class="built_in">color</span>[component] / <span class="number">255.</span>) * <span class="number">639</span>), component * <span class="number">80</span> + <span class="number">40</span>)
+        pygame.<span class="title">draw</span>.circle(screen, (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>), pos, <span class="number">20</span>)
+
+    pygame.<span class="title">draw</span>.<span class="built_in">rect</span>(screen, tuple(<span class="built_in">color</span>), (<span class="number">0</span>, <span class="number">240</span>, <span class="number">640</span>, <span class="number">240</span>))
+
+    pygame.display.update()
+</code></pre><p>上面程序用到的类或方法：</p>
+<pre><code>class Rect(__builtin__.object)
+ |  pygame.Rect(left, top, <span class="variable">width</span>, <span class="variable">height</span>): <span class="keyword">return</span> Rect
+ |  pygame.Rect((left, top), (<span class="variable">width</span>, <span class="variable">height</span>)): <span class="keyword">return</span> Rect
+ |  pygame.Rect(object): <span class="keyword">return</span> Rect
+ |  pygame object <span class="keyword">for</span> storing rectangular coordinates
+
+<span class="built_in">rect</span>(...)
+    pygame.<span class="title">draw</span>.<span class="built_in">rect</span>(Surface, <span class="built_in">color</span>, Rect, <span class="variable">width</span>=<span class="number">0</span>): <span class="keyword">return</span> Rect
+    <span class="title">draw</span> a rectangle <span class="built_in">shape</span>
+
+get_pressed(...)
+    pygame.mouse.get_pressed(): <span class="keyword">return</span> (button1, button2, button3)
+    <span class="built_in">get</span> the state of the mouse buttons
+
+circle(...)
+    pygame.<span class="title">draw</span>.circle(Surface, <span class="built_in">color</span>, pos, radius, <span class="variable">width</span>=<span class="number">0</span>): <span class="keyword">return</span> Rect
+    <span class="title">draw</span> a circle around a <span class="built_in">point</span>
+</code></pre><h3 id="调整颜色">调整颜色</h3><p>要使颜色变暗，只需RGB每一个值都乘于一个0和1之间的系数。</p>
+<pre><code>def scale_color(<span class="built_in">color</span>, <span class="built_in">scale</span>):
+    <span class="built_in">red</span>, <span class="built_in">green</span>, <span class="built_in">blue</span> = <span class="built_in">color</span>
+    <span class="built_in">red</span> = <span class="built_in">int</span>(<span class="built_in">red</span> * <span class="built_in">scale</span>)
+    <span class="built_in">green</span> = <span class="built_in">int</span>(<span class="built_in">green</span> * <span class="built_in">scale</span>)
+    <span class="built_in">blue</span> = <span class="built_in">int</span>(<span class="built_in">blue</span> * <span class="built_in">scale</span>)
+    <span class="keyword">return</span> <span class="built_in">red</span>, <span class="built_in">green</span>, <span class="built_in">blue</span>
+
+fireball_orange = (<span class="number">221</span>, <span class="number">99</span>, <span class="number">20</span>)
+<span class="built_in">print</span> fireball_orange
+<span class="built_in">print</span> scale_color(fireball_orange, <span class="number">.5</span>)
+</code></pre><p>如果乘于一个大于1的数，颜色会变得更亮。但是如果颜色值大于255时，Pygame会抛出TypeError异常。</p>
+<pre><code>def saturate_color(<span class="built_in">color</span>):
+    <span class="built_in">red</span>, <span class="built_in">green</span>, <span class="built_in">blue</span> = <span class="built_in">color</span>
+    <span class="built_in">red</span> = <span class="built_in">min</span>(<span class="built_in">red</span>, <span class="number">255</span>)
+    <span class="built_in">green</span> = <span class="built_in">min</span>(<span class="built_in">green</span>, <span class="number">255</span>)
+    <span class="built_in">blue</span> = <span class="built_in">min</span>(<span class="built_in">blue</span>, <span class="number">255</span>)
+    <span class="keyword">return</span> <span class="built_in">red</span>, <span class="built_in">green</span>, <span class="built_in">blue</span>
+</code></pre><p>当颜色饱和至255时，可能就失去原来的色调了，所以需要注意调整的系数。</p>
+<h3 id="混合颜色">混合颜色</h3><p>有时候我们想要将一种颜色逐渐混入另一种颜色，比如一个僵尸在路过一个火山熔岩坑的时候，它会由绿色变成橙红色，再变为正常的绿色。我们怎样才能计算中间的颜色使得颜色转换平滑自然呢？<br>我们用一种叫做<strong>线性插值(linear interpolation)</strong>的方法来做这件事情。公式如下：</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">lerp</span><span class="params">(value1, value2, factor)</span>:</span>
+    <span class="keyword">return</span> value1 + (value2 - value1) * factor
+</code></pre><p>如果逐渐改变系数因子，就会产生颜色的平滑转换。</p>
+<pre><code><span class="keyword">import</span> pygame
+<span class="keyword">from</span> pygame.locals <span class="keyword">import</span> *
+<span class="keyword">from</span> sys <span class="keyword">import</span> exit
+
+pygame.init()
+
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+color1 = (<span class="number">221</span>, <span class="number">99</span>, <span class="number">20</span>) <span class="comment"># 火球黄</span>
+color2 = (<span class="number">96</span>, <span class="number">130</span>, <span class="number">51</span>) <span class="comment"># 僵尸绿</span>
+
+factor = <span class="number">0</span>
+
+<span class="function"><span class="keyword">def</span> <span class="title">lerp</span><span class="params">(value1, value2, factor)</span>:</span>
+    <span class="keyword">return</span> value1 + (value2 - value1) * factor
+
+<span class="function"><span class="keyword">def</span> <span class="title">blend_color</span><span class="params">(color1, color2, blend_factor)</span>:</span>
+    red1, green1, blue1 = color1
+    red2, green2, blue2 = color2
+    red = lerp(red1, red2, blend_factor)
+    green = lerp(green1, green2, blend_factor)
+    blue = lerp(blue1, blue2, blend_factor)
+    <span class="keyword">return</span> int(red), int(green), int(blue)
+
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    <span class="keyword">for</span> event <span class="keyword">in</span> pygame.event.get():
+        <span class="keyword">if</span> event.type == QUIT:
+            exit()
+
+    screen.fill((<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))
+
+    tri = [(<span class="number">0</span>, <span class="number">120</span>), (<span class="number">639</span>, <span class="number">100</span>), (<span class="number">639</span>, <span class="number">140</span>)]
+    pygame.draw.polygon(screen, (<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>), tri)
+    pygame.draw.circle(screen, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>), (int(factor * <span class="number">639.</span>), <span class="number">120</span>), <span class="number">10</span>)
+
+    x, y = pygame.mouse.get_pos()
+    <span class="keyword">if</span> pygame.mouse.get_pressed()[<span class="number">0</span>]:
+        factor = x / <span class="number">639.</span>
+        pygame.display.set_caption(<span class="string">'Pygame Color Blend Test - %.3f'</span> % factor)
+
+    color = blend_color(color1, color2, factor)
+    pygame.draw.rect(screen, color, (<span class="number">0</span>, <span class="number">240</span>, <span class="number">640</span>, <span class="number">240</span>))
+
+    pygame.display.update()
+</code></pre><p>用到的方法：</p>
+<pre><code><span class="function"><span class="title">polygon</span><span class="params">(...)</span></span>
+    pygame<span class="class">.draw</span><span class="class">.polygon</span>(Surface, <span class="attribute">color</span>, pointlist, <span class="attribute">width</span>=<span class="number">0</span>): return Rect
+    draw <span class="tag">a</span> shape with any number of sides
+</code></pre><h1 id="使用图片">使用图片</h1><p>图片对大多数游戏都是一个必须的部分。电脑存储图片为颜色的网阵。除了常见的红绿蓝，有些图片还存储额外的信息(alpha通道)。颜色的alpha值通常用来表示当图片画在另一张图片上的透明度。</p>
+<h3 id="存储图片">存储图片</h3><p>有很多方式存储图片到硬盘。多年来，多种图片格式被开发出来。最有用的两种格式是JPEG和PNG。</p>
+<ul>
+<li>JPEG(Joint Photographic Expert Group)-JPEG图片文件扩展名为.jpg或.jpeg。数码相机常用这种格式，因为它是特别设计来存储图片的。它使用有损压缩，会降低图片质量，但是能很好地减小文件大小。JPEG不支持透明，对拥有硬边缘的东西比如字体和图表支持不好。</li>
+<li>PNG(Portable Network Graphics)-PNG可能是最全面的图片格式，因为它能保存很多种图片类型并且压缩也很好。它也支持alpha通道，对游戏开发者来说是福利。PNG使用的压缩是无损压缩，缺点就是文件比JPEG文件大。</li>
+</ul>
+<p>除了JPEG和PNG，Pygame支持读取下面的格式：</p>
+<ul>
+<li>GIF(非动态)-网上使用的很多，支持透明和动画，只是只能有256种颜色，软件和游戏中使用很少</li>
+<li>BMP-Windows上的标准图像格式，无压缩，质量很高但尺寸很大，一般不使用</li>
+<li>PCX</li>
+<li>TGA(只限非压缩的)</li>
+<li>TIF</li>
+<li>LBM(和PBM)</li>
+<li>PBM(和PGM，PPM)</li>
+<li>XPM</li>
+</ul>
+<p>根据经验，对于拥有很多颜色变化的大图片文件使用JPEG，否则使用PNG。</p>
+<h3 id="使用Surface对象">使用Surface对象</h3><p>加载图片到Pygame只需一行，<strong>pygame.image.load</strong>接收一个图片文件名返回一个Surface对象，它是图片的容器。Surface对象可以表示许多种图片类型，但是Pygame隐藏了大多数细节，因此我们能够以相同的方式对待它们。你可以在Surface对象上画图，变形，或拷贝到另一个Surface。甚至屏幕也是一个Surface对象。</p>
+<h3 id="创建Surface对象">创建Surface对象</h3><p>调用<strong>pygame.image.load</strong>是一种创建Surface的方式，它会创建和图片文件相同尺寸和颜色的Surface。也可以创建任意尺寸的空白Surface。使用<strong>pygame.Surface</strong>构造函数可以创建一个空白Surface。</p>
+<pre><code>blank_surface = pygame.<span class="function"><span class="title">Surface</span><span class="params">((<span class="number">256</span>, <span class="number">256</span>)</span></span>)
+</code></pre><p>还有一些选项会影响图片的创建。第一个参数是flags：</p>
+<ul>
+<li>HWSURFACE-创建硬件外观，比非硬件外观更快。通常最好不要设置这个标志，而是留给Pygame决定是否使用硬件外观。</li>
+<li>SRCALPHA-创建拥有alpha信息的外观。这个选项需要depth参数设为32。</li>
+</ul>
+<p>第二个参数为depth，这个参数和<strong>pygame.display.set_mode</strong>的depth参数一样。通常最好不要设置这个参数(或设置为0)，但是如果想要保留alpha信息，则必须设置为32。</p>
+<pre><code>blank_alpha_surface = pygame.Surface((<span class="number">256</span>, <span class="number">256</span>), flags=SRCALPHA, depth=<span class="number">32</span>)
+</code></pre><h3 id="转换Surface">转换Surface</h3><p>当你使用Surface对象时，你不需要担心图像信息在内存是怎么存储的，因为Pygame隐藏了这些细节，因此不管什么图片类型，你的代码都能工作。自动转换的唯一缺点是如果你使用不同格式的图片，Pygame需要做更多工作，这可能会降低游戏性能。解决的方法是使用<strong>convert</strong>方法转换所有的图片为相同的格式。</p>
+<p>如果不带参数调用<strong>convert</strong>，Surface会被转换为和显示设备的Surface一样的格式。这很有用因为通常起点和终点是相同类型的话拷贝Surface非常快，而大多数图片最终会被拷贝到显示设备。调用<strong>pygame.image.load</strong>时附加<strong>.convert()</strong>是个好习惯。Pygame还提供<strong>convert_alpha</strong>方法，转换Surface并保留alpha信息。</p>
+<p><strong>convert</strong>和<strong>convert_alpha</strong>可以接收另外一个Surface参数，如果提供了这个参数，则Surface会被转换为和参数一样的Surface。</p>
+<h3 id="矩形对象">矩形对象</h3><p>当一个函数调用会影响到屏幕的某一部分时，Pygame通常需要你提供一个矩形区域。你可以使用一个4元组定义矩形区域，(left, top, width, height)。或者使用2个2元组，((left, top), (width, height))。</p>
+<pre><code>my_rect1 = (<span class="number">100</span>, <span class="number">100</span>, <span class="number">200</span>, <span class="number">150</span>)
+my_rect2 = ((<span class="number">100</span>, <span class="number">100</span>), (<span class="number">200</span>, <span class="number">150</span>))
+</code></pre><p>Pygame有一个Rect类存储和处理矩形对象。因为Rect对象很常使用，所以它包含在<strong>pygame.locals</strong>里面。创建Rect对象使用一样的元组参数。</p>
+<pre><code>my_rect3 = Rect(<span class="number">100</span>, <span class="number">100</span>, <span class="number">200</span>, <span class="number">150</span>)
+my_rect4 = Rect((<span class="number">100</span>, <span class="number">100</span>), (<span class="number">200</span>, <span class="number">150</span>))
+</code></pre><p>一旦创建了Rect对象，就可以使用它来调整位置和大小，检查一个点是否在其中，判断矩形是否交叉等。详细请参考<a href="http://www.pygame.org/docs/ref/rect.html" target="_blank" rel="external">http://www.pygame.org/docs/ref/rect.html</a></p>
+<h3 id="剪裁">剪裁</h3><p>通常创建游戏画面的时候，你可能想只绘制一部分。为了解决这个问题，Surface有一个剪裁区域，定义了屏幕的哪一部分可以被绘制。使用<strong>set_clip</strong>方法设置剪裁区域，<strong>get_clip</strong>获得当前剪裁区域。</p>
+<pre><code>screen.<span class="function"><span class="title">set_clip</span><span class="params">(<span class="number">0</span>, <span class="number">0</span>, <span class="number">640</span>, <span class="number">300</span>)</span></span>
+<span class="function"><span class="title">draw_map</span><span class="params">()</span></span>
+screen.<span class="function"><span class="title">set_clip</span><span class="params">(<span class="number">0</span>, <span class="number">300</span>, <span class="number">640</span>, <span class="number">180</span>)</span></span>
+<span class="function"><span class="title">draw_panel</span><span class="params">()</span></span>
+</code></pre><h3 id="子表面(Subsurface)">子表面(Subsurface)</h3><p>一个子表面在其它Surface里面的Surface。当你在子表面上画图时，也会画在父表面上。子表面的一个用法是画图形字体。<strong>pygame.font</strong>模块可以产生漂亮的一种颜色的文字，但是游戏可能需要更丰富的表现。你可以为每一个字母保存一个文本，但是更简单的方法是保存所有字母到一张图片，然后创建26个子表面。</p>
+<p>使用Surface对象的<strong>subsurface</strong>方法创建子表面，它接收一个Rect参数，表示覆盖父表面哪一部分，返回一个新的和父表面一样格式的Surface对象。</p>
+<pre><code>my_font_image = Pygame.load(<span class="string">"font.png"</span>)
+letters = {}
+letters[<span class="string">"a"</span>] = my_font_image.subsurface((<span class="number">0</span>,<span class="number">0</span>), (<span class="number">80</span>,<span class="number">80</span>))
+letters[<span class="string">"b"</span>] = my_font_image.subsurface((<span class="number">80</span>,<span class="number">0</span>), (<span class="number">80</span>,<span class="number">80</span>))
+
+subsurface(...)
+    Surface.subsurface(Rect): <span class="keyword">return</span> Surface
+    create a <span class="keyword">new</span> surface that references its parent
+</code></pre><p>当你使用子表面时，需要记住它们拥有自己的坐标系统。</p>
+<h3 id="填充表面">填充表面</h3><p><strong>fill</strong>方法使用指定颜色填充Surface对象。</p>
+<pre><code>screen.fill((<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))
+</code></pre><p><strong>fill</strong>方法也可以带一个可选的Rect参数，指定填充区域。</p>
+<blockquote>
+<p><strong>注意</strong> 如果你使用其它方法画整个屏幕，就不必调用<strong>fill</strong>来清屏了。</p>
+</blockquote>
+<h3 id="设置表面像素">设置表面像素</h3><p>你能对表面做的一个最基本的事情就是设置单一像素，效果就是画一个非常小的点。很少需要一次画一个像素，因为有更多有效的画图方式，但是你需要处理脱机图片将会很有用。<br>使用<strong>set_at</strong>方法，参数为坐标和颜色，可以在表面画一个像素。</p>
+<pre><code><span class="keyword">import</span> pygame
+from pygame.locals <span class="keyword">import</span> *
+from sys <span class="keyword">import</span> exit
+from random <span class="keyword">import</span> randint
+
+pygame.init()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+<span class="keyword">while</span> True:
+    <span class="keyword">for</span> event in pygame.event.<span class="keyword">get</span>():
+        <span class="keyword">if</span> event.type == QUIT:
+            exit()
+
+    rand_col = (randint(0, 255), randint(0, 255), randint(0, 255))
+    <span class="keyword">for</span> _ in xrange(100):
+        rand_pos = (randint(0, 639), randint(0, 479))
+        screen.set_at(rand_pos, rand_col)
+
+    pygame.display.update()
+</code></pre><h3 id="获得表面的像素">获得表面的像素</h3><p>与<strong>set_at</strong>相对的是<strong>get_at</strong>，它返回给定坐标像素的颜色。获取像素有时候对于碰撞检测很必要。</p>
+<pre><code>my_color = screen.<span class="function"><span class="title">get_at</span><span class="params">((<span class="number">100</span>, <span class="number">100</span>)</span></span>)
+</code></pre><blockquote>
+<p><strong>注意</strong> <strong>get_at</strong>在读取硬件表面时很慢。显示可能是硬件表面，尤其是全屏显示的时候，所以这时应该避免使用<strong>get_at</strong>。</p>
+</blockquote>
+<h3 id="锁定Surface">锁定Surface</h3><p>当Pygame在surface上画图时，surface必须先锁定。当surface被锁定时，Pygame完全控制surface，计算机其它进程只能等到surface解锁时才能使用。当你在surface上画图时，加锁和解锁自动发生。但是如果Pygame需要做太多加锁和解锁，程序会变得没有效率。我们可以通过手动加锁和解锁来减少加锁和解锁的次数，从而提高运行速度。</p>
+<blockquote>
+<p><strong>注意</strong> <strong>lock</strong>和<strong>unlock</strong>的次数必须一样，如果忘记了<strong>unlock</strong>一个surface，Pygame将失去响应。</p>
+</blockquote>
+<pre><code><span class="keyword">import</span> pygame
+from pygame.locals <span class="keyword">import</span> *
+from sys <span class="keyword">import</span> exit
+from random <span class="keyword">import</span> randint
+
+pygame.init()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+<span class="keyword">while</span> True:
+    <span class="keyword">for</span> event in pygame.event.<span class="keyword">get</span>():
+        <span class="keyword">if</span> event.type == QUIT:
+            exit()
+
+    rand_col = (randint(0, 255), randint(0, 255), randint(0, 255))
+    screen.lock()
+    <span class="keyword">for</span> _ in xrange(100):
+        rand_pos = (randint(0, 639), randint(0, 479))
+        screen.set_at(rand_pos, rand_col)
+    screen.unlock()
+    pygame.display.update()
+</code></pre><p>不是所有的surface需要加锁。硬件surface需要(屏幕通常是硬件surface)，普通的surface不需要。Pygame提供一个<strong>mustlock</strong>方法返回True如果surface需要加锁。加锁不需要加锁的surface没有问题。</p>
+<h3 id="Blitting">Blitting</h3><p>最常用的surface对象的方法可能是<strong>blit</strong>，是位块传输(<strong>bit block transfer</strong>)的缩写。Blitting意思是从一个surface拷贝图片数据到另一个surface。你可以使用它来画背景，字体，角色和游戏中几乎所有的事。</p>
+<p>为了blit一个surface，用目标surface对象调用<strong>blit</strong>，传递源surface和目的坐标。也可以只blit一部分surface。</p>
+<pre><code>screen.blit(background, (<span class="number">0</span>,<span class="number">0</span>))
+screen.blit(ogre, (<span class="number">300</span>, <span class="number">200</span>), (<span class="number">100</span>*frame_no, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>))
+</code></pre><h1 id="用Pygame画图">用Pygame画图</h1><p>我们在之前的例子中已经使用过一些<strong>pygame.draw</strong>模块的函数了。这个模块的用途就是在屏幕上画几何图形。你可以使用它创建整个游戏而不需要加载其它图片。</p>
+<p><strong>pygame.draw</strong>模块的函数前两个参数都是surface和颜色。每一个函数也会至少带一个点，也许是一个点的列表。每个点是一个包含坐标的元组。</p>
+<p>画图函数返回一个Rect对象包含了绘制过的区域，对于只想绘制屏幕的一部分很有用。</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th style="text-align:left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rect</td>
+<td style="text-align:left">绘制矩形</td>
+</tr>
+<tr>
+<td>polygon</td>
+<td style="text-align:left">绘制多边形(三条边或更多)</td>
+</tr>
+<tr>
+<td>circle</td>
+<td style="text-align:left">绘制圆</td>
+</tr>
+<tr>
+<td>ellipse</td>
+<td style="text-align:left">绘制椭圆</td>
+</tr>
+<tr>
+<td>arc</td>
+<td style="text-align:left">绘制圆弧</td>
+</tr>
+<tr>
+<td>line</td>
+<td style="text-align:left">绘制直线</td>
+</tr>
+<tr>
+<td>lines</td>
+<td style="text-align:left">绘制多个直线</td>
+</tr>
+<tr>
+<td>aaline</td>
+<td style="text-align:left">绘制平滑直线</td>
+</tr>
+<tr>
+<td>aalines</td>
+<td style="text-align:left">绘制多个平滑直线</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pygame-draw-rect">pygame.draw.rect</h3><p>这个函数在surface上画一个矩形。除了目的surface和颜色，<strong>pygame.draw.rect</strong>接收一个Rect对象和width作为参数。如果width为0或忽略，则用固定颜色填充矩形，否则只画边缘。</p>
+<pre><code><span class="keyword">import</span> pygame
+from pygame.locals <span class="keyword">import</span> *
+from sys <span class="keyword">import</span> exit
+
+from random <span class="keyword">import</span> *
+
+pygame.<span class="keyword">init</span>()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+<span class="keyword">while</span> <span class="type">True</span>:
+    <span class="keyword">for</span> event <span class="keyword">in</span> pygame.event.<span class="keyword">get</span>():
+        <span class="keyword">if</span> event.type == <span class="type">QUIT</span>:
+            exit()
+
+    screen.lock()
+    <span class="keyword">for</span> <span class="built_in">count</span> <span class="keyword">in</span> range(<span class="number">10</span>):
+        random_color = (randint(<span class="number">0</span>, <span class="number">255</span>), randint(<span class="number">0</span>, <span class="number">255</span>), randint(<span class="number">0</span>, <span class="number">255</span>))
+        random_pos = (randint(<span class="number">0</span>, <span class="number">639</span>), randint(<span class="number">0</span>, <span class="number">479</span>))
+        random_size = (<span class="number">639</span> - randint(random_pos[<span class="number">0</span>], <span class="number">639</span>), <span class="number">479</span> -
+            randint(random_pos[<span class="number">1</span>], <span class="number">479</span>))
+        pygame.draw.rect(screen, random_color, <span class="type">Rect</span>(random_pos, random_size))
+    screen.unlock()
+
+    pygame.display.update()
+</code></pre><p>还有另外一个方法画填充的矩形。surface的<strong>fill</strong>方法接收一个Rect对象指定要填充的区域。<strong>fill</strong>比<strong>pygame.draw.rect</strong>要快，因为<strong>fill</strong>由显卡来执行。</p>
+<h3 id="pygame-draw-polygon">pygame.draw.polygon</h3><p><strong>pygame.draw.polygon</strong>接收一系列点的列表并在它们之间画形状。它也有一个width参数，如果width被忽略或设置为0，则多边形被填充，否则只画边缘。</p>
+<pre><code>import pygame
+<span class="keyword">from</span> pygame.locals import *
+<span class="keyword">from</span> sys import <span class="keyword">exit</span>
+
+pygame.init()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+points = []
+
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    <span class="keyword">for</span> <span class="keyword">event</span> <span class="keyword">in</span> pygame.<span class="keyword">event</span>.get():
+        <span class="keyword">if</span> <span class="keyword">event</span>.<span class="keyword">type</span> == QUIT:
+            <span class="keyword">exit</span>()
+        <span class="keyword">if</span> <span class="keyword">event</span>.<span class="keyword">type</span> == MOUSEBUTTONDOWN:
+            points.append(<span class="keyword">event</span>.pos)
+
+    screen.fill((<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))
+
+    <span class="keyword">if</span> len(points) &gt;= <span class="number">3</span>:
+        pygame.draw.polygon(screen, (<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>), points, <span class="number">1</span>)
+    <span class="keyword">for</span> point <span class="keyword">in</span> points:
+        pygame.draw.circle(screen, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), point, <span class="number">5</span>)
+
+    pygame.display.update()
+</code></pre><h3 id="pygame-draw-circle">pygame.draw.circle</h3><p><strong>circle</strong>函数在surface上画圆。它接收一个圆心坐标和半径作为参数。和之前一样，width参数如果为0或忽略，则圆被填充，否则只画边缘。</p>
+<pre><code>import pygame
+from pygame.locals import *
+from sys import <span class="built_in">exit</span>
+from random import *
+
+pygame.init()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+<span class="keyword">while</span> True:
+    <span class="keyword">for</span> event in pygame.event.get():
+        <span class="keyword">if</span> event.type == QUIT:
+            <span class="built_in">exit</span>()
+
+    random_color = (randint(<span class="number">0</span>, <span class="number">255</span>), randint(<span class="number">0</span>, <span class="number">255</span>), randint(<span class="number">0</span>, <span class="number">255</span>))
+    random_pos = (randint(<span class="number">0</span>, <span class="number">639</span>), randint(<span class="number">0</span>, <span class="number">479</span>))
+    random_radius = randint(<span class="number">1</span>, <span class="number">200</span>)
+    pygame.draw.circle(screen, random_color, random_pos, random_radius)
+
+    pygame.display.update()
+</code></pre><h3 id="pygame-draw-ellipse">pygame.draw.ellipse</h3><p><strong>用法</strong>： pygame.draw.ellipse(Surface, color, Rect, width=0)</p>
+<pre><code>from random import *
+import pygame
+from pygame.locals import *
+from sys import <span class="built_in">exit</span>
+
+pygame.init()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+<span class="keyword">while</span> True:
+    <span class="keyword">for</span> event in pygame.event.get():
+        <span class="keyword">if</span> event.type == QUIT:
+            <span class="built_in">exit</span>()
+
+    x, y = pygame.mouse.get_pos()
+    screen.fill((<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))
+    pygame.draw.ellipse(screen, (<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>), (<span class="number">0</span>, <span class="number">0</span>, x, y))
+
+    pygame.display.update()
+</code></pre><h3 id="pygame-draw-arc">pygame.draw.arc</h3><p><strong>用法</strong>：pygame.draw.arc(Surface, color, Rect, start_angle, stop_angle, width=1)<br><strong>arc</strong>函数仅仅画椭圆的一部分，而且只画边缘。圆弧是不封闭的，因此没有<strong>fill</strong>方法。这个函数的width参数默认为1，你也可以设置为更大的值以得到更粗的线。</p>
+<pre><code>from random import *
+from math import pi
+import pygame
+from pygame.locals import *
+from sys import <span class="built_in">exit</span>
+
+pygame.init()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+<span class="keyword">while</span> True:
+    <span class="keyword">for</span> event in pygame.event.get():
+        <span class="keyword">if</span> event.type == QUIT:
+            <span class="built_in">exit</span>()
+
+    x, y = pygame.mouse.get_pos()
+    angle = (x / <span class="number">639.</span>) * pi * <span class="number">2</span>
+    screen.fill((<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))
+    pygame.draw.arc(screen, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>), (<span class="number">0</span>, <span class="number">0</span>, <span class="number">639</span>, <span class="number">479</span>), <span class="number">0</span>, angle)
+
+    pygame.display.update()
+</code></pre><h3 id="pygame-draw-line">pygame.draw.line</h3><p><strong>用法</strong>：pygame.draw.line(Surface, color, start_pos, end_pos, width=1)</p>
+<pre><code><span class="keyword">import</span> pygame
+from pygame.locals <span class="keyword">import</span> *
+from sys <span class="keyword">import</span> exit
+
+pygame.init()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+<span class="keyword">while</span> True:
+    <span class="keyword">for</span> event in pygame.event.<span class="keyword">get</span>():
+        <span class="keyword">if</span> event.type == QUIT:
+            exit()
+
+    screen.fill((255, 255, 255))
+    mouse_pos = pygame.mouse.get_pos()
+
+    <span class="keyword">for</span> x in xrange(0, 640, 20):
+        pygame.draw.line(screen, (0, 0, 0), (x, 0), mouse_pos)
+        pygame.draw.line(screen, (0, 0, 0), (x, 479), mouse_pos)
+
+    <span class="keyword">for</span> y in xrange(0, 480, 20):
+        pygame.draw.line(screen, (0, 0, 0), (0, y), mouse_pos)
+        pygame.draw.line(screen, (0, 0, 0), (639, y), mouse_pos)
+
+    pygame.display.update()
+</code></pre><h3 id="pygame-draw-lines">pygame.draw.lines</h3><p><strong>用法</strong>：pygame.draw.lines(Surface, color, closed, pointlist, width=1)</p>
+<p>closed是一个布尔值，指明是否需要多画一条线来使这些线条闭合。</p>
+<pre><code>import pygame
+<span class="keyword">from</span> pygame.locals import *
+<span class="keyword">from</span> sys import <span class="keyword">exit</span>
+
+pygame.init()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+points = []
+
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    <span class="keyword">for</span> <span class="keyword">event</span> <span class="keyword">in</span> pygame.<span class="keyword">event</span>.get():
+        <span class="keyword">if</span> <span class="keyword">event</span>.<span class="keyword">type</span> == QUIT:
+            <span class="keyword">exit</span>()
+        <span class="keyword">if</span> <span class="keyword">event</span>.<span class="keyword">type</span> == MOUSEMOTION:
+            points.append(<span class="keyword">event</span>.pos)
+            <span class="keyword">if</span> len(points) &gt; <span class="number">100</span>:
+                del points[<span class="number">0</span>]
+
+    screen.fill((<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))
+
+    <span class="keyword">if</span> len(points) &gt; <span class="number">1</span>:
+        pygame.draw.lines(screen, (<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>), <span class="keyword">False</span>, points, <span class="number">2</span>)
+
+    pygame.display.update()
+</code></pre><h3 id="pygame-draw-aaline">pygame.draw.aaline</h3><p><strong>用法</strong>：pygame.draw.aaline(Surface, color, start_pos, end_pos, width=1)</p>
+<p>你可能注意到了上一个画线函数画出的线有锯齿。这是因为一个像素对应一个坐标，而这个坐标可能没有直接在线里面，这个现象叫做锯齿。任何试图避免或减少锯齿的方法称为抗锯齿。</p>
+<p><strong>pygame.draw.aaline</strong>和<strong>pygame.draw.line</strong>参数一样，但是能画出平滑的直线。缺点是它慢一点。</p>
+<h3 id="pygame-draw-aalines">pygame.draw.aalines</h3><p><strong>用法</strong>：pygame.draw.aalines(Surface, color, closed, pointlist, width=1)</p>
+<p><strong>pygame.draw.aalines</strong>和<strong>pygame.draw.lines</strong>用法一样。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>电脑游戏倾向于视觉上很自然，游戏开发者花费很多精力在处理图像和提升视觉效果来创建最令人愉快的体验上。</p>
+<h1 id="像素的威力">像素的威力</h1><p>显示器里的一个独立的点称为一个图像单元或像素。如果一个显示器分辨率为1280x1024，则像素总数为1310]]>
+    </summary>
+    
+      <category term="Pygame" scheme="https://opensvn.github.io/tags/Pygame/"/>
+    
+      <category term="Python" scheme="https://opensvn.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Pygame第三章 Pygame介绍]]></title>
+    <link href="https://opensvn.github.io/2015/11/02/pygame-3/"/>
+    <id>https://opensvn.github.io/2015/11/02/pygame-3/</id>
+    <published>2015-11-02T00:16:02.000Z</published>
+    <updated>2015-11-19T02:30:42.293Z</updated>
+    <content type="html"><![CDATA[<h1 id="安装Pygame">安装Pygame</h1><p>Ubuntu下安装Pygame:</p>
+<pre><code>sudo apt-<span class="built_in">get</span> install <span class="keyword">python</span>-pygame
+</code></pre><p>装好后，查看Pygame版本:</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; import pygame
+<span class="prompt">&gt;&gt;</span>&gt; print pygame.ver
+</code></pre><h1 id="使用Pygame">使用Pygame</h1><p>Pygame有很多模块。每一个设备都有一个对应的模块。Pygame模块一览：</p>
+<table>
+<thead>
+<tr>
+<th>模块名</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pygame.cdrom</td>
+<td style="text-align:left">访问和控制光驱</td>
+</tr>
+<tr>
+<td>pygame.cursors</td>
+<td style="text-align:left">加载光标图片</td>
+</tr>
+<tr>
+<td>pygame.display</td>
+<td style="text-align:left">访问显示设备</td>
+</tr>
+<tr>
+<td>pygame.draw</td>
+<td style="text-align:left">绘制形状、线和点</td>
+</tr>
+<tr>
+<td>pygame.event</td>
+<td style="text-align:left">管理事件</td>
+</tr>
+<tr>
+<td>pygame.font</td>
+<td style="text-align:left">使用字体</td>
+</tr>
+<tr>
+<td>pygame.image</td>
+<td style="text-align:left">加载和存储图片</td>
+</tr>
+<tr>
+<td>pygame.joystick</td>
+<td style="text-align:left">使用游戏手柄或者类似设备</td>
+</tr>
+<tr>
+<td>pygame.key</td>
+<td style="text-align:left">读取键盘按键</td>
+</tr>
+<tr>
+<td>pygame.mixer</td>
+<td style="text-align:left">加载和播放声音</td>
+</tr>
+<tr>
+<td>pygame.mouse</td>
+<td style="text-align:left">管理鼠标</td>
+</tr>
+<tr>
+<td>pygame.movie</td>
+<td style="text-align:left">播放视频</td>
+</tr>
+<tr>
+<td>pygame.music</td>
+<td style="text-align:left">处理音乐和音频流</td>
+</tr>
+<tr>
+<td>pygame.overlay</td>
+<td style="text-align:left">访问高级视频叠加</td>
+</tr>
+<tr>
+<td>pygame</td>
+<td style="text-align:left">包含高层Pygame函数</td>
+</tr>
+<tr>
+<td>pygame.rect</td>
+<td style="text-align:left">管理矩形区域</td>
+</tr>
+<tr>
+<td>pygame.sndarray</td>
+<td style="text-align:left">操作声音数据</td>
+</tr>
+<tr>
+<td>pygame.sprite</td>
+<td style="text-align:left">操作移动图像</td>
+</tr>
+<tr>
+<td>pygame.surface</td>
+<td style="text-align:left">管理图像和屏幕</td>
+</tr>
+<tr>
+<td>pygame.surfarray</td>
+<td style="text-align:left">管理点阵图像数据</td>
+</tr>
+<tr>
+<td>pygame.time</td>
+<td style="text-align:left">管理时间和帧信息</td>
+</tr>
+<tr>
+<td>pygame.transform</td>
+<td style="text-align:left">缩放和移动图像</td>
+</tr>
+</tbody>
+</table>
+<p>有些模块可能在某些平台上不存在，比如游戏运行的硬件驱动没有安装，这种情况下，Pygame将设置这个模块为None，可以使用None来测试。下面这段代码检测<code>pygame.font</code>是否可用：</p>
+<pre><code><span class="keyword">if</span> pygame<span class="class">.font</span> is None:
+    print <span class="string">'The font module is not available!'</span>
+    <span class="function"><span class="title">exit</span><span class="params">()</span></span>
+</code></pre><h1 id="重温Hello_World">重温Hello World</h1><pre><code>background_image_filename = <span class="string">'sushiplate.jpg'</span>
+mouse_image_filename = <span class="string">'fugu.png'</span>
+
+<span class="keyword">import</span> pygame
+from pygame.locals <span class="keyword">import</span> *
+from sys <span class="keyword">import</span> exit
+
+pygame.init()
+
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+pygame.display.set_caption(<span class="string">'Hello, World!'</span>)
+
+background = pygame.image.load(background_image_filename).convert()
+mouse_cursor = pygame.image.load(mouse_image_filename).convert_alpha()
+
+<span class="keyword">while</span> True:
+    <span class="keyword">for</span> event in pygame.event.<span class="keyword">get</span>():
+        <span class="keyword">if</span> event.type == QUIT:
+            exit()
+
+    screen.blit(background, (0, 0))
+
+    x, y = pygame.mouse.get_pos()
+    x -= mouse_cursor.get_width() / 2
+    y -= mouse_cursor.get_height() / 2
+    screen.blit(mouse_cursor, (x, y))
+
+    pygame.display.update()
+</code></pre><p>第一行导入pygame包，使我们可以访问它的所有子模块。第二行导入一些常用函数和常量，这个不是必须的，但是更方便。</p>
+<p><strong>pygame.init()</strong>非常简单，实际上却做了非常多工作。它初始化每一个Pygame的子模块。可以单独初始化某一个模块，比如<strong>pygame.sound.init()</strong>。</p>
+<p><strong>pygame.display.set_mode</strong>返回一个Surface对象，代表桌面窗口。第一个参数为元祖，代表分辨率(必须)。第二个是一个标志位，具体意思见下表，如果不用什么特性，就指定0。第三个为色深，如果未提供或设置为0，Pygame将使用当前桌面的值。</p>
+<table>
+<thead>
+<tr>
+<th>标志位</th>
+<th style="text-align:left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FULLSCREEN</td>
+<td style="text-align:left">创建一个全屏窗口</td>
+</tr>
+<tr>
+<td>DOUBLEBUF</td>
+<td style="text-align:left">创建一个“双缓冲”窗口，建议在HWSURFACE或者OPENGL时使用</td>
+</tr>
+<tr>
+<td>HWSURFACE</td>
+<td style="text-align:left">创建一个硬件加速的窗口，必须和FULLSCREEN同时使用</td>
+</tr>
+<tr>
+<td>OPENGL</td>
+<td style="text-align:left">创建一个OpenGL渲染的窗口</td>
+</tr>
+<tr>
+<td>RESIZABLE</td>
+<td style="text-align:left">创建一个可变大小的窗口</td>
+</tr>
+<tr>
+<td>NOFRAME</td>
+<td style="text-align:left">创建一个没有边框的窗口</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>色深</th>
+<th style="text-align:left">颜色个数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 bits</td>
+<td style="text-align:left">256种颜色</td>
+</tr>
+<tr>
+<td>15 bits</td>
+<td style="text-align:left">32768种颜色，空闲一位</td>
+</tr>
+<tr>
+<td>16 bits</td>
+<td style="text-align:left">65536种颜色</td>
+</tr>
+<tr>
+<td>24 bits</td>
+<td style="text-align:left">16.7百万种颜色</td>
+</tr>
+<tr>
+<td>32 bits</td>
+<td style="text-align:left">16.7百万种颜色，空闲8位</td>
+</tr>
+</tbody>
+</table>
+<p><strong>load</strong>函数读取一个文件并返回一个包含图片数据的Surface对象，直到画出来之前是不可见的。<br><strong>convert</strong>函数是将图像数据转化为Surface对象，每次加载完图像以后就应该做这件事件(事实上因为它太常用了，如果你不写Pygame也会帮你做)；<br><strong>convert_alpha</strong>相比<strong>convert</strong>，保留了Alpha通道信息(可以简单理解为透明的部分)，这样我们的光标才可以是不规则的形状。</p>
+<p>游戏的主循环是一个无限循环，直到用户跳出。在这个主循环里做的事情就是不停地画背景和更新光标位置，虽然背景是不动的，我们还是需要每次都画它，否则鼠标覆盖过的位置就不能恢复正常了。<br>画完以后一定要<strong>update</strong>更新一下，否则画面一片漆黑。</p>
+<pre><code><span class="function"><span class="title">init</span><span class="params">(...)</span></span>
+    pygame.<span class="function"><span class="title">init</span><span class="params">()</span></span>: return (numpass, numfail)
+    initialize all imported pygame modules
+
+<span class="function"><span class="title">set_mode</span><span class="params">(...)</span></span>
+    pygame<span class="class">.display</span><span class="class">.set_mode</span>(resolution=(<span class="number">0</span>,<span class="number">0</span>), flags=<span class="number">0</span>, depth=<span class="number">0</span>): return Surface
+    initialize <span class="tag">a</span> window or screen <span class="keyword">for</span> <span class="attribute">display</span>
+
+<span class="function"><span class="title">set_caption</span><span class="params">(...)</span></span>
+    pygame<span class="class">.display</span><span class="class">.set_caption</span>(title, icontitle=None): return None
+    set the current window <span class="tag">caption</span>
+
+<span class="function"><span class="title">load</span><span class="params">(...)</span></span>
+    pygame<span class="class">.image</span><span class="class">.load</span>(filename): return Surface
+    pygame<span class="class">.image</span><span class="class">.load</span>(fileobj, namehint=): return Surface
+    load new image from <span class="tag">a</span> file
+
+<span class="function"><span class="title">convert</span><span class="params">(...)</span></span>
+    Surface.<span class="function"><span class="title">convert</span><span class="params">(Surface)</span></span>: return Surface
+    Surface.<span class="function"><span class="title">convert</span><span class="params">(depth, flags=<span class="number">0</span>)</span></span>: return Surface
+    Surface.<span class="function"><span class="title">convert</span><span class="params">(masks, flags=<span class="number">0</span>)</span></span>: return Surface
+    Surface.<span class="function"><span class="title">convert</span><span class="params">()</span></span>: return Surface
+    change the pixel format of an image
+
+<span class="function"><span class="title">convert_alpha</span><span class="params">(...)</span></span>
+    Surface.<span class="function"><span class="title">convert_alpha</span><span class="params">(Surface)</span></span>: return Surface
+    Surface.<span class="function"><span class="title">convert_alpha</span><span class="params">()</span></span>: return Surface
+    change the pixel format of an image including per pixel alphas
+
+<span class="function"><span class="title">get</span><span class="params">(...)</span></span>
+    pygame<span class="class">.event</span><span class="class">.get</span>(): return Eventlist
+    pygame<span class="class">.event</span><span class="class">.get</span>(type): return Eventlist
+    pygame<span class="class">.event</span><span class="class">.get</span>(typelist): return Eventlist
+    get events from the queue
+
+<span class="function"><span class="title">blit</span><span class="params">(...)</span></span>
+    Surface.<span class="function"><span class="title">blit</span><span class="params">(source, dest, area=None, special_flags = <span class="number">0</span>)</span></span>: return Rect
+    draw one image onto another
+
+<span class="function"><span class="title">get_pos</span><span class="params">(...)</span></span>
+    pygame<span class="class">.mouse</span><span class="class">.get_pos</span>(): return (x, y)
+    get the mouse <span class="attribute">cursor</span> <span class="attribute">position</span>
+
+<span class="function"><span class="title">get_width</span><span class="params">(...)</span></span>
+    Surface.<span class="function"><span class="title">get_width</span><span class="params">()</span></span>: return <span class="attribute">width</span>
+    get the <span class="attribute">width</span> of the Surface
+
+<span class="function"><span class="title">get_height</span><span class="params">(...)</span></span>
+    Surface.<span class="function"><span class="title">get_height</span><span class="params">()</span></span>: return <span class="attribute">height</span>
+    get the <span class="attribute">height</span> of the Surface
+
+<span class="function"><span class="title">update</span><span class="params">(...)</span></span>
+    pygame<span class="class">.display</span><span class="class">.update</span>(rectangle=None): return None
+    pygame<span class="class">.display</span><span class="class">.update</span>(rectangle_list): return None
+    update portions of the screen <span class="keyword">for</span> software displays
+</code></pre><h1 id="理解事件">理解事件</h1><p>事件可以在任何时候产生，不管程序当前在做什么。因为你不能对发生的事件立刻做出反应，Pygame将事件存入一个队列，逐个处理。</p>
+<h3 id="事件检索">事件检索</h3><p>上个程序中，使用<strong>pygame.event.get()</strong>来处理所有的事件，这就像打开大门让所有的人进入。如果我们使用<strong>pygame.event.wait()</strong>，Pygame就会等到一个事件发生才继续下去，就好像等在门口，直到有人来。这个函数不太常用，因为它会挂起程序直到有事情发生；而另外一个方法<strong>pygame.event.poll()</strong>就好一些，一旦调用，它会根据现在的情形返回一个真实的事件，否则返回一个类型为NOEVENT的假事件。</p>
+<p>每隔一段固定的时间调用事件处理函数很有必要，这样Pygame才能在内部处理事件。如果不使用任何事件处理函数，也可以调用<strong>pygame.event.pump()</strong>替代事件循环。</p>
+<p>事件对象包含一些描述事件发生的成员变量。所有事件对象都有一个事件类型。</p>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th style="text-align:left">产生途径</th>
+<th style="text-align:left">参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QUIT</td>
+<td style="text-align:left">用户点击关闭按钮</td>
+<td style="text-align:left">none</td>
+</tr>
+<tr>
+<td>ACTIVEEVENT</td>
+<td style="text-align:left">Pygame被激活或隐藏</td>
+<td style="text-align:left">gain,state</td>
+</tr>
+<tr>
+<td>KEYDOWN</td>
+<td style="text-align:left">键盘按下</td>
+<td style="text-align:left">unicode,key,mod</td>
+</tr>
+<tr>
+<td>KEYUP</td>
+<td style="text-align:left">键盘松开</td>
+<td style="text-align:left">key,mod</td>
+</tr>
+<tr>
+<td>MOUSEMOTION</td>
+<td style="text-align:left">鼠标移动</td>
+<td style="text-align:left">pos,rel,buttons</td>
+</tr>
+<tr>
+<td>MOUSEBUTTONDOWN</td>
+<td style="text-align:left">鼠标按下</td>
+<td style="text-align:left">pos,button</td>
+</tr>
+<tr>
+<td>MOUSEBUTTONUP</td>
+<td style="text-align:left">鼠标松开</td>
+<td style="text-align:left">pos,button</td>
+</tr>
+<tr>
+<td>JOYAXISMOTION</td>
+<td style="text-align:left">游戏手柄(Joystick or pad)移动</td>
+<td style="text-align:left">joy,axis,value</td>
+</tr>
+<tr>
+<td>JOYBALLMOTION</td>
+<td style="text-align:left">游戏球(Joy ball)移动</td>
+<td style="text-align:left">joy,ball,rel</td>
+</tr>
+<tr>
+<td>JOYHATMOTION</td>
+<td style="text-align:left">游戏手柄(Joystick)移动</td>
+<td style="text-align:left">joy,hat,value</td>
+</tr>
+<tr>
+<td>JOYBUTTONDOWN</td>
+<td style="text-align:left">游戏手柄按下</td>
+<td style="text-align:left">joy,button</td>
+</tr>
+<tr>
+<td>JOYBUTTONUP</td>
+<td style="text-align:left">游戏手柄放开</td>
+<td style="text-align:left">joy,button</td>
+</tr>
+<tr>
+<td>VIDEORESIZE</td>
+<td style="text-align:left">Pygame窗口缩放</td>
+<td style="text-align:left">size,w,h</td>
+</tr>
+<tr>
+<td>VIDEOEXPOSE</td>
+<td style="text-align:left">部分或所有Pygame窗口暴露</td>
+<td style="text-align:left">none</td>
+</tr>
+<tr>
+<td>USEREVENT</td>
+<td style="text-align:left">触发一个用户事件</td>
+<td style="text-align:left">code</td>
+</tr>
+</tbody>
+</table>
+<pre><code>import pygame
+<span class="keyword">from</span> pygame.locals import *
+<span class="keyword">from</span> sys import <span class="keyword">exit</span>
+
+pygame.init()
+SCREEN_SIZE = (<span class="number">800</span>, <span class="number">600</span>)
+screen = pygame.display.set_mode(SCREEN_SIZE, <span class="number">0</span>, <span class="number">32</span>)
+
+font = pygame.font.SysFont(<span class="comment">'arial', 16)</span>
+font_height = font.get_linesize()
+event_text = []
+
+<span class="keyword">while</span> <span class="literal">True</span>:
+    <span class="keyword">event</span> = pygame.<span class="keyword">event</span>.wait()
+    event_text.append(str(<span class="keyword">event</span>))
+    event_text = event_text[-SCREEN_SIZE[<span class="number">1</span>]/font_height:]
+
+    <span class="keyword">if</span> <span class="keyword">event</span>.type == QUIT:
+        <span class="keyword">exit</span>()
+
+    screen.fill((<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))
+
+    y = SCREEN_SIZE[<span class="number">1</span>] - font_height
+    <span class="keyword">for</span> <span class="keyword">text</span> <span class="keyword">in</span> reversed(event_text):
+        screen.blit(font.render(<span class="keyword">text</span>, <span class="literal">True</span>, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)), (<span class="number">0</span>, y))
+        y -= font_height
+
+    pygame.display.update()
+</code></pre><p><strong>pygame.font.SysFont</strong>返回一个pygame.font.Font对象。</p>
+<pre><code><span class="function"><span class="title">SysFont</span><span class="params">(name, size, bold=False, italic=False)</span></span>
+    pygame<span class="class">.font</span><span class="class">.SysFont</span>(name, size, bold=False, italic=False) -&gt; Font
+    create <span class="tag">a</span> pygame Font from system <span class="attribute">font</span> resources
+
+    This will search the system fonts <span class="keyword">for</span> the given <span class="attribute">font</span>
+    name. You can also enable bold or italic styles, and
+    the appropriate system <span class="attribute">font</span> will be selected <span class="keyword">if</span> available.
+
+    This will always return <span class="tag">a</span> valid Font <span class="tag">object</span>, and will
+    fallback on the builtin pygame <span class="attribute">font</span> <span class="keyword">if</span> the given <span class="attribute">font</span>
+    is not found.
+
+    Name can also be <span class="tag">a</span> comma separated list of names, <span class="keyword">in</span>
+    which case set of names will be searched <span class="keyword">in</span> <span class="attribute">order</span>. Pygame
+    uses <span class="tag">a</span> small set of common <span class="attribute">font</span> aliases, <span class="keyword">if</span> the specific
+    <span class="attribute">font</span> you ask <span class="keyword">for</span> is not available, <span class="tag">a</span> reasonable alternative
+    may be used.
+
+<span class="function"><span class="title">get_linesize</span><span class="params">(...)</span></span>
+    Font.<span class="function"><span class="title">get_linesize</span><span class="params">()</span></span>: return int
+    get the line space of the <span class="attribute">font</span> text
+
+<span class="function"><span class="title">wait</span><span class="params">(...)</span></span>
+    pygame<span class="class">.event</span><span class="class">.wait</span>(): return Event
+    wait <span class="keyword">for</span> <span class="tag">a</span> single event from the queue
+
+<span class="function"><span class="title">render</span><span class="params">(...)</span></span>
+    Font.<span class="function"><span class="title">render</span><span class="params">(text, antialias, color, background=None)</span></span>: return Surface
+    draw text on <span class="tag">a</span> new Surface
+
+<span class="function"><span class="title">fill</span><span class="params">(...)</span></span>
+    Surface.<span class="function"><span class="title">fill</span><span class="params">(color, rect=None, special_flags=<span class="number">0</span>)</span></span>: return Rect
+    fill Surface with <span class="tag">a</span> solid <span class="attribute">color</span>
+
+<span class="function"><span class="title">pump</span><span class="params">(...)</span></span>
+    pygame<span class="class">.event</span><span class="class">.pump</span>(): return None
+    internally process pygame event handlers
+</code></pre><h3 id="处理鼠标移动事件">处理鼠标移动事件</h3><p>当鼠标移动时，<strong>MOUSEMOTION</strong>事件发生。包含下面三个值：</p>
+<ul>
+<li>buttons-一个对应鼠标按钮的元组。buttons[0]是鼠标左按钮，buttons[1]是鼠标中间按钮，buttons[2]是鼠标右按钮。如果按钮被按下，则值为1，反之为0。多个按钮可以同时按下。</li>
+<li>pos-一个元组，包含事件发生时鼠标所在位置。</li>
+<li>rel-一个元祖，包含现在距离上次产生鼠标事件时的距离。</li>
+</ul>
+<h3 id="处理鼠标按钮事件">处理鼠标按钮事件</h3><p>除了鼠标移动事件，鼠标还能产生<strong>MOUSEBUTTONDOWN</strong>和<strong>MOUSEBUTTONUP</strong>事件。包含下面2个值：</p>
+<ul>
+<li>button-被按下的按钮的数字。1为鼠标左按钮，2为鼠标中间按钮，3为鼠标右按钮。</li>
+<li>pos-一个元组，包含事件发生时鼠标所在位置。</li>
+</ul>
+<h3 id="处理键盘事件">处理键盘事件</h3><p>键盘和游戏手柄的事件类似。当一个键被按下<strong>KEYDOWN</strong>事件发生。当一个键松开<strong>KEYUP</strong>事件发生。</p>
+<pre><code>bg_file = <span class="comment">'sushiplate.jpg'</span>
+
+import pygame
+<span class="keyword">from</span> pygame.locals import *
+<span class="keyword">from</span> sys import <span class="keyword">exit</span>
+
+pygame.init()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), FULLSCREEN, <span class="number">32</span>)
+background = pygame.image.load(bg_file).convert()
+
+x, y = <span class="number">0</span>, <span class="number">0</span>
+move_x, move_y = <span class="number">0</span>, <span class="number">0</span>
+
+<span class="keyword">while</span> <span class="literal">True</span>:
+    <span class="keyword">for</span> <span class="keyword">event</span> <span class="keyword">in</span> pygame.<span class="keyword">event</span>.<span class="keyword">get</span>():
+        <span class="keyword">if</span> <span class="keyword">event</span>.type == QUIT:
+            <span class="keyword">exit</span>()
+        <span class="keyword">if</span> <span class="keyword">event</span>.type == KEYDOWN:
+            <span class="keyword">if</span> <span class="keyword">event</span>.<span class="keyword">key</span> == K_LEFT:
+                move_x = -<span class="number">1</span>
+            elif <span class="keyword">event</span>.<span class="keyword">key</span> == K_RIGHT:
+                move_x = <span class="number">1</span>
+            elif <span class="keyword">event</span>.<span class="keyword">key</span> == K_UP:
+                move_y = -<span class="number">1</span>
+            elif <span class="keyword">event</span>.<span class="keyword">key</span> == K_DOWN:
+                move_y = <span class="number">1</span>
+        elif <span class="keyword">event</span>.type == KEYUP:
+            <span class="keyword">if</span> <span class="keyword">event</span>.<span class="keyword">key</span> == K_LEFT <span class="keyword">or</span> <span class="keyword">event</span>.<span class="keyword">key</span> == K_RIGHT:
+                move_x = <span class="number">0</span>
+            elif <span class="keyword">event</span>.<span class="keyword">key</span> == K_UP <span class="keyword">or</span> <span class="keyword">event</span>.<span class="keyword">key</span> == K_DOWN:
+                move_y = <span class="number">0</span>
+    x += move_x
+    y += move_y
+
+    screen.fill((<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))
+    screen.blit(background, (x, y))
+
+    pygame.display.update()
+</code></pre><p><strong>KEYDOWN</strong>和<strong>KEYUP</strong>事件包含下面三个值：</p>
+<ul>
+<li>key-这是一个代表按下或松开的键值的数字。每一个键盘上的物理按钮都有一个以K_开头的常量。字母键为K_a到K_z，其它的如K_SPACE和K_RETURN。</li>
+<li>mod-这个值代表和key组合使用的其它键，比如Shift，Alt和Ctrl。每一个组合键以KMOD_开头，比如KMOD_SHIFT，KMOD_ALT和KMOD_CTRL。如果mod &amp; KMOD_CTRL为真，则表示按下了Ctrl键。</li>
+<li>unicode-这个是被按下的键的Unicode值。每一个符号都有一个Unicode值与它对应。</li>
+</ul>
+<h3 id="过滤事件">过滤事件</h3><p>一个游戏不是所有的事件都需要处理，而且通常存在其它方式获取某个事件可能提供的信息。比如，使用<strong>pygame.mouse.get_pos()</strong>就不需要响应<strong>MOUSEMOTION</strong>事件了。</p>
+<p>使用<strong>pygame.event.set_blocked</strong>函数可以屏蔽事件，阻止事件进入事件队列。比如：</p>
+<pre><code>pygame<span class="class">.event</span><span class="class">.set_blocked</span>(MOUSEMOTION)
+pygame<span class="class">.event</span><span class="class">.set_blocked</span>([KEYDOWN, KEYUP])
+pygame<span class="class">.event</span><span class="class">.set_blocked</span>(None)
+
+<span class="function"><span class="title">set_blocked</span><span class="params">(...)</span></span>
+    pygame<span class="class">.event</span><span class="class">.set_blocked</span>(type): return None
+    pygame<span class="class">.event</span><span class="class">.set_blocked</span>(typelist): return None
+    pygame<span class="class">.event</span><span class="class">.set_blocked</span>(None): return None
+    control which events are allowed on the queue
+</code></pre><p>与之相对的，<strong>pygame.event.set_allowed</strong>设定允许的事件。</p>
+<pre><code><span class="function"><span class="title">set_allowed</span><span class="params">(...)</span></span>
+    pygame<span class="class">.event</span><span class="class">.set_allowed</span>(type): return None
+    pygame<span class="class">.event</span><span class="class">.set_allowed</span>(typelist): return None
+    pygame<span class="class">.event</span><span class="class">.set_allowed</span>(None): return None
+    control which events are allowed on the queue
+</code></pre><p><strong>pygame.event.get_blocked</strong>可以查询一个事件是否被屏蔽。</p>
+<pre><code><span class="function"><span class="title">get_blocked</span><span class="params">(...)</span></span>
+    pygame<span class="class">.event</span><span class="class">.get_blocked</span>(type): return bool
+    test <span class="keyword">if</span> <span class="tag">a</span> type of event is blocked from the queue
+</code></pre><h3 id="产生事件">产生事件</h3><p>通常Pygame为你产生相应的事件，但是你也可以产生自己的事件。为了产生一个事件，必须首先使用<strong>pygame.event.Event</strong>创建一个事件对象，然后使用<strong>pygame.event.post</strong>发送到事件队列尾端。</p>
+<pre><code>my_event = pygame.event.Event(KEYDOWN, key=K_SPACE, mod=<span class="number">0</span>, unicode=<span class="string">u' '</span>)
+pgame.event.post(my_event)
+</code></pre><p>事件构造函数接收事件类型和事件值参数。</p>
+<pre><code><span class="function"><span class="title">Event</span><span class="params">(...)</span></span>
+    pygame<span class="class">.event</span><span class="class">.Event</span>(type, dict): return Event
+    pygame<span class="class">.event</span><span class="class">.Event</span>(type, **attributes): return Event
+    create <span class="tag">a</span> new event <span class="tag">object</span>
+
+<span class="function"><span class="title">post</span><span class="params">(...)</span></span>
+    pygame<span class="class">.event</span><span class="class">.post</span>(Event): return None
+    place <span class="tag">a</span> new event on the queue
+</code></pre><p>除了模拟Pygame产生的事件，也可以创建新的事件。你只需使用一个大于<strong>USEREVENT</strong>的值作为事件的值。</p>
+<pre><code>CATONKEYBOARD = USEREVENT + <span class="number">1</span>
+my_event = pygame<span class="class">.event</span><span class="class">.Event</span>(CATONKEYBOARD, message=<span class="string">"Bad cat!"</span>)
+pgame<span class="class">.event</span><span class="class">.post</span>(my_event)
+
+<span class="keyword">for</span> event <span class="keyword">in</span> pygame<span class="class">.event</span><span class="class">.get</span>():
+    <span class="keyword">if</span> event<span class="class">.type</span> == CATONKEYBOARD:
+        print event.message
+</code></pre><h1 id="打开一个显示">打开一个显示</h1><h3 id="全屏显示">全屏显示</h3><p><strong>pygame.display.set_mode</strong>第二个参数设置为<strong>FULLSCREEN</strong>，就能得到一个全屏窗口了。</p>
+<pre><code>screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), FULLSCREEN, <span class="number">32</span>)
+</code></pre><blockquote>
+<p><strong>注意</strong><br>如果在全屏模式下出问题，有时候非常难回到桌面。因此进入全屏模式前，需要先在窗口模式下测试。同时提供一个退出程序方法，因为全屏模式下关闭按钮看不到。</p>
+</blockquote>
+<p>当进入全屏时，你的显卡可能会切换到不同的显示模式，这将改变显示的宽度，高度和一次显示颜色的数量。显卡只支持几种大小和颜色数量的组合。如果显示的大小不支持，Pygame将选择下一个大小，并居中显示。<strong>pygame.display.list_modes</strong>可以查看显卡支持的分辨率。</p>
+<pre><code>&gt;&gt;&gt; import pygame
+&gt;&gt;&gt; pygame.<span class="function"><span class="title">init</span><span class="params">()</span></span>
+&gt;&gt;&gt; pygame<span class="class">.display</span><span class="class">.list_modes</span>()
+
+<span class="function"><span class="title">list_modes</span><span class="params">(...)</span></span>
+    pygame<span class="class">.display</span><span class="class">.list_modes</span>(depth=<span class="number">0</span>, flags=pygame.FULLSCREEN): return list
+    get list of available fullscreen modes
+</code></pre><p>如果显卡不支持你想要的颜色数量，Pygame将自动转换以适应当前显示设备。</p>
+<pre><code>background_image_filename = <span class="string">'sushiplate.jpg'</span>
+
+import pygame
+<span class="keyword">from</span> pygame.locals import *
+<span class="keyword">from</span> sys import <span class="keyword">exit</span>
+
+pygame.init()
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+background = pygame.image.load(background_image_filename).convert()
+
+Fullscreen = <span class="keyword">False</span>
+
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    <span class="keyword">for</span> <span class="keyword">event</span> <span class="keyword">in</span> pygame.<span class="keyword">event</span>.get():
+        <span class="keyword">if</span> <span class="keyword">event</span>.<span class="keyword">type</span> == QUIT:
+            <span class="keyword">exit</span>()
+
+    <span class="keyword">if</span> <span class="keyword">event</span>.<span class="keyword">type</span> == KEYDOWN:
+        <span class="keyword">if</span> <span class="keyword">event</span>.key == K_f:
+            Fullscreen = <span class="keyword">not</span> Fullscreen
+            <span class="keyword">if</span> Fullscreen:
+                screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), FULLSCREEN, <span class="number">32</span>)
+            <span class="keyword">else</span>:
+                screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+    screen.blit(background, (<span class="number">0</span>, <span class="number">0</span>))
+    pygame.display.update()
+</code></pre><h3 id="可变尺寸的Pygame窗口">可变尺寸的Pygame窗口</h3><p>有时候用户想要能够改变窗口大小，调用<strong>pygame.display.set_mode</strong>时使用<strong>RESIZABLE</strong>标志位，可以达到这个目的。Pygame通过发送包含新宽高的<strong>VIDEORESIZE</strong>事件告诉用户窗口大小改变了。当收到这个事件时，我们应该再次调用<strong>pygame.display.set_mode</strong>。</p>
+<pre><code>background_image_filename = <span class="string">'sushiplate.jpg'</span>
+
+import pygame
+<span class="keyword">from</span> pygame.locals import *
+<span class="keyword">from</span> sys import <span class="keyword">exit</span>
+
+SCREEN_SIZE = (<span class="number">640</span>, <span class="number">480</span>)
+
+pygame.init()
+screen = pygame.display.set_mode(SCREEN_SIZE, RESIZABLE, <span class="number">32</span>)
+
+background = pygame.image.load(background_image_filename).convert()
+
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    <span class="keyword">event</span> = pygame.<span class="keyword">event</span>.wait()
+    <span class="keyword">if</span> <span class="keyword">event</span>.<span class="keyword">type</span> == QUIT:
+        <span class="keyword">exit</span>()
+    <span class="keyword">if</span> <span class="keyword">event</span>.<span class="keyword">type</span> == VIDEORESIZE:
+        SCREEN_SIZE = <span class="keyword">event</span>.size
+        screen = pygame.display.set_mode(SCREEN_SIZE, RESIZABLE, <span class="number">32</span>)
+        pygame.display.set_caption(<span class="string">'Window resized to '</span> + str(<span class="keyword">event</span>.size))
+
+    screen_width, screen_height = SCREEN_SIZE
+    <span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">0</span>, screen_height, background.get_height()):
+        <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>, screen_width, background.get_width()):
+            screen.blit(background, (x, y))
+
+    pygame.display.update()
+</code></pre><p><strong>VIDEORESIZE</strong>事件包含下面的值：</p>
+<ul>
+<li>size-一个元组，包含更改后窗口的尺寸。size[0]代表宽度，size[1]代表高度。</li>
+<li>w-宽度，和size[0]一样，但是更方便</li>
+<li>h-高度，和size[1]一样，但是更方便</li>
+</ul>
+<h3 id="无边框窗口">无边框窗口</h3><p>当调用<strong>set_mode</strong>时使用<strong>NOFRAME</strong>标志可以设置一个无边框窗口。</p>
+<h3 id="其它显示标志">其它显示标志</h3><p>通常最好是使用0显示窗口而使用<strong>FULLSCREEN</strong>全屏以保证程序在所有平台都能运行。其它高级标志也许会有兼容问题。<br>如果设置了<strong>HWSURFACE</strong>标志，将创建一个硬件显示，存储在显存里面，只能和<strong>FULLSCREEN</strong>一起使用。</p>
+<pre><code>screen = pygame.display.set_mode(SCREEN_SIZE, HWSURFACE <span class="string">| FULLSCREEN, 32)</span>
+</code></pre><p>硬件显示比常规显示更快，因为它能够利用显卡的特性加速显示，缺点是兼容性不够好。硬件显示也能从<strong>DOUBLEBUF</strong>标志受益。这个有效地创建2个硬件显示，但是一次只能看见一个。</p>
+<pre><code>screen = pygame.display.set_mode(SCREEN_SIZE, DOUBLEBUF |<span class="string"> HWSURFACE </span>|<span class="string"> FULLSCREEN, 32)</span>
+</code></pre><p>通常当你调用<strong>pygame.display.update()</strong>时，整个屏幕从内存拷贝到显示设备，这会花费一些时间。而双缓冲允许你立刻切换到新的屏幕，使你的程序运行更快。</p>
+<blockquote>
+<p><strong>注意</strong><br>如果使用双缓冲显示，应该调用<strong>pygame.display.flip()</strong>而不是<strong>pygame.display.update()</strong>。这个做立即显示切换而不是拷贝屏幕数据。</p>
+</blockquote>
+<pre><code><span class="function"><span class="title">flip</span><span class="params">(...)</span></span>
+    pygame<span class="class">.display</span><span class="class">.flip</span>(): return None
+    update the full <span class="attribute">display</span> Surface to the screen
+</code></pre><p>最后一个显示标志是<strong>OPENGL</strong>，它能够使用3D加速显示。</p>
+<h1 id="使用字体模块">使用字体模块</h1><p>字体模块使用TrueType字体(TTFs)。必须先创建一个Font对象才能使用字体。最简单的方式就是使用<strong>pygame.font.SysFont</strong>，它会使用系统自带的一个字体。</p>
+<pre><code>my_font = pygame<span class="class">.font</span><span class="class">.SysFont</span>(<span class="string">"arial"</span>, <span class="number">16</span>)
+</code></pre><p>第一个参数是你想要创建字体的名字，第二个参数指定了字体的大小。Pygame会在系统字体里面查找，如果没找到则返回一个默认字体。<strong>pygame.font.get_fonts()</strong>可以获得当前系统所有可用字体。也可以使用<strong>pygame.font.Font</strong>直接从.ttf文件创建字体。</p>
+<pre><code>my_font = pygame.font.Font(<span class="string">"my_font.ttf"</span>, <span class="number">16</span>)
+
+class Font(__builtin__.object)
+ |  pygame.font.Font(filename, size): <span class="constant">return</span> Font
+ |  pygame.font.Font(object, size): <span class="constant">return</span> Font
+ |  <span class="built_in">create</span> <span class="operator">a</span> <span class="built_in">new</span> Font object <span class="built_in">from</span> <span class="operator">a</span> <span class="built_in">file</span>
+
+get_fonts()
+    pygame.font.get_fonts() -&gt; list
+    <span class="built_in">get</span> <span class="operator">a</span> list <span class="operator">of</span> <span class="keyword">system</span> font names
+
+    Returns <span class="operator">the</span> list <span class="operator">of</span> all found <span class="keyword">system</span> fonts. Note that
+    <span class="operator">the</span> names <span class="operator">of</span> <span class="operator">the</span> fonts will be all lowercase <span class="operator">with</span> spaces
+    removed. This is how pygame internally stores <span class="operator">the</span> font
+    names <span class="keyword">for</span> matching.
+</code></pre><p>一旦创建了Font对象，就可以使用Font对象的<strong>render</strong>函数来渲染文字。它创建一个新的包含文字的Surface，可以输出到显示设备。</p>
+<pre><code>text_surface = my_font.<span class="function"><span class="title">render</span><span class="params">(<span class="string">"Pygame is cool!"</span>, True, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span></span>, (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))
+
+<span class="function"><span class="title">render</span><span class="params">(...)</span></span>
+    Font.<span class="function"><span class="title">render</span><span class="params">(text, antialias, color, background=None)</span></span>: return Surface
+    draw text on <span class="tag">a</span> new Surface
+</code></pre><p><strong>render</strong>的第一个参数是你想渲染的文字，它必须是一行。如果有多行，必须使用多个<strong>render</strong>调用。第二个参数是一个布尔值，用来开启抗锯齿。如果设置为True，则文字看起来会比较平滑。后面两个参数是文字的颜色和背景颜色。背景色是可选的，默认为透明的。</p>
+<pre><code>import pygame
+pygame.<span class="function"><span class="title">init</span><span class="params">()</span></span>
+
+my_name = <span class="string">'Smith'</span>
+my_font = pygame<span class="class">.font</span><span class="class">.SysFont</span>(<span class="string">'arial'</span>, <span class="number">64</span>)
+name_surface = my_font.<span class="function"><span class="title">render</span><span class="params">(my_name, True, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>, (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))
+pygame<span class="class">.image</span><span class="class">.save</span>(name_surface, <span class="string">'name.png'</span>)
+</code></pre><p>font模块详尽参考见<a href="http://www.pygame.org/docs/ref/font.html" target="_blank" rel="external">http://www.pygame.org/docs/ref/font.html</a></p>
+<blockquote>
+<p><strong>注意</strong><br>安装的字体因机各异，不能保证某个字体一定存在。解决方法是.ttf文件同游戏一起发布，但必须得到字体作者的许可。</p>
+</blockquote>
+<h1 id="当Pygame出错">当Pygame出错</h1><p>当<strong>pygame.image.load</strong>不能读取图片时，Pygame会抛出<strong>pygame.error</strong>异常。</p>
+<pre><code>&gt;&gt;&gt; import pygame
+&gt;&gt;&gt; screen = pygame.<span class="keyword">display</span>.set_mode((640, 0))
+Traceback (most recent call last):
+<span class="keyword">File</span> <span class="string">"&lt;interactive input&gt;"</span>, <span class="keyword">line</span> 1, <span class="keyword">in</span> ?
+pygame.<span class="keyword">error</span>: Cannot <span class="keyword">set</span> 0 sized <span class="keyword">display</span> mode
+
+<span class="keyword">class</span> <span class="keyword">error</span>(exceptions.RuntimeError)
+ |  Method resolution <span class="keyword">order</span>:
+ |      <span class="keyword">error</span>
+ |      exceptions.RuntimeError
+ |      exceptions.StandardError
+ |      exceptions.Exception
+ |      exceptions.BaseException
+ |      __builtin__.object
+</code></pre><p>一般而言，当你碰到<strong>pygame.error</strong>异常时，你也做不了什么事，因为这说明一个比较大的故障发生了。通常你能做的就是指导用户怎么做。在一个大的项目里面，检查错误很重要。</p>
+<pre><code>try:
+    screen = pygame<span class="class">.display</span><span class="class">.set_mode</span>(SCREEN_SIZE)
+except pygame<span class="class">.error</span>, e:
+    print <span class="string">"Can't create the display :-("</span>
+    print e
+    <span class="function"><span class="title">exit</span><span class="params">()</span></span>
+</code></pre><h1 id="Pygame动起来">Pygame动起来</h1><pre><code>background_image_filename = <span class="comment">'sushiplate.jpg'</span>
+SCREEN_SIZE = (<span class="number">640</span>, <span class="number">480</span>)
+message = <span class="comment">'    This is a demonstration of the scrolly message script.    '</span>
+
+import pygame
+<span class="keyword">from</span> pygame.locals import *
+<span class="keyword">from</span> sys import <span class="keyword">exit</span>
+
+pygame.init()
+screen = pygame.display.set_mode(SCREEN_SIZE)
+
+font = pygame.font.SysFont(<span class="comment">'arial', 80)</span>
+text_surface = font.render(message, <span class="literal">True</span>, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>))
+
+x = <span class="number">0</span>
+y = (SCREEN_SIZE[<span class="number">1</span>] - text_surface.get_height()) / <span class="number">2</span>
+
+background = pygame.image.load(background_image_filename).convert()
+
+<span class="keyword">while</span> <span class="literal">True</span>:
+    <span class="keyword">for</span> <span class="keyword">event</span> <span class="keyword">in</span> pygame.<span class="keyword">event</span>.<span class="keyword">get</span>():
+        <span class="keyword">if</span> <span class="keyword">event</span>.type == QUIT:
+            <span class="keyword">exit</span>()
+
+    screen.blit(background, (<span class="number">0</span>, <span class="number">0</span>))
+
+    x -= <span class="number">2</span>
+    <span class="keyword">if</span> x &lt; -text_surface.get_width():
+        x = <span class="number">0</span>
+
+    screen.blit(text_surface, (x, y))
+    screen.blit(text_surface, (x + text_surface.get_width(), y))
+
+    pygame.display.update()
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="安装Pygame">安装Pygame</h1><p>Ubuntu下安装Pygame:</p>
+<pre><code>sudo apt-<span class="built_in">get</span> install <span class="keyword">p]]>
+    </summary>
+    
+      <category term="Pygame" scheme="https://opensvn.github.io/tags/Pygame/"/>
+    
+      <category term="Python" scheme="https://opensvn.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[PyQt编程第八章 数据处理和自定义文件类型]]></title>
+    <link href="https://opensvn.github.io/2015/10/30/pyqt-8/"/>
+    <id>https://opensvn.github.io/2015/10/30/pyqt-8/</id>
+    <published>2015-10-30T04:40:00.000Z</published>
+    <updated>2015-10-30T05:11:35.842Z</updated>
+    <content type="html"><![CDATA[<h1 id="主窗口的职责">主窗口的职责</h1><p>主窗口的职责通常是为用户提供高级文件处理动作和展示程序数据。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="主窗口的职责">主窗口的职责</h1><p>主窗口的职责通常是为用户提供高级文件处理动作和展示程序数据。</p>
+]]>
+    </summary>
+    
+      <category term="PyQt" scheme="https://opensvn.github.io/tags/PyQt/"/>
+    
+      <category term="Python" scheme="https://opensvn.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[PyQt编程第七章 使用Qt Designer]]></title>
+    <link href="https://opensvn.github.io/2015/10/28/pyqt-7/"/>
+    <id>https://opensvn.github.io/2015/10/28/pyqt-7/</id>
+    <published>2015-10-28T00:50:57.000Z</published>
+    <updated>2015-10-30T00:20:27.590Z</updated>
+    <content type="html"><![CDATA[<p>用户界面保存在.ui文件中，包含一个窗口部件和布局的详细情况。<strong>Qt Designer</strong>能够关联标签和它的伙伴，<br>设置tab顺序(这个也可以用<code>QWidget.setTabOrder()</code>完成)。<strong>Qt Designer</strong>也能够关联信号和槽，<br>但是只能是内置的信号和槽。</p>
+<p>一旦用户界面设计完成并保存在.ui文件，必须转化为代码才能使用。这个可以用<code>pyuic4</code>完成，比如：</p>
+<pre><code>$ pyuic4 -o ui_findandreplacedlg<span class="class">.py</span> findandreplacedlg.ui
+</code></pre><h1 id="设计用户界面">设计用户界面</h1><p>使用<strong>Qt Designer</strong>通用步骤：</p>
+<ol>
+<li>拖动一个部件到窗体合适的位置，通常只有容器部件需要改变大小。</li>
+<li>设置部件的属性。如果部件会在代码里面用到，设置一个有意义的名字。</li>
+<li>重复1和2直到所有部件都在窗体上。</li>
+<li>如果存在大的间隙，添加间隔器。</li>
+<li>选择2个或多个部件进行布局(Shift+Click)，使用一个布局管理器布局。</li>
+<li>重复5直到所有部件已经布局完毕。</li>
+<li>点击窗体(不选择任何部件)，使用一个布局管理器布局窗体。</li>
+<li>创建标签的伙伴。</li>
+<li>设置窗体的tab顺序，如果顺序错误。</li>
+<li>创建合适的内置信号和槽的关联。</li>
+<li>预览窗体，检查所有东西都按照自己的意图工作。</li>
+<li>设置窗体的对象名字和标题并保存。</li>
+</ol>
+<p>尽管可以先将布局拖进窗体，然后再添加部件到布局，但是最好是先将部件添加到窗体，然后再进行布局。</p>
+<p><code>addStretch()</code>和插入<code>QSpacerItem</code>一样。</p>
+<p>预览窗口点击Form-&gt;Preview或者Ctrl+R。如果想预览不同风格，点击Form-&gt;Preview in</p>
+<h1 id="实现对话框">实现对话框</h1><p>当使用<strong>Qt Designer</strong>创建一个用户界面时，我们使用多继承创建一个子类。第一个父类是<code>QDialog</code>，<br>第二个父类是用<strong>Qt Designer</strong>设计的界面。</p>
+<pre><code><span class="import"><span class="keyword">import</span> re</span>
+<span class="title">from</span> <span class="type">PyQt4</span>.<span class="type">QtCore</span> <span class="import"><span class="keyword">import</span> *</span>
+<span class="title">from</span> <span class="type">PyQt4</span>.<span class="type">QtGui</span> <span class="import"><span class="keyword">import</span> *</span>
+<span class="import"><span class="keyword">import</span> ui_findandreplacedlg</span>
+<span class="class">
+<span class="keyword">class</span> <span class="type">FindAndReplaceDlg</span><span class="container">(<span class="type">QDialog</span>,
+    <span class="title">ui_findandreplacedlg</span>.<span class="type">Ui_FindAndReplaceDlg</span>)</span>:
+    def __init__<span class="container">(<span class="title">self</span>, <span class="title">text</span>, <span class="title">parent</span>=<span class="type">None</span>)</span>:
+        super<span class="container">(<span class="type">FindAndReplaceDlg</span>, <span class="title">self</span>)</span>.__init__<span class="container">(<span class="title">parent</span>)</span>
+        self.__text = unicode<span class="container">(<span class="title">text</span>)</span>
+        self.__index = 0
+        self.setupUi<span class="container">(<span class="title">self</span>)</span>
+        if not <span class="type">MAC</span>:
+            self.findButton.setFocusPolicy<span class="container">(<span class="type">Qt</span>.<span class="type">NoFocus</span>)</span>
+            self.replaceButton.setFocusPolicy<span class="container">(<span class="type">Qt</span>.<span class="type">NoFocus</span>)</span>
+            self.replaceAllButton.setFocusPolicy<span class="container">(<span class="type">Qt</span>.<span class="type">NoFocus</span>)</span>
+            self.closeButton.setFocusPolicy<span class="container">(<span class="type">Qt</span>.<span class="type">NoFocus</span>)</span>
+        self.updateUi<span class="container">()</span></span>
+</code></pre><p><code>setupUi()</code>方法由生成的ui模块提供，调用这个方法创建用户界面。<br><code>setupUi()</code>方法调用<code>QtCore.QMetaObject.connectSlotsByName()</code>创建信号和槽之间的联系。<br>任何具有形式<code>on_widgetName_signalName</code>的槽都有一个信号连接到它。</p>
+<pre><code><span class="decorator">@pyqtSignature('QString')</span>
+<span class="function"><span class="keyword">def</span> <span class="title">on_findLineText_textEdited</span><span class="params">(self, text)</span>:</span>
+    self.__index = <span class="number">0</span>
+    self.updateUi()
+</code></pre><p>多亏<code>setupUi()</code>，这个方法自动连接到findLineEdit的<code>textEdited()</code>信号。当需要自动连接到指定<br>信号，使用<code>@pyqtSignature</code>装饰指定信号参数。装饰的作用是区分同名但参数不同的信号。</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">updateUi</span><span class="params">(self)</span>:</span>
+    enable = <span class="keyword">not</span> self.findLineEdit.text().isEmpty()
+    self.findButton.setEnabled(enable)
+    self.replaceButton.setEnabled(enable)
+    self.replaceAllButton.setEnabled(enable)
+
+<span class="function"><span class="keyword">def</span> <span class="title">text</span><span class="params">(self)</span>:</span>
+    <span class="keyword">return</span> self.__text
+
+<span class="decorator">@pyqtSignature('')</span>
+<span class="function"><span class="keyword">def</span> <span class="title">on_findButton_clicked</span><span class="params">(self)</span>:</span>
+    regex = self.makeRegex()
+    match = regex.search(self.__text, self.__index)
+    <span class="keyword">if</span> match <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:
+        self.__index = match.end()
+        self.emit(SIGNAL(<span class="string">'found'</span>), match.start())
+    <span class="keyword">else</span>:
+        self.emit(SIGNAL(<span class="string">'notfound'</span>))
+
+<span class="function"><span class="keyword">def</span> <span class="title">makeRegex</span><span class="params">(self)</span>:</span>
+    findText = unicode(self.findLineEdit.text())
+    <span class="keyword">if</span> unicode(self.syntaxComboBox.currentText()) == <span class="string">'Literal'</span>:
+        findText = re.escape(findText)
+    flags = re.MULTILINE|re.DOTALL|re.UNICODE
+    <span class="keyword">if</span> <span class="keyword">not</span> self.caseCheckBox.isChecked():
+        flags |= re.IGNORECASE
+    <span class="keyword">if</span> self.wholeCheckBox.isChecked():
+        findText = <span class="string">r'\b%s\b'</span> % findText
+    <span class="keyword">return</span> re.compile(findText, flags)
+</code></pre><p>如果被搜索的文本是<code>QString</code>而不是<code>unicode</code>，则选择<code>QRegExp</code>更好。</p>
+<pre><code><span class="decorator">@pyqtSignature('')</span>
+<span class="function"><span class="keyword">def</span> <span class="title">on_replaceButton_clicked</span><span class="params">(self)</span>:</span>
+    regex = self.makeRegex()
+    self.__text = regex.sub(unicode(self.replaceLineEdit.text()),
+        self.__text, <span class="number">1</span>)
+
+<span class="decorator">@pyqtSignature('')</span>
+<span class="function"><span class="keyword">def</span> <span class="title">on_replaceAllButton_clicked</span><span class="params">(self)</span>:</span>
+    regex = self.makeRegex()
+    self.__text = regex.sub(unicode(self.replaceLineEdit.text()),
+        self.__text)
+</code></pre><h1 id="测试对话框">测试对话框</h1><pre><code><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span>
+    <span class="keyword">import</span> sys
+
+    text = <span class="string">"""US experience shows that, unlike traditional patents,
+software patents do not encourage innovation and R&amp;D, quite the
+contrary. In particular they hurt small and medium-sized enterprises
+and generally newcomers in the market. They will just weaken the market
+and increase spending on patents and litigation, at the expense of
+technological innovation and research. Especially dangerous are
+attempts to abuse the patent system by preventing interoperability as a
+means of avoiding competition with technological ability.
+--- Extract quoted from Linus Torvalds and Alan Cox's letter
+to the President of the European Parliament
+http://www.effi.org/patentit/patents_torvalds_cox.html"""</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">found</span><span class="params">(where)</span>:</span>
+        <span class="keyword">print</span> <span class="string">'Found at %d'</span> % where
+
+    <span class="function"><span class="keyword">def</span> <span class="title">nomore</span><span class="params">()</span>:</span>
+        <span class="keyword">print</span> <span class="string">'No more found'</span>
+
+    app = QApplication(sys.argv)
+    form = FindAndReplaceDlg(text)
+    form.connect(form, SIGNAL(<span class="string">'found'</span>), found)
+    form.connect(form, SIGNAL(<span class="string">'notfound'</span>), nomore)
+    form.show()
+    app.exec_()
+    <span class="keyword">print</span> form.text()
+</code></pre><h1 id="总结">总结</h1><p>使用<strong>Qt Designer</strong>和手工创建界面最大的不同是在初始化的时候，我们简单地调用<code>setupUi()</code>创建界面，<br>布局，信号和槽的关联。槽的命名惯例是<code>on_widgetName_signalName</code>，连同<code>@pyqtSignature</code>装饰<br>就可以利用<code>setupUi()</code>自动关联信号和槽。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>用户界面保存在.ui文件中，包含一个窗口部件和布局的详细情况。<strong>Qt Designer</strong>能够关联标签和它的伙伴，<br>设置tab顺序(这个也可以用<code>QWidget.setTabOrder()</code>完成)。<strong>Qt]]>
+    </summary>
+    
+      <category term="PyQt" scheme="https://opensvn.github.io/tags/PyQt/"/>
+    
+      <category term="Python" scheme="https://opensvn.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Project Euler Problem 1]]></title>
+    <link href="https://opensvn.github.io/2015/10/23/project-euler-1/"/>
+    <id>https://opensvn.github.io/2015/10/23/project-euler-1/</id>
+    <published>2015-10-23T08:30:00.000Z</published>
+    <updated>2015-10-23T09:14:57.827Z</updated>
+    <content type="html"><![CDATA[<h1 id="Multiples_of_3_and_5">Multiples of 3 and 5</h1><p>If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.</p>
+<p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
+<pre><code>sum = <span class="number">3</span> * (<span class="number">1</span> + <span class="number">999</span> / <span class="number">3</span>) * (<span class="number">999</span> / <span class="number">3</span>) / <span class="number">2</span> + \
+      <span class="number">5</span> * (<span class="number">1</span> + <span class="number">999</span> / <span class="number">5</span>) * (<span class="number">999</span> / <span class="number">5</span>) / <span class="number">2</span> - \
+      <span class="number">15</span> * (<span class="number">1</span> + <span class="number">999</span> / <span class="number">15</span>) * (<span class="number">999</span> / <span class="number">15</span>) / <span class="number">2</span>
+print sum
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="Multiples_of_3_and_5">Multiples of 3 and 5</h1><p>If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3]]>
+    </summary>
+    
+      <category term="Project Euler" scheme="https://opensvn.github.io/tags/Project-Euler/"/>
+    
+      <category term="Python" scheme="https://opensvn.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[PyQt编程第六章 主窗口]]></title>
+    <link href="https://opensvn.github.io/2015/10/21/pyqt-6/"/>
+    <id>https://opensvn.github.io/2015/10/21/pyqt-6/</id>
+    <published>2015-10-21T03:25:57.000Z</published>
+    <updated>2015-10-27T11:12:35.816Z</updated>
+    <content type="html"><![CDATA[<h1 id="创建一个主窗口">创建一个主窗口</h1><pre><code><span class="preprocessor"><span class="keyword">import</span> os</span>
+<span class="preprocessor"><span class="keyword">import</span> platform</span>
+<span class="preprocessor"><span class="keyword">import</span> sys</span>
+from PyQt4.QtCore <span class="preprocessor"><span class="keyword">import</span> *</span>
+from PyQt4.QtGui <span class="preprocessor"><span class="keyword">import</span> *</span>
+<span class="preprocessor"><span class="keyword">import</span> helpform</span>
+<span class="preprocessor"><span class="keyword">import</span> newimagedlg</span>
+<span class="preprocessor"><span class="keyword">import</span> qrc_resources</span>
+__version__ = <span class="string">"1.0.0"</span>
+</code></pre><p><code>import</code>的顺序：先Python标准模块，然后第三方模块(比如PyQt)，最后自己定义的模块。<br>一个程序通常有一个版本字符串，按照惯例称为<code>__version__</code>。</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">MainWindow</span><span class="params">(QMainWindow)</span>:</span>
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, parent=None)</span>:</span>
+        super(MainWindow, self).__init__(parent)
+        self.image = QImage()
+        self.dirty = <span class="keyword">False</span>
+        self.filename = <span class="keyword">None</span>
+        self.mirroredvertically = <span class="keyword">False</span>
+        self.mirroredhorizontally = <span class="keyword">False</span>
+</code></pre><p><code>QImage</code>并不是继承自<code>QObject</code>，不需要<code>parent</code>。</p>
+<pre><code>self<span class="class">.imageLabel</span> = <span class="function"><span class="title">QLabel</span><span class="params">()</span></span>
+self<span class="class">.imageLabel</span><span class="class">.setMinimumSize</span>(<span class="number">200</span>, <span class="number">200</span>)
+self<span class="class">.imageLabel</span><span class="class">.setAlignment</span>(Qt.AlignCenter)
+self<span class="class">.imageLabel</span><span class="class">.setContextMenuPolicy</span>(Qt.ActionsContextMenu)
+self.<span class="function"><span class="title">setCentralWidget</span><span class="params">(self.imageLabel)</span></span>
+</code></pre><p>PyQt提供许多种方式创建右键菜单，我们使用最简单和最常见的方式。首先必须设置部件的右键菜单策略，然后<br>给部件添加一些操作。</p>
+<p>和对话框不一样，在一个主窗口风格的程序中，只有一个中心部件，尽管它可以是组合而成的。我么只需要调用<br><code>setCentralWidget</code>就好了。</p>
+<p>在PyQt中，悬浮窗口是<code>QDockWidget</code>类的实例。我们可以添加一个部件到悬浮部件。</p>
+<pre><code><span class="keyword">log</span>DockWidget = QDockWidget(<span class="string">"Log"</span>, <span class="literal">self</span>)
+<span class="keyword">log</span>DockWidget.<span class="built_in">set</span>ObjectName(<span class="string">"LogDockWidget"</span>)
+<span class="keyword">log</span>DockWidget.<span class="built_in">set</span>AllowedAreas(Qt.LeftDockWidgetArea|
+                              Qt.RightDockWidgetArea)
+<span class="literal">self</span>.listWidget = QListWidget()
+<span class="keyword">log</span>DockWidget.<span class="built_in">set</span>Widget(<span class="literal">self</span>.listWidget)
+<span class="literal">self</span>.addDockWidget(Qt.RightDockWidgetArea, <span class="keyword">log</span>DockWidget)
+</code></pre><p>悬浮部件不会被加入布局，所以当创建它们时，需要指定<code>parent</code>。</p>
+<p>每一个PyQt对象都可以指定一个对象名字。PyQt使用对象名字区分悬浮部件。<br><code>setFeatures</code>方法控制悬浮部件能否移动，悬浮或关闭。</p>
+<p><code>QPrinter</code>对象管理打印机操作。</p>
+<pre><code><span class="literal">self</span>.sizeLabel = QLabel()
+<span class="literal">self</span>.sizeLabel.<span class="built_in">set</span>FrameStyle(QFrame.StyledPanel|QFrame.Sunken)
+status = <span class="literal">self</span>.statusBar()
+status.<span class="built_in">set</span>SizeGripEnabled(False)
+status.addPermanentWidget(<span class="literal">self</span>.sizeLabel)
+status.showMessage(<span class="string">"Ready"</span>, <span class="number">5000</span>)
+</code></pre><p>状态栏由<code>QMainWindow</code>第一次调用<code>statusBar</code>创建。<code>showMessage</code>在状态栏显示信息直到另一个<br><code>showMessage</code>被调用或<code>clearMessage</code>被调用。</p>
+<h1 id="动作和键序列">动作和键序列</h1><p>PyQt用<code>QAction</code>封装用户动作。</p>
+<pre><code>fileNewAction = <span class="function"><span class="title">QAction</span><span class="params">(QIcon(<span class="string">"images/filenew.png"</span>)</span></span>, <span class="string">"&amp;New"</span>, self)
+fileNewAction.<span class="function"><span class="title">setShortcut</span><span class="params">(QKeySequence.New)</span></span>
+helpText = <span class="string">"Create a new image"</span>
+fileNewAction.<span class="function"><span class="title">setToolTip</span><span class="params">(helpText)</span></span>
+fileNewAction.<span class="function"><span class="title">setStatusTip</span><span class="params">(helpText)</span></span>
+self.<span class="function"><span class="title">connect</span><span class="params">(fileNewAction, SIGNAL(<span class="string">"triggered()"</span>)</span></span>, self.fileNew)
+</code></pre><p>许多键序列都标准化了，有些甚至跨平台。比如<code>Ctrl+N</code>对应新建，<code>Ctrl+S</code>对应保存。<br><code>QKeySequence</code>提供标准化的键序列常量，如<code>QKeySequence.New</code>，<code>QKeySequence.Paste</code><br>对于还未标准化的键序列(或向后兼容的原因)，可以用字符串作为快捷键，setShortcut(“Ctrl+Q”)。</p>
+<p>注意我们给<code>QAction</code>一个self作为父亲。每一个<code>QObject</code>子类(除了顶级窗口)都有一个父亲。</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a.data()</td>
+<td style="text-align:left">返回QAction a的数据，作为QVariant</td>
+</tr>
+<tr>
+<td>a.setData(v)</td>
+<td style="text-align:left">设置QAction a的数据为QVariant v</td>
+</tr>
+<tr>
+<td>a.isChecked()</td>
+<td style="text-align:left">返回True如果QAction a被确认过</td>
+</tr>
+<tr>
+<td>a.setChecked(b)</td>
+<td style="text-align:left">选与不选QAction a取决于bool b</td>
+</tr>
+<tr>
+<td>a.isEnabled()</td>
+<td style="text-align:left">返回True如果QAction a生效</td>
+</tr>
+<tr>
+<td>a.setEnabled(b)</td>
+<td style="text-align:left">生效或失效QAction a取决于bool b</td>
+</tr>
+<tr>
+<td>a.setSeparator(b)</td>
+<td style="text-align:left">设置QAction a为正常动作或分隔符取决于bool b</td>
+</tr>
+<tr>
+<td>a.setShortcut(k)</td>
+<td style="text-align:left">设置QAction a的快捷键为QKeySequence k</td>
+</tr>
+<tr>
+<td>a.setStatusTip(s)</td>
+<td style="text-align:left">设置QAction a的状态提示为string s</td>
+</tr>
+<tr>
+<td>a.setText(s)</td>
+<td style="text-align:left">设置QAction a的文本为string s</td>
+</tr>
+<tr>
+<td>a.setToolTip(s)</td>
+<td style="text-align:left">设置QAction a的工具提示为string s</td>
+</tr>
+<tr>
+<td>a.setWhatsThis(s)</td>
+<td style="text-align:left">设置QAction a的What’s This?文本为string s</td>
+</tr>
+<tr>
+<td>a.toggled(b)</td>
+<td style="text-align:left">这个信号被发射当QAction a的选中状态改变；bool b为True如果动作被选中</td>
+</tr>
+<tr>
+<td>a.triggered(b)</td>
+<td style="text-align:left">这个信号被发射QAction a被调用；bool b为True如果a被选中</td>
+</tr>
+</tbody>
+</table>
+<p>一旦创建了动作，我们就能把它添加到菜单或工具栏。</p>
+<pre><code>fileMenu.<span class="function"><span class="title">addAction</span><span class="params">(fileNewAction)</span></span>
+fileToolbar.<span class="function"><span class="title">addAction</span><span class="params">(fileNewAction)</span></span>
+</code></pre><h1 id="资源文件">资源文件</h1><p>创建一个资源模块需要做两件事情。第一创建一个<code>.qrc</code>的文件，包含程序详细的资源。然后运行<code>pyrcc4</code><br>读取<code>.qrc</code>文件生成资源模块。<code>.qrc</code>是一个XML格式的文件。</p>
+<pre><code><span class="doctype">&lt;!DOCTYPE RCC&gt;</span><span class="tag">&lt;<span class="title">RCC</span> <span class="attribute">version</span>=<span class="value">"1.0"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">qresource</span>&gt;</span>
+<span class="tag">&lt;<span class="title">file</span> <span class="attribute">alias</span>=<span class="value">"filenew.png"</span>&gt;</span>images/filenew.png<span class="tag">&lt;/<span class="title">file</span>&gt;</span>
+<span class="tag">&lt;<span class="title">file</span> <span class="attribute">alias</span>=<span class="value">"fileopen.png"</span>&gt;</span>images/fileopen.png<span class="tag">&lt;/<span class="title">file</span>&gt;</span>
+···
+<span class="tag">&lt;<span class="title">file</span> <span class="attribute">alias</span>=<span class="value">"icon.png"</span>&gt;</span>images/icon.png<span class="tag">&lt;/<span class="title">file</span>&gt;</span>
+<span class="tag">&lt;<span class="title">file</span>&gt;</span>help/editmenu.html<span class="tag">&lt;/<span class="title">file</span>&gt;</span>
+<span class="tag">&lt;<span class="title">file</span>&gt;</span>help/filemenu.html<span class="tag">&lt;/<span class="title">file</span>&gt;</span>
+<span class="tag">&lt;<span class="title">file</span>&gt;</span>help/index.html<span class="tag">&lt;/<span class="title">file</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">qresource</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">RCC</span>&gt;</span>
+</code></pre><p>现在使用一个新建文件的图片，我们可以写成<code>QIcon(&quot;:/images/filenew.png&quot;)</code>，多亏了别名，<br>也可以缩写为<code>QIcon(&quot;:/filenew.png&quot;)</code>。前面的:/告诉PyQt文件是一个资源。在使用资源之前，<br>必须生成资源模块并导入进程序。</p>
+<pre><code>C:\pyqt\chap06&gt;pyrcc4 -o qrc_resources<span class="class">.py</span> resources.qrc
+</code></pre><h1 id="创建和使用动作">创建和使用动作</h1><p>一个辅助创建动作的函数：</p>
+<pre><code>def createAction(self, text, slot=None, shortcut=None, <span class="attribute">icon</span>=None,
+                 tip=None, checkable=False, signal=<span class="string">"triggered()"</span>):
+    action = <span class="function"><span class="title">QAction</span><span class="params">(text, self)</span></span>
+    <span class="keyword">if</span> <span class="attribute">icon</span> is not None:
+        action.<span class="function"><span class="title">setIcon</span><span class="params">(QIcon(<span class="string">":/%s.png"</span> % icon)</span></span>)
+    <span class="keyword">if</span> shortcut is not None:
+        action.<span class="function"><span class="title">setShortcut</span><span class="params">(shortcut)</span></span>
+    <span class="keyword">if</span> tip is not None:
+        action.<span class="function"><span class="title">setToolTip</span><span class="params">(tip)</span></span>
+        action.<span class="function"><span class="title">setStatusTip</span><span class="params">(tip)</span></span>
+    <span class="keyword">if</span> slot is not None:
+        self.<span class="function"><span class="title">connect</span><span class="params">(action, SIGNAL(signal)</span></span>, slot)
+    <span class="keyword">if</span> checkable:
+        action.<span class="function"><span class="title">setCheckable</span><span class="params">(True)</span></span>
+    return action
+fileNewAction = self.createAction(<span class="string">"&amp;New..."</span>, self<span class="class">.fileNew</span>,
+        QKeySequence<span class="class">.New</span>, <span class="string">"filenew"</span>, <span class="string">"Create an image file"</span>)
+fileQuitAction = self.createAction(<span class="string">"&amp;Quit"</span>, self<span class="class">.close</span>,
+        <span class="string">"Ctrl+Q"</span>, <span class="string">"filequit"</span>, <span class="string">"Close the application"</span>)
+editZoomAction = self.createAction(<span class="string">"&amp;Zoom..."</span>, self<span class="class">.editZoom</span>,
+        <span class="string">"Alt+Z"</span>, <span class="string">"editzoom"</span>, <span class="string">"Zoom the image"</span>)
+editInvertAction = self.createAction(<span class="string">"&amp;Invert"</span>,
+        self<span class="class">.editInvert</span>, <span class="string">"Ctrl+I"</span>, <span class="string">"editinvert"</span>,
+        <span class="string">"Invert the image's colors"</span>, True, <span class="string">"toggled(bool)"</span>)
+</code></pre><p><code>toggled(bool)</code>信号不仅告诉我们动作被调用，而且返回动作是否被选中。</p>
+<p>一个动作组管理一组动作使得任何时候只有一个动作被选中。</p>
+<pre><code>mirrorGroup = <span class="function"><span class="title">QActionGroup</span><span class="params">(self)</span></span>
+editUnMirrorAction = self.createAction(<span class="string">"&amp;Unmirror"</span>,
+        self<span class="class">.editUnMirror</span>, <span class="string">"Ctrl+U"</span>, <span class="string">"editunmirror"</span>,
+        <span class="string">"Unmirror the image"</span>, True, <span class="string">"toggled(bool)"</span>)
+mirrorGroup.<span class="function"><span class="title">addAction</span><span class="params">(editUnMirrorAction)</span></span>
+editUnMirrorAction.<span class="function"><span class="title">setChecked</span><span class="params">(True)</span></span>
+</code></pre><p>可选中的动作默认是未选中状态，所以在动作组中初始时必须选择一个为选中状态。</p>
+<p>虽然所有动作已经创建好，但是它们还不能工作。只有当动作加进菜单或工具栏才能起作用。</p>
+<pre><code>editMenu = self.<span class="function"><span class="title">menuBar</span><span class="params">()</span></span>.<span class="function"><span class="title">addMenu</span><span class="params">(<span class="string">"&amp;Edit"</span>)</span></span>
+self.addActions(editMenu, (editInvertAction,
+        editSwapRedAndBlueAction, editZoomAction))
+def <span class="function"><span class="title">addActions</span><span class="params">(self, target, actions)</span></span>:
+    <span class="keyword">for</span> action <span class="keyword">in</span> actions:
+        <span class="keyword">if</span> action is None:
+            target.<span class="function"><span class="title">addSeparator</span><span class="params">()</span></span>
+        <span class="keyword">else</span>:
+            target.<span class="function"><span class="title">addAction</span><span class="params">(action)</span></span>
+</code></pre><p>也可以使用<code>QWidget.addActions</code>添加多个动作到菜单或工具栏。</p>
+<pre><code>mirrorMenu = editMenu.<span class="function"><span class="title">addMenu</span><span class="params">(QIcon(<span class="string">":/editmirror.png"</span>)</span></span>,
+                              <span class="string">"&amp;Mirror"</span>)
+self.addActions(mirrorMenu, (editUnMirrorAction,
+        editMirrorHorizontalAction, editMirrorVerticalAction))
+</code></pre><p>子目录的创建和其它目录一样，不同的是使用<code>QMenu.addMenu</code>加进父目录。</p>
+<pre><code>self<span class="class">.fileMenu</span> = self.<span class="function"><span class="title">menuBar</span><span class="params">()</span></span>.<span class="function"><span class="title">addMenu</span><span class="params">(<span class="string">"&amp;File"</span>)</span></span>
+self<span class="class">.fileMenuActions</span> = (fileNewAction, fileOpenAction,
+        fileSaveAction, fileSaveAsAction, None,
+        filePrintAction, fileQuitAction)
+self.<span class="function"><span class="title">connect</span><span class="params">(self.fileMenu, SIGNAL(<span class="string">"aboutToShow()"</span>)</span></span>,
+             self.updateFileMenu)
+
+fileToolbar = self.<span class="function"><span class="title">addToolBar</span><span class="params">(<span class="string">"File"</span>)</span></span>
+fileToolbar.<span class="function"><span class="title">setObjectName</span><span class="params">(<span class="string">"FileToolBar"</span>)</span></span>
+self.addActions(fileToolbar, (fileNewAction, fileOpenAction,
+                              fileSaveAsAction))
+</code></pre><p><code>addToolBar</code>创建一个<code>QToolBar</code>对象。</p>
+<pre><code>editToolbar = self.<span class="function"><span class="title">addToolBar</span><span class="params">(<span class="string">"Edit"</span>)</span></span>
+editToolbar.<span class="function"><span class="title">setObjectName</span><span class="params">(<span class="string">"EditToolBar"</span>)</span></span>
+self.addActions(editToolbar, (editInvertAction,
+        editSwapRedAndBlueAction, editUnMirrorAction,
+        editMirrorVerticalAction,
+        editMirrorHorizontalAction))
+</code></pre><p>添加部件到工具栏都一样： 创建部件，配置好部件，连接信号，然后把部件添加到工具栏</p>
+<pre><code>self<span class="class">.zoomSpinBox</span> = <span class="function"><span class="title">QSpinBox</span><span class="params">()</span></span>
+self<span class="class">.zoomSpinBox</span><span class="class">.setRange</span>(<span class="number">1</span>, <span class="number">400</span>)
+self<span class="class">.zoomSpinBox</span><span class="class">.setSuffix</span>(<span class="string">" %"</span>)
+self<span class="class">.zoomSpinBox</span><span class="class">.setValue</span>(<span class="number">100</span>)
+self<span class="class">.zoomSpinBox</span><span class="class">.setToolTip</span>(<span class="string">"Zoom the image"</span>)
+self<span class="class">.zoomSpinBox</span><span class="class">.setStatusTip</span>(self<span class="class">.zoomSpinBox</span><span class="class">.toolTip</span>())
+self<span class="class">.zoomSpinBox</span><span class="class">.setFocusPolicy</span>(Qt.NoFocus)
+self.connect(self<span class="class">.zoomSpinBox</span>,
+             <span class="function"><span class="title">SIGNAL</span><span class="params">(<span class="string">"valueChanged(int)"</span>)</span></span>, self.showImage)
+editToolbar.<span class="function"><span class="title">addWidget</span><span class="params">(self.zoomSpinBox)</span></span>
+</code></pre><p>之前有一行这样的代码：</p>
+<pre><code><span class="tag">self</span><span class="class">.imageLabel</span><span class="class">.setContextMenuPolicy</span>(<span class="tag">Qt</span><span class="class">.ActionsContextMenu</span>)
+</code></pre><p>它告诉PyQt，如果动作被加进imageLabel部件，它们也被用作右键菜单。</p>
+<pre><code><span class="keyword">self</span>.addActions(<span class="keyword">self</span>.imageLabel, (editInvertAction,
+        editSwapRedAndBlueAction, editUnMirrorAction,
+        editMirrorVerticalAction, editMirrorHorizontalAction))
+</code></pre><p><code>QWidget</code>类有一个<code>addAction</code>方法，因此<code>QMenu</code>，<code>QMenuBar</code>，<code>QToolBar</code>都继承了这个方法。<br>尽管<code>QWidget</code>没有<code>addSeparator</code>方法，为了方便，<code>QMenu</code>，<code>QMenuBar</code>，<code>QToolBar</code>都提供了。<br>如果要添加一个分隔符到右键菜单，则必须添加一个分隔动作。</p>
+<pre><code>separator = <span class="function"><span class="title">QAction</span><span class="params">(self)</span></span>
+separator.<span class="function"><span class="title">setSeparator</span><span class="params">(True)</span></span>
+self.addActions(editToolbar, (editInvertAction,
+        editSwapRedAndBlueAction, separator, editUnMirrorAction,
+        editMirrorVerticalAction, editMirrorHorizontalAction))
+</code></pre><h1 id="恢复和保存主窗口状态">恢复和保存主窗口状态</h1><pre><code>def <span class="function"><span class="title">main</span><span class="params">()</span></span>:
+    app = <span class="function"><span class="title">QApplication</span><span class="params">(sys.argv)</span></span>
+    app.<span class="function"><span class="title">setOrganizationName</span><span class="params">(<span class="string">"Qtrac Ltd."</span>)</span></span>
+    app.<span class="function"><span class="title">setOrganizationDomain</span><span class="params">(<span class="string">"qtrac.eu"</span>)</span></span>
+    app.<span class="function"><span class="title">setApplicationName</span><span class="params">(<span class="string">"Image Changer"</span>)</span></span>
+    app.<span class="function"><span class="title">setWindowIcon</span><span class="params">(QIcon(<span class="string">":/icon.png"</span>)</span></span>)
+    <span class="tag">form</span> = <span class="function"><span class="title">MainWindow</span><span class="params">()</span></span>
+    <span class="tag">form</span>.<span class="function"><span class="title">show</span><span class="params">()</span></span>
+    app.<span class="function"><span class="title">exec_</span><span class="params">()</span></span>
+</code></pre><p>函数main的第二行到第四行的主要作用就是程序配置的加载和保存。如果不传任何参数给<code>QSettings</code>对象，<br>则它会使用这三行代码设定的名字。这些名字使得程序配置保存在合适的地方，比如Windows的注册表，Linux<br>的$HOME/.config</p>
+<pre><code>settings = <span class="function"><span class="title">QSettings</span><span class="params">()</span></span>
+self<span class="class">.recentFiles</span> = settings.<span class="function"><span class="title">value</span><span class="params">(<span class="string">"RecentFiles"</span>)</span></span>.<span class="function"><span class="title">toStringList</span><span class="params">()</span></span>
+size = settings.value(<span class="string">"MainWindow/Size"</span>,
+                      <span class="function"><span class="title">QVariant</span><span class="params">(QSize(<span class="number">600</span>, <span class="number">500</span>)</span></span>)).<span class="function"><span class="title">toSize</span><span class="params">()</span></span>
+self.<span class="function"><span class="title">resize</span><span class="params">(size)</span></span>
+<span class="attribute">position</span> = settings.value(<span class="string">"MainWindow/Position"</span>,
+                          <span class="function"><span class="title">QVariant</span><span class="params">(QPoint(<span class="number">0</span>, <span class="number">0</span>)</span></span>)).<span class="function"><span class="title">toPoint</span><span class="params">()</span></span>
+self.<span class="function"><span class="title">move</span><span class="params">(position)</span></span>
+self.restoreState(
+        settings.<span class="function"><span class="title">value</span><span class="params">(<span class="string">"MainWindow/State"</span>)</span></span>.<span class="function"><span class="title">toByteArray</span><span class="params">()</span></span>)
+self.<span class="function"><span class="title">setWindowTitle</span><span class="params">(<span class="string">"Image Changer"</span>)</span></span>
+self.<span class="function"><span class="title">updateFileMenu</span><span class="params">()</span></span>
+QTimer.<span class="function"><span class="title">singleShot</span><span class="params">(<span class="number">0</span>, self.loadInitialFile)</span></span>
+</code></pre><p><code>QSettings.value()</code>返回一个<code>QVariant</code>，因此必须转换为我们期望的数据类型。<br>带2个参数形式的<code>value()</code>方法，第二个参数是默认值。</p>
+<p><code>resize()</code>和<code>move()</code>并不会造成窗口抖动，因为这些操作是在窗口显示之前已经完成。<br>Qt4.2引入2个新的方法保存和恢复一个顶层窗口的几何位置。</p>
+<pre><code>self.<span class="function"><span class="title">restoreGeometry</span><span class="params">(settings.value(<span class="string">"Geometry"</span>)</span></span>.<span class="function"><span class="title">toByteArray</span><span class="params">()</span></span>)
+</code></pre><p><code>QMainWindow</code>类提供<code>restoreState()</code>和<code>saveState()</code>方法，来恢复自或保存到一个<code>QByteArray</code>。<br>它们只保存拥有唯一对象名的悬浮窗口的大小和位置以及工具栏的位置。</p>
+<blockquote>
+<p><strong>启动时做大量处理</strong><br>如果我们需要在启动时做大量处理，比如加载许多大文件，我们经常用一个独立的加载方法来做此事。<br>想象一下，比如这个方法是loadInitialFiles()，加载许多大文件。则在show()和事件循环(exec_())<br>开始之前，用户将体验到一个非常长的启动延迟。<br>我们希望窗口尽可能快的出现，使用户知道启动成功，并能够看到长时间运行的进程。这些通过0延迟的<br>singleShot计时器完成。因为它并不会立即执行连接的槽，相反它简单地将槽放到事件队列就返回。<br>0延迟计时器意思是，“当事件队列没有其它事件处理时处理这个事件”</p>
+</blockquote>
+<pre><code>def <span class="function"><span class="title">loadInitialFile</span><span class="params">(self)</span></span>:
+    settings = <span class="function"><span class="title">QSettings</span><span class="params">()</span></span>
+    fname = <span class="function"><span class="title">unicode</span><span class="params">(settings.value(<span class="string">"LastFile"</span>)</span></span>.<span class="function"><span class="title">toString</span><span class="params">()</span></span>)
+    <span class="keyword">if</span> fname and QFile.<span class="function"><span class="title">exists</span><span class="params">(fname)</span></span>:
+        self.<span class="function"><span class="title">loadFile</span><span class="params">(fname)</span></span>
+</code></pre><p>如果用户试图关闭程序，不管什么方式，<code>closeEvent()</code>被调用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">closeEvent</span><span class="params">(self, event)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> self.okToContinue():</span><br><span class="line">        settings = QSettings()</span><br><span class="line">        filename = QVariant(QString(self.filename)) \</span><br><span class="line">                <span class="keyword">if</span> self.filename <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">else</span> QVariant()</span><br><span class="line">        settings.setValue(<span class="string">"LastFile"</span>, filename)</span><br><span class="line">        recentFiles = QVariant(self.recentFiles) \</span><br><span class="line">                <span class="keyword">if</span> self.recentFiles <span class="keyword">else</span> QVariant()</span><br><span class="line">        settings.setValue(<span class="string">"RecentFiles"</span>, recentFiles)</span><br><span class="line">        settings.setValue(<span class="string">"MainWindow/Size"</span>, QVariant(self.size()))</span><br><span class="line">        settings.setValue(<span class="string">"MainWindow/Position"</span>,</span><br><span class="line">                QVariant(self.pos()))</span><br><span class="line">        settings.setValue(<span class="string">"MainWindow/State"</span>,</span><br><span class="line">                QVariant(self.saveState()))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        event.ignore()</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m.addDockWidget(a, d)</td>
+<td style="text-align:left">在QMainWindow m中添加QDockWidget d到Qt.QDockWidgetArea a</td>
+</tr>
+<tr>
+<td>m.addToolBar(s)</td>
+<td style="text-align:left">添加并返回一个名叫string s的QToolBar</td>
+</tr>
+<tr>
+<td>m.menuBar()</td>
+<td style="text-align:left">返回QMainWindow m的QMenuBar(第一次调用创建目录)</td>
+</tr>
+<tr>
+<td>m.restoreGeometry(ba)</td>
+<td style="text-align:left">根据QByteArray ba恢复QMainWindow m的位置和大小(Qt4.3)</td>
+</tr>
+<tr>
+<td>m.restoreState(ba)</td>
+<td style="text-align:left">根据QByteArray ba恢复QMainWindow m的悬浮窗和工具栏的状态</td>
+</tr>
+<tr>
+<td>m.saveGeometry()</td>
+<td style="text-align:left">返回封装在QByteArray中QMainWindow m的位置和大小(Qt4.3)</td>
+</tr>
+<tr>
+<td>m.saveState()</td>
+<td style="text-align:left">返回封装在QByteArray中QMainWindow m的悬浮窗和工具栏的状态</td>
+</tr>
+<tr>
+<td>m.setCentralWidget(w)</td>
+<td style="text-align:left">设置QMainWindow m的中央部件为QWidget w</td>
+</tr>
+<tr>
+<td>m.statusBar()</td>
+<td style="text-align:left">返回QMainWindow的QStatusBar(第一次调用创建状态栏)</td>
+</tr>
+<tr>
+<td>m.setWindowIcon(i)</td>
+<td style="text-align:left">设置QMainWindow m的图标为QIcon i；这个方法继承自QWidget</td>
+</tr>
+<tr>
+<td>m.setWindowTitle(s)</td>
+<td style="text-align:left">设置QMainWindow m的标题为string s；这个方法继承自QWidget</td>
+</tr>
+</tbody>
+</table>
+<p>如果我们使用Qt4，使用<code>QWidget.restoreGeometry()</code>恢复窗口的几何位置，那么我们可以如此保存几何状态：</p>
+<pre><code>settings.<span class="function"><span class="title">setValue</span><span class="params">(<span class="string">"Geometry"</span>, QVariant(self.saveGeometry()</span></span>))
+</code></pre><p>使用这种方法，不需要单独保存主窗口的大小和位置。</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">okToContinue</span><span class="params">(self)</span>:</span>
+    <span class="keyword">if</span> self.dirty:
+    reply = QMessageBox.question(self,
+                    <span class="string">"Image Changer - Unsaved Changes"</span>,
+                    <span class="string">"Save unsaved changes?"</span>,
+                    QMessageBox.Yes|QMessageBox.No|
+                    QMessageBox.Cancel)
+    <span class="keyword">if</span> reply == QMessageBox.Cancel:
+        <span class="keyword">return</span> <span class="keyword">False</span>
+    <span class="keyword">elif</span> reply == QMessageBox.Yes:
+        self.fileSave()
+    <span class="keyword">return</span> <span class="keyword">True</span>
+</code></pre><p>有些开发者使用<code>QMessageBox.Save</code>和<code>QMessageBox.Discard</code>。</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">updateFileMenu</span><span class="params">(<span class="keyword">self</span>)</span>:</span>
+    <span class="keyword">self</span>.fileMenu.clear()
+    <span class="keyword">self</span>.addActions(<span class="keyword">self</span>.fileMenu, <span class="keyword">self</span>.fileMenuActions[<span class="symbol">:-</span><span class="number">1</span>])
+    current = <span class="constant">QString</span>(<span class="keyword">self</span>.filename) \
+            <span class="keyword">if</span> <span class="keyword">self</span>.filename is <span class="keyword">not</span> <span class="constant">None</span> <span class="keyword">else</span> <span class="constant">None</span>
+    recentFiles = []
+    <span class="keyword">for</span> fname <span class="keyword">in</span> <span class="keyword">self</span>.<span class="symbol">recentFiles:</span>
+        <span class="keyword">if</span> fname != current <span class="keyword">and</span> <span class="constant">QFile</span>.exists(fname)<span class="symbol">:</span>
+            recentFiles.append(fname)
+    <span class="keyword">if</span> <span class="symbol">recentFiles:</span>
+        <span class="keyword">self</span>.fileMenu.addSeparator()
+        <span class="keyword">for</span> i, fname <span class="keyword">in</span> enumerate(recentFiles)<span class="symbol">:</span>
+            action = <span class="constant">QAction</span>(<span class="constant">QIcon</span>(<span class="string">":/icon.png"</span>), <span class="string">"&amp;%d %s"</span> % (
+                    i + <span class="number">1</span>, <span class="constant">QFileInfo</span>(fname).fileName()), <span class="keyword">self</span>)
+            action.setData(<span class="constant">QVariant</span>(fname))
+            <span class="keyword">self</span>.connect(action, <span class="constant">SIGNAL</span>(<span class="string">"triggered()"</span>),
+                         <span class="keyword">self</span>.loadFile)
+            <span class="keyword">self</span>.fileMenu.addAction(action)
+    <span class="keyword">self</span>.fileMenu.addSeparator()
+    <span class="keyword">self</span>.fileMenu.addAction(<span class="keyword">self</span>.fileMenuActions[-<span class="number">1</span>])
+</code></pre><blockquote>
+<p><strong>QMessageBox的静态方法</strong><br>QMessageBox类提供多个方便的静态方法，这些方法弹出一个有合适图标和按钮的模式对话框。<br>最常用的方法为critical()，information()，question()和waring()。这些方法携带参数<br>父类部件，窗口标题，消息文本(可以是纯文本或HTML)，0个或多个按钮。如果未指定按钮，则为OK按钮。<br>Qt4.0和Qt4.1中，OK按钮或Yes按钮位或QMessageBox.Default，Cancel按钮或No按钮位或<br>  QMessageBox.Escape很常见。<br>    reply = QMessageBox.question(self,<br>            “Image Changer - Unsaved Changes”, “Save unsaved changes?”,<br>            QMessageBox.Yes|QMessageBox.Default,<br>            QMessageBox.No|QMessageBox.Escape)<br>4.2中则自动绑定默认动作到相应的按钮上。<br>如果我们想创建自定义的消息框，可以创建一个QMessageBox实例，然后使用QMessageBox.addButton()<br>QMessageBox.setIcon()添加按钮，再调用QMessageBox.exec_()弹出消息框。</p>
+</blockquote>
+<pre><code>def <span class="function"><span class="title">addRecentFile</span><span class="params">(self, fname)</span></span>:
+    <span class="keyword">if</span> fname is None:
+        return
+    <span class="keyword">if</span> not self<span class="class">.recentFiles</span><span class="class">.contains</span>(fname):
+        self<span class="class">.recentFiles</span><span class="class">.prepend</span>(<span class="function"><span class="title">QString</span><span class="params">(fname)</span></span>)
+        while self<span class="class">.recentFiles</span><span class="class">.count</span>() &gt; <span class="number">9</span>:
+            self<span class="class">.recentFiles</span><span class="class">.takeLast</span>()
+</code></pre><h1 id="处理文件动作">处理文件动作</h1><pre><code><span class="function"><span class="keyword">def</span> <span class="title">fileNew</span><span class="params">(self)</span>:</span>
+    <span class="keyword">if</span> <span class="keyword">not</span> self.okToContinue():
+        <span class="keyword">return</span>
+    dialog = newimagedlg.NewImageDlg(self)
+    <span class="keyword">if</span> dialog.exec_():
+        self.addRecentFile(self.filename)
+        self.image = QImage()
+        <span class="keyword">for</span> action, check <span class="keyword">in</span> self.resetableActions:
+            action.setChecked(check)
+        self.image = dialog.image()
+        self.filename = <span class="keyword">None</span>
+        self.dirty = <span class="keyword">True</span>
+        self.showImage()
+        self.sizeLabel.setText(<span class="string">"%d x %d"</span> % (self.image.width(),
+                                            self.image.height()))
+        self.updateStatus(<span class="string">"Created new image"</span>)
+
+<span class="function"><span class="keyword">def</span> <span class="title">updateStatus</span><span class="params">(self, message)</span>:</span>
+    self.statusBar().showMessage(message, <span class="number">5000</span>)
+    self.listWidget.addItem(message)
+    <span class="keyword">if</span> self.filename <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:
+        self.setWindowTitle(<span class="string">"Image Changer - %s[*]"</span> % \
+                            os.path.basename(self.filename))
+    <span class="keyword">elif</span> <span class="keyword">not</span> self.image.isNull():
+        self.setWindowTitle(<span class="string">"Image Changer - Unnamed[*]"</span>)
+    <span class="keyword">else</span>:
+        self.setWindowTitle(<span class="string">"Image Changer[*]"</span>)
+    self.setWindowModified(self.dirty)
+
+<span class="function"><span class="keyword">def</span> <span class="title">fileOpen</span><span class="params">(self)</span>:</span>
+    <span class="keyword">if</span> <span class="keyword">not</span> self.okToContinue():
+        <span class="keyword">return</span>
+    dir = os.path.dirname(self.filename) \
+            <span class="keyword">if</span> self.filename <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">else</span> <span class="string">"."</span>
+    formats = [<span class="string">"*.%s"</span> % unicode(format).lower() \
+               <span class="keyword">for</span> format <span class="keyword">in</span> QImageReader.supportedImageFormats()]
+    fname = unicode(QFileDialog.getOpenFileName(self,
+                        <span class="string">"Image Changer - Choose Image"</span>, dir,
+                        <span class="string">"Image files (%s)"</span> % <span class="string">" "</span>.join(formats)))
+    <span class="keyword">if</span> fname:
+        self.loadFile(fname)
+</code></pre><p><code>QFileDialog.getOpenFileName()</code>返回一个<code>QString</code>保存文件名的绝对路径，或者返回空。</p>
+<pre><code>fname = unicode(QFileDialog.getOpenFileName(self,
+                <span class="string">"%s - Choose Image"</span> % QApplication.applicationName(),
+                dir, <span class="string">"Image files (%s)"</span> % <span class="string">" "</span>.join(formats)))
+
+<span class="function"><span class="keyword">def</span> <span class="title">loadFile</span><span class="params">(self, fname=None)</span>:</span>
+    <span class="keyword">if</span> fname <span class="keyword">is</span> <span class="keyword">None</span>:
+        action = self.sender()
+        <span class="keyword">if</span> isinstance(action, QAction):
+            fname = unicode(action.data().toString())
+            <span class="keyword">if</span> <span class="keyword">not</span> self.okToContinue():
+                <span class="keyword">return</span>
+        <span class="keyword">else</span>:
+            <span class="keyword">return</span>
+    <span class="keyword">if</span> fname:
+        self.filename = <span class="keyword">None</span>
+        image = QImage(fname)
+        <span class="keyword">if</span> image.isNull():
+            message = <span class="string">"Failed to read %s"</span> % fname
+        <span class="keyword">else</span>:
+            self.addRecentFile(fname)
+            self.image = QImage()
+            <span class="keyword">for</span> action, check <span class="keyword">in</span> self.resetableActions:
+                action.setChecked(check)
+            self.image = image
+            self.filename = fname
+            self.showImage()
+            self.dirty = <span class="keyword">False</span>
+            self.sizeLabel.setText(<span class="string">"%d x %d"</span> % (
+                        image.width(), image.height()))
+            message = <span class="string">"Loaded %s"</span> % os.path.basename(fname)
+        self.updateStatus(message)
+
+<span class="function"><span class="keyword">def</span> <span class="title">fileSave</span><span class="params">(self)</span>:</span>
+    <span class="keyword">if</span> self.image.isNull():
+        <span class="keyword">return</span>
+    <span class="keyword">if</span> self.filename <span class="keyword">is</span> <span class="keyword">None</span>:
+        self.fileSaveAs()
+    <span class="keyword">else</span>:
+        <span class="keyword">if</span> self.image.save(self.filename, <span class="keyword">None</span>):
+            self.updateStatus(<span class="string">"Saved as %s"</span> % self.filename)
+            self.dirty = <span class="keyword">False</span>
+        <span class="keyword">else</span>:
+            self.updateStatus(<span class="string">"Failed to save %s"</span> % self.filename)
+
+<span class="function"><span class="keyword">def</span> <span class="title">fileSaveAs</span><span class="params">(self)</span>:</span>
+    <span class="keyword">if</span> self.image.isNull():
+        <span class="keyword">return</span>
+    fname = self.filename <span class="keyword">if</span> self.filename <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">else</span> <span class="string">"."</span>
+    formats = [<span class="string">"*.%s"</span> % unicode(format).lower() \
+               <span class="keyword">for</span> format <span class="keyword">in</span> QImageWriter.supportedImageFormats()]
+    fname = unicode(QFileDialog.getSaveFileName(self,
+                    <span class="string">"Image Changer - Save Image"</span>, fname,
+                    <span class="string">"Image files (%s)"</span> % <span class="string">" "</span>.join(formats)))
+    <span class="keyword">if</span> fname:
+        <span class="keyword">if</span> <span class="string">"."</span> <span class="keyword">not</span> <span class="keyword">in</span> fname:
+            fname += <span class="string">".png"</span>
+        self.addRecentFile(fname)
+        self.filename = fname
+        self.fileSave()
+</code></pre><p>QFileDialog.getSaveFileName()提示用户提供一个文件名用来保存当前文件。</p>
+<h1 id="处理编辑动作">处理编辑动作</h1><pre><code>def <span class="function"><span class="title">editInvert</span><span class="params">(self, on)</span></span>:
+    <span class="keyword">if</span> self<span class="class">.image</span><span class="class">.isNull</span>():
+        return
+    self<span class="class">.image</span><span class="class">.invertPixels</span>()
+    self.<span class="function"><span class="title">showImage</span><span class="params">()</span></span>
+    self<span class="class">.dirty</span> = True
+    self.<span class="function"><span class="title">updateStatus</span><span class="params">(<span class="string">"Inverted"</span> if on else <span class="string">"Uninverted"</span>)</span></span>
+
+def <span class="function"><span class="title">editMirrorHorizontal</span><span class="params">(self, on)</span></span>:
+    <span class="keyword">if</span> self<span class="class">.image</span><span class="class">.isNull</span>():
+        return
+    self<span class="class">.image</span> = self<span class="class">.image</span><span class="class">.mirrored</span>(True, False)
+    self.<span class="function"><span class="title">showImage</span><span class="params">()</span></span>
+    self<span class="class">.mirroredhorizontally</span> = not self<span class="class">.mirroredhorizontally</span>
+    self<span class="class">.dirty</span> = True
+    self.updateStatus(<span class="string">"Mirrored Horizontally"</span> \
+            <span class="keyword">if</span> on <span class="keyword">else</span> <span class="string">"Unmirrored Horizontally"</span>)
+
+def <span class="function"><span class="title">editUnMirror</span><span class="params">(self, on)</span></span>:
+    <span class="keyword">if</span> self<span class="class">.image</span><span class="class">.isNull</span>():
+        return
+    <span class="keyword">if</span> self<span class="class">.mirroredhorizontally</span>:
+        self.<span class="function"><span class="title">editMirrorHorizontal</span><span class="params">(False)</span></span>
+    <span class="keyword">if</span> self<span class="class">.mirroredvertically</span>:
+        self.<span class="function"><span class="title">editMirrorVertical</span><span class="params">(False)</span></span>
+
+def <span class="function"><span class="title">editZoom</span><span class="params">(self)</span></span>:
+    <span class="keyword">if</span> self<span class="class">.image</span><span class="class">.isNull</span>():
+        return
+    percent, ok = QInputDialog.getInteger(self,
+            <span class="string">"Image Changer - Zoom"</span>, <span class="string">"Percent:"</span>,
+            self<span class="class">.zoomSpinBox</span><span class="class">.value</span>(), <span class="number">1</span>, <span class="number">400</span>)
+    <span class="keyword">if</span> ok:
+        self<span class="class">.zoomSpinBox</span><span class="class">.setValue</span>(percent)
+</code></pre><p><code>QInputDialog</code>提供了一些其它方便的静态方法，<code>getDouble()</code>，<code>getItem()</code>，<code>getText()</code>。<br>所有这些方法返回一个tuple，包含一个指示用户是否输入的bool值和一个合法值。</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">showImage</span><span class="params">(self, percent=None)</span>:</span>
+    <span class="keyword">if</span> self.image.isNull():
+        <span class="keyword">return</span>
+    <span class="keyword">if</span> percent <span class="keyword">is</span> <span class="keyword">None</span>:
+        percent = self.zoomSpinBox.value()
+    factor = percent / <span class="number">100.0</span>
+    width = self.image.width() * factor
+    height = self.image.height() * factor
+    image = self.image.scaled(width, height, Qt.KeepAspectRatio)
+    self.imageLabel.setPixmap(QPixmap.fromImage(image))
+</code></pre><p>根据PyQt的文档，<code>QPixmap</code>对屏幕显示做了优化，而<code>QImage</code>对编辑做了优化，因此我们用它保存图像数据。</p>
+<h1 id="处理帮助动作">处理帮助动作</h1><pre><code><span class="function"><span class="keyword">def</span> <span class="title">helpAbout</span><span class="params">(self)</span>:</span>
+    QMessageBox.about(self, <span class="string">"About Image Changer"</span>,
+            <span class="string">"""&lt;b&gt;Image Changer&lt;/b&gt; v %s
+            &lt;p&gt;Copyright &amp;copy; 2007 Qtrac Ltd. 
+            All rights reserved.
+            &lt;p&gt;This application can be used to perform
+            simple image manipulations.
+            &lt;p&gt;Python %s - Qt %s - PyQt %s on %s"""</span> % (
+            __version__, platform.python_version(),
+            QT_VERSION_STR, PYQT_VERSION_STR, platform.system()))
+</code></pre><p><code>QMessageBox.about()</code>静态方法弹出一个给定标题和文本的只有OK按钮的模式对话框，其文本可以是HTML。</p>
+<h1 id="总结">总结</h1><p>主窗口风格的程序由<code>QMainWindow</code>子类创建，其窗口只有一个单一的部件作为中央部件。</p>
+<p>动作用来表示程序向用户提供的功能。这些动作保存在<code>QAction</code>对象中，包含文本(用于菜单)，图标(用于菜单<br>和工具栏)，工具栏提示和状态栏提示，以及所连接的槽。<br>通常所有的动作都会添加进菜单，而只有经常使用的一些加入工具栏。</p>
+<p>动作，动作组和悬浮窗必须显式提供一个父亲，比如主窗口，以保证在合适的时候能被销毁。</p>
+<p>程序通常使用资源(小文件，比如图标，和数据文件)，PyQt的资源机制使得访问和使用资源非常简单。使用<br><code>pyrcc4</code>将资源文件编程Python模块，再导入程序使用。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="创建一个主窗口">创建一个主窗口</h1><pre><code><span class="preprocessor"><span class="keyword">import</span> os</span>
+<span class="preprocessor">]]>
+    </summary>
+    
+      <category term="PyQt" scheme="https://opensvn.github.io/tags/PyQt/"/>
+    
+      <category term="Python" scheme="https://opensvn.github.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[PyQt编程第五章 对话框]]></title>
@@ -2121,7 +4633,7 @@ _   底线
     <link href="https://opensvn.github.io/2015/09/19/hello-world/"/>
     <id>https://opensvn.github.io/2015/09/19/hello-world/</id>
     <published>2015-09-19T02:47:02.000Z</published>
-    <updated>2015-10-14T08:23:16.506Z</updated>
+    <updated>2015-11-07T01:59:19.227Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>

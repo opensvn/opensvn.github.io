@@ -4,29 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>PyQt编程第一章 数据类型和数据结构 | opensvn</title>
+    <title>PyQt编程第八章 数据处理和自定义文件类型 | opensvn</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="opensvn">
     
 
     
-    <meta name="description" content="执行Python代码print &apos;Hello world&apos;
-Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后运行。对于import的模块，Python首先检查是否存在预编译的字节码(pyo或pyc)，根据时间戳判断是否需要重新编译。在大多数Python的安装过程中，提供的模块都被编译了，来避免使用时编译。
-变量和对象Python变量没有类型限制(动态类型)，而且它们也不需要声">
+    <meta name="description" content="主窗口的职责主窗口的职责通常是为用户提供高级文件处理动作和展示程序数据。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PyQt编程第一章 数据类型和数据结构">
-<meta property="og:url" content="https://opensvn.github.io/2015/10/12/pyqt-1/index.html">
+<meta property="og:title" content="PyQt编程第八章 数据处理和自定义文件类型">
+<meta property="og:url" content="https://opensvn.github.io/2015/10/30/pyqt-8/index.html">
 <meta property="og:site_name" content="opensvn">
-<meta property="og:description" content="执行Python代码print &apos;Hello world&apos;
-Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后运行。对于import的模块，Python首先检查是否存在预编译的字节码(pyo或pyc)，根据时间戳判断是否需要重新编译。在大多数Python的安装过程中，提供的模块都被编译了，来避免使用时编译。
-变量和对象Python变量没有类型限制(动态类型)，而且它们也不需要声">
-<meta property="og:updated_time" content="2015-10-14T03:34:21.602Z">
+<meta property="og:description" content="主窗口的职责主窗口的职责通常是为用户提供高级文件处理动作和展示程序数据。">
+<meta property="og:updated_time" content="2015-10-30T05:11:35.842Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PyQt编程第一章 数据类型和数据结构">
-<meta name="twitter:description" content="执行Python代码print &apos;Hello world&apos;
-Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后运行。对于import的模块，Python首先检查是否存在预编译的字节码(pyo或pyc)，根据时间戳判断是否需要重新编译。在大多数Python的安装过程中，提供的模块都被编译了，来避免使用时编译。
-变量和对象Python变量没有类型限制(动态类型)，而且它们也不需要声">
+<meta name="twitter:title" content="PyQt编程第八章 数据处理和自定义文件类型">
+<meta name="twitter:description" content="主窗口的职责主窗口的职责通常是为用户提供高级文件处理动作和展示程序数据。">
 
     
     <link rel="alternative" href="/atom.xml" title="opensvn" type="application/atom+xml">
@@ -86,43 +80,20 @@ Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/10/12/pyqt-1/" title="PyQt编程第一章 数据类型和数据结构" itemprop="url">PyQt编程第一章 数据类型和数据结构</a>
+      <a href="/2015/10/30/pyqt-8/" title="PyQt编程第八章 数据处理和自定义文件类型" itemprop="url">PyQt编程第八章 数据处理和自定义文件类型</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="opensvn" target="_blank" itemprop="author">opensvn</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-12T10:57:23.000Z" itemprop="datePublished"> 发表于 2015-10-12</time>
+    <time datetime="2015-10-30T04:40:00.000Z" itemprop="datePublished"> 发表于 2015-10-30</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
-		<h1 id="执行Python代码">执行Python代码</h1><pre><code><span class="built_in">print</span> <span class="string">'Hello world'</span>
-</code></pre><p><code>Python</code>读取<code>.py</code>或<code>.pyw</code>文件到内存，解析文件，生成字节码，然后运行。<br>对于<code>import</code>的模块，<code>Python</code>首先检查是否存在预编译的字节码(<code>pyo</code>或<code>pyc</code>)，根据时间戳判断<br>是否需要重新编译。在大多数<code>Python</code>的安装过程中，提供的模块都被编译了，来避免使用时编译。</p>
-<h1 id="变量和对象">变量和对象</h1><p><code>Python</code>变量没有类型限制(动态类型)，而且它们也不需要声明。</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; x = <span class="number">71</span>
-<span class="prompt">&gt;&gt;</span>&gt; y = <span class="string">'Dove'</span>
-</code></pre><p>变量是对象的引用，并不是对象本身。</p>
-<blockquote>
-<p><strong>函数，方法和操作符</strong><br>函数是可以独立执行的子例程。方法是只能绑定到一个对象执行的函数。操作符可以独立或绑定到对象，<br>但是不需要括号。</p>
-</blockquote>
-<p><code>Python</code>有两种比较对象的方式：通过<strong>身份</strong>和通过<strong>值</strong>。一个对象的身份是内存中的有效地址，<br>这也是对象引用所保存的值。如果使用比较操作符，如<code>==</code>和<code>&lt;</code>，是值的比较。如果使用<code>is</code>，则是<br>身份的比较，这种比较很快。一个对象的身份可以通过<code>id()</code>获取。</p>
-<p><code>Python</code>有一个特殊对象<code>None</code>，可以赋值给任何变量，意思是没有值。<code>None</code>对象只有一个实例，<br>因此<code>is</code>和<code>is not</code>比较<code>None</code>总是很快。</p>
-<p>将一个值赋值给一个变量称为绑定。如果赋值给一个已经存在的变量，称为重新绑定。一旦一个对象没有<br>名字绑定，则加入垃圾回收进程。</p>
-<p><code>Python</code>变量名由<code>ASCII</code>字母，数字和下划线组成。变量名不应该与<code>Python</code>的关键字或内置常量<br>如<code>None</code>，<code>True</code>，<code>False</code>相同。</p>
-<h1 id="数字和字符串">数字和字符串</h1><p><code>Python</code>提供了几种数字类型和两种字符串类型。这些类型都是不可变的。</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; x = <span class="number">5</span>
-<span class="prompt">&gt;&gt;</span>&gt; y = x
-<span class="prompt">&gt;&gt;</span>&gt; x, y
-(<span class="number">5</span>, <span class="number">5</span>)
-<span class="prompt">&gt;&gt;</span>&gt; y += <span class="number">1</span>
-<span class="prompt">&gt;&gt;</span>&gt; x, y
-(<span class="number">5</span>, <span class="number">6</span>)
-</code></pre><p>增量赋值操作符应用到不可变对象只是一个语法糖：它并没有改变对象，而是创建了一个新对象，并重新<br>绑定到新对象。</p>
-<p>我们需要记住<code>=</code>操作符执行绑定操作而不是赋值。</p>
-<h2 id="整数和长整数">整数和长整数</h2><p><code>Python</code>提供3种整数类型：<code>bool</code>，<code>int</code>，<code>long</code>。<br><code>bool</code>类型的值只能是<code>True</code>和<code>False</code>。当用于数字环境时，被当作1和0。<br><code>long</code>类型的长度只局限于机器的可用内存。<br><code>int</code>类型的长度和大多数语言的一样。当<code>int</code>类型有溢出危险时，自动提升为<code>long</code>。</p>
+		<h1 id="主窗口的职责">主窗口的职责</h1><p>主窗口的职责通常是为用户提供高级文件处理动作和展示程序数据。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -140,7 +111,7 @@ Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://opensvn.github.io/2015/10/12/pyqt-1/" data-title="PyQt编程第一章 数据类型和数据结构 | opensvn" data-tsina="null" class="share clearfix">
+	  <div data-url="https://opensvn.github.io/2015/10/30/pyqt-8/" data-title="PyQt编程第八章 数据处理和自定义文件类型 | opensvn" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -154,18 +125,18 @@ Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后�
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/10/12/pyqt-4/" title="PyQt编程第四章 GUI编程介绍">
+ <a href="/2015/11/02/pygame-3/" title="Pygame第三章 Pygame介绍">
   <strong>上一篇：</strong><br/>
   <span>
-  PyQt编程第四章 GUI编程介绍</span>
+  Pygame第三章 Pygame介绍</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/09/21/cpp_primer_15/"  title="面向对象编程">
+<a href="/2015/10/28/pyqt-7/"  title="PyQt编程第七章 使用Qt Designer">
  <strong>下一篇：</strong><br/> 
- <span>面向对象编程
+ <span>PyQt编程第七章 使用Qt Designer
 </span>
 </a>
 </div>
@@ -174,7 +145,7 @@ Python读取.py或.pyw文件到内存，解析文件，生成字节码，然后�
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/10/12/pyqt-1/" data-title="PyQt编程第一章 数据类型和数据结构" data-url="https://opensvn.github.io/2015/10/12/pyqt-1/"></div>
+	<div class="ds-thread" data-thread-key="2015/10/30/pyqt-8/" data-title="PyQt编程第八章 数据处理和自定义文件类型" data-url="https://opensvn.github.io/2015/10/30/pyqt-8/"></div>
 </section>
 
 
