@@ -1,0 +1,588 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>21世纪C语言 第2章 调试，测试，文档 | opensvn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="opensvn">
+    
+
+    
+    <meta name="description" content="使用调试器关于调试器的第一个简明提示：总是使用调试器。
+一个调试侦探故事调试代码：
+#include &amp;lt;math.h&amp;gt;
+#include &amp;lt;stdio.h&amp;gt; //size_t
+
+typedef struct meanvar {double mean, var;} meanvar;
+
+meanvar mean_and_var(const double *data){">
+<meta property="og:type" content="article">
+<meta property="og:title" content="21世纪C语言 第2章 调试，测试，文档">
+<meta property="og:url" content="https://opensvn.github.io/2015/12/18/21st-c-2/index.html">
+<meta property="og:site_name" content="opensvn">
+<meta property="og:description" content="使用调试器关于调试器的第一个简明提示：总是使用调试器。
+一个调试侦探故事调试代码：
+#include &amp;lt;math.h&amp;gt;
+#include &amp;lt;stdio.h&amp;gt; //size_t
+
+typedef struct meanvar {double mean, var;} meanvar;
+
+meanvar mean_and_var(const double *data){">
+<meta property="og:updated_time" content="2015-12-18T09:17:22.013Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="21世纪C语言 第2章 调试，测试，文档">
+<meta name="twitter:description" content="使用调试器关于调试器的第一个简明提示：总是使用调试器。
+一个调试侦探故事调试代码：
+#include &amp;lt;math.h&amp;gt;
+#include &amp;lt;stdio.h&amp;gt; //size_t
+
+typedef struct meanvar {double mean, var;} meanvar;
+
+meanvar mean_and_var(const double *data){">
+
+    
+    <link rel="alternative" href="/atom.xml" title="opensvn" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/author.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/author.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/author.jpg" alt="opensvn" title="opensvn"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="opensvn">opensvn</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:opensvn.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/12/18/21st-c-2/" title="21世纪C语言 第2章 调试，测试，文档" itemprop="url">21世纪C语言 第2章 调试，测试，文档</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="opensvn" target="_blank" itemprop="author">opensvn</a>
+		
+  <p class="article-time">
+    <time datetime="2015-12-18T07:48:18.000Z" itemprop="datePublished"> 发表于 2015-12-18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<h1 id="使用调试器">使用调试器</h1><p>关于调试器的第一个简明提示：总是使用调试器。</p>
+<h2 id="一个调试侦探故事">一个调试侦探故事</h2><p>调试代码：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span>
+<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span> //size_t</span>
+
+<span class="keyword">typedef</span> <span class="keyword">struct</span> meanvar {<span class="keyword">double</span> mean, var;} meanvar;
+
+<span class="function">meanvar <span class="title">mean_and_var</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> *data)</span></span>{
+    <span class="keyword">long</span> <span class="keyword">double</span> avg = <span class="number">0</span>,
+          avg2 = <span class="number">0</span>;
+    <span class="keyword">long</span> <span class="keyword">double</span> ratio;
+    <span class="keyword">size_t</span> count= <span class="number">0</span>;
+    <span class="keyword">for</span>(<span class="keyword">size_t</span> i=<span class="number">0</span>;  !isnan(data[i]); i++){
+        ratio = count/(count+<span class="number">1</span>);
+        count ++;
+        avg   *= ratio;
+        avg2  *= ratio;
+        avg   += data[i]/(count +<span class="number">0.0</span>);
+        avg2  += <span class="built_in">pow</span>(data[i], <span class="number">2</span>)/(count +<span class="number">0.0</span>);
+    }
+    <span class="keyword">return</span> (meanvar){.mean = avg,
+                    .var = avg2 - <span class="built_in">pow</span>(avg, <span class="number">2</span>)}; <span class="comment">//E[x^2] - E^2[x]</span>
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{
+    <span class="keyword">double</span> d[] = { <span class="number">34124.75</span>, <span class="number">34124.48</span>,
+                   <span class="number">34124.90</span>, <span class="number">34125.31</span>,
+                   <span class="number">34125.05</span>, <span class="number">34124.98</span>, NAN};
+
+    meanvar mv = mean_and_var(d);
+    <span class="built_in">printf</span>(<span class="string">"mean: %.10g var: %.10g\n"</span>, mv.mean, mv.var*<span class="number">6</span>/<span class="number">5.</span>);
+
+    <span class="keyword">double</span> d2[] = { <span class="number">4.75</span>, <span class="number">4.48</span>,
+                    <span class="number">4.90</span>, <span class="number">5.31</span>,
+                    <span class="number">5.05</span>, <span class="number">4.98</span>, NAN};
+
+    mv = mean_and_var(d2);
+    mv.var *= <span class="number">6.</span>/<span class="number">5</span>;
+    <span class="built_in">printf</span>(<span class="string">"mean: %.10g var: %.10g\n"</span>, mv.mean, mv.var);
+}
+</code></pre><p>使用<strong>CFLAGS=”-g -Wall -std=gnu11 -O3” make stddev</strong>编译代码，<strong>gdb stddev_bugged</strong>调试代码。</p>
+<p><strong>Q: 这个程序是做什么的？</strong><br>A: <strong>run</strong>命令运行程序。</p>
+<pre><code>(gdb) r
+mean: <span class="number">5687.496667</span> var: <span class="number">194085710</span>
+mean: <span class="number">0.83</span> var: <span class="number">4.1334</span>
+[Inferior <span class="number">1</span> (process <span class="number">22734</span>) exited normally]
+</code></pre><p><strong>Q: main函数中的代码符合我们的输出吗？</strong><br>A: <strong>list</strong>命令显示源代码</p>
+<p><strong>Q: 我们如何查看mean_and_var发生了什么？</strong><br>A: 我们想要程序在mean_and_var暂停，因此我们在那里设置一个断点：</p>
+<pre><code>(gdb) <span class="tag">b</span> mean_and_var
+Breakpoint <span class="number">1</span> at <span class="number">0</span>x400820: file stddev_bugged<span class="class">.c</span>, line <span class="number">16</span>.
+</code></pre><p><strong>Q: data是我们想的那样吗？</strong><br>A: 我们可以通过print简写为p查看data：</p>
+<pre><code>(gdb) p *data
+<span class="variable">$2</span> = <span class="number">34124.75</span>
+</code></pre><p>我们只得到第一个元素，但GDB有一个特殊的@语法打印数组元素。打印10个元素[LLDB: mem read -tdouble -c10 data]：</p>
+<pre><code>(gdb) p *data@10
+$3 = {<span class="number">34124.75</span>, <span class="number">34124.48000</span><span class="number">0000003</span>, <span class="number">34124.90000</span><span class="number">0000001</span>, <span class="number">34125.30999</span><span class="number">9999998</span>, 
+  <span class="number">34125.05000</span><span class="number">0000003</span>, <span class="number">34124.98000</span><span class="number">0000003</span>, nan(<span class="number">0x80000000</span>00000), 0, 
+  <span class="number">4.94065645</span><span class="number">84124654</span>e-324, <span class="number">2.07325606</span><span class="number">87596022</span>e-317}
+</code></pre><p>注意表达式前面的星号，没有它，我们会得到10个地址。</p>
+<p><strong>Q: 这和main发送的匹配吗？</strong><br>A: 我们可以通过bt回溯：</p>
+<pre><code>(gdb) bt
+<span class="preprocessor">#<span class="number">0</span>  mean_and_var (data=data@entry=<span class="number">0x7fffffffdd50</span>) at stddev_bugged.c:<span class="number">16</span></span>
+<span class="preprocessor">#<span class="number">1</span>  <span class="number">0x0000000000400520</span> in main () at stddev_bugged.c:<span class="number">38</span></span>
+</code></pre><p>让我们看看data在frame 1是什么，首先切换到frame 1：</p>
+<pre><code>(gdb) f <span class="number">1</span>
+<span class="preprocessor">#<span class="number">1</span>  <span class="number">0x0000000000400520</span> in main () at stddev_bugged.c:<span class="number">38</span></span>
+<span class="number">38</span>      meanvar mv = mean_and_var(d);
+</code></pre><p>在这一层，data数组叫d：</p>
+<pre><code>(gdb) p *d@7
+$5 = {<span class="number">34124.75</span>, <span class="number">34124.48000</span><span class="number">0000003</span>, <span class="number">34124.90000</span><span class="number">0000001</span>, <span class="number">34125.30999</span><span class="number">9999998</span>, 
+  <span class="number">34125.05000</span><span class="number">0000003</span>, <span class="number">34124.98000</span><span class="number">0000003</span>, nan(<span class="number">0x80000000</span>00000)}
+</code></pre><p>我们可以返回frame 0通过f 0或与栈关联的移动：</p>
+<pre><code>(gdb) down
+<span class="preprocessor">#<span class="number">0</span>  mean_and_var (data=data@entry=<span class="number">0x7fffffffdd50</span>) at stddev_bugged.c:<span class="number">16</span></span>
+<span class="number">16</span>  <span class="function">meanvar <span class="title">mean_and_var</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> *data)</span></span>{
+</code></pre><p>注意up和down参考数字顺序。由bt产生的列表，数字最小的层在最上面，up走向数字大的层，down走向数字小的层。</p>
+<p><strong>Q: 这是线程的问题吗？</strong><br>A: 我们可以得到一个线程列表通过info threads[LLDB: thread list]：</p>
+<pre><code>(gdb) info threads
+  Id   Target Id         Frame 
+* <span class="number">1</span>    process <span class="number">6125</span> <span class="string">"stddev_bugged"</span> mean_and_var (
+    data=data@entry=<span class="number">0x7fffffffdd50</span>) at stddev_bugged.c:<span class="number">16</span>
+</code></pre><p>如果有多个线程，我们可以使用thread num（GDB）或thread select num（LLDB）切换过去。GDB用户可以在.gdbinit添加set print thread-events off关闭每一个线程烦人的通知。</p>
+<p><strong>Q: mean_and_var在做什么？</strong><br>A: 我们可以重复步进程序的下一行：</p>
+<pre><code>(gdb) n
+<span class="number">18</span>            avg2 = <span class="number">0</span>;
+(gdb) n
+<span class="number">16</span>  <span class="function">meanvar <span class="title">mean_and_var</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> *data)</span></span>{
+</code></pre><p>没有输入敲击回车重复上一个命令。还有其他的步进选项（snuc）。使用步进调试代码将会花费很多时间。且函数中有个循环，我们可以在循环中间设置一个断点：</p>
+<pre><code>(gdb) b <span class="number">25</span>
+Breakpoint <span class="number">2</span> at <span class="number">0x400715</span>: file stddev_bugged.c, line <span class="number">25.</span>
+</code></pre><p>现在我们有2个断点，可以使用info break查看断点列表。</p>
+<pre><code>(gdb) info <span class="tag">b</span>
+Num     Type           Disp Enb Address            What
+<span class="number">1</span>       breakpoint     keep y   <span class="number">0</span>x00000000004006c0 <span class="keyword">in</span> mean_and_var 
+                                                   at stddev_bugged<span class="class">.c</span>:<span class="number">16</span>
+    breakpoint already hit <span class="number">1</span> <span class="tag">time</span>
+<span class="number">2</span>       breakpoint     keep y   <span class="number">0</span>x0000000000400715 <span class="keyword">in</span> mean_and_var 
+                                                   at stddev_bugged<span class="class">.c</span>:<span class="number">25</span>
+</code></pre><p>不再需要mean_and_var头部的断点了，可以禁止它[LLDB: break dis 1]：</p>
+<pre><code><span class="list">(<span class="keyword">gdb</span>)</span> dis <span class="number">1</span>
+</code></pre><p>你可以重新激活一个断点enable 1（GDB）或break enable 1（LLDB）。如果你不再需要一个断点可以删除它，del 1（GDB）或break del 1（LLDB）。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C-C/">C/C++</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://opensvn.github.io/2015/12/18/21st-c-2/" data-title="21世纪C语言 第2章 调试，测试，文档 | opensvn" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/12/24/cpp-2/" title="Python核心编程 第2章">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Python核心编程 第2章</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/12/15/21st-c-1/"  title="21世纪C语言 第1章 便利编译配置">
+ <strong>下一篇：</strong><br/> 
+ <span>21世纪C语言 第1章 便利编译配置
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/12/18/21st-c-2/" data-title="21世纪C语言 第2章 调试，测试，文档" data-url="https://opensvn.github.io/2015/12/18/21st-c-2/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Python/" title="Python">Python<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PyQt/" title="PyQt">PyQt<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Pygame/" title="Pygame">Pygame<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Project-Euler/" title="Project Euler">Project Euler<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m opensvn. <br/>
+			Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/opensvn" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="opensvn">opensvn</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"opensvn"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F86bb0f34aeafce8b9262f5000b269d72' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="opensvn">
 <meta property="og:description" content="这一章描述如何以一种可以预测的方式在屏幕上移动对象，和如何使运动在其他人电脑里面一致。
 理解帧率我们需要知道计算机游戏中关于运动的第一件事情就是没有什么东西真正在移动。电脑屏幕或电视机展示给我们一系列图片，当两张图片间隔时间够短时，我们的大脑将这些图片混合在一起从而制造了流畅运动的假象。一张图片称为一帧，FPS(Frame Per Second)是每秒的帧数，也就是帧率。产生流畅运动需要的帧数，因">
-<meta property="og:updated_time" content="2015-11-19T06:52:09.672Z">
+<meta property="og:updated_time" content="2015-11-19T09:50:53.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pygame第五章 让画面动起来">
 <meta name="twitter:description" content="这一章描述如何以一种可以预测的方式在屏幕上移动对象，和如何使运动在其他人电脑里面一致。
@@ -299,7 +299,7 @@ speed_x, speed_y = <span class="number">133.</span>, <span class="number">170.</
 <span class="decorator">    @classmethod</span>
     <span class="function"><span class="keyword">def</span> <span class="title">from_points</span><span class="params">(cls, P1, P2)</span>:</span>
         <span class="keyword">return</span> cls(P2[<span class="number">0</span>] - P1[<span class="number">0</span>], P2[<span class="number">1</span>] - P1[<span class="number">1</span>])
-</code></pre><p><code>@classmethod</code>装饰使函数from_points变成一个类方法。类方法是通过类调用的，不是通过类实例调用，比如Vector2.from_points(P1, P2)。将from_points定义为一个类方法是因为它创建一个新的Vector2对象，而不是修改已经存在的对象。</p>
+</code></pre><p><strong>@classmethod</strong>装饰使函数from_points变成一个类方法。类方法是通过类调用的，不是通过类实例调用，比如Vector2.from_points(P1, P2)。将from_points定义为一个类方法是因为它创建一个新的Vector2对象，而不是修改已经存在的对象。</p>
 <h3 id="向量大小">向量大小</h3><p>从A到B的向量大小就是2个点之间的距离。</p>
 <pre><code><span class="function"><span class="keyword">def</span> <span class="title">get_magnitude</span><span class="params">(self)</span>:</span>
     <span class="keyword">return</span> math.sqrt(self.x ** <span class="number">2</span> + self.y ** <span class="number">2</span>)
@@ -335,7 +335,7 @@ step = AB * <span class="number">.1</span>
 for n <span class="type">in</span> <span class="built_in">range</span>(<span class="number">10</span>):
     <span class="keyword">position</span> += step
     <span class="built_in">print</span> <span class="keyword">position</span>
-</code></pre><p>当在两个点之间移动，计算中间位置是基本的。你还可以用向量计算在重力，外部作用力和摩擦力作用下很多种现实的运动。</p>
+</code></pre><p>当在两个点之间移动，计算中间位置是基本的。你还可以用向量计算在重力，外部作用力和摩擦力作用下很多现实的运动。</p>
 <h3 id="游戏对象向量类">游戏对象向量类</h3><p>作者已经写了一个二维向量类作为游戏对象的一部分。</p>
 <pre><code>from gameobjects.vector2 import *
 A = (<span class="number">10.0</span>, <span class="number">20.0</span>)
@@ -459,7 +459,7 @@ heading = Vector2()
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Python/" title="Python">Python<sup>12</sup></a></li>
+				<li><a href="/tags/Python/" title="Python">Python<sup>14</sup></a></li>
 			
 		
 			
@@ -467,11 +467,11 @@ heading = Vector2()
 			
 		
 			
-				<li><a href="/tags/Pygame/" title="Pygame">Pygame<sup>5</sup></a></li>
+				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+				<li><a href="/tags/Pygame/" title="Pygame">Pygame<sup>5</sup></a></li>
 			
 		
 			
@@ -484,14 +484,6 @@ heading = Vector2()
 		
 			
 				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -552,7 +544,7 @@ heading = Vector2()
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 		
 		<a href="/about" target="_blank" title="opensvn">opensvn</a>
 		

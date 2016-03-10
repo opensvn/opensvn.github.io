@@ -1,0 +1,1118 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>第16章 模板和泛型编程 | opensvn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="opensvn">
+    
+
+    
+    <meta name="description" content="面向对象编程和泛型编程都是处理程序编写时类型未知的情况。两者的区别是面向对象编程直到运行时类型才能知道，而泛型编程类型在编译期间知道。
+容器，迭代器和算法都是泛型编程的例子。当编写一个泛型程序，我们用一种独立于任何类型的方式编写代码。当使用一个泛型程序，我们提供程序的实例将操作的类型或值。
+模板是C++中泛型编程的基础。模板是一个创建类或函数的公式或蓝图。当我们使用一个泛型类型，我们提供将蓝图转换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第16章 模板和泛型编程">
+<meta property="og:url" content="https://opensvn.github.io/2015/12/14/cpp_primer_16/index.html">
+<meta property="og:site_name" content="opensvn">
+<meta property="og:description" content="面向对象编程和泛型编程都是处理程序编写时类型未知的情况。两者的区别是面向对象编程直到运行时类型才能知道，而泛型编程类型在编译期间知道。
+容器，迭代器和算法都是泛型编程的例子。当编写一个泛型程序，我们用一种独立于任何类型的方式编写代码。当使用一个泛型程序，我们提供程序的实例将操作的类型或值。
+模板是C++中泛型编程的基础。模板是一个创建类或函数的公式或蓝图。当我们使用一个泛型类型，我们提供将蓝图转换">
+<meta property="og:updated_time" content="2016-03-04T05:35:44.491Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第16章 模板和泛型编程">
+<meta name="twitter:description" content="面向对象编程和泛型编程都是处理程序编写时类型未知的情况。两者的区别是面向对象编程直到运行时类型才能知道，而泛型编程类型在编译期间知道。
+容器，迭代器和算法都是泛型编程的例子。当编写一个泛型程序，我们用一种独立于任何类型的方式编写代码。当使用一个泛型程序，我们提供程序的实例将操作的类型或值。
+模板是C++中泛型编程的基础。模板是一个创建类或函数的公式或蓝图。当我们使用一个泛型类型，我们提供将蓝图转换">
+
+    
+    <link rel="alternative" href="/atom.xml" title="opensvn" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/author.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/author.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/author.jpg" alt="opensvn" title="opensvn"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="opensvn">opensvn</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:opensvn.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/12/14/cpp_primer_16/" title="第16章 模板和泛型编程" itemprop="url">第16章 模板和泛型编程</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="opensvn" target="_blank" itemprop="author">opensvn</a>
+		
+  <p class="article-time">
+    <time datetime="2015-12-14T02:34:42.000Z" itemprop="datePublished"> 发表于 2015-12-14</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<p>面向对象编程和泛型编程都是处理程序编写时类型未知的情况。两者的区别是面向对象编程直到运行时类型才能知道，而泛型编程类型在编译期间知道。</p>
+<p>容器，迭代器和算法都是泛型编程的例子。当编写一个泛型程序，我们用一种独立于任何类型的方式编写代码。当使用一个泛型程序，我们提供程序的实例将操作的类型或值。</p>
+<p>模板是C++中泛型编程的基础。模板是一个创建类或函数的公式或蓝图。当我们使用一个泛型类型，我们提供将蓝图转换为指定类或函数所需的信息。这个转换发生在编译期间。</p>
+<h1 id="16-1_定义一个模板">16.1 定义一个模板</h1><p>想象我们要写一个函数比较两个值的大小。实际中，我们要定义多个这样的函数，每一个比较指定类型的值。</p>
+<pre><code><span class="comment">// returns 0 if the values are equal, -1 if v1 is smaller, 1 if v2 is smaller</span>
+<span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;v1, <span class="keyword">const</span> <span class="built_in">string</span> &amp;v2)</span>
+</span>{
+    <span class="keyword">if</span> (v1 &lt; v2) <span class="keyword">return</span> -<span class="number">1</span>;
+    <span class="keyword">if</span> (v2 &lt; v1) <span class="keyword">return</span> <span class="number">1</span>;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+<span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> &amp;v1, <span class="keyword">const</span> <span class="keyword">double</span> &amp;v2)</span>
+</span>{
+    <span class="keyword">if</span> (v1 &lt; v2) <span class="keyword">return</span> -<span class="number">1</span>;
+    <span class="keyword">if</span> (v2 &lt; v1) <span class="keyword">return</span> <span class="number">1</span>;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><p>这样的函数几乎相同：唯一不同是参数的类型不同，每一个函数体都相同。</p>
+<h2 id="16-1-1_函数模板">16.1.1 函数模板</h2><p>我们定义一个函数模板而不是为每一种类型定义一个新函数。一个函数模板是一个公式，从这个公式我们能够生成指定类型的函数。</p>
+<pre><code><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> T &amp;v1, <span class="keyword">const</span> T &amp;v2)</span>
+</span>{
+    <span class="keyword">if</span> (v1 &lt; v2) <span class="keyword">return</span> -<span class="number">1</span>;
+    <span class="keyword">if</span> (v2 &lt; v1) <span class="keyword">return</span> <span class="number">1</span>;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><p>模板定义开始于关键字<strong>template</strong>后面跟着模板参数列表。模板参数列表由&lt;&gt;括起来，逗号分隔的一个或多个模板参数组成。</p>
+<blockquote>
+<p><strong>注释</strong><br>在模板定义中，模板参数列表不能为空。</p>
+</blockquote>
+<p>模板参数列表的行为非常像函数的参数列表。模板参数表示用在类或函数定义中的类型或值。当我们使用一个模板，我们指定一个（隐式或显式）模板实参绑定到模板参数。</p>
+<h3 id="实例化函数模板">实例化函数模板</h3><p>当我们调用一个函数模板，编译器使用函数调用的实参为我们推导模板实参。</p>
+<pre><code><span class="built_in">cout</span> &lt;&lt; compare(<span class="number">1</span>, <span class="number">0</span>) &lt;&lt; endl;       <span class="comment">// T is int</span>
+</code></pre><p>编译器使用推导的模板参数来为我们实例化指定版本的函数。当编译器实例化一个模板，它使用实际的模板实参创建一个新的模板实例代替相应的模板参数。</p>
+<pre><code><span class="comment">// instantiates int compare(const int&amp;, const int&amp;)</span>
+<span class="built_in">cout</span> &lt;&lt; compare(<span class="number">1</span>, <span class="number">0</span>) &lt;&lt; endl;       <span class="comment">// T is int</span>
+<span class="comment">// instantiates int compare(const vector&lt;int&gt;&amp;, const vector&lt;int&gt;&amp;)</span>
+<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec1{<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>}, vec2{<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>};
+<span class="built_in">cout</span> &lt;&lt; compare(vec1, vec2) &lt;&lt; endl; <span class="comment">// T is vector&lt;int&gt;</span>
+</code></pre><h3 id="模板类型参数">模板类型参数</h3><p>一般而言，我们可以和使用内置类型或类类型一样的方式使用类型参数作为类型说明符。特别地，类型参数可以用来命名一个返回类型，函数参数类型，变量声明或函数内类型转换。</p>
+<pre><code><span class="comment">// ok: same type used for the return type and parameter</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function">T <span class="title">foo</span><span class="params">(T* p)</span>
+</span>{
+    T tmp = *p; <span class="comment">// tmp will have the type to which p points</span>
+    <span class="comment">// ...</span>
+    <span class="keyword">return</span> tmp;
+}
+</code></pre><p>每一个类型参数之前必须有<strong>class</strong>或<strong>typename</strong>关键字。</p>
+<pre><code><span class="comment">// error: must precede U with either typename or class</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, U&gt; <span class="function">T <span class="title">calc</span><span class="params">(<span class="keyword">const</span> T&amp;, <span class="keyword">const</span> U&amp;)</span></span>;
+</code></pre><p>使用关键字<strong>typename</strong>指定模板类型参数比<strong>class</strong>似乎更直观。毕竟我们可以使用内置（非类类型）类型作为模板的类型实参。而且<strong>typename</strong>更加清晰地指示了跟在它后面的名字是一个类型名。但是，<strong>typename</strong>是在模板广泛使用之后才被加入C++的。</p>
+<h3 id="非类型模板参数">非类型模板参数</h3><p>除了定义类型参数，我们还能定义非类型的模板参数。一个非类型参数代表一个值而不是类型。非类型参数由一个指定的类型名指定而不是<strong>class</strong>或<strong>typename</strong>关键字。</p>
+<p>当模板实例化时，非类型参数被用户提供的或编译器推导的一个值替换。这些值必须是常量表达式，以允许编译器在编译期间实例化模板。</p>
+<pre><code>template&lt;unsigned <span class="keyword">N</span>, unsigned <span class="keyword">M</span>&gt;
+int <span class="keyword">compare</span>(<span class="keyword">const</span> <span class="keyword">char</span> (&amp;p1)[<span class="keyword">N</span>], <span class="keyword">const</span> <span class="keyword">char</span> (&amp;p2)[<span class="keyword">M</span>])
+{
+    <span class="keyword">return</span> strcmp(p1, p2);
+}
+
+<span class="keyword">compare</span>(<span class="string">"hi"</span>, <span class="string">"mom"</span>)
+int <span class="keyword">compare</span>(<span class="keyword">const</span> <span class="keyword">char</span> (&amp;p1)[3], <span class="keyword">const</span> <span class="keyword">char</span> (&amp;p2)[4])
+</code></pre><p>一个非类型参数可能是整型，对象或函数的指针或（左值）引用。绑定到非类型的整型参数的实参必须是常量表达式。绑定到指针或引用的非类型参数必须拥有静态生命周期。不能使用普通（非静态）局部对象或动态分配的对象作为模板实参传给指针或引用的非类型模板参数。指针参数也能用<strong>nullptr</strong>或0值常量表达式初始化。</p>
+<blockquote>
+<p><strong>注释</strong><br>用于非类型模板参数的模板实参必须是常量表达式。</p>
+</blockquote>
+<h3 id="inline和constexpr函数模板">inline和constexpr函数模板</h3><p>和非模板函数一样，函数模板可以被声明为<strong>inline</strong>或<strong>constexpr</strong>。<strong>inline</strong>或<strong>constexpr</strong>限定符跟在模板参数列表之后，函数返回类型之前。</p>
+<pre><code><span class="comment">// ok: inline specifier follows the template parameter list</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">inline</span> T <span class="title">min</span><span class="params">(<span class="keyword">const</span> T&amp;, <span class="keyword">const</span> T&amp;)</span></span>;
+<span class="comment">// error: incorrect placement of the inline specifier</span>
+<span class="keyword">inline</span> <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function">T <span class="title">min</span><span class="params">(<span class="keyword">const</span> T&amp;, <span class="keyword">const</span> T&amp;)</span></span>;
+</code></pre><h3 id="编写类型独立的代码">编写类型独立的代码</h3><p>尽管简单，compare函数展示了编写泛型代码的两个重要原则：</p>
+<ul>
+<li>模板中的函数参数是const引用</li>
+<li>函数体中的比较只使用&lt;</li>
+</ul>
+<p>只使用&lt;运算符，我们降低了对使用compare函数的类型的要求。这些类型只需要支持&lt;，没有必要支持&gt;。实际上，如果我们真正关心类型独立和可移植性，我们可能应该使用<strong>less</strong>定义函数。</p>
+<pre><code><span class="comment">// version of compare that will be correct even if used on pointers; see § 14.8.2 (p.</span>
+<span class="number">575</span>)
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> T &amp;v1, <span class="keyword">const</span> T &amp;v2)</span>
+</span>{
+    <span class="keyword">if</span> (less&lt;T&gt;()(v1, v2)) <span class="keyword">return</span> -<span class="number">1</span>;
+    <span class="keyword">if</span> (less&lt;T&gt;()(v2, v1)) <span class="keyword">return</span> <span class="number">1</span>;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><blockquote>
+<p><strong>最佳实践</strong><br>模板程序应该尽量减少作用在参数类型的要求的数量。</p>
+</blockquote>
+<h3 id="模板编译">模板编译</h3><p>当编译器看到模板的定义，并没有生成代码。只有当实例化一个指定的模板实例的时候生成代码。只有使用模板时生成代码的事实影响我们如何组织源代码和如何检测错误。</p>
+<p>通常当我们调用一个函数，编译器只需要看到函数的声明。类似地，当我们使用类对象，类定义必须可用，但是成员函数的定义不需要提供。因此，我们把类定义和函数声明放在头文件而普通函数和成员函数放在源文件。</p>
+<p>模板不一样：为了生成一个模板实例，编译器需要定义函数模板或类模板成员函数的代码。因此不像非模板代码，模板头文件既包含了定义也包含了声明。</p>
+<blockquote>
+<p><strong>注释</strong><br>函数模板和类模板成员函数的定义通常放进头文件。</p>
+<p><strong>关键概念：模板和头文件</strong><br>模板包含两种名字：</p>
+<ul>
+<li>那些不依赖模板参数的名字</li>
+<li>那些依赖模板参数的名字</li>
+</ul>
+<p>由模板的提供者保证当模板使用时所有不依赖模板参数的名字可见。而且，模板的提供者必须保证当模板实例化的时候模板的定义，包括类模板成员的定义可见。由模板的用户保证用来实例化模板所有的函数，类型和类型相关的操作符可见。<br>模板的作者应该提供一个头文件，包含模板定义，连同所有类模板或成员定义中使用的名字的声明。模板用户必须包含模板头文件和任意用来实例化模板的类型。</p>
+</blockquote>
+<h3 id="实例化期间最常报的编译错误">实例化期间最常报的编译错误</h3><p>第一个阶段是编译模板自己的时候。编译器在这个阶段通常不能找到很多错误。编译器能查找出语法错误，比如忘记标点或变量拼写错误。</p>
+<p>第二个阶段是编译器看到模板的使用的时候。这个阶段也没有很多需要检查。对于一个函数模板调用，编译器只是检查参数的个数是否合适。也可以检查两个类型应该一样的参数是否真的相同。对于类模板，编译器能检查正确的模板参数个数。</p>
+<p>第三个阶段是实例化的时候。只有这个时候类型相关的错误才能被发现。取决于编译器如何处理实例化，这些错误可能会在链接时报告。</p>
+<blockquote>
+<p><strong>警告</strong><br>由调用者保证传递给模板的参数支持模板使用到的任意操作，且这些操作在模板使用的上下文环境表现正确。</p>
+</blockquote>
+<h2 id="16-1-2_类模板">16.1.2 类模板</h2><p>类模板是产生类的蓝图。和函数模板不同，编译器不能为类模板推导模板参数。因此为了使用类模板，我们必须在模板名字后面的尖括号里面提供额外的信息。这些信息就是用来代替模板参数的模板实参列表。</p>
+<h3 id="定义一个类模板">定义一个类模板</h3><p>和函数模板一样，类模板以<strong>template</strong>关键字开头，后跟一个模板参数列表。在类模板（和它的成员）的定义中，我们使用模板参数作为当模板使用时提供的类型或值的替身。</p>
+<pre><code><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> Blob {
+<span class="keyword">public</span>:
+    <span class="keyword">typedef</span> T value_type;
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;::size_type size_type;
+    <span class="comment">// constructors</span>
+    Blob();
+    Blob(<span class="built_in">std</span>::initializer_list&lt;T&gt; il);
+    <span class="comment">// number of elements in the Blob</span>
+    <span class="function">size_type <span class="title">size</span><span class="params">()</span> <span class="keyword">const</span> </span>{ <span class="keyword">return</span> data-&gt;size(); }
+    <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span> <span class="keyword">const</span> </span>{ <span class="keyword">return</span> data-&gt;empty(); }
+    <span class="comment">// add and remove elements</span>
+    <span class="function"><span class="keyword">void</span> <span class="title">push_back</span><span class="params">(<span class="keyword">const</span> T &amp;t)</span> </span>{data-&gt;push_back(t);}
+    <span class="comment">// move version; see § 13.6.3 (p. 548)</span>
+    <span class="function"><span class="keyword">void</span> <span class="title">push_back</span><span class="params">(T &amp;&amp;t)</span> </span>{ data-&gt;push_back(<span class="built_in">std</span>::move(t)); }
+    <span class="function"><span class="keyword">void</span> <span class="title">pop_back</span><span class="params">()</span></span>;
+    <span class="comment">// element access</span>
+    <span class="function">T&amp; <span class="title">back</span><span class="params">()</span></span>;
+    T&amp; <span class="keyword">operator</span>[](size_type i); <span class="comment">// defined in § 14.5 (p. 566)</span>
+<span class="keyword">private</span>:
+    <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&gt; data;
+    <span class="comment">// throws msg if data[i] isn't valid</span>
+    <span class="function"><span class="keyword">void</span> <span class="title">check</span><span class="params">(size_type i, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;msg)</span> <span class="keyword">const</span></span>;
+};
+</code></pre><h3 id="实例化一个类模板">实例化一个类模板</h3><p>当我们使用一个类模板时，必须提供额外的信息。这些额外的信息是显式模板实参列表。编译器使用这些模板实参来实例化一个指定类。</p>
+<pre><code>Blob&lt;<span class="keyword">int</span>&gt; ia;                <span class="comment">// empty Blob&lt;int&gt;</span>
+Blob&lt;<span class="keyword">int</span>&gt; ia2 = {<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>}; <span class="comment">// Blob&lt;int&gt; with five elements</span>
+
+<span class="keyword">template</span> &lt;&gt; <span class="keyword">class</span> Blob&lt;<span class="keyword">int</span>&gt; {
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type size_type;
+    Blob();
+    Blob(<span class="built_in">std</span>::initializer_list&lt;<span class="keyword">int</span>&gt; il);
+    <span class="comment">// ...</span>
+    <span class="keyword">int</span>&amp; <span class="keyword">operator</span>[](size_type i);
+<span class="keyword">private</span>:
+    <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; data;
+    <span class="function"><span class="keyword">void</span> <span class="title">check</span><span class="params">(size_type i, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;msg)</span> <span class="keyword">const</span></span>;
+};
+</code></pre><p>当编译器从Blob模板实例化一个类时，它重写了Blob模板，用int替换掉每一个模板参数T。编译器为每一个我们指定的类型生成一个不同的类。</p>
+<pre><code>// these definitions instantiate two <span class="keyword">distinct</span> <span class="type">Blob</span> types
+<span class="type">Blob</span>&lt;<span class="type">string</span>&gt; names; // <span class="type">Blob</span> that holds strings
+<span class="type">Blob</span>&lt;double&gt; prices;// different element <span class="keyword">type</span>
+</code></pre><blockquote>
+<p><strong>注释</strong><br>每一个类模板的实例化构成了一个独立的类。类型Blob<string>和任何其它的Blob类型没有关系，也没有任何特殊权限访问其它Blob类型的成员。</string></p>
+</blockquote>
+<h3 id="模板作用域中模板类型的引用">模板作用域中模板类型的引用</h3><p>类模板用来实例化一个类型，且被实例化的类型总是包含模板实参。类模板中的代码通常不使用实际类型（或值）的名字作为模板实参。相反，我们经常使用模板自己的参数作为模板实参。</p>
+<pre><code><span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&gt; data;
+<span class="built_in">shared_ptr</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;
+</code></pre><h3 id="类模板成员函数">类模板成员函数</h3><p>和任意其它类一样，我们能够在类里面或外面定义类模板的成员函数。定义在类里面的成员函数默认为<strong>inline</strong>。类模板成员函数本身是个普通函数。但是类模板每一个实例都拥有自己版本的成员。因此类模板的成员函数拥有和类模板相同的模板参数。所以定义在类模板外面的成员函数以关键字<strong>template</strong>开头，后接类模板参数列表。</p>
+<pre><code>template &lt;typename <span class="constant">T</span>&gt;
+ret-<span class="keyword">type</span> <span class="constant">Blob</span>&lt;<span class="constant">T</span>&gt;<span class="symbol">:</span><span class="symbol">:member-name</span>(parm-list)
+</code></pre><h3 id="check和元素访问成员">check和元素访问成员</h3><pre><code><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="keyword">void</span> Blob&lt;T&gt;::check(size_type i, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;msg)
+<span class="keyword">const</span>
+{
+    <span class="keyword">if</span> (i &gt;= data-&gt;size())
+        <span class="keyword">throw</span> <span class="built_in">std</span>::out_of_range(msg);
+}
+
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+T&amp; Blob&lt;T&gt;::back()
+{
+    check(<span class="number">0</span>, <span class="string">"back on empty Blob"</span>);
+    <span class="keyword">return</span> data-&gt;back();
+}
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+T&amp; Blob&lt;T&gt;::<span class="keyword">operator</span>[](size_type i)
+{
+    <span class="comment">// if i is too big, check will throw, preventing access to a nonexistent element</span>
+    check(i, <span class="string">"subscript out of range"</span>);
+    <span class="keyword">return</span> (*data)[i];
+}
+
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; 
+<span class="keyword">void</span> Blob&lt;T&gt;::pop_back()
+{
+    check(<span class="number">0</span>, <span class="string">"pop_back on empty Blob"</span>);
+    data-&gt;pop_back();
+}
+</code></pre><h3 id="Blob构造函数">Blob构造函数</h3><p>和其它定义在类模板外面的成员函数一样，构造函数以声明模板参数开始。</p>
+<pre><code>template &lt;typename <span class="constant">T&gt;</span>
+<span class="constant">Blob&lt;T&gt;</span><span class="symbol">:</span><span class="symbol">:Blob</span>()<span class="symbol">:</span> data(<span class="symbol">std:</span><span class="symbol">:make_shared&lt;std</span><span class="symbol">:</span><span class="symbol">:vector&lt;T&gt;&gt;</span>()) { }
+
+template &lt;typename <span class="constant">T&gt;</span>
+<span class="constant">Blob&lt;T&gt;</span><span class="symbol">:</span><span class="symbol">:Blob</span>(<span class="symbol">std:</span><span class="symbol">:initializer_list&lt;T&gt;</span> il)<span class="symbol">:</span>
+              data(<span class="symbol">std:</span><span class="symbol">:make_shared&lt;std</span><span class="symbol">:</span><span class="symbol">:vector&lt;T&gt;&gt;</span>(il)) { }
+</code></pre><h3 id="类模板成员函数实例化">类模板成员函数实例化</h3><p>默认地，类模板的成员函数只有在程序使用这个函数时实例化。</p>
+<pre><code><span class="comment">// instantiates Blob&lt;int&gt; and the initializer_list&lt;int&gt; constructor</span>
+Blob&lt;<span class="keyword">int</span>&gt; squares = {<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>};
+<span class="comment">// instantiates Blob&lt;int&gt;::size() const</span>
+<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i != squares.size(); ++i)
+    squares[i] = i*i; <span class="comment">// instantiates Blob&lt;int&gt;::operator[](size_t)</span>
+</code></pre><p>成员只有在使用时实例化这个事实使我们可以用一个可能不满足某些模板操作要求的类型实例化一个类。</p>
+<blockquote>
+<p><strong>注释</strong><br>默认地，一个实例化的类模板的成员只有当成员使用时才实例化。</p>
+</blockquote>
+<h3 id="类代码里面简化模板类名的使用">类代码里面简化模板类名的使用</h3><p>使用一个类模板类型必须提供一个模板实参有一个例外，在类模板作用域里面，我们可以不带模板实参使用模板名字。</p>
+<pre><code><span class="comment">// BlobPtr throws an exception on attempts to access a nonexistent element</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> BlobPtr {
+<span class="keyword">public</span>:
+    BlobPtr(): curr(<span class="number">0</span>) { }
+    BlobPtr(Blob&lt;T&gt; &amp;a, <span class="keyword">size_t</span> sz = <span class="number">0</span>):
+            wptr(a.data), curr(sz) { }
+    T&amp; <span class="keyword">operator</span>*() <span class="keyword">const</span>
+    { <span class="keyword">auto</span> p = check(curr, <span class="string">"dereference past end"</span>);
+      <span class="keyword">return</span> (*p)[curr];  <span class="comment">// (*p) is the vector to which this object points</span>
+    }
+    <span class="comment">// increment and decrement</span>
+    BlobPtr&amp; <span class="keyword">operator</span>++();        <span class="comment">// prefix operators</span>
+    BlobPtr&amp; <span class="keyword">operator</span>--();
+<span class="keyword">private</span>:
+    <span class="comment">// check returns a shared_ptr to the vector if the check succeeds</span>
+    <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&gt;
+        check(<span class="built_in">std</span>::<span class="keyword">size_t</span>, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp;) <span class="keyword">const</span>;
+    <span class="comment">// store a weak_ptr, which means the underlying vector might be destroyed</span>
+    <span class="built_in">std</span>::weak_ptr&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&gt; wptr;
+    <span class="built_in">std</span>::<span class="keyword">size_t</span> curr;      <span class="comment">// current position within the array</span>
+};
+</code></pre><h3 id="在类模板外面使用类模板名字">在类模板外面使用类模板名字</h3><p>当我们在类模板外面定义成员时，必须记住我们不在类的作用域直到类名被看见。</p>
+<pre><code>// postfix: increment/decrement the object but<span class="instruction"> return </span>the unchanged value
+template &lt;typename T&gt;
+BlobPtr&lt;T&gt;<span class="function"> BlobPtr&lt;T&gt;::operator++(</span>int<span class="function">)</span>
+{
+    // no<span class="instruction"> check </span>needed here; the call to prefix increment will do the<span class="instruction"> check
+</span>    BlobPtr ret = *this;  // save the current value
+    ++*this;    // advance one element; prefix ++ checks the increment
+   <span class="instruction"> return </span>ret;  //<span class="instruction"> return </span>the saved state
+}
+</code></pre><p>当我们没有提供模板实参，编译器假设我们使用成员实例化一样的类型。因此，ret的定义就好像：</p>
+<pre><code>BlobPtr<span class="variable">&lt;T&gt;</span> ret = <span class="keyword">*</span>this;
+</code></pre><blockquote>
+<p><strong>注释</strong><br>在类模板作用域里面，我们可以使用模板，而不指定模板实参。</p>
+</blockquote>
+<h3 id="类模板和友元">类模板和友元</h3><p>当一个类包含友元声明时，类和友元各自可以是模板或非模板。一个有非模板的友元的类模板授予其友元访问模板所有实例。当友元本身也是模板时，授予友元关系的类控制友元模板所有实例或指定实例友元关系。</p>
+<h3 id="一对一友元关系">一对一友元关系</h3><p>从一个类模板到另一个模板（类模板或函数模板）建立相应实例之间的友元关系是最常见友元关系形式。为了引用一个指定的模板实例（类模板或函数模板），我们必须先声明模板。一个模板声明包含模板参数列表。</p>
+<pre><code><span class="comment">// forward declarations needed for friend declarations in Blob</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span>&gt; <span class="keyword">class</span> BlobPtr;
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span>&gt; <span class="keyword">class</span> Blob; <span class="comment">// needed for parameters in operator==</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+    <span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> Blob&lt;T&gt;&amp;, <span class="keyword">const</span> Blob&lt;T&gt;&amp;);
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> Blob {
+    <span class="comment">// each instantiation of Blob grants access to the version of</span>
+    <span class="comment">// BlobPtr and the equality operator instantiated with the same type</span>
+    <span class="keyword">friend</span> <span class="keyword">class</span> BlobPtr&lt;T&gt;;
+    <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span>==&lt;T&gt;
+           (<span class="keyword">const</span> Blob&lt;T&gt;&amp;, <span class="keyword">const</span> Blob&lt;T&gt;&amp;);
+    <span class="comment">// other members as in § 12.1.1 (p. 456)</span>
+};
+
+Blob&lt;<span class="keyword">char</span>&gt; ca; <span class="comment">// BlobPtr&lt;char&gt; and operator==&lt;char&gt; are friends</span>
+Blob&lt;<span class="keyword">int</span>&gt; ia;  <span class="comment">// BlobPtr&lt;int&gt; and operator==&lt;int&gt; are friends</span>
+</code></pre><h3 id="通用和指定模板友元">通用和指定模板友元</h3><p>一个类也可以指定另一个模板的每一个实例为友元，或限制指定实例为友元：</p>
+<pre><code><span class="comment">// forward declaration necessary to befriend a specific instantiation of a template</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> Pal;
+<span class="keyword">class</span> C {  <span class="comment">//  C is an ordinary, nontemplate class</span>
+    <span class="keyword">friend</span> <span class="keyword">class</span> Pal&lt;C&gt;;  <span class="comment">// Pal instantiated with class C is a friend to C</span>
+    <span class="comment">// all instances of Pal2 are friends to C;</span>
+    <span class="comment">// no forward declaration required when we befriend all instantiations</span>
+    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">friend</span> <span class="keyword">class</span> Pal2;
+};
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> C2 { <span class="comment">// C2 is itself a class template</span>
+    <span class="comment">// each instantiation of C2 has the same instance of Pal as a friend</span>
+    <span class="keyword">friend</span> <span class="keyword">class</span> Pal&lt;T&gt;;  <span class="comment">// a template declaration for Pal must be in scope</span>
+    <span class="comment">// all instances of Pal2 are friends of each instance of C2, prior declaration needed</span>
+    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X&gt; <span class="keyword">friend</span> <span class="keyword">class</span> Pal2;
+    <span class="comment">// Pal3 is a nontemplate class that is a friend of every instance of C2</span>
+    <span class="keyword">friend</span> <span class="keyword">class</span> Pal3;    <span class="comment">// prior declaration for Pal3 not needed</span>
+};
+</code></pre><p>为了允许所有的实例都是友元，友元声明必须使用跟类不一样的模板参数。</p>
+<h3 id="模板类型参数作为友元">模板类型参数作为友元</h3><p>在新标准下，我们可以将模板类型参数作为友元：</p>
+<pre><code><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Type&gt; <span class="keyword">class</span> Bar {
+<span class="keyword">friend</span> Type; <span class="comment">// grants access to the type used to instantiate Bar</span>
+    <span class="comment">//  ...</span>
+};
+</code></pre><p>值得注意的是尽管友元通常必须是一个类或函数，用内置类型实例化类Bar也可以，因此友元为内置类型在这种情况也允许。</p>
+<h3 id="模板类型别名">模板类型别名</h3><p>类模板的一个实例定义了一个类类型，和其它类类型一样，我们可以使用<strong>typedef</strong>引用它：</p>
+<pre><code><span class="keyword">typedef</span> Blob&lt;<span class="built_in">string</span>&gt; StrBlob;
+</code></pre><p>因为模板不是一个类型，我们不能使用<strong>typedef</strong>引用一个模板，即没有办法用<strong>typedef</strong>引用Blob<t>。但是新标准允许我们为类模板定义一个类型别名：</t></p>
+<pre><code><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">using</span> twin = pair&lt;T, T&gt;;
+twin&lt;<span class="built_in">string</span>&gt; authors; <span class="comment">// authors is a pair&lt;string, string&gt;</span>
+</code></pre><p>模板类型别名是一个类家庭的同义词：</p>
+<pre><code>twin&lt;<span class="keyword">int</span>&gt; win_loss;  <span class="comment">// win_loss is a pair&lt;int, int&gt;</span>
+twin&lt;<span class="keyword">double</span>&gt; area;   <span class="comment">// area is a pair&lt;double, double&gt;</span>
+</code></pre><p>当我们定义一个模板类型别名，我们可以固定一个或多个模板参数：</p>
+<pre><code><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">using</span> partNo = pair&lt;T, <span class="keyword">unsigned</span>&gt;;
+partNo&lt;<span class="built_in">string</span>&gt; books;  <span class="comment">// books is a pair&lt;string, unsigned&gt;</span>
+partNo&lt;Vehicle&gt; cars;  <span class="comment">// cars is a pair&lt;Vehicle, unsigned&gt;</span>
+partNo&lt;Student&gt; kids;  <span class="comment">// kids is a pair&lt;Student, unsigned&gt;</span>
+</code></pre><h3 id="类模板的静态成员">类模板的静态成员</h3><p>和其它类一样，类模板可以声明静态成员：</p>
+<pre><code><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> Foo {
+<span class="keyword">public</span>:
+   <span class="keyword">static</span> <span class="built_in">std</span>::<span class="keyword">size_t</span> count() { <span class="keyword">return</span> ctr; }
+   <span class="comment">// other interface members</span>
+<span class="keyword">private</span>:
+   <span class="keyword">static</span> <span class="built_in">std</span>::<span class="keyword">size_t</span> ctr;
+   <span class="comment">// other implementation members</span>
+};
+</code></pre><p>每一个Foo的实例都有自己静态成员。</p>
+<pre><code>// instantiates <span class="keyword">static</span> members Foo&lt;<span class="built_in">string</span>&gt;::ctr <span class="literal">and</span> Foo&lt;<span class="built_in">string</span>&gt;::count
+Foo&lt;<span class="built_in">string</span>&gt; fs<span class="comment">;</span>
+// all three objects share the same Foo&lt;<span class="built_in">int</span>&gt;::ctr <span class="literal">and</span> Foo&lt;<span class="built_in">int</span>&gt;::count members
+Foo&lt;<span class="built_in">int</span>&gt; fi, fi2, fi3<span class="comment">;</span>
+</code></pre><p>和其它静态数据成员一样，类模板的每一个静态数据成员必须只有一个定义。</p>
+<pre><code><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="keyword">size_t</span> Foo&lt;T&gt;::ctr = <span class="number">0</span>; <span class="comment">// define and initialize ctr</span>
+</code></pre><p>必须引用指定的实例来访问静态成员。</p>
+<pre><code>Foo&lt;<span class="built_in">int</span>&gt; fi;                 // instantiates Foo&lt;<span class="built_in">int</span>&gt; <span class="keyword">class</span>
+                             // and the static <span class="type">data</span> member ctr
+auto ct = Foo&lt;<span class="built_in">int</span>&gt;::<span class="built_in">count</span>(); // instantiates Foo&lt;<span class="built_in">int</span>&gt;::<span class="built_in">count</span>
+ct = fi.<span class="built_in">count</span>();             // uses Foo&lt;<span class="built_in">int</span>&gt;::<span class="built_in">count</span>
+ct = Foo::<span class="built_in">count</span>();           // error: which template instantiation?
+</code></pre><p>和其它成员函数一样，静态成员函数只有在程序中使用时才实例化。</p>
+<h2 id="16-1-3_模板参数">16.1.3 模板参数</h2><p>和函数参数的名字一样，模板参数的名字没有实质意义。我们通常命名类型参数为T，也可以使用任何名字：</p>
+<pre><code><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Foo&gt; <span class="function">Foo <span class="title">calc</span><span class="params">(<span class="keyword">const</span> Foo&amp; a, <span class="keyword">const</span> Foo&amp; b)</span>
+</span>{
+    Foo tmp = a; <span class="comment">// tmp has the same type as the parameters and return type</span>
+    <span class="comment">// ...</span>
+    <span class="keyword">return</span> tmp;  <span class="comment">// return type and parameters have the same type</span>
+}
+</code></pre><h3 id="模板参数和作用域">模板参数和作用域</h3><p>模板参数遵循正常的作用域规则。模板参数的名字在声明之后直到模板声明或定义结束之前都能使用。和其它名字一样，模板参数名隐藏任何外围声明的名字。但是一个被用来作为模板参数的名字在模板内不能被重复使用。</p>
+<pre><code><span class="keyword">typedef</span> <span class="keyword">double</span> A;
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(A a, B b)</span>
+</span>{
+    A tmp = a; <span class="comment">// tmp has same type as the template parameter A, not double</span>
+    <span class="keyword">double</span> B;  <span class="comment">// error: redeclares template parameter B</span>
+}
+</code></pre><p>因为模板参数名不能重复使用，模板参数列表中的每一个模板参数名只能出现一次：</p>
+<pre><code><span class="comment">// error: illegal reuse of template parameter name V</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> V, <span class="keyword">typename</span> V&gt; <span class="comment">// ...</span>
+</code></pre><h3 id="模板声明">模板声明</h3><p>模板声明必须包含模板参数：</p>
+<pre><code><span class="comment">// declares but does not define compare and Blob</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> T&amp;, <span class="keyword">const</span> T&amp;)</span></span>;
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> Blob;
+</code></pre><p>和函数参数一样，模板参数名不需要和定义中的模板参数名一样：</p>
+<pre><code><span class="comment">// all three uses of calc refer to the same function template</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function">T <span class="title">calc</span><span class="params">(<span class="keyword">const</span> T&amp;, <span class="keyword">const</span> T&amp;)</span></span>; <span class="comment">// declaration</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt; <span class="function">U <span class="title">calc</span><span class="params">(<span class="keyword">const</span> U&amp;, <span class="keyword">const</span> U&amp;)</span></span>; <span class="comment">// declaration</span>
+<span class="comment">// definition of the template</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Type&gt;
+<span class="function">Type <span class="title">calc</span><span class="params">(<span class="keyword">const</span> Type&amp; a, <span class="keyword">const</span> Type&amp; b)</span> </span>{ <span class="comment">/* . . . */</span> }
+</code></pre><p>当然，模板的每一个声明和定义参数的数量和种类（类型或非类型）必须一样。</p>
+<blockquote>
+<p><strong>最佳实践</strong><br>一个文件需要的所有模板的声明通常应该一起出现在文件开头，在任何代码使用这些名字之前。</p>
+</blockquote>
+<h3 id="使用为类型的类成员">使用为类型的类成员</h3><p>我们可以使用作用域操作符（::）访问<strong>static</strong>成员和类型成员。假设T是一个模板类型参数，当编译器看到T::mem时，在实例化前它不知道mem是一个类型还是静态数据成员。但是为了处理模板，编译器必须知道一个名字是否代表类型。比如下面这个例子：</p>
+<pre><code><span class="rule"><span class="attribute">T</span>:<span class="value">:size_type * p</span></span>;
+</code></pre><p>编译器需要知道这是定义一个变量p还是静态数据成员与p相乘。语言默认假设通过作用域操作符访问的名字不是一个类型。因此如果我们想要使用模板类型参数的类型成员，我们必须显式告诉编译器这个名字是一个类型。我们使用关键字<strong>typename</strong>来做这件事：</p>
+<pre><code><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<span class="keyword">typename</span> T::<span class="function">value_type <span class="title">top</span><span class="params">(<span class="keyword">const</span> T&amp; c)</span>
+</span>{
+    <span class="keyword">if</span> (!c.empty())
+        <span class="keyword">return</span> c.back();
+    <span class="keyword">else</span>
+        <span class="keyword">return</span> <span class="keyword">typename</span> T::value_type();
+}
+</code></pre><blockquote>
+<p><strong>注释</strong><br>当我们通知编译器一个名字代表类型时，必须使用关键字<strong>typename</strong>，而不是<strong>class</strong>。</p>
+</blockquote>
+<h3 id="默认模板实参">默认模板实参</h3><p>就像我们能够给函数参数提供默认实参，我们也能提供默认模板实参。新标准下，我们能给函数模板和类模板提供默认实参。早先的版本只允许类模板有默认实参。</p>
+<pre><code>// compare has a default <span class="keyword">template</span> argument, less&lt;T&gt;
+// <span class="keyword">and</span> a default function argument, F()
+<span class="keyword">template</span> &lt;typename T, typename F = less&lt;T&gt;&gt;
+<span class="type">int</span> compare(<span class="keyword">const</span> T &amp;v1, <span class="keyword">const</span> T &amp;v2, F f = F())
+{
+    <span class="keyword">if</span> (f(v1, v2)) <span class="keyword">return</span> -<span class="number">1</span>;
+    <span class="keyword">if</span> (f(v2, v1)) <span class="keyword">return</span> <span class="number">1</span>;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+
+<span class="type">bool</span> i = compare(<span class="number">0</span>, <span class="number">42</span>); // uses less; i <span class="keyword">is</span> -<span class="number">1</span>
+// <span class="literal">result</span> depends on the isbns <span class="keyword">in</span> item1 <span class="keyword">and</span> item2
+<span class="type">Sales_data</span> item1(cin), item2(cin);
+<span class="type">bool</span> j = compare(item1, item2, compareIsbn);
+</code></pre><h3 id="模板默认实参和类模板">模板默认实参和类模板</h3><p>不管什么时候使用类模板，我们必须在模板名后面跟尖括号。尖括号指示类必须从模板实例化。特别地，如果一个类模板为所有模板参数提供了默认实参，且我们使用这些默认值，我们必须在模板名后面放一对空的尖括号：</p>
+<pre><code>template &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span> </span>= <span class="keyword">int</span>&gt; <span class="class"><span class="keyword">class</span> <span class="title">Numbers</span> </span>{   <span class="comment">// by default T is int</span>
+<span class="keyword">public</span>:
+    Numbers(T v = 0): val(v) { }
+    <span class="comment">// various operations on numbers</span>
+<span class="keyword">private</span>:
+    T val;
+};
+Numbers&lt;<span class="keyword">long</span> <span class="keyword">double</span>&gt; lots_of_precision;
+Numbers&lt;&gt; average_precision; <span class="comment">// empty &lt;&gt; says we want the default type</span>
+</code></pre><h2 id="16-1-4_成员模板">16.1.4 成员模板</h2><p>一个类（不管是普通类还是类模板）可能有本身是模板的成员函数。这种成员被称为成员模板。成员模板不能是虚函数。</p>
+<h3 id="普通类的成员模板">普通类的成员模板</h3><pre><code><span class="comment">// function-object class that calls delete on a given pointer</span>
+<span class="keyword">class</span> DebugDelete {
+<span class="keyword">public</span>:
+    DebugDelete(<span class="built_in">std</span>::ostream &amp;s = <span class="built_in">std</span>::<span class="built_in">cerr</span>): os(s) { }
+    <span class="comment">// as with any function template, the type of T is deduced by the compiler</span>
+    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(T *p)</span> <span class="keyword">const</span>
+      </span>{ os &lt;&lt; <span class="string">"deleting unique_ptr"</span> &lt;&lt; <span class="built_in">std</span>::endl; <span class="keyword">delete</span> p;
+}
+<span class="keyword">private</span>:
+    <span class="built_in">std</span>::ostream &amp;os;
+};
+</code></pre><p>和其他模板一样，一个成员模板以它自己的模板参数列表开始。</p>
+<pre><code><span class="keyword">double</span>* p = <span class="keyword">new</span> <span class="keyword">double</span>;
+DebugDelete d;    <span class="comment">// an object that can act like a delete expression</span>
+d(p); <span class="comment">// calls DebugDelete::operator()(double*), which deletes p</span>
+<span class="keyword">int</span>* ip = <span class="keyword">new</span> <span class="keyword">int</span>;
+<span class="comment">// calls operator()(int*) on a temporary DebugDelete object</span>
+DebugDelete()(ip);
+
+<span class="comment">// destroying the the object to which p points</span>
+<span class="comment">// instantiates DebugDelete::operator()&lt;int&gt;(int *)</span>
+unique_ptr&lt;<span class="keyword">int</span>, DebugDelete&gt; p(<span class="keyword">new</span> <span class="keyword">int</span>, DebugDelete());
+<span class="comment">// destroying the the object to which sp points</span>
+<span class="comment">// instantiates DebugDelete::operator()&lt;string&gt;(string*)</span>
+unique_ptr&lt;<span class="built_in">string</span>,DebugDelete&gt; sp(<span class="keyword">new</span> <span class="built_in">string</span>, DebugDelete());
+</code></pre><p><strong>unique_ptr</strong>的析构函数会调用DebugDelete的调用操作符。因此，当<strong>unique_ptr</strong>析构函数实例化时，DebugDelete的调用操作符也会实例化。</p>
+<pre><code><span class="comment">// sample instantiations for member templates of DebugDelete</span>
+<span class="keyword">void</span> DebugDelete::<span class="keyword">operator</span>()(<span class="keyword">int</span> *p) <span class="keyword">const</span> { <span class="keyword">delete</span> p; }
+<span class="keyword">void</span> DebugDelete::<span class="keyword">operator</span>()(<span class="built_in">string</span> *p) <span class="keyword">const</span> { <span class="keyword">delete</span> p; }
+</code></pre><h3 id="类模板的成员模板">类模板的成员模板</h3><p>我们也可以定义一个类模板的成员模板。这种情况下，类和成员都有它们自己的独立的模板参数。</p>
+<pre><code><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> Blob {
+    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> It&gt; Blob(It b, It e);
+    <span class="comment">// ...</span>
+};
+</code></pre><p>不同于类模板的普通函数成员，成员模板是函数模板。当我们在类模板外面定义一个成员模板，我们必须为类模板和函数模板提供模板参数列表。类模板参数列表在前，后面跟成员模板参数列表：</p>
+<pre><code>template &lt;typename <span class="constant">T</span>&gt;     <span class="regexp">//</span> <span class="keyword">type</span> parameter <span class="keyword">for</span> the <span class="class"><span class="keyword">class</span></span>
+template &lt;typename <span class="constant">It</span>&gt;    <span class="regexp">//</span> <span class="keyword">type</span> parameter <span class="keyword">for</span> the constructor
+    <span class="constant">Blob</span>&lt;<span class="constant">T</span>&gt;<span class="constant">::Blob</span>(<span class="constant">It</span> b, <span class="constant">It</span> e)<span class="symbol">:</span>
+              data(<span class="symbol">std:</span><span class="symbol">:make_shared&lt;std</span><span class="symbol">:</span><span class="symbol">:vector&lt;T&gt;&gt;</span>(b, e)) {
+}
+</code></pre><h3 id="成员模板的实例化">成员模板的实例化</h3><p>为了实例化一个类模板的成员模板，我们必须为类模板和成员模板的模板参数提供实参。和以前一样，类模板参数的实参由调用成员模板的对象类型决定。同样，编译器通过传递给成员模板的实参推导出成员模板参数的实参。</p>
+<pre><code><span class="keyword">int</span> ia[] = {<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>};
+<span class="built_in">vector</span>&lt;<span class="keyword">long</span>&gt; vi = {<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>};
+<span class="built_in">list</span>&lt;<span class="keyword">const</span> <span class="keyword">char</span>*&gt; w = {<span class="string">"now"</span>, <span class="string">"is"</span>, <span class="string">"the"</span>, <span class="string">"time"</span>};
+<span class="comment">// instantiates the Blob&lt;int&gt; class</span>
+<span class="comment">// and the Blob&lt;int&gt; constructor that has two int* parameters</span>
+Blob&lt;<span class="keyword">int</span>&gt; a1(begin(ia), end(ia));
+<span class="comment">// instantiates the Blob&lt;int&gt; constructor that has</span>
+<span class="comment">// two vector&lt;long&gt;::iterator parameters</span>
+Blob&lt;<span class="keyword">int</span>&gt; a2(vi.begin(), vi.end());
+<span class="comment">// instantiates the Blob&lt;string&gt; class and the Blob&lt;string&gt;</span>
+<span class="comment">// constructor that has two (list&lt;const char*&gt;::iterator parameters</span>
+Blob&lt;<span class="built_in">string</span>&gt; a3(w.begin(), w.end());
+</code></pre><h2 id="16-1-5_控制实例化">16.1.5 控制实例化</h2><p>当模板被使用时才生成实例意味着同一个实例可能出现在多个对象文件。当两个或更多单独编译的源文件用相同的模板实参使用同一个模板时，在每一个文件中有一个模板实例。</p>
+<p>在大型系统中，在多个文件中实例化同一个模板的开销将变得非常明显。在新标准下，我们可以使用显式实例化避免这种开销。显式实例化具有形式：</p>
+<pre><code><span class="keyword">extern</span> <span class="keyword">template</span> declaration; <span class="comment">// instantiation declaration</span>
+<span class="keyword">template</span> declaration;        <span class="comment">// instantiation definition</span>
+</code></pre><p>declaration是一个类或函数声明，其模板参数被模板实参替换。</p>
+<pre><code><span class="comment">// instantion declaration and definition</span>
+<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keyword">class</span> Blob&lt;<span class="built_in">string</span>&gt;;             <span class="comment">// declaration</span>
+<span class="function"><span class="keyword">template</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp;, <span class="keyword">const</span> <span class="keyword">int</span>&amp;)</span></span>;   <span class="comment">// definition</span>
+</code></pre><p>当编译器看到一个<strong>extern</strong>模板声明，它不会在那个文件生成实例化代码。将一个模板实例声明为<strong>extern</strong>承诺程序的其它地方存在一个<strong>nonextern</strong>的实例。对于一个指定的实例可以有多个<strong>extern</strong>声明但是只能存在一个实例的定义。</p>
+<p>因为编译器使用模板时自动实例化，<strong>extern</strong>声明必须出现在任何使用实例的代码之前：</p>
+<pre><code><span class="comment">// Application.cc</span>
+<span class="comment">// these template types must be instantiated elsewhere in the program</span>
+<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keyword">class</span> Blob&lt;<span class="built_in">string</span>&gt;;
+<span class="function"><span class="keyword">extern</span> <span class="keyword">template</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp;, <span class="keyword">const</span> <span class="keyword">int</span>&amp;)</span></span>;
+Blob&lt;<span class="built_in">string</span>&gt; sa1, sa2; <span class="comment">// instantiation will appear elsewhere</span>
+<span class="comment">// Blob&lt;int&gt; and its initializer_list constructor instantiated in this file</span>
+Blob&lt;<span class="keyword">int</span>&gt; a1 = {<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>};
+Blob&lt;<span class="keyword">int</span>&gt; a2(a1);  <span class="comment">// copy constructor instantiated in this file</span>
+<span class="keyword">int</span> i = compare(a1[<span class="number">0</span>], a2[<span class="number">0</span>]); <span class="comment">// instantiation will appear elsewhere定义</span>
+</code></pre><blockquote>
+<p><strong>警告</strong><br>对于每一个实例声明，在程序的其它地方必须有一个显式实例定义。</p>
+</blockquote>
+<h3 id="实例定义实例化所有成员">实例定义实例化所有成员</h3><p>一个类模板的实例定义实例化其所有成员包括内联成员函数。当编译器看到一个实例定义，它不知道哪一个成员函数会被用到，因此编译器实例化所有成员。</p>
+<blockquote>
+<p><strong>注释</strong><br>实例定义只能用在类模板所有成员函数都能使用的类型。</p>
+</blockquote>
+<h2 id="16-1-6_效率和灵活性">16.1.6 效率和灵活性</h2><p>标准库的智能指针提供了一个关于模板设计者面临的设计选择的很好说明。</p>
+<h1 id="16-2_模板实参推导">16.2 模板实参推导</h1><p>在模板实参推导期间，编译器使用实参的类型查找模板参数并生成最符合的函数。</p>
+<h2 id="16-2-1_转换和模板类型参数">16.2.1 转换和模板类型参数</h2><p>使用模板类型参数的函数参数具有特殊的初始化规则。只有非常有限数量的转换被自动应用到这种参数。编译器生成一个新的实例而不是转换实参。</p>
+<p>和以往一样，不管是形参还是实参的上层const都被忽略。在一个函数模板调用中执行的唯一其它转换有：</p>
+<ul>
+<li>const转换：引用（或指针）const对象的函数参数可以传递引用（或指针）非const对象。</li>
+<li>数组到指针或函数到指针的转换：如果函数参数不是引用类型，则普通指针转换将被应用到参数为数组或函数类型上。数组参数被转换为指向第一个元素的指针。类似地，函数参数被转换为指向函数类型的指针。</li>
+</ul>
+<p>其它转换比如算术转换，派生类到基类转换和用户自定义的转换都不会执行。</p>
+<pre><code><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function">T <span class="title">fobj</span><span class="params">(T, T)</span></span>; <span class="comment">// arguments are copied</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function">T <span class="title">fref</span><span class="params">(<span class="keyword">const</span> T&amp;, <span class="keyword">const</span> T&amp;)</span></span>; <span class="comment">// references</span>
+<span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">"a value"</span>)</span></span>;
+<span class="function"><span class="keyword">const</span> <span class="built_in">string</span> <span class="title">s2</span><span class="params">(<span class="string">"another value"</span>)</span></span>;
+fobj(s1, s2); <span class="comment">// calls fobj(string, string); const is ignored</span>
+fref(s1, s2); <span class="comment">// calls fref(const string&amp;, const string&amp;)</span>
+              <span class="comment">// uses premissible conversion to const on s1</span>
+<span class="keyword">int</span> a[<span class="number">10</span>], b[<span class="number">42</span>];
+fobj(a, b); <span class="comment">// calls f(int*, int*)</span>
+fref(a, b); <span class="comment">// error: array types don't match</span>
+</code></pre><blockquote>
+<p><strong>注释</strong><br>const转换和数组或函数到指针的转换是模板类型唯一的实参到形参自动转换。</p>
+</blockquote>
+<h3 id="使用相同模板参数类型的函数参数">使用相同模板参数类型的函数参数</h3><p>一个模板类型参数可以被多个函数参数使用。因为转换非常有限，这种参数的实参必须具有一样的类型。如果推导的参数类型不匹配，那么调用出错。</p>
+<pre><code><span class="keyword">long</span> lng;
+compare(lng, <span class="number">1024</span>); <span class="comment">// error: cannot instantiate compare(long, int)</span>
+
+<span class="comment">// argument types can differ but must be compatible</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt;
+<span class="function"><span class="keyword">int</span> <span class="title">flexibleCompare</span><span class="params">(<span class="keyword">const</span> A&amp; v1, <span class="keyword">const</span> B&amp; v2)</span>
+</span>{
+    <span class="keyword">if</span> (v1 &lt; v2) <span class="keyword">return</span> -<span class="number">1</span>;
+    <span class="keyword">if</span> (v2 &lt; v1) <span class="keyword">return</span> <span class="number">1</span>;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+<span class="keyword">long</span> lng;
+flexibleCompare(lng, <span class="number">1024</span>); <span class="comment">// ok: calls flexibleCompare(long, int)</span>
+</code></pre><h3 id="应用到普通实参的正常转换">应用到普通实参的正常转换</h3><p>函数模板可以有普通类型的参数，就是与模板类型参数无关的参数。这些参数不需要特殊处理，它们的转换规则和以前一样。</p>
+<pre><code><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function">ostream &amp;<span class="title">print</span><span class="params">(ostream &amp;os, <span class="keyword">const</span> T
+&amp;obj)</span>
+</span>{
+    <span class="keyword">return</span> os &lt;&lt; obj;
+}
+print(<span class="built_in">cout</span>, <span class="number">42</span>); <span class="comment">// instantiates print(ostream&amp;, int)</span>
+<span class="function">ofstream <span class="title">f</span><span class="params">(<span class="string">"output"</span>)</span></span>;
+print(f, <span class="number">10</span>);    <span class="comment">// uses print(ostream&amp;, int); converts f to ostream&amp;</span>
+</code></pre><h2 id="16-2-2_函数模板显式参数">16.2.2 函数模板显式参数</h2><p>在某些情况下，编译器不可能推导出模板参数的类型。另一些情况，我们想要允许用户控制模板实例化。当一个函数返回类型不同于参数列表中的类型时，这两种情况经常出现。</p>
+<h3 id="指定一个显式模板参数">指定一个显式模板参数</h3><pre><code><span class="comment">// T1 cannot be deduced: it doesn't appear in the function parameter list</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> T3&gt;
+<span class="function">T1 <span class="title">sum</span><span class="params">(T2, T3)</span></span>;
+</code></pre><p>这个例子中，没有用来推导T1类型的实参，调用者必须提供一个显式模板实参。我们可以像定义类模板实例那样，给一个函数调用提供显式模板实参。显式模板实参在尖括号中指定，在函数名之后，参数列表之前：</p>
+<pre><code><span class="comment">// T1 is explicitly specified; T2 and T3 are inferred from the argument types</span>
+auto val3 = <span class="keyword">sum</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(i, lng); <span class="comment">// long long sum(int, long)</span>
+</code></pre><p>显式模板实参从左到右匹配相应的模板参数，</p>
+<pre><code><span class="comment">// poor design: users must explicitly specify all three template parameters</span>
+<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> T3&gt;
+<span class="function">T3 <span class="title">alternative_sum</span><span class="params">(T2, T1)</span></span>;
+
+<span class="comment">// error: can't infer initial template parameters</span>
+<span class="keyword">auto</span> val3 = alternative_sum&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(i, lng);
+<span class="comment">// ok: all three parameters are explicitly specified</span>
+<span class="keyword">auto</span> val2 = alternative_sum&lt;<span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">int</span>, <span class="keyword">long</span>&gt;(i, lng);
+</code></pre><h3 id="显式指定参数应用普通转换">显式指定参数应用普通转换</h3><p>和普通类型参数允许普通转换的原因一样，显式指定参数也可以应用其实参的普通转换：</p>
+<pre><code><span class="keyword">long</span> lng;
+compare(lng, <span class="number">1024</span>);       <span class="comment">// error: template parameters don't match</span>
+compare&lt;<span class="keyword">long</span>&gt;(lng, <span class="number">1024</span>); <span class="comment">// ok: instantiates compare(long, long)</span>
+compare&lt;<span class="keyword">int</span>&gt;(lng, <span class="number">1024</span>);  <span class="comment">// ok: instantiates compare(int, int)</span>
+</code></pre><h2 id="16-2-3_尾返回类型和类型转换">16.2.3 尾返回类型和类型转换</h2><p>使用显式模板参数来表示模板函数的返回类型工作得很好。另外一些情况下，需要有一个显式模板参数给用户强加了负担。</p>
+<pre><code><span class="keyword">template</span> &lt;typename It&gt;
+??? &amp;fcn(It beg, It end)
+{
+    <span class="comment">// process the range</span>
+    <span class="keyword">return</span> *beg;  <span class="comment">// return a reference to an element from the range</span>
+}
+
+vector&lt;<span class="keyword">int</span>&gt; vi = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>};
+Blob&lt;<span class="built_in">string</span>&gt; ca = { <span class="string">"hi"</span>, <span class="string">"bye"</span> };
+<span class="keyword">auto</span> &amp;i = fcn(vi.begin(), vi.end()); <span class="comment">// fcn should return int&amp;</span>
+<span class="keyword">auto</span> &amp;s = fcn(ca.begin(), ca.end()); <span class="comment">// fcn should return string&amp;</span>
+
+<span class="comment">// a trailing return lets us declare the return type after the parameter list is seen</span>
+<span class="keyword">template</span> &lt;typename It&gt;
+<span class="keyword">auto</span> fcn(It beg, It end) -&gt; decltype(*beg)
+{
+    <span class="comment">// process the range</span>
+    <span class="keyword">return</span> *beg;  <span class="comment">// return a reference to an element from the range</span>
+}
+</code></pre><h3 id="类型转换标准库模板类">类型转换标准库模板类</h3><p>有时候我们不能直接访问到我们需要的类型。比如我们可能想要写一个类似fcn的函数返回一个元素的值而不是引用。编写这样的函数我们面临的问题是我们几乎不了解我们传递的参数类型。为了获取元素类型，我们可以使用库类型转换模板。这些模板定义在<strong>type_traits</strong>头文件。通常头文件<strong>type_traits</strong>中的类被用来所谓的元编程。</p>
+<table>
+<thead>
+<tr>
+<th>For Mod&lt;T&gt;, Mod is</th>
+<th style="text-align:left">If T is</th>
+<th style="text-align:left">Then Mod&lt;T&gt;::type is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>remove_reference</td>
+<td style="text-align:left">X&amp; or X&amp;&amp;<br>otherwise</td>
+<td style="text-align:left">X<br>T</td>
+</tr>
+<tr>
+<td>add_const</td>
+<td style="text-align:left">X&amp;, const X, or function<br>otherwise</td>
+<td style="text-align:left">T<br>const T</td>
+</tr>
+<tr>
+<td>add_lvalue_reference</td>
+<td style="text-align:left">X&amp;<br>X&amp;&amp;<br>otherwise</td>
+<td style="text-align:left">T<br>X&amp;<br>T&amp;</td>
+</tr>
+<tr>
+<td>add_rvalue_reference</td>
+<td style="text-align:left">X&amp; or X&amp;&amp;<br>otherwise</td>
+<td style="text-align:left">T<br>T&amp;&amp;</td>
+</tr>
+<tr>
+<td>remove_pointer</td>
+<td style="text-align:left">X*<br>otherwise</td>
+<td style="text-align:left">X<br>const T</td>
+</tr>
+<tr>
+<td>add_pointer</td>
+<td style="text-align:left">X&amp; or X&amp;&amp;<br>otherwise</td>
+<td style="text-align:left">X*<br>T*</td>
+</tr>
+<tr>
+<td>make_signed</td>
+<td style="text-align:left">unsigned X<br>otherwise</td>
+<td style="text-align:left">X<br>T</td>
+</tr>
+<tr>
+<td>make_unsigned</td>
+<td style="text-align:left">signed type<br>otherwise</td>
+<td style="text-align:left">unsigned T<br>T</td>
+</tr>
+<tr>
+<td>remove_extent</td>
+<td style="text-align:left">X[n]<br>otherwise</td>
+<td style="text-align:left">X<br>T</td>
+</tr>
+<tr>
+<td>remove_all_extents</td>
+<td style="text-align:left">X[n1][n2]…<br>otherwise</td>
+<td style="text-align:left">X<br>T</td>
+</tr>
+</tbody>
+</table>
+<p>在这个例子中，我们可以使用<strong>remove_reference</strong>获取元素类型。</p>
+<pre><code>remove_reference&lt;decltype(*beg)&gt;::<span class="class"><span class="keyword">type</span>
+</span>
+<span class="comment">// must use typename to use a type member of a template parameter; see § 16.1.3 (p.</span>
+<span class="number">670</span>)
+template &lt;typename <span class="type">It</span>&gt;
+auto fcn2(<span class="type">It</span> beg, <span class="type">It</span> end) -&gt;
+    typename remove_reference&lt;decltype(*beg)&gt;::<span class="class"><span class="keyword">type</span>
+</span>{
+    <span class="comment">// process the range</span>
+    <span class="keyword">return</span> *beg;  <span class="comment">// return a copy of an element from the range</span>
+}
+</code></pre><p>注意type是一个依赖模板参数的类成员。因此我们必须在返回类型的声明中使用<strong>typename</strong>来告诉编译器type代表一个类型。</p>
+<p>每一个上表中描述的类型转换模板和<strong>remove_reference</strong>类似工作。每一个模板都有一个公开的type成员代表一个类型。如果不可能（或没必要）转换一个模板参数，则type成员就是模板参数本身。</p>
+<h2 id="16-2-4_函数指针和实参推导">16.2.4 函数指针和实参推导</h2><p>当我们从一个函数模板初始化或赋值一个函数指针时，编译器使用函数指针的类型推导模板实参。</p>
+<pre><code>template &lt;typename T&gt; <span class="built_in">int</span> compare(<span class="keyword">const</span> T&amp;, <span class="keyword">const</span> T&amp;)<span class="comment">;</span>
+// pf1 points <span class="keyword">to</span> the instantiation <span class="built_in">int</span> compare(<span class="keyword">const</span> <span class="built_in">int</span>&amp;, <span class="keyword">const</span> <span class="built_in">int</span>&amp;)
+<span class="built_in">int</span> (*pf1)(<span class="keyword">const</span> <span class="built_in">int</span>&amp;, <span class="keyword">const</span> <span class="built_in">int</span>&amp;) = compare<span class="comment">;</span>
+</code></pre><p>如果从函数指针类型不能决定模板实参则出错：</p>
+<pre><code><span class="comment">// overloaded versions of func; each takes a different function pointer type</span>
+<span class="function"><span class="keyword">void</span> <span class="title">func</span>(<span class="params"><span class="keyword">int</span>(*</span>)(<span class="params"><span class="keyword">const</span> <span class="keyword">string</span>&amp;, <span class="keyword">const</span> <span class="keyword">string</span>&amp;</span>))</span>;
+<span class="function"><span class="keyword">void</span> <span class="title">func</span>(<span class="params"><span class="keyword">int</span>(*</span>)(<span class="params"><span class="keyword">const</span> <span class="keyword">int</span>&amp;, <span class="keyword">const</span> <span class="keyword">int</span>&amp;</span>))</span>;
+func(compare); <span class="comment">// error: which instantiation of compare?</span>
+</code></pre><p>我们可以使用显式模板实参使得调用无二义性：</p>
+<pre><code>// ok: explicitly specify which version of compare <span class="keyword">to</span> instantiate
+<span class="function"><span class="keyword">func</span><span class="params">(compare&lt;int&gt;)</span>;  // <span class="title">passing</span> <span class="title">compare</span><span class="params">(const int&amp;, const int&amp;)</span></span>
+</code></pre><blockquote>
+<p><strong>注释</strong><br>When the address of a function-template instantiation is taken, the context<br>must be such that it allows a unique type or value to be determined for each<br>template parameter.</p>
+</blockquote>
+<h2 id="16-2-5_模板实参推导和引用">16.2.5 模板实参推导和引用</h2>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C-C/">C/C++</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://opensvn.github.io/2015/12/14/cpp_primer_16/" data-title="第16章 模板和泛型编程 | opensvn" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/12/15/21st-c-1/" title="21世纪C语言 第1章 便利编译配置">
+  <strong>上一篇：</strong><br/>
+  <span>
+  21世纪C语言 第1章 便利编译配置</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/11/19/pygame-doc/"  title="Pygame简单帮助文档">
+ <strong>下一篇：</strong><br/> 
+ <span>Pygame简单帮助文档
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/12/14/cpp_primer_16/" data-title="第16章 模板和泛型编程" data-url="https://opensvn.github.io/2015/12/14/cpp_primer_16/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Python/" title="Python">Python<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PyQt/" title="PyQt">PyQt<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Pygame/" title="Pygame">Pygame<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Project-Euler/" title="Project Euler">Project Euler<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m opensvn. <br/>
+			Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/opensvn" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="opensvn">opensvn</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"opensvn"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F86bb0f34aeafce8b9262f5000b269d72' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

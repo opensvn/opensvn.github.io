@@ -12,18 +12,18 @@
 
     
     <meta name="description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。
-控制游戏玩过游戏的都知道鼠标和键盘是游戏的不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好">
+控制游戏玩过游戏的都知道鼠标和键盘是游戏不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pygame第六章 接受用户输入">
 <meta property="og:url" content="https://opensvn.github.io/2015/11/16/pygame-6/index.html">
 <meta property="og:site_name" content="opensvn">
 <meta property="og:description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。
-控制游戏玩过游戏的都知道鼠标和键盘是游戏的不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好">
-<meta property="og:updated_time" content="2015-11-19T01:03:57.480Z">
+控制游戏玩过游戏的都知道鼠标和键盘是游戏不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好的">
+<meta property="og:updated_time" content="2015-11-20T09:29:32.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pygame第六章 接受用户输入">
 <meta name="twitter:description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。
-控制游戏玩过游戏的都知道鼠标和键盘是游戏的不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好">
+控制游戏玩过游戏的都知道鼠标和键盘是游戏不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好的">
 
     
     <link rel="alternative" href="/atom.xml" title="opensvn" type="application/atom+xml">
@@ -97,9 +97,9 @@
 	<div class="article-content">
 		
 		<p>用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。</p>
-<h1 id="控制游戏">控制游戏</h1><p>玩过游戏的都知道鼠标和键盘是游戏的不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好的操作感，加上力反馈等技术，应该说游戏设备越来越丰富，玩家们也是越来越幸福。</p>
-<h1 id="理解键盘控制">理解键盘控制</h1><p>现在大多数键盘都是qwerty键盘。我们可以使用pygame.key模块检测所有的键。</p>
-<h3 id="检测键盘按下">检测键盘按下</h3><p>在Pygame里面有两种方式检测键盘按下。一种方式是处理KEYDOWN事件和KEYUP事件，分别对应键盘按下和键盘松开。当我们使用键盘输入代表移动时，我们只需知道键是否被按下，这种情况可以直接使用pygame.key模块。</p>
+<h1 id="控制游戏">控制游戏</h1><p>玩过游戏的都知道鼠标和键盘是游戏不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好的操作感，加上力反馈等技术，应该说游戏设备越来越丰富，玩家们也是越来越幸福。</p>
+<h1 id="理解键盘控制">理解键盘控制</h1><p>现在大多数键盘都是qwerty键盘。我们可以使用<strong>pygame.key</strong>模块检测所有的键。</p>
+<h3 id="检测键盘按下">检测键盘按下</h3><p>在Pygame里面有两种方式检测键盘按下。一种方式是处理<strong>KEYDOWN</strong>事件和<strong>KEYUP</strong>事件，分别对应键盘按下和键盘松开。当我们使用键盘输入代表移动时，我们只需知道键是否被按下，这种情况可以直接使用<strong>pygame.key</strong>模块。</p>
 <p>每一个键盘上的键都有一个常量键值关联它。每一个常量以<strong>K_</strong>开头，比如字母是K_a到K_z，数字是K_0到K_9，其它的如K_F1，K_LEFT，K_RETURN等。完整列表参考(<a href="http://www.pygame.org/docs/ref/key.html" target="_blank" rel="external">http://www.pygame.org/docs/ref/key.html</a>)。没有大写字母对应的键值，因为大写字母是小写字母和其它键的组合。</p>
 <p>我们可以使用<strong>pygame.key.get_pressed</strong>函数检查一个键是否被按下。它返回一个布尔值列表，每一个布尔值对应一个键值常量。要查询某一个键，使用其键值常量作为列表下标。比如查看空格是否被按下：</p>
 <pre><code>pressed_keys = pygame.<span class="variable">key</span>.get_pressed()
@@ -140,9 +140,150 @@ font_height = font.get_linesize()
     pygame.display.update()
 </code></pre><p>让我们更详细地复习<strong>pygame.key</strong>：</p>
 <ul>
-<li><strong>key.get_focused</strong> - Pygame窗口只有获得焦点后才会接受键事件。<strong>get_focused</strong>函数返回真，如果窗口获得焦点，否则返回假。全屏模式，总是返回真。</li>
+<li><strong>pygame.key.get_focused</strong> - Pygame窗口只有获得焦点后才会接受键事件。如果窗口获得焦点，<strong>get_focused</strong>函数返回真，否则返回假。全屏模式，总是返回真。</li>
+<li><strong>pygame.key.get_pressed</strong> - 返回一个包含每一个键的布尔值列表。如果值为True，则对应键被按下。</li>
+<li><strong>pygame.key.get_mods</strong> - 返回一个值，指示哪一个修饰键被按下。要检查哪一个修饰键被按下，可以对KMOD_常量使用位与操作。比如检查左shift键被按下，pygame.key.get_mods() &amp; KMOD_LSHIFT。</li>
+<li><strong>pygame.key.set_mods</strong> - 可以设置修饰键模拟组合键按下的效果。要设置一个或多个修饰键，对KMOD_常量使用位或操作。比如设置shift和alt键，可以使用pygame.key.set_mods(KMOD_SHIFT | KMOD_ALT)。</li>
+<li><strong>pygame.key.set_repeat</strong> - 可以使用<strong>set_repeat</strong>函数重复<strong>KEY_DOWN</strong>事件，它接受一个初始延迟时间和重复事件延迟时间，单位为毫秒。<strong>set_repeat</strong>不带参数禁用重复按键事件。</li>
+<li><strong>pygame.key.name</strong> - 接受一个KEY_常量返回一个描述该键的字符串。</li>
 </ul>
-  
+<h3 id="使用键盘控制方向">使用键盘控制方向</h3><p>四个基本方向向量：</p>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th style="text-align:left">向量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left</td>
+<td style="text-align:left">(-1.0, 0.0)</td>
+</tr>
+<tr>
+<td>Right</td>
+<td style="text-align:left">(1.0, 0.0)</td>
+</tr>
+<tr>
+<td>Up</td>
+<td style="text-align:left">(0.0, –1.0)</td>
+</tr>
+<tr>
+<td>Down</td>
+<td style="text-align:left">(0.0, 1.0)</td>
+</tr>
+</tbody>
+</table>
+<pre><code>background_image_filename = <span class="string">'sushiplate.jpg'</span>
+sprite_iamge_filename = <span class="string">'fugu.png'</span>
+
+<span class="keyword">import</span> pygame
+from pygame.locals <span class="keyword">import</span> *
+from sys <span class="keyword">import</span> <span class="built_in">exit</span>
+from gameobjects.vector2 <span class="keyword">import</span> Vector2
+
+pygame.init()
+
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+<span class="built_in">background</span> = pygame.<span class="built_in">image</span>.load(background_image_filename).convert()
+sprite = pygame.<span class="built_in">image</span>.load(sprite_iamge_filename).convert_alpha()
+
+clock = pygame.time.Clock()
+
+sprite_pos = Vector2(<span class="number">200</span>, <span class="number">150</span>)
+sprite_speed = <span class="number">300.</span>
+
+<span class="keyword">while</span> True:
+    <span class="keyword">for</span> event in pygame.event.<span class="built_in">get</span>():
+        <span class="keyword">if</span> event.type == QUIT:
+            <span class="built_in">exit</span>()
+
+    pressed_keys = pygame.<span class="variable">key</span>.get_pressed()
+    key_direction = Vector2(<span class="number">0</span>, <span class="number">0</span>)
+    <span class="keyword">if</span> pressed_keys[K_LEFT]:
+        key_direction.x = -<span class="number">1</span>
+    elif pressed_keys[K_RIGHT]:
+        key_direction.x = +<span class="number">1</span>
+    <span class="keyword">if</span> pressed_keys[K_UP]:
+        key_direction.y = -<span class="number">1</span>
+    elif pressed_keys[K_DOWN]:
+        key_direction.y = +<span class="number">1</span>
+
+    key_direction.normalize()
+
+    screen.blit(<span class="built_in">background</span>, (<span class="number">0</span>, <span class="number">0</span>))
+    screen.blit(sprite, sprite_pos)
+
+    time_passed = clock.tick(<span class="number">30</span>)
+    time_passed_seconds = time_passed / <span class="number">1000.0</span>
+
+    sprite_pos += key_direction * sprite_speed * time_passed_seconds
+
+    pygame.display.update()
+</code></pre><h3 id="键盘旋转移动">键盘旋转移动</h3><p>往八个方向移动有点像人造的，现实中很少看到这样移动的，大多数东西都能自由转向。</p>
+<pre><code>background_image_filename = <span class="string">'sushiplate.jpg'</span>
+sprite_image_filename = <span class="string">'fugu.png'</span>
+
+<span class="keyword">import</span> pygame
+from pygame.locals <span class="keyword">import</span> *
+from sys <span class="keyword">import</span> <span class="built_in">exit</span>
+from gameobjects.vector2 <span class="keyword">import</span> Vector2
+from math <span class="keyword">import</span> *
+
+pygame.init()
+
+screen = pygame.display.set_mode((<span class="number">640</span>, <span class="number">480</span>), <span class="number">0</span>, <span class="number">32</span>)
+
+<span class="built_in">background</span> = pygame.<span class="built_in">image</span>.load(background_image_filename).convert()
+sprite = pygame.<span class="built_in">image</span>.load(sprite_image_filename).convert_alpha()
+
+clock = pygame.time.Clock()
+
+sprite_pos = Vector2(<span class="number">200</span>, <span class="number">150</span>)
+sprite_speed = <span class="number">300.</span>
+sprite_rotation = <span class="number">0.</span>
+sprite_rotation_speed = <span class="number">360.</span> # Degrees per <span class="built_in">second</span>
+
+<span class="keyword">while</span> True:
+    <span class="keyword">for</span> event in pygame.event.<span class="built_in">get</span>():
+        <span class="keyword">if</span> event.type == QUIT:
+            <span class="built_in">exit</span>()
+
+    pressed_keys = pygame.<span class="variable">key</span>.get_pressed()
+
+    rotation_direction = <span class="number">0.</span>
+    movement_direction = <span class="number">0.</span>
+
+    <span class="keyword">if</span> pressed_keys[K_LEFT]:
+        rotation_direction = +<span class="number">1.0</span>
+    <span class="keyword">if</span> pressed_keys[K_RIGHT]:
+        rotation_direction = -<span class="number">1.0</span>
+    <span class="keyword">if</span> pressed_keys[K_UP]:
+        movement_direction = +<span class="number">1.0</span>
+    <span class="keyword">if</span> pressed_keys[K_DOWN]:
+        movement_direction = -<span class="number">1.0</span>
+
+    screen.blit(<span class="built_in">background</span>, (<span class="number">0</span>, <span class="number">0</span>))
+
+    rotated_sprite = pygame.transform.<span class="built_in">rotate</span>(sprite, sprite_rotation)
+    w, h = rotated_sprite.get_size()
+    sprite_draw_pos = Vector2(sprite_pos.x - w / <span class="number">2</span>, sprite_pos.y - h / <span class="number">2</span>)
+    screen.blit(rotated_sprite, sprite_draw_pos)
+
+    time_passed = clock.tick()
+    time_passed_seconds = time_passed / <span class="number">1000.0</span>
+
+    sprite_rotation += rotation_direction * sprite_rotation_speed * time_passed_seconds
+
+    heading_x = <span class="built_in">sin</span>(sprite_rotation * pi / <span class="number">180.0</span>)
+    heading_y = <span class="built_in">cos</span>(sprite_rotation * pi / <span class="number">180.0</span>)
+    heading = Vector2(heading_x, heading_y)
+    heading *= movement_direction
+
+    sprite_pos += heading * sprite_speed * time_passed_seconds
+
+    pygame.display.update()
+</code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -212,7 +353,7 @@ font_height = font.get_linesize()
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Python/" title="Python">Python<sup>12</sup></a></li>
+				<li><a href="/tags/Python/" title="Python">Python<sup>14</sup></a></li>
 			
 		
 			
@@ -220,11 +361,11 @@ font_height = font.get_linesize()
 			
 		
 			
-				<li><a href="/tags/Pygame/" title="Pygame">Pygame<sup>5</sup></a></li>
+				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+				<li><a href="/tags/Pygame/" title="Pygame">Pygame<sup>5</sup></a></li>
 			
 		
 			
@@ -237,14 +378,6 @@ font_height = font.get_linesize()
 		
 			
 				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -305,7 +438,7 @@ font_height = font.get_linesize()
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 		
 		<a href="/about" target="_blank" title="opensvn">opensvn</a>
 		

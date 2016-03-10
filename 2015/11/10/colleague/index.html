@@ -33,7 +33,7 @@ void get_process_name_by_pid(int pid, char *name)
 {
     char buf[256] = {0};
     char">
-<meta property="og:updated_time" content="2015-11-12T03:14:49.539Z">
+<meta property="og:updated_time" content="2015-12-15T11:27:16.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="整理代码片段">
 <meta name="twitter:description" content="根据pid获取进程名#include &amp;lt;stdio.h&amp;gt;
@@ -193,6 +193,18 @@ void get_process_name_by_pid(int pid, char *name)
 
     <span class="keyword">return</span> <span class="literal">true</span>;
 }
+</code></pre><h1 id="计算一个数字二进制表示1的个数">计算一个数字二进制表示1的个数</h1><pre><code><span class="function"><span class="keyword">int</span> <span class="title">count_bit</span><span class="params">(<span class="keyword">int</span> n)</span>
+</span>{
+    <span class="keyword">int</span> count = <span class="number">0</span>;
+
+    <span class="keyword">while</span> (n != <span class="number">0</span>)
+    {
+        ++count;
+        n &amp;= n - <span class="number">1</span>;
+    }
+
+    <span class="keyword">return</span> count;
+}
 </code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
@@ -201,7 +213,7 @@ void get_process_name_by_pid(int pid, char *name)
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/C/">C</a><a href="/tags/Linux/">Linux</a>
+  <span></span> <a href="/tags/C-C/">C/C++</a>
   </div>
 
 </div>
@@ -263,7 +275,7 @@ void get_process_name_by_pid(int pid, char *name)
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Python/" title="Python">Python<sup>12</sup></a></li>
+				<li><a href="/tags/Python/" title="Python">Python<sup>14</sup></a></li>
 			
 		
 			
@@ -271,11 +283,11 @@ void get_process_name_by_pid(int pid, char *name)
 			
 		
 			
-				<li><a href="/tags/Pygame/" title="Pygame">Pygame<sup>5</sup></a></li>
+				<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C/" title="C++">C++<sup>2</sup></a></li>
+				<li><a href="/tags/Pygame/" title="Pygame">Pygame<sup>5</sup></a></li>
 			
 		
 			
@@ -288,14 +300,6 @@ void get_process_name_by_pid(int pid, char *name)
 		
 			
 				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -356,7 +360,7 @@ void get_process_name_by_pid(int pid, char *name)
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 		
 		<a href="/about" target="_blank" title="opensvn">opensvn</a>
 		
