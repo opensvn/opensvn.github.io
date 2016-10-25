@@ -12,10 +12,12 @@ excerpt: Boost.Asio简介
 
 Boost.Asio成功地抽象出输入和输出的概念，不仅仅是网络，还有COM串行端口，文件等。在此之上，你可以同步或异步进行输入或输出编程：
 
-    read(stream, buffer [, extra options])
-    async_read(stream, buffer [, extra options], handler)
-    write(stream, buffer [, extra options])
-    async_write(stream, buffer [, extra options], handler)
+{% highlight cpp %}
+read(stream, buffer [, extra options])
+async_read(stream, buffer [, extra options], handler)
+write(stream, buffer [, extra options])
+async_write(stream, buffer [, extra options], handler)
+{% endhighlight %}
 
 正如你在上一个代码片段看到，这些函数接受一个stream实例，它可以是任何东西（不仅仅是socket，只要我们能够读取或写入它）。
 
@@ -47,46 +49,52 @@ BOOST_ASIO_DISABLE_THREADS如果被定义，它会禁止Boost.Asio中线程支�
 
 以下是一个基本的同步客户端例子：
 
-    using boost::asio;
-    io_service service;
-    ip::tcp::endpoint ep(ip::address::from_string("127.0.0.1"), 2001);
-    ip::tcp::socket sock(service);
-    sock.connect(ep);
+{% highlight cpp %}
+using boost::asio;
+io_service service;
+ip::tcp::endpoint ep(ip::address::from_string("127.0.0.1"), 2001);
+ip::tcp::socket sock(service);
+sock.connect(ep);
+{% endhighlight %}
 
 首先，程序需要至少一个io_service实例。Boost.Asio使用io_service与操作系统输入/输出服务对话。通常一个io_service实例就足够了。
 
 以下是一个简单的同步服务器例子：
 
-	typedef boost::shared_ptr<ip::tcp::socket> socket_ptr;
-	io_service service;
-	ip::tcp::endpoint ep(ip::tcp::v4(), 2001)); // listen on 2001
-	ip::tcp::acceptor acc(service, ep);
-	while (true) {
-	    socket_ptr sock(new ip::tcp::socket(service));
-	    acc.accept(*sock);
-	    boost::thread(boost::bind(client_session, sock));
-	}
-	void client_session(socket_ptr sock) {
-	    while (true) {
-	        char data[512];
-	        size_t len = sock->read_some(buffer(data));
-	        if (len > 0)
-	            write(*sock, buffer("ok", 2));
-	    }
-	}
+{% highlight cpp %}
+typedef boost::shared_ptr<ip::tcp::socket> socket_ptr;
+io_service service;
+ip::tcp::endpoint ep(ip::tcp::v4(), 2001)); // listen on 2001
+ip::tcp::acceptor acc(service, ep);
+while (true) {
+    socket_ptr sock(new ip::tcp::socket(service));
+    acc.accept(*sock);
+    boost::thread(boost::bind(client_session, sock));
+}
+void client_session(socket_ptr sock) {
+    while (true) {
+        char data[512];
+        size_t len = sock->read_some(buffer(data));
+        if (len > 0)
+            write(*sock, buffer("ok", 2));
+    }
+}
+{% endhighlight %}
 
 创建一个异步客户端，类似下面这样：
 
-	using boost::asio;
-	io_service service;
-	ip::tcp::endpoint ep(ip::address::from_string("127.0.0.1"), 2001);
-	ip::tcp::socket sock(service);
-	sock.async_connect(ep, connect_handler);
-	service.run();
-	void connect_handler(const boost::system::error_code & ec) {
-	    // here we know we connected successfully
-	    // if ec indicates success
-	}
+{% highlight cpp %}
+using boost::asio;
+io_service service;
+ip::tcp::endpoint ep(ip::address::from_string("127.0.0.1"), 2001);
+ip::tcp::socket sock(service);
+sock.async_connect(ep, connect_handler);
+service.run();
+void connect_handler(const boost::system::error_code & ec) {
+    // here we know we connected successfully
+    // if ec indicates success
+}
+{% endhighlight %}
 
 注意service.run()循环会一直运行，只要还有异步操作加入。在前一个例子中，只有一个async_connect异步操作。在此之后，service.run()退出。
 
@@ -94,23 +102,25 @@ BOOST_ASIO_DISABLE_THREADS如果被定义，它会禁止Boost.Asio中线程支�
 
 以下是一个基本异步服务器：
 
-	using boost::asio;
-	typedef boost::shared_ptr<ip::tcp::socket> socket_ptr;
-	io_service service;
-	ip::tcp::endpoint ep(ip::tcp::v4(), 2001)); // listen on 2001
-	ip::tcp::acceptor acc(service, ep);
-	socket_ptr sock(new ip::tcp::socket(service));
-	start_accept(sock);
-	service.run();
-	void start_accept(socket_ptr sock) {
-	    acc.async_accept(*sock, boost::bind(handle_accept, sock, _1));
-	}
-	void handle_accept(socket_ptr sock, const boost::system::error_code &err) {
-	    if (err) return;
-	    // at this point, you can read/write to the socket
-	    socket_ptr sock(new ip::tcp::socket(service));
-	    start_accept(sock);
-	}
+{% highlight cpp %}
+using boost::asio;
+typedef boost::shared_ptr<ip::tcp::socket> socket_ptr;
+io_service service;
+ip::tcp::endpoint ep(ip::tcp::v4(), 2001)); // listen on 2001
+ip::tcp::acceptor acc(service, ep);
+socket_ptr sock(new ip::tcp::socket(service));
+start_accept(sock);
+service.run();
+void start_accept(socket_ptr sock) {
+    acc.async_accept(*sock, boost::bind(handle_accept, sock, _1));
+}
+void handle_accept(socket_ptr sock, const boost::system::error_code &err) {
+    if (err) return;
+    // at this point, you can read/write to the socket
+    socket_ptr sock(new ip::tcp::socket(service));
+    start_accept(sock);
+}
+{% endhighlight %}
 
 handle_accept里面，在socket使用后，创建一个新的socket，并再次调用start_accept()，它添加另一个async_accept操作，保持service.run()忙碌下去。
 
@@ -118,12 +128,14 @@ handle_accept里面，在socket使用后，创建一个新的socket，并再次�
 
 Boost.Asio允许异常或错误码。所有同步函数重载了抛出异常或返回错误码的版本。这些函数抛出boost::system::system_error错误。
 
-    using boost::asio;
-    ip::tcp::endpoint ep;
-    ip::tcp::socket sock(service);
-    sock.connect(ep); // Line 1
-    boost::system::error_code err;
-    sock.connect(ep, err); // Line 2
+{% highlight cpp %}
+using boost::asio;
+ip::tcp::endpoint ep;
+ip::tcp::socket sock(service);
+sock.connect(ep); // Line 1
+boost::system::error_code err;
+sock.connect(ep, err); // Line 2
+{% endhighlight %}
 
 在前面的代码中，sock.connect(ep)在发生错误时抛出异常，而sock.connect(ep, err)返回错误码。
 
@@ -147,62 +159,74 @@ Boost.Asio库自己可以使用多个非用户的线程，它保证在这些线�
 
 Boost.Asio允许等待信号，比如SIGTERM，SIGINT，SIGSEGV等：
 
-	void signal_handler(const boost::system::error_code & err, int signal)
-	{
-	    // log this, and terminate application
-	}
-	boost::asio::signal_set sig(service, SIGINT, SIGTERM);
-	sig.async_wait(signal_handler);
+{% highlight cpp %}
+void signal_handler(const boost::system::error_code & err, int signal)
+{
+    // log this, and terminate application
+}
+boost::asio::signal_set sig(service, SIGINT, SIGTERM);
+sig.async_wait(signal_handler);
+{% endhighlight %}
 
 使用Boost.Asio可以很容易地连接串行端口：
 
-	io_service service;
-	serial_port sp(service, "COM7");
-	// serial_port sp(service, "/dev/ttyS0");
-	serial_port::baud_rate rate(9600);
-	sp.set_option(rate);
-	char data[512];
-	read(sp, buffer(data, 512));
+{% highlight cpp %}
+io_service service;
+serial_port sp(service, "COM7");
+// serial_port sp(service, "/dev/ttyS0");
+serial_port::baud_rate rate(9600);
+sp.set_option(rate);
+char data[512];
+read(sp, buffer(data, 512));
+{% endhighlight %}
 
 Boost.Asio也允许连接Windows文件：
 
-	HANDLE h = ::OpenFile(...);
-	windows::stream_handle sh(service, h);
-	char data[512];
-	read(h, buffer(data, 512));
+{% highlight cpp %}
+HANDLE h = ::OpenFile(...);
+windows::stream_handle sh(service, h);
+char data[512];
+read(h, buffer(data, 512));
+{% endhighlight %}
 
 你可以同样操作POSIX文件描述符，比如管道，标准I/O，各种设备：
 
-	posix::stream_descriptor sd_in(service, ::dup(STDIN_FILENO));
-	char data[512];
-	read(sd_in, buffer(data, 512));
+{% highlight cpp %}
+posix::stream_descriptor sd_in(service, ::dup(STDIN_FILENO));
+char data[512];
+read(sd_in, buffer(data, 512));
+{% endhighlight %}
 
 # 计时器 #
 
 一些I/O操作可以有一个完成的最后期限，这个概念只能用到异步操作。
 
-	bool read = false;
-	void deadline_handler(const boost::system::error_code &) {
-	    std::cout << (read ? "read successfully" : "read failed") <<
-	    std::endl;
-	}
-	void read_handler(const boost::system::error_code &) {
-	    read = true;
-	}
-	ip::tcp::socket sock(service);
-	…
-	read = false;
-	char data[512];
-	sock.async_read_some(buffer(data, 512));
-	deadline_timer t(service, boost::posix_time::milliseconds(100));
-	t.async_wait(&deadline_handler);
-	service.run();
+{% highlight cpp %}
+bool read = false;
+void deadline_handler(const boost::system::error_code &) {
+    std::cout << (read ? "read successfully" : "read failed") <<
+    std::endl;
+}
+void read_handler(const boost::system::error_code &) {
+    read = true;
+}
+ip::tcp::socket sock(service);
+…
+read = false;
+char data[512];
+sock.async_read_some(buffer(data, 512));
+deadline_timer t(service, boost::posix_time::milliseconds(100));
+t.async_wait(&deadline_handler);
+service.run();
+{% endhighlight %}
 
 Boost.Asio同样允许同步计时器，但它们通常等价于sleep操作。以下2个等价：
 
-	boost::this_thread::sleep(500);
-	deadline_timer t(service, boost::posix_time::milliseconds(500));
-	t.wait();
+{% highlight cpp %}
+boost::this_thread::sleep(500);
+deadline_timer t(service, boost::posix_time::milliseconds(500));
+t.wait();
+{% endhighlight %}
 
 # io_service类 #
 
@@ -211,7 +235,7 @@ io_service是Boost.Asio最重要的类，它跟操作系统打交道，等待一
 你可以以几种方式使用io_service：
 
 * 单线程，1个io_service和单处理线程：
-```C++
+{% highlight cpp %}
 io_service service_;
 // all the socket operations are handled by service_
 ip::tcp::socket sock1(service_);
@@ -222,9 +246,9 @@ sock2.async_connect(ep, connect_handler);
 deadline_timer t(service_, boost::posix_time::seconds(5));
 t.async_wait(timeout_handler);
 service_.run();
-```
+{% endhighlight %}
 * 多线程，单个io_service和多个处理线程：
-```C++
+{% highlight cpp %}
 io_service service_;
 ip::tcp::socket sock1(service_);
 ip::tcp::socket sock2(service_);
@@ -237,9 +261,9 @@ for ( int i = 0; i < 5; ++i)
 void run_service() {
     service_.run();
 }
-```
+{% endhighlight %}
 * 多个线程，多个io_service和多个处理线程：
-```C++
+{% highlight cpp %}
 io_service service_[2];
 ip::tcp::socket sock1(service_[0]);
 ip::tcp::socket sock2(service_[1]);
@@ -252,12 +276,14 @@ for (int i = 0; i < 2; ++i)
 void run_service(int idx) {
     service_[idx].run();
 }
-```
+{% endhighlight %}
 
 首先，需要注意在一个线程里面不能有多个io_service实例。以下代码毫无意义：
 
-	for ( int i = 0; i < 2; ++i)
-	    service_[i].run();
+{% highlight cpp %}
+for ( int i = 0; i < 2; ++i)
+    service_[i].run();
+{% endhighlight %}
 
 以下是从前面例子中你应该学到的：
 
@@ -267,8 +293,10 @@ void run_service(int idx) {
 
 最后记住如果没有更多的操作需要处理，run()将会终止。如果想要run()继续运行，你必须把更多工作给它。一种方法是在处理函数中开始另一个异步操作。另一种方法是模拟一些工作给它：
 
-	typedef boost::shared_ptr<io_service::work> work_ptr;
-	work_ptr dummy_work(new io_service::work(service_));
+{% highlight cpp %}
+typedef boost::shared_ptr<io_service::work> work_ptr;
+work_ptr dummy_work(new io_service::work(service_));
+{% endhighlight %}
 
 上述代码将使得service_.run()不会停止除非你使用service_.stop()或dummy_work.reset(0)销毁dummy_work。
 

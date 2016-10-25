@@ -25,21 +25,25 @@ Python注释以井号开始。一个注释可以在一行的任何地方开始�
 
 Python语句通常由换行界定，意思是一个语句一行。单一语句可以通过反斜杠分成多行。反斜杠可以放在换行符前面使当前语句延续到下一行。
 
-    # check conditions
-    if (weather_is_hot == 1) and \
-       (shark_warnings == 0):
-        send_goto_beach_mesg_to_pager()
+{% highlight python %}
+# check conditions
+if (weather_is_hot == 1) and \
+   (shark_warnings == 0):
+    send_goto_beach_mesg_to_pager()
+{% endhighlight %}
 
 有两种例外可以不使用反斜杠延续到下一行。被括号，方括号或花括号包围的单一语句和包围在三重引号的字符串。
 
-    # display a string with triple quotes
-    print '''hi there, this is a long message for you
-    that goes over multiple lines... you will find
-    out soon that triple quotes in Python allows
-    this kind of fun! it is like a day on the beach!'''
-    # set some variables
-    go_surf, get_a_tan_while, boat_size, toll_money = (1,
-        'windsurfing', 40.0, -2.00)
+{% highlight python %}
+# display a string with triple quotes
+print '''hi there, this is a long message for you
+that goes over multiple lines... you will find
+out soon that triple quotes in Python allows
+this kind of fun! it is like a day on the beach!'''
+# set some variables
+go_surf, get_a_tan_while, boat_size, toll_money = (1,
+    'windsurfing', 40.0, -2.00)
+{% endhighlight %}
 
 ### 3.1.3 多个语句组成程序组（:）
 
@@ -57,7 +61,9 @@ Python利用缩进作为一种界定代码块的方法。内层的代码通过�
 
 分号（;）允许多个语句在一行，这些语句都不开始一个新的代码块。
 
-    import sys; x = 'foo'; sys.stdout.write(x + '\n')
+{% highlight python %}
+import sys; x = 'foo'; sys.stdout.write(x + '\n')
+{% endhighlight %}
 
 不要多行语句放在一行，因为它使得代码更难阅读。
 
@@ -70,70 +76,88 @@ Python利用缩进作为一种界定代码块的方法。内层的代码通过�
 
 等号是Python主要的赋值操作符，其它的是增量赋值操作符。
 
-    anInt = -12
-    aString = 'cart'
-    aFloat = -3.1415 * (5.0 ** 2)
-    anotherString = 'shop' + 'ping'
-    aList = [3.14e10, '2nd elmt of a list', 8.82-4.371j]
+{% highlight python %}
+anInt = -12
+aString = 'cart'
+aFloat = -3.1415 * (5.0 ** 2)
+anotherString = 'shop' + 'ping'
+aList = [3.14e10, '2nd elmt of a list', 8.82-4.371j]
+{% endhighlight %}
 
 注意赋值并没有显式将一个值赋给一个变量。在Python中，对象都是被引用的。因此当赋值时，一个对象的引用被赋值给变量，不管对象是刚刚创建还是已经存在。
 
 如果你熟悉C，赋值被当做表达式。Python中不是这样，下面这样的语句在Python中非法：
 
-    >>> x = 1
-    >>> y = (x = x + 1) # assignments not expressions!
-      File "<stdin>", line 1
-        y = (x = x + 1)
-               ^
-    SyntaxError: invalid syntax
+{% highlight python %}
+>>> x = 1
+>>> y = (x = x + 1) # assignments not expressions!
+  File "<stdin>", line 1
+    y = (x = x + 1)
+           ^
+SyntaxError: invalid syntax
+{% endhighlight %}
 
 赋值可以链接在一起：
 
-    >>> y = x = x + 1
-    >>> x, y
-    (2, 2)
+{% highlight python %}
+>>> y = x = x + 1
+>>> x, y
+(2, 2)
+{% endhighlight %}
 
 ### 增量赋值操作符
 
 从Python 2.0开始，等号可以和算术操作符一起使用，且产生的结果再赋值给原来的变量。比如：
 
-    x = x + 1 <=> x += 1
+{% highlight python %}
+x = x + 1 <=> x += 1
+{% endhighlight %}
 
 增量赋值操作符有，**+=**，**-=**，***=**，**/=**，**%=**，**\*\*=**，**<<=**，**>>=**，**&=**，**^=**，**|=**。
 
 除了明显的语法改变，最显著的不同是第一个对象只被检查一次。可变对象在原地改变，而不可变对象和可变对象有一样的效果（一个新对象被分配）。
 
-    >>> m = 12
-    >>> m %= 7
-    >>> m
-    5
-    >>> m **= 2
-    >>> m
-    25
-    >>> aList = [123, 'xyz']
-    >>> aList += [45.6e7]
-    >>> aList
-    [123, 'xyz', 456000000.0
+{% highlight python %}
+>>> m = 12
+>>> m %= 7
+>>> m
+5
+>>> m **= 2
+>>> m
+25
+>>> aList = [123, 'xyz']
+>>> aList += [45.6e7]
+>>> aList
+[123, 'xyz', 456000000.0
+{% endhighlight %}
 
 Python不支持前/后自增操作符，也不支持前/后自减操作符。
 
 ### 多个赋值
 
-    >>> x = y = z = 1
+{% highlight python %}
+>>> x = y = z = 1
+{% endhighlight %}
 
 上面这个例子中，一个整形对象被创建，且x，y，z都引用到这个整形对象。Python也可以将多个对象赋值给多个变量。
 
 ### 元组赋值
 
-    >>> x, y, z = 1, 2, 'a string'
+{% highlight python %}
+>>> x, y, z = 1, 2, 'a string'
+{% endhighlight %}
 
 上面这个例子中，2个整形对象和一个字符串对象被赋值给x，y，z。尽管括号是可选的，我们建议在任何使代码容易阅读的地方使用括号：
 
-    >>> (x, y, z) = (1, 2, 'a string')
+{% highlight python %}
+>>> (x, y, z) = (1, 2, 'a string')
+{% endhighlight %}
 
 Python元组赋值的一个有趣副作用是我们不再需要一个临时变量来交换2个变量的值：
 
-    >>> x, y = y, x
+{% highlight python %}
+>>> x, y = y, x
+{% endhighlight %}
 
 显然，Python在赋值前执行计算。
 
@@ -154,12 +178,14 @@ Python标识符的规则和其它来自C世界的高级语言一样：
 
 **keyword**模块包含关键字列表和一个**iskeyword()**函数。
 
-    >>> import keyword
-    >>> keyword.kwlist
-    ['and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del',
-     'elif', 'else', 'except', 'exec', 'finally', 'for', 'from', 'global',
-     'if', 'import', 'in', 'is', 'lambda', 'not', 'or', 'pass', 'print',
-     'raise', 'return', 'try', 'while', 'with', 'yield']
+{% highlight python %}
+>>> import keyword
+>>> keyword.kwlist
+['and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del',
+ 'elif', 'else', 'except', 'exec', 'finally', 'for', 'from', 'global',
+ 'if', 'import', 'in', 'is', 'lambda', 'not', 'or', 'pass', 'print',
+ 'raise', 'return', 'try', 'while', 'with', 'yield']
+{% endhighlight %}
 
 ### 3.3.3 Built-ins
 

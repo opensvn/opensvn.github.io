@@ -37,7 +37,7 @@ UDP协议是一个与TCP协议不同的传输层协议，它具有下列特性�
 2. 使用一个asio::ip::address对象代表IP地址。
 3. 用address对象和端口初始化一个asio::ip::tcp::endpoint对象。
 
-```c++
+{% highlight cpp %}
 #include <boost/asio.hpp>
 
 std::string raw_ip_address = "127.0.0.1";
@@ -50,7 +50,7 @@ if (ec.value() != 0) {
 }
 
 asio::ip::tcp::endpoint ep(ip_address, port_num);
-```
+{% endhighlight %}
 
 ### 服务端创建端点
 
@@ -58,7 +58,7 @@ asio::ip::tcp::endpoint ep(ip_address, port_num);
 2. 创建一个特殊的asio::ip::address对象表示这个服务器所有可用的IP地址。
 3. 使用address对象和端口初始化一个asio::ip::tcp::endpoint对象。
 
-```c++
+{% highlight cpp %}
 #include <boost/asio.hpp>
 
 unsigned short port_num = 3333;
@@ -66,7 +66,7 @@ unsigned short port_num = 3333;
 // IPv6
 asio::ip::address ip_address = asio::ip::address_v6::any();
 asio::ip::tcp::endpoint ep(ip_address, port_num);
-```
+{% endhighlight %}
 
 Boost.Asio提供3个类用来表示IP地址：
 
@@ -76,7 +76,7 @@ Boost.Asio提供3个类用来表示IP地址：
 
 from_string()是asio::ip::address的静态方法，它有4个重载形式：
 
-```c++
+{% highlight cpp %}
 static asio::ip::address from_string(
     const char* str);
     
@@ -90,21 +90,21 @@ static asio::ip::address from_string(
 static asio::ip::address from_string(
     const std::string& str,
     boost::system::error_code& ec);
-```
+{% endhighlight %}
 
 为了表示主机可用的所有IP地址，asio::ip::address_v4和asio::ip::address_v6提供了一个静态方法any()。
 
 asio::ip::tcp::endpoint其实是basic_endpoint<>模板的一个特例。
 
-```c++
+{% highlight cpp %}
 typedef basic_endpoint<tcp> endpoint;
-```
+{% endhighlight %}
 
 同样asio::ip::udp::endpoint也是basic_endpoint<>模板的一个特例。
 
-```c++
+{% highlight cpp %}
 typedef basic_endpoint<udp> endpoint;
-```
+{% endhighlight %}
 
 ## 创建一个主动套接字
 
@@ -115,7 +115,7 @@ typedef basic_endpoint<udp> endpoint;
 3. 创建一个代表套接字的对象，传递asio::io_service给它的构造函数。
 4. 调用open()方法，传递协议参数给它。
 
-```c++
+{% highlight cpp %}
 asio_io_service ios;
 asio::ip::tcp protocol = asio::ip::tcp::v4();
 asio::ip::tcp::socket sock(ios);
@@ -127,24 +127,24 @@ if (ec.value() != 0) {
         << " Message: " << ec.message();
     return ec.value();
 }
-```
+{% endhighlight %}
 
 asio::ip::tcp类代表TCP协议，它没有提供功能，而是像一个数据结构包含一组描述协议的值。
 
 asio::ip::tcp没有公开的构造函数。相反它提供了2个静态方法（v4()和v6()）返回该类对象。
 
-```c++
+{% highlight cpp %}
 class tcp {
 public:
     typedef basic_endpoint<tcp> endpoint;
     typedef basic_stream_socket<tcp> socket;
     typedef basic_socket_acceptor<tcp> acceptor;
 };
-```
+{% endhighlight %}
 
 使用UDP协议创建主动套接字和TCP类似：
 
-```c++
+{% highlight cpp %}
 asio::io_service ios;
 asio::ip::udp protocol = asio::ip::udp::v6();
 try {
@@ -152,7 +152,7 @@ try {
 } catch (boost::system::system_error& e) {
     std::cerr << e.code() << " " << e.what();
 }
-```
+{% endhighlight %}
 
 ## 创建一个被动套接字
 
@@ -168,7 +168,7 @@ try {
 3. 创建一个asio::ip::tcp::acceptor类对象表示接收器套接字，传递asio::io_service类对象给它的构造函数。
 4. 调用接收器套接字的open()函数，传递第2步创建的对象给它。
 
-```c++
+{% highlight cpp %}
 asio::io_service ios;
 asio::ip::tcp protocol = asio::ip::tcp::v6();
 asio::ip::tcp::acceptor acceptor(ios);
@@ -177,7 +177,7 @@ acceptor.open(protocol, ec);
 if (ec.value() != 0) {
     std::cerr << ec.value() << " " << ec.message();
 }
-```
+{% endhighlight %}
 
 ## 解析域名
 
@@ -191,7 +191,7 @@ if (ec.value() != 0) {
 4. 创建一个适合必要协议的DNS解析对象。
 5. 调用解析器的resolve()方法，用query对象作为参数。
 
-```c++
+{% highlight cpp %}
 std::string host = "samplehost.com";
 std::string port_num = "3333";
 
@@ -208,24 +208,24 @@ asio::ip::tcp::resolver::iterator it =
 if (ec != 0) {
     // handle error
 }
-```
+{% endhighlight %}
 
 asio::ip::tcp::resolver::iterator类是一个迭代器，它指向解析结果的第一个元素，元素类型是asio::ip::basic_resolver_entry&lt;tcp&gt;。每一个结果包含一个endpoint对象，可以通过asio::ip::basic_resolver_entry&lt;tcp&gt;::endpoint()获取。
 
-```c++
+{% highlight cpp %}
 asio::ip::tcp::resolver::iterator it =
     resolver.resolve(query, ec);
 asio::ip::tcp::resolver::iterator it_end;
 for (; it != it_end; ++it) {
     asio::ip::tcp::endpoint = it->endpoint();
 }
-```
+{% endhighlight %}
 
 当域名被映射到多个IP地址，并且有些是IPv4，有些是IPv6时，则结果集合中包含2种endpoint。
 
 通过UDP协议解析域名也是类似的。
 
-```c++
+{% highlight cpp %}
 std::string host = "www.samplehost.com";
 std::string port_num = "3333";
 
@@ -242,7 +242,7 @@ asio::ip::udp::resolver::iterator it =
 if (ec != 0) {
     // handle error
 }
-```
+{% endhighlight %}
 
 ## 绑定套接字到端点
 
@@ -253,7 +253,7 @@ if (ec != 0) {
 3. 创建并打开一个接收器套接字。
 4. 调用接收器套接字的bind()方法，将断点作为参数传给它。
 
-```c++
+{% highlight cpp %}
 unsigned short port_num = 3333;
 asio::ip::tcp::endpoint ep(asio::ip::address_v4::any(), port_num);
 asio::ip::tcp::acceptor acceptor(ios, ep.protocol());
@@ -263,11 +263,11 @@ acceptor.bind(ep, ec);
 if (ec != 0) {
     // handle error
 }
-```
+{% endhighlight %}
 
 UDP服务器不建立连接，而且使用主动套接字等待到来的请求。
 
-```c++
+{% highlight cpp %}
 unsigned short port_num = 3333;
 asio::ip::udp::endpoint ep(asio::ip::address_v4::any(), port_num);
 asio::io_service ios;
@@ -278,7 +278,7 @@ sock.bind(ep, ec);
 if (ec != 0) {
     // handle error
 }
-```
+{% endhighlight %}
 
 ## 连接一个套接字
 
@@ -288,7 +288,7 @@ if (ec != 0) {
 4. 用endpoint对象作参数调用connect()方法。
 5. 如果方法成功，套接字被认为已连接并可以用来发送和接收来自服务器的数据。
 
-```c++
+{% highlight cpp %}
 std::string raw_ip_address = "127.0.0.1";
 unsigned short port_num = 3333;
 try {
@@ -302,7 +302,7 @@ try {
 } catch (boost::system::system_error& e) {
     std::cerr << e.code() << " " << e.what();
 }
-```
+{% endhighlight %}
 
 自由函数asio::connect()接收一个主动套接字对象和一个asio::ip::tcp::resolver::iterator对象作为参数，遍历所有端点。
 
@@ -311,7 +311,7 @@ try {
 3. 创建一个主动套接字，不打开它。
 4. 调用asio::connect()函数。
 
-```c++
+{% highlight cpp %}
 std::string host = "samplehost.com";
 std::string port_num = "3333";
 
@@ -333,7 +333,7 @@ try {
 } catch (boost::system::system_error& e) {
     std::cerr << e.code() << " " << e.what();
 }
-```
+{% endhighlight %}
 
 ## 接受连接
 
@@ -346,7 +346,7 @@ try {
 7. 当准备好处理连接请求时，用主动套接字作为参数，调用接收器套接字的accept()方法。
 8. 如果调用成功，主动套接字和客户端程序就连上了，可以用来通信了。
 
-```c++
+{% highlight cpp %}
 const int BACKLOG_SIZE = 30;
 unsigned short port_num = 3333;
 asio::ip::tcp::endpoint ep(asio::ip::address_v4::any(), port_num);
@@ -365,6 +365,6 @@ try {
 } catch (boost::system::system_error& e) {
     std::cerr << e.code() << " " << e.what();
 }
-```
+{% endhighlight %}
 
 注意UDP服务器不使用接收器套接字，因为UDP协议不需要建立连接。相反，主动套接字被使用来绑定到一个端点并监听到来的报文，而且同一个主动套接字也用来通信。

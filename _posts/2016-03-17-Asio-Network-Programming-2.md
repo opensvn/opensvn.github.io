@@ -30,18 +30,18 @@ Boost.Asio所有东西都放在boost::asio命名空间或者子命名空间：
 * ip::host_name()：返回当前主机名。
 
 你可能最常用到ip::address::from_string：
-```c++
+{% highlight cpp %}
 ip::address addr = ip::address::from_string("127.0.0.1");
-```
+{% endhighlight %}
 
 ## 端点 ##
 
 端点是你要连接的地址和端口。不同类型有自己的endpoint类，比如ip::tcp::endpoint，ip::udp::endpoint和ip::icmp::endpoint。
 
 如果你想连接本机80端口，这样：
-```c++
+{% highlight cpp %}
 ip::tcp::endpoint ep(ip::address::from_string("127.0.0.1"), 80);
-```
+{% endhighlight %}
 
 创建端点有3种方法：
 
@@ -50,14 +50,14 @@ ip::tcp::endpoint ep(ip::address::from_string("127.0.0.1"), 80);
 * endpoint(addr, port)：创建一个指定地址和端口的端点。
 
 下面是例子：
-```c++
+{% highlight cpp %}
 ip::tcp::endpoint ep1;
 ip::tcp::endpoint ep2(ip::tcp::v4(), 80);
 ip::tcp::endpoint ep3(ip::address::from_string("127.0.0.1"), 80);
-```
+{% endhighlight %}
 
 如果想要连接到一个主机名，可以这样做：
-```c++
+{% highlight cpp %}
 // outputs "87.248.122.122"
 io_service service;
 ip::tcp::resolver resolver(service);
@@ -65,7 +65,7 @@ ip::tcp::resolver::query query("www.yahoo.com", "80");
 ip::tcp::resolver::iterator iter = resolver.resolve(query);
 ip::tcp::endpoint ep = *iter;
 std::cout << ep.address().to_string() << std::endl;
-```
+{% endhighlight %}
 
 如果resolve()函数成功，它将返回至少一个入口。你可以使用第一个，也可以遍历所有的。
 
@@ -81,9 +81,11 @@ Boost.Asio有3中socket类：ip::tcp，ip::udp和ip::icmp，并且可以扩展�
 
 socket类创建相应的套接字，创建时需要传递io_service实例：
 
-	io_service service;
-	ip::udp::socket sock(service)
-	sock.set_option(ip::udp::socket::reuse_address(true));
+{% highlight cpp %}
+io_service service;
+ip::udp::socket sock(service)
+sock.set_option(ip::udp::socket::reuse_address(true));
+{% endhighlight %}
 
 每一个socket名字是一个typedef：
 
@@ -94,11 +96,11 @@ socket类创建相应的套接字，创建时需要传递io_service实例：
 ### 同步错误码 ###
 
 所有的同步函数重载了抛出异常或返回错误码的版本，像下面的例子：
-```c++
+{% highlight cpp %}
 sync_func(arg1, arg2 ... argN); // throws
 boost::system::error_code ec;
 sync_func(arg1 arg2, ..., argN, ec); // returns error code
-```
+{% endhighlight %}
 
 ### Socket成员函数 ###
 
@@ -117,7 +119,7 @@ sync_func(arg1 arg2, ..., argN, ec); // returns error code
 * cancel()：取消此套接字所有异步操作。所有异步操作立刻以error::operation_aborted错误码结束。
 
 例子如下：
-```c++
+{% highlight cpp %}
 ip::tcp::endpoint ep(ip::address::from_string("127.0.0.1"), 80);
 ip::tcp::socket sock(service);
 sock.open(ip::tcp::v4());
@@ -126,14 +128,14 @@ sock.write_some(buffer("GET /index.html\r\n"));
 char buff[1024]; sock.read_some(buffer(buff,1024));
 sock.shutdown(ip::tcp::socket::shutdown_receive);
 sock.close();
-```
+{% endhighlight %}
 
 #### 读写函数 ####
 
 对于所有异步读写函数，其处理函数的签名为：
-```c++
+{% highlight cpp %}
 void handler(const boost::system::error_code &e, size_t bytes)
-```
+{% endhighlight %}
 
 * async_receive(buffer, [flags,] handler)：从套接字开始异步receive操作。
 * async_read_some(buffer, handler)：等价于async_receive(buffer, handler)。
@@ -157,16 +159,16 @@ flags的默认值是0，但可以是下列的组合：
 * ip::socket_type::socket::message_end_of_record：这个标志指示数据标志一个记录的结尾。在Windows下不支持。
 
 如果你使用下面这段代码，你最可能使用message_peek：
-```c++
+{% highlight cpp %}
 char buff[1024];
 sock.receive(buffer(buff), ip::tcp::socket::message_peek);
 memset(buff,1024, 0);
 // re-reads what was previously read
 sock.receive(buffer(buff));
-```
+{% endhighlight %}
 
 同步读写一个TCP套接字：
-```c++
+{% highlight cpp %}
 ip::tcp::endpoint ep( ip::address::from_string("127.0.0.1"), 80);
 ip::tcp::socket sock(service);
 sock.connect(ep);
@@ -174,10 +176,10 @@ sock.write_some(buffer("GET /index.html\r\n"));
 std::cout << "bytes available " << sock.available() << std::endl;
 char buff[512];
 size_t read = sock.read_some(buffer(buff));
-```
+{% endhighlight %}
 
 同步读写一个UDP套接字：
-```c++
+{% highlight cpp %}
 ip::udp::socket sock(service);
 sock.open(ip::udp::v4());
 ip::udp::endpoint receiver_ep("87.248.112.181", 80);
@@ -185,12 +187,12 @@ sock.send_to(buffer("testing\n"), receiver_ep);
 char buff[512];
 ip::udp::endpoint sender_ep;
 sock.receive_from(buffer(buff), sender_ep);
-```
+{% endhighlight %}
 
 注意为了使用receive_from从一个UDP套接字读取数据，你需要一个默认构造的端点。
 
 异步读取一个UDP服务器套接字：
-```c++
+{% highlight cpp %}
 using namespace boost::asio;
 io_service service;
 ip::udp::socket sock(service);
@@ -208,7 +210,7 @@ int main(int argc, char* argv[]) {
     sock.async_receive_from(buffer(buff,512), sender_ep, on_read);
     service.run();
 }
-```
+{% endhighlight %}
 
 #### 套接字控制 ####
 
@@ -234,7 +236,7 @@ int main(int argc, char* argv[]) {
 | ip::v6_only | 如果真，只允许IPv6通信 | bool |
 
 每一个名字代表内部socket的一个typedef或一个类。以下是例子：
-```c++
+{% highlight cpp %}
 ip::tcp::endpoint ep(ip::address::from_string("127.0.0.1"), 80);
 ip::tcp::socket sock(service);
 sock.connect(ep);
@@ -248,7 +250,7 @@ std::cout << rbs.value() << std::endl;
 // set sock's buffer size to 8192
 ip::tcp::socket::send_buffer_size sbs(8192);
 sock.set_option(sbs);
-```
+{% endhighlight %}
 
 v#### TCP vs UDP vs ICMP ####
 
@@ -277,13 +279,13 @@ v#### TCP vs UDP vs ICMP ####
 ### 其它考虑 ###
 
 最后需要注意的是，一个套接字实例不能被复制，因为复制构造函数和赋值操作符无法访问。如果你想要创建拷贝，使用共享指针：
-```c++
+{% highlight cpp %}
 typedef boost::shared_ptr<ip::tcp::socket> socket_ptr;
 socket_ptr sock1(new ip::tcp::socket(service));
 socket_ptr sock2(sock1); // ok
 socket_ptr sock3;
 sock3 = sock1; // ok
-```
+{% endhighlight %}
 
 #### Socket缓冲区 ####
 
@@ -298,9 +300,9 @@ sock3 = sock1; // ok
 #### 缓存包装器函数 ####
 
 任何时候我们需要一个缓冲区用于读写操作时，用buffer()函数包装真实的缓冲区对象。它包装任何缓冲区为一个类，允许Boost.Asio函数迭代访问缓冲区。比如你使用下面的代码：
-```c++
+{% highlight cpp %}
 sock.async_receive(some_buffer, on_read);
-```
+{% endhighlight %}
 
 some_buffer实例需要满足一些条件，即ConstBufferSequence或MutableBufferSequence。使用buffer()函数就可以满足这些条件。
 
@@ -326,7 +328,7 @@ Boost.Asio提供自由函数处理I/O。
 * async_connect(socket, begin[, end][, condition], handler)：执行异步连接，最后调用完成处理函数。处理函数的签名是void handler(const boost::system::error_code &ec, Iterator iterator)。
 
 示例如下：
-```c++
+{% highlight cpp %}
 using namespace boost::asio::ip;
 tcp::resolver resolver(service);
 tcp::resolver::iterator iter = resolver.resolve(
@@ -334,7 +336,7 @@ tcp::resolver::iterator iter = resolver.resolve(
 	"80"));
 tcp::socket sock(service);
 connect(sock, iter);
-```
+{% endhighlight %}
 
 一个主机名可以解析为多个地址，因此connect和async_connect将你从尝试每一个地址的负担中释放出来。
 
@@ -352,7 +354,7 @@ connect(sock, iter);
 * 一个错误发生
 
 下面的代码会异步读知道发现'\n'：
-```c++
+{% highlight cpp %}
 io_service service;
 ip::tcp::socket sock(service);
 char buff[512];
@@ -366,7 +368,7 @@ size_t up_to_enter(const boost::system::error_code &, size_t bytes) {
 void on_read(const boost::system::error_code &, size_t) {}
 ...
 async_read(sock, buffer(buff), up_to_enter, on_read);
-```
+{% endhighlight %}
 
 Boost.Asio提供一些助手完成函数：
 
@@ -375,15 +377,15 @@ Boost.Asio提供一些助手完成函数：
 * transfer_all()
 
 例子如下：
-```c++
+{% highlight cpp %}
 char buff[512];
 void on_read(const boost::system::error_code &, size_t) {}
 // read exactly 32 bytes
 async_read(sock, buffer(buff), transfer_exactly(32), on_read);
-```
+{% endhighlight %}
 
 最后4个函数，使用继承std::streambuf的stream_buffer函数而不是通常的buffer。STL stream和stream_buffer非常灵活。
-```c++
+{% highlight cpp %}
 io_service service;
 void on_read(streambuf& buf, const boost::system::error_code &, size_t) {
     std::istream in(&buf);
@@ -400,7 +402,7 @@ int main(int argc, char* argv[]) {
         boost::bind(on_read,boost::ref(buf),_1,_2));
     service.run();
 }
-```
+{% endhighlight %}
 
 #### read_until/async_read_util函数 ####
 
@@ -412,7 +414,7 @@ int main(int argc, char* argv[]) {
 * read_until(stream, stream_buffer, completion)：同步读，参数意义与async_read_until一样。
 
 下面的代码将读到一个标点符号为止：
-```c++
+{% highlight cpp %}
 typedef buffers_iterator<streambuf::const_buffers_type> iterator;
 std::pair<iterator, bool> match_punct(iterator begin, iterator end) {
     while (begin != end)
@@ -424,12 +426,12 @@ void on_read(const boost::system::error_code &, size_t) {}
 ...
 streambuf buf;
 async_read_until(sock, buf, match_punct, on_read);
-```
+{% endhighlight %}
 
 如果想读到一个空格，修改最后一行：
-```c++
+{% highlight cpp %}
 async_read_until(sock, buff, ' ', on_read);
-```
+{% endhighlight %}
 
 #### *_at函数 ####
 
@@ -441,7 +443,7 @@ async_read_until(sock, buff, ' ', on_read);
 * write_at(stream, offset, buffer[, completion])：同步读，参数的意思和async_read_at一样。
 
 这些函数不处理socket，它们处理随机访问流。
-```c++
+{% highlight cpp %}
 io_service service;
 int main(int argc, char* argv[]) {
     HANDLE file = ::CreateFile("readme.txt", GENERIC_READ, 0, 0,
@@ -455,7 +457,7 @@ int main(int argc, char* argv[]) {
     std::getline(in, line);
     std::cout << "first line: " << line << std::endl;
 }
-```
+{% endhighlight %}
 
 # 异步编程 #
 
@@ -472,7 +474,7 @@ int main(int argc, char* argv[]) {
 ### 永久运行 ###
 
 run()会一直运行，只要有追加的操作执行或者你手动调用io_service::stop()。为了保持io_service实例运行，通常添加一个或多个异步操作，并当它们执行时，保持继续添加异步操作：
-```c++
+{% highlight cpp %}
 using namespace boost::asio;
 io_service service;
 ip::tcp::socket sock(service);
@@ -496,7 +498,7 @@ int main(int argc, char* argv[]) {
     sock.async_connect(ep, on_connect);
     service.run();
 }
-```
+{% endhighlight %}
 
 ### run_one()，poll()，poll_one()函数 ###
 
@@ -506,14 +508,14 @@ run_one()函数会执行和分配最多一个异步操作：
 * 如果有追加操作，函数阻塞知道第一个操作执行，并返回1
 
 考虑下述等价代码：
-```c++
+{% highlight cpp %}
 io_service service;
 service.run(); // OR
 while (!service.stopped()) service.run_once();
-```
+{% endhighlight %}
 
 你可以使用run_once()开始一个异步操作，然后等待它完成：
-```c++
+{% highlight cpp %}
 io_service service;
 bool write_complete = false;
 void on_write(const boost::system::error_code & err, size_t bytes)
@@ -523,7 +525,7 @@ std::string data = "login ok";
 write_complete = false;
 async_write(sock, buffer(data), on_write);
 do service.run_once() while (!write_complete);
-```
+{% endhighlight %}
 
 poll_one函数运行最多一次准备运行的追加操作，非阻塞：
 
@@ -537,26 +539,26 @@ poll_one函数运行最多一次准备运行的追加操作，非阻塞：
 * 一个之前添加到io_services队列的自定义的回调函数。
 
 poll()函数运行所有添加的操作，不用阻塞。下面代码等价：
-```c++
+{% highlight cpp %}
 io_service service;
 service.poll(); // OR
 while (service.poll_one());
-```
+{% endhighlight %}
 
 所有之前的函数失败时抛出boost::system::system_error异常。这不应该发生，这里抛出的错误通常是致命的。每一个函数也有不抛异常而返回错误码的重载版本。
-```c++
+{% highlight cpp %}
 io_service service;
 boost::system::error_code err = 0;
 service.run(err);
 if (err) std::cout << "Error " << err << std::endl;
-```
+{% endhighlight %}
 
 ## 异步工作 ##
 
 异步工作不仅仅是异步接受客户端连接，异步读取或写到套接字。它包含任何可以异步执行的操作。
 
 默认情况下，你不知道异步处理函数的调用顺序。你可以使用service.post()抛出自定义的函数使其可以异步调用：
-```c++
+{% highlight cpp %}
 using namespace boost::asio;
 io_service service;
 void func(int i) {
@@ -575,10 +577,10 @@ int main(int argc, char* argv[]) {
     boost::this_thread::sleep(boost::posix_time::millisec(500));
     threads.join_all();
 }
-```
+{% endhighlight %}
 
 有的时候你想要某些异步处理函数按顺序调用。你可以使用io_service::strand，它将顺序调用你的异步处理函数。
-```c++
+{% highlight cpp %}
 void func(int i) {
     std::cout << "func called, i= " << i << "/"
     << boost::this_thread::get_id() << std::endl;
@@ -600,7 +602,7 @@ int main(int argc, char* argv[])
     boost::this_thread::sleep( boost::posix_time::millisec(500));
     threads.join_all();
 }
-```
+{% endhighlight %}
 
 ## 异步post() vs dispatch() vs wrap() ##
 
@@ -611,7 +613,7 @@ Boost.Asio提供3种方法添加你的函数异步调用：
 * service.wrap(handler)：这个函数创建一个包装函数。当包装函数被调用时，会调用service.dispatch(handler)。
 
 看看dispatch如何影响输出：
-```c++
+{% highlight cpp %}
 void func(int i) {
     std::cout << "func called, i= " << i << std::endl;
 }
@@ -625,10 +627,10 @@ int main(int argc, char* argv[]) {
     service.post(run_dispatch_and_post);
     service.run();
 }
-```
+{% endhighlight %}
 
 wrap()函数返回一个函数对象，以供将来使用：
-```c++
+{% highlight cpp %}
 void dispatched_func_1() {
     std::cout << "dispatched 1" << std::endl;
 }
@@ -649,14 +651,14 @@ int main(int argc, char* argv[]) {
     boost::this_thread::sleep( boost::posix_time::millisec(500));
     th.join();
 }
-```
+{% endhighlight %}
 
 io_service::strand类也包含成员函数poll()，dispatch()和wrap()。其意义和io_service的一样。然而大多数时间你只会使用io_service::strand::wrap()作为io_service::poll()或io_service::dispatch()的参数。
 
 # 保持活着 #
 
 当使用套接字缓冲区时，你可以用一个buffer实例度过一个异步调用。我们可以使用同样的原理创建一个类，内部保存套接字和读/写缓冲区。然后对于所有异步调用，传递一个共享指针给boost::bind函数：
-```c++
+{% highlight cpp %}
 struct connection : boost::enable_shared_from_this<connection> {
     typedef boost::system::error_code error_code;
     typedef boost::shared_ptr<connection> ptr;
@@ -717,6 +719,6 @@ int main(int argc, char* argv[]) {
                           8001);
     connection::ptr(new connection)->start(ep);
 }
-```
+{% endhighlight %}
 
 在所有的异步调用中，我们传递一个boost::bind函数对象作为参数。这个函数对象内部保存一个共享指针指向connection实例。只要还有追加的异步操作，Boost.Asio将保存一个boost::bind函数对象，它又保存一个共享指针指向connection实例，因此保持连接活着。
