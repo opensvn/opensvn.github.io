@@ -16,6 +16,26 @@ excerpt: 安装Ubuntu后，需要安装的开发工具（C++相关）。
 * cmake，使用cmake自动生成Makefile，编译工程很方便
 * global，emacs里面用来生成GTAGS，利于阅读代码
 
+## Ubuntu美化
+
+**安装主题numix(强烈推荐)**
+
+{% highlight bash %}
+sudo add-apt-repository ppa:numix/ppa
+sudo apt update
+sudo apt install numix-gtk-theme numix-icon-theme-circle
+{% endhighlight %}
+
+numix安装完成后，使用unity-tweak-tool将gtk主题换成Numix，图标换成Numix-Circle就大功告成了。
+
+**安装Plank**
+
+Plank是一个轻量的Dock工具。将Ubuntu侧边栏收起，Plank设置自动隐藏，可以获得一个很大的桌面空间，赏心悦目。
+
+{% highlight bash %}
+sudo apt install plank
+{% endhighlight %}
+
 ## 安装jekyll(用于github page)步骤
 
 1. 安装ruby和ruby-dev
