@@ -6,7 +6,9 @@ categories: Ubuntu
 excerpt: 安装Ubuntu后，需要安装的开发工具（C++相关）。
 ---
 
-## 需要安装的软件：
+## 我会安装的工具
+
+**开发相关**
 
 * g++，必须的，C++编译器
 * emacs，编辑器之神，谁用谁知道，入门门槛稍微高了一点，我现在还是菜鸟hoho
@@ -15,10 +17,37 @@ excerpt: 安装Ubuntu后，需要安装的开发工具（C++相关）。
 * subversion，公司代码还是用svn管理
 * cmake，使用cmake自动生成Makefile，编译工程很方便
 * global，emacs里面用来生成GTAGS，利于阅读代码
+* meld，文件比较工具，支持整个目录的比较，以及版本控制系统，比如svn，git
+* git cola，一个非常好用的git客户端工具
+* LiteIDE，Go语言IDE
+* CLion，JetBrains出品的C++IDE，很少用，最大的缺点耗内存
+* CodeBlocks，C++IDE，公司目前用的，比较少用，只用来编译发布。下面的操作安装最新的16.01版本。
+
+{% highlight bash %}
+    sudo add-apt-repository ppa:damien-moore/codeblocks-stable
+    sudo apt-get update
+    sudo apt-get install codeblocks
+{% endhighlight %}
+
+**日常使用**
+
+* ubuntu-tweak，该工具已经停止更新，16.04已经不能安装了，我是14.04升级到16.04，保留了该工具
+* cryptomator，本地目录加密工具，加密指定目录所有文件。
+* keepassx，本地密码管理软件，再也不用担心忘记密码了，只需记住一个主密码即可，保险一点可以再加一个key文件。这里讲一个配合cryptomator和云盘（推荐坚果云）的靠谱方法：
+
+    1. 首先用keepassx生成一个密码库的key文件
+    2. 将key文件放入cryptomator加密的目录（称为保险箱吧）中
+    3. 将保险箱同步到云盘
+    4. 密码库文件不用放入保险箱，同步到云盘。
+
+    这样就可以在不同机器上使用和修改密码库文件，云盘会自动同步。因为key文件放在保险箱里面，非常安全。没有key文件和主密码是打不开密码库的。当然理论上存在保险箱被破解的可能，如果你觉得不放心，可以将key文件保存在自己认为安全的地方（千万不能丢）。
+
+* 坚果云（Nutstore），下载：[传送门](https://www.jianguoyun.com/s/downloads/linux)
+* [蓝灯](https://getlantern.org/)，二进制文件：[传送门](https://github.com/getlantern/lantern-binaries)
 
 ## Ubuntu美化
 
-**安装主题numix(强烈推荐)**
+**安装主题numix（强烈推荐）**
 
 {% highlight bash %}
 sudo add-apt-repository ppa:numix/ppa
@@ -36,33 +65,33 @@ Plank是一个轻量的Dock工具。将Ubuntu侧边栏收起，Plank设置自动
 sudo apt install plank
 {% endhighlight %}
 
-## 安装jekyll(用于github page)步骤
+## 安装jekyll（用于github page）步骤
 
-1. 安装ruby和ruby-dev
+安装ruby和ruby-dev
 
 {% highlight bash %}
 sudo apt install ruby ruby-dev
 {% endhighlight %}
 
-2. 到[RubyGems](https://rubygems.org)网站下载最新的ruby-gem，解压安装
+到[RubyGems](https://rubygems.org)网站下载最新的ruby-gem，解压安装
 
 {% highlight bash %}
 sudo ruby setup.rb
 {% endhighlight %}
 
-3. 由于ruby-gem官方源很慢，所以更换成国内源
+由于ruby-gem官方源很慢，所以更换成国内源
 
 {% highlight bash %}
 gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
 {% endhighlight %}
 
-4. 安装jekyll，bundler
+安装jekyll，bundler
 
 {% highlight bash %}
 sudo gem install jekyll bundler
 {% endhighlight %}
 
-5. 更换bundle源
+更换bundle源
 
 {% highlight bash %}
 bundle config mirror.https://rubygems.org https://gems.ruby-china.org
