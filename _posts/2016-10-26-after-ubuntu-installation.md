@@ -73,6 +73,39 @@ sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 {% endhighlight %}
 
+## 你自己的Github-通过坚果云管理代码（[参见](http://blog.jianguoyun.com/?p=321)）
+
+切换到用来管理代码的目录，初始化本地仓库
+
+{% highlight bash %}
+$ git init
+$ git add .
+$ git commit -m "first commit"
+{% endhighlight %}
+
+在坚果云同步目录中创建远程仓库
+
+{% highlight bash %}
+$ mkdir -p Nutstore/git/project
+$ cd Nutstore/git/project
+$ git init –bare
+{% endhighlight %}
+
+回到本地仓库目录，push代码到坚果云中
+
+{% highlight bash %}
+$ git remote add orig Nutstore/git/project
+$ git push orig master
+{% endhighlight %}
+
+这样在所有装了坚果云的电脑上都可以用git管理自己的代码。另一台电脑可以这样拉取代码：
+
+{% highlight bash %}
+$ git init
+$ git remote add orig Nutstore/git/project
+$ git pull orig master
+{% endhighlight %}
+
 ## Ubuntu美化
 
 **安装主题numix（强烈推荐）**
