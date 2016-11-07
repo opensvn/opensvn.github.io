@@ -26,9 +26,9 @@ excerpt: 安装Ubuntu后，需要安装的开发工具（C++相关）。
 * CodeBlocks，C++IDE，公司目前用的，比较少用，只用来编译发布。下面的操作安装最新的16.01版本。
 
 {% highlight bash %}
-    sudo add-apt-repository ppa:damien-moore/codeblocks-stable
-    sudo apt-get update
-    sudo apt-get install codeblocks
+sudo add-apt-repository ppa:damien-moore/codeblocks-stable
+sudo apt-get update
+sudo apt-get install codeblocks
 {% endhighlight %}
 
 **日常使用**
@@ -86,15 +86,15 @@ $ git commit -m "first commit"
 在坚果云同步目录中创建远程仓库
 
 {% highlight bash %}
-$ mkdir -p Nutstore/git/project
-$ cd Nutstore/git/project
+$ mkdir -p ~/Nutstore/git/project
+$ cd ~/Nutstore/git/project
 $ git init –bare
 {% endhighlight %}
 
 回到本地仓库目录，push代码到坚果云中
 
 {% highlight bash %}
-$ git remote add orig Nutstore/git/project
+$ git remote add orig ~/Nutstore/git/project
 $ git push orig master
 {% endhighlight %}
 
@@ -102,7 +102,7 @@ $ git push orig master
 
 {% highlight bash %}
 $ git init
-$ git remote add orig Nutstore/git/project
+$ git remote add orig ~/Nutstore/git/project
 $ git pull orig master
 {% endhighlight %}
 
