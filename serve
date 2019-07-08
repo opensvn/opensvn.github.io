@@ -1,2 +1,0 @@
-#!/bin/bash
-jekyll serve -H $1 -P $2
