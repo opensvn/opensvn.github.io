@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="SQL入门">
+<meta itemprop="description" content="SQL语句分类 DQL(Data Query Language)：数据查询语言，基本就是select语句，用于数据查询。 DML(Data Manipulation Language)：数据操纵语言，包含ins">
+
+
+<meta itemprop="datePublished" content="2019-01-19T19:13:04&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-19T19:13:04&#43;08:00" />
+<meta itemprop="wordCount" content="2168">
+
+
+
+<meta itemprop="keywords" content="Database,PostgreSQL," />
+<meta property="og:title" content="SQL入门" />
+<meta property="og:description" content="SQL语句分类 DQL(Data Query Language)：数据查询语言，基本就是select语句，用于数据查询。 DML(Data Manipulation Language)：数据操纵语言，包含ins" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gitop.cc/posts/sql_intro/" />
+<meta property="article:published_time" content="2019-01-19T19:13:04&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-19T19:13:04&#43;08:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SQL入门"/>
+<meta name="twitter:description" content="SQL语句分类 DQL(Data Query Language)：数据查询语言，基本就是select语句，用于数据查询。 DML(Data Manipulation Language)：数据操纵语言，包含ins"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>SQL入门</title>
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://gitop.cc/posts/">Posts</a>
+				<a href="http://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://gitop.cc/posts/">Posts</a></li>
+			<li><a href="http://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 19, 2019</span></div>
+				<h1>SQL入门</h1>
+			</header>
+			<div class="content">
+				
+
+<h2 id="sql语句分类">SQL语句分类<a href="#sql语句分类" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<ul>
+<li>DQL(Data Query Language)：数据查询语言，基本就是<code>select</code>语句，用于数据查询。</li>
+<li>DML(Data Manipulation Language)：数据操纵语言，包含<code>insert</code>、<code>update</code>、<code>delete</code>三种语句。</li>
+<li>DDL(Data Definition Language)：数据定义语言，主要用于创建、删除或修改表、索引等数据库对象。</li>
+</ul>
+
+<h2 id="创建表-create-table">创建表(create table)<a href="#创建表-create-table" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>使用<code>\h create table</code>查看帮助</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># \h create table</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># create table score (</span>
+postgres<span class="o">(</span><span class="c1"># student_name varchar(40),</span>
+postgres<span class="o">(</span><span class="c1"># chinese_score int,</span>
+postgres<span class="o">(</span><span class="c1"># math_score int,</span>
+postgres<span class="o">(</span><span class="c1"># test_date date</span>
+postgres<span class="o">(</span><span class="c1"># );</span>
+CREATE TABLE
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># \d score</span>
+                          Table <span class="s2">&#34;public.score&#34;</span>
+    Column     <span class="p">|</span>         Type          <span class="p">|</span> Collation <span class="p">|</span> Nullable <span class="p">|</span> Default
+---------------<span class="p">|</span>-----------------------<span class="p">|</span>-----------<span class="p">|</span>----------<span class="p">|</span>---------
+ student_name  <span class="p">|</span> character varying<span class="o">(</span><span class="m">40</span><span class="o">)</span> <span class="p">|</span>           <span class="p">|</span>          <span class="p">|</span>
+ chinese_score <span class="p">|</span> integer               <span class="p">|</span>           <span class="p">|</span>          <span class="p">|</span>
+ math_score    <span class="p">|</span> integer               <span class="p">|</span>           <span class="p">|</span>          <span class="p">|</span>
+ test_date     <span class="p">|</span> date                  <span class="p">|</span>           <span class="p">|</span>          <span class="p">|</span></code></pre></div>
+
+<p>其中<code>int</code>是<code>integer</code>别名，<code>varchar(40)</code>是<code>character varying(40)</code>别名。在建表的时候，可以在列定义后面使用<code>primary key</code>来指定这一列为主键：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># create table student(no int primary key, name varchar(40), age int, class_no int);</span></code></pre></div>
+
+<p>PostgreSQL会自动为主键创建索引<code>student_pkey</code>。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># \di</span>
+                 List of relations
+ Schema <span class="p">|</span>     Name     <span class="p">|</span> Type  <span class="p">|</span>  Owner   <span class="p">|</span>  Table
+--------<span class="p">|</span>--------------<span class="p">|</span>-------<span class="p">|</span>----------<span class="p">|</span>---------
+ public <span class="p">|</span> student_pkey <span class="p">|</span> index <span class="p">|</span> postgres <span class="p">|</span> student</code></pre></div>
+
+<h2 id="插入语句-insert">插入语句(insert)<a href="#插入语句-insert" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>使用<code>\h insert</code>查看帮助</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># \h insert</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># insert into student values(1, &#39;lily&#39;, 14);</span>
+INSERT <span class="m">0</span> <span class="m">1</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># insert into student(no, age, name) values(2, 13, &#39;lucy&#39;);</span>
+INSERT <span class="m">0</span> <span class="m">1</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># insert into student(no, name) values(3, &#39;bob&#39;);</span>
+INSERT <span class="m">0</span> <span class="m">1</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># insert into student values(4, &#39;kate&#39;, 12), (5, &#39;jobs&#39;, 15), (6, &#39;bill&#39;, 13);</span>
+INSERT <span class="m">0</span> <span class="m">3</span></code></pre></div>
+
+<h2 id="查询语句-select">查询语句(select)<a href="#查询语句-select" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>使用<code>\h select</code>查看帮助</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># \h select</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select no, name, age from student;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age
+----<span class="p">|</span>------<span class="p">|</span>-----
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span>
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">13</span>
+  <span class="m">3</span> <span class="p">|</span> bob  <span class="p">|</span>
+  <span class="m">4</span> <span class="p">|</span> kate <span class="p">|</span>  <span class="m">12</span>
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span>
+  <span class="m">6</span> <span class="p">|</span> bill <span class="p">|</span>  <span class="m">13</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select name, age+5 from student;</span>
+ name <span class="p">|</span> ?column?
+------<span class="p">|</span>----------
+ lily <span class="p">|</span>       <span class="m">19</span>
+ lucy <span class="p">|</span>       <span class="m">18</span>
+ bob  <span class="p">|</span>
+ kate <span class="p">|</span>       <span class="m">17</span>
+ <span class="nb">jobs</span> <span class="p">|</span>       <span class="m">20</span>
+ bill <span class="p">|</span>       <span class="m">18</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select no, 3+5 from student;</span>
+ no <span class="p">|</span> ?column?
+----<span class="p">|</span>----------
+  <span class="m">1</span> <span class="p">|</span>        <span class="m">8</span>
+  <span class="m">2</span> <span class="p">|</span>        <span class="m">8</span>
+  <span class="m">3</span> <span class="p">|</span>        <span class="m">8</span>
+  <span class="m">4</span> <span class="p">|</span>        <span class="m">8</span>
+  <span class="m">5</span> <span class="p">|</span>        <span class="m">8</span>
+  <span class="m">6</span> <span class="p">|</span>        <span class="m">8</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select 55+88;</span>
+ ?column?
+----------
+      <span class="m">143</span>
+<span class="o">(</span><span class="m">1</span> row<span class="o">)</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select 10*2, 3*5+2;</span>
+ ?column? <span class="p">|</span> ?column?
+----------<span class="p">|</span>----------
+       <span class="m">20</span> <span class="p">|</span>       <span class="m">17</span>
+<span class="o">(</span><span class="m">1</span> row<span class="o">)</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>
+  <span class="m">3</span> <span class="p">|</span> bob  <span class="p">|</span>     <span class="p">|</span>
+  <span class="m">4</span> <span class="p">|</span> kate <span class="p">|</span>  <span class="m">12</span> <span class="p">|</span>
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>
+  <span class="m">6</span> <span class="p">|</span> bill <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span></code></pre></div>
+
+<h3 id="条件过滤-where">条件过滤(where)<a href="#条件过滤-where" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student where no = 3;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">3</span> <span class="p">|</span> bob  <span class="p">|</span>     <span class="p">|</span>
+<span class="o">(</span><span class="m">1</span> row<span class="o">)</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student where age &gt; 13;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>
+<span class="o">(</span><span class="m">2</span> rows<span class="o">)</span></code></pre></div>
+
+<h3 id="排序-order-by">排序(order by)<a href="#排序-order-by" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student order by age;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">4</span> <span class="p">|</span> kate <span class="p">|</span>  <span class="m">12</span> <span class="p">|</span>
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>
+  <span class="m">6</span> <span class="p">|</span> bill <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>
+  <span class="m">3</span> <span class="p">|</span> bob  <span class="p">|</span>     <span class="p">|</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student where age &gt; 12 order by age;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>
+  <span class="m">6</span> <span class="p">|</span> bill <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>
+<span class="o">(</span><span class="m">4</span> rows<span class="o">)</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student order by age, name;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">4</span> <span class="p">|</span> kate <span class="p">|</span>  <span class="m">12</span> <span class="p">|</span>
+  <span class="m">6</span> <span class="p">|</span> bill <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>
+  <span class="m">3</span> <span class="p">|</span> bob  <span class="p">|</span>     <span class="p">|</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student order by age desc;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">3</span> <span class="p">|</span> bob  <span class="p">|</span>     <span class="p">|</span>
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>
+  <span class="m">6</span> <span class="p">|</span> bill <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>
+  <span class="m">4</span> <span class="p">|</span> kate <span class="p">|</span>  <span class="m">12</span> <span class="p">|</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student order by age desc, name;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">3</span> <span class="p">|</span> bob  <span class="p">|</span>     <span class="p">|</span>
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>
+  <span class="m">6</span> <span class="p">|</span> bill <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>
+  <span class="m">4</span> <span class="p">|</span> kate <span class="p">|</span>  <span class="m">12</span> <span class="p">|</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span></code></pre></div>
+
+<h3 id="分组查询-group-by">分组查询(group by)<a href="#分组查询-group-by" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># select age, count(*) from student group by age;</span>
+ age <span class="p">|</span> count
+-----<span class="p">|</span>-------
+     <span class="p">|</span>     <span class="m">1</span>
+  <span class="m">15</span> <span class="p">|</span>     <span class="m">1</span>
+  <span class="m">14</span> <span class="p">|</span>     <span class="m">1</span>
+  <span class="m">13</span> <span class="p">|</span>     <span class="m">2</span>
+  <span class="m">12</span> <span class="p">|</span>     <span class="m">1</span>
+<span class="o">(</span><span class="m">5</span> rows<span class="o">)</span></code></pre></div>
+
+<h3 id="表连接-join">表连接(join)<a href="#表连接-join" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>表连接也称为多表关联查询。为了演示，现在创建一张班级表，并插入一些测试数据：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># create table class (no int primary key, name varchar(40));</span>
+CREATE TABLE
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># insert into class values(1, &#39;grade 1&#39;);</span>
+INSERT <span class="m">0</span> <span class="m">1</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># insert into class values(2, &#39;grade 2&#39;);</span>
+INSERT <span class="m">0</span> <span class="m">1</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># insert into class values(3, &#39;grade 3&#39;);</span>
+INSERT <span class="m">0</span> <span class="m">1</span></code></pre></div>
+
+<p>修改<code>student</code>表<code>class_no</code>字段用于测试：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># update student set class_no = 1 where no &lt; 3;</span>
+UPDATE <span class="m">2</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># update student set class_no = 2 where no &gt;=3 and no &lt; 5;</span>
+UPDATE <span class="m">2</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># update student set class_no = 3 where no &gt;=5;</span>
+UPDATE <span class="m">2</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>        <span class="m">1</span>
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>        <span class="m">1</span>
+  <span class="m">3</span> <span class="p">|</span> bob  <span class="p">|</span>     <span class="p">|</span>        <span class="m">2</span>
+  <span class="m">4</span> <span class="p">|</span> kate <span class="p">|</span>  <span class="m">12</span> <span class="p">|</span>        <span class="m">2</span>
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">3</span>
+  <span class="m">6</span> <span class="p">|</span> bill <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>        <span class="m">3</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span></code></pre></div>
+
+<p>若想查出每个学生与班级的关系，那么就需要关联查询两张表：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># select s.name, c.name from student s, class c where s.class_no = c.no;</span>
+ name <span class="p">|</span>  name
+------<span class="p">|</span>---------
+ lily <span class="p">|</span> grade <span class="m">1</span>
+ lucy <span class="p">|</span> grade <span class="m">1</span>
+ bob  <span class="p">|</span> grade <span class="m">2</span>
+ kate <span class="p">|</span> grade <span class="m">2</span>
+ <span class="nb">jobs</span> <span class="p">|</span> grade <span class="m">3</span>
+ bill <span class="p">|</span> grade <span class="m">3</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span></code></pre></div>
+
+<h2 id="更新语句-update">更新语句(update)<a href="#更新语句-update" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>使用<code>\h update</code>查看帮助</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># \h update</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># update student set age = 15;</span>
+UPDATE <span class="m">6</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">1</span>
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">1</span>
+  <span class="m">3</span> <span class="p">|</span> bob  <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">2</span>
+  <span class="m">4</span> <span class="p">|</span> kate <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">2</span>
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">3</span>
+  <span class="m">6</span> <span class="p">|</span> bill <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">3</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># update student set age = 14 where no = 3;</span>
+UPDATE <span class="m">1</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># update student set age = 12, name = &#39;tom&#39; where no = 4;</span>
+UPDATE <span class="m">1</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">1</span>
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">1</span>
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">3</span>
+  <span class="m">6</span> <span class="p">|</span> bill <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">3</span>
+  <span class="m">3</span> <span class="p">|</span> bob  <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>        <span class="m">2</span>
+  <span class="m">4</span> <span class="p">|</span> tom  <span class="p">|</span>  <span class="m">12</span> <span class="p">|</span>        <span class="m">2</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span></code></pre></div>
+
+<h2 id="删除语句-delete">删除语句(delete)<a href="#删除语句-delete" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>使用<code>\h delete</code>查看帮助</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># \h delete</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># delete from student where no = 3;</span>
+DELETE <span class="m">1</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">1</span>
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">1</span>
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">3</span>
+  <span class="m">6</span> <span class="p">|</span> bill <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">3</span>
+  <span class="m">4</span> <span class="p">|</span> tom  <span class="p">|</span>  <span class="m">12</span> <span class="p">|</span>        <span class="m">2</span>
+<span class="o">(</span><span class="m">5</span> rows<span class="o">)</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># delete from student;</span>
+DELETE <span class="m">5</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+<span class="o">(</span><span class="m">0</span> rows<span class="o">)</span></code></pre></div>
+
+<h2 id="删除表">删除表<a href="#删除表" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>使用<code>\h drop table</code>查看帮助</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># \h drop table</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># drop table student;</span>
+DROP TABLE</code></pre></div>
+
+<h2 id="其他sql语句">其他SQL语句<a href="#其他sql语句" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="insert-into-select语句">insert into &hellip; select语句<a href="#insert-into-select语句" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>使用<code>INSERT INTO… SELECT</code>语句可以把数据从一张表插入到另一张表中，这个语句属
+于DML语句。创建一张学生表的备份表：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># create table student_bak(no int primary key, name varchar(40), age int, class_no int);</span>
+CREATE TABLE
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># insert into student_bak select * from student;</span>
+INSERT <span class="m">0</span> <span class="m">6</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student_bak;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">5</span> <span class="p">|</span> <span class="nb">jobs</span> <span class="p">|</span>  <span class="m">15</span> <span class="p">|</span>        <span class="m">3</span>
+  <span class="m">6</span> <span class="p">|</span> bill <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>        <span class="m">3</span>
+  <span class="m">3</span> <span class="p">|</span> bob  <span class="p">|</span>     <span class="p">|</span>        <span class="m">2</span>
+  <span class="m">4</span> <span class="p">|</span> kate <span class="p">|</span>  <span class="m">12</span> <span class="p">|</span>        <span class="m">2</span>
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>        <span class="m">1</span>
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>        <span class="m">1</span>
+<span class="o">(</span><span class="m">6</span> rows<span class="o">)</span></code></pre></div>
+
+<h3 id="union语句">union语句<a href="#union语句" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>可以将从两张表查询出来的数据整合在一个结果集下：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student where no = 1 union select * from student_bak where no = 2;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>        <span class="m">1</span>
+  <span class="m">2</span> <span class="p">|</span> lucy <span class="p">|</span>  <span class="m">13</span> <span class="p">|</span>        <span class="m">1</span>
+<span class="o">(</span><span class="m">2</span> rows<span class="o">)</span></code></pre></div>
+
+<p>语法比较简单，把两个SQL语句用<code>union</code>关键字连接起来就可以了。注意<code>union</code>会把结果集中相同的两条记录合并成一条。如果不想合并，请使用<code>union all</code>：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># select * from student where no = 1 union all select * from student_bak where no = 1;</span>
+ no <span class="p">|</span> name <span class="p">|</span> age <span class="p">|</span> class_no
+----<span class="p">|</span>------<span class="p">|</span>-----<span class="p">|</span>----------
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>        <span class="m">1</span>
+  <span class="m">1</span> <span class="p">|</span> lily <span class="p">|</span>  <span class="m">14</span> <span class="p">|</span>        <span class="m">1</span>
+<span class="o">(</span><span class="m">2</span> rows<span class="o">)</span></code></pre></div>
+
+<h3 id="truncate-table语句">truncate table语句<a href="#truncate-table语句" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p><code>truncate table</code>语句用于清空表，与不带<code>where</code>子句的<code>delete</code>一样清空表数据，但两者在实现原理上是不一样的。<code>truncate table</code>是DDL语句，相当于用重新定义一个新表的方法
+把原先表的内容直接丢弃了，所以 <code>truncate table</code>执行起来很快。而<code>delete</code>是DML
+语句，它一条一条地删除数据。如果删除很多行数据，就会比较慢。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># truncate table student_bak;</span>
+TRUNCATE TABLE</code></pre></div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/database">Database</a></span><span class="tag"><a href="http://gitop.cc/tags/postgresql">PostgreSQL</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2168 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-01-19 19:13 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://gitop.cc/posts/psql_intro/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>psql使用介绍</span>
+			</a>
+			<a class="prev-post" href="http://gitop.cc/posts/docker_install_gpdb_dev_env/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Docker安装gpdb测试数据库</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="docker安装greenplum集群">
+<meta itemprop="description" content="本文参考这里安装greenplum成功，并记录一下过程 创建docker节点 拉取centos镜像 [xiaoyu@xiaoyu ~]$ docker pull centos 创建几个容器，作为greenplum">
+
+
+<meta itemprop="datePublished" content="2018-08-21T19:15:14&#43;08:00" />
+<meta itemprop="dateModified" content="2018-08-21T19:15:14&#43;08:00" />
+<meta itemprop="wordCount" content="2093">
+
+
+
+<meta itemprop="keywords" content="Docker,Database,Greenplum," />
+<meta property="og:title" content="docker安装greenplum集群" />
+<meta property="og:description" content="本文参考这里安装greenplum成功，并记录一下过程 创建docker节点 拉取centos镜像 [xiaoyu@xiaoyu ~]$ docker pull centos 创建几个容器，作为greenplum" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gitop.cc/posts/install-greenplum-in-docker/" />
+<meta property="article:published_time" content="2018-08-21T19:15:14&#43;08:00"/>
+<meta property="article:modified_time" content="2018-08-21T19:15:14&#43;08:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="docker安装greenplum集群"/>
+<meta name="twitter:description" content="本文参考这里安装greenplum成功，并记录一下过程 创建docker节点 拉取centos镜像 [xiaoyu@xiaoyu ~]$ docker pull centos 创建几个容器，作为greenplum"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>docker安装greenplum集群</title>
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://gitop.cc/posts/">Posts</a>
+				<a href="http://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://gitop.cc/posts/">Posts</a></li>
+			<li><a href="http://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 21, 2018</span></div>
+				<h1>docker安装greenplum集群</h1>
+			</header>
+			<div class="content">
+				
+
+<p>本文参考<a href="https://my.oschina.net/u/876354/blog/1606419">这里</a>安装greenplum成功，并记录一下过程</p>
+
+<h2 id="创建docker节点">创建docker节点<a href="#创建docker节点" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>拉取centos镜像</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>xiaoyu@xiaoyu ~<span class="o">]</span>$ docker pull centos</code></pre></div>
+
+<p>创建几个容器，作为greenplum的节点</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>xiaoyu@xiaoyu ~<span class="o">]</span>$ docker run -it --name gp-master centos /bin/bash
+<span class="o">[</span>xiaoyu@xiaoyu ~<span class="o">]</span>$ docker run -it --name gp-segment1 centos /bin/bash
+<span class="o">[</span>xiaoyu@xiaoyu ~<span class="o">]</span>$ docker run -it --name gp-segment2 centos /bin/bash
+<span class="o">[</span>xiaoyu@xiaoyu ~<span class="o">]</span>$ docker run -it --name gp-segment3 centos /bin/bash</code></pre></div>
+
+<h2 id="配置基础环境">配置基础环境<a href="#配置基础环境" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>进入每个greenplum节点，配置基础环境</p>
+
+<ul>
+<li>安装相关的依赖包</li>
+</ul>
+
+<p>由于docker的centos镜像是centos的简化版本，里面有很多包是没有安装的，会影响到后面部署greenplum，因此在docker的每个节点中安装相关的依赖包</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># yum install -y net-tools which openssh-clients openssh-server less zip unzip iproute</span></code></pre></div>
+
+<ul>
+<li>启动ssh</li>
+</ul>
+
+<p>docker中默认没有启动ssh，为了方便各节点之间的互连，创建相关的认证key，并启动docker的每个节点里面的ssh</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key</span>
+<span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key</span>
+<span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key</span>
+<span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># /usr/sbin/sshd</span></code></pre></div>
+
+<ul>
+<li>修改/etc/hosts文件</li>
+</ul>
+
+<p>在每个docker节点中添加如下配置，方便后续greenplum集群的配置文件中用到，ip为各个docker节点中的ip地址</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># vi /etc/hosts</span>
+<span class="m">172</span>.17.0.2 dw-greenplum-1 mdw
+<span class="m">172</span>.17.0.3 dw-greenplum-2 sdw1
+<span class="m">172</span>.17.0.4 dw-greenplum-3 sdw2
+<span class="m">172</span>.17.0.5 dw-greenplum-4 sdw3</code></pre></div>
+
+<p>同时修改所有节点里面的<code>/etc/sysconfig/network</code>文件，保持与主机名一致</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># vi /etc/sysconfig/network</span>
+<span class="nv">NETWORKING</span><span class="o">=</span>yes
+<span class="nv">HOSTNAME</span><span class="o">=</span>mdw</code></pre></div>
+
+<ul>
+<li>创建greenplum的用户和用户组</li>
+</ul>
+
+<p>为了方便安装greenplum集群，且使greenplum自带的python不与系统的python版本相冲突，在每个节点中创建greenplum的用户和用户组</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># groupadd -g 530 gpadmin</span>
+<span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># useradd -g 530 -u 530 -m -d /home/gpadmin -s /bin/bash gpadmin</span>
+<span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># chown -R gpadmin:gpadmin /home/gpadmin</span>
+<span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># passwd gpadmin</span></code></pre></div>
+
+<ul>
+<li>修改每个节点上的文件打开数量限制</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># vi /etc/security/limits.conf</span>
+<span class="c1"># End of file</span>
+* soft nofile <span class="m">65536</span>
+* hard nofile <span class="m">65536</span>
+* soft nproc <span class="m">131072</span>
+* hard nproc <span class="m">131072</span></code></pre></div>
+
+<ul>
+<li>关闭每个节点上的防火墙，关闭selinux</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># service iptables stop</span>
+<span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># chkconfig iptables off</span>
+<span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># vi /etc/selinux/config</span> 
+<span class="c1"># This file controls the state of SELinux on the system.</span>
+<span class="c1"># SELINUX= can take one of these three values:</span>
+<span class="c1">#     enforcing - SELinux security policy is enforced.</span>
+<span class="c1">#     permissive - SELinux prints warnings instead of enforcing.</span>
+<span class="c1">#     disabled - No SELinux policy is loaded.</span>
+<span class="nv">SELINUX</span><span class="o">=</span>disabled
+<span class="c1"># SELINUXTYPE= can take one of these two values:</span>
+<span class="c1">#     targeted - Targeted processes are protected,</span>
+<span class="c1">#     mls - Multi Level Security protection.</span>
+<span class="nv">SELINUXTYPE</span><span class="o">=</span>targeted </code></pre></div>
+
+<h2 id="下载greenplum安装包">下载greenplum安装包<a href="#下载greenplum安装包" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>到greenplum的官网上，下载<a href="https://network.pivotal.io/products/pivotal-gpdb">greenplum安装包</a>，点开Greenplum Database Server，根据自己的操作系统下载安装包，我下载当前最新的greenplum-db-5.10.2-rhel7-x86_64.zip，将其拷到master节点的<code>/home/gpadmin</code>目录中</p>
+
+<h2 id="在master节点上安装greenplum">在master节点上安装greenplum<a href="#在master节点上安装greenplum" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>切换到gpadmin用户</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@00bcc0ba2b3f ~<span class="o">]</span><span class="c1"># su gpadmin</span></code></pre></div>
+
+<p>解压下载后的zip文件</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ unzip greenplum-db-5.10.2-rhel7-x86_64.zip</code></pre></div>
+
+<p>执行安装文件</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ ./greenplum-db-5.10.2-rhel7-x86_64.bin</code></pre></div>
+
+<p>安装期间需要配置安装目录，输入<code>/home/gpadmin/greenplum-db-5.10.2</code></p>
+
+<p>为了方便安装集群，greenplum提供了批量操作节点的命令，通过指定配置文件使用批处理命令</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ vi ./conf/hostlist 
+mdw
+sdw1
+sdw2
+sdw3
+<span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ vi ./conf/seg_hosts 
+sdw1
+sdw2
+sdw3</code></pre></div>
+
+<p><code>greenplum-db/greenplum_path.sh</code>中保存了运行greenplum的一些环境变量，包括GPHOME、PYTHONHOME等，在gpadmin账号下设置环境变量，并将master节点的key交换到各个segment节点</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ <span class="nb">source</span> /home/gpadmin/greenplum-db/greenplum_path.sh 
+<span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ gpssh-exkeys -f /home/gpadmin/conf/hostlist
+<span class="o">[</span>STEP <span class="m">1</span> of <span class="m">5</span><span class="o">]</span> create <span class="nb">local</span> ID and authorize on <span class="nb">local</span> host
+
+<span class="o">[</span>STEP <span class="m">2</span> of <span class="m">5</span><span class="o">]</span> keyscan all hosts and update known_hosts file
+
+<span class="o">[</span>STEP <span class="m">3</span> of <span class="m">5</span><span class="o">]</span> authorize current user on remote hosts
+  ... send to mdw
+  ... send to sdw1
+  ***
+  *** Enter password <span class="k">for</span> sdw1: 
+  ... send to sdw2
+  ... send to sdw3
+
+<span class="o">[</span>STEP <span class="m">4</span> of <span class="m">5</span><span class="o">]</span> determine common authentication file content
+
+<span class="o">[</span>STEP <span class="m">5</span> of <span class="m">5</span><span class="o">]</span> copy authentication files to all remote hosts
+  ... finished key exchange with mdw
+  ... finished key exchange with sdw1
+  ... finished key exchange with sdw2
+  ... finished key exchange with sdw3
+
+<span class="o">[</span>INFO** completed successfully</code></pre></div>
+
+<p>交换成功后，后续就可以使用一些命令执行批量操作</p>
+
+<p><strong>注意</strong>：使用gpssh-exkeys命令时一定要使用gpadmin用户，因为会在<code>/home/gpadmin/.ssh</code>中生成ssh的免密码登录秘钥，如果使用其它账号登录，则会在其它账号下生成密钥，在gpadmin账号下就无法使用gpssh的批处理命令</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ gpssh -f /home/gpadmin/conf/hostlist
+<span class="o">=</span>&gt; <span class="nb">pwd</span>
+<span class="o">[</span>sdw1<span class="o">]</span> /home/gpadmin
+<span class="o">[</span>sdw3<span class="o">]</span> /home/gpadmin
+<span class="o">[</span> mdw<span class="o">]</span> /home/gpadmin
+<span class="o">[</span>sdw2<span class="o">]</span> /home/gpadmin
+<span class="o">=</span>&gt; ls
+<span class="o">[</span>sdw1<span class="o">]</span>
+<span class="o">[</span>sdw3<span class="o">]</span>
+<span class="o">[</span> mdw<span class="o">]</span> conf  greenplum-db  greenplum-db-5.10.2
+<span class="o">[</span>sdw2<span class="o">]</span>
+<span class="o">=</span>&gt; exit</code></pre></div>
+
+<p>pwd命令是linux中的查看路径命令，在这里也是查看批量操作时各个节点当前所在的路径，从中可以看到已经成功连通了4个节点</p>
+
+<h2 id="分发安装包到每个子节点">分发安装包到每个子节点<a href="#分发安装包到每个子节点" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>打包master节点上的安装包</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ tar -czf gp.tar.gz greenplum-db-5.10.2</code></pre></div>
+
+<p>使用gpscp命令将这个文件复制到每个子节点</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ gpscp -f /home/gpadmin/conf/seg_hosts gp.tar.gz <span class="o">=</span>:/home/gpadmin</code></pre></div>
+
+<p>批量解压，并创建软链接</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ gpssh -f /home/gpadmin/conf/seg_hosts
+<span class="o">=</span>&gt; tar -zxf gp.tar.gz
+<span class="o">[</span>sdw3<span class="o">]</span>
+<span class="o">[</span>sdw1<span class="o">]</span>
+<span class="o">[</span>sdw2<span class="o">]</span>
+<span class="o">=</span>&gt; ln -s greenplum-db-5.10.2 greenplum-db
+<span class="o">[</span>sdw3<span class="o">]</span>
+<span class="o">[</span>sdw2<span class="o">]</span>
+<span class="o">[</span>sdw1<span class="o">]</span></code></pre></div>
+
+<p>这样就完成了所有子节点数据库的安装</p>
+
+<h2 id="初始化安装数据库">初始化安装数据库<a href="#初始化安装数据库" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<ul>
+<li>批量创建数据目录</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ gpssh -f /home/gpadmin/conf/hostlist
+<span class="o">=</span>&gt; mkdir gpdata
+<span class="o">[</span>sdw1<span class="o">]</span>
+<span class="o">[</span>sdw3<span class="o">]</span>
+<span class="o">[</span> mdw<span class="o">]</span>
+<span class="o">[</span>sdw2<span class="o">]</span>
+<span class="o">=</span>&gt; <span class="nb">cd</span> gpdata
+<span class="o">[</span>sdw1<span class="o">]</span>
+<span class="o">[</span>sdw3<span class="o">]</span>
+<span class="o">[</span> mdw<span class="o">]</span>
+<span class="o">[</span>sdw2<span class="o">]</span>
+<span class="o">=</span>&gt; mkdir gpmaster gpdatap1 gpdatap2 gpdatam1 gpdatam2
+<span class="o">[</span>sdw1<span class="o">]</span>
+<span class="o">[</span>sdw3<span class="o">]</span>
+<span class="o">[</span> mdw<span class="o">]</span>
+<span class="o">[</span>sdw2<span class="o">]</span>
+<span class="o">=</span>&gt; exit</code></pre></div>
+
+<ul>
+<li>在master节点上修改<code>.bash_profile</code>配置环境变量，并发送给其他子节点，确保这些环境变量生效</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ vi .bash_profile 
+<span class="nb">source</span> /opt/gpadmin/greenplum-db/greenplum_path.sh
+<span class="nb">export</span> <span class="nv">MASTER_DATA_DIRECTORY</span><span class="o">=</span>/home/gpadmin/gpdata/gpmaster/gpseg-1
+<span class="nb">export</span> <span class="nv">PGPORT</span><span class="o">=</span><span class="m">2345</span>
+<span class="nb">export</span> <span class="nv">PGDATABASE</span><span class="o">=</span>testDB
+<span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ <span class="nb">source</span> .bash_profile
+<span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ gpscp -f /home/gpadmin/conf/seg_hosts /home/gpadmin/.bash_profile
+<span class="o">[</span>gpadmin@sdw1 ~<span class="o">]</span>$ <span class="nb">source</span> .bash_profile
+<span class="o">[</span>gpadmin@sdw2 ~<span class="o">]</span>$ <span class="nb">source</span> .bash_profile
+<span class="o">[</span>gpadmin@sdw3 ~<span class="o">]</span>$ <span class="nb">source</span> .bash_profile</code></pre></div>
+
+<ul>
+<li>初始化配置文件</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ vi /home/gpadmin/conf/gpinitsystem_config
+<span class="nv">ARRAY_NAME</span><span class="o">=</span><span class="s2">&#34;Greenplum&#34;</span>
+<span class="nv">MACHINE_LIST_FILE</span><span class="o">=</span>/home/gpadmin/conf/seg_hosts
+
+<span class="c1"># Segment 的名称前缀</span>
+<span class="nv">SEG_PREFIX</span><span class="o">=</span>gpseg
+<span class="c1"># Primary Segment 起始的端口号</span>
+<span class="nv">PORT_BASE</span><span class="o">=</span><span class="m">33000</span>
+<span class="c1"># 指定 Primary Segment 的数据目录</span>
+<span class="nb">declare</span> -a <span class="nv">DATA_DIRECTORY</span><span class="o">=(</span>/home/gpadmin/gpdata/gpdatap1 /home/gpadmin/gpdata/gpdatap2<span class="o">)</span>
+<span class="c1"># Master 所在机器的 Hostname</span>
+<span class="nv">MASTER_HOSTNAME</span><span class="o">=</span>mdw
+<span class="c1"># 指定 Master 的数据目录</span>
+<span class="nv">MASTER_DIRECTORY</span><span class="o">=</span>/home/gpadmin/gpdata/gpmaster
+<span class="c1"># Master 的端口</span> 
+<span class="nv">MASTER_PORT</span><span class="o">=</span><span class="m">2345</span>
+<span class="c1"># 指定Bash的版本</span>
+<span class="nv">TRUSTED_SHELL</span><span class="o">=</span>/usr/bin/ssh
+<span class="c1"># Mirror Segment起始的端口号</span>
+<span class="nv">MIRROR_PORT_BASE</span><span class="o">=</span><span class="m">43000</span>
+<span class="c1"># Primary Segment 主备同步的起始端口号</span>
+<span class="nv">REPLICATION_PORT_BASE</span><span class="o">=</span><span class="m">34000</span>
+<span class="c1"># Mirror Segment 主备同步的起始端口号</span>
+<span class="nv">MIRROR_REPLICATION_PORT_BASE</span><span class="o">=</span><span class="m">44000</span>
+<span class="c1"># Mirror Segment 的数据目录</span>
+<span class="nb">declare</span> -a <span class="nv">MIRROR_DATA_DIRECTORY</span><span class="o">=(</span>/home/gpadmin/gpdata/gpdatam1 /home/gpadmin/gpdata/gpdatam2<span class="o">)</span></code></pre></div>
+
+<ul>
+<li>初始化数据库</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@mdw ~<span class="o">]</span>$ gpinitsystem -c /home/gpadmin/conf/gpinitsystem_config -s sdw3</code></pre></div>
+
+<p>其中，<code>-s sdw3</code>是指配置master的standby节点，然后按照提示步骤就能完成安装了</p>
+
+<p>如果gpinitsystem不成功，在master节点的<code>/home/gpadmin/gpAdminLogs</code>目录下gpinitsystem_*.log文件中查看日志信息，找出原因进行修改，然后再重新执行gpinitsystem进行初始化安装</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/docker">Docker</a></span><span class="tag"><a href="http://gitop.cc/tags/database">Database</a></span><span class="tag"><a href="http://gitop.cc/tags/greenplum">Greenplum</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2093 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-08-21 19:15 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://gitop.cc/posts/lexical_structure/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>词法结构</span>
+			</a>
+			<a class="prev-post" href="http://gitop.cc/posts/idea-key-bindings/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Idea快捷键</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>

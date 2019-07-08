@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="Greenplum TPC-H测试">
+<meta itemprop="description" content="首先从官网下载TPC-H_Tools_v2.18.0.zip，解压 $ unzip TPC-H_Tools_v2.18.0.zip 进入dbgen目录，拷贝Makefile $ cd tpc/2.18.0_rc2/dbgen $ cp makefile.suite Makefile 修改Makef">
+
+
+<meta itemprop="datePublished" content="2019-04-14T15:40:23&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-14T15:40:23&#43;08:00" />
+<meta itemprop="wordCount" content="447">
+
+
+
+<meta itemprop="keywords" content="Database,Greenplum," />
+<meta property="og:title" content="Greenplum TPC-H测试" />
+<meta property="og:description" content="首先从官网下载TPC-H_Tools_v2.18.0.zip，解压 $ unzip TPC-H_Tools_v2.18.0.zip 进入dbgen目录，拷贝Makefile $ cd tpc/2.18.0_rc2/dbgen $ cp makefile.suite Makefile 修改Makef" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gitop.cc/posts/tpch-test/" />
+<meta property="article:published_time" content="2019-04-14T15:40:23&#43;08:00"/>
+<meta property="article:modified_time" content="2019-04-14T15:40:23&#43;08:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Greenplum TPC-H测试"/>
+<meta name="twitter:description" content="首先从官网下载TPC-H_Tools_v2.18.0.zip，解压 $ unzip TPC-H_Tools_v2.18.0.zip 进入dbgen目录，拷贝Makefile $ cd tpc/2.18.0_rc2/dbgen $ cp makefile.suite Makefile 修改Makef"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Greenplum TPC-H测试</title>
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://gitop.cc/posts/">Posts</a>
+				<a href="http://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://gitop.cc/posts/">Posts</a></li>
+			<li><a href="http://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 14, 2019</span></div>
+				<h1>Greenplum TPC-H测试</h1>
+			</header>
+			<div class="content">
+				<p>首先从<a href="http://www.tpc.org">官网</a>下载TPC-H_Tools_v2.18.0.zip，解压</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ unzip TPC-H_Tools_v2.18.0.zip</code></pre></div>
+
+<p>进入<code>dbgen</code>目录，拷贝Makefile</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> tpc/2.18.0_rc2/dbgen
+$ cp makefile.suite Makefile</code></pre></div>
+
+<p>修改Makefile，主要修改如下</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">CC</span>      <span class="o">=</span> gcc
+<span class="nv">DATABASE</span> <span class="o">=</span> ORACLE
+<span class="nv">MACHINE</span> <span class="o">=</span> LINUX
+<span class="nv">WORKLOAD</span> <span class="o">=</span> TPCH</code></pre></div>
+
+<p>编译<code>dbgen</code></p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ make</code></pre></div>
+
+<p><code>./dbgen -h</code>可以查看<code>dbgen</code>的用法</p>
+
+<p>使用<code>dbgen</code>产生一些测试数据，<code>-s</code>表示scale(单位GB)</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ./dbgen -s <span class="m">50</span> -f
+$ ll -h *.tbl</code></pre></div>
+
+<p>将测试数据转换为PostgreSQL能够识别的格式，并删除末尾的分隔符<code>|</code></p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="k">for</span> i in <span class="sb">`</span>ls *.tbl<span class="sb">`</span><span class="p">;</span> <span class="k">do</span> sed <span class="s1">&#39;s/|$//&#39;</span> <span class="nv">$i</span> &gt; <span class="si">${</span><span class="nv">i</span><span class="p">/tbl/csv</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
+$ ll -h *.csv</code></pre></div>
+
+<p>创建软链接<code>/tmp/dss-data</code>指向包含csv文件的目录</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ln -s <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span> /tmp/dss-data</code></pre></div>
+
+<p>下载pg_tpch</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git clone https://github.com/digoal/pg_tpch.git</code></pre></div>
+
+<p>将pg_tpch的文件逗拷贝到dbgen目录下面</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cp -r ~/pg_tpch/* ~/tpc/2.18.0_rc2/dbgen</code></pre></div>
+
+<p>创建一个<code>queries</code>目录，用于存放转换后的TPC-H测试SQL</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/tpc/2.18.0_rc2/dbgen
+$ mkdir -p dss/queries</code></pre></div>
+
+<p>生成测试SQL，<code>SF</code>用于dbgen指定scale值</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">SF</span><span class="o">=</span><span class="m">50</span>
+$ <span class="k">for</span> q in <span class="sb">`</span>seq <span class="m">1</span> <span class="m">22</span><span class="sb">`</span>
+<span class="k">do</span>
+    <span class="nv">DSS_QUERY</span><span class="o">=</span>dss/templates ./qgen -s <span class="nv">$SF</span> <span class="nv">$q</span> &gt; dss/queries/<span class="nv">$q</span>.sql
+    sed <span class="s1">&#39;s/^select/explain select/&#39;</span> dss/queries/<span class="nv">$q</span>.sql &gt; dss/queries/<span class="nv">$q</span>.explain.sql
+<span class="k">done</span></code></pre></div>
+
+<p>设置gpdb几个参数</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gpconfig -c enable_nestloop -v off
+$ gpconfig -c work_mem -v 256MB
+$ gpstop -u</code></pre></div>
+
+<p>开始测试，结果输出到results目录</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ./tpch.sh ./results tpch-db gpadmin</code></pre></div>
+
+<p>结束后，可以使用以下方法生成CSV报告</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ php process.php ./results output.csv</code></pre></div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/database">Database</a></span><span class="tag"><a href="http://gitop.cc/tags/greenplum">Greenplum</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>447 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-04-14 15:40 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="http://gitop.cc/posts/custom_gpdb_installation/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>gpdb官方安装包自定义安装路径的方法</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ubuntu on 静心</title>
+    <link>http://gitop.cc/tags/ubuntu/</link>
+    <description>Recent content in Ubuntu on 静心</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 18 Aug 2018 09:19:20 +0800</lastBuildDate>
+    
+	<atom:link href="http://gitop.cc/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu 18.04</title>
+      <link>http://gitop.cc/posts/ubuntu-18.04/</link>
+      <pubDate>Sat, 18 Aug 2018 09:19:20 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/ubuntu-18.04/</guid>
+      <description>Ubuntu 18.04安装后做的事情 安装openssh-server sudo apt install openssh-server 安装curl sudo apt install curl 安装git sudo apt install git 安装zsh sudo apt install zsh 安装oh my zsh sh -c &amp;#34;$(curl</description>
+    </item>
+    
+    <item>
+      <title>安装完Ubuntu后需要做的事</title>
+      <link>http://gitop.cc/posts/after-ubuntu-installation/</link>
+      <pubDate>Wed, 26 Oct 2016 16:03:15 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/after-ubuntu-installation/</guid>
+      <description>我会安装的工具 开发相关 g++，必须的，C++编译器 clang，据说是比gcc更好用的编译器，emacs的一些补全工具会用这个做后端 emacs</description>
+    </item>
+    
+  </channel>
+</rss>

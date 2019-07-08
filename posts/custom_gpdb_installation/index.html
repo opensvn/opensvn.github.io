@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="gpdb官方安装包自定义安装路径的方法">
+<meta itemprop="description" content="下载安装包并解压，得到一个bin文件，从bin文件提取rpm文件 # 前960行为安装脚本 [root@hadoop2 ~]# tail -n &#43;961 greenplum-db-5.16.0-rhel7-x86_64.bin &gt; gpdb.tar.gz 如果集群没有gpadmin用户，可以利">
+
+
+<meta itemprop="datePublished" content="2019-04-11T16:38:13&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-11T16:38:13&#43;08:00" />
+<meta itemprop="wordCount" content="1208">
+
+
+
+<meta itemprop="keywords" content="Database,Greenplum," />
+<meta property="og:title" content="gpdb官方安装包自定义安装路径的方法" />
+<meta property="og:description" content="下载安装包并解压，得到一个bin文件，从bin文件提取rpm文件 # 前960行为安装脚本 [root@hadoop2 ~]# tail -n &#43;961 greenplum-db-5.16.0-rhel7-x86_64.bin &gt; gpdb.tar.gz 如果集群没有gpadmin用户，可以利" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gitop.cc/posts/custom_gpdb_installation/" />
+<meta property="article:published_time" content="2019-04-11T16:38:13&#43;08:00"/>
+<meta property="article:modified_time" content="2019-04-11T16:38:13&#43;08:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="gpdb官方安装包自定义安装路径的方法"/>
+<meta name="twitter:description" content="下载安装包并解压，得到一个bin文件，从bin文件提取rpm文件 # 前960行为安装脚本 [root@hadoop2 ~]# tail -n &#43;961 greenplum-db-5.16.0-rhel7-x86_64.bin &gt; gpdb.tar.gz 如果集群没有gpadmin用户，可以利"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>gpdb官方安装包自定义安装路径的方法</title>
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://gitop.cc/posts/">Posts</a>
+				<a href="http://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://gitop.cc/posts/">Posts</a></li>
+			<li><a href="http://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 11, 2019</span></div>
+				<h1>gpdb官方安装包自定义安装路径的方法</h1>
+			</header>
+			<div class="content">
+				<p>下载安装包并解压，得到一个bin文件，从bin文件提取rpm文件</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 前960行为安装脚本</span>
+<span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># tail -n +961 greenplum-db-5.16.0-rhel7-x86_64.bin &gt; gpdb.tar.gz</span></code></pre></div>
+
+<p>如果集群没有gpadmin用户，可以利用<code>gpssh</code>批量创建gpadmin用户。首先以root用户登陆master节点，解压gpdb.tar.gz：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># mkdir gpdb-5.16.0</span>
+<span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># tar zxf gpdb.tar.gz -C gpdb-5.16.0</span></code></pre></div>
+
+<p>修改<code>gpdb-5.16.0/greenplum_path.sh</code>文件：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">GPHOME</span><span class="o">=</span>~/gpdb-5.16.0</code></pre></div>
+
+<p>使gpdb环境变量生效：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># source gpdb-5.16.0/greenplum_path.sh</span>
+<span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># which gpssh</span>
+/root/gpdb-5.16.0/bin/gpssh</code></pre></div>
+
+<p>创建hosts文件，包含集群所有节点的主机名，主机名需要添加到<code>/etc/hosts</code>文件中：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># cat /etc/hosts</span>
+<span class="m">127</span>.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+<span class="m">192</span>.168.203.12 hadoop2.lw hadoop2
+<span class="m">192</span>.168.203.13 hadoop3.lw hadoop3
+<span class="m">192</span>.168.203.14 hadoop4.lw hadoop4
+<span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># cat hosts</span>
+hadoop2
+hadoop3
+hadoop4</code></pre></div>
+
+<p>交换各节点之间的ssh key：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># gpssh-exkeys -f hosts</span>
+<span class="o">[</span>STEP <span class="m">1</span> of <span class="m">5</span><span class="o">]</span> create <span class="nb">local</span> ID and authorize on <span class="nb">local</span> host
+<span class="o">[</span>STEP <span class="m">2</span> of <span class="m">5</span><span class="o">]</span> keyscan all hosts and update known_hosts file
+<span class="o">[</span>STEP <span class="m">3</span> of <span class="m">5</span><span class="o">]</span> authorize current user on remote hosts
+  ... send to hadoop3
+  *** Enter password <span class="k">for</span> hadoop3:
+  ... send to hadoop4
+<span class="o">[</span>STEP <span class="m">4</span> of <span class="m">5</span><span class="o">]</span> determine common authentication file content
+<span class="o">[</span>STEP <span class="m">5</span> of <span class="m">5</span><span class="o">]</span> copy authentication files to all remote hosts
+  ... finished key exchange with hadoop3
+  ... finished key exchange with hadoop4
+<span class="o">[</span>INFO<span class="o">]</span> completed successfully</code></pre></div>
+
+<p>现在可以开始批量创建gpadmin用户了：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># gpssh -f hosts</span>
+<span class="o">=</span>&gt; groupadd -g <span class="m">530</span> gpadmin
+<span class="o">[</span>hadoop2<span class="o">]</span>
+<span class="o">[</span>hadoop4<span class="o">]</span>
+<span class="o">[</span>hadoop3<span class="o">]</span>
+<span class="o">=</span>&gt; useradd -g <span class="m">530</span> -u <span class="m">530</span> -m -d /home/gpadmin -s /bin/bash gpadmin
+<span class="o">[</span>hadoop2<span class="o">]</span>
+<span class="o">[</span>hadoop4<span class="o">]</span>
+<span class="o">[</span>hadoop3<span class="o">]</span>
+<span class="o">=</span>&gt; <span class="nb">echo</span> gpadmin:gpadmin <span class="p">|</span> chpasswd
+<span class="o">[</span>hadoop2<span class="o">]</span>
+<span class="o">[</span>hadoop4<span class="o">]</span>
+<span class="o">[</span>hadoop3<span class="o">]</span></code></pre></div>
+
+<p>修改每个节点上的文件打开数量限制，这里只展示一个节点，其他节点类似操作。因为之前有交换过key，所以可以无需密码直接通过<code>ssh hostname</code>连接到其他节点修改配置，这个步骤也可以用<code>gpssh</code>处理，但是稳妥起见，还是手动修改每个节点吧。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># vi /etc/security/limits.conf</span>
+<span class="c1"># End of file</span>
+* soft nofile <span class="m">65536</span>
+* hard nofile <span class="m">65536</span>
+* soft nproc <span class="m">131072</span>
+* hard nproc <span class="m">131072</span></code></pre></div>
+
+<p>将数据库安装目录移动到<code>/home/gpadmin</code>：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># mv gpdb-5.16.0 /home/gpadmin</span>
+<span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># chown -R gpadmin:gpadmin /home/gpadmin/gpdb-5.16.0</span>
+<span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># mv hosts /home/gpadmin</span>
+<span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># chown gpadmin:gpadmin /home/gpadmin/hosts</span></code></pre></div>
+
+<p>接下来切换到gpadmin用户下安装gpdb：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@hadoop2 ~<span class="o">]</span><span class="c1"># su - gpadmin</span></code></pre></div>
+
+<p>修改<code>.bash_profile</code>，添加如下内容：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">GREENPLUM_PATH</span><span class="o">=</span>~/gpdb-5.16.0/greenplum_path.sh
+<span class="nb">source</span> <span class="nv">$GREENPLUM_PATH</span>
+<span class="c1">#DATA_DIR目录用于存放master数据，如果你想把数据放到别的地方，不要忘了修改这个路径</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span>~/data/master/gpseg-1/
+<span class="nb">export</span> <span class="nv">MASTER_DATA_DIRECTORY</span><span class="o">=</span><span class="nv">$DATA_DIR</span>
+<span class="nb">export</span> <span class="nv">PGPORT</span><span class="o">=</span><span class="m">5432</span>
+<span class="nb">export</span> <span class="nv">PGDATABASE</span><span class="o">=</span>postgres</code></pre></div>
+
+<p>使<code>.bash_profile</code>生效：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@hadoop2 ~<span class="o">]</span>$ <span class="nb">source</span> .bash_profile
+<span class="o">[</span>gpadmin@hadoop2 ~<span class="o">]</span>$ which gpssh
+~/gpdb-5.16.0/bin/gpssh</code></pre></div>
+
+<p>因为现在处于<code>gpadmin</code>用户下，需要再次交换一下各节点之间的ssh key：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@hadoop2 ~<span class="o">]</span>$ gpssh-exkeys -f hosts
+<span class="o">[</span>STEP <span class="m">1</span> of <span class="m">5</span><span class="o">]</span> create <span class="nb">local</span> ID and authorize on <span class="nb">local</span> host
+<span class="o">[</span>STEP <span class="m">2</span> of <span class="m">5</span><span class="o">]</span> keyscan all hosts and update known_hosts file
+<span class="o">[</span>STEP <span class="m">3</span> of <span class="m">5</span><span class="o">]</span> authorize current user on remote hosts
+  ... send to hadoop3
+  *** Enter password <span class="k">for</span> hadoop3:
+  ... send to hadoop4
+<span class="o">[</span>STEP <span class="m">4</span> of <span class="m">5</span><span class="o">]</span> determine common authentication file content
+<span class="o">[</span>STEP <span class="m">5</span> of <span class="m">5</span><span class="o">]</span> copy authentication files to all remote hosts
+  ... finished key exchange with hadoop3
+  ... finished key exchange with hadoop4
+<span class="o">[</span>INFO<span class="o">]</span> completed successfully</code></pre></div>
+
+<p>创建segs文件，该文件包含所有子节点的主机名，不包括主节点的主机名：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@hadoop2 ~<span class="o">]</span>$ cat segs
+hadoop3
+hadoop4</code></pre></div>
+
+<p>将数据库安装目录分发到各个子节点：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@hadoop2 ~<span class="o">]</span>$ gpseginstall -f segs
+<span class="m">2019041152027100</span> gpseginstallgpadmin-<span class="o">[</span>INFO<span class="o">]</span>:-Installation Info:
+link_name None
+binary_path /home/gpadmin/gpdb-5.16.0
+binary_dir_location /home/gpadmin
+binary_dir_name gpdb-5.16.0
+<span class="m">2019041152027100</span> gpseginstallgpadmin-<span class="o">[</span>INFO<span class="o">]</span>:-check cluster password access
+<span class="m">2019041152027100</span> gpseginstallgpadmin-<span class="o">[</span>INFO<span class="o">]</span>:-de-duplicate hostnames
+<span class="m">2019041152027100</span> gpseginstallgpadmin-<span class="o">[</span>INFO<span class="o">]</span>:-master hostname: hadoop2
+<span class="m">2019041152027100</span> gpseginstallgpadmin-<span class="o">[</span>INFO<span class="o">]</span>:-rm -f /home/gpadmin/gpdb-5.16.0.tar<span class="p">;</span> rm -f /home/gpadmin/gpdb-5.16.0.tar.gz
+...
+<span class="m">2019041154027100</span> gpseginstallgpadmin-<span class="o">[</span>INFO<span class="o">]</span>:-SUCCESS -- Requested commands completed</code></pre></div>
+
+<p>批量创建存放数据的目录：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>gpadmin@hadoop2 ~<span class="o">]</span>$ gpssh -f <span class="nv">hosts</span>
+<span class="o">=</span>&gt; mkdir data
+<span class="o">[</span>hadoop2<span class="o">]</span>
+<span class="o">[</span>hadoop4<span class="o">]</span>
+<span class="o">[</span>hadoop3<span class="o">]</span>
+<span class="o">=</span>&gt; <span class="nb">cd</span> data
+<span class="o">[</span>hadoop2<span class="o">]</span>
+<span class="o">[</span>hadoop4<span class="o">]</span>
+<span class="o">[</span>hadoop3<span class="o">]</span>
+<span class="o">=</span>&gt; mkdir p1 p2 m1 m2 master
+<span class="o">[</span>hadoop2<span class="o">]</span>
+<span class="o">[</span>hadoop4<span class="o">]</span>
+<span class="o">[</span>hadoop3<span class="o">]</span></code></pre></div>
+
+<p>从数据库安装目录中拷贝一个初始化数据库的配置文件模板：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cp gpdb-5.16.0/docs/cli_help/gpconfigs/gpinitsystem_config .</code></pre></div>
+
+<p>修改初始化数据库的配置文件，主要修改以下选项：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PORT_BASE</span><span class="o">=</span><span class="m">40000</span> <span class="c1">#这个端口不要设置太小了，可能会端口冲突</span>
+<span class="nb">declare</span> -a <span class="nv">DATA_DIRECTORY</span><span class="o">=(</span>/home/gpadmin/data/p1 /home/gpadmin/data/p2<span class="o">)</span>
+<span class="nv">MASTER_HOSTNAME</span><span class="o">=</span>hadoop2
+<span class="nv">MASTER_DIRECTORY</span><span class="o">=</span>/home/gpadmin/data/master
+<span class="nb">declare</span> -a <span class="nv">MIRROR_DATA_DIRECTORY</span><span class="o">=(</span>/home/gpadmin/data/m1 /home/gpadmin/data/m2<span class="o">)</span></code></pre></div>
+
+<p>最后初始化数据库：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gpinitsystem -c gpinitsystem_config -h hosts</code></pre></div>
+
+<p>修改数据库用户gpadmin密码：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-plsql" data-lang="plsql">postgres=# ALTER USER gpadmin PASSWORD &#39;gpadmin&#39;;</code></pre></div>
+
+<p>修改master数据目录中的配置文件<code>pg_hba.conf</code>，在最后添加以下内容：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">host    all     all     <span class="m">192</span>.168.0.0/16  md5</code></pre></div>
+
+<p>重新加载配置文件：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gpstop -ua</code></pre></div>
+
+<p>至此，gpdb数据库可以接受内网的访问了。</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/database">Database</a></span><span class="tag"><a href="http://gitop.cc/tags/greenplum">Greenplum</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1208 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-04-11 16:38 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://gitop.cc/posts/tpch-test/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Greenplum TPC-H测试</span>
+			</a>
+			<a class="prev-post" href="http://gitop.cc/posts/psql_intro/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>psql使用介绍</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>

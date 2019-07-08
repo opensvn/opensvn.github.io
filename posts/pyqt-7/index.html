@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="PyQt编程第7章 使用Qt Designer">
+<meta itemprop="description" content="用户界面保存在.ui文件中，包含一个窗口部件和布局的详细情况。Qt Designer能够关联标签和它的伙伴， 设置tab顺序(这个也可以用QWi">
+
+
+<meta itemprop="datePublished" content="2015-10-28T08:50:57&#43;00:00" />
+<meta itemprop="dateModified" content="2015-10-28T08:50:57&#43;00:00" />
+<meta itemprop="wordCount" content="1365">
+
+
+
+<meta itemprop="keywords" content="Python," />
+<meta property="og:title" content="PyQt编程第7章 使用Qt Designer" />
+<meta property="og:description" content="用户界面保存在.ui文件中，包含一个窗口部件和布局的详细情况。Qt Designer能够关联标签和它的伙伴， 设置tab顺序(这个也可以用QWi" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gitop.cc/posts/pyqt-7/" />
+<meta property="article:published_time" content="2015-10-28T08:50:57&#43;00:00"/>
+<meta property="article:modified_time" content="2015-10-28T08:50:57&#43;00:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PyQt编程第7章 使用Qt Designer"/>
+<meta name="twitter:description" content="用户界面保存在.ui文件中，包含一个窗口部件和布局的详细情况。Qt Designer能够关联标签和它的伙伴， 设置tab顺序(这个也可以用QWi"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>PyQt编程第7章 使用Qt Designer</title>
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://gitop.cc/posts/">Posts</a>
+				<a href="http://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://gitop.cc/posts/">Posts</a></li>
+			<li><a href="http://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 28, 2015</span></div>
+				<h1>PyQt编程第7章 使用Qt Designer</h1>
+			</header>
+			<div class="content">
+				
+
+<p>用户界面保存在.ui文件中，包含一个窗口部件和布局的详细情况。<strong>Qt Designer</strong>能够关联标签和它的伙伴，
+设置tab顺序(这个也可以用<code>QWidget.setTabOrder()</code>完成)。<strong>Qt Designer</strong>也能够关联信号和槽，
+但是只能是内置的信号和槽。</p>
+
+<p>一旦用户界面设计完成并保存在.ui文件，必须转化为代码才能使用。这个可以用<code>pyuic4</code>完成，比如：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="err">$</span> <span class="n">pyuic4</span> <span class="o">-</span><span class="n">o</span> <span class="n">ui_findandreplacedlg</span><span class="o">.</span><span class="n">py</span> <span class="n">findandreplacedlg</span><span class="o">.</span><span class="n">ui</span></code></pre></div>
+
+<h1 id="设计用户界面">设计用户界面<a href="#设计用户界面" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>使用<strong>Qt Designer</strong>通用步骤：</p>
+
+<ol>
+<li>拖动一个部件到窗体合适的位置，通常只有容器部件需要改变大小。</li>
+<li>设置部件的属性。如果部件会在代码里面用到，设置一个有意义的名字。</li>
+<li>重复1和2直到所有部件都在窗体上。</li>
+<li>如果存在大的间隙，添加间隔器。</li>
+<li>选择2个或多个部件进行布局(Shift+Click)，使用一个布局管理器布局。</li>
+<li>重复5直到所有部件已经布局完毕。</li>
+<li>点击窗体(不选择任何部件)，使用一个布局管理器布局窗体。</li>
+<li>创建标签的伙伴。</li>
+<li>设置窗体的tab顺序，如果顺序错误。</li>
+<li>创建合适的内置信号和槽的关联。</li>
+<li>预览窗体，检查所有东西都按照自己的意图工作。</li>
+<li>设置窗体的对象名字和标题并保存。</li>
+</ol>
+
+<p>尽管可以先将布局拖进窗体，然后再添加部件到布局，但是最好是先将部件添加到窗体，然后再进行布局。</p>
+
+<p><code>addStretch()</code>和插入<code>QSpacerItem</code>一样。</p>
+
+<p>预览窗口点击Form-&gt;Preview或者Ctrl+R。如果想预览不同风格，点击Form-&gt;Preview in</p>
+
+<h1 id="实现对话框">实现对话框<a href="#实现对话框" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>当使用<strong>Qt Designer</strong>创建一个用户界面时，我们使用多继承创建一个子类。第一个父类是<code>QDialog</code>，
+第二个父类是用<strong>Qt Designer</strong>设计的界面。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">ui_findandreplacedlg</span>
+
+<span class="k">class</span> <span class="nc">FindAndReplaceDlg</span><span class="p">(</span><span class="n">QDialog</span><span class="p">,</span>
+    <span class="n">ui_findandreplacedlg</span><span class="o">.</span><span class="n">Ui_FindAndReplaceDlg</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FindAndReplaceDlg</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__text</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">MAC</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">findButton</span><span class="o">.</span><span class="n">setFocusPolicy</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">NoFocus</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">replaceButton</span><span class="o">.</span><span class="n">setFocusPolicy</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">NoFocus</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">replaceAllButton</span><span class="o">.</span><span class="n">setFocusPolicy</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">NoFocus</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">closeButton</span><span class="o">.</span><span class="n">setFocusPolicy</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">NoFocus</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updateUi</span><span class="p">()</span></code></pre></div>
+
+<p><code>setupUi()</code>方法由生成的ui模块提供，调用这个方法创建用户界面。
+<code>setupUi()</code>方法调用<code>QtCore.QMetaObject.connectSlotsByName()</code>创建信号和槽之间的联系。
+任何具有形式<code>on_widgetName_signalName</code>的槽都有一个信号连接到它。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pyqtSignature</span><span class="p">(</span><span class="s1">&#39;QString&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">on_findLineText_textEdited</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__index</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">updateUi</span><span class="p">()</span></code></pre></div>
+
+<p>多亏<code>setupUi()</code>，这个方法自动连接到findLineEdit的<code>textEdited()</code>信号。当需要自动连接到指定
+信号，使用<code>@pyqtSignature</code>装饰指定信号参数。装饰的作用是区分同名但参数不同的信号。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">updateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">enable</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">findLineEdit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">findButton</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="n">enable</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">replaceButton</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="n">enable</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">replaceAllButton</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="n">enable</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__text</span>
+
+<span class="nd">@pyqtSignature</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">on_findButton_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">makeRegex</span><span class="p">()</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__index</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__index</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">SIGNAL</span><span class="p">(</span><span class="s1">&#39;found&#39;</span><span class="p">),</span> <span class="n">match</span><span class="o">.</span><span class="n">start</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">SIGNAL</span><span class="p">(</span><span class="s1">&#39;notfound&#39;</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">makeRegex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">findText</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">findLineEdit</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+    <span class="k">if</span> <span class="nb">unicode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">syntaxComboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">())</span> <span class="o">==</span> <span class="s1">&#39;Literal&#39;</span><span class="p">:</span>
+        <span class="n">findText</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">findText</span><span class="p">)</span>
+    <span class="n">flags</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span><span class="o">|</span><span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="o">|</span><span class="n">re</span><span class="o">.</span><span class="n">UNICODE</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">caseCheckBox</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
+        <span class="n">flags</span> <span class="o">|=</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">wholeCheckBox</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
+        <span class="n">findText</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\b</span><span class="si">%s</span><span class="s1">\b&#39;</span> <span class="o">%</span> <span class="n">findText</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">findText</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span></code></pre></div>
+
+<p>如果被搜索的文本是<code>QString</code>而不是<code>unicode</code>，则选择<code>QRegExp</code>更好。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pyqtSignature</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">on_replaceButton_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">makeRegex</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__text</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="nb">unicode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">replaceLineEdit</span><span class="o">.</span><span class="n">text</span><span class="p">()),</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__text</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nd">@pyqtSignature</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">on_replaceAllButton_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">makeRegex</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__text</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="nb">unicode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">replaceLineEdit</span><span class="o">.</span><span class="n">text</span><span class="p">()),</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__text</span><span class="p">)</span></code></pre></div>
+
+<h1 id="测试对话框">测试对话框<a href="#测试对话框" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+
+    <span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;US experience shows that, unlike traditional patents,
+</span><span class="s2">software patents do not encourage innovation and R&amp;D, quite the
+</span><span class="s2">contrary. In particular they hurt small and medium-sized enterprises
+</span><span class="s2">and generally newcomers in the market. They will just weaken the market
+</span><span class="s2">and increase spending on patents and litigation, at the expense of
+</span><span class="s2">technological innovation and research. Especially dangerous are
+</span><span class="s2">attempts to abuse the patent system by preventing interoperability as a
+</span><span class="s2">means of avoiding competition with technological ability.
+</span><span class="s2">--- Extract quoted from Linus Torvalds and Alan Cox&#39;s letter
+</span><span class="s2">to the President of the European Parliament
+</span><span class="s2">http://www.effi.org/patentit/patents_torvalds_cox.html&#34;&#34;&#34;</span>
+
+    <span class="k">def</span> <span class="nf">found</span><span class="p">(</span><span class="n">where</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s1">&#39;Found at </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">where</span>
+
+    <span class="k">def</span> <span class="nf">nomore</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s1">&#39;No more found&#39;</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">FindAndReplaceDlg</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s1">&#39;found&#39;</span><span class="p">),</span> <span class="n">found</span><span class="p">)</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s1">&#39;notfound&#39;</span><span class="p">),</span> <span class="n">nomore</span><span class="p">)</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+    <span class="k">print</span> <span class="n">form</span><span class="o">.</span><span class="n">text</span><span class="p">()</span></code></pre></div>
+
+<h1 id="总结">总结<a href="#总结" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>使用<strong>Qt Designer</strong>和手工创建界面最大的不同是在初始化的时候，我们简单地调用<code>setupUi()</code>创建界面，
+布局，信号和槽的关联。槽的命名惯例是<code>on_widgetName_signalName</code>，连同<code>@pyqtSignature</code>装饰
+就可以利用<code>setupUi()</code>自动关联信号和槽。</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/python">Python</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1365 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2015-10-28 16:50 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://gitop.cc/posts/pyqt-8/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>PyQt编程第8章 数据处理和自定义文件类型</span>
+			</a>
+			<a class="prev-post" href="http://gitop.cc/posts/project-euler-1/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Project Euler Problem 1</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>

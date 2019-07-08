@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="PyQt编程第5章 对话框">
+<meta itemprop="description" content="对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。 对话框以“模式”分类为：模式对话框和无模式对话框。 应用模式对话框一">
+
+
+<meta itemprop="datePublished" content="2015-10-14T16:20:56&#43;00:00" />
+<meta itemprop="dateModified" content="2015-10-14T16:20:56&#43;00:00" />
+<meta itemprop="wordCount" content="2311">
+
+
+
+<meta itemprop="keywords" content="Python," />
+<meta property="og:title" content="PyQt编程第5章 对话框" />
+<meta property="og:description" content="对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。 对话框以“模式”分类为：模式对话框和无模式对话框。 应用模式对话框一" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gitop.cc/posts/pyqt-5/" />
+<meta property="article:published_time" content="2015-10-14T16:20:56&#43;00:00"/>
+<meta property="article:modified_time" content="2015-10-14T16:20:56&#43;00:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PyQt编程第5章 对话框"/>
+<meta name="twitter:description" content="对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。 对话框以“模式”分类为：模式对话框和无模式对话框。 应用模式对话框一"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>PyQt编程第5章 对话框</title>
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://gitop.cc/posts/">Posts</a>
+				<a href="http://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://gitop.cc/posts/">Posts</a></li>
+			<li><a href="http://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 14, 2015</span></div>
+				<h1>PyQt编程第5章 对话框</h1>
+			</header>
+			<div class="content">
+				
+
+<p>对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。
+对话框以“模式”分类为：模式对话框和无模式对话框。</p>
+
+<p>应用模式对话框一旦被调用，用户只能与其交互，不能使用程序其它部分。
+窗口模式对话框和应用模式对话框类似，只是它仅仅阻止与其父窗口交互。
+无模式对话框允许用户与程序其它部分交互。</p>
+
+<p>编写对话框另一个重要方面是如何处理有效性检验。我们尽量挑选合适的部件并设置其属性来避免编写有效性
+检验代码。
+我们称应用到单个部件的检验为部件级确认。当部件之间有相互关系时，称为表级确认。</p>
+
+<h1 id="哑巴-对话框">“哑巴”对话框<a href="#哑巴-对话框" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>哑巴对话框不知道其部件使用的数据。哑巴对话框通常是带有<code>accept</code>和<code>reject</code>按钮的模式对话框。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setPenProperties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">dialog</span> <span class="o">=</span> <span class="n">PenPropertiesDlg</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="n">dialog</span><span class="o">.</span><span class="n">widthSpinBox</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
+    <span class="n">dialog</span><span class="o">.</span><span class="n">beveledCheckBox</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beveled</span><span class="p">)</span>
+    <span class="n">dialog</span><span class="o">.</span><span class="n">styleComboBox</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span>
+            <span class="n">dialog</span><span class="o">.</span><span class="n">styleComboBox</span><span class="o">.</span><span class="n">findText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">widthSpinBox</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beveled</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">beveledCheckBox</span><span class="o">.</span><span class="n">isChecked</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">dialog</span><span class="o">.</span><span class="n">styleComboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updateData</span><span class="p">()</span></code></pre></div>
+
+<p>当我们调用一个对话框的<code>exec_</code>时，则以模式对话框显示。当用户点击<code>accept</code>，<code>exec_</code>返回<code>True</code>，
+否则返回<code>False</code>。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">PenPropertiesDlg</span><span class="p">(</span><span class="n">QDialog</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PenPropertiesDlg</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="n">widthLabel</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&#34;&amp;Width:&#34;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">widthSpinBox</span> <span class="o">=</span> <span class="n">QSpinBox</span><span class="p">()</span>
+        <span class="n">widthLabel</span><span class="o">.</span><span class="n">setBuddy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">widthSpinBox</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">widthSpinBox</span><span class="o">.</span><span class="n">setAlignment</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignRight</span><span class="o">|</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">widthSpinBox</span><span class="o">.</span><span class="n">setRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beveledCheckBox</span> <span class="o">=</span> <span class="n">QCheckBox</span><span class="p">(</span><span class="s2">&#34;&amp;Beveled edges&#34;</span><span class="p">)</span>
+        <span class="n">styleLabel</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&#34;&amp;Style:&#34;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">styleComboBox</span> <span class="o">=</span> <span class="n">QComboBox</span><span class="p">()</span>
+        <span class="n">styleLabel</span><span class="o">.</span><span class="n">setBuddy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">styleComboBox</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">styleComboBox</span><span class="o">.</span><span class="n">addItems</span><span class="p">([</span><span class="s2">&#34;Solid&#34;</span><span class="p">,</span> <span class="s2">&#34;Dashed&#34;</span><span class="p">,</span> <span class="s2">&#34;Dotted&#34;</span><span class="p">,</span>
+                                     <span class="s2">&#34;DashDotted&#34;</span><span class="p">,</span> <span class="s2">&#34;DashDotDotted&#34;</span><span class="p">])</span>
+        <span class="n">okButton</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s2">&#34;&amp;OK&#34;</span><span class="p">)</span>
+        <span class="n">cancelButton</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s2">&#34;Cancel&#34;</span><span class="p">)</span>
+
+        <span class="n">buttonLayout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="n">buttonLayout</span><span class="o">.</span><span class="n">addStretch</span><span class="p">()</span>
+        <span class="n">buttonLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">okButton</span><span class="p">)</span>
+        <span class="n">buttonLayout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">cancelButton</span><span class="p">)</span>
+        <span class="n">layout</span> <span class="o">=</span> <span class="n">QGridLayout</span><span class="p">()</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">widthLabel</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">widthSpinBox</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beveledCheckBox</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">styleLabel</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">styleComboBox</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="n">buttonLayout</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">okButton</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;clicked()&#34;</span><span class="p">),</span>
+                     <span class="bp">self</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="s2">&#34;accept()&#34;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">cancelButton</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;clicked()&#34;</span><span class="p">),</span>
+                     <span class="bp">self</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="s2">&#34;reject()&#34;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&#34;Pen Properties&#34;</span><span class="p">)</span></code></pre></div>
+
+<p>在标签文字中的引号(<code>&amp;</code>)有2个可能的含义，一个简单地为字符引号。另一个指示引号后面的字母为键盘
+加速键，可以使用Alt+字母快速定位。字符引号和加速键的区别是标签有没有一个“伙伴”。</p>
+
+<p><strong>对话框按钮布局</strong></p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">buttonBox</span> <span class="o">=</span> <span class="n">QDialogButtonBox</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Ok</span>
+                             <span class="o">|</span> <span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Cancel</span><span class="p">)</span>
+<span class="n">buttonBox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span><span class="o">.</span><span class="n">setDefault</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">buttonBox</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">buttonBox</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;accepted()&#34;</span><span class="p">),</span>
+             <span class="bp">self</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="s2">&#34;accept()&#34;</span><span class="p">))</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">buttonBox</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;rejected()&#34;</span><span class="p">),</span>
+             <span class="bp">self</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="s2">&#34;reject()&#34;</span><span class="p">))</span></code></pre></div>
+
+<p><code>QDialogButtonBox</code>自动处理不同平台的默认外观。
+<code>QDialogButtonBox</code>默认是水平布局，可以传递<code>Qt.Vertical</code>给它构造器设置垂直布局，或者调用
+<code>setOrientation</code>函数。</p>
+
+<p><code>QGridLayout.addWidget</code>方法的参数是部件，所在行，所在列，和可选的行扩展数，列扩展数。</p>
+
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>b.addLayout(l)</td>
+<td align="left">添加QLayout l到QBoxLayout b中, b通常是QHBoxLayout或QVBoxLayout</td>
+</tr>
+
+<tr>
+<td>b.addSpacing(i)</td>
+<td align="left">添加一个指定数量为i的QSpacerItem到QBoxLayout b中</td>
+</tr>
+
+<tr>
+<td>b.addStretch(i)</td>
+<td align="left">添加一个最小为0且伸展系数为i的QSpacerItem到QBoxLayout b中</td>
+</tr>
+
+<tr>
+<td>b.addWidget(w)</td>
+<td align="left">添加QWidget w到QBoxLayout b中</td>
+</tr>
+
+<tr>
+<td>b.setStretchFactor(x, i)</td>
+<td align="left">设置QBoxLayout b的伸展系数或QWidget x为i</td>
+</tr>
+
+<tr>
+<td>g.addLayout(l, r, c)</td>
+<td align="left">在行r列c添加QLayout l到QGridLayout g; 可以提供附加的行扩展和列扩展参数</td>
+</tr>
+
+<tr>
+<td>g.addWidget(w, r, c)</td>
+<td align="left">在行r列c添加QWidget w到QGridLayout g; 可以提供附加的行扩展和列扩展参数</td>
+</tr>
+
+<tr>
+<td>g.setRowStretch(r, i)</td>
+<td align="left">设置QGridLayout g行r的伸展为i</td>
+</tr>
+
+<tr>
+<td>g.setColumnStretch(c, i)</td>
+<td align="left">设置QGridLayout g列c的伸展为i</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="标准对话框">标准对话框<a href="#标准对话框" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>我们认为一个对话框是标准对话框，如果它访问部件都是通过类方法，而不是部件本身。</p>
+
+<h2 id="模式ok-cancel风格对话框">模式OK/Cancel风格对话框<a href="#模式ok-cancel风格对话框" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setNumberFormat1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">dialog</span> <span class="o">=</span> <span class="n">numberformatdlg1</span><span class="o">.</span><span class="n">NumberFormatDlg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">numberFormat</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refreshTable</span><span class="p">()</span></code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>d.addButton(b, r)</td>
+<td align="left">添加具有QDialogButtonBox.ButtonRole r的QPushButton b到QDialogButtonBox d中</td>
+</tr>
+
+<tr>
+<td>d.addButton(t, r)</td>
+<td align="left">添加具有QDialogButtonBox.ButtonRole r且名字为t的QPushButton到QDialogButtonBox d中，返回所添加的按钮</td>
+</tr>
+
+<tr>
+<td>d.addButton(s)</td>
+<td align="left">添加由QDialogButtonBox.StandardButton s指定的按钮QDialogButtonBox d中，返回所添加的按钮</td>
+</tr>
+
+<tr>
+<td>d.setOrientation(o)</td>
+<td align="left">设置QDialogButtonBox d的方向为Qt.Orientation o(垂直或水平)</td>
+</tr>
+
+<tr>
+<td>d.button(s)</td>
+<td align="left">返回QDialogButtonBox d中由StandardButton s指定的按钮，或None</td>
+</tr>
+
+<tr>
+<td>d.accepted()</td>
+<td align="left">当角色为QDialogButtonBox.Accept的按钮被点击，发射该信号</td>
+</tr>
+
+<tr>
+<td>d.rejected()</td>
+<td align="left">当角色为QDialogButtonBox.Reject的按钮被点击，发射该信号</td>
+</tr>
+</tbody>
+</table>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">accept</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">ThousandsError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span> <span class="k">pass</span>
+    <span class="k">class</span> <span class="nc">DecimalError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span> <span class="k">pass</span>
+    <span class="n">QMessageBox</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&#34;Decimal Marker Error&#34;</span><span class="p">,</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="n">QDialog</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code></pre></div>
+
+<p>为什么这里不使用<code>super</code>来调用基类的<code>accept</code>而是显式使用<code>QDialog</code>？因为在这个环境下使用<code>super</code>
+不起作用。PyQt为了尽可能效率高，使用懒惰属性查找，结果就是此处的<code>super</code>在PyQt的子类中不会像预期
+那样工作。(见pyqt4ref.html文档，&rdquo;super and PyQt classes&rdquo;)</p>
+
+<h1 id="智能对话框">智能对话框<a href="#智能对话框" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>智能对话框通常是无模式的，带有<code>apply</code>和<code>close</code>按钮。</p>
+
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>d.accept()</td>
+<td align="left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回True。如果设置了Qt.WA_DeleteOnClose，则对话框被删除</td>
+</tr>
+
+<tr>
+<td>d.reject()</td>
+<td align="left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回False。</td>
+</tr>
+
+<tr>
+<td>d.done(i)</td>
+<td align="left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回i。</td>
+</tr>
+
+<tr>
+<td>d.exec_()</td>
+<td align="left">模式显示QDialog d，阻塞直到对话框关闭</td>
+</tr>
+
+<tr>
+<td>d.show()</td>
+<td align="left">无模式显示QDialog d；继承自QWidget</td>
+</tr>
+
+<tr>
+<td>d.setSizeGripEnabled(b)</td>
+<td align="left">显示或隐藏QDialog d的size grip，基于bool b</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="无模式apply-close风格对话框">无模式Apply/Close风格对话框<a href="#无模式apply-close风格对话框" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setNumberFormat2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">dialog</span> <span class="o">=</span> <span class="n">numberformatdlg2</span><span class="o">.</span><span class="n">NumberFormatDlg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dialog</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;changed&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">refreshTable</span><span class="p">)</span>
+    <span class="n">dialog</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
+
+<p>尽管dialog超出范围，PyQt足够聪明地保存了一个无模式对话框的引用，因此dialog继续存在。可以设置
+dialog的属性为Qt.WA_DeleteOnClose，则每次都删除对话框而不是隐藏。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">NumberFormatDlg</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">WA_DeleteOnClose</span><span class="p">)</span>
+    <span class="n">punctuationRe</span> <span class="o">=</span> <span class="n">QRegExp</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;[ ,;:.]&#34;</span><span class="p">)</span>
+    <span class="n">thousandsLabel</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&#34;&amp;Thousands separator&#34;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">thousandsEdit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="n">format</span><span class="p">[</span><span class="s2">&#34;thousandsseparator&#34;</span><span class="p">])</span>
+    <span class="n">thousandsLabel</span><span class="o">.</span><span class="n">setBuddy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thousandsEdit</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">thousandsEdit</span><span class="o">.</span><span class="n">setMaxLength</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">thousandsEdit</span><span class="o">.</span><span class="n">setValidator</span><span class="p">(</span>
+            <span class="n">QRegExpValidator</span><span class="p">(</span><span class="n">punctuationRe</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
+    <span class="n">decimalMarkerLabel</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&#34;Decimal &amp;marker&#34;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decimalMarkerEdit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="n">format</span><span class="p">[</span><span class="s2">&#34;decimalmarker&#34;</span><span class="p">])</span>
+    <span class="n">decimalMarkerLabel</span><span class="o">.</span><span class="n">setBuddy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decimalMarkerEdit</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decimalMarkerEdit</span><span class="o">.</span><span class="n">setMaxLength</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decimalMarkerEdit</span><span class="o">.</span><span class="n">setValidator</span><span class="p">(</span>
+            <span class="n">QRegExpValidator</span><span class="p">(</span><span class="n">punctuationRe</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decimalMarkerEdit</span><span class="o">.</span><span class="n">setInputMask</span><span class="p">(</span><span class="s2">&#34;X&#34;</span><span class="p">)</span>
+    <span class="n">decimalPlacesLabel</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&#34;&amp;Decimal places&#34;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decimalPlacesSpinBox</span> <span class="o">=</span> <span class="n">QSpinBox</span><span class="p">()</span>
+    <span class="n">decimalPlacesLabel</span><span class="o">.</span><span class="n">setBuddy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decimalPlacesSpinBox</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decimalPlacesSpinBox</span><span class="o">.</span><span class="n">setRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decimalPlacesSpinBox</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">format</span><span class="p">[</span><span class="s2">&#34;decimalplaces&#34;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">redNegativesCheckBox</span> <span class="o">=</span> <span class="n">QCheckBox</span><span class="p">(</span><span class="s2">&#34;&amp;Red negative numbers&#34;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">redNegativesCheckBox</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="n">format</span><span class="p">[</span><span class="s2">&#34;rednegatives&#34;</span><span class="p">])</span>
+    <span class="n">buttonBox</span> <span class="o">=</span> <span class="n">QDialogButtonBox</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Apply</span><span class="o">|</span>
+                                 <span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Close</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">buttonBox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Apply</span><span class="p">),</span>
+                 <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;clicked()&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="nb">apply</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">buttonBox</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;rejected()&#34;</span><span class="p">),</span>
+                 <span class="bp">self</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="s2">&#34;reject()&#34;</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&#34;Set Number Format (Modeless)&#34;</span><span class="p">)</span></code></pre></div>
+
+<p><code>QRegExpValidator</code>初始化式需要一个正则表达式和一个<code>parent</code>。
+一个掩饰“X”说明需要任意一个字符，格式掩饰在<code>QLineEdit.inputMask</code>文档中说明。</p>
+
+<h2 id="无模式-live-对话框">无模式“Live”对话框<a href="#无模式-live-对话框" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setNumberFormat3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberFormatDlg</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numberFormatDlg</span> <span class="o">=</span> <span class="n">numberformatdlg3</span><span class="o">.</span><span class="n">NumberFormatDlg</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">refreshTable</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">numberFormatDlg</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">numberFormatDlg</span><span class="o">.</span><span class="n">raise_</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">numberFormatDlg</span><span class="o">.</span><span class="n">activateWindow</span><span class="p">()</span></code></pre></div>
+
+<p><code>raise_</code>将对话框置于其它窗口之上
+<code>activateWindow</code>聚焦于对话框</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thousandsEdit</span><span class="p">,</span>
+             <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;textEdited(QString)&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkAndFix</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decimalMarkerEdit</span><span class="p">,</span>
+             <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;textEdited(QString)&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkAndFix</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decimalPlacesSpinBox</span><span class="p">,</span>
+             <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;valueChanged(int)&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="nb">apply</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">redNegativesCheckBox</span><span class="p">,</span>
+             <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;toggled(bool)&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="nb">apply</span><span class="p">)</span></code></pre></div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/python">Python</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2311 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2015-10-15 00:20 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://gitop.cc/posts/pyqt-6/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>PyQt编程第6章 主窗口</span>
+			</a>
+			<a class="prev-post" href="http://gitop.cc/posts/pyqt-4/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>PyQt编程第4章 GUI编程介绍</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>

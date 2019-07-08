@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tool on 静心</title>
+    <link>http://gitop.cc/tags/tool/</link>
+    <description>Recent content in Tool on 静心</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 18 Aug 2018 16:15:19 +0800</lastBuildDate>
+    
+	<atom:link href="http://gitop.cc/tags/tool/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Idea快捷键</title>
+      <link>http://gitop.cc/posts/idea-key-bindings/</link>
+      <pubDate>Sat, 18 Aug 2018 16:15:19 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/idea-key-bindings/</guid>
+      <description>编辑基础 快捷键 说明 Ctrl+Shift+向右箭头 向右选择一个单词 Ctrl+Shift+向左箭头 向左选择一个单词 Alt+Shift+向上箭头 逐</description>
+    </item>
+    
+  </channel>
+</rss>

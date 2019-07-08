@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="安装完Ubuntu后需要做的事">
+<meta itemprop="description" content="我会安装的工具 开发相关 g&#43;&#43;，必须的，C&#43;&#43;编译器 clang，据说是比gcc更好用的编译器，emacs的一些补全工具会用这个做后端 emacs">
+
+
+<meta itemprop="datePublished" content="2016-10-26T16:03:15&#43;00:00" />
+<meta itemprop="dateModified" content="2016-10-26T16:03:15&#43;00:00" />
+<meta itemprop="wordCount" content="1672">
+
+
+
+<meta itemprop="keywords" content="Ubuntu," />
+<meta property="og:title" content="安装完Ubuntu后需要做的事" />
+<meta property="og:description" content="我会安装的工具 开发相关 g&#43;&#43;，必须的，C&#43;&#43;编译器 clang，据说是比gcc更好用的编译器，emacs的一些补全工具会用这个做后端 emacs" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gitop.cc/posts/after-ubuntu-installation/" />
+<meta property="article:published_time" content="2016-10-26T16:03:15&#43;00:00"/>
+<meta property="article:modified_time" content="2016-10-26T16:03:15&#43;00:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="安装完Ubuntu后需要做的事"/>
+<meta name="twitter:description" content="我会安装的工具 开发相关 g&#43;&#43;，必须的，C&#43;&#43;编译器 clang，据说是比gcc更好用的编译器，emacs的一些补全工具会用这个做后端 emacs"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>安装完Ubuntu后需要做的事</title>
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://gitop.cc/posts/">Posts</a>
+				<a href="http://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://gitop.cc/posts/">Posts</a></li>
+			<li><a href="http://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 26, 2016</span></div>
+				<h1>安装完Ubuntu后需要做的事</h1>
+			</header>
+			<div class="content">
+				
+
+<h2 id="我会安装的工具">我会安装的工具<a href="#我会安装的工具" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><strong>开发相关</strong></p>
+
+<ul>
+<li>g++，必须的，C++编译器</li>
+<li>clang，据说是比gcc更好用的编译器，emacs的一些补全工具会用这个做后端</li>
+<li>emacs，编辑器之神，谁用谁知道，入门门槛稍微高了一点，我现在还是菜鸟hoho</li>
+<li>git，连接github开源代码</li>
+<li>vim，自从加入emacs阵营后，这个就用的少了</li>
+<li>subversion，公司代码还是用svn管理</li>
+<li>cmake，使用cmake自动生成Makefile，编译工程很方便</li>
+<li>global，emacs里面用来生成GTAGS，利于阅读代码</li>
+<li>meld，文件比较工具，支持整个目录的比较，以及版本控制系统，比如svn，git</li>
+<li>git cola，一个非常好用的git客户端工具</li>
+<li>LiteIDE，Go语言IDE</li>
+<li>CLion，JetBrains出品的C++IDE，很少用，最大的缺点耗内存，其他功能都不错</li>
+<li>curl，命令行抓取工具</li>
+<li>CodeBlocks，C++IDE，公司目前用的，比较少用，只用来编译发布。下面的操作安装最新的16.01版本。</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:damien-moore/codeblocks-stable
+sudo apt-get update
+sudo apt-get install codeblocks</code></pre></div>
+
+<p><strong>日常使用</strong></p>
+
+<ul>
+<li>ubuntu-tweak，该工具已经停止更新，16.04已经不能安装了，我是14.04升级到16.04，保留了该工具</li>
+<li>cryptomator，本地目录加密工具，加密指定目录所有文件。</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:sebastian-stenzel/cryptomator
+sudo apt-get update
+sudo apt-get install cryptomator</code></pre></div>
+
+<ul>
+<li><p>keepassx，本地密码管理软件，再也不用担心忘记密码了，只需记住一个主密码即可，保险一点可以再加一个key文件。这里讲一个配合cryptomator和云盘（推荐坚果云）的靠谱方法：</p>
+
+<ol>
+<li>首先用keepassx生成一个密码库的key文件</li>
+<li>将key文件放入cryptomator加密的目录（称为保险箱吧）中</li>
+<li>将保险箱同步到云盘</li>
+<li>密码库文件不用放入保险箱，同步到云盘。</li>
+</ol>
+
+<p>这样就可以在不同机器上使用和修改密码库文件，云盘会自动同步。因为key文件放在保险箱里面，非常安全。没有key文件和主密码是打不开密码库的。当然理论上存在保险箱被破解的可能，如果你觉得不放心，可以将key文件保存在自己认为安全的地方（千万不能丢）。</p></li>
+
+<li><p>坚果云（Nutstore），<a href="https://www.jianguoyun.com/s/downloads/linux">下载地址</a></p></li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install default-jre-headless
+sudo dpkg -i nautilus_nutstore_amd64.deb</code></pre></div>
+
+<ul>
+<li><p><a href="https://getlantern.org/">蓝灯</a>，<a href="https://github.com/getlantern/lantern-binaries">下载地址</a></p></li>
+
+<li><p>搜狗输入法，<a href="http://pinyin.sogou.com/linux/?r=pinyin">下载地址</a>。安装完成后，设置系统输入法，通过<strong>系统设置&gt;语言支持&gt;键盘输入方式系统</strong>，选择<strong>fcitx</strong>，注销并重新登录即可</p></li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install fcitx fcitx-libs fcitx-libs-qt
+sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb</code></pre></div>
+
+<ul>
+<li>oh-my-zsh，首先要安装zsh。</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span></code></pre></div>
+
+<h2 id="你自己的github-通过坚果云管理代码-参见-http-blog-jianguoyun-com-p-321">你自己的Github-通过坚果云管理代码（<a href="http://blog.jianguoyun.com/?p=321">参见</a>）<a href="#你自己的github-通过坚果云管理代码-参见-http-blog-jianguoyun-com-p-321" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>切换到用来管理代码的目录，初始化本地仓库</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git init
+$ git add .
+$ git commit -m <span class="s2">&#34;first commit&#34;</span></code></pre></div>
+
+<p>在坚果云同步目录中创建远程仓库</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir -p ~/Nutstore/git/project
+$ <span class="nb">cd</span> ~/Nutstore/git/project
+$ git init –bare</code></pre></div>
+
+<p>回到本地仓库目录，push代码到坚果云中</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git remote add orig ~/Nutstore/git/project
+$ git push orig master</code></pre></div>
+
+<p>这样在所有装了坚果云的电脑上都可以用git管理自己的代码。另一台电脑可以这样拉取代码：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git init
+$ git remote add orig ~/Nutstore/git/project
+$ git pull orig master</code></pre></div>
+
+<h2 id="ubuntu美化">Ubuntu美化<a href="#ubuntu美化" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><strong>安装主题numix（强烈推荐）</strong></p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:numix/ppa
+sudo apt update
+sudo apt install numix-gtk-theme numix-icon-theme-circle</code></pre></div>
+
+<p>numix安装完成后，使用unity-tweak-tool将gtk主题换成Numix，图标换成Numix-Circle就大功告成了。</p>
+
+<p><strong>安装Plank</strong></p>
+
+<p>Plank是一个轻量的Dock工具。将Ubuntu侧边栏收起，Plank设置自动隐藏，可以获得一个很大的桌面空间，赏心悦目。在Dash里面搜索<strong>startup</strong>，打开<strong>Startup Applications</strong>，<strong>命令</strong>项填<code>sh -c &quot;sleep 10 &amp;&amp; plank&quot;</code>将Plank添加为自启动。如果不设置延迟，则关机会变成注销，这是unity的一个bug。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install plank</code></pre></div>
+
+<h2 id="安装jekyll-用于github-page-步骤">安装jekyll（用于github page）步骤<a href="#安装jekyll-用于github-page-步骤" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>安装ruby和ruby-dev</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install ruby ruby-dev</code></pre></div>
+
+<p>到<a href="https://rubygems.org">RubyGems</a>网站下载最新的ruby-gem，解压安装</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo ruby setup.rb</code></pre></div>
+
+<p>由于ruby-gem官方源很慢，所以更换成国内源</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/</code></pre></div>
+
+<p>安装jekyll，bundler</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo gem install jekyll bundler</code></pre></div>
+
+<p>更换bundle源</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">bundle config mirror.https://rubygems.org https://gems.ruby-china.org</code></pre></div>
+
+<h2 id="一些开发用到的库-请忽略">一些开发用到的库（请忽略）<a href="#一些开发用到的库-请忽略" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<ul>
+<li>libboost-all-dev</li>
+<li>libxerces-c-dev</li>
+<li>libjsoncpp-dev</li>
+<li>libcurl4-gnutls-dev</li>
+<li>libmysqlcppconn-dev</li>
+<li>libssl-dev</li>
+<li>libmemcached-dev</li>
+<li>libiconv-1.14</li>
+</ul>
+
+<p>编译libiconv-1.14代码会出错，需要改动srclib/stdio.in.h文件，将698行的代码：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">_GL_WARN_ON_USE</span> <span class="p">(</span><span class="n">gets</span><span class="p">,</span> <span class="s">&#34;gets is a security hole - use fgets instead&#34;</span><span class="p">);</span></code></pre></div>
+
+<p>替换为：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#if defined(__GLIBC__) &amp;&amp; !defined(__UCLIBC__) &amp;&amp; !__GLIBC_PREREQ(2, 16)
+</span><span class="cp"></span><span class="n">_GL_WARN_ON_USE</span> <span class="p">(</span><span class="n">gets</span><span class="p">,</span> <span class="s">&#34;gets is a security hole - use fgets instead&#34;</span><span class="p">);</span>
+<span class="cp">#endif</span></code></pre></div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/ubuntu">Ubuntu</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1672 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2016-10-27 00:03 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://gitop.cc/posts/cpp-primer-12/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>第12章 动态内存</span>
+			</a>
+			<a class="prev-post" href="http://gitop.cc/posts/cpp-primer-17/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>第17章 特殊的库设施</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>

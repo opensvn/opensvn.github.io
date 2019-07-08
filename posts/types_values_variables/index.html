@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="类型、值和变量">
+<meta itemprop="description" content="Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefine">
+
+
+<meta itemprop="datePublished" content="2018-10-28T14:24:21&#43;08:00" />
+<meta itemprop="dateModified" content="2018-10-28T14:24:21&#43;08:00" />
+<meta itemprop="wordCount" content="8486">
+
+
+
+<meta itemprop="keywords" content="Javascript," />
+<meta property="og:title" content="类型、值和变量" />
+<meta property="og:description" content="Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefine" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gitop.cc/posts/types_values_variables/" />
+<meta property="article:published_time" content="2018-10-28T14:24:21&#43;08:00"/>
+<meta property="article:modified_time" content="2018-10-28T14:24:21&#43;08:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="类型、值和变量"/>
+<meta name="twitter:description" content="Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefine"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>类型、值和变量</title>
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://gitop.cc/posts/">Posts</a>
+				<a href="http://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://gitop.cc/posts/">Posts</a></li>
+			<li><a href="http://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 28, 2018</span></div>
+				<h1>类型、值和变量</h1>
+			</header>
+			<div class="content">
+				
+
+<p>Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefined。null和undefined是它们自己类型的唯一成员。任何不是原始类型的Javascript值都是一个对象。每个对象都是类型Object的成员，由一组属性的集合组成，每个属性有一个名字和一个值。</p>
+
+<p>一个普通的JavaScript 对象是一组无序的键值集合。JavaScript还定义了一种特殊的对象，数组，代表有序的编号的值。JavaScript还定义了另一种特殊的对象，函数。函数在Javascript里面是值。用来初始化新创建的对象的函数称为构造函数。每个构造函数定义了一类对象。类可以认为是对象的子类型。除了Array和Function类，Javascript核心定义了三种其他有用的类。Date、RegExp、Error 。</p>
+
+<p>JavaScript解释器自动执行垃圾回收。当一个对象不再可访问时，解释器自动回收它占有的内存。</p>
+
+<p>JavaScript是一门面向对象的语言。只有JavaScript对象拥有方法，数字、字符串和布尔值表现得好像它们有方法。在JavaScript里面，只有null和undefined没有方法。</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>number</th>
+<th>string</th>
+<th>boolean</th>
+<th>null</th>
+<th>undefined</th>
+<th>object</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>isPrimitive</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>hasMethod</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>mutable</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+
+<p>JavaScript自由地转换一种类型为另外一种。当程序期待某种类型的时候，它会将其他类型自动转换为需要的类型。</p>
+
+<p>JavaScript变量是无类型的，你可以将任意类型的值赋给一个变量。JavaScript使用词法域，定义在函数之外的变量在任何地方可见，在函数中定义的变量只在函数中可见。</p>
+
+<h3 id="数字">数字<a href="#数字" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>JavaScript中所有数字都是使用IEEE 754标准表示的64位浮点数。 JavaScript数字格式允许你精确表示$ -2^{53} $和$ 2^{53} $之间的整数。注意JavaScript中有些操作是用32位整数执行的，比如数组下标和位运算符。</p>
+
+<h4 id="整型字面值">整型字面值<a href="#整型字面值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>除了10进制整型字面值，JavaScript支持16进制数值。16进制字面值以&rdquo;0x&rdquo;或&rdquo;0X&rdquo;开头，后跟16进制数字。尽管ECMAScript标准不支持8进制数值，一些JavaScript实现允许你使用8进制数值（以0开头后跟8进制数字）。在ES5严格模式下，8进制数值被明确禁止。</p>
+
+<h4 id="浮点型字面值">浮点型字面值<a href="#浮点型字面值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>语法为：<code>[digits][.digits][(E|e)[(+|-)]digits]</code></p>
+
+<h4 id="数学运算">数学运算<a href="#数学运算" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>JavaScript提供几种算术运算符：+, -, *, /, %。Math对象支持更复杂的数学运算：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">53</span><span class="p">)</span> <span class="c1">// =&gt; 9007199254740992: 2 to the power 53
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mf">.6</span><span class="p">)</span> <span class="c1">// =&gt; 1.0: round to the nearest integer
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="mf">.6</span><span class="p">)</span> <span class="c1">// =&gt; 1.0: round up to an integer
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="mf">.6</span><span class="p">)</span> <span class="c1">// =&gt; 0.0: round down to an integer
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// =&gt; 5: absolute value
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">z</span><span class="p">)</span> <span class="c1">// Return the largest argument
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">z</span><span class="p">)</span> <span class="c1">// Return the smallest argument
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="c1">// Pseudo-random number x where 0 &lt;= x &lt; 1.0
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="c1">// π: circumference of a circle / diameter
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">E</span> <span class="c1">// e: The base of the natural logarithm
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">// The square root of 3
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="c1">// The cube root of 3
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">// Trigonometry: also Math.cos, Math.atan, etc.
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1">// Natural logarithm of 10
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="nb">Math</span><span class="p">.</span><span class="nx">LN10</span> <span class="c1">// Base 10 logarithm of 100
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span><span class="o">/</span><span class="nb">Math</span><span class="p">.</span><span class="nx">LN2</span> <span class="c1">// Base 2 logarithm of 512
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">exp</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">// Math.E cubed
+</span></code></pre></div>
+
+<p>JavaScript中算术运算不会抛出异常。当算术操作的值比最大可表示的值大时，得到Infinity，类似当一个负数比最小可表示的值小时，得到-Infinity。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="c1">//=&gt;NaN
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">//=&gt;NaN
+</span><span class="c1"></span><span class="mi">1</span> <span class="o">-</span> <span class="s1">&#39;a&#39;</span> <span class="c1">//=&gt;NaN  对不能转换为数字的运算对象使用算术运算符结果为NaN
+</span><span class="c1"></span><span class="kc">Infinity</span> <span class="o">+</span> <span class="kc">Infinity</span> <span class="c1">//=&gt;Infinity
+</span><span class="c1"></span><span class="kc">Infinity</span> <span class="o">-</span> <span class="kc">Infinity</span> <span class="c1">//=&gt;NaN
+</span><span class="c1"></span><span class="kc">Infinity</span> <span class="o">*</span> <span class="kc">Infinity</span> <span class="c1">//=&gt;Infinity
+</span><span class="c1"></span><span class="kc">Infinity</span> <span class="o">/</span> <span class="kc">Infinity</span> <span class="c1">//=&gt;NaN
+</span></code></pre></div>
+
+<p>JavaScript预定义了全局变量Infinity和NaN保存正无穷大和非数值。在ES3标准中，这些值是可以改变的。ES5中更正为只读。ES3中Number对象定义了只读的替代品：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kc">Infinity</span> <span class="c1">// A read/write variable initialized to Infinity.
+</span><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nx">POSITIVE_INFINITY</span> <span class="c1">// Same value, read-only.
+</span><span class="c1"></span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span> <span class="c1">// This is also the same value.
+</span><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nx">MAX_VALUE</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1">// This also evaluates to Infinity.
+</span><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nx">NEGATIVE_INFINITY</span> <span class="c1">// These expressions are negative infinity.
+</span><span class="c1"></span><span class="o">-</span><span class="kc">Infinity</span>
+<span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
+<span class="o">-</span><span class="nb">Number</span><span class="p">.</span><span class="nx">MAX_VALUE</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="kc">NaN</span> <span class="c1">// A read/write variable initialized to NaN.
+</span><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="kc">NaN</span> <span class="c1">// A read-only property holding the same value.
+</span><span class="c1"></span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="c1">// Evaluates to NaN.
+</span><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nx">MIN_VALUE</span><span class="o">/</span><span class="mi">2</span> <span class="c1">// Underflow: evaluates to 0
+</span><span class="c1"></span><span class="o">-</span><span class="nb">Number</span><span class="p">.</span><span class="nx">MIN_VALUE</span><span class="o">/</span><span class="mi">2</span> <span class="c1">// Negative zero
+</span><span class="c1"></span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="kc">Infinity</span> <span class="c1">// Also negative 0
+</span><span class="c1"></span><span class="o">-</span><span class="mi">0</span>
+</code></pre></div>
+
+<p>NaN和任何值都不相等包括它自己。你可以使用<code>x != x</code>来判断是否是NaN。函数isNaN()判断参数是否为NaN，相关函数isFinite()判断函数参数是否是一个非NaN, Infinity或-Infinity的数字。</p>
+
+<p>负0和正0只有用在除数上不一样，其他情况相等：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">zero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Regular zero
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">negz</span> <span class="o">=</span> <span class="o">-</span><span class="mi">0</span><span class="p">;</span> <span class="c1">// Negative zero
+</span><span class="c1"></span><span class="nx">zero</span> <span class="o">===</span> <span class="nx">negz</span> <span class="c1">// =&gt; true: zero and negative zero are equal
+</span><span class="c1"></span><span class="mi">1</span><span class="o">/</span><span class="nx">zero</span> <span class="o">===</span> <span class="mi">1</span><span class="o">/</span><span class="nx">negz</span> <span class="c1">// =&gt; false: infinity and -infinity are not equal
+</span></code></pre></div>
+
+<h4 id="二进制浮点数和舍入误差">二进制浮点数和舍入误差<a href="#二进制浮点数和舍入误差" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>浮点数的二进制表示不能精确表示简单如0.1的十进制浮点数。JavaScript未来也许会支持Decimal数字类型来避免舍入问题。</p>
+
+<h4 id="日期和时间">日期和时间<a href="#日期和时间" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>核心JavaScript包含一个Date()构造函数，用于创建表示日期和时间的对象：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">then</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// The 1st day of the 1st month of 2010
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">later</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span> <span class="c1">// Same day, at 530pm, local time
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="c1">// The current date and time
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">elapsed</span> <span class="o">=</span> <span class="nx">now</span> <span class="o">-</span> <span class="nx">then</span><span class="p">;</span> <span class="c1">// Date subtraction: interval in milliseconds
+</span><span class="c1"></span><span class="nx">later</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span> <span class="c1">// =&gt; 2010
+</span><span class="c1"></span><span class="nx">later</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span> <span class="c1">// =&gt; 0: zero-based months
+</span><span class="c1"></span><span class="nx">later</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="c1">// =&gt; 1: one-based days
+</span><span class="c1"></span><span class="nx">later</span><span class="p">.</span><span class="nx">getDay</span><span class="p">()</span> <span class="c1">// =&gt; 5: day of week. 0 is Sunday 5 is Friday.
+</span><span class="c1"></span><span class="nx">later</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span> <span class="c1">// =&gt; 17: 5pm, local time
+</span><span class="c1"></span><span class="nx">later</span><span class="p">.</span><span class="nx">getUTCHours</span><span class="p">()</span> <span class="c1">// hours in UTC time; depends on timezone
+</span><span class="c1"></span>
+<span class="nx">later</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;Fri Jan 01 2010 1730 GMT-0800 (PST)&#34;
+</span><span class="c1"></span><span class="nx">later</span><span class="p">.</span><span class="nx">toUTCString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;Sat, 02 Jan 2010 0130 GMT&#34;
+</span><span class="c1"></span><span class="nx">later</span><span class="p">.</span><span class="nx">toLocaleDateString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;01/01/2010&#34;
+</span><span class="c1"></span><span class="nx">later</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;0530 PM&#34;
+</span><span class="c1"></span><span class="nx">later</span><span class="p">.</span><span class="nx">toISOString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;2010-01-02T0130.000Z&#34;; ES5 only
+</span></code></pre></div>
+
+<h3 id="文本">文本<a href="#文本" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>字符串是由16位值组成的不可变的有序序列，每个值通常表示一个Unicode字符。字符串的长度是它包含的16位值的个数。JavaScript使用UTF-16字符集，JavaScript字符串是16位数值的序列。</p>
+
+<h4 id="字符串字面值">字符串字面值<a href="#字符串字面值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>由单引号或双引号括起来的字符串。在ES3中字符串字面值必须写在一行上。在ES5中，你可以通过在每行末尾加上反斜杠来在多行之间分隔字符串字面值。</p>
+
+<p>在客户端JavaScript编程中，像JavaScript一样，HTML使用单引号或双引号来分隔字符串。因此，在结合使用JavaScript和HTML时，最好对JavaScript使用一种引号，对HTML使用另一种引号。</p>
+
+<h4 id="转义序列">转义序列<a href="#转义序列" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>反斜杠在JavaScript字符串中有特殊的用途。与其后的字符组合，它表示字符串中不能表示的字符：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="err">\</span><span class="mi">0</span> <span class="nx">The</span> <span class="nx">NUL</span> <span class="nx">character</span> <span class="p">(</span> <span class="nx">\u0000</span> <span class="p">)</span>
+<span class="err">\</span><span class="nx">b</span> <span class="nx">Backspace</span> <span class="p">(</span> <span class="nx">\u0008</span> <span class="p">)</span>
+<span class="err">\</span><span class="nx">t</span> <span class="nx">Horizontal</span> <span class="nx">tab</span> <span class="p">(</span> <span class="nx">\u0009</span> <span class="p">)</span>
+<span class="err">\</span><span class="nx">n</span> <span class="nx">Newline</span> <span class="p">(</span> <span class="nx">\u000A</span> <span class="p">)</span>
+<span class="err">\</span><span class="nx">v</span> <span class="nx">Vertical</span> <span class="nx">tab</span> <span class="p">(</span> <span class="nx">\u000B</span> <span class="p">)</span>
+<span class="err">\</span><span class="nx">f</span> <span class="nx">Form</span> <span class="nx">feed</span> <span class="p">(</span> <span class="nx">\u000C</span> <span class="p">)</span>
+<span class="err">\</span><span class="nx">r</span> <span class="nx">Carriage</span> <span class="k">return</span> <span class="p">(</span> <span class="nx">\u000D</span> <span class="p">)</span>
+<span class="err">\&#34;</span> <span class="nx">Double</span> <span class="nx">quote</span> <span class="p">(</span> <span class="nx">\u0022</span> <span class="p">)</span>
+<span class="err">\&#39;</span> <span class="nx">Apostrophe</span> <span class="nx">or</span> <span class="nx">single</span> <span class="nx">quote</span> <span class="p">(</span> <span class="nx">\u0027</span> <span class="p">)</span>
+<span class="err">\\</span> <span class="nx">Backslash</span> <span class="p">(</span> <span class="nx">\u005C</span> <span class="p">)</span>
+<span class="err">\</span><span class="nx">x</span> <span class="nx">XX</span> <span class="nx">The</span> <span class="nx">Latin</span><span class="o">-</span><span class="mi">1</span> <span class="nx">character</span> <span class="nx">specified</span> <span class="nx">by</span> <span class="nx">the</span> <span class="nx">two</span> <span class="nx">hexadecimal</span> <span class="nx">digits</span> <span class="nx">XX</span>
+<span class="err">\</span><span class="nx">u</span> <span class="nx">XXXX</span> <span class="nx">The</span> <span class="nx">Unicode</span> <span class="nx">character</span> <span class="nx">specified</span> <span class="nx">by</span> <span class="nx">the</span> <span class="nx">four</span> <span class="nx">hexadecimal</span> <span class="nx">digits</span> <span class="nx">XXXX</span>
+</code></pre></div>
+
+<p>反斜杠后跟任何其它字符，反斜杠被忽略。</p>
+
+<h4 id="使用字符串">使用字符串<a href="#使用字符串" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>对字符串使用+连接字符串，使用length属性获取字符串的长度。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&#34;hello, world&#34;</span> <span class="c1">// Start with some text.
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">// =&gt; &#34;h&#34;: the first character.
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// =&gt; &#34;d&#34;: the last character.
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="c1">// =&gt; &#34;ell&#34;: the 2nd, 3rd and 4th characters.
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="c1">// =&gt; &#34;ell&#34;: same thing
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="c1">// =&gt; &#34;rld&#34;: last 3 characters
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;l&#34;</span><span class="p">)</span> <span class="c1">// =&gt; 2: position of first letter l.
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s2">&#34;l&#34;</span><span class="p">)</span> <span class="c1">// =&gt; 10: position of last letter l.
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;l&#34;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">// =&gt; 3: position of first &#34;l&#34; at or after 3
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&#34;, &#34;</span><span class="p">)</span> <span class="c1">// =&gt; [&#34;hello&#34;, &#34;world&#34;] split into substrings
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&#34;h&#34;</span><span class="p">,</span> <span class="s2">&#34;H&#34;</span><span class="p">)</span> <span class="c1">// =&gt; &#34;Hello, world&#34;: replaces all instances
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="c1">// =&gt; &#34;HELLO, WORLD&#34;
+</span></code></pre></div>
+
+<p>在ES5中，字符串可以被认为是只读数组，可以使用下标访问单个字符：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">s</span> <span class="o">=</span> <span class="s2">&#34;hello, world&#34;</span><span class="p">;</span>
+<span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// =&gt; &#34;h&#34;
+</span><span class="c1"></span><span class="nx">s</span><span class="p">[</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1">// =&gt; &#34;d&#34;
+</span></code></pre></div>
+
+<h4 id="模式匹配">模式匹配<a href="#模式匹配" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>JavaScript定义了RegExp()构造函数，用于创建表示文本模式的对象。Javascript使用一对斜杠之间的文本组成正则表达式：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="o">/^</span><span class="nx">HTML</span><span class="o">/</span> <span class="c1">// Match the letters HTML at the start of a string
+</span><span class="c1"></span><span class="sr">/1-9*/</span> <span class="c1">// Match a non-zero digit, followed by any # of digits
+</span><span class="c1"></span><span class="o">/</span><span class="err">\</span><span class="nx">bjavascript</span><span class="err">\</span><span class="nx">b</span><span class="o">/</span><span class="nx">i</span> <span class="c1">// Match &#34;javascript&#34; as a word, case-insensitive
+</span></code></pre></div>
+
+<p>RegExp对象定义了许多有用的方法，字符串也有接受RegExp参数的方法：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;testing: 1, 2, 3&#34;</span><span class="p">;</span> <span class="c1">// Sample text
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="sr">/\d+/g</span> <span class="c1">// Matches all instances of one or more digits
+</span><span class="c1"></span><span class="nx">pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="c1">// =&gt; true: a match exists
+</span><span class="c1"></span><span class="nx">text</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span> <span class="c1">// =&gt; 9: position of first match
+</span><span class="c1"></span><span class="nx">text</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span> <span class="c1">// =&gt; [&#34;1&#34;, &#34;2&#34;, &#34;3&#34;]: array of all matches
+</span><span class="c1"></span><span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">pattern</span><span class="p">,</span> <span class="s2">&#34;#&#34;</span><span class="p">);</span> <span class="c1">// =&gt; &#34;testing: #, #, #&#34;
+</span><span class="c1"></span><span class="nx">text</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/\D+/</span><span class="p">);</span> <span class="c1">// =&gt; [&#34;&#34;,&#34;1&#34;,&#34;2&#34;,&#34;3&#34;]: split on non-digits
+</span></code></pre></div>
+
+<h3 id="布尔值">布尔值<a href="#布尔值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>布尔值只有2个值：true, false。任何JavaScript值都可以转换为布尔值，下面这些值转换为false：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kc">undefined</span>
+<span class="kc">null</span>
+<span class="mi">0</span>
+<span class="o">-</span><span class="mi">0</span>
+<span class="kc">NaN</span>
+<span class="s2">&#34;&#34;</span> <span class="c1">// the empty string
+</span></code></pre></div>
+
+<p>所有其他值转换为true。布尔值有个toString()方法将它们转换为&rdquo;true&rdquo;或&rdquo;false&rdquo;。</p>
+
+<h3 id="null和undefined">null和undefined<a href="#null和undefined" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>null</th>
+<th>undefined</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>isKeyword</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>typeof</td>
+<td>&ldquo;object&rdquo;</td>
+<td>&ldquo;undefined&rdquo;</td>
+</tr>
+
+<tr>
+<td>Boolean</td>
+<td>false</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>hasMethod</td>
+<td>No</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>null表示&rdquo;没有对象&rdquo;，即该处不应该有值。</strong></p>
+
+<p><strong>undefined表示&rdquo;缺少值&rdquo;，就是此处应该有一个值，但是还没有定义。</strong>以下情况均为undefined：</p>
+
+<ul>
+<li>声明变量却没有赋值</li>
+
+<li><p>对象没有赋值的属性</p></li>
+
+<li><p>访问不存在的数组元素</p></li>
+
+<li><p>函数调用时没有提供参数</p></li>
+
+<li><p>函数没有返回值</p></li>
+</ul>
+
+<p>undefined是一个预定义的全局变量，被初始化为undefined值。在ES3中，undefined是一个可读可写的变量。在ES5中被更正为只读。</p>
+
+<p>==操作符认为null和undefined相等。使用.或[]访问它们的属性或方法引起TypeError。</p>
+
+<p>你可以认为undefined表示系统级别、意外或类似错误的值缺失，而null表示程序级别、正常或预期的值缺失。</p>
+
+<h3 id="全局对象">全局对象<a href="#全局对象" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>全局对象是一个普通的JavaScript对象，它的属性是JavaScript程序可用的全局定义符号。当JavaScript解释器启动时(或当web浏览器加载新页面时)，它创建一个新的全局对象，并为其提供一组初始属性：</p>
+
+<ul>
+<li>全局属性，如undefined，Infinity和NaN</li>
+<li>全局函数，如isNaN()，parseInt()</li>
+<li>构造函数，如Date()，RegExp()，String()，Object()和Array()</li>
+<li>全局对象，如Math和JSON</li>
+</ul>
+
+<p>全局对象的初始属性不是保留字，但是它们应该被视为保留字。对于客户端JavaScript，window对象定义了其他全局变量。在顶级代码中（不属于函数的javascript代码），可以使用JavaScript关键字this来引用全局对象。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">global</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span> <span class="c1">// Define a global variable to refer to the global object
+</span></code></pre></div>
+
+<p>在客户端JavaScript中，window对象作为表示浏览器窗口的全局对象，定义了核心全局属性，但它也定义了许多特定于web浏览器和客户端JavaScript的全局属性。</p>
+
+<p>当第一次创建时，全局对象定义了所有JavaScript预定义的全局变量值。但是它也包含了程序定义的全局变量。如果你的代码声明了一个全局变量，那么这个变量就是全局对象的一个属性。</p>
+
+<h3 id="包装对象">包装对象<a href="#包装对象" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>当你试图引用字符串s的属性时，JavaScript会将字符串转换为对象，就像调用new String(s)一样。一旦属性被解析，新创建的对象就会被丢弃。数字和布尔值具有与字符串相同的方法:使用Number()或Boolean()构造函数创建临时对象，并使用该临时对象解析该方法。</p>
+
+<p>考虑下面这段代码：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&#34;test&#34;</span><span class="p">;</span> <span class="c1">// Start with a string value.
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">len</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// Set a property on it.
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">len</span><span class="p">;</span> <span class="c1">// Now query the property. t is undefined
+</span></code></pre></div>
+
+<p>当访问字符串、数字或布尔值的属性时创建的临时对象称为包装对象。JavaScript根据需要将包装对象转换为原始类型值。==运算符将基础值及其包装对象视为相等的，但是你可以使用===严格相等运算符来区分它们。typeof运算符也将显示基础值与其包装对象之间的区别。</p>
+
+<h3 id="不可变原始类型值和可变对象">不可变原始类型值和可变对象<a href="#不可变原始类型值和可变对象" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>原始类型值是不可变的，它们通过值进行比较。对象是可变的，它们通过引用进行比较。2个对象值是相同的当且仅当它们引用相同的底层对象。这段代码定义了一个用来比较两个数组的函数：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">equalArrays</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span> <span class="o">!=</span> <span class="nx">b</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// Different-size arrays not equal
+</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="c1">// Loop through all elements
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!==</span> <span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// If any differ, arrays not equal
+</span><span class="c1"></span>    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// Otherwise they are equal
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div>
+
+<h3 id="类型转换">类型转换<a href="#类型转换" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>当JavaScript需要布尔值时，你可以提供任何类型的值，JavaScript将根据需要对其进行转换。如果JavaScript想要一个字符串，它会将你给它的任何值转换成字符串。如果JavaScript想要一个数字，它会尝试将你给它的值转换为一个数字(如果它不能执行有意义的转换，则转换为NaN)。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">10</span> <span class="o">+</span> <span class="s2">&#34; objects&#34;</span> <span class="c1">// =&gt; &#34;10 objects&#34;. Number 10 converts to a string
+</span><span class="c1"></span><span class="s2">&#34;7&#34;</span> <span class="o">*</span> <span class="s2">&#34;4&#34;</span> <span class="c1">// =&gt; 28: both strings convert to numbers
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="s2">&#34;x&#34;</span><span class="p">;</span> <span class="c1">// =&gt; NaN: string &#34;x&#34; can&#39;t convert to a number
+</span><span class="c1"></span><span class="nx">n</span> <span class="o">+</span> <span class="s2">&#34; objects&#34;</span> <span class="c1">// =&gt; &#34;NaN objects&#34;: NaN converts to string &#34;NaN&#34;
+</span></code></pre></div>
+
+<p><img src="/static/images/2019/06/27/conversion.png" alt="conversion.png" /></p>
+
+<h4 id="转换和相等">转换和相等<a href="#转换和相等" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>因为JavaScript可以灵活地转换值，所以它的==等号操作符也可以灵活地转换相等的概念：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kc">null</span> <span class="o">==</span> <span class="kc">undefined</span> <span class="c1">// These two values are treated as equal.
+</span><span class="c1"></span><span class="s2">&#34;0&#34;</span> <span class="o">==</span> <span class="mi">0</span> <span class="c1">// String converts to a number before comparing.
+</span><span class="c1"></span><span class="mi">0</span> <span class="o">==</span> <span class="kc">false</span> <span class="c1">// Boolean converts to number before comparing.
+</span><span class="c1"></span><span class="s2">&#34;0&#34;</span> <span class="o">==</span> <span class="kc">false</span> <span class="c1">// Both operands convert to numbers before comparing.
+</span></code></pre></div>
+
+<p>记住，一个值与另一个值的可转换并不意味着这两个值相等。</p>
+
+<h4 id="显式转换">显式转换<a href="#显式转换" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>最简单的执行显示类型转换的方式是使用Boolean()，Number() ，String() 或Object()函数。除了null和undefined，各个值的toString()返回的结果和使用String()返回的结果一般是相同的。对null或undefined使用Object()函数不会抛出异常，它只是返回一个新创建的空对象。</p>
+
+<p>某些JavaScript操作符执行隐式类型转换，有时特意用于类型转换。如果+运算符的一个操作数是字符串，它将把另一个转换为字符串。一元+运算符将其操作数转换为数字。!运算符将其操作数转换为布尔值并否定它。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">x</span> <span class="o">+</span> <span class="s2">&#34;&#34;</span> <span class="c1">// Same as String(x)
+</span><span class="c1"></span><span class="o">+</span><span class="nx">x</span> <span class="c1">// Same as Number(x). You may also see x-0
+</span><span class="c1"></span><span class="o">!!</span><span class="nx">x</span> <span class="c1">// Same as Boolean(x). Note double !
+</span></code></pre></div>
+
+<p>Number类定义的toString()方法接受一个可选参数，该参数指定一个基数。默认以10进制进行转换，也可以使用在其他基数（2-36）。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+<span class="nx">binary_string</span> <span class="o">=</span> <span class="nx">n</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// Evaluates to &#34;10001&#34;
+</span><span class="c1"></span><span class="nx">octal_string</span> <span class="o">=</span> <span class="s2">&#34;0&#34;</span> <span class="o">+</span> <span class="nx">n</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span> <span class="c1">// Evaluates to &#34;021&#34;
+</span><span class="c1"></span><span class="nx">hex_string</span> <span class="o">=</span> <span class="s2">&#34;0x&#34;</span> <span class="o">+</span> <span class="nx">n</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span> <span class="c1">// Evaluates to &#34;0x11&#34;
+</span></code></pre></div>
+
+<p>toFixed()将数字转换为小数点后具有指定位数的字符串，不使用指数符号。</p>
+
+<p>toExponential()使用指数符号将数字转换为字符串，小数点前有一位数字，小数点后有指定的位数。</p>
+
+<p>toPrecision()将一个数字转换为一个具有指定的有效位数的字符串。如果有效数字的数量不足以显示该数字的整个整数部分，则使用指数符号。</p>
+
+<p>这三个方法会适当地舍弃结尾数字或在后面添加0。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mf">123456.789</span><span class="p">;</span>
+<span class="nx">n</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// &#34;123457&#34;
+</span><span class="c1"></span><span class="nx">n</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// &#34;123456.79&#34;
+</span><span class="c1"></span><span class="nx">n</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// &#34;123456.78900&#34;
+</span><span class="c1"></span><span class="nx">n</span><span class="p">.</span><span class="nx">toExponential</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// &#34;1.2e+5&#34;
+</span><span class="c1"></span><span class="nx">n</span><span class="p">.</span><span class="nx">toExponential</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// &#34;1.235e+5&#34;
+</span><span class="c1"></span><span class="nx">n</span><span class="p">.</span><span class="nx">toPrecision</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">// &#34;1.235e+5&#34;
+</span><span class="c1"></span><span class="nx">n</span><span class="p">.</span><span class="nx">toPrecision</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span> <span class="c1">// &#34;123456.8&#34;
+</span><span class="c1"></span><span class="nx">n</span><span class="p">.</span><span class="nx">toPrecision</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// &#34;123456.7890&#34;
+</span></code></pre></div>
+
+<p>Number()函数只适用于10进制数，且不允许后接不属于数字的字符。parseInt()和parseFloat()函数更灵活，它们是全局函数，不是任何类的方法。parseInt()只解析整数，而parseFloat()解析整数和浮点数。如果字符串以“0x”或“0x”开头，parseInt()将其解释为十六进制数。parseInt()和parseFloat()都跳过前导空白，尽可能多地解析数字字符，并忽略后面的任何内容。如果第一个非空格字符不是有效数字文字的一部分，则返回NaN：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;3 blind mice&#34;</span><span class="p">)</span> <span class="c1">// =&gt; 3
+</span><span class="c1"></span><span class="nb">parseFloat</span><span class="p">(</span><span class="s2">&#34; 3.14 meters&#34;</span><span class="p">)</span> <span class="c1">// =&gt; 3.14
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;-12.34&#34;</span><span class="p">)</span> <span class="c1">// =&gt; -12
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;0xFF&#34;</span><span class="p">)</span> <span class="c1">// =&gt; 255
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;0xff&#34;</span><span class="p">)</span> <span class="c1">// =&gt; 255
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;-0XFF&#34;</span><span class="p">)</span> <span class="c1">// =&gt; -255
+</span><span class="c1"></span><span class="nb">parseFloat</span><span class="p">(</span><span class="s2">&#34;.1&#34;</span><span class="p">)</span> <span class="c1">// =&gt; 0.1
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;0.1&#34;</span><span class="p">)</span> <span class="c1">// =&gt; 0
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;.1&#34;</span><span class="p">)</span> <span class="c1">// =&gt; NaN: integers can&#39;t start with &#34;.&#34;
+</span><span class="c1"></span><span class="nb">parseFloat</span><span class="p">(</span><span class="s2">&#34;$72.47&#34;</span><span class="p">);</span> <span class="c1">// =&gt; NaN: numbers can&#39;t start with &#34;$&#34;
+</span></code></pre></div>
+
+<p>parseInt()接受第二个可选参数，指定要解析数字的基数，合法值在2到36之间：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;11&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// =&gt; 3 (12 + 1)
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;ff&#34;</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> <span class="c1">// =&gt; 255 (1516 + 15)
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;zz&#34;</span><span class="p">,</span> <span class="mi">36</span><span class="p">);</span> <span class="c1">// =&gt; 1295 (3536 + 35)
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;077&#34;</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span> <span class="c1">// =&gt; 63 (78 + 7)
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;077&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> <span class="c1">// =&gt; 77 (7*10 + 7)
+</span></code></pre></div>
+
+<h4 id="对象到原始类型的转换">对象到原始类型的转换<a href="#对象到原始类型的转换" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>对象到布尔转换很简单：所有对象都转换为true。甚至对于包装器对象也是如此：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Boolean</span><span class="p">(</span><span class="kc">false</span><span class="p">))</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">//=&gt; true
+</span></code></pre></div>
+
+<p>所有对象都继承两个转换方法。第一个是toString()，它的任务是返回对象的字符串表示形式。</p>
+
+<p>许多类定义了自己的toString()方法。数组的toString()方法将每个数组元素转换为字符串，并用逗号连接在一起。函数的toString()方法返回一个由实现定义的函数表示。Date类的toString()方法，返回人类可读的日期和时间字符串。RegExp类的toString()方法，将RegExp对象转换为一个看起来像RegExp字面值的字符串：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;1,2,3&#34;
+</span><span class="c1"></span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="nx">f</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="p">}).</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;function(x) {\n f(x);\n}&#34;
+</span><span class="c1"></span><span class="o">/</span><span class="err">\</span><span class="nx">d</span><span class="o">+</span><span class="sr">/g.toString() /</span><span class="o">/</span> <span class="p">=&gt;</span> <span class="s2">&#34;/\d+/g&#34;</span>
+<span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">).</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;Fri Jan 01 2010 0000 GMT-0800 (PST)&#34;
+</span></code></pre></div>
+
+<p>另一个转换方法是valueOf()。包装类的valueOf()返回其原始类型。数组，函数和正则表达式只是继承默认方法。调用这些类型实例的valueOf()只是返回对象本身。Date类的valueOf()返回自1970年1月1日以来的毫秒数。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// January 1st, 2010, (Pacific time)
+</span><span class="c1"></span><span class="nx">d</span><span class="p">.</span><span class="nx">valueOf</span><span class="p">()</span> <span class="c1">// =&gt; 1262332800000
+</span></code></pre></div>
+
+<p>要将对象转换为字符串，JavaScript执行以下步骤：</p>
+
+<ul>
+<li>如果对象有toString()方法，JavaScript会调用它。如果返回一个原始值，JavaScript会将该值转换为字符串并返回转换的结果。</li>
+<li>如果对象没有toString()方法，或者该方法不返回原始值，那么JavaScript将查找valueOf()方法。如果该方法存在，JavaScript将调用它。如果返回值是一个原始值，JavaScript会将该值转换为字符串并返回转换后的结果。</li>
+<li>否则，JavaScript无法从toString()或valueOf()中获得原始值，并抛出TypeError。</li>
+</ul>
+
+<p>要将一个对象转换为一个数字，JavaScript做同样的事情，但是它首先尝试valueOf()方法：</p>
+
+<ul>
+<li>如果对象的valueOf()方法返回原始值，JavaScript会将原始值转换为数字并返回结果。</li>
+<li>否则，如果对象有一个toString()方法返回一个原始值，JavaScript将转换并返回该值。</li>
+<li>否则JavaScript抛出TypeError。</li>
+</ul>
+
+<p>JavaScript中的+运算符执行数字加法和字符串连接。如果它的任何一个操作数是一个对象，JavaScript将使用一个特殊的对象到原始类型的转换来转换对象。==运算符是相似的。如果将对象与原始值进行比较，则使用对象到原始类型的转换转换对象。对于所有非日期的对象，对象到原始类型的转换基本上是对象到数字的转换（valueof()优先）。而对于Date类则使用对象到字符串的转换（toString()优先）。由valueOf()或toString()返回的原始值直接使用不用再转换为数字或字符串。</p>
+
+<p>&lt;运算符和其他关系运算符执行对象到原始类型的转换时，任何对象都是通过先尝试valueOf()然后再尝试toString()来转换的。获得的任何原始值都直接使用，而无需进一步转换为数字或字符串。</p>
+
+<p>只有+，==，!=和关系运算符是执行这种特殊的字符串到原始类型转换。其他操作符显示地转换为指定类型：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="c1">// Create a Date object
+</span><span class="c1"></span><span class="k">typeof</span> <span class="p">(</span><span class="nx">now</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// =&gt; &#34;string&#34;: + converts dates to strings
+</span><span class="c1"></span><span class="k">typeof</span> <span class="p">(</span><span class="nx">now</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// =&gt; &#34;number&#34;: - uses object-to-number conversion
+</span><span class="c1"></span><span class="nx">now</span> <span class="o">==</span> <span class="nx">now</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; true: implicit and explicit string conversions
+</span><span class="c1"></span><span class="nx">now</span> <span class="o">&gt;</span> <span class="p">(</span><span class="nx">now</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// =&gt; true: &gt; converts a Date to a number
+</span></code></pre></div>
+
+<h3 id="变量声明">变量声明<a href="#变量声明" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>在JavaScript程序中使用变量之前，应该声明它。变量用var关键字声明，如下：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">i</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">sum</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">sum</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="s2">&#34;hello&#34;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div>
+
+<h4 id="重复和省略声明">重复和省略声明<a href="#重复和省略声明" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>如果试图读取未声明变量的值，JavaScript将产生一个错误。在ES5严格模式下，给未声明的变量赋值也是一个错误。然而在非严格模式下，如果您为未声明的变量赋值，JavaScript实际上会创建该变量作为全局对象的属性，它的工作方式与正确声明的全局变量非常相似。</p>
+
+<h3 id="变量作用域">变量作用域<a href="#变量作用域" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>变量的作用域是定义变量的程序源代码的区域。全局变量具有全局作用域，JavaScript代码中到处都可见。函数中声明的变量只在函数体中定义。它们是局部变量，具有局部作用域。函数参数也算作局部变量，并且仅在函数体中定义。</p>
+
+<p>在函数体中，局部变量优先于同名的全局变量。如果声明了一个与全局变量同名的局部变量或函数参数，则可以有效地隐藏全局变量：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;global&#34;</span><span class="p">;</span> <span class="c1">// Declare a global variable
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">checkscope</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;local&#34;</span><span class="p">;</span> <span class="c1">// Declare a local variable with the same name
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">scope</span><span class="p">;</span> <span class="c1">// Return the local value, not the global one
+</span><span class="c1"></span><span class="p">}</span>
+<span class="nx">checkscope</span><span class="p">()</span> <span class="c1">// =&gt; &#34;local&#34;
+</span></code></pre></div>
+
+<p>虽然在全局作用域内编写代码时可以避免使用var语句，但是必须始终使用var来声明局部变量：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;global&#34;</span><span class="p">;</span> <span class="c1">// Declare a global variable, even without var.
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">checkscope2</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;local&#34;</span><span class="p">;</span> <span class="c1">// Oops! We just changed the global variable.
+</span><span class="c1"></span>    <span class="nx">myscope</span> <span class="o">=</span> <span class="s2">&#34;local&#34;</span><span class="p">;</span> <span class="c1">// This implicitly declares a new global variable.
+</span><span class="c1"></span>    <span class="k">return</span> <span class="p">[</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">myscope</span><span class="p">];</span> <span class="c1">// Return two values.
+</span><span class="c1"></span><span class="p">}</span>
+<span class="nx">checkscope2</span><span class="p">()</span> <span class="c1">// =&gt; [&#34;local&#34;, &#34;local&#34;]: has side effects!
+</span><span class="c1"></span><span class="nx">scope</span> <span class="c1">// =&gt; &#34;local&#34;: global variable has changed.
+</span><span class="c1"></span><span class="nx">myscope</span> <span class="c1">// =&gt; &#34;local&#34;: global namespace cluttered up.
+</span></code></pre></div>
+
+<p>函数定义可以嵌套。每个函数都有自己的局部作用域，因此可以有几个嵌套的局部作用域：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;global scope&#34;</span><span class="p">;</span> <span class="c1">// A global variable
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">checkscope</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;local scope&#34;</span><span class="p">;</span> <span class="c1">// A local variable
+</span><span class="c1"></span>    <span class="kd">function</span> <span class="nx">nested</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;nested scope&#34;</span><span class="p">;</span> <span class="c1">// A nested scope of local variables
+</span><span class="c1"></span>        <span class="k">return</span> <span class="nx">scope</span><span class="p">;</span> <span class="c1">// Return the value in scope here
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">nested</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nx">checkscope</span><span class="p">()</span> <span class="c1">// =&gt; &#34;nested scope&#34;
+</span></code></pre></div>
+
+<h4 id="函数作用域和提升">函数作用域和提升<a href="#函数作用域和提升" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>JavaScript的函数作用域意味着函数中声明的所有变量在函数体中都是可见的。这意味着变量在声明之前是可见的。JavaScript的这个特性通常被称为<strong>hoisting</strong>：函数中的所有变量声明，不包括赋值，都被“提升”到函数的顶部。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;global&#34;</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">scope</span><span class="p">);</span> <span class="c1">// Prints &#34;undefined&#34;, not &#34;global&#34;
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;local&#34;</span><span class="p">;</span> <span class="c1">// Variable initialized here, but defined everywhere
+</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">scope</span><span class="p">);</span> <span class="c1">// Prints &#34;local&#34;
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div>
+
+<h4 id="变量作为属性">变量作为属性<a href="#变量作为属性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>当你声明一个全局JavaScript变量，你实际上做的是定义一个全局对象的属性，如果你使用var声明变量，创建的属性是不可配置的，这意味着它不能被删除。如果不使用严格模式，并且为未声明的变量赋值，JavaScript会自动为您创建一个全局变量。以这种方式创建的变量是全局对象的常规可配置属性，可以删除它们：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">truevar</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// A properly declared global variable, nondeletable.
+</span><span class="c1"></span><span class="nx">fakevar</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Creates a deletable property of the global object.
+</span><span class="c1"></span><span class="k">this</span><span class="p">.</span><span class="nx">fakevar2</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// This does the same thing.
+</span><span class="c1"></span><span class="k">delete</span> <span class="nx">truevar</span> <span class="c1">// =&gt; false: variable not deleted
+</span><span class="c1"></span><span class="k">delete</span> <span class="nx">fakevar</span> <span class="c1">// =&gt; true: variable deleted
+</span><span class="c1"></span><span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">fakevar2</span> <span class="c1">// =&gt; true: variable deleted
+</span></code></pre></div>
+
+<p>JavaScript允许我们使用this关键字引用全局对象，但它没有提供任何方式引用存储本地变量的对象。</p>
+
+<h4 id="作用域链">作用域链<a href="#作用域链" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>如果我们认为局部变量是某种对象的属性，那么还有另一种考虑变量作用域的方法。每个JavaScript代码块（全局代码或函数）都有一个关联的作用域链。这个作用域链是一个对象链，它定义了代码的作用域内的变量。当JavaScript需要查找变量x的值时，它首先查看链中的第一个对象。如果该对象有一个名为x的属性，则使用该属性的值。如果第一个对象没有名为x的属性，JavaScript将继续使用链中的下一个对象进行搜索。如果第二个对象没有一个名为x的属性，则搜索继续到下一个对象，依此类推。如果x不是作用域链中任何对象的属性，则x不在该代码的作用域内，并产生ReferenceError。</p>
+
+<p>理解如何创建这个对象链是很重要的。当一个函数被定义时，它存储有效作用域链。当调用该函数时，它创建一个新对象来存储其本地变量，并将该新对象添加到存储的作用域链中，以创建一个新的、更长的、表示该函数调用作用域的链。对于嵌套函数来说，这变得更加有趣，因为每次调用外部函数时，都会重新定义内部函数。由于作用域链在每次调用外部函数时都不同，每次定义内部函数时，内部函数都会略有不同——每次调用外部函数时，内部函数的代码都相同，但与该代码关联的作用域链会不同。</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/javascript">Javascript</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>8486 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-10-28 14:24 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://gitop.cc/posts/expressions_and_operators/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>表达式和操作符</span>
+			</a>
+			<a class="prev-post" href="http://gitop.cc/posts/lexical_structure/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>词法结构</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>

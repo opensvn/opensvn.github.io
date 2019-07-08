@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="Boost.Asio网络编程 第1章">
+<meta itemprop="description" content="什么是Boost.Asio 简单来说，Boost.Asio是一个跨平台的C&#43;&#43;库，主要是为了网络编程和一些其它低级输入/输出编程。 Boost.">
+
+
+<meta itemprop="datePublished" content="2016-03-13T10:55:46&#43;00:00" />
+<meta itemprop="dateModified" content="2016-03-13T10:55:46&#43;00:00" />
+<meta itemprop="wordCount" content="3123">
+
+
+
+<meta itemprop="keywords" content="C&#43;&#43;," />
+<meta property="og:title" content="Boost.Asio网络编程 第1章" />
+<meta property="og:description" content="什么是Boost.Asio 简单来说，Boost.Asio是一个跨平台的C&#43;&#43;库，主要是为了网络编程和一些其它低级输入/输出编程。 Boost." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gitop.cc/posts/asio-network-programming-1/" />
+<meta property="article:published_time" content="2016-03-13T10:55:46&#43;00:00"/>
+<meta property="article:modified_time" content="2016-03-13T10:55:46&#43;00:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Boost.Asio网络编程 第1章"/>
+<meta name="twitter:description" content="什么是Boost.Asio 简单来说，Boost.Asio是一个跨平台的C&#43;&#43;库，主要是为了网络编程和一些其它低级输入/输出编程。 Boost."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Boost.Asio网络编程 第1章</title>
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://gitop.cc/posts/">Posts</a>
+				<a href="http://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://gitop.cc/posts/">Posts</a></li>
+			<li><a href="http://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 13, 2016</span></div>
+				<h1>Boost.Asio网络编程 第1章</h1>
+			</header>
+			<div class="content">
+				
+
+<h1 id="什么是boost-asio">什么是Boost.Asio<a href="#什么是boost-asio" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>简单来说，Boost.Asio是一个跨平台的C++库，主要是为了网络编程和一些其它低级输入/输出编程。</p>
+
+<p>Boost.Asio成功地抽象出输入和输出的概念，不仅仅是网络，还有COM串行端口，文件等。在此之上，你可以同步或异步进行输入或输出编程：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">read</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">[,</span> <span class="n">extra</span> <span class="n">options</span><span class="p">])</span>
+<span class="n">async_read</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">[,</span> <span class="n">extra</span> <span class="n">options</span><span class="p">],</span> <span class="n">handler</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">[,</span> <span class="n">extra</span> <span class="n">options</span><span class="p">])</span>
+<span class="n">async_write</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">[,</span> <span class="n">extra</span> <span class="n">options</span><span class="p">],</span> <span class="n">handler</span><span class="p">)</span>
+</code></pre></div>
+
+<p>正如你在上一个代码片段看到，这些函数接受一个stream实例，它可以是任何东西（不仅仅是socket，只要我们能够读取或写入它）。</p>
+
+<h1 id="依赖">依赖<a href="#依赖" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>Boost.Asio依赖以下库：</p>
+
+<ul>
+<li>Boost.System：这个库为Boost库提供操作系统支持。</li>
+<li>Boost.Regex：可选，如果你使用带有boost::regex参数的read_until()或async_read_until()的重载版本。</li>
+<li>Boost.DateTime：可选，如果你使用Boost.Asio计时器。</li>
+<li>OpenSSL：可选，如果你决定使用Boost.Asio提供的SSL支持。</li>
+</ul>
+
+<h1 id="编译boost-asio">编译Boost.Asio<a href="#编译boost-asio" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>Boost.Asio是只有头文件的库。然而，取决于你的编译器和程序的大小，你可以选择作为源文件嵌入Boost.Asio。可以使用下述方式减少编译次数：</p>
+
+<ul>
+<li>只在一个文件#include <boost/asio/impl/src.hpp>（如果使用SSL，也要包含<boost/asio/ssl/impl/src.hpp>）</li>
+<li>在所有文件中使用#define BOOST_ASIO_SEPARATE_COMPILATION</li>
+</ul>
+
+<h2 id="重要的宏">重要的宏<a href="#重要的宏" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>BOOST_ASIO_DISABLE_THREADS如果被定义，它会禁止Boost.Asio中线程支持，不管Boost是否编译了线程支持。</p>
+
+<h1 id="同步vs异步">同步VS异步<a href="#同步vs异步" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>首先，异步编程与同步编程非常不同。在同步编程中，顺序执行操作，比如从socket读取请求，然后把回复写到socket。每一个操作都是阻塞的。因为操作是阻塞的，为了在读或写一个socket时不打断主程序，通常需要创建一个或多个线程处理socket的输入/输出。因此同步server/client通常是多线程的。</p>
+
+<p>相反，异步编程是事件驱动的。你开始一个操作，但是不知道它什么时候结束；你提供一个回调函数，它会在操作结束时被API调用，连同操作结果。因此，在异步编程中，你没必要需要一个线程以上。</p>
+
+<p>以下是一个基本的同步客户端例子：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="p">;</span>
+<span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="p">),</span> <span class="mi">2001</span><span class="p">);</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ep</span><span class="p">);</span>
+</code></pre></div>
+
+<p>首先，程序需要至少一个io_service实例。Boost.Asio使用io_service与操作系统输入/输出服务对话。通常一个io_service实例就足够了。</p>
+
+<p>以下是一个简单的同步服务器例子：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ip</span><span class="o">::</span><span class="n">socket</span><span class="o">&gt;</span> <span class="n">socket_ptr</span><span class="p">;</span>
+<span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">v4</span><span class="p">(),</span> <span class="mi">2001</span><span class="p">));</span> <span class="c1">// listen on 2001
+</span><span class="c1"></span><span class="n">ip</span><span class="o">::</span><span class="n">acceptor</span> <span class="n">acc</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">ep</span><span class="p">);</span>
+<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">socket_ptr</span> <span class="n">sock</span><span class="p">(</span><span class="k">new</span> <span class="n">ip</span><span class="o">::</span><span class="n">socket</span><span class="p">(</span><span class="n">service</span><span class="p">));</span>
+    <span class="n">acc</span><span class="p">.</span><span class="n">accept</span><span class="p">(</span><span class="o">*</span><span class="n">sock</span><span class="p">);</span>
+    <span class="n">boost</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">client_session</span><span class="p">,</span> <span class="n">sock</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">client_session</span><span class="p">(</span><span class="n">socket_ptr</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+        <span class="n">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">sock</span><span class="o">-&gt;</span><span class="n">read_some</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">write</span><span class="p">(</span><span class="o">*</span><span class="n">sock</span><span class="p">,</span> <span class="n">buffer</span><span class="p">(</span><span class="s">&#34;ok&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>创建一个异步客户端，类似下面这样：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="p">;</span>
+<span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="p">),</span> <span class="mi">2001</span><span class="p">);</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">async_connect</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">connect_handler</span><span class="p">);</span>
+<span class="n">service</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+<span class="kt">void</span> <span class="nf">connect_handler</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span> <span class="n">ec</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// here we know we connected successfully
+</span><span class="c1"></span>    <span class="c1">// if ec indicates success
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div>
+
+<p>注意service.run()循环会一直运行，只要还有异步操作加入。在前一个例子中，只有一个async_connect异步操作。在此之后，service.run()退出。</p>
+
+<p>每一个异步操作都有一个完成处理器，一个在操作完成时被调用的函数。</p>
+
+<p>以下是一个基本异步服务器：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ip</span><span class="o">::</span><span class="n">socket</span><span class="o">&gt;</span> <span class="n">socket_ptr</span><span class="p">;</span>
+<span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">v4</span><span class="p">(),</span> <span class="mi">2001</span><span class="p">));</span> <span class="c1">// listen on 2001
+</span><span class="c1"></span><span class="n">ip</span><span class="o">::</span><span class="n">acceptor</span> <span class="n">acc</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">ep</span><span class="p">);</span>
+<span class="n">socket_ptr</span> <span class="nf">sock</span><span class="p">(</span><span class="k">new</span> <span class="n">ip</span><span class="o">::</span><span class="n">socket</span><span class="p">(</span><span class="n">service</span><span class="p">));</span>
+<span class="n">start_accept</span><span class="p">(</span><span class="n">sock</span><span class="p">);</span>
+<span class="n">service</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+<span class="kt">void</span> <span class="nf">start_accept</span><span class="p">(</span><span class="n">socket_ptr</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">acc</span><span class="p">.</span><span class="n">async_accept</span><span class="p">(</span><span class="o">*</span><span class="n">sock</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">handle_accept</span><span class="p">,</span> <span class="n">sock</span><span class="p">,</span> <span class="n">_1</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">handle_accept</span><span class="p">(</span><span class="n">socket_ptr</span> <span class="n">sock</span><span class="p">,</span> <span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="n">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="c1">// at this point, you can read/write to the socket
+</span><span class="c1"></span>    <span class="n">socket_ptr</span> <span class="n">sock</span><span class="p">(</span><span class="k">new</span> <span class="n">ip</span><span class="o">::</span><span class="n">socket</span><span class="p">(</span><span class="n">service</span><span class="p">));</span>
+    <span class="n">start_accept</span><span class="p">(</span><span class="n">sock</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>handle_accept里面，在socket使用后，创建一个新的socket，并再次调用start_accept()，它添加另一个async_accept操作，保持service.run()忙碌下去。</p>
+
+<h1 id="异常vs错误码">异常VS错误码<a href="#异常vs错误码" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>Boost.Asio允许异常或错误码。所有同步函数重载了抛出异常或返回错误码的版本。这些函数抛出boost::system::system_error错误。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ep</span><span class="p">);</span> <span class="c1">// Line 1
+</span><span class="c1"></span><span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="n">err</span><span class="p">;</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">err</span><span class="p">);</span> <span class="c1">// Line 2
+</span></code></pre></div>
+
+<p>在前面的代码中，sock.connect(ep)在发生错误时抛出异常，而sock.connect(ep, err)返回错误码。</p>
+
+<p>所有异步函数返回一个错误码，你可以在回调中检查它。异步函数从不抛出异常，因为这不合理，谁来捕捉异常？</p>
+
+<p>所有Boost.Asio错误码在命名空间boost::asio::error。</p>
+
+<h1 id="boost-asio中的线程">Boost.Asio中的线程<a href="#boost-asio中的线程" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>当提到Boost.Asio中的线程，我们会讨论：</p>
+
+<ul>
+<li>io_service：io_service类是线程安全的。多个线程可以调用io_service::run()。大多数时候你可能从单个线程调用io_service::run()，它一直阻塞直到所有异步操作完成。然而你可以从多个线程里面调用io_service::run()，这会阻塞所有调用了io_service::run()的线程。所有回调都将在线程自己的上下文环境中被调用。</li>
+<li>socket：socket类不是线程安全的。因此你应该避免在一个线程中读，然后写到另一个线程中去。</li>
+<li>utility：utility类不是线程安全的，通常在多个线程中使用它不合理。它们中的大多数都是短时间使用，然后被回收。</li>
+</ul>
+
+<p>Boost.Asio库自己可以使用多个非用户的线程，它保证在这些线程里面不会调用任何你的代码。这意味着回调只会被调用了io_service::run()的线程调用。</p>
+
+<h1 id="不仅仅是网络">不仅仅是网络<a href="#不仅仅是网络" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>除了网络，Boost.Asio提供其他输入/输出设施。</p>
+
+<p>Boost.Asio允许等待信号，比如SIGTERM，SIGINT，SIGSEGV等：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">signal_handler</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span> <span class="n">err</span><span class="p">,</span> <span class="kt">int</span> <span class="n">signal</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// log this, and terminate application
+</span><span class="c1"></span><span class="p">}</span>
+<span class="n">boost</span><span class="o">::</span><span class="n">signal_set</span> <span class="n">sig</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">SIGINT</span><span class="p">,</span> <span class="n">SIGTERM</span><span class="p">);</span>
+<span class="n">sig</span><span class="p">.</span><span class="n">async_wait</span><span class="p">(</span><span class="n">signal_handler</span><span class="p">);</span>
+</code></pre></div>
+
+<p>使用Boost.Asio可以很容易地连接串行端口：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">serial_port</span> <span class="nf">sp</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="s">&#34;COM7&#34;</span><span class="p">);</span>
+<span class="c1">// serial_port sp(service, &#34;/dev/ttyS0&#34;);
+</span><span class="c1"></span><span class="n">serial_port</span><span class="o">::</span><span class="n">baud_rate</span> <span class="n">rate</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="n">sp</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="n">rate</span><span class="p">);</span>
+<span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+<span class="n">read</span><span class="p">(</span><span class="n">sp</span><span class="p">,</span> <span class="n">buffer</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">512</span><span class="p">));</span>
+</code></pre></div>
+
+<p>Boost.Asio也允许连接Windows文件：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">HANDLE</span> <span class="n">h</span> <span class="o">=</span> <span class="o">::</span><span class="n">OpenFile</span><span class="p">(...);</span>
+<span class="n">windows</span><span class="o">::</span><span class="n">stream_handle</span> <span class="n">sh</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>
+<span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+<span class="n">read</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">buffer</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">512</span><span class="p">));</span>
+</code></pre></div>
+
+<p>你可以同样操作POSIX文件描述符，比如管道，标准I/O，各种设备：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">posix</span><span class="o">::</span><span class="n">stream_descriptor</span> <span class="n">sd_in</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="o">::</span><span class="n">dup</span><span class="p">(</span><span class="n">STDIN_FILENO</span><span class="p">));</span>
+<span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+<span class="n">read</span><span class="p">(</span><span class="n">sd_in</span><span class="p">,</span> <span class="n">buffer</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">512</span><span class="p">));</span>
+</code></pre></div>
+
+<h1 id="计时器">计时器<a href="#计时器" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>一些I/O操作可以有一个完成的最后期限，这个概念只能用到异步操作。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">read</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">deadline_handler</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">?</span> <span class="s">&#34;read successfully&#34;</span> <span class="o">:</span> <span class="s">&#34;read failed&#34;</span><span class="p">)</span> <span class="o">&lt;&lt;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">read_handler</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">read</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="err">…</span>
+<span class="n">read</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">async_read_some</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">512</span><span class="p">));</span>
+<span class="n">deadline_timer</span> <span class="nf">t</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+<span class="n">t</span><span class="p">.</span><span class="n">async_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">deadline_handler</span><span class="p">);</span>
+<span class="n">service</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+</code></pre></div>
+
+<p>Boost.Asio同样允许同步计时器，但它们通常等价于sleep操作。以下2个等价：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">boost</span><span class="o">::</span><span class="n">sleep</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="n">deadline_timer</span> <span class="nf">t</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">500</span><span class="p">));</span>
+<span class="n">t</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span>
+</code></pre></div>
+
+<h1 id="io-service类">io_service类<a href="#io-service类" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>io_service是Boost.Asio最重要的类，它跟操作系统打交道，等待一个异步操作结束并调用相应的回调函数。</p>
+
+<p>你可以以几种方式使用io_service：</p>
+
+<ul>
+<li>单线程，1个io_service和单处理线程：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">io_service</span> <span class="n">service_</span><span class="p">;</span>
+<span class="c1">// all the socket operations are handled by service_
+</span><span class="c1"></span><span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock1</span><span class="p">(</span><span class="n">service_</span><span class="p">);</span>
+<span class="c1">// all the socket operations are handled by service_
+</span><span class="c1"></span><span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock2</span><span class="p">(</span><span class="n">service_</span><span class="p">);</span>
+<span class="n">sock1</span><span class="p">.</span><span class="n">async_connect</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">connect_handler</span><span class="p">);</span>
+<span class="n">sock2</span><span class="p">.</span><span class="n">async_connect</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">connect_handler</span><span class="p">);</span>
+<span class="n">deadline_timer</span> <span class="nf">t</span><span class="p">(</span><span class="n">service_</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+<span class="n">t</span><span class="p">.</span><span class="n">async_wait</span><span class="p">(</span><span class="n">timeout_handler</span><span class="p">);</span>
+<span class="n">service_</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+</code></pre></div></li>
+<li>多线程，单个io_service和多个处理线程：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">io_service</span> <span class="n">service_</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock1</span><span class="p">(</span><span class="n">service_</span><span class="p">);</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock2</span><span class="p">(</span><span class="n">service_</span><span class="p">);</span>
+<span class="n">sock1</span><span class="p">.</span><span class="n">async_connect</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">connect_handler</span><span class="p">);</span>
+<span class="n">sock2</span><span class="p">.</span><span class="n">async_connect</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">connect_handler</span><span class="p">);</span>
+<span class="n">deadline_timer</span> <span class="nf">t</span><span class="p">(</span><span class="n">service_</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+<span class="n">t</span><span class="p">.</span><span class="n">async_wait</span><span class="p">(</span><span class="n">timeout_handler</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">boost</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">run_service</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">run_service</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">service_</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>多个线程，多个io_service和多个处理线程：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">io_service</span> <span class="n">service_</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock1</span><span class="p">(</span><span class="n">service_</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock2</span><span class="p">(</span><span class="n">service_</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="n">sock1</span><span class="p">.</span><span class="n">async_connect</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">connect_handler</span><span class="p">);</span>
+<span class="n">sock2</span><span class="p">.</span><span class="n">async_connect</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">connect_handler</span><span class="p">);</span>
+<span class="n">deadline_timer</span> <span class="nf">t</span><span class="p">(</span><span class="n">service_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">boost</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+<span class="n">t</span><span class="p">.</span><span class="n">async_wait</span><span class="p">(</span><span class="n">timeout_handler</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">boost</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">run_service</span><span class="p">,</span> <span class="n">i</span><span class="p">));</span>
+<span class="kt">void</span> <span class="nf">run_service</span><span class="p">(</span><span class="kt">int</span> <span class="n">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">service_</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">run</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+
+<p>首先，需要注意在一个线程里面不能有多个io_service实例。以下代码毫无意义：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">for</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">service_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">run</span><span class="p">();</span>
+</code></pre></div>
+
+<p>以下是从前面例子中你应该学到的：</p>
+
+<ul>
+<li>第一种情况对最基本的程序有用。如果多个处理函数需要同时调用，将遇到瓶颈，因为它们以顺序方式被调用。如果一个处理函数花太长时间结束，所有后续处理函数都将等待。</li>
+<li>第二种情况适用于大多数程序。如果多个处理函数被同时调用，它们会在自己的线程被调用。唯一的瓶颈是如果所有处理线程都在忙碌，而新的处理函数被调用。</li>
+<li>第三种情况最复杂最灵活。你应该在第二种情况不够的时候使用它。你可以认为每一个处理线程（运行io_service::run()的线程）有自己的select/epoll循环。</li>
+</ul>
+
+<p>最后记住如果没有更多的操作需要处理，run()将会终止。如果想要run()继续运行，你必须把更多工作给它。一种方法是在处理函数中开始另一个异步操作。另一种方法是模拟一些工作给它：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">io_service</span><span class="o">::</span><span class="n">work</span><span class="o">&gt;</span> <span class="n">work_ptr</span><span class="p">;</span>
+<span class="n">work_ptr</span> <span class="nf">dummy_work</span><span class="p">(</span><span class="k">new</span> <span class="n">io_service</span><span class="o">::</span><span class="n">work</span><span class="p">(</span><span class="n">service_</span><span class="p">));</span>
+</code></pre></div>
+
+<p>上述代码将使得service<em>.run()不会停止除非你使用service</em>.stop()或dummy_work.reset(0)销毁dummy_work。</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/c&#43;&#43;">C&#43;&#43;</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3123 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2016-03-13 18:55 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://gitop.cc/posts/asio-network-programming-2/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Boost.Asio网络编程 第2章</span>
+			</a>
+			<a class="prev-post" href="http://gitop.cc/posts/core-python-3/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Python核心编程 第3章</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>

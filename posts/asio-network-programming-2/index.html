@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="Boost.Asio网络编程 第2章">
+<meta itemprop="description" content="Boost.Asio命名空间 Boost.Asio所有东西都放在boost::asio命名空间或者子命名空间： boost::asio：核心类和">
+
+
+<meta itemprop="datePublished" content="2016-03-17T10:55:52&#43;00:00" />
+<meta itemprop="dateModified" content="2016-03-17T10:55:52&#43;00:00" />
+<meta itemprop="wordCount" content="8347">
+
+
+
+<meta itemprop="keywords" content="C&#43;&#43;," />
+<meta property="og:title" content="Boost.Asio网络编程 第2章" />
+<meta property="og:description" content="Boost.Asio命名空间 Boost.Asio所有东西都放在boost::asio命名空间或者子命名空间： boost::asio：核心类和" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gitop.cc/posts/asio-network-programming-2/" />
+<meta property="article:published_time" content="2016-03-17T10:55:52&#43;00:00"/>
+<meta property="article:modified_time" content="2016-03-17T10:55:52&#43;00:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Boost.Asio网络编程 第2章"/>
+<meta name="twitter:description" content="Boost.Asio命名空间 Boost.Asio所有东西都放在boost::asio命名空间或者子命名空间： boost::asio：核心类和"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Boost.Asio网络编程 第2章</title>
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://gitop.cc/posts/">Posts</a>
+				<a href="http://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://gitop.cc/posts/">Posts</a></li>
+			<li><a href="http://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 17, 2016</span></div>
+				<h1>Boost.Asio网络编程 第2章</h1>
+			</header>
+			<div class="content">
+				
+
+<h2 id="boost-asio命名空间">Boost.Asio命名空间<a href="#boost-asio命名空间" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Boost.Asio所有东西都放在boost::asio命名空间或者子命名空间：</p>
+
+<ul>
+<li>boost::asio：核心类和函数放在这里。重要的类有io_service和streambuf。重要的自由函数，比如read，read_at，read_util，它们相应的异步版本，以及同步写和异步写函数。</li>
+<li>boost::asio::ip：网络部分属于这里。重要的类有address，endpoint，tcp，udp，icmp。重要的自由函数connect和async_connect。注意boost::asio::ip::tcp::socket只是一个boost::asio::ip::tcp中的typedef。</li>
+<li>boost::asio::error：包含调用I/O例程的错误码。</li>
+<li>boost::asio::ssl：包含处理SSL的类。</li>
+<li>boost::asio::local：包含POSIX相关的类。</li>
+<li>boost::asio::windows：包含Windows相关的类。</li>
+</ul>
+
+<h2 id="ip地址">IP地址<a href="#ip地址" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>为了处理IP地址，Boost.Asio提供ip::address，ip::address_v4和ip::address_v6类。以下是一些最重要的函数：</p>
+
+<ul>
+<li>ip::address(v4_or_v6_address)：这个函数转换一个v4或v6地址为ip::address。</li>
+<li>ip::address::from_string(str)：从一个IPv4或IPv6地址字符串创建地址。</li>
+<li>ip::address::to_string()：返回一个友好可读的地址字符串。</li>
+<li>ip::address_v4::broadcast([addr, mask])：创建一个广播地址。</li>
+<li>ip::address_v4::any()：返回一个代表任何地址的地址。</li>
+<li>ip::address_v4::loopback()，ip_address_v6::loopback()：返回回路地址</li>
+<li>ip::host_name()：返回当前主机名。</li>
+</ul>
+
+<p>你可能最常用到ip::address::from_string：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">ip</span><span class="o">::</span><span class="n">address</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">ip</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="p">);</span>
+</code></pre></div></p>
+
+<h2 id="端点">端点<a href="#端点" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>端点是你要连接的地址和端口。不同类型有自己的endpoint类，比如ip::tcp::endpoint，ip::udp::endpoint和ip::icmp::endpoint。</p>
+
+<p>如果你想连接本机80端口，这样：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="p">),</span> <span class="mi">80</span><span class="p">);</span>
+</code></pre></div></p>
+
+<p>创建端点有3种方法：</p>
+
+<ul>
+<li>endpoint()：默认构造函数，有时候可以用于UDP/ICMP套接字。</li>
+<li>endpoint(protocol, port)：通常用于服务端套接字接受新连接。</li>
+<li>endpoint(addr, port)：创建一个指定地址和端口的端点。</li>
+</ul>
+
+<p>下面是例子：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep1</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep2</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">v4</span><span class="p">(),</span> <span class="mi">80</span><span class="p">);</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep3</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="p">),</span> <span class="mi">80</span><span class="p">);</span>
+</code></pre></div></p>
+
+<p>如果想要连接到一个主机名，可以这样做：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// outputs &#34;87.248.122.122&#34;
+</span><span class="c1"></span><span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">resolver</span> <span class="n">resolver</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">query</span> <span class="n">query</span><span class="p">(</span><span class="s">&#34;www.yahoo.com&#34;</span><span class="p">,</span> <span class="s">&#34;80&#34;</span><span class="p">);</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">resolver</span><span class="p">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span> <span class="o">=</span> <span class="o">*</span><span class="n">iter</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ep</span><span class="p">.</span><span class="n">address</span><span class="p">().</span><span class="n">to_string</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></p>
+
+<p>如果resolve()函数成功，它将返回至少一个入口。你可以使用第一个，也可以遍历所有的。</p>
+
+<h2 id="套接字">套接字<a href="#套接字" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Boost.Asio有3中socket类：ip::tcp，ip::udp和ip::icmp，并且可以扩展。你可以创建自己的socket类。</p>
+
+<p>你可以认为ip::tcp，ip::udp和ip::icmp类是占位符，它们提供其他类和函数的简便访问：</p>
+
+<ul>
+<li>ip::tcp::socket, ip::tcp::acceptor, ip::tcp::endpoint, ip::tcp::resolver, ip::tcp::iostream</li>
+<li>ip::udp::socket, ip::udp::endpoint, ip::udp::resolver</li>
+<li>ip::icmp::socket, ip::icmp::endpoint, ip::icmp::resolver</li>
+</ul>
+
+<p>socket类创建相应的套接字，创建时需要传递io_service实例：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">reuse_address</span><span class="p">(</span><span class="nb">true</span><span class="p">));</span>
+</code></pre></div>
+
+<p>每一个socket名字是一个typedef：</p>
+
+<ul>
+<li>ip::tcp::socket = basic_stream_socket&lt;tcp&gt;</li>
+<li>ip::udp::socket = basic_datagram_socket&lt;udp&gt;</li>
+<li>ip::icmp::socket = basic_raw_socket&lt;icmp&gt;</li>
+</ul>
+
+<h3 id="同步错误码">同步错误码<a href="#同步错误码" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>所有的同步函数重载了抛出异常或返回错误码的版本，像下面的例子：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">sync_func</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span> <span class="p">...</span> <span class="n">argN</span><span class="p">);</span> <span class="c1">// throws
+</span><span class="c1"></span><span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="n">ec</span><span class="p">;</span>
+<span class="n">sync_func</span><span class="p">(</span><span class="n">arg1</span> <span class="n">arg2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">argN</span><span class="p">,</span> <span class="n">ec</span><span class="p">);</span> <span class="c1">// returns error code
+</span></code></pre></div></p>
+
+<h3 id="socket成员函数">Socket成员函数<a href="#socket成员函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>不是所有的函数对每一种类型的socket都可用。注意所有的异步函数立刻返回，同步函数只有在操作完成才会返回。</p>
+
+<h4 id="连接相关的函数">连接相关的函数<a href="#连接相关的函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<ul>
+<li>assign(protocol, socket)：这个函数将一个原始套接字赋给一个socket实例。使用它处理遗留代码。</li>
+<li>open(protocol)：这个函数使用指定IP协议（v4或v6）打开一个socket。这个函数主要用于UDP/ICMP套接字，或者服务器套接字。</li>
+<li>bind(endpoint)：绑定到指定端点。</li>
+<li>connect(endpoint)：同步连接到指定端点。</li>
+<li>async_connect(endpoint)：异步连接到指定端点。</li>
+<li>is_open()：如果socket已打开返回true。</li>
+<li>close()：关闭套接字。此套接字任何异步操作立刻取消并以error::operation_aborted错误码结束。</li>
+<li>shutdown(type_of_shutdown)：从现在开始禁止send，receive操作。</li>
+<li>cancel()：取消此套接字所有异步操作。所有异步操作立刻以error::operation_aborted错误码结束。</li>
+</ul>
+
+<p>例子如下：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="p">),</span> <span class="mi">80</span><span class="p">);</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">v4</span><span class="p">());</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ep</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">write_some</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="s">&#34;GET /index.html</span><span class="se">\r\n</span><span class="s">&#34;</span><span class="p">));</span>
+<span class="kt">char</span> <span class="n">buff</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span> <span class="n">sock</span><span class="p">.</span><span class="n">read_some</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">buff</span><span class="p">,</span><span class="mi">1024</span><span class="p">));</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">shutdown</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">shutdown_receive</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</code></pre></div></p>
+
+<h4 id="读写函数">读写函数<a href="#读写函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>对于所有异步读写函数，其处理函数的签名为：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">handler</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">bytes</span><span class="p">)</span>
+</code></pre></div></p>
+
+<ul>
+<li>async_receive(buffer, [flags,] handler)：从套接字开始异步receive操作。</li>
+<li>async_read_some(buffer, handler)：等价于async_receive(buffer, handler)。</li>
+<li>async_receive_from(buffer, endpoint[, flags], handler)：从指定端点开始异步receive操作。</li>
+<li>async_send(buffer[, flags], handler)：开始异步发送buffer中的数据。</li>
+<li>async_write_some(buffer, handler)：等价于async_send(buffer, handler)。</li>
+<li>async_send_to(buffer, endpoint, handler)：开始异步发送buffer中的数据到指定端点。</li>
+<li>receive(buffer[, flags])：同步读取数据到指定buffer。这个函数阻塞知道收到数据或一个错误发生。</li>
+<li>read_some(buffer)：等价于receive(buffer)。</li>
+<li>receive_from(buffer, endpoint[, flags])：同步地从指定端点读取数据到指定buffer。这个函数阻塞直到受到数据或错误发生。</li>
+<li>send(buffer[,  flags])：同步发送buffer中的数据。函数阻塞直到受到数据或发生错误。</li>
+<li>write_some(buffer)：等价于send(buffer)。</li>
+<li>send_to(buffer, endpoint[, flags])：同步发送buffer中的数据到指定端点。函数阻塞直到受到数据或发生错误。</li>
+<li>avaliable()：返回可以同步读取的字节数，不用阻塞。</li>
+</ul>
+
+<p>flags的默认值是0，但可以是下列的组合：</p>
+
+<ul>
+<li>ip::socket_type::socket::message_peek：这个标志只是偷看消息。它返回这个消息，但是下一次调用会重读这个消息。</li>
+<li>ip::socket_type::socket::message_out_of_band：这个标志处理out-of-band（OOB）数据。OOB数据是标记为比普通数据更重要的数据。</li>
+<li>ip::socket_type::socket::message_do_not_route：这个标志指定消息应该不使用路由表发送。</li>
+<li>ip::socket_type::socket::message_end_of_record：这个标志指示数据标志一个记录的结尾。在Windows下不支持。</li>
+</ul>
+
+<p>如果你使用下面这段代码，你最可能使用message_peek：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">char</span> <span class="n">buff</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">receive</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">buff</span><span class="p">),</span> <span class="n">ip</span><span class="o">::</span><span class="n">message_peek</span><span class="p">);</span>
+<span class="n">memset</span><span class="p">(</span><span class="n">buff</span><span class="p">,</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="c1">// re-reads what was previously read
+</span><span class="c1"></span><span class="n">sock</span><span class="p">.</span><span class="n">receive</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">buff</span><span class="p">));</span>
+</code></pre></div></p>
+
+<p>同步读写一个TCP套接字：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span> <span class="n">ip</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="p">),</span> <span class="mi">80</span><span class="p">);</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ep</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">write_some</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="s">&#34;GET /index.html</span><span class="se">\r\n</span><span class="s">&#34;</span><span class="p">));</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;bytes available &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">sock</span><span class="p">.</span><span class="n">available</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">buff</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+<span class="n">size_t</span> <span class="n">read</span> <span class="o">=</span> <span class="n">sock</span><span class="p">.</span><span class="n">read_some</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">buff</span><span class="p">));</span>
+</code></pre></div></p>
+
+<p>同步读写一个UDP套接字：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">v4</span><span class="p">());</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">receiver_ep</span><span class="p">(</span><span class="s">&#34;87.248.112.181&#34;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">send_to</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="s">&#34;testing</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">),</span> <span class="n">receiver_ep</span><span class="p">);</span>
+<span class="kt">char</span> <span class="n">buff</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">sender_ep</span><span class="p">;</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">receive_from</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">buff</span><span class="p">),</span> <span class="n">sender_ep</span><span class="p">);</span>
+</code></pre></div></p>
+
+<p>注意为了使用receive_from从一个UDP套接字读取数据，你需要一个默认构造的端点。</p>
+
+<p>异步读取一个UDP服务器套接字：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="p">;</span>
+<span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="n">boost</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">sender_ep</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">buff</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+<span class="kt">void</span> <span class="nf">on_read</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span> <span class="n">err</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">read_bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;read &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">read_bytes</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">sock</span><span class="p">.</span><span class="n">async_receive_from</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">buff</span><span class="p">),</span> <span class="n">sender_ep</span><span class="p">,</span> <span class="n">on_read</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="p">),</span> <span class="mi">8001</span><span class="p">);</span>
+    <span class="n">sock</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">ep</span><span class="p">.</span><span class="n">protocol</span><span class="p">());</span>
+    <span class="n">sock</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">reuse_address</span><span class="p">(</span><span class="nb">true</span><span class="p">));</span>
+    <span class="n">sock</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ep</span><span class="p">);</span>
+    <span class="n">sock</span><span class="p">.</span><span class="n">async_receive_from</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">buff</span><span class="p">,</span><span class="mi">512</span><span class="p">),</span> <span class="n">sender_ep</span><span class="p">,</span> <span class="n">on_read</span><span class="p">);</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></p>
+
+<h4 id="套接字控制">套接字控制<a href="#套接字控制" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>这些函数处理高级套接字选项：</p>
+
+<ul>
+<li>get_io_service()：返回构造时传递的io_service实例。</li>
+<li>get_option(option)：返回一个套接字选项。</li>
+<li>set_option(option)：设置套接字选项</li>
+<li>io_control(cmd)：在套接字上执行一个I/O命令。</li>
+</ul>
+
+<p>以下是你可以读取或设置的套接字选项：</p>
+
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+<th>类型</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>broadcast</td>
+<td>如果真，允许广播消息</td>
+<td>bool</td>
+</tr>
+
+<tr>
+<td>debug</td>
+<td>如果真，使socket-level调试生效</td>
+<td>bool</td>
+</tr>
+
+<tr>
+<td>enable_connection_aborted</td>
+<td>如果真，报告在accept()时连接被中止</td>
+<td>bool</td>
+</tr>
+
+<tr>
+<td>receive_buffer_size</td>
+<td>套接字的接收缓冲区大小</td>
+<td>int</td>
+</tr>
+
+<tr>
+<td>receive_low_watermark</td>
+<td>提供处理套接字输入的最小字节数</td>
+<td>int</td>
+</tr>
+
+<tr>
+<td>reuse_address</td>
+<td>如果真，套接字可以绑定一个已经在使用的地址</td>
+<td>bool</td>
+</tr>
+
+<tr>
+<td>send_buffer_size</td>
+<td>套接字发送缓冲区大小</td>
+<td>int</td>
+</tr>
+
+<tr>
+<td>send_low_watermark</td>
+<td>提供处理套接字输出的最小字节数</td>
+<td>int</td>
+</tr>
+
+<tr>
+<td>ip::v6_only</td>
+<td>如果真，只允许IPv6通信</td>
+<td>bool</td>
+</tr>
+</tbody>
+</table>
+
+<p>每一个名字代表内部socket的一个typedef或一个类。以下是例子：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="p">),</span> <span class="mi">80</span><span class="p">);</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ep</span><span class="p">);</span>
+<span class="c1">// TCP socket can reuse address
+</span><span class="c1"></span><span class="n">ip</span><span class="o">::</span><span class="n">reuse_address</span> <span class="n">ra</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="n">ra</span><span class="p">);</span>
+<span class="c1">// get sock receive buffer size
+</span><span class="c1"></span><span class="n">ip</span><span class="o">::</span><span class="n">receive_buffer_size</span> <span class="n">rbs</span><span class="p">;</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">get_option</span><span class="p">(</span><span class="n">rbs</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">rbs</span><span class="p">.</span><span class="n">value</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="c1">// set sock&#39;s buffer size to 8192
+</span><span class="c1"></span><span class="n">ip</span><span class="o">::</span><span class="n">send_buffer_size</span> <span class="n">sbs</span><span class="p">(</span><span class="mi">8192</span><span class="p">);</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="n">sbs</span><span class="p">);</span>
+</code></pre></div></p>
+
+<p>v#### TCP vs UDP vs ICMP ####</p>
+
+<p>如果一个成员函数不在下表，说明它对所有socket类可用：</p>
+
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>TCP</th>
+<th>UDP</th>
+<th>ICMP</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>async_read_some</td>
+<td>Yes</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>async_receive_from</td>
+<td>-</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>async_write_some</td>
+<td>Yes</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>async_send_to</td>
+<td>-</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>read_some</td>
+<td>Yes</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>receive_from</td>
+<td>-</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>write_some</td>
+<td>Yes</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>send_to</td>
+<td>-</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="其它函数">其它函数<a href="#其它函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<ul>
+<li>local_endpoint()：返回本地地址。</li>
+<li>remote_endpoint()：返回远程地址。</li>
+<li>native_handle()：返回原始套接字的句柄。你只有在想要调用原始套接字API的时候需要这个函数。</li>
+<li>non_blocking()：如果套接字非阻塞返回true，否则false。</li>
+<li>native_non_blocking()：和non_blocking一样，但是它在原始套接字上调用原始的套接字API。</li>
+<li>at_mark()：如果套接字即将读取OOB数据，返回true。很少使用。</li>
+</ul>
+
+<h3 id="其它考虑">其它考虑<a href="#其它考虑" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>最后需要注意的是，一个套接字实例不能被复制，因为复制构造函数和赋值操作符无法访问。如果你想要创建拷贝，使用共享指针：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ip</span><span class="o">::</span><span class="n">socket</span><span class="o">&gt;</span> <span class="n">socket_ptr</span><span class="p">;</span>
+<span class="n">socket_ptr</span> <span class="nf">sock1</span><span class="p">(</span><span class="k">new</span> <span class="n">ip</span><span class="o">::</span><span class="n">socket</span><span class="p">(</span><span class="n">service</span><span class="p">));</span>
+<span class="n">socket_ptr</span> <span class="nf">sock2</span><span class="p">(</span><span class="n">sock1</span><span class="p">);</span> <span class="c1">// ok
+</span><span class="c1"></span><span class="n">socket_ptr</span> <span class="n">sock3</span><span class="p">;</span>
+<span class="n">sock3</span> <span class="o">=</span> <span class="n">sock1</span><span class="p">;</span> <span class="c1">// ok
+</span></code></pre></div></p>
+
+<h4 id="socket缓冲区">Socket缓冲区<a href="#socket缓冲区" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>当读取或写入一个套接字，需要一个缓冲区，它将保存进来和流出的数据。缓冲区的内存必须比I/O操作更长久。你必须保证I/O操作持续期间它不被释放或超出范围。</p>
+
+<p>这个问题有下面几种解决方法：</p>
+
+<ul>
+<li>使用全局缓冲区。</li>
+<li>创建一个缓冲区，当操作完成时销毁它。</li>
+<li>使用一个连接对象维护套接字和额外的数据，比如缓冲区。</li>
+</ul>
+
+<h4 id="缓存包装器函数">缓存包装器函数<a href="#缓存包装器函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>任何时候我们需要一个缓冲区用于读写操作时，用buffer()函数包装真实的缓冲区对象。它包装任何缓冲区为一个类，允许Boost.Asio函数迭代访问缓冲区。比如你使用下面的代码：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">sock</span><span class="p">.</span><span class="n">async_receive</span><span class="p">(</span><span class="n">some_buffer</span><span class="p">,</span> <span class="n">on_read</span><span class="p">);</span>
+</code></pre></div></p>
+
+<p>some_buffer实例需要满足一些条件，即ConstBufferSequence或MutableBufferSequence。使用buffer()函数就可以满足这些条件。</p>
+
+<p>简单地说，你可以用buffer()函数包装下面的对象：</p>
+
+<ul>
+<li>char[] const数组</li>
+<li>void*指针和大小</li>
+<li>std::string</li>
+<li>POD[] const数组（POD代表plain old data，即构造函数和析构函数不用做任何事）</li>
+<li>std::vector&lt;POD&gt;</li>
+<li>boost::array&lt;POD&gt;</li>
+<li>std::array&lt;POD&gt;</li>
+</ul>
+
+<h2 id="读-写-连接自由函数">读/写/连接自由函数<a href="#读-写-连接自由函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Boost.Asio提供自由函数处理I/O。</p>
+
+<h3 id="连接函数">连接函数<a href="#连接函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>连接socket到一个端点：</p>
+
+<ul>
+<li>connect(socket, begin[, end][, condition])：同步连接，尝试begin和end之间每一个端点。begin迭代器是socket_type::resolver::query调用返回的结果。你可以提供一个条件函数在每次连接尝试前调用。它的签名是Iterator connect_condition(const boost::system::error_code &amp;ec, Iterator next)。</li>
+<li>async_connect(socket, begin[, end][, condition], handler)：执行异步连接，最后调用完成处理函数。处理函数的签名是void handler(const boost::system::error_code &amp;ec, Iterator iterator)。</li>
+</ul>
+
+<p>示例如下：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">ip</span><span class="p">;</span>
+<span class="n">tcp</span><span class="o">::</span><span class="n">resolver</span> <span class="n">resolver</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="n">tcp</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">resolver</span><span class="p">.</span><span class="n">resolve</span><span class="p">(</span>
+	<span class="n">tcp</span><span class="o">::</span><span class="n">query</span><span class="p">(</span><span class="s">&#34;www.yahoo.com&#34;</span><span class="p">,</span>
+	<span class="s">&#34;80&#34;</span><span class="p">));</span>
+<span class="n">tcp</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="n">connect</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">iter</span><span class="p">);</span>
+</code></pre></div></p>
+
+<p>一个主机名可以解析为多个地址，因此connect和async_connect将你从尝试每一个地址的负担中释放出来。</p>
+
+<h3 id="读-写函数">读/写函数<a href="#读-写函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<ul>
+<li>async_read(stream, buffer[, completion], handler)：从stream异步读取数据。完成后调用处理函数，其签名为void handler(const boost::system::error_code &amp;ec, size_t bytes)。你可以指定一个完成函数。每一次成功读后都调用一次完成函数，并告诉Boost.Asio异步读操作是否完成，如果没有继续读。完成函数的签名为size_t completion(const boost::system::error_code &amp;ec, size_t bytes_transfered)。当完成函数返回0时，我们认为读操作完成。如果返回非0值，它指示下一次async_read_some操作读取的最大字节数。</li>
+<li>async_write(stream, buffer[, completion], handler)：异步写数据到stream。参数的意义和async_read类似。</li>
+<li>read(stream, buffer[, completion])：从stream同步读取数据。参数的意义和async_read类似。</li>
+<li>write(stream, buffer[, completion])：同步写数据到stream。参数的意义和async_read类似。</li>
+</ul>
+
+<p>每一个读或写操作在下面这些条件发生时结束：</p>
+
+<ul>
+<li>提供的缓冲区已满（对于读）或在缓冲区的数据都被写完（对于写）</li>
+<li>完成函数返回0，如果你提供了这样一个函数</li>
+<li>一个错误发生</li>
+</ul>
+
+<p>下面的代码会异步读知道发现&rsquo;\n&rsquo;：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="kt">char</span> <span class="n">buff</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">size_t</span> <span class="nf">up_to_enter</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bytes</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">buff</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">offset</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">on_read</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">size_t</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">...</span>
+<span class="n">async_read</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">buffer</span><span class="p">(</span><span class="n">buff</span><span class="p">),</span> <span class="n">up_to_enter</span><span class="p">,</span> <span class="n">on_read</span><span class="p">);</span>
+</code></pre></div></p>
+
+<p>Boost.Asio提供一些助手完成函数：</p>
+
+<ul>
+<li>transfer_at_least(n)</li>
+<li>transfer_exactly(n)</li>
+<li>transfer_all()</li>
+</ul>
+
+<p>例子如下：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">char</span> <span class="n">buff</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+<span class="kt">void</span> <span class="nf">on_read</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">size_t</span><span class="p">)</span> <span class="p">{}</span>
+<span class="c1">// read exactly 32 bytes
+</span><span class="c1"></span><span class="n">async_read</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">buffer</span><span class="p">(</span><span class="n">buff</span><span class="p">),</span> <span class="n">transfer_exactly</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span> <span class="n">on_read</span><span class="p">);</span>
+</code></pre></div></p>
+
+<p>最后4个函数，使用继承std::streambuf的stream_buffer函数而不是通常的buffer。STL stream和stream_buffer非常灵活。
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">on_read</span><span class="p">(</span><span class="n">streambuf</span><span class="o">&amp;</span> <span class="n">buf</span><span class="p">,</span> <span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">size_t</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="n">in</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">in</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;first line: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">line</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">HANDLE</span> <span class="n">file</span> <span class="o">=</span> <span class="o">::</span><span class="n">CreateFile</span><span class="p">(</span><span class="s">&#34;readme.txt&#34;</span><span class="p">,</span> <span class="n">GENERIC_READ</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">OPEN_ALWAYS</span><span class="p">,</span> <span class="n">FILE_ATTRIBUTE_NORMAL</span> <span class="o">|</span> <span class="n">FILE_FLAG_OVERLAPPED</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">windows</span><span class="o">::</span><span class="n">stream_handle</span> <span class="n">h</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">file</span><span class="p">);</span>
+    <span class="n">streambuf</span> <span class="n">buf</span><span class="p">;</span>
+    <span class="n">async_read</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">transfer_exactly</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
+        <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">on_read</span><span class="p">,</span><span class="n">boost</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span><span class="n">_1</span><span class="p">,</span><span class="n">_2</span><span class="p">));</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></p>
+
+<h4 id="read-until-async-read-util函数">read_until/async_read_util函数<a href="#read-until-async-read-util函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>这些函数一直读直到一个条件满足：</p>
+
+<ul>
+<li>async_read_until(stream, stream_buffer, delim, handler)：开始一个异步读操作。当遇到一个delim时，读操作停止。delim可以是任意一个字符，std::string或boost::regex。处理函数的签名为void handler(const boost::system::error_code &amp;ec, size_t bytes)。</li>
+<li>async_read_until(stream, stream_buffer, completion, handler)：这个函数和前一个一样，只是将delim替换为完成函数，其签名是pair&lt;iterator, bool&gt; completion(iterator begin, iterator end)。迭代器参数是buffers_iterator&lt;streambuf::const_buffers_type&gt;。你需要记住的是迭代器类型是随机访问迭代器。返回true说明读操作应该停止。</li>
+<li>read_until(stream, stream_buffer, delim)：同步读，参数意义与async_read_until一样。</li>
+<li>read_until(stream, stream_buffer, completion)：同步读，参数意义与async_read_until一样。</li>
+</ul>
+
+<p>下面的代码将读到一个标点符号为止：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="n">buffers_iterator</span><span class="o">&lt;</span><span class="n">streambuf</span><span class="o">::</span><span class="n">const_buffers_type</span><span class="o">&gt;</span> <span class="n">iterator</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">iterator</span><span class="p">,</span> <span class="kt">bool</span><span class="o">&gt;</span> <span class="n">match_punct</span><span class="p">(</span><span class="n">iterator</span> <span class="n">begin</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">begin</span> <span class="o">!=</span> <span class="n">end</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ispunct</span><span class="p">(</span><span class="o">*</span><span class="n">begin</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">end</span><span class="p">,</span><span class="nb">false</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">on_read</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">size_t</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">...</span>
+<span class="n">streambuf</span> <span class="n">buf</span><span class="p">;</span>
+<span class="n">async_read_until</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">match_punct</span><span class="p">,</span> <span class="n">on_read</span><span class="p">);</span>
+</code></pre></div></p>
+
+<p>如果想读到一个空格，修改最后一行：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">async_read_until</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">buff</span><span class="p">,</span> <span class="sc">&#39; &#39;</span><span class="p">,</span> <span class="n">on_read</span><span class="p">);</span>
+</code></pre></div></p>
+
+<h4 id="at函数">*_at函数<a href="#at函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>这些函数在一个stream上做随机读写操作。你指定读写操作从哪开始（offset）：</p>
+
+<ul>
+<li>async_read_at(stream, offset, buffer[, completion], handler)：在指定流上从offset开始异步读操作。处理函数的签名是void handler(const boost::system::error_code &amp;ec, size_t bytes)。缓冲区可以是通常的buffer()包装器或一个streambuf函数。如果指定了一个完成函数，它在每次成功读操作后被调用，并告诉Boost.Asio操作async_read_at是否完成，其签名为size_t completion(const boost::system::error_code &amp;ec, size_t bytes)。当完成函数返回0时，我们认为读操作完成；如果返回非0值，它指示下一次async_read_some_at调用要读取的最大字节数。</li>
+<li>async_write_at(stream, offset, buffer[, completion], handler)：开始一个异步写操作。参数的意思和async_read_at一样。</li>
+<li>read_at(stream, offset, buffer[, completion])：同步读，参数的意思和async_read_at一样。</li>
+<li>write_at(stream, offset, buffer[, completion])：同步读，参数的意思和async_read_at一样。</li>
+</ul>
+
+<p>这些函数不处理socket，它们处理随机访问流。
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">HANDLE</span> <span class="n">file</span> <span class="o">=</span> <span class="o">::</span><span class="n">CreateFile</span><span class="p">(</span><span class="s">&#34;readme.txt&#34;</span><span class="p">,</span> <span class="n">GENERIC_READ</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">OPEN_ALWAYS</span><span class="p">,</span> <span class="n">FILE_ATTRIBUTE_NORMAL</span> <span class="o">|</span> <span class="n">FILE_FLAG_OVERLAPPED</span><span class="p">,</span>
+        <span class="mi">0</span><span class="p">);</span>
+    <span class="n">windows</span><span class="o">::</span><span class="n">random_access_handle</span> <span class="n">h</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">file</span><span class="p">);</span>
+    <span class="n">streambuf</span> <span class="n">buf</span><span class="p">;</span>
+    <span class="n">read_at</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">transfer_exactly</span><span class="p">(</span><span class="mi">128</span><span class="p">));</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="n">in</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">in</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;first line: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">line</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+
+<h1 id="异步编程">异步编程<a href="#异步编程" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>这部分将深入钻研进行异步编程会碰到的一些问题。</p>
+
+<h2 id="异步的需求">异步的需求<a href="#异步的需求" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>尽管异步编程更难，你可能还是会选择它。比如说编写需要处理非常多并行客户端的服务器。并行客户端越多，异步编程比同步编程越容易。</p>
+
+<h2 id="异步run-run-one-poll-poll-one">异步run()，run_one()，poll()，poll_one()<a href="#异步run-run-one-poll-poll-one" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>为了实现监听循环，io_service类提供4个函数，run()，run_one()，poll()和poll_one()。</p>
+
+<h3 id="永久运行">永久运行<a href="#永久运行" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>run()会一直运行，只要有追加的操作执行或者你手动调用io_service::stop()。为了保持io_service实例运行，通常添加一个或多个异步操作，并当它们执行时，保持继续添加异步操作：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="p">;</span>
+<span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<span class="kt">char</span> <span class="n">buff_read</span><span class="p">[</span><span class="mi">1024</span><span class="p">],</span> <span class="n">buff_write</span><span class="p">[</span><span class="mi">1024</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;ok&#34;</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">on_read</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="n">err</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">bytes</span><span class="p">)</span>
+<span class="p">;</span>
+<span class="kt">void</span> <span class="nf">on_write</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="n">err</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">bytes</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">sock</span><span class="p">.</span><span class="n">async_read_some</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">buff_read</span><span class="p">),</span> <span class="n">on_read</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">on_read</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="n">err</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">bytes</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ... process the read ...
+</span><span class="c1"></span>    <span class="n">sock</span><span class="p">.</span><span class="n">async_write_some</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">buff_write</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">on_write</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">on_connect</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span><span class="n">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">sock</span><span class="p">.</span><span class="n">async_read_some</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">buff_read</span><span class="p">),</span> <span class="n">on_read</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="p">),</span> <span class="mi">2001</span><span class="p">);</span>
+    <span class="n">sock</span><span class="p">.</span><span class="n">async_connect</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">on_connect</span><span class="p">);</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></p>
+
+<h3 id="run-one-poll-poll-one-函数">run_one()，poll()，poll_one()函数<a href="#run-one-poll-poll-one-函数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>run_one()函数会执行和分配最多一个异步操作：</p>
+
+<ul>
+<li>如果没有追加操作，函数立刻返回0</li>
+<li>如果有追加操作，函数阻塞知道第一个操作执行，并返回1</li>
+</ul>
+
+<p>考虑下述等价代码：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">service</span><span class="p">.</span><span class="n">run</span><span class="p">();</span> <span class="c1">// OR
+</span><span class="c1"></span><span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">service</span><span class="p">.</span><span class="n">stopped</span><span class="p">())</span> <span class="n">service</span><span class="p">.</span><span class="n">run_once</span><span class="p">();</span>
+</code></pre></div></p>
+
+<p>你可以使用run_once()开始一个异步操作，然后等待它完成：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">write_complete</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">on_write</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="o">&amp;</span> <span class="n">err</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">bytes</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">write_complete</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">...</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">data</span> <span class="o">=</span> <span class="s">&#34;login ok&#34;</span><span class="p">;</span>
+<span class="n">write_complete</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="n">async_write</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">buffer</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">on_write</span><span class="p">);</span>
+<span class="k">do</span> <span class="n">service</span><span class="p">.</span><span class="n">run_once</span><span class="p">()</span> <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">write_complete</span><span class="p">);</span>
+</code></pre></div></p>
+
+<p>poll_one函数运行最多一次准备运行的追加操作，非阻塞：</p>
+
+<ul>
+<li>如果有至少一个准备运行的非阻塞追加操作，poll_one运行它并返回1</li>
+<li>否则，立刻返回0</li>
+</ul>
+
+<p>准备运行的非阻塞追加操作，通常意味着任何：</p>
+
+<ul>
+<li>一个定时器超时了，且它的async_wait回调函数需要被调用。</li>
+<li>一个I/O操作完成了（比如async_read），且其回调函数需要被调用。</li>
+<li>一个之前添加到io_services队列的自定义的回调函数。</li>
+</ul>
+
+<p>poll()函数运行所有添加的操作，不用阻塞。下面代码等价：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">service</span><span class="p">.</span><span class="n">poll</span><span class="p">();</span> <span class="c1">// OR
+</span><span class="c1"></span><span class="k">while</span> <span class="p">(</span><span class="n">service</span><span class="p">.</span><span class="n">poll_one</span><span class="p">());</span>
+</code></pre></div></p>
+
+<p>所有之前的函数失败时抛出boost::system::system_error异常。这不应该发生，这里抛出的错误通常是致命的。每一个函数也有不抛异常而返回错误码的重载版本。
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="n">err</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">service</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">err</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Error &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">err</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></p>
+
+<h2 id="异步工作">异步工作<a href="#异步工作" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>异步工作不仅仅是异步接受客户端连接，异步读取或写到套接字。它包含任何可以异步执行的操作。</p>
+
+<p>默认情况下，你不知道异步处理函数的调用顺序。你可以使用service.post()抛出自定义的函数使其可以异步调用：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="p">;</span>
+<span class="n">io_service</span> <span class="n">service</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;func called, i= &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">worker_thread</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">service</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">i</span><span class="p">));</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">thread_group</span> <span class="n">threads</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">threads</span><span class="p">.</span><span class="n">create_thread</span><span class="p">(</span><span class="n">worker_thread</span><span class="p">);</span>
+    <span class="c1">// wait for all threads to be created
+</span><span class="c1"></span>    <span class="n">boost</span><span class="o">::</span><span class="n">sleep</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">millisec</span><span class="p">(</span><span class="mi">500</span><span class="p">));</span>
+    <span class="n">threads</span><span class="p">.</span><span class="n">join_all</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></p>
+
+<p>有的时候你想要某些异步处理函数按顺序调用。你可以使用io_service::strand，它将顺序调用你的异步处理函数。
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;func called, i= &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;/&#34;</span>
+    <span class="o">&lt;&lt;</span> <span class="n">boost</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">worker_thread</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">io_service</span><span class="o">::</span><span class="n">strand</span> <span class="n">strand_one</span><span class="p">(</span><span class="n">service</span><span class="p">),</span> <span class="n">strand_two</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">service</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">strand_one</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span> <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">i</span><span class="p">)));</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">service</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">strand_two</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span> <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">i</span><span class="p">)));</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">thread_group</span> <span class="n">threads</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">threads</span><span class="p">.</span><span class="n">create_thread</span><span class="p">(</span><span class="n">worker_thread</span><span class="p">);</span>
+    <span class="c1">// wait for all threads to be created
+</span><span class="c1"></span>    <span class="n">boost</span><span class="o">::</span><span class="n">sleep</span><span class="p">(</span> <span class="n">boost</span><span class="o">::</span><span class="n">millisec</span><span class="p">(</span><span class="mi">500</span><span class="p">));</span>
+    <span class="n">threads</span><span class="p">.</span><span class="n">join_all</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></p>
+
+<h2 id="异步post-vs-dispatch-vs-wrap">异步post() vs dispatch() vs wrap()<a href="#异步post-vs-dispatch-vs-wrap" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Boost.Asio提供3种方法添加你的函数异步调用：</p>
+
+<ul>
+<li>service.post(handler)：这个函数保证在请求io_service添加处理函数后立刻返回。处理函数会在之后被某个调用了service.run()的线程调用。</li>
+<li>service.dispatch(handler)：请求io_service调用指定的处理函数，同时如果当前线程调用了service.run()，它可以在函数内执行处理函数。</li>
+<li>service.wrap(handler)：这个函数创建一个包装函数。当包装函数被调用时，会调用service.dispatch(handler)。</li>
+</ul>
+
+<p>看看dispatch如何影响输出：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;func called, i= &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">run_dispatch_and_post</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">service</span><span class="p">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">i</span><span class="p">));</span>
+        <span class="n">service</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">run_dispatch_and_post</span><span class="p">);</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></p>
+
+<p>wrap()函数返回一个函数对象，以供将来使用：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">dispatched_func_1</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;dispatched 1&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">dispatched_func_2</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;dispatched 2&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span> <span class="n">func</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;test&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">dispatched_func_1</span><span class="p">);</span>
+    <span class="n">func</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">service_run</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">test</span><span class="p">(</span><span class="n">service</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">dispatched_func_2</span><span class="p">));</span>
+    <span class="n">boost</span><span class="o">::</span><span class="kr">thread</span> <span class="n">th</span><span class="p">(</span><span class="n">service_run</span><span class="p">);</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">sleep</span><span class="p">(</span> <span class="n">boost</span><span class="o">::</span><span class="n">millisec</span><span class="p">(</span><span class="mi">500</span><span class="p">));</span>
+    <span class="n">th</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></p>
+
+<p>io_service::strand类也包含成员函数poll()，dispatch()和wrap()。其意义和io_service的一样。然而大多数时间你只会使用io_service::strand::wrap()作为io_service::poll()或io_service::dispatch()的参数。</p>
+
+<h1 id="保持活着">保持活着<a href="#保持活着" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>当使用套接字缓冲区时，你可以用一个buffer实例度过一个异步调用。我们可以使用同样的原理创建一个类，内部保存套接字和读/写缓冲区。然后对于所有异步调用，传递一个共享指针给boost::bind函数：
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nl">connection</span> <span class="p">:</span> <span class="n">boost</span><span class="o">::</span><span class="n">enable_shared_from_this</span><span class="o">&lt;</span><span class="n">connection</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">error_code</span> <span class="n">error_code</span><span class="p">;</span>
+    <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">connection</span><span class="o">&gt;</span> <span class="n">ptr</span><span class="p">;</span>
+    <span class="n">connection</span><span class="p">()</span> <span class="o">:</span> <span class="n">sock_</span><span class="p">(</span><span class="n">service</span><span class="p">),</span> <span class="n">started_</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="kt">void</span> <span class="n">start</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sock_</span><span class="p">.</span><span class="n">async_connect</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span>
+                            <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">connection</span><span class="o">::</span><span class="n">on_connect</span><span class="p">,</span> <span class="n">shared_from_this</span><span class="p">(),</span>
+                                        <span class="n">_1</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">stop</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">started_</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="n">started_</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="n">sock_</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="kt">bool</span> <span class="n">started</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">started_</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">on_connect</span><span class="p">(</span><span class="k">const</span> <span class="n">error_code</span> <span class="o">&amp;</span> <span class="n">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// here you decide what to do with the connection: read or write
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">err</span><span class="p">)</span> <span class="n">do_read</span><span class="p">();</span>
+        <span class="k">else</span> <span class="nf">stop</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">on_read</span><span class="p">(</span><span class="k">const</span> <span class="n">error_code</span> <span class="o">&amp;</span> <span class="n">err</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">bytes</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">started</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">msg</span><span class="p">(</span><span class="n">read_buffer_</span><span class="p">,</span> <span class="n">bytes</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">msg</span> <span class="o">==</span> <span class="s">&#34;can_login&#34;</span><span class="p">)</span> <span class="n">do_write</span><span class="p">(</span><span class="s">&#34;access_data&#34;</span><span class="p">);</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#34;data &#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">process_data</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">msg</span> <span class="o">==</span> <span class="s">&#34;login_fail&#34;</span><span class="p">)</span> <span class="n">stop</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">on_write</span><span class="p">(</span><span class="k">const</span> <span class="n">error_code</span> <span class="o">&amp;</span> <span class="n">err</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">bytes</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">do_read</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">do_read</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">sock_</span><span class="p">.</span><span class="n">async_read_some</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">read_buffer_</span><span class="p">),</span>
+                              <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">connection</span><span class="o">::</span><span class="n">on_read</span><span class="p">,</span> <span class="n">shared_from_this</span><span class="p">(),</span>
+                                          <span class="n">_1</span><span class="p">,</span> <span class="n">_2</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">do_write</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">started</span><span class="p">()</span> <span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="c1">// note: in case you want to send several messages before
+</span><span class="c1"></span>        <span class="c1">// doing another async_read, you&#39;ll need several write buffers!
+</span><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">msg</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">write_buffer_</span><span class="p">);</span>
+        <span class="n">sock_</span><span class="p">.</span><span class="n">async_write_some</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">write_buffer_</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="n">size</span><span class="p">()),</span>
+                               <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">connection</span><span class="o">::</span><span class="n">on_write</span><span class="p">,</span> <span class="n">shared_from_this</span><span class="p">(),</span>
+                                           <span class="n">_1</span><span class="p">,</span> <span class="n">_2</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">process_data</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// process what comes from server, and then perform another write
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">ip</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock_</span><span class="p">;</span>
+    <span class="k">enum</span> <span class="p">{</span> <span class="n">max_msg</span> <span class="o">=</span> <span class="mi">1024</span> <span class="p">};</span>
+    <span class="kt">char</span> <span class="n">read_buffer_</span><span class="p">[</span><span class="n">max_msg</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="n">write_buffer_</span><span class="p">[</span><span class="n">max_msg</span><span class="p">];</span>
+    <span class="kt">bool</span> <span class="n">started_</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="p">),</span>
+                          <span class="mi">8001</span><span class="p">);</span>
+    <span class="n">connection</span><span class="o">::</span><span class="n">ptr</span><span class="p">(</span><span class="k">new</span> <span class="n">connection</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">(</span><span class="n">ep</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></p>
+
+<p>在所有的异步调用中，我们传递一个boost::bind函数对象作为参数。这个函数对象内部保存一个共享指针指向connection实例。只要还有追加的异步操作，Boost.Asio将保存一个boost::bind函数对象，它又保存一个共享指针指向connection实例，因此保持连接活着。</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/c&#43;&#43;">C&#43;&#43;</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>8347 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2016-03-17 18:55 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://gitop.cc/posts/cpp-primer-2/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>第2章 变量和基本类型</span>
+			</a>
+			<a class="prev-post" href="http://gitop.cc/posts/asio-network-programming-1/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Boost.Asio网络编程 第1章</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>

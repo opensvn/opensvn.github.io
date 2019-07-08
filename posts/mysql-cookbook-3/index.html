@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="MySQL Cookbook 第3章 从表中查询数据">
+<meta itemprop="description" content="3.0. 介绍 本章专注使用SELECT语句从你的数据库获取信息。 3.1. 指定SELECT哪行哪列 问题 你想要从一张表中展示特定行和列。 解决方法 为了指示展示哪">
+
+
+<meta itemprop="datePublished" content="2016-04-07T12:14:29&#43;00:00" />
+<meta itemprop="dateModified" content="2016-04-07T12:14:29&#43;00:00" />
+<meta itemprop="wordCount" content="4032">
+
+
+
+<meta itemprop="keywords" content="MySQL," />
+<meta property="og:title" content="MySQL Cookbook 第3章 从表中查询数据" />
+<meta property="og:description" content="3.0. 介绍 本章专注使用SELECT语句从你的数据库获取信息。 3.1. 指定SELECT哪行哪列 问题 你想要从一张表中展示特定行和列。 解决方法 为了指示展示哪" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gitop.cc/posts/mysql-cookbook-3/" />
+<meta property="article:published_time" content="2016-04-07T12:14:29&#43;00:00"/>
+<meta property="article:modified_time" content="2016-04-07T12:14:29&#43;00:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MySQL Cookbook 第3章 从表中查询数据"/>
+<meta name="twitter:description" content="3.0. 介绍 本章专注使用SELECT语句从你的数据库获取信息。 3.1. 指定SELECT哪行哪列 问题 你想要从一张表中展示特定行和列。 解决方法 为了指示展示哪"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>MySQL Cookbook 第3章 从表中查询数据</title>
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://gitop.cc/posts/">Posts</a>
+				<a href="http://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://gitop.cc/posts/">Posts</a></li>
+			<li><a href="http://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 7, 2016</span></div>
+				<h1>MySQL Cookbook 第3章 从表中查询数据</h1>
+			</header>
+			<div class="content">
+				
+
+<h1 id="3-0-介绍">3.0. 介绍<a href="#3-0-介绍" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>本章专注使用SELECT语句从你的数据库获取信息。</p>
+
+<h1 id="3-1-指定select哪行哪列">3.1. 指定SELECT哪行哪列<a href="#3-1-指定select哪行哪列" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p><strong>问题</strong></p>
+
+<p>你想要从一张表中展示特定行和列。</p>
+
+<p><strong>解决方法</strong></p>
+
+<p>为了指示展示哪一列，在输出列表中指定它。为了指示展示哪一行，使用WHERE语句指定满足条件的行。</p>
+
+<p><strong>讨论</strong></p>
+
+<p>从一个表中显示列最简单的方式是使用SELECT * FROM tbl_name。*限定符意思是“所有列”：</p>
+
+<pre><code>mysql&gt; SELECT * FROM mail; 
++---------------------|---------|---------|---------|---------|---------+
+| t                   | srcuser | srchost | dstuser | dsthost | size    |
++---------------------|---------|---------|---------|---------|---------+
+| 2014-05-11 10:15:08 | barb    | saturn  | tricia  | mars    |   58274 | 
+| 2014-05-12 12:48:13 | tricia  | mars    | gene    | venus   |  194925 | 
+| 2014-05-12 15:02:49 | phil    | mars    | phil    | saturn  |    1048 | 
+| 2014-05-12 18:59:18 | barb    | saturn  | tricia  | venus   |     271 | 
+</code></pre>
+
+<p>显式命名列使你可以以任意顺序查询感兴趣的列：</p>
+
+<pre><code>mysql&gt; SELECT srcuser, srchost, t, size FROM mail;
++---------|---------|---------------------|---------+
+| srcuser | srchost | t                   | size    |
++---------|---------|---------------------|---------+
+| barb    | saturn  | 2014-05-11 10:15:08 |   58274 | 
+| tricia  | mars    | 2014-05-12 12:48:13 |  194925 | 
+| phil    | mars    | 2014-05-12 15:02:49 |    1048 | 
+| barb    | saturn  | 2014-05-12 18:59:18 |     271 | 
+</code></pre>
+
+<p>除非你以某种方式限制SELECT查询，它获取表中每一行。更确切地说，提供一个WHERE语句指定一个或多个条件行必须满足。</p>
+
+<p>条件可以用来测试相等，不相等或相关的顺序。对于一些数据类型，比如字符串，可以使用模式匹配：</p>
+
+<pre><code>mysql&gt; SELECT t, srcuser, srchost FROM mail WHERE srchost = 'venus';
++---------------------|---------|---------+
+| t                   | srcuser | srchost |
++---------------------|---------|---------+
+| 2014-05-14 09:31:37 | gene    | venus   | 
+| 2014-05-14 14:42:21 | barb    | venus   | 
+| 2014-05-15 08:50:57 | phil    | venus   | 
+| 2014-05-16 09:00:28 | gene    | venus   | 
+| 2014-05-16 23:04:19 | phil    | venus   | 
++---------------------|---------|---------+
+mysql&gt; SELECT t, srcuser, srchost FROM mail WHERE srchost LIKE 's%';
++---------------------|---------|---------+
+| t                   | srcuser | srchost |
++---------------------|---------|---------+
+| 2014-05-11 10:15:08 | barb    | saturn  | 
+| 2014-05-12 18:59:18 | barb    | saturn  | 
+| 2014-05-14 17:03:01 | tricia  | saturn  | 
+| 2014-05-15 17:35:31 | gene    | saturn  | 
+| 2014-05-19 22:21:51 | gene    | saturn  | 
++---------------------|---------|---------+
+</code></pre>
+
+<p>LIKE操作符执行一个模式匹配，%作为一个通配符匹配任意 字符串。WHERE语句可以测试多个条件且不同条件可以测试不同列：</p>
+
+<pre><code>mysql&gt; SELECT * FROM mail WHERE srcuser = 'barb' AND dstuser = 'tricia';
++---------------------|---------|---------|---------|---------|-------+
+| t                   | srcuser | srchost | dstuser | dsthost | size  |
++---------------------|---------|---------|---------|---------|-------+
+| 2014-05-11 10:15:08 | barb    | saturn  | tricia  | mars    | 58274 | 
+| 2014-05-12 18:59:18 | barb    | saturn  | tricia  | venus   |   271 | 
++---------------------|---------|---------|---------|---------|-------+
+</code></pre>
+
+<p>输出列可以由表达式计算：</p>
+
+<pre><code>mysql&gt; SELECT t, CONCAT(srcuser,'@',srchost), size FROM mail;
++---------------------|-----------------------------|---------+
+| t                   | CONCAT(srcuser,'@',srchost) | size    |
++---------------------|-----------------------------|---------+
+| 2014-05-11 10:15:08 | barb@saturn                 |   58274 | 
+| 2014-05-12 12:48:13 | tricia@mars                 |  194925 | 
+| 2014-05-12 15:02:49 | phil@mars                   |    1048 | 
+| 2014-05-12 18:59:18 | barb@saturn                 |     271 | 
+</code></pre>
+
+<h1 id="3-2-命名查询结果列">3.2. 命名查询结果列<a href="#3-2-命名查询结果列" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p><strong>问题</strong></p>
+
+<p>查询结果中的列名字不合适，丑陋或难以处理。</p>
+
+<p><strong>解决方法</strong></p>
+
+<p>使用别名选择你自己的列名字。</p>
+
+<p><strong>讨论</strong></p>
+
+<p>当你获取一个结果集，MySQL给每一个输出列一个名字。默认地，MySQL用创建表的列名赋值给输出列，你可以使用别名指定自己的列名。</p>
+
+<p>如果你通过计算一个表达式生成一列，表达式本身就是列名：</p>
+
+<pre><code>mysql&gt; SELECT
+    -&gt; DATE_FORMAT(t, '%M %e, %Y'), CONCAT(srcuser, '@', srchost), size
+    -&gt; FROM mail;
++-----------------------------|-------------------------------|---------+
+| DATE_FORMAT(t, '%M %e, %Y') | CONCAT(srcuser, '@', srchost) | size    |
++-----------------------------|-------------------------------|---------+
+| May 11, 2014                | barb@saturn                   |   58274 | 
+| May 12, 2014                | tricia@mars                   |  194925 | 
+| May 12, 2014                | phil@mars                     |    1048 | 
+| May 12, 2014                | barb@saturn                   |     271 |
+</code></pre>
+
+<p>使用AS命名语句指定一列别名（关键字AS是可选的）：</p>
+
+<pre><code>mysql&gt; SELECT
+    -&gt; DATE_FORMAT(t,'%M %e, %Y') AS date_sent,
+    -&gt; CONCAT(srcuser,'@',srchost) AS sender,
+    -&gt; size FROM mail;
++--------------|---------------|---------+
+| date_sent    | sender        | size    |
++--------------|---------------|---------+
+| May 11, 2014 | barb@saturn   |   58274 | 
+| May 12, 2014 | tricia@mars   |  194925 | 
+| May 12, 2014 | phil@mars     |    1048 | 
+| May 12, 2014 | barb@saturn   |     271 | 
+</code></pre>
+
+<p>别名使列名更准确，更容易阅读和更有意义。别名受到一些限制。比如，如果它们是SQL关键字，数字或包含空格或其它特殊字符，则必须被引用：</p>
+
+<pre><code>mysql&gt; SELECT
+    -&gt; DATE_FORMAT(t,'%M %e, %Y') AS 'Date of message',
+    -&gt; CONCAT(srcuser,'@',srchost) AS 'Message sender',
+    -&gt; size AS 'Number of bytes' FROM mail;
+mysql&gt; SELECT 1 AS INTEGER;
+You have an error in your SQL syntax near 'INTEGER'
+mysql&gt; SELECT 1 AS 'INTEGER';
++---------+
+| INTEGER |
++---------+
+|       1 | 
++---------+
+</code></pre>
+
+<p>你不能在WHERE语句中引用列的别名，因此下面这个语句非法：</p>
+
+<pre><code>mysql&gt; SELECT t, srcuser, dstuser, size/1024 AS kilobytes
+    -&gt; FROM mail WHERE kilobytes &gt; 500;
+</code></pre>
+
+<h1 id="3-3-排序查询结果">3.3. 排序查询结果<a href="#3-3-排序查询结果" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p><strong>问题</strong></p>
+
+<p>你的查询结果没有按照你想要的方式排序。</p>
+
+<p><strong>解决方法</strong></p>
+
+<p>使用ORDER BY语句告诉MySQL怎样排序结果行。</p>
+
+<p><strong>讨论</strong></p>
+
+<p>当你查询行时，MySQL服务器可以自由地以任意顺序返回它们，除非你通知怎么排序它们。有很多中排序的方式。简单地使用ORDER BY语句排序：</p>
+
+<pre><code>mysql&gt; SELECT * FROM mail WHERE dstuser = 'tricia'
+    -&gt; ORDER BY srchost, srcuser;
++---------------------|---------|---------|---------|---------|--------+
+| t                   | srcuser | srchost | dstuser | dsthost | size   |
++---------------------|---------|---------|---------|---------|--------+
+| 2014-05-15 10:25:52 | gene    | mars    | tricia  | saturn  | 998532 | 
+| 2014-05-14 11:52:17 | phil    | mars    | tricia  | saturn  |   5781 | 
+| 2014-05-19 12:49:23 | phil    | mars    | tricia  | saturn  |    873 | 
+| 2014-05-11 10:15:08 | barb    | saturn  | tricia  | mars    |  58274 | 
+| 2014-05-12 18:59:18 | barb    | saturn  | tricia  | venus   |    271 | 
++---------------------|---------|---------|---------|---------|--------+
+</code></pre>
+
+<p>为了以相反的顺序排序列，在ORDER BY语句后面添加DESC关键字：</p>
+
+<pre><code>mysql&gt; SELECT * FROM mail WHERE size &gt; 50000 ORDER BY size DESC;
++---------------------|---------|---------|---------|---------|---------+
+| t                   | srcuser | srchost | dstuser | dsthost | size    |
++---------------------|---------|---------|---------|---------|---------+
+| 2014-05-14 17:03:01 | tricia  | saturn  | phil    | venus   | 2394482 | 
+| 2014-05-15 10:25:52 | gene    | mars    | tricia  | saturn  |  998532 | 
+| 2014-05-12 12:48:13 | tricia  | mars    | gene    | venus   |  194925 | 
+| 2014-05-14 14:42:21 | barb    | venus   | barb    | venus   |   98151 | 
+| 2014-05-11 10:15:08 | barb    | saturn  | tricia  | mars    |   58274 | 
++---------------------|---------|---------|---------|---------|---------+
+</code></pre>
+
+<h1 id="3-4-去除重复行">3.4. 去除重复行<a href="#3-4-去除重复行" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p><strong>问题</strong></p>
+
+<p>查询结果包含重复行，你想要消除它们。</p>
+
+<p><strong>解决方法</strong></p>
+
+<p>使用DISTINCT。</p>
+
+<p><strong>讨论</strong></p>
+
+<p>某些查询产生包含重复行的结果：</p>
+
+<pre><code>mysql&gt; SELECT srcuser FROM mail;
++---------+
+| srcuser |
++---------+
+| barb    | 
+| tricia  | 
+| phil    | 
+| barb    | 
+| gene    | 
+| phil    | 
+| barb    | 
+| tricia  | 
+| gene    | 
+| phil    | 
+| gene    | 
+| gene    | 
+| gene    | 
+| phil    | 
+| phil    | 
+| gene    | 
++---------+
+</code></pre>
+
+<p>为了删除重复行，产生唯一值的集合，添加DISTINCT到查询：</p>
+
+<pre><code>mysql&gt; SELECT DISTINCT srcuser FROM mail;
++---------+
+| srcuser |
++---------+
+| barb    | 
+| tricia  | 
+| phil    | 
+| gene    | 
++---------+
+mysql&gt; SELECT COUNT(DISTINCT srcuser) FROM mail;
++-------------------------+
+| COUNT(DISTINCT srcuser) |
++-------------------------+
+|                       4 | 
++-------------------------+
+</code></pre>
+
+<p>DISTINCT也可以处理多列：</p>
+
+<pre><code>mysql&gt; SELECT DISTINCT YEAR(t), MONTH(t), DAYOFMONTH(t) FROM mail;
++---------|----------|---------------+
+| YEAR(t) | MONTH(t) | DAYOFMONTH(t) |
++---------|----------|---------------+
+|    2014 |        5 |            11 | 
+|    2014 |        5 |            12 | 
+|    2014 |        5 |            14 | 
+|    2014 |        5 |            15 | 
+|    2014 |        5 |            16 | 
+|    2014 |        5 |            19 | 
++---------|----------|---------------+
+</code></pre>
+
+<h1 id="3-5-处理null值">3.5. 处理NULL值<a href="#3-5-处理null值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p><strong>问题</strong></p>
+
+<p>你尝试将列的值与NULL比较，但是不起作用。</p>
+
+<p><strong>解决方法</strong></p>
+
+<p>使用合适的比较操作符：IS NULL，IS NOT NULL或&lt;=&gt;。</p>
+
+<p><strong>讨论</strong></p>
+
+<p>Conditions that involve NULL are special because NULL means “unknown value.” Con‐
+sequently, comparisons such as value = NULL or value &lt;&gt; NULL always produce a result
+of NULL (not true or false) because it’s impossible to tell whether they are true or false.
+Even NULL = NULL produces NULL because you can’t determine whether one unknown
+value is the same as another.</p>
+
+<pre><code>mysql&gt; SELECT * FROM expt WHERE score = NULL;
+Empty set (0.01 sec)
+
+mysql&gt; SELECT * FROM expt WHERE score &lt;&gt; NULL;
+Empty set (0.00 sec)
+
+mysql&gt; SELECT * FROM expt WHERE score IS NULL;
++---------|------|-------+
+| subject | test | score |
++---------|------|-------+
+| Jane    | C    |  NULL | 
+| Jane    | D    |  NULL | 
+| Marvin  | D    |  NULL | 
++---------|------|-------+
+mysql&gt; SELECT * FROM expt WHERE score IS NOT NULL;
++---------|------|-------+
+| subject | test | score |
++---------|------|-------+
+| Jane    | A    |    47 | 
+| Jane    | B    |    50 | 
+| Marvin  | A    |    52 | 
+| Marvin  | B    |    45 | 
+| Marvin  | C    |    53 | 
++---------|------|-------+
+</code></pre>
+
+<p>The MySQL-specific &lt;=&gt; comparison operator, unlike the = operator, is true even for
+two NULL values:</p>
+
+<pre><code>mysql&gt; SELECT NULL = NULL, NULL &lt;=&gt; NULL;
++-------------|---------------+
+| NULL = NULL | NULL &lt;=&gt; NULL |
++-------------|---------------+
+|        NULL |             1 | 
++-------------|---------------+
+</code></pre>
+
+<p>Sometimes it’s useful to map NULL values onto some other value that has more meaning
+in the context of your application. For example, use IF() to map NULL onto the string
+Unknown:</p>
+
+<pre><code>mysql&gt; SELECT subject, test, IF(score IS NULL,'Unknown',score) AS 'score'
+    -&gt; FROM expt;
++---------|------|---------+
+| subject | test | score   |
++---------|------|---------+
+| Jane    | A    | 47      | 
+| Jane    | B    | 50      | 
+| Jane    | C    | Unknown | 
+| Jane    | D    | Unknown | 
+| Marvin  | A    | 52      | 
+| Marvin  | B    | 45      | 
+| Marvin  | C    | 53      | 
+| Marvin  | D    | Unknown | 
++---------|------|---------+
+</code></pre>
+
+<p>The preceding query can be written more concisely using IFNULL(), which tests its first
+argument and returns it if it’s not NULL, or returns its second argument otherwise:</p>
+
+<pre><code>SELECT subject, test, IFNULL(score,'Unknown') AS 'score'
+FROM expt;
+</code></pre>
+
+<p>In other words, these two tests are equivalent:</p>
+
+<pre><code>IF(expr1 IS NOT NULL,expr1,expr2)
+IFNULL(expr1,expr2)
+</code></pre>
+
+<p>From a readability standpoint, IF() often is easier to understand than IFNULL(). From
+a computational perspective, IFNULL() is more efficient because expr1 need not be
+evaluated twice, as happens with IF().</p>
+
+<h1 id="3-6-writing-comparisons-involving-null-in-programs">3.6. Writing Comparisons Involving NULL in Programs<a href="#3-6-writing-comparisons-involving-null-in-programs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>Problem</p>
+
+<p>You’re writing a program that looks for rows containing a specific value, but it fails when
+the value is NULL.</p>
+
+<p>Solution</p>
+
+<p>Choose the proper comparison operator according to whether the comparison value is
+or is not NULL.</p>
+
+<p>Discussion</p>
+
+<p>A comparison of score = NULL is never true, so that statement returns no rows. To take
+into account the possibility that $score could be undef, construct the statement using
+the appropriate comparison operator like this:</p>
+
+<pre><code>$operator = defined ($score) ? &quot;=&quot; : &quot;IS&quot;;
+$sth = $dbh-&gt;prepare (&quot;SELECT * FROM expt WHERE score $operator ?&quot;);
+$sth-&gt;execute ($score);
+</code></pre>
+
+<p>For inequality tests, set $operator like this instead:</p>
+
+<pre><code>$operator = defined ($score) ? &quot;&lt;&gt;&quot; : &quot;IS NOT&quot;;
+</code></pre>
+
+<h1 id="3-7-using-views-to-simplify-table-access">3.7. Using Views to Simplify Table Access<a href="#3-7-using-views-to-simplify-table-access" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>Problem</p>
+
+<p>You want to refer to values calculated from expressions without writing the expressions
+each time you retrieve them.</p>
+
+<p>Solution</p>
+
+<p>Use a view defined such that its columns perform the desired calculations.</p>
+
+<p>Discussion</p>
+
+<p>To make the statement results easier to access, use a view, which is a virtual table
+that contains no data. Instead, it’s defined as the SELECT statement that retrieves the data
+of interest. The following view, mail_view, is equivalent to the SELECT statement just
+shown:</p>
+
+<pre><code>mysql&gt; CREATE VIEW mail_view AS
+    -&gt; SELECT
+    -&gt; DATE_FORMAT(t,'%M %e, %Y') AS date_sent,
+    -&gt; CONCAT(srcuser,'@',srchost) AS sender,
+    -&gt; CONCAT(dstuser,'@',dsthost) AS recipient,
+    -&gt; size FROM mail;
+</code></pre>
+
+<p>To access the view contents, refer to it like any other table. You can select some or all of
+its columns, add a WHERE clause to restrict which rows to retrieve, use ORDER BY to sort
+the rows, and so forth. For example:</p>
+
+<pre><code>mysql&gt; SELECT date_sent, sender, size FROM mail_view
+    -&gt; WHERE size &gt; 100000 ORDER BY size;
++--------------|---------------|---------+
+| date_sent    | sender        | size    |
++--------------|---------------|---------+
+| May 12, 2014 | tricia@mars   |  194925 | 
+| May 15, 2014 | gene@mars     |  998532 | 
+| May 14, 2014 | tricia@saturn | 2394482 | 
++--------------|---------------|---------+
+</code></pre>
+
+<p>Stored programs provide another way to encapsulate calculations</p>
+
+<h1 id="3-8-selecting-data-from-multiple-tables">3.8. Selecting Data from Multiple Tables<a href="#3-8-selecting-data-from-multiple-tables" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>Problem</p>
+
+<p>The answer to a question requires data from more than one table.</p>
+
+<p>Solution</p>
+
+<p>Use a join or a subquery.</p>
+
+<p>Discussion</p>
+
+<p>The queries shown so far select data from a single table, but sometimes you must retrieve
+information from multiple tables. Two types of statements that accomplish this are joins
+and subqueries. A join matches rows in one table with rows in another and enables you
+to retrieve output rows that contain columns from either or both tables. A subquery is
+one query nested within another, to perform a comparison between values selected by
+the inner query against values selected by the outer query</p>
+
+<pre><code>mysql&gt; SELECT id, name, service, contact_name
+    -&gt; FROM profile INNER JOIN profile_contact ON id = profile_id;
++----|---------|----------|--------------+
+| id | name    | service  | contact_name |
++----|---------|----------|--------------+
+|  1 | Sybil   | Twitter  | user1-twtrid | 
+|  1 | Sybil   | Facebook | user1-fbid   | 
+|  2 | Nancy   | Twitter  | user2-fbrid  | 
+|  2 | Nancy   | Facebook | user2-msnid  | 
+|  2 | Nancy   | LinkedIn | user2-lnkdid | 
+|  4 | Lothair | LinkedIn | user4-lnkdid | 
++----|---------|----------|--------------+
+mysql&gt; SELECT * FROM profile_contact
+    -&gt; WHERE profile_id = (SELECT id FROM profile WHERE name = 'Nancy');
++------------|----------|--------------+
+| profile_id | service  | contact_name |
++------------|----------|--------------+
+|          2 | Twitter  | user2-fbrid  | 
+|          2 | Facebook | user2-msnid  | 
+|          2 | LinkedIn | user2-lnkdid | 
++------------|----------|--------------+
+</code></pre>
+
+<h1 id="3-9-selecting-rows-from-the-beginning-end-or-middle-of-query-results">3.9. Selecting Rows from the Beginning, End, or Middle of Query Results<a href="#3-9-selecting-rows-from-the-beginning-end-or-middle-of-query-results" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>Problem</p>
+
+<p>You want only certain rows from a result set, such as the first one, the last five, or rows
+21 through 40.</p>
+
+<p>Solution</p>
+
+<p>Use a LIMIT clause, perhaps in conjunction with an ORDER BY clause.</p>
+
+<p>Discussion</p>
+
+<p>MySQL supports a LIMIT clause that tells the server to return only part of a result set.
+LIMIT is a MySQL-specific extension to SQL that is extremely valuable when your result
+set contains more rows than you want to see at a time. It enables you to retrieve an
+arbitrary section of a result set. Typical LIMIT uses include the following kinds of prob‐
+lems:</p>
+
+<p>• Answering questions about first or last, largest or smallest, newest or oldest, least
+or most expensive, and so forth.
+• Splitting a result set into sections so that you can process it one piece at a time. This
+technique is common in web applications for displaying a large search result across
+several pages. Showing the result in sections enables display of smaller, easier-to-
+understand pages.</p>
+
+<pre><code>mysql&gt; SELECT * FROM profile LIMIT 1;
++----|-------|------------|-------|----------------------|------+
+| id | name  | birth      | color | foods                | cats |
++----|-------|------------|-------|----------------------|------+
+|  1 | Sybil | 1970-04-13 | black | lutefisk,fadge,pizza |    0 |
++----|-------|------------|-------|----------------------|------+
+mysql&gt; SELECT * FROM profile LIMIT 3;
++----|-------|------------|-------|-----------------------|------+
+| id | name  | birth      | color | foods                 | cats |
++----|-------|------------|-------|-----------------------|------+
+|  1 | Sybil | 1970-04-13 | black | lutefisk,fadge,pizza  |    0 |
+|  2 | Nancy | 1969-09-30 | white | burrito,curry,eggroll |    3 |
+|  3 | Ralph | 1973-11-02 | red   | eggroll,pizza         |    4 |
++----|-------|------------|-------|-----------------------|------+
+</code></pre>
+
+<p>LIMIT n means “return at most n rows.” If you specify LIMIT 10 , and the result set has
+only four rows, the server returns four rows.</p>
+
+<pre><code>mysql&gt; SELECT * FROM profile ORDER BY birth LIMIT 1;
++----|--------|------------|-------|----------------|------+
+| id | name   | birth      | color | foods          | cats |
++----|--------|------------|-------|----------------|------+
+|  7 | Joanna | 1952-08-20 | green | lutefisk,fadge |    0 |
++----|--------|------------|-------|----------------|------+
+mysql&gt; SELECT * FROM profile ORDER BY birth DESC LIMIT 1;
++----|-------|------------|-------|---------------|------+
+| id | name  | birth      | color | foods         | cats |
++----|-------|------------|-------|---------------|------+
+|  3 | Ralph | 1973-11-02 | red   | eggroll,pizza |    4 |
++----|-------|------------|-------|---------------|------+
+mysql&gt; SELECT name, DATE_FORMAT(birth,'%m-%d') AS birthday
+    -&gt; FROM profile ORDER BY birthday LIMIT 1;
++-------|----------+
+| name  | birthday |
++-------|----------+
+| Henry | 02-14    |
++-------|----------+
+mysql&gt; SELECT * FROM profile ORDER BY birth LIMIT 2,1;
++----|---------|------------|-------|---------------|------+
+| id | name    | birth      | color | foods         | cats |
++----|---------|------------|-------|---------------|------+
+|  4 | Lothair | 1963-07-04 | blue  | burrito,curry |    5 |
++----|---------|------------|-------|---------------|------+
+mysql&gt; SELECT * FROM profile ORDER BY birth DESC LIMIT 2,1;
++----|-------|------------|-------|-----------------------|------+
+| id | name  | birth      | color | foods                 | cats |
++----|-------|------------|-------|-----------------------|------+
+|  2 | Nancy | 1969-09-30 | white | burrito,curry,eggroll |    3 |
++----|-------|------------|-------|-----------------------|------+
+
+SELECT * FROM profile ORDER BY name LIMIT 0, 3;
+SELECT * FROM profile ORDER BY name LIMIT 3, 3;
+SELECT * FROM profile ORDER BY name LIMIT 6, 3;
+
+SELECT SQL_CALC_FOUND_ROWS * FROM profile ORDER BY name LIMIT 4;
+SELECT FOUND_ROWS();
+</code></pre>
+
+<p>The keyword SQL_CALC_FOUND_ROWS in the first statement tells MySQL to calculate the
+size of the entire result set even though the statement requests that only part of it be
+returned. The row count is available by calling FOUND_ROWS() . If that function returns
+a value greater than three, there are other rows yet to be retrieved.</p>
+
+<p>LIMIT is useful in combination with RAND() to make random selections from a set of
+items. See Recipe 15.8.
+You can use LIMIT to restrict the effect of a DELETE or UPDATE statement to a subset of
+the rows that would otherwise be deleted or updated, respectively. For more information
+about using LIMIT for duplicate row removal, see Recipe 16.4.</p>
+
+<h1 id="3-10-what-to-do-when-limit-requires-the-wrong-sort-order">3.10. What to Do When LIMIT Requires the “Wrong” Sort Order<a href="#3-10-what-to-do-when-limit-requires-the-wrong-sort-order" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>Problem</p>
+
+<p>LIMIT usually works best in conjunction with an ORDER BY clause that sorts rows. But
+sometimes that sort order differs from what you want for the final result.</p>
+
+<p>Solution</p>
+
+<p>Use LIMIT in a subquery to retrieve the desired rows, then use the outer query to sort
+them.</p>
+
+<p>Discussion</p>
+
+<p>If you want the last four rows of a result set, you can obtain them easily by sorting the
+set in reverse order and using LIMIT 4 .What if you want the output rows to appear in ascending order instead?
+Use the SELECT as a subquery of an outer statement that re-sorts the rows in the desired
+final order:</p>
+
+<pre><code>mysql&gt; SELECT * FROM
+    -&gt; (SELECT name, birth FROM profile ORDER BY birth DESC LIMIT 4) AS t
+    -&gt; ORDER BY birth;
++-------|------------+
+| name  | birth      |
++-------|------------+
+| Aaron | 1968-09-17 |
+| Nancy | 1969-09-30 |
+| Sybil | 1970-04-13 |
+| Ralph | 1973-11-02 |
++-------|------------+
+</code></pre>
+
+<p>AS t is used here because any table referred to in the FROM clause must have a name, even
+a “derived” table produced from a subquery.</p>
+
+<h1 id="3-11-calculating-limit-values-from-expressions">3.11. Calculating LIMIT Values from Expressions<a href="#3-11-calculating-limit-values-from-expressions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>Problem</p>
+
+<p>You want to use expressions to specify the arguments for LIMIT.</p>
+
+<p>Solution</p>
+
+<p>Sadly, you cannot. LIMIT arguments must be literal integers—unless you issue the state‐
+ment in a context that permits the statement string to be constructed dynamically. In
+that case, you can evaluate the expressions yourself and insert the resulting values into
+the statement string.</p>
+
+<p>Discussion</p>
+
+<p>Arguments to LIMIT must be literal integers, not expressions. Statements such as the
+following are illegal:</p>
+
+<pre><code>SELECT * FROM profile LIMIT 5+5;
+SELECT * FROM profile LIMIT @skip_count, @show_count;
+</code></pre>
+
+<p>The same “no expressions permitted” principle applies if you use an expression to cal‐
+culate a LIMIT value in a program that constructs a statement string. You must evaluate
+the expression first, and then place the resulting value in the statement. For example, if
+you produce a statement string in Perl or PHP as follows, an error will result when you
+attempt to execute the statement:</p>
+
+<pre><code>$str = &quot;SELECT * FROM profile LIMIT $x + $y&quot;;
+</code></pre>
+
+<p>To avoid the problem, evaluate the expression first:</p>
+
+<pre><code>$z = $x + $y;
+$str = &quot;SELECT * FROM profile LIMIT $z&quot;;
+</code></pre>
+
+<p>Or do this (don’t omit the parentheses or the expression won’t evaluate properly):</p>
+
+<pre><code>$str = &quot;SELECT * FROM profile LIMIT &quot; . ($x + $y);
+</code></pre>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/mysql">MySQL</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4032 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2016-04-07 20:14 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://gitop.cc/posts/mysql-cookbook-4/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>MySQL Cookbook 第4章 表管理</span>
+			</a>
+			<a class="prev-post" href="http://gitop.cc/posts/mysql-cookbook-2/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>MySQL Cookbook 第2章 编写基于MySQL的程序</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>

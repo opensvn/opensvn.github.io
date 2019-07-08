@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 静心</title>
+    <link>http://gitop.cc/tags/</link>
+    <description>Recent content in Tags on 静心</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sun, 14 Apr 2019 15:40:23 +0800</lastBuildDate>
+    
+	<atom:link href="http://gitop.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Database</title>
+      <link>http://gitop.cc/tags/database/</link>
+      <pubDate>Sun, 14 Apr 2019 15:40:23 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Greenplum</title>
+      <link>http://gitop.cc/tags/greenplum/</link>
+      <pubDate>Sun, 14 Apr 2019 15:40:23 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/greenplum/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PostgreSQL</title>
+      <link>http://gitop.cc/tags/postgresql/</link>
+      <pubDate>Sat, 19 Jan 2019 19:13:20 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>http://gitop.cc/tags/docker/</link>
+      <pubDate>Thu, 17 Jan 2019 15:02:33 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Javascript</title>
+      <link>http://gitop.cc/tags/javascript/</link>
+      <pubDate>Mon, 12 Nov 2018 19:37:34 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tool</title>
+      <link>http://gitop.cc/tags/tool/</link>
+      <pubDate>Sat, 18 Aug 2018 16:15:19 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/tool/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu</title>
+      <link>http://gitop.cc/tags/ubuntu/</link>
+      <pubDate>Sat, 18 Aug 2018 09:19:20 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CentOS</title>
+      <link>http://gitop.cc/tags/centos/</link>
+      <pubDate>Thu, 02 Aug 2018 20:31:02 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/centos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>http://gitop.cc/tags/c&#43;&#43;/</link>
+      <pubDate>Fri, 28 Oct 2016 14:46:23 +0000</pubDate>
+      
+      <guid>http://gitop.cc/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySQL</title>
+      <link>http://gitop.cc/tags/mysql/</link>
+      <pubDate>Thu, 07 Apr 2016 22:45:02 +0000</pubDate>
+      
+      <guid>http://gitop.cc/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

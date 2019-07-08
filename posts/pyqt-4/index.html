@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="PyQt编程第4章 GUI编程介绍">
+<meta itemprop="description" content="一个25行的弹出警告 import sys import time from PyQt4.QtCore import * from PyQt4.QtGui import * app = QApplication(sys.argv) try: due = QTime.currentTime() message = &#34;Alert!&#34; if len(sys.argv) &lt; 2: raise ValueError hours, mins = sys.argv[1].split(&#34;:&#34;) due = QTime(int(hours), int(mins)) if not due.isValid(): raise ValueError if len(sys.argv) &gt; 2: message = &#34; &#34;.join(sys.argv[2:]) except ValueError: message = &#34;Usage: alert.pyw HH:MM [optional message]&#34; # 24hr">
+
+
+<meta itemprop="datePublished" content="2015-10-12T20:34:55&#43;00:00" />
+<meta itemprop="dateModified" content="2015-10-12T20:34:55&#43;00:00" />
+<meta itemprop="wordCount" content="2046">
+
+
+
+<meta itemprop="keywords" content="Python," />
+<meta property="og:title" content="PyQt编程第4章 GUI编程介绍" />
+<meta property="og:description" content="一个25行的弹出警告 import sys import time from PyQt4.QtCore import * from PyQt4.QtGui import * app = QApplication(sys.argv) try: due = QTime.currentTime() message = &#34;Alert!&#34; if len(sys.argv) &lt; 2: raise ValueError hours, mins = sys.argv[1].split(&#34;:&#34;) due = QTime(int(hours), int(mins)) if not due.isValid(): raise ValueError if len(sys.argv) &gt; 2: message = &#34; &#34;.join(sys.argv[2:]) except ValueError: message = &#34;Usage: alert.pyw HH:MM [optional message]&#34; # 24hr" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gitop.cc/posts/pyqt-4/" />
+<meta property="article:published_time" content="2015-10-12T20:34:55&#43;00:00"/>
+<meta property="article:modified_time" content="2015-10-12T20:34:55&#43;00:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PyQt编程第4章 GUI编程介绍"/>
+<meta name="twitter:description" content="一个25行的弹出警告 import sys import time from PyQt4.QtCore import * from PyQt4.QtGui import * app = QApplication(sys.argv) try: due = QTime.currentTime() message = &#34;Alert!&#34; if len(sys.argv) &lt; 2: raise ValueError hours, mins = sys.argv[1].split(&#34;:&#34;) due = QTime(int(hours), int(mins)) if not due.isValid(): raise ValueError if len(sys.argv) &gt; 2: message = &#34; &#34;.join(sys.argv[2:]) except ValueError: message = &#34;Usage: alert.pyw HH:MM [optional message]&#34; # 24hr"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>PyQt编程第4章 GUI编程介绍</title>
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://gitop.cc/posts/">Posts</a>
+				<a href="http://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://gitop.cc/posts/">Posts</a></li>
+			<li><a href="http://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 12, 2015</span></div>
+				<h1>PyQt编程第4章 GUI编程介绍</h1>
+			</header>
+			<div class="content">
+				
+
+<h1 id="一个25行的弹出警告">一个25行的弹出警告<a href="#一个25行的弹出警告" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">due</span> <span class="o">=</span> <span class="n">QTime</span><span class="o">.</span><span class="n">currentTime</span><span class="p">()</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&#34;Alert!&#34;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span>
+    <span class="n">hours</span><span class="p">,</span> <span class="n">mins</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;:&#34;</span><span class="p">)</span>
+    <span class="n">due</span> <span class="o">=</span> <span class="n">QTime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">hours</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">mins</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">due</span><span class="o">.</span><span class="n">isValid</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&#34; &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&#34;Usage: alert.pyw HH:MM [optional message]&#34;</span> <span class="c1"># 24hr clock</span>
+
+<span class="k">while</span> <span class="n">QTime</span><span class="o">.</span><span class="n">currentTime</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">due</span><span class="p">:</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="c1"># 20 seconds</span>
+
+<span class="n">label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&#34;&lt;font color=red size=72&gt;&lt;b&gt;&#34;</span> <span class="o">+</span> <span class="n">message</span> <span class="o">+</span> <span class="s2">&#34;&lt;/b&gt;&lt;/font&gt;&#34;</span><span class="p">)</span>
+<span class="n">label</span><span class="o">.</span><span class="n">setWindowFlags</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">SplashScreen</span><span class="p">)</span>
+<span class="n">label</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">QTimer</span><span class="o">.</span><span class="n">singleShot</span><span class="p">(</span><span class="mi">60000</span><span class="p">,</span> <span class="n">app</span><span class="o">.</span><span class="n">quit</span><span class="p">)</span> <span class="c1"># 1 minute</span>
+<span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span></code></pre></div>
+
+<p>每一个PyQt图形程序必须有一个<code>QApplication</code>对象，因为它能识别一些命令行的参数，接受<code>sys.argv</code>作为
+参数。</p>
+
+<p>PyQt中任何部件都能用作顶级窗口，比如一个按钮或一个标签。当部件如此使用时，PyQt自动给它一个标题栏。
+一旦窗口设置好后，就可以调用<code>show</code>方法，这个时候窗口没有显示。<code>show</code>方法仅仅是将一个画图事件加入
+<code>QApplication</code>对象的事件队列。</p>
+
+<p><code>app.exec_</code>开始<code>QApplication</code>对象事件循环。第一个事件是画图事件，因此标签窗口弹出。一分钟后超时
+事件触发，<code>app.quit</code>被调用。这个方法执行图形程序的结束清理工作，关闭窗口，释放资源。</p>
+
+<p>图形程序的事件循环，伪代码如下：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">getNextEvent</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">event</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="n">Terminate</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">processEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></code></pre></div>
+
+<h1 id="一个30行的表达式求值程序">一个30行的表达式求值程序<a href="#一个30行的表达式求值程序" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">Form</span><span class="p">(</span><span class="n">QDialog</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Form</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">browser</span> <span class="o">=</span> <span class="n">QTextBrowser</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lineedit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="s2">&#34;Type an expression and press Enter&#34;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lineedit</span><span class="o">.</span><span class="n">selectAll</span><span class="p">()</span>
+        <span class="n">layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">browser</span><span class="p">)</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lineedit</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lineedit</span><span class="o">.</span><span class="n">setFocus</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lineedit</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;returnPressed()&#34;</span><span class="p">),</span>
+                     <span class="bp">self</span><span class="o">.</span><span class="n">updateUi</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&#34;Calculate&#34;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">updateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lineedit</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%s</span><span class="s2"> = &lt;b&gt;</span><span class="si">%s</span><span class="s2">&lt;/b&gt;&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nb">eval</span><span class="p">(</span><span class="n">text</span><span class="p">)))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="s2">&#34;&lt;font color=red&gt;</span><span class="si">%s</span><span class="s2"> is invalid!&lt;/font&gt;&#34;</span> <span class="o">%</span> <span class="n">text</span><span class="p">)</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="n">form</span> <span class="o">=</span> <span class="n">Form</span><span class="p">()</span>
+<span class="n">form</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span></code></pre></div>
+
+<p>所有PyQt的部件，都继承自<code>QWidget</code>，并且都是新风格的类。默认地，当一个部件被关闭时，它仅仅是被隐藏了。
+当一个窗体隐藏了，如果PyQt检查到程序没有可见窗体，而且进一步交互也不可能，PyQt会执行程序的结束清理工作。</p>
+
+<blockquote>
+<p><strong>对象所有权</strong>
+*  所有PyQt类继承自<code>QObject</code>，包括所有的部件。没有父亲的部件是一个顶级窗口，孩子部件被包含在父亲部件
+里面。父亲部件对孩子部件拥有所有权。
+*  PyQt使用父子所有权模型来保证当一个父亲部件被销毁，所有它的孩子部件也被自动销毁。
+*  为避免内存泄漏，除了顶级窗口，我们应该保证所有部件都有父亲。
+*  布局管理器自动将部件重新绑定到正确的父亲部件上。</p>
+</blockquote>
+
+<p>PyQt提供3种布局管理器：垂直布局，水平布局，网格布局。布局可以嵌套。
+每一个部件通过发射信号声明状态改变。</p>
+
+<h1 id="一个70行的汇率转换器">一个70行的汇率转换器<a href="#一个70行的汇率转换器" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">Form</span><span class="p">(</span><span class="n">QDialog</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Form</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="n">date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getdata</span><span class="p">()</span>
+        <span class="n">rates</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rates</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+        <span class="n">dateLabel</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fromComboBox</span> <span class="o">=</span> <span class="n">QComboBox</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fromComboBox</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">rates</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fromSpinBox</span> <span class="o">=</span> <span class="n">QDoubleSpinBox</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fromSpinBox</span><span class="o">.</span><span class="n">setRange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">10000000.00</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fromSpinBox</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="mf">1.00</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toComboBox</span> <span class="o">=</span> <span class="n">QComboBox</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toComboBox</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">rates</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toLabel</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&#34;1.00&#34;</span><span class="p">)</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="n">QGridLayout</span><span class="p">()</span>
+        <span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">dateLabel</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fromComboBox</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fromSpinBox</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toComboBox</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toLabel</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fromComboBox</span><span class="p">,</span>
+                <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;currentIndexChanged(int)&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">updateUi</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toComboBox</span><span class="p">,</span>
+                <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;currentIndexChanged(int)&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">updateUi</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fromSpinBox</span><span class="p">,</span>
+                <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;valueChanged(double)&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">updateUi</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&#34;Currency&#34;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">updateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">to</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toComboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">())</span>
+        <span class="n">from_</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fromComboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">())</span>
+        <span class="n">amount</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rates</span><span class="p">[</span><span class="n">from_</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">rates</span><span class="p">[</span><span class="n">to</span><span class="p">])</span> <span class="o">*</span> \
+                 <span class="bp">self</span><span class="o">.</span><span class="n">fromSpinBox</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toLabel</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%0.2f</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">amount</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getdata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Idea taken from the Python Cookbook</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rates</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">date</span> <span class="o">=</span> <span class="s2">&#34;Unknown&#34;</span>
+            <span class="n">fh</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&#34;http://www.bankofcanada.ca&#34;</span>
+                                 <span class="s2">&#34;/en/markets/csv/exchange_eng.csv&#34;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fh</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s2">&#34;#&#34;</span><span class="p">,</span> <span class="s2">&#34;Closing &#34;</span><span class="p">)):</span>
+                    <span class="k">continue</span>
+                <span class="n">fields</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;,&#34;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&#34;Date &#34;</span><span class="p">):</span>
+                    <span class="n">date</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">rates</span><span class="p">[</span><span class="nb">unicode</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="n">value</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+            <span class="k">return</span> <span class="s2">&#34;Exchange Rates Date: &#34;</span> <span class="o">+</span> <span class="n">date</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&#34;Failed to download:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">e</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="n">form</span> <span class="o">=</span> <span class="n">Form</span><span class="p">()</span>
+<span class="n">form</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span></code></pre></div>
+
+<h1 id="信号和槽">信号和槽<a href="#信号和槽" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>每一个<code>QObject</code>支持信号和槽机制。所有的PyQt部件都有一组预定义的信号。不管什么时候一个信号发射，PyQt
+默认简单地将其丢掉。必须将信号连接到槽来捕捉信号。在PyQt中，槽是任何可调用的对象。大多数部件也有预定义
+好的槽。</p>
+
+<p><code>connect</code>的语法，s通常是<code>self</code>，w是部件：</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;signalSignature&#34;</span><span class="p">),</span> <span class="n">functionName</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;signalSignature&#34;</span><span class="p">),</span> <span class="n">instance</span><span class="o">.</span><span class="n">methodName</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;signalSignature&#34;</span><span class="p">),</span> <span class="n">instance</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="s2">&#34;slotSignature&#34;</span><span class="p">))</span></code></pre></div>
+
+<p>signalSignature是信号的名字，并带一个逗号隔开的参数列表。如果是Qt信号，则参数类型必须是C++类型。
+当书写信号的C++参数类型时，可以丢弃<code>const</code>和<code>&amp;</code>，但是必须保留<code>*</code>。</p>
+
+<p>PyQt信号发射时被定义，它们可以有任意数量，任意类型的参数。</p>
+
+<p>slotSignature和signalSignature有着一样的形式。一个槽的参数可能比信号少。相应的信号和槽的参数必须类型相同。
+如果是Qt槽而不是Python方法时，使用<code>SLOT</code>语法效率更高。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dial</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;valueChanged(int)&#34;</span><span class="p">),</span> <span class="n">spinbox</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="s2">&#34;setValue(int)&#34;</span><span class="p">))</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">spinbox</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;valueChanged(int)&#34;</span><span class="p">),</span> <span class="n">dial</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="s2">&#34;setValue(int)&#34;</span><span class="p">))</span></code></pre></div>
+
+<p>可以将多个信号连接到同一个槽，也可以将一个信号连接到多个槽。尽管很罕见，我们也可以将一个信号连接到另一个
+信号，这样当第一个信号发射时，将会引起它连接的信号发射。</p>
+
+<p>通过<code>QObject.connect</code>建立连接，<code>QObject.disconnect</code>解除连接。实际上，我们很少需要自己解除连接，
+PyQt会自动解除已经销毁的对象相关的连接。</p>
+
+<p>使用<code>QObject.emit</code>发射自定义的信号。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">ZeroSpinBox</span><span class="p">(</span><span class="n">QSpinBox</span><span class="p">):</span>
+    <span class="n">zeros</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ZeroSpinBox</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s1">&#39;valueChanged(int)&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkzero</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">checkzero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">zeros</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">SIGNAL</span><span class="p">(</span><span class="s1">&#39;atzero&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">zeros</span><span class="p">)</span></code></pre></div>
+
+<p>一个没有参数(没有括号)的信号是一个短路Python信号。当这种信号被发射，任何数据都可以当作额外的参数传给
+<code>emit</code>方法，这些参数被当作Python对象传递。
+至少有一个参数的信号是Qt信号或非短路Python信号，其参数都将转换为C++数据类型。</p>
+
+<p>PyQt的信号和槽机制并不局限于GUI类，任何<code>QObject</code>的子类都可以使用信号和槽。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">TaxRate</span><span class="p">(</span><span class="n">QObject</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TaxRate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rate</span> <span class="o">=</span> <span class="mf">17.5</span>
+
+    <span class="k">def</span> <span class="nf">rate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rate</span>
+
+    <span class="k">def</span> <span class="nf">setRate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rate</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rate</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rate</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__rate</span> <span class="o">=</span> <span class="n">rate</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">SIGNAL</span><span class="p">(</span><span class="s1">&#39;rateChanged&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rate</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">rateChanged</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s1">&#39;TaxRate changed to </span><span class="si">%.2f%%</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">value</span>
+
+<span class="n">vat</span> <span class="o">=</span> <span class="n">TaxRate</span><span class="p">()</span>
+<span class="n">vat</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">vat</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s1">&#39;rateChanged&#39;</span><span class="p">),</span> <span class="n">rateChanged</span><span class="p">)</span>
+<span class="n">vat</span><span class="o">.</span><span class="n">setRate</span><span class="p">(</span><span class="mf">17.5</span><span class="p">)</span>
+<span class="n">vat</span><span class="o">.</span><span class="n">setRate</span><span class="p">(</span><span class="mf">8.5</span><span class="p">)</span></code></pre></div>
+
+<p>多个信号连接到同一个槽时，如何确定谁调用了槽。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">button2</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;clicked()&#34;</span><span class="p">),</span>
+             <span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">anyButton</span><span class="p">,</span> <span class="s2">&#34;Two&#34;</span><span class="p">))</span> <span class="c1"># WRONG for PyQt 4.0-4.2</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">button3</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;clicked()&#34;</span><span class="p">),</span>
+             <span class="k">lambda</span> <span class="n">who</span><span class="o">=</span><span class="s2">&#34;Three&#34;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">anyButton</span><span class="p">(</span><span class="n">who</span><span class="p">))</span> <span class="c1"># WRONG before 4.1.1</span></code></pre></div>
+
+<p>在PyQt4.3之前，在<code>connect</code>中创建的函数，在<code>connect</code>返回时被垃圾回收。因此需要保存一个引用到该函数。
+在PyQt4.1.1之前，在<code>connect</code>中创建的<code>lambda</code>也会被垃圾回收，同样需要保存一个引用。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="bp">self</span><span class="o">.</span><span class="n">button2callback</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">anyButton</span><span class="p">,</span> <span class="s2">&#34;Two&#34;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">button2</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;clicked()&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">button2callback</span><span class="p">)</span>
+
+<span class="bp">self</span><span class="o">.</span><span class="n">button3callback</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">who</span><span class="o">=</span><span class="s2">&#34;Three&#34;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">anyButton</span><span class="p">(</span><span class="n">who</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">button3</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;clicked()&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">button3callback</span><span class="p">)</span></code></pre></div>
+
+<p>另外一种方法是使用<code>sender</code>告诉我们是哪个对象。</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">button4</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;clicked()&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">clicked</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">button5</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;clicked()&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">clicked</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sender</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">button</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">QPushButton</span><span class="p">):</span>
+        <span class="k">return</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&#34;You clicked button &#39;</span><span class="si">%s</span><span class="s2">&#39;&#34;</span> <span class="o">%</span> <span class="n">button</span><span class="o">.</span><span class="n">text</span><span class="p">())</span></code></pre></div>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/python">Python</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2046 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2015-10-13 04:34 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://gitop.cc/posts/pyqt-5/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>PyQt编程第5章 对话框</span>
+			</a>
+			<a class="prev-post" href="http://gitop.cc/posts/cpp-primer-15/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>第15章 面向对象编程</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>
