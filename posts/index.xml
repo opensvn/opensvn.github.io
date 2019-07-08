@@ -6,8 +6,62 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Sun, 14 Apr 2019 15:40:23 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 08 Jul 2019 16:59:22 +0800</lastBuildDate>
 		<atom:link href="http://gitop.cc/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Git配置多个SSH-Key</title>
+			<link>http://gitop.cc/posts/git-multi-sshkey/</link>
+			<pubDate>Mon, 08 Jul 2019 16:59:22 +0800</pubDate>
+			
+			<guid>http://gitop.cc/posts/git-multi-sshkey/</guid>
+			<description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 生成一个</description>
+			<content type="html"><![CDATA[
+
+<p>转自<a href="https://gitee.com/help/articles/4229">这里</a></p>
+
+<h3 id="背景">背景</h3>
+
+<p>当有多个git账号时，比如：</p>
+
+<ul>
+<li>一个gitee，用于公司内部的工作开发；</li>
+<li>一个github，用于自己进行一些开发活动；</li>
+</ul>
+
+<h3 id="解决方法">解决方法</h3>
+
+<ol>
+<li>生成一个公司用的SSH-Key</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s1">&#39;xxxxx@company.com&#39;</span> -f ~/.ssh/gitee_id_rsa</code></pre></div>
+<ol>
+<li>生成一个github用的SSH-Key</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s1">&#39;xxxxx@qq.com&#39;</span> -f ~/.ssh/github_id_rsa</code></pre></div>
+<ol>
+<li>在 ~/.ssh 目录下新建一个config文件，添加如下内容（其中Host和HostName填写git服务器的域名，IdentityFile指定私钥的路径）</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># gitee</span>
+Host gitee.com
+HostName gitee.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/gitee_id_rsa
+<span class="c1"># github</span>
+Host github.com
+HostName github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/github_id_rsa</code></pre></div>
+<ol>
+<li>用ssh命令分别测试</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh -T git@gitee.com
+$ ssh -T git@github.com</code></pre></div>
+<p>这里以gitee为例，成功的话会返回下图内容</p>
+
+<p><img src="/static/images/2019/07/08/ssh-test-success.png" alt="ssh-test-success.png" /></p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Greenplum TPC-H测试</title>
@@ -2705,7 +2759,7 @@ make create-demo-cluster
 
 <h3 id="操作符概述">操作符概述</h3>
 
-<p><img src="/static/images/2019/06/27/operators.jpg" alt="operators.jpg" /></p>
+<p><img src="/static/images/2018/10/28/operators.jpg" alt="operators.jpg" /></p>
 
 <h4 id="左值">左值</h4>
 
@@ -2949,7 +3003,7 @@ make create-demo-cluster
 
 <h4 id="typeof运算符">typeof运算符</h4>
 
-<p><img src="/static/images/2019/06/27/typeof.png" alt="typeof.png" /></p>
+<p><img src="/static/images/2018/10/28/typeof.png" alt="typeof.png" /></p>
 
 <p>JavaScript在函数和“可调用对象”之间做了细微的区分。所有的函数都是可调用的，但也有可能一个可调用对象不是一个真正的函数。ES3规范说所有可调用的本机对象返回&rdquo;function&rdquo;。ES5规范对此进行了扩展，要求所有可调用对象都返回&rdquo;function&rdquo;。</p>
 
@@ -3372,7 +3426,7 @@ make create-demo-cluster
 </span><span class="c1"></span><span class="nx">n</span> <span class="o">+</span> <span class="s2">&#34; objects&#34;</span> <span class="c1">// =&gt; &#34;NaN objects&#34;: NaN converts to string &#34;NaN&#34;
 </span></code></pre></div>
 
-<p><img src="/static/images/2019/06/27/conversion.png" alt="conversion.png" /></p>
+<p><img src="/static/images/2018/10/28/conversion.png" alt="conversion.png" /></p>
 
 <h4 id="转换和相等">转换和相等</h4>
 

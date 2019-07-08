@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 18 Aug 2018 16:15:19 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jul 2019 16:59:22 +0800</lastBuildDate>
     
 	<atom:link href="http://gitop.cc/tags/tool/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git配置多个SSH-Key</title>
+      <link>http://gitop.cc/posts/git-multi-sshkey/</link>
+      <pubDate>Mon, 08 Jul 2019 16:59:22 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/git-multi-sshkey/</guid>
+      <description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 生成一个</description>
+    </item>
     
     <item>
       <title>Idea快捷键</title>

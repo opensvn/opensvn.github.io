@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 14 Apr 2019 15:40:23 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jul 2019 16:59:22 +0800</lastBuildDate>
     
 	<atom:link href="http://gitop.cc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git配置多个SSH-Key</title>
+      <link>http://gitop.cc/posts/git-multi-sshkey/</link>
+      <pubDate>Mon, 08 Jul 2019 16:59:22 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/git-multi-sshkey/</guid>
+      <description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 生成一个</description>
+    </item>
     
     <item>
       <title>Greenplum TPC-H测试</title>
@@ -91,15 +100,6 @@
       
       <guid>http://gitop.cc/posts/expressions_and_operators/</guid>
       <description>表达式是JavaScript的一个短语，JavaScript解释器可以对其进行求值。 主表达式 最简单的表达式，称为主表达式，是那些独立的表达式</description>
-    </item>
-    
-    <item>
-      <title>类型、值和变量</title>
-      <link>http://gitop.cc/posts/types_values_variables/</link>
-      <pubDate>Sun, 28 Oct 2018 14:24:21 +0800</pubDate>
-      
-      <guid>http://gitop.cc/posts/types_values_variables/</guid>
-      <description>Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefine</description>
     </item>
     
   </channel>
