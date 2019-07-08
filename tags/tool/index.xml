@@ -18,7 +18,7 @@
       <pubDate>Mon, 08 Jul 2019 16:59:22 +0800</pubDate>
       
       <guid>http://gitop.cc/posts/git-multi-sshkey/</guid>
-      <description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 生成一个</description>
+      <description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 1.生成</description>
     </item>
     
     <item>

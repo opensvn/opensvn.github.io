@@ -15,7 +15,7 @@
 			<pubDate>Mon, 08 Jul 2019 16:59:22 +0800</pubDate>
 			
 			<guid>http://gitop.cc/posts/git-multi-sshkey/</guid>
-			<description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 生成一个</description>
+			<description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 1.生成</description>
 			<content type="html"><![CDATA[
 
 <p>转自<a href="https://gitee.com/help/articles/4229">这里</a></p>
@@ -31,17 +31,11 @@
 
 <h3 id="解决方法">解决方法</h3>
 
-<ol>
-<li>生成一个公司用的SSH-Key</li>
-</ol>
+<p>1.生成一个公司用的SSH-Key</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s1">&#39;xxxxx@company.com&#39;</span> -f ~/.ssh/gitee_id_rsa</code></pre></div>
-<ol>
-<li>生成一个github用的SSH-Key</li>
-</ol>
+<p>2.生成一个github用的SSH-Key</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s1">&#39;xxxxx@qq.com&#39;</span> -f ~/.ssh/github_id_rsa</code></pre></div>
-<ol>
-<li>在 ~/.ssh 目录下新建一个config文件，添加如下内容（其中Host和HostName填写git服务器的域名，IdentityFile指定私钥的路径）</li>
-</ol>
+<p>3.在 ~/.ssh 目录下新建一个config文件，添加如下内容（其中Host和HostName填写git服务器的域名，IdentityFile指定私钥的路径）</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># gitee</span>
 Host gitee.com
 HostName gitee.com
@@ -52,9 +46,7 @@ Host github.com
 HostName github.com
 PreferredAuthentications publickey
 IdentityFile ~/.ssh/github_id_rsa</code></pre></div>
-<ol>
-<li>用ssh命令分别测试</li>
-</ol>
+<p>4.用ssh命令分别测试</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh -T git@gitee.com
 $ ssh -T git@github.com</code></pre></div>
 <p>这里以gitee为例，成功的话会返回下图内容</p>
