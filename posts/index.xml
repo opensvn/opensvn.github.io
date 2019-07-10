@@ -15,10 +15,10 @@
 			<pubDate>Wed, 10 Jul 2019 08:48:55 +0800</pubDate>
 			
 			<guid>http://gitop.cc/posts/lambda-expressions/</guid>
-			<description>Lambdas概述 lambda表达式没有名称，但是它有参数列表，函数体和返回类型，还可能包含一个异常列表。 匿名，lambda表达式不像方法一</description>
+			<description>Lambda概述 lambda表达式没有名称，但是它有参数列表，函数体和返回类型，还可能包含一个异常列表。 匿名，lambda表达式不像方法一样</description>
 			<content type="html"><![CDATA[
 
-<h2 id="lambdas概述">Lambdas概述</h2>
+<h2 id="lambda概述">Lambda概述</h2>
 
 <p>lambda表达式没有名称，但是它有参数列表，函数体和返回类型，还可能包含一个异常列表。</p>
 
@@ -37,14 +37,14 @@
 <thead>
 <tr>
 <th>用例</th>
-<th>lambdas示例</th>
+<th>lambda示例</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
 <td>布尔表达式</td>
-<td>(List<String> list) -&gt; list.isEmpty()</td>
+<td>(List&lt;String&gt; list) -&gt; list.isEmpty()</td>
 </tr>
 
 <tr>
@@ -74,7 +74,7 @@
 </tbody>
 </table>
 
-<h2 id="哪里可以使用lambdas">哪里可以使用lambdas</h2>
+<h2 id="哪里可以使用lambda">哪里可以使用lambda</h2>
 
 <p>你可以在函数接口上下文中使用lambda表达式</p>
 
@@ -125,21 +125,21 @@
 
 <h2 id="使用函数接口">使用函数接口</h2>
 
-<h3 id="predicate-t">Predicate<T></h3>
+<h3 id="predicate-t">Predicate&lt;T&gt;</h3>
 
 <p><code>java.util.function.Predicate&lt;T&gt;</code>定义如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@FunctionalInterface</span>
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Predicate</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="consumer-t">Consumer<T></h3>
+<h3 id="consumer-t">Consumer&lt;T&gt;</h3>
 
 <p><code>java.util.function.Consumer&lt;T&gt;</code>定义如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@FunctionalInterface</span>
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Consumer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="kt">void</span> <span class="nf">accept</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>
 <span class="o">}</span></code></pre></div>
-<h3 id="function-t-r">Function<T, R></h3>
+<h3 id="function-t-r">Function&lt;T, R&gt;</h3>
 
 <p><code>java.util.function.Function&lt;T, R&gt;</code>定义如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@FunctionalInterface</span>
@@ -163,57 +163,57 @@
 
 <tbody>
 <tr>
-<td>Predicate<T></td>
+<td>Predicate&lt;T&gt;</td>
 <td>T -&gt; boolean</td>
 <td>IntPredicate, LongPredicate, DoublePredicate</td>
 </tr>
 
 <tr>
-<td>Consumer<T></td>
+<td>Consumer&lt;T&gt;</td>
 <td>T -&gt; void</td>
 <td>IntConsumer, LongConsumer, DoubleConsumer</td>
 </tr>
 
 <tr>
-<td>Function<T, R></td>
+<td>Function&lt;T, R&gt;</td>
 <td>T -&gt; R</td>
-<td>IntFunction<R>, IntToDoubleFunction, IntToLongFunction, LongFunction<R>, LongToDoubleFunction, LongToIntFunction, DoubleFunction<R>, DoubleToIntFunction, DoubleToLongFunction, ToIntFunction<T>, ToDoubleFunction<T>, ToLongFunction<T></td>
+<td>IntFunction&lt;R&gt;, IntToDoubleFunction, IntToLongFunction, LongFunction&lt;R&gt;, LongToDoubleFunction, LongToIntFunction, DoubleFunction&lt;R&gt;, DoubleToIntFunction, DoubleToLongFunction, ToIntFunction&lt;T&gt;, ToDoubleFunction&lt;T&gt;, ToLongFunction&lt;T&gt;</td>
 </tr>
 
 <tr>
-<td>Supplier<T></td>
+<td>Supplier&lt;T&gt;</td>
 <td>() -&gt; T</td>
 <td>BooleanSupplier, IntSupplier, LongSupplier, DoubleSupplier</td>
 </tr>
 
 <tr>
-<td>UnaryOperator<T></td>
+<td>UnaryOperator&lt;T&gt;</td>
 <td>T -&gt; T</td>
 <td>IntUnaryOperator, LongUnaryOperator, DoubleUnaryOperator</td>
 </tr>
 
 <tr>
-<td>BinaryOperator<T></td>
+<td>BinaryOperator&lt;T&gt;</td>
 <td>(T, T) -&gt; T</td>
 <td>IntBinaryOperator, LongBinaryOperator, DoubleBinaryOperator</td>
 </tr>
 
 <tr>
-<td>BiPredicate<T, U></td>
+<td>BiPredicate&lt;T, U&gt;</td>
 <td>(T, U) -&gt; boolean</td>
 <td></td>
 </tr>
 
 <tr>
-<td>BiConsumer<T, U></td>
+<td>BiConsumer&lt;T, U&gt;</td>
 <td>(T, U) -&gt; void</td>
-<td>ObjIntConsumer<T>, ObjLongConsumer<T>, ObjDoubleConsumer<T></td>
+<td>ObjIntConsumer&lt;T&gt;, ObjLongConsumer&lt;T&gt;, ObjDoubleConsumer&lt;T&gt;</td>
 </tr>
 
 <tr>
-<td>BiFunction<T, U, R></td>
+<td>BiFunction&lt;T, U, R&gt;</td>
 <td>(T, U) -&gt; R</td>
-<td>ToIntBiFunction<T, U>, ToLongBiFunction<T, U>, ToDoubleBiFunction<T, U></td>
+<td>ToIntBiFunction&lt;T, U&gt;, ToLongBiFunction&lt;T, U&gt;, ToDoubleBiFunction&lt;T, U&gt;</td>
 </tr>
 </tbody>
 </table>
@@ -241,11 +241,11 @@
 
 <p>// Predicate has a boolean return</p>
 
-<p>Predicate<String> p = (String s) -&gt; list.add(s);</p>
+<p>Predicate&lt;String&gt; p = (String s) -&gt; list.add(s);</p>
 
 <p>// Consumer has a void return</p>
 
-<p>Consumer<String> b = (String s) -&gt; list.add(s);</p>
+<p>Consumer&lt;String&gt; b = (String s) -&gt; list.add(s);</p>
 </blockquote>
 
 <h3 id="类型推断">类型推断</h3>
@@ -259,7 +259,7 @@
 <p>lambda表达式允许使用自由变量（不是参数且定义在外部作用域），就像匿名类一样。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">portNumber</span> <span class="o">=</span> <span class="n">1337</span><span class="o">;</span>
 <span class="n">Runnable</span> <span class="n">r</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">portNumber</span><span class="o">);</span></code></pre></div>
-<p>Lambdas可以不受限制地捕获实例变量和静态变量。但是当捕获局部变量时，必须显式地声明它们为final或有效的final。Lambda表达式可以捕获只分赋值一次的局部变量。下面的代码将编译不了：</p>
+<p>Lambda可以不受限制地捕获实例变量和静态变量。但是当捕获局部变量时，必须显式地声明它们为final或有效的final。Lambda表达式可以捕获只分赋值一次的局部变量。下面的代码将编译不了：</p>
 
 <pre><code>int portNumber = 1337;
 Runnable r = () -&gt; System.out.println(portNumber);
@@ -344,7 +344,7 @@ portNumber = 31337;
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">inventory</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">comparing</span><span class="o">(</span><span class="nl">Apple:</span><span class="o">:</span><span class="n">getWeight</span><span class="o">).</span><span class="na">reversed</span><span class="o">().</span><span class="na">thenComparing</span><span class="o">(</span><span class="nl">Apple:</span><span class="o">:</span><span class="n">getCountry</span><span class="o">));</span></code></pre></div>
 <h3 id="组合predicates">组合Predicates</h3>
 
-<p>谓词接口包含三个方法，可以重用现有的谓词来创建更复杂的谓词：negate、and和or。</p>
+<p>谓词接口包含三个方法，可以重用现有的谓词来创建更复杂的谓词：<code>negate</code>、<code>and</code>和<code>or</code>。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">notRedApple</span> <span class="o">=</span> <span class="n">redApple</span><span class="o">.</span><span class="na">negate</span><span class="o">();</span>
 <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">redAndHeavyApple</span> <span class="o">=</span> <span class="n">redApple</span><span class="o">.</span><span class="na">and</span><span class="o">(</span><span class="n">apple</span> <span class="o">-&gt;</span> <span class="n">apple</span><span class="o">.</span><span class="na">getWeight</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">150</span><span class="o">);</span>
 <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">redAndHeavyAppleOrGreen</span> <span class="o">=</span> <span class="n">redApple</span><span class="o">.</span><span class="na">and</span><span class="o">(</span><span class="n">apple</span> <span class="o">-&gt;</span> <span class="n">apple</span><span class="o">.</span><span class="na">getWeight</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">150</span><span class="o">).</span><span class="na">or</span><span class="o">(</span><span class="n">apple</span> <span class="o">-&gt;</span> <span class="n">GREEN</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">getColor</span><span class="o">()));</span></code></pre></div>

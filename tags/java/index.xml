@@ -18,7 +18,7 @@
       <pubDate>Wed, 10 Jul 2019 08:48:55 +0800</pubDate>
       
       <guid>http://gitop.cc/posts/lambda-expressions/</guid>
-      <description>Lambdas概述 lambda表达式没有名称，但是它有参数列表，函数体和返回类型，还可能包含一个异常列表。 匿名，lambda表达式不像方法一</description>
+      <description>Lambda概述 lambda表达式没有名称，但是它有参数列表，函数体和返回类型，还可能包含一个异常列表。 匿名，lambda表达式不像方法一样</description>
     </item>
     
   </channel>
