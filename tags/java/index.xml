@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 10 Jul 2019 08:48:55 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jul 2019 17:22:30 +0800</lastBuildDate>
     
 	<atom:link href="http://gitop.cc/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>流介绍</title>
+      <link>http://gitop.cc/posts/introducing-streams/</link>
+      <pubDate>Wed, 10 Jul 2019 17:22:30 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/introducing-streams/</guid>
+      <description>流是什么 流是对Java API的更新，允许你以声明式的方式操作数据集合。首先看一个例子，假设你想获得所有热量低于400卡的菜肴的名字，并按热量</description>
+    </item>
     
     <item>
       <title>Lambda表达式</title>

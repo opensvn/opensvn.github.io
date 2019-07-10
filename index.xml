@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 10 Jul 2019 08:48:55 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jul 2019 17:22:30 +0800</lastBuildDate>
     
 	<atom:link href="http://gitop.cc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>流介绍</title>
+      <link>http://gitop.cc/posts/introducing-streams/</link>
+      <pubDate>Wed, 10 Jul 2019 17:22:30 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/introducing-streams/</guid>
+      <description>流是什么 流是对Java API的更新，允许你以声明式的方式操作数据集合。首先看一个例子，假设你想获得所有热量低于400卡的菜肴的名字，并按热量</description>
+    </item>
     
     <item>
       <title>Lambda表达式</title>
@@ -91,15 +100,6 @@
       
       <guid>http://gitop.cc/posts/objects/</guid>
       <description>对象的属性也有属性： 可写属性指定属性的值是否可以设置。 枚举属性指定属性名是否能由for/in循环返回。 可配置属性指定属性是否可以删除和更改。</description>
-    </item>
-    
-    <item>
-      <title>语句</title>
-      <link>http://gitop.cc/posts/statements/</link>
-      <pubDate>Tue, 30 Oct 2018 21:16:04 +0800</pubDate>
-      
-      <guid>http://gitop.cc/posts/statements/</guid>
-      <description>JavaScript语句以分号结束。表达式被计算以产生值，但是语句被执行以使某些事情发生。 表达式语句 JavaScript中最简单的语句是具有</description>
     </item>
     
   </channel>

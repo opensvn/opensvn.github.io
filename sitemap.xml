@@ -4,31 +4,36 @@
   
   <url>
     <loc>http://gitop.cc/tags/java/</loc>
-    <lastmod>2019-07-10T08:48:55+08:00</lastmod>
+    <lastmod>2019-07-10T17:22:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://gitop.cc/posts/</loc>
+    <lastmod>2019-07-10T17:22:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://gitop.cc/tags/</loc>
+    <lastmod>2019-07-10T17:22:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://gitop.cc/posts/introducing-streams/</loc>
+    <lastmod>2019-07-10T17:22:30+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitop.cc/</loc>
+    <lastmod>2019-07-10T17:22:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://gitop.cc/posts/lambda-expressions/</loc>
     <lastmod>2019-07-10T08:48:55+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitop.cc/posts/</loc>
-    <lastmod>2019-07-10T08:48:55+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://gitop.cc/tags/</loc>
-    <lastmod>2019-07-10T08:48:55+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://gitop.cc/</loc>
-    <lastmod>2019-07-10T08:48:55+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
