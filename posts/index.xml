@@ -165,37 +165,37 @@
 <tr>
 <td>Predicate&lt;T&gt;</td>
 <td>T -&gt; boolean</td>
-<td>IntPredicate, LongPredicate, DoublePredicate</td>
+<td>IntPredicate<br/>LongPredicate<br/>DoublePredicate</td>
 </tr>
 
 <tr>
 <td>Consumer&lt;T&gt;</td>
 <td>T -&gt; void</td>
-<td>IntConsumer, LongConsumer, DoubleConsumer</td>
+<td>IntConsumer<br/>LongConsumer<br/>DoubleConsumer</td>
 </tr>
 
 <tr>
 <td>Function&lt;T, R&gt;</td>
 <td>T -&gt; R</td>
-<td>IntFunction&lt;R&gt;, IntToDoubleFunction, IntToLongFunction, LongFunction&lt;R&gt;, LongToDoubleFunction, LongToIntFunction, DoubleFunction&lt;R&gt;, DoubleToIntFunction, DoubleToLongFunction, ToIntFunction&lt;T&gt;, ToDoubleFunction&lt;T&gt;, ToLongFunction&lt;T&gt;</td>
+<td>IntFunction&lt;R&gt;<br/>IntToDoubleFunction<br/>IntToLongFunction<br/>LongFunction&lt;R&gt;<br/>LongToDoubleFunction<br/>LongToIntFunction<br/>DoubleFunction&lt;R&gt;<br/>DoubleToIntFunction<br/>DoubleToLongFunction<br/>ToIntFunction&lt;T&gt;<br/>ToDoubleFunction&lt;T&gt;<br/>ToLongFunction&lt;T&gt;</td>
 </tr>
 
 <tr>
 <td>Supplier&lt;T&gt;</td>
 <td>() -&gt; T</td>
-<td>BooleanSupplier, IntSupplier, LongSupplier, DoubleSupplier</td>
+<td>BooleanSupplier<br/>IntSupplier<br/>LongSupplier<br/>DoubleSupplier</td>
 </tr>
 
 <tr>
 <td>UnaryOperator&lt;T&gt;</td>
 <td>T -&gt; T</td>
-<td>IntUnaryOperator, LongUnaryOperator, DoubleUnaryOperator</td>
+<td>IntUnaryOperator<br/>LongUnaryOperator<br/>DoubleUnaryOperator</td>
 </tr>
 
 <tr>
 <td>BinaryOperator&lt;T&gt;</td>
 <td>(T, T) -&gt; T</td>
-<td>IntBinaryOperator, LongBinaryOperator, DoubleBinaryOperator</td>
+<td>IntBinaryOperator<br/>LongBinaryOperator<br/>DoubleBinaryOperator</td>
 </tr>
 
 <tr>
@@ -207,13 +207,13 @@
 <tr>
 <td>BiConsumer&lt;T, U&gt;</td>
 <td>(T, U) -&gt; void</td>
-<td>ObjIntConsumer&lt;T&gt;, ObjLongConsumer&lt;T&gt;, ObjDoubleConsumer&lt;T&gt;</td>
+<td>ObjIntConsumer&lt;T&gt;<br/>ObjLongConsumer&lt;T&gt;<br/>ObjDoubleConsumer&lt;T&gt;</td>
 </tr>
 
 <tr>
 <td>BiFunction&lt;T, U, R&gt;</td>
 <td>(T, U) -&gt; R</td>
-<td>ToIntBiFunction&lt;T, U&gt;, ToLongBiFunction&lt;T, U&gt;, ToDoubleBiFunction&lt;T, U&gt;</td>
+<td>ToIntBiFunction&lt;T, U&gt;<br/>ToLongBiFunction&lt;T, U&gt;<br/>ToDoubleBiFunction&lt;T, U&gt;</td>
 </tr>
 </tbody>
 </table>
