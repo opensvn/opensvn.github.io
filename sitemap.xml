@@ -366,11 +366,6 @@
   </url>
   
   <url>
-    <loc>http://gitop.cc/lambda-expressions/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://gitop.cc/posts/postgres_data_type/</loc>
     <priority>0</priority>
   </url>
