@@ -6,8 +6,405 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Wed, 10 Jul 2019 17:22:30 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 11 Jul 2019 08:39:11 +0800</lastBuildDate>
 		<atom:link href="http://gitop.cc/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>使用流</title>
+			<link>http://gitop.cc/posts/working-with-streams/</link>
+			<pubDate>Thu, 11 Jul 2019 08:39:11 +0800</pubDate>
+			
+			<guid>http://gitop.cc/posts/working-with-streams/</guid>
+			<description>过滤 使用谓词过滤 filter方法接受一个谓词函数为参数，并返回包含所有匹配谓词的元素的流。如下例： List&amp;lt;Dish&amp;gt; vegetarianMenu = menu.stream().filter(Dish::isVegetarian).collect(toList()); 如下图所示： 过滤唯一元素 disti</description>
+			<content type="html"><![CDATA[
+
+<h2 id="过滤">过滤</h2>
+
+<h3 id="使用谓词过滤">使用谓词过滤</h3>
+
+<p><code>filter</code>方法接受一个谓词函数为参数，并返回包含所有匹配谓词的元素的流。如下例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;</span> <span class="n">vegetarianMenu</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="nl">Dish:</span><span class="o">:</span><span class="n">isVegetarian</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span></code></pre></div>
+<p>如下图所示：</p>
+
+<p><img src="/static/images/2019/07/11/filter.png" alt="filter.png" /></p>
+
+<h3 id="过滤唯一元素">过滤唯一元素</h3>
+
+<p><code>distinct</code>方法返回包含唯一元素的流。如下例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">1</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span>
+<span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">).</span><span class="na">distinct</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span></code></pre></div>
+<p>如下图所示：</p>
+
+<p><img src="/static/images/2019/07/11/distinct.png" alt="distinct.png" /></p>
+
+<h2 id="切分流">切分流</h2>
+
+<p>Java 9添加了两个新方法<code>takeWhile</code>和<code>dropWhile</code>，可以有效地选择流中的元素。</p>
+
+<h3 id="takewhile">takeWhile</h3>
+
+<p><code>takeWhile</code>方法使用谓词切分流，即使是无限流。一旦发现一个元素不满足条件，<code>takeWhile</code>会立刻停止。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;</span> <span class="n">slicedMenu1</span> <span class="o">=</span> <span class="n">specialMenu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">takeWhile</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">320</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span></code></pre></div>
+<h3 id="dropwhile">dropWhile</h3>
+
+<p><code>dropWhile</code>和<code>takeWhile</code>正好相反。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;</span> <span class="n">slicedMenu2</span> <span class="o">=</span> <span class="n">specialMenu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">dropWhile</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">320</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span></code></pre></div>
+<h3 id="截断流">截断流</h3>
+
+<p><code>limit(n)</code>方法返回一个不大于指定长度的流</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;</span> <span class="n">dishes</span> <span class="o">=</span> <span class="n">specialMenu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">300</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">3</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span></code></pre></div>
+<h3 id="跳过元素">跳过元素</h3>
+
+<p><code>skip(n)</code>方法返回一个丢弃前n个元素的流，如果流中的元素小于n，则返回一个空流</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;</span> <span class="n">dishes</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">d</span> <span class="o">-&gt;</span> <span class="n">d</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">300</span><span class="o">).</span><span class="na">skip</span><span class="o">(</span><span class="n">2</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span></code></pre></div>
+<h2 id="映射">映射</h2>
+
+<h3 id="map">map</h3>
+
+<p><code>map</code>方法接受一个<code>Function&lt;T, R&gt;</code>为参数，将其应用于每一个元素，并映射为一个新的元素</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">dishNameLengths</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="nl">Dish:</span><span class="o">:</span><span class="n">getName</span><span class="o">).</span><span class="na">map</span><span class="o">(</span><span class="nl">String:</span><span class="o">:</span><span class="n">length</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span></code></pre></div>
+<h3 id="flatmap">flatMap</h3>
+
+<p>如何返回一组单词中所有唯一的字符呢？比如[&ldquo;Hello&rdquo;, &ldquo;World&rdquo;]，你想要返回[&ldquo;H&rdquo;, &ldquo;e&rdquo;, &ldquo;l&rdquo;, &ldquo;o&rdquo;, &ldquo;W&rdquo;, &ldquo;r&rdquo;, &ldquo;d&rdquo;] 。第一次尝试如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">words</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">word</span> <span class="o">-&gt;</span> <span class="n">word</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">)).</span><span class="na">distinct</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span></code></pre></div>
+<p><code>map</code>返回的流为<code>Stream&lt;String[]&gt;</code>，而你想要的流是<code>Stream&lt;String&gt;</code>，这样不对。</p>
+
+<p>如下图所示：</p>
+
+<p><img src="/static/images/2019/07/11/first-try.png" alt="first-try.png" /></p>
+
+<h4 id="尝试使用map和arrays-stream">尝试使用map和Arrays.stream</h4>
+
+<p>首先你需要一个字符串流而不是数组流。<code>Arrays.stream</code>方法接受一个数组并产生一个包含数组元素的流：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span><span class="o">[]</span> <span class="n">arrayOfWords</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;Goodbye&#34;</span><span class="o">,</span> <span class="s">&#34;World&#34;</span><span class="o">};</span>
+<span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">streamOfwords</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">arrayOfWords</span><span class="o">);</span></code></pre></div>
+<p>第二次尝试：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">words</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">word</span> <span class="o">-&gt;</span> <span class="n">word</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">)).</span><span class="na">map</span><span class="o">(</span><span class="nl">Arrays:</span><span class="o">:</span><span class="n">stream</span><span class="o">).</span><span class="na">distinct</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span></code></pre></div>
+<p>这个方法依然不行，因为<code>map(Arrays::stream)</code>返回一组流，准确的说是<code>List&lt;Stream&lt;String&gt;&gt;</code>。</p>
+
+<h4 id="使用flatmap">使用flatMap</h4>
+
+<p>可以使用<code>flatMap</code>解决这个问题：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">uniqueCharacters</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">word</span> <span class="o">-&gt;</span> <span class="n">word</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">)).</span><span class="na">flatMap</span><span class="o">(</span><span class="nl">Arrays:</span><span class="o">:</span><span class="n">stream</span><span class="o">).</span><span class="na">distinct</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span></code></pre></div>
+<p><code>flatMap</code>将<code>map(Arrays::stream)</code>产生的一组流合并为一个流。</p>
+
+<p>如下图所示：</p>
+
+<p><img src="/static/images/2019/07/11/flatmap.png" alt="flatmap.png" /></p>
+
+<h2 id="查找和匹配">查找和匹配</h2>
+
+<h3 id="匹配至少一个元素">匹配至少一个元素</h3>
+
+<p><code>anyMatch</code>用于查找至少一个匹配给定谓词，返回boolean</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">anyMatch</span><span class="o">(</span><span class="nl">Dish:</span><span class="o">:</span><span class="n">isVegetarian</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;The menu is (somewhat) vegetarian friendly!!&#34;</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<h3 id="匹配所有元素">匹配所有元素</h3>
+
+<p><code>allMatch</code>检查是否所有元素匹配给定谓词，返回boolean</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">boolean</span> <span class="n">isHealthy</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">allMatch</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">1000</span><span class="o">);</span></code></pre></div>
+<h4 id="不匹配任何元素">不匹配任何元素</h4>
+
+<p><code>noneMatch</code>所有元素都不满足给定谓词，返回boolean</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">boolean</span> <span class="n">isHealthy</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">noneMatch</span><span class="o">(</span><span class="n">d</span> <span class="o">-&gt;</span> <span class="n">d</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="n">1000</span><span class="o">);</span></code></pre></div>
+<p><code>anyMatch</code>，<code>allMatch</code>和<code>noneMatch</code>都具有短路求值的特性。</p>
+
+<h3 id="查找一个元素">查找一个元素</h3>
+
+<p><code>findAny</code>返回流中任意一个元素。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;</span> <span class="n">dish</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="nl">Dish:</span><span class="o">:</span><span class="n">isVegetarian</span><span class="o">).</span><span class="na">findAny</span><span class="o">();</span></code></pre></div>
+<h3 id="查找第一个元素">查找第一个元素</h3>
+
+<p><code>findFirst</code>和<code>findAny</code>类似，<code>findFirst</code>查找第一个元素</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">someNumbers</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">,</span> <span class="n">5</span><span class="o">);</span>
+<span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">firstSquareDivisibleByThree</span> <span class="o">=</span> <span class="n">someNumbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">*</span> <span class="n">n</span><span class="o">).</span><span class="na">filter</span><span class="o">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">%</span> <span class="n">3</span> <span class="o">==</span> <span class="n">0</span><span class="o">).</span><span class="na">findFirst</span><span class="o">();</span></code></pre></div>
+<blockquote>
+<p>findFirst在并行处理的时候有更多的限制，如果你不介意返回哪个元素，并行处理的时候选择findAny</p>
+</blockquote>
+
+<h2 id="归纳">归纳</h2>
+
+<h3 id="计算元素的和">计算元素的和</h3>
+
+<p>使用<code>reduce</code>计算流中所有元素的和：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">);</span></code></pre></div>
+<p><code>reduce</code>接受2个参数：</p>
+
+<ul>
+<li>一个初始值</li>
+<li>一个<code>BinaryOperator&lt;T&gt;</code>计算2个元素的值并产生一个新值</li>
+</ul>
+
+<p>你可以使用方法引用使得代码更简明：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="nl">Integer:</span><span class="o">:</span><span class="n">sum</span><span class="o">);</span></code></pre></div>
+<p>如下图所示：</p>
+
+<p><img src="/static/images/2019/07/11/reduce.png" alt="reduce.png" /></p>
+
+<h4 id="没有初始值">没有初始值</h4>
+
+<p>还有一个不带初始值的<code>reduce</code>重载版本，它返回一个<code>Optional</code>对象</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">));</span></code></pre></div>
+<h3 id="查找最大和最小元素">查找最大和最小元素</h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">max</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="nl">Integer:</span><span class="o">:</span><span class="n">max</span><span class="o">);</span>
+<span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">min</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="nl">Integer:</span><span class="o">:</span><span class="n">min</span><span class="o">);</span></code></pre></div>
+<p>流API总结表：</p>
+
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>类型</th>
+<th>返回类型</th>
+<th>参数(类型/函数接口)</th>
+<th>函数描述符</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>filter</td>
+<td>中间操作</td>
+<td>Stream&lt;T&gt;</td>
+<td>Predicate&lt;T&gt;</td>
+<td>T -&gt; boolean</td>
+</tr>
+
+<tr>
+<td>distinct</td>
+<td>中间操作(有状态-无上界)</td>
+<td>Stream&lt;T&gt;</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>takeWhile</td>
+<td>中间操作</td>
+<td>Stream&lt;T&gt;</td>
+<td>Predicate&lt;T&gt;</td>
+<td>T -&gt; boolean</td>
+</tr>
+
+<tr>
+<td>dropWhile</td>
+<td>中间操作</td>
+<td>Stream&lt;T&gt;</td>
+<td>Predicate&lt;T&gt;</td>
+<td>T -&gt; boolean</td>
+</tr>
+
+<tr>
+<td>skip</td>
+<td>中间操作(有状态-有上界)</td>
+<td>Stream&lt;T&gt;</td>
+<td>long</td>
+<td></td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td>中间操作(有状态-有上界)</td>
+<td>Stream&lt;T&gt;</td>
+<td>long</td>
+<td></td>
+</tr>
+
+<tr>
+<td>map</td>
+<td>中间操作</td>
+<td>Stream&lt;R&gt;</td>
+<td>Function&lt;T, R&gt;</td>
+<td>T -&gt; R</td>
+</tr>
+
+<tr>
+<td>flatMap</td>
+<td>中间操作</td>
+<td>Stream&lt;R&gt;</td>
+<td>Function&lt;T, Stream&lt;R&gt;&gt;</td>
+<td>T -&gt; Stream&lt;R&gt;</td>
+</tr>
+
+<tr>
+<td>sorted</td>
+<td>中间操作(有状态-无上界)</td>
+<td>Stream&lt;T&gt;</td>
+<td>Comparator&lt;T&gt;</td>
+<td>(T, T) -&gt; int</td>
+</tr>
+
+<tr>
+<td>anyMatch</td>
+<td>结束操作</td>
+<td>boolean</td>
+<td>Predicate&lt;T&gt;</td>
+<td>T -&gt; boolean</td>
+</tr>
+
+<tr>
+<td>noneMatch</td>
+<td>结束操作</td>
+<td>boolean</td>
+<td>Predicate&lt;T&gt;</td>
+<td>T -&gt; boolean</td>
+</tr>
+
+<tr>
+<td>allMatch</td>
+<td>结束操作</td>
+<td>boolean</td>
+<td>Predicate&lt;T&gt;</td>
+<td>T -&gt; boolean</td>
+</tr>
+
+<tr>
+<td>findAny</td>
+<td>结束操作</td>
+<td>Optional&lt;T&gt;</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>findFirst</td>
+<td>结束操作</td>
+<td>Optional&lt;T&gt;</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>forEach</td>
+<td>结束操作</td>
+<td>void</td>
+<td>Consumer&lt;T&gt;</td>
+<td>T -&gt; void</td>
+</tr>
+
+<tr>
+<td>collect</td>
+<td>结束操作</td>
+<td>R</td>
+<td>Collector&lt;T, A, R&gt;</td>
+<td></td>
+</tr>
+
+<tr>
+<td>reduce</td>
+<td>结束操作(有状态-有上界)</td>
+<td>Optional&lt;T&gt;</td>
+<td>BinaryOperator&lt;T&gt;</td>
+<td>(T, T) -&gt; T</td>
+</tr>
+
+<tr>
+<td>count</td>
+<td>结束操作</td>
+<td>long</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="数字流">数字流</h2>
+
+<h3 id="原始类型的专有流">原始类型的专有流</h3>
+
+<p>Java8提供3种基础类型的特殊流：<code>IntStream</code>，<code>DoubleStream</code>和<code>LongStream</code>。这些流提供了很多方便用于数值计算的方法，比如<code>sum</code>，<code>max</code>，<code>min</code>，<code>average</code></p>
+
+<h4 id="映射为数字流">映射为数字流</h4>
+
+<p>将一个流转换为数字流的最常用的方法是使用<code>mapToInt</code>，<code>mapToDouble</code>和<code>mapToLong</code>方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">calories</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">mapToInt</span><span class="o">(</span><span class="nl">Dish:</span><span class="o">:</span><span class="n">getCalories</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span></code></pre></div>
+<h3 id="转换回对象流">转换回对象流</h3>
+
+<p>使用<code>boxed</code>方法将数字流转换为对象流</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">IntStream</span> <span class="n">intStream</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">mapToInt</span><span class="o">(</span><span class="nl">Dish:</span><span class="o">:</span><span class="n">getCalories</span><span class="o">);</span>
+<span class="n">Stream</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">intStream</span><span class="o">.</span><span class="na">boxed</span><span class="o">();</span></code></pre></div>
+<h3 id="默认值">默认值</h3>
+
+<p>数字流有3个特殊版本的<code>Optinal</code>类型：<code>OptionalInt</code> ，<code>OptionalDouble</code> 和<code>OptionalLong</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">OptionalInt</span> <span class="n">maxCalories</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">mapToInt</span><span class="o">(</span><span class="nl">Dish:</span><span class="o">:</span><span class="n">getCalories</span><span class="o">).</span><span class="na">max</span><span class="o">();</span>
+<span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">maxCalories</span><span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="n">1</span><span class="o">);</span></code></pre></div>
+<h3 id="数字范围">数字范围</h3>
+
+<p><code>IntStream</code>和<code>LongStream</code>提供2个静态方法<code>range</code>和<code>rangeClosed</code>用于生成数字范围。<code>range</code>的范围是[start, end)，<code>rangeClosed</code>的范围是[start, end]。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">IntStream</span> <span class="n">evenNumbers</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">100</span><span class="o">).</span><span class="na">filter</span><span class="o">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">);</span></code></pre></div>
+<h3 id="数字流实例">数字流实例</h3>
+
+<p>查找毕氏三元数(勾股数)</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Stream</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">pythagoreanTriples</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">100</span><span class="o">).</span><span class="na">boxed</span><span class="o">().</span><span class="na">flatMap</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">100</span><span class="o">).</span><span class="na">filter</span><span class="o">(</span><span class="n">b</span> <span class="o">-&gt;</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">)</span> <span class="o">%</span> <span class="n">1</span> <span class="o">==</span> <span class="n">0</span><span class="o">).</span><span class="na">mapToObj</span><span class="o">(</span><span class="n">b</span> <span class="o">-&gt;</span>
+<span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">b</span><span class="o">)}));</span>
+<span class="n">pythagoreanTriples</span><span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="n">5</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">t</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">t</span><span class="o">[</span><span class="n">2</span><span class="o">]));</span></code></pre></div>
+<p>第二种方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Stream</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">[]&gt;</span> <span class="n">pythagoreanTriples2</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">100</span><span class="o">).</span><span class="na">boxed</span><span class="o">().</span><span class="na">flatMap</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span>
+<span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">100</span><span class="o">).</span><span class="na">mapToObj</span><span class="o">(</span><span class="n">b</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[]{</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">)}).</span><span class="na">filter</span><span class="o">(</span><span class="n">t</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">[</span><span class="n">2</span><span class="o">]</span> <span class="o">%</span> <span class="n">1</span> <span class="o">==</span> <span class="n">0</span><span class="o">));</span></code></pre></div>
+<h2 id="创建流">创建流</h2>
+
+<h3 id="从一组值创建流">从一组值创建流</h3>
+
+<p><code>Stream.of</code>接受任意个数参数并返回一个流</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Modern &#34;</span><span class="o">,</span> <span class="s">&#34;Java &#34;</span><span class="o">,</span> <span class="s">&#34;In &#34;</span><span class="o">,</span> <span class="s">&#34;Action&#34;</span><span class="o">);</span>
+<span class="n">stream</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">String:</span><span class="o">:</span><span class="n">toUpperCase</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span></code></pre></div>
+<p><code>Stream.empty</code>返回一个空流</p>
+
+<h3 id="从可空元素创建流">从可空元素创建流</h3>
+
+<p><code>Stream.ofNullable</code>可以从可空对象创建流</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">homeValue</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&#34;home&#34;</span><span class="o">);</span>
+<span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">homeValueStream</span> <span class="o">=</span> <span class="n">homeValue</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">Stream</span><span class="o">.</span><span class="na">empty</span><span class="o">()</span> <span class="o">:</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+<span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">homeValueStream</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&#34;home&#34;</span><span class="o">));</span></code></pre></div>
+<h3 id="从数组创建流">从数组创建流</h3>
+
+<p><code>Arrays.stream</code>可以从数组创建流</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="o">{</span><span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">5</span><span class="o">,</span> <span class="n">7</span><span class="o">,</span> <span class="n">11</span><span class="o">,</span> <span class="n">13</span><span class="o">};</span>
+<span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">numbers</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span></code></pre></div>
+<h3 id="从文件创建流">从文件创建流</h3>
+
+<p>java的NIO提供了许多静态方法返回流，比如<code>Files.lines</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">long</span> <span class="n">uniqueWords</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="k">try</span> <span class="o">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">lines</span><span class="o">(</span><span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;data.txt&#34;</span><span class="o">),</span> <span class="n">Charset</span><span class="o">.</span><span class="na">defaultCharset</span><span class="o">()))</span> <span class="o">{</span>
+    <span class="n">uniqueWords</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">line</span> <span class="o">-&gt;</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">))).</span><span class="na">distinct</span><span class="o">().</span><span class="na">count</span><span class="o">();</span>
+<span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">){</span>
+<span class="o">}</span></code></pre></div>
+<h3 id="从函数创建流">从函数创建流</h3>
+
+<p><code>Stream.iterate</code>和<code>Stream.generate</code>可以让你创建一个无限流，通常需要结合<code>limit</code>使用</p>
+
+<h4 id="iterate">iterate</h4>
+
+<p><code>iterate</code>接受2个参数：</p>
+
+<ul>
+<li>初始值</li>
+<li><code>UnaryOperator&lt;T&gt;</code>用于迭代产生新值</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="n">2</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">10</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span></code></pre></div>
+<p>在Java9中，<code>iterate</code>被增强了，支持谓词。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">IntStream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">100</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="n">4</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span></code></pre></div>
+<p>相当于</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">IntStream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="n">4</span><span class="o">).</span><span class="na">takeWhile</span><span class="o">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">100</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span></code></pre></div>
+<h4 id="generate">generate</h4>
+
+<p><code>generate</code>接受一个<code>Supplier&lt;T&gt;</code>参数来产生新值</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Stream</span><span class="o">.</span><span class="na">generate</span><span class="o">(</span><span class="nl">Math:</span><span class="o">:</span><span class="n">random</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">5</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span></code></pre></div>
+<p>使用<code>generate</code>生成前20个Fibonacci序列数字：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">IntSupplier</span> <span class="n">fib</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IntSupplier</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">previous</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">current</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAsInt</span><span class="o">(){</span>
+        <span class="kt">int</span> <span class="n">oldPrevious</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">previous</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">nextValue</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">previous</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">current</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">previous</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">current</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">current</span> <span class="o">=</span> <span class="n">nextValue</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">oldPrevious</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+<span class="n">IntStream</span><span class="o">.</span><span class="na">generate</span><span class="o">(</span><span class="n">fib</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">20</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span></code></pre></div>]]></content>
+		</item>
 		
 		<item>
 			<title>流介绍</title>

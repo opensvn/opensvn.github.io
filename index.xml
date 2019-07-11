@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 10 Jul 2019 17:22:30 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jul 2019 08:39:11 +0800</lastBuildDate>
     
 	<atom:link href="http://gitop.cc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用流</title>
+      <link>http://gitop.cc/posts/working-with-streams/</link>
+      <pubDate>Thu, 11 Jul 2019 08:39:11 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/working-with-streams/</guid>
+      <description>过滤 使用谓词过滤 filter方法接受一个谓词函数为参数，并返回包含所有匹配谓词的元素的流。如下例： List&amp;lt;Dish&amp;gt; vegetarianMenu = menu.stream().filter(Dish::isVegetarian).collect(toList()); 如下图所示： 过滤唯一元素 disti</description>
+    </item>
     
     <item>
       <title>流介绍</title>
@@ -91,15 +100,6 @@
       
       <guid>http://gitop.cc/posts/arrays/</guid>
       <description>创建数组 创建数组的最简单方法是使用数组字面值： var empty = []; // An array with no elements var primes = [2, 3, 5, 7, 11]; // An array with 5 numeric elements var misc = [1.1, true, &amp;#34;a&amp;#34;,]; // 3 elements of various types + trailing comma 数组字面值中的</description>
-    </item>
-    
-    <item>
-      <title>对象</title>
-      <link>http://gitop.cc/posts/objects/</link>
-      <pubDate>Sat, 03 Nov 2018 21:39:25 +0800</pubDate>
-      
-      <guid>http://gitop.cc/posts/objects/</guid>
-      <description>对象的属性也有属性： 可写属性指定属性的值是否可以设置。 枚举属性指定属性名是否能由for/in循环返回。 可配置属性指定属性是否可以删除和更改。</description>
     </item>
     
   </channel>
