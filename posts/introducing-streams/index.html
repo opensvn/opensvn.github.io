@@ -14,7 +14,7 @@
 
 <meta itemprop="datePublished" content="2019-07-10T17:22:30&#43;08:00" />
 <meta itemprop="dateModified" content="2019-07-10T17:22:30&#43;08:00" />
-<meta itemprop="wordCount" content="1185">
+<meta itemprop="wordCount" content="1119">
 
 
 
@@ -154,15 +154,15 @@
 
 <h2 id="流操作">流操作<a href="#流操作" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
-<p>可以连接的流操作称为中间操作，关闭流的操作称为终端操作。</p>
+<p>可以连接的流操作称为中间操作，关闭流的操作称为结束操作。</p>
 
 <h3 id="中间操作">中间操作<a href="#中间操作" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
-<p>中间操作（如filter或sorted）返回另一个流，这允许将操作连接起来形成查询。重要的是，在调用终端操作之前，中间操作不会执行任何处理，它们是惰性求值的。这是因为中间操作通常可以被终端操作合并一次处理。</p>
+<p>中间操作（如filter或sorted）返回另一个流，这允许将操作连接起来形成查询。重要的是，在调用结束操作之前，中间操作不会执行任何处理，它们是惰性求值的。这是因为中间操作通常可以被结束操作合并一次处理。</p>
 
-<h3 id="终端操作">终端操作<a href="#终端操作" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="结束操作">结束操作<a href="#结束操作" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
-<p>终端操作从流管道产生一个非流值结果。</p>
+<p>结束操作从流管道产生一个非流值结果。</p>
 
 <h3 id="使用流">使用流<a href="#使用流" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
@@ -171,12 +171,10 @@
 <ul>
 <li>执行查询的数据源，比如集合</li>
 <li>形成流管道的一系列中间操作</li>
-<li>执行流管道并产生结果的终端操作</li>
+<li>执行流管道并产生结果的结束操作</li>
 </ul>
 
-<p>以下两个表总结了一些常见流操作。</p>
-
-<p>中间操作</p>
+<p>下表总结了一些常见流操作。</p>
 
 <table>
 <thead>
@@ -229,41 +227,29 @@
 <td></td>
 <td></td>
 </tr>
-</tbody>
-</table>
 
-<p>终端操作</p>
-
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>类型</th>
-<th>返回类型</th>
-<th>目的</th>
-</tr>
-</thead>
-
-<tbody>
 <tr>
 <td>forEach</td>
-<td>终端操作</td>
+<td>结束操作</td>
 <td>void</td>
-<td>使用流中的每个元素，并对每个元素应用lambda</td>
+<td>Consumer&lt;T&gt;</td>
+<td>T -&gt; void</td>
 </tr>
 
 <tr>
 <td>count</td>
-<td>终端操作</td>
+<td>结束操作</td>
 <td>long</td>
-<td>返回流中元素的数量</td>
+<td></td>
+<td></td>
 </tr>
 
 <tr>
 <td>collect</td>
-<td>终端操作</td>
-<td>(generic)</td>
-<td>归纳流以创建集合，比如List、Map</td>
+<td>结束操作</td>
+<td>R</td>
+<td>Collector&lt;T, A, R&gt;</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -274,7 +260,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/java">Java</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1185 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1119 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-07-10 17:22 &#43;0800</p>
 			</footer>
 		</article>
