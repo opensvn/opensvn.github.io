@@ -4,31 +4,36 @@
   
   <url>
     <loc>http://gitop.cc/tags/java/</loc>
-    <lastmod>2019-07-11T08:39:11+08:00</lastmod>
+    <lastmod>2019-07-23T13:04:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://gitop.cc/posts/</loc>
-    <lastmod>2019-07-11T08:39:11+08:00</lastmod>
+    <lastmod>2019-07-23T13:04:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://gitop.cc/tags/</loc>
-    <lastmod>2019-07-11T08:39:11+08:00</lastmod>
+    <lastmod>2019-07-23T13:04:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://gitop.cc/posts/collecting-data-with-streams/</loc>
+    <lastmod>2019-07-23T13:04:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitop.cc/</loc>
+    <lastmod>2019-07-23T13:04:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://gitop.cc/posts/working-with-streams/</loc>
     <lastmod>2019-07-11T08:39:11+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitop.cc/</loc>
-    <lastmod>2019-07-11T08:39:11+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 11 Jul 2019 08:39:11 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 23 Jul 2019 13:04:54 +0800</lastBuildDate>
     
 	<atom:link href="http://gitop.cc/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用流收集数据</title>
+      <link>http://gitop.cc/posts/collecting-data-with-streams/</link>
+      <pubDate>Tue, 23 Jul 2019 13:04:54 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/collecting-data-with-streams/</guid>
+      <description>假设有一个事务列表，你希望根据货币对它们进行分组。在Java 8之前，即使是这样一个简单的例子也很难实现，如下所示： Map&amp;lt;Currency, List&amp;lt;Transaction&amp;gt;&amp;gt; transactionsByCurrencies = new HashMap&amp;lt;&amp;gt;(); for (Transaction transaction : transactions) { Currency</description>
+    </item>
     
     <item>
       <title>使用流</title>

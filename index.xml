@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 11 Jul 2019 08:39:11 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 23 Jul 2019 13:04:54 +0800</lastBuildDate>
     
 	<atom:link href="http://gitop.cc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用流收集数据</title>
+      <link>http://gitop.cc/posts/collecting-data-with-streams/</link>
+      <pubDate>Tue, 23 Jul 2019 13:04:54 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/collecting-data-with-streams/</guid>
+      <description>假设有一个事务列表，你希望根据货币对它们进行分组。在Java 8之前，即使是这样一个简单的例子也很难实现，如下所示： Map&amp;lt;Currency, List&amp;lt;Transaction&amp;gt;&amp;gt; transactionsByCurrencies = new HashMap&amp;lt;&amp;gt;(); for (Transaction transaction : transactions) { Currency</description>
+    </item>
     
     <item>
       <title>使用流</title>
@@ -91,15 +100,6 @@
       
       <guid>http://gitop.cc/posts/docker_install_gpdb_dev_env/</guid>
       <description>下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便</description>
-    </item>
-    
-    <item>
-      <title>数组</title>
-      <link>http://gitop.cc/posts/arrays/</link>
-      <pubDate>Mon, 12 Nov 2018 19:37:34 +0800</pubDate>
-      
-      <guid>http://gitop.cc/posts/arrays/</guid>
-      <description>创建数组 创建数组的最简单方法是使用数组字面值： var empty = []; // An array with no elements var primes = [2, 3, 5, 7, 11]; // An array with 5 numeric elements var misc = [1.1, true, &amp;#34;a&amp;#34;,]; // 3 elements of various types + trailing comma 数组字面值中的</description>
     </item>
     
   </channel>
