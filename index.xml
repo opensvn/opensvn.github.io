@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 23 Jul 2019 20:00:47 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jul 2019 14:22:44 +0800</lastBuildDate>
     
 	<atom:link href="http://gitop.cc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Collection API增强</title>
+      <link>http://gitop.cc/posts/collection-api-enhancements/</link>
+      <pubDate>Wed, 24 Jul 2019 14:22:44 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/collection-api-enhancements/</guid>
+      <description>Collection工厂 Java 9引入了一些创建小型集合对象的方法，比如Arrays.asList()： List&amp;lt;String&amp;gt; friends = Arrays.asList(&amp;#34;Raphael&amp;#34;, &amp;#34;Olivia&amp;#34;, &amp;#34;Thibaut&amp;#34;); Arrays.asList()</description>
+    </item>
     
     <item>
       <title>并行数据处理和性能</title>
@@ -91,15 +100,6 @@
       
       <guid>http://gitop.cc/posts/psql_intro/</guid>
       <description>psql介绍 psql是PostgreSQL中的一个命令行交互式客户端工具，类似Oracle中的命令行工具sqlplus，但它使用起来远比sq</description>
-    </item>
-    
-    <item>
-      <title>SQL入门</title>
-      <link>http://gitop.cc/posts/sql_intro/</link>
-      <pubDate>Sat, 19 Jan 2019 19:13:04 +0800</pubDate>
-      
-      <guid>http://gitop.cc/posts/sql_intro/</guid>
-      <description>SQL语句分类 DQL(Data Query Language)：数据查询语言，基本就是select语句，用于数据查询。 DML(Data Manipulation Language)：数据操纵语言，包含ins</description>
     </item>
     
   </channel>
