@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 24 Jul 2019 14:22:44 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jul 2019 20:30:19 +0800</lastBuildDate>
     
 	<atom:link href="http://gitop.cc/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>重构、测试和调试</title>
+      <link>http://gitop.cc/posts/refactoring-testing-debugging/</link>
+      <pubDate>Wed, 24 Jul 2019 20:30:19 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/refactoring-testing-debugging/</guid>
+      <description>重构以提高可读性和灵活性 提高代码的可读性 我们介绍三个简单的重构，使用lambda、方法引用和流，将它们应用到代码中，以提高代码的可读性： 将匿</description>
+    </item>
     
     <item>
       <title>Collection API增强</title>

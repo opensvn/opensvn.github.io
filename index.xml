@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 24 Jul 2019 14:22:44 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jul 2019 20:30:19 +0800</lastBuildDate>
     
 	<atom:link href="http://gitop.cc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>重构、测试和调试</title>
+      <link>http://gitop.cc/posts/refactoring-testing-debugging/</link>
+      <pubDate>Wed, 24 Jul 2019 20:30:19 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/refactoring-testing-debugging/</guid>
+      <description>重构以提高可读性和灵活性 提高代码的可读性 我们介绍三个简单的重构，使用lambda、方法引用和流，将它们应用到代码中，以提高代码的可读性： 将匿</description>
+    </item>
     
     <item>
       <title>Collection API增强</title>
@@ -91,15 +100,6 @@
       
       <guid>http://gitop.cc/posts/custom_gpdb_installation/</guid>
       <description>下载安装包并解压，得到一个bin文件，从bin文件提取rpm文件 # 前960行为安装脚本 [root@hadoop2 ~]# tail -n +961 greenplum-db-5.16.0-rhel7-x86_64.bin &amp;gt; gpdb.tar.gz 如果集群没有gpadmin用户，可以利</description>
-    </item>
-    
-    <item>
-      <title>psql使用介绍</title>
-      <link>http://gitop.cc/posts/psql_intro/</link>
-      <pubDate>Sat, 19 Jan 2019 19:13:20 +0800</pubDate>
-      
-      <guid>http://gitop.cc/posts/psql_intro/</guid>
-      <description>psql介绍 psql是PostgreSQL中的一个命令行交互式客户端工具，类似Oracle中的命令行工具sqlplus，但它使用起来远比sq</description>
     </item>
     
   </channel>

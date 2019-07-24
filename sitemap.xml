@@ -3,32 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://gitop.cc/posts/collection-api-enhancements/</loc>
-    <lastmod>2019-07-24T14:22:44+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://gitop.cc/tags/java/</loc>
-    <lastmod>2019-07-24T14:22:44+08:00</lastmod>
+    <lastmod>2019-07-24T20:30:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://gitop.cc/posts/</loc>
-    <lastmod>2019-07-24T14:22:44+08:00</lastmod>
+    <lastmod>2019-07-24T20:30:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://gitop.cc/tags/</loc>
-    <lastmod>2019-07-24T14:22:44+08:00</lastmod>
+    <lastmod>2019-07-24T20:30:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>http://gitop.cc/posts/refactoring-testing-debugging/</loc>
+    <lastmod>2019-07-24T20:30:19+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://gitop.cc/</loc>
-    <lastmod>2019-07-24T14:22:44+08:00</lastmod>
+    <lastmod>2019-07-24T20:30:19+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://gitop.cc/posts/collection-api-enhancements/</loc>
+    <lastmod>2019-07-24T14:22:44+08:00</lastmod>
   </url>
   
   <url>

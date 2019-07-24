@@ -6,8 +6,431 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Wed, 24 Jul 2019 14:22:44 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 24 Jul 2019 20:30:19 +0800</lastBuildDate>
 		<atom:link href="http://gitop.cc/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>重构、测试和调试</title>
+			<link>http://gitop.cc/posts/refactoring-testing-debugging/</link>
+			<pubDate>Wed, 24 Jul 2019 20:30:19 +0800</pubDate>
+			
+			<guid>http://gitop.cc/posts/refactoring-testing-debugging/</guid>
+			<description>重构以提高可读性和灵活性 提高代码的可读性 我们介绍三个简单的重构，使用lambda、方法引用和流，将它们应用到代码中，以提高代码的可读性： 将匿</description>
+			<content type="html"><![CDATA[
+
+<h2 id="重构以提高可读性和灵活性">重构以提高可读性和灵活性</h2>
+
+<h3 id="提高代码的可读性">提高代码的可读性</h3>
+
+<p>我们介绍三个简单的重构，使用lambda、方法引用和流，将它们应用到代码中，以提高代码的可读性：</p>
+
+<ul>
+<li>将匿名类重构为lambda表达式</li>
+<li>将lambda表达式重构为方法引用</li>
+<li>将命令式数据处理重构为流处理</li>
+</ul>
+
+<h3 id="从匿名类到lambda表达式">从匿名类到lambda表达式</h3>
+
+<p>下面是使用匿名类创建一个<code>Runnable</code>对象和对应的lambda表达式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 使用匿名类
+</span><span class="c1"></span><span class="n">Runnable</span> <span class="n">r1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+<span class="c1">// 使用lambda
+</span><span class="c1"></span><span class="n">Runnable</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello&#34;</span><span class="o">);</span></code></pre></div>
+<p>匿名类和lambda表达式有如下区别：</p>
+
+<ul>
+<li>this和super的含义不一样：在匿名类里面，this指的是匿名类本身，但在lambda里面，this指向包含lambda表达式的类。</li>
+<li>匿名类允许隐藏它外围作用域中的变量，lambda表达式不行。</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+<span class="n">Runnable</span> <span class="n">r1</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span> <span class="c1">// Compile error
+</span><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+<span class="o">};</span>
+
+<span class="n">Runnable</span> <span class="n">r2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span> <span class="c1">// Everything is fine!
+</span><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">};</span></code></pre></div>
+<ul>
+<li>将匿名类转换为lambda表达式会使代码在重载上下文中具有歧义。考虑下面的例子：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">interface</span> <span class="nc">Task</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">r</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="n">Task</span> <span class="n">a</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">r</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
+<span class="o">}</span></code></pre></div>
+<p>这里使用匿名类没有问题，但是使用lambda表达式会有歧义，因为<code>Runnable</code>和<code>Task</code>都是合法目标类型：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">doSomething</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Danger danger!!&#34;</span><span class="o">));</span> <span class="o">//</span> <span class="n">歧义</span></code></pre></div>
+<p>你可以提供显式转换解决歧义：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">doSomething</span><span class="o">((</span><span class="n">Task</span><span class="o">)()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Danger danger!!&#34;</span><span class="o">));</span></code></pre></div>
+<h3 id="从lambda表达式到方法引用">从lambda表达式到方法引用</h3>
+
+<p>Lambda表达式对于少量代码非常有用，但是方法引用更能清楚地说明代码的意图。比如下面这个例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">CaloricLevel</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;&gt;</span> <span class="n">dishesByCaloricLevel</span> <span class="o">=</span>
+    <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">groupingBy</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">400</span><span class="o">)</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">DIET</span><span class="o">;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">700</span><span class="o">)</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">NORMAL</span><span class="o">;</span>
+        <span class="k">else</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">FAT</span><span class="o">;</span>
+    <span class="o">}));</span></code></pre></div>
+<p>你可以将lambda表达式提取到一个单独的方法中，并将其作为参数传递给groupingBy。代码变得更加简洁，其意图也更加明确：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">CaloricLevel</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;&gt;</span> <span class="n">dishesByCaloricLevel</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">groupingBy</span><span class="o">(</span><span class="nl">Dish:</span><span class="o">:</span><span class="n">getCaloricLevel</span><span class="o">));</span></code></pre></div>
+<p>此外，尽可能使用辅助静态方法，比如comparing和maxBy。这些方法是为了方法引用而设计的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// lambda表达式
+</span><span class="c1"></span><span class="n">inventory</span><span class="o">.</span><span class="na">sort</span><span class="o">((</span><span class="n">a1</span><span class="o">,</span> <span class="n">a2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="na">getWeight</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">a2</span><span class="o">.</span><span class="na">getWeight</span><span class="o">()));</span>
+<span class="c1">// 方法引用
+</span><span class="c1"></span><span class="n">inventory</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">comparing</span><span class="o">(</span><span class="nl">Apple:</span><span class="o">:</span><span class="n">getWeight</span><span class="o">));</span></code></pre></div>
+<p>此外，对于许多常见的约简操作（如sum、maximum），有一些内置的辅助方法可以与方法引用相结合。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">totalCalories</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="nl">Dish:</span><span class="o">:</span><span class="n">getCalories</span><span class="o">).</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="o">(</span><span class="n">c1</span><span class="o">,</span> <span class="n">c2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">c2</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">totalCalories</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">summingInt</span><span class="o">(</span><span class="nl">Dish:</span><span class="o">:</span><span class="n">getCalories</span><span class="o">));</span></code></pre></div>
+<h3 id="从命令式数据处理到流处理">从命令式数据处理到流处理</h3>
+
+<p>理想情况下，你应该将使用迭代器处理集合的典型数据处理模式的所有代码转换为Streams API。因为Streams API更清楚地表达了数据处理的意图，并能在幕后进行优化，利用短路和惰性求值以及多核架构。</p>
+
+<p>下面的命令式代码表达了两个混杂在一起的模式（过滤和提取），迫使程序员在弄清楚代码功能之前必须弄清楚整个实现。此外，并行执行的代码很难编写。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">dishNames</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">Dish</span> <span class="n">dish</span> <span class="o">:</span> <span class="n">menu</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">300</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dishNames</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<p>另一种方法使用Streams API，读起来就像问题陈述，并且可以很容易地并行化:</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">menu</span><span class="o">.</span><span class="na">parallelStream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">d</span> <span class="o">-&gt;</span> <span class="n">d</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">300</span><span class="o">)</span>
+<span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">Dish:</span><span class="o">:</span><span class="n">getName</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span></code></pre></div>
+<h3 id="改进代码的灵活性">改进代码的灵活性</h3>
+
+<h4 id="采用函数接口">采用函数接口</h4>
+
+<p>首先，没有函数接口就不能使用lambda表达式，因此你应该开始在代码库中引入它们。我们讨论两个可以重构以利用lambda表达式的常见代码模式：条件延迟执行和Execute around。</p>
+
+<h4 id="条件延迟执行">条件延迟执行</h4>
+
+<p>控制流语句在业务逻辑代码中混合出现是很常见的。典型的场景包括安全检查和日志记录：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">logger</span><span class="o">.</span><span class="na">isLoggable</span><span class="o">(</span><span class="n">Log</span><span class="o">.</span><span class="na">FINER</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">logger</span><span class="o">.</span><span class="na">finer</span><span class="o">(</span><span class="s">&#34;Problem: &#34;</span> <span class="o">+</span> <span class="n">generateDiagnostic</span><span class="o">());</span>
+<span class="o">}</span></code></pre></div>
+<p>有几个问题：</p>
+
+<ul>
+<li><p>isLoggable方法将logger的状态暴露给用户代码</p></li>
+
+<li><p>为什么每次在记录消息之前都必须查询logger对象的状态？它会打乱你的代码</p></li>
+</ul>
+
+<p>更好的方法是使用log方法在内部检查logger对象是否设置为正确的级别，然后记录消息：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">logger</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="n">Level</span><span class="o">.</span><span class="na">FINER</span><span class="o">,</span> <span class="s">&#34;Problem: &#34;</span> <span class="o">+</span> <span class="n">generateDiagnostic</span><span class="o">());</span></code></pre></div>
+<p>这种方法更好，代码不会被if检查搞得乱七八糟，而且logger的状态不再暴露。但是这段代码仍然存在一个问题：日志消息总是被计算，即使logger没有启用。</p>
+
+<p>Lambda表达式可以提供帮助。你需要的是一种延迟消息构造的方法，以便只在给定的条件下生成消息。可以使用如下log方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">log</span><span class="o">(</span><span class="n">Level</span> <span class="n">level</span><span class="o">,</span> <span class="n">Supplier</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">msgSupplier</span><span class="o">)</span></code></pre></div>
+<p>现在可以这样调用：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">logger</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="n">Level</span><span class="o">.</span><span class="na">FINER</span><span class="o">,</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="s">&#34;Problem: &#34;</span> <span class="o">+</span> <span class="n">generateDiagnostic</span><span class="o">());</span></code></pre></div>
+<p>只有在日志级别正确的情况下，log方法才会执行lambda表达式。</p>
+
+<h4 id="execute-around">Execute around</h4>
+
+<p>如果不同代码使用相同的准备和清理阶段，则通常可以将其放入lambda。好处是可以重用准备和清理阶段的逻辑，从而减少代码重复。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">oneLine</span> <span class="o">=</span> <span class="n">processFile</span><span class="o">((</span><span class="n">BufferedReader</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">b</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+<span class="n">String</span> <span class="n">twoLines</span> <span class="o">=</span> <span class="n">processFile</span><span class="o">((</span><span class="n">BufferedReader</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">b</span><span class="o">.</span><span class="na">readLine</span><span class="o">()</span> <span class="o">+</span> <span class="n">b</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">processFile</span><span class="o">(</span><span class="n">BufferedReaderProcessor</span> <span class="n">p</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+    <span class="k">try</span><span class="o">(</span><span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span>
+        <span class="k">new</span> <span class="n">FileReader</span><span class="o">(</span><span class="s">&#34;ModernJavaInAction/chap9/data.txt&#34;</span><span class="o">)))</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">br</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">BufferedReaderProcessor</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="nf">process</span><span class="o">(</span><span class="n">BufferedReader</span> <span class="n">b</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">;</span>
+<span class="o">}</span></code></pre></div>
+<h2 id="使用lambda重构设计模式">使用lambda重构设计模式</h2>
+
+<h3 id="策略模式">策略模式</h3>
+
+<p>策略模式是一种常见的设计模式，用于表示一系列算法，并让你在运行时从中进行选择。如下图：</p>
+
+<p><img src="/static/images/2019/07/24/strategy.png" alt="strategy.png" /></p>
+
+<p>策略模式包含3个部分：</p>
+
+<ul>
+<li>一个代表某种算法的接口</li>
+<li>一个或多个接口的实现用于表示多个算法</li>
+<li>一个或多个使用策略对象的用户</li>
+</ul>
+
+<p>假设您想验证文本输入对不同的条件是否正确格式化。首先定义一个接口来验证文本：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ValidationStrategy</span> <span class="o">{</span>
+	<span class="kt">boolean</span> <span class="nf">execute</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<p>接下来定义接口的2个实现：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IsAllLowerCase</span> <span class="kd">implements</span> <span class="n">ValidationStrategy</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">execute</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="s">&#34;[a-z]+&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">IsNumeric</span> <span class="kd">implements</span> <span class="n">ValidationStrategy</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">execute</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="s">&#34;\\d+&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<p>然后你可以使用这些不同的验证策略：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Validator</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ValidationStrategy</span> <span class="n">strategy</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Validator</span><span class="o">(</span><span class="n">ValidationStrategy</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">strategy</span> <span class="o">=</span> <span class="n">v</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">validate</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">strategy</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">Validator</span> <span class="n">numericValidator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Validator</span><span class="o">(</span><span class="k">new</span> <span class="n">IsNumeric</span><span class="o">());</span>
+<span class="kt">boolean</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">numericValidator</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">&#34;aaaa&#34;</span><span class="o">);</span>
+<span class="n">Validator</span> <span class="n">lowerCaseValidator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Validator</span><span class="o">(</span><span class="k">new</span> <span class="n">IsAllLowerCase</span><span class="o">());</span>
+<span class="kt">boolean</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">lowerCaseValidator</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">&#34;bbbb&#34;</span><span class="o">);</span></code></pre></div>
+<h4 id="使用lambda表达式">使用lambda表达式</h4>
+
+<p>ValidationStrategy是一个函数接口，因此可以直接传递更简洁的lambda表达式，来实现不同的策略：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Validator</span> <span class="n">numericValidator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Validator</span><span class="o">((</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="s">&#34;[a-z]+&#34;</span><span class="o">));</span>
+<span class="kt">boolean</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">numericValidator</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">&#34;aaaa&#34;</span><span class="o">);</span>
+<span class="n">Validator</span> <span class="n">lowerCaseValidator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Validator</span><span class="o">((</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="s">&#34;\\d+&#34;</span><span class="o">));</span>
+<span class="kt">boolean</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">lowerCaseValidator</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">&#34;bbbb&#34;</span><span class="o">);</span></code></pre></div>
+<h3 id="模板方法模式">模板方法模式</h3>
+
+<p>模板方法模式是一种常见的模式，当你需要表示算法的大纲并具有更改其中某些部分的额外灵活性时。下面是一个模板方法模式的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">OnlineBanking</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processCustomer</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Customer</span> <span class="n">c</span> <span class="o">=</span> <span class="n">Database</span><span class="o">.</span><span class="na">getCustomerWithId</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="n">makeCustomerHappy</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">makeCustomerHappy</span><span class="o">(</span><span class="n">Customer</span> <span class="n">c</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<h4 id="使用lambda表达式-1">使用lambda表达式</h4>
+
+<p>你可以使用lambda表达式解决相同的问题，需要更改的部分可以使用lambda表达式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">processCustomer</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span> <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span> <span class="n">makeCustomerHappy</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Customer</span> <span class="n">c</span> <span class="o">=</span> <span class="n">Database</span><span class="o">.</span><span class="na">getCustomerWithId</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="n">makeCustomerHappy</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<p>现在你可以通过lambda表达式插入不同的行为，而不用继承<code>OnlineBanking</code>类：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">new</span> <span class="n">OnlineBankingLambda</span><span class="o">().</span><span class="na">processCustomer</span><span class="o">(</span><span class="n">1337</span><span class="o">,</span> <span class="o">(</span><span class="n">Customer</span> <span class="n">c</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello &#34;</span> <span class="o">+</span> <span class="n">c</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span></code></pre></div>
+<h3 id="观察者模式">观察者模式</h3>
+
+<p>观察者模式是一种常见的设计模式，当主体需要在发生某些事件时自动通知其他观察者。假设你要设计一个Twitter通知系统，几家报社订阅了一个新闻，并希望能收到特定新闻通知。</p>
+
+<p>首先定义观察者接口：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">interface</span> <span class="nc">Observer</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">notify</span><span class="o">(</span><span class="n">String</span> <span class="n">tweet</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<p>接下来定义不同的报社实现观察者接口：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">NYTimes</span> <span class="kd">implements</span> <span class="n">Observer</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">notify</span><span class="o">(</span><span class="n">String</span> <span class="n">tweet</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tweet</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">tweet</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;money&#34;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Breaking news in NY! &#34;</span> <span class="o">+</span> <span class="n">tweet</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Guardian</span> <span class="kd">implements</span> <span class="n">Observer</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">notify</span><span class="o">(</span><span class="n">String</span> <span class="n">tweet</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tweet</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">tweet</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;queen&#34;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Yet more news from London... &#34;</span> <span class="o">+</span> <span class="n">tweet</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">LeMonde</span> <span class="kd">implements</span> <span class="n">Observer</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">notify</span><span class="o">(</span><span class="n">String</span> <span class="n">tweet</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tweet</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">tweet</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;wine&#34;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Today cheese, wine and news! &#34;</span> <span class="o">+</span> <span class="n">tweet</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<p>定义主体接口：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">interface</span> <span class="nc">Subject</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">registerObserver</span><span class="o">(</span><span class="n">Observer</span> <span class="n">o</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">notifyObservers</span><span class="o">(</span><span class="n">String</span> <span class="n">tweet</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<p>主体使用<code>registerObserver</code>方法注册观察者，使用<code>notifyObservers</code>方法通知观察者，接下来实现订阅类：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Feed</span> <span class="kd">implements</span> <span class="n">Subject</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Observer</span><span class="o">&gt;</span> <span class="n">observers</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">registerObserver</span><span class="o">(</span><span class="n">Observer</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">observers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">o</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">notifyObservers</span><span class="o">(</span><span class="n">String</span> <span class="n">tweet</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">observers</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">o</span> <span class="o">-&gt;</span> <span class="n">o</span><span class="o">.</span><span class="na">notify</span><span class="o">(</span><span class="n">tweet</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<h4 id="使用lambda表达式-2">使用lambda表达式</h4>
+
+<p>观察者接口可以使用lambda表达式替换：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">f</span><span class="o">.</span><span class="na">registerObserver</span><span class="o">((</span><span class="n">String</span> <span class="n">tweet</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">tweet</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">tweet</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;money&#34;</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Breaking news in NY! &#34;</span> <span class="o">+</span> <span class="n">tweet</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+
+<span class="n">f</span><span class="o">.</span><span class="na">registerObserver</span><span class="o">((</span><span class="n">String</span> <span class="n">tweet</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">tweet</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">tweet</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;queen&#34;</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Yet more news from London... &#34;</span> <span class="o">+</span> <span class="n">tweet</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">});</span></code></pre></div>
+<h3 id="职责链模式">职责链模式</h3>
+
+<p>责任链模式是创建处理对象链的设计模式。一个处理对象可以做一些工作并将结果传递给另一个对象，另一个对象也做一些工作并将结果传递给下一个处理对象，以此类推。</p>
+
+<p>通常该模式是通过定义一个抽象类来实现的。这个类表示一个处理对象，并定义一个字段来跟踪后继对象。当它完成它的工作时，处理对象将它的工作移交给它的后继对象。如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ProcessingObject</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">protected</span> <span class="n">ProcessingObject</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">successor</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSuccessor</span><span class="o">(</span><span class="n">ProcessingObject</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">successor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">successor</span> <span class="o">=</span> <span class="n">successor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">T</span> <span class="nf">handle</span><span class="o">(</span><span class="n">T</span> <span class="n">input</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">T</span> <span class="n">r</span> <span class="o">=</span> <span class="n">handleWork</span><span class="o">(</span><span class="n">input</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">successor</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">successor</span><span class="o">.</span><span class="na">handle</span><span class="o">(</span><span class="n">r</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">r</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">abstract</span> <span class="kd">protected</span> <span class="n">T</span> <span class="nf">handleWork</span><span class="o">(</span><span class="n">T</span> <span class="n">input</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<p>下面是使用此模式的例子，你可以创建两个处理对象来执行一些文本处理：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HeaderTextProcessing</span> <span class="kd">extends</span> <span class="n">ProcessingObject</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">handleWork</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&#34;From Raoul, Mario and Alan: &#34;</span> <span class="o">+</span> <span class="n">text</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpellCheckerProcessing</span> <span class="kd">extends</span> <span class="n">ProcessingObject</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">handleWork</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&#34;labda&#34;</span><span class="o">,</span> <span class="s">&#34;lambda&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<p>现在你可以连接两个处理对象来创建一个操作链：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ProcessingObject</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HeaderTextProcessing</span><span class="o">();</span>
+<span class="n">ProcessingObject</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SpellCheckerProcessing</span><span class="o">();</span>
+<span class="n">p1</span><span class="o">.</span><span class="na">setSuccessor</span><span class="o">(</span><span class="n">p2</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="na">handle</span><span class="o">(</span><span class="s">&#34;Aren&#39;t lambdas really sexy?!!&#34;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span></code></pre></div>
+<h4 id="使用lambda表达式-3">使用lambda表达式</h4>
+
+<p>这个模式看起来像组合函数，可以将处理对象表示为<code>Function&lt;String、String&gt;</code>或<code>UnaryOperator&lt;String&gt;</code>的实例。要将它们链接起来，可以使用andThen方法组合这些函数:</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">headerProcessing</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="s">&#34;From Raoul, Mario and Alan: &#34;</span> <span class="o">+</span> <span class="n">text</span><span class="o">;</span>
+<span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">spellCheckerProcessing</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">text</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&#34;labda&#34;</span><span class="o">,</span> <span class="s">&#34;lambda&#34;</span><span class="o">);</span>
+<span class="n">Function</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">pipeline</span> <span class="o">=</span> <span class="n">headerProcessing</span><span class="o">.</span><span class="na">andThen</span><span class="o">(</span><span class="n">spellCheckerProcessing</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="s">&#34;Aren&#39;t lambdas really sexy?!!&#34;</span><span class="o">);</span></code></pre></div>
+<h3 id="工厂模式">工厂模式</h3>
+
+<p>工厂设计模式允许你创建对象，而无需暴露实例化逻辑：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProductFactory</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Product</span> <span class="nf">createProduct</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="s">&#34;loan&#34;</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">Loan</span><span class="o">();</span>
+            <span class="k">case</span> <span class="s">&#34;stock&#34;</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">Stock</span><span class="o">();</span>
+            <span class="k">case</span> <span class="s">&#34;bond&#34;</span><span class="o">:</span> <span class="k">return</span> <span class="k">new</span> <span class="n">Bond</span><span class="o">();</span><span class="nl">
+</span><span class="nl">            default:</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;No such product &#34;</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<h4 id="使用lambda表达式-4">使用lambda表达式</h4>
+
+<p>我们可以像使用方法引用一样使用构造器引用，如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Product</span><span class="o">&gt;</span> <span class="n">loanSupplier</span> <span class="o">=</span> <span class="nl">Loan:</span><span class="o">:</span><span class="k">new</span><span class="o">;</span>
+<span class="n">Loan</span> <span class="n">loan</span> <span class="o">=</span> <span class="n">loanSupplier</span><span class="o">.</span><span class="na">get</span><span class="o">();</span></code></pre></div>
+<p>使用这个方法可以将前面的工厂模式重写为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Product</span><span class="o">&gt;&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="kd">static</span> <span class="o">{</span>
+    <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;loan&#34;</span><span class="o">,</span> <span class="nl">Loan:</span><span class="o">:</span><span class="k">new</span><span class="o">);</span>
+    <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;stock&#34;</span><span class="o">,</span> <span class="nl">Stock:</span><span class="o">:</span><span class="k">new</span><span class="o">);</span>
+    <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;bond&#34;</span><span class="o">,</span> <span class="nl">Bond:</span><span class="o">:</span><span class="k">new</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<p>像工厂模式一样，你可以使用这个Map来初始化不同的产品：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Product</span> <span class="nf">createProduct</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Product</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">p</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;No such product &#34;</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<h2 id="测试lambda">测试lambda</h2>
+
+<h3 id="测试可见lambda的行为">测试可见lambda的行为</h3>
+
+<p>lambda表达式生成函数接口的实例，因此你可以测试该实例的行为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">compareByXAndThenY</span> <span class="o">=</span>
+    <span class="n">comparing</span><span class="o">(</span><span class="nl">Point:</span><span class="o">:</span><span class="n">getX</span><span class="o">).</span><span class="na">thenComparing</span><span class="o">(</span><span class="nl">Point:</span><span class="o">:</span><span class="n">getY</span><span class="o">);</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testComparingTwoPoints</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">Point</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">15</span><span class="o">);</span>
+    <span class="n">Point</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">20</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">Point</span><span class="o">.</span><span class="na">compareByXAndThenY</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">);</span>
+    <span class="n">assertTrue</span><span class="o">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<h3 id="关注使用lambda的方法的行为">关注使用lambda的方法的行为</h3>
+
+<p>我们认为应该测试使用lambda表达式的方法的行为</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMoveAllPointsRightBy</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">points</span> <span class="o">=</span>
+        <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">5</span><span class="o">),</span> <span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">5</span><span class="o">));</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">expectedPoints</span> <span class="o">=</span>
+        <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">15</span><span class="o">,</span> <span class="n">5</span><span class="o">),</span> <span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">20</span><span class="o">,</span> <span class="n">5</span><span class="o">));</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">newPoints</span> <span class="o">=</span> <span class="n">Point</span><span class="o">.</span><span class="na">moveAllPointsRightBy</span><span class="o">(</span><span class="n">points</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">expectedPoints</span><span class="o">,</span> <span class="n">newPoints</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<h3 id="将复杂的lambda放到单独的方法中">将复杂的lambda放到单独的方法中</h3>
+
+<p>也许你会遇到一个非常复杂的lambda表达式，包含很多逻辑。如何测试这个lambda表达式？一种策略是将lambda表达式转换为方法引用。然后可以像测试任何常规方法一样测试新方法的行为。</p>
+
+<h3 id="测试高阶函数">测试高阶函数</h3>
+
+<p>高阶函数比较难测试，可以用不同的lambda测试它的行为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testFilter</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">even</span> <span class="o">=</span> <span class="n">filter</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">smallerThanThree</span> <span class="o">=</span> <span class="n">filter</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">3</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">2</span><span class="o">,</span> <span class="n">4</span><span class="o">),</span> <span class="n">even</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">),</span> <span class="n">smallerThanThree</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<h2 id="调试">调试</h2>
+
+<h3 id="记录日志信息">记录日志信息</h3>
+
+<p><code>peek</code>的目的是在使用流的每个元素时对其执行一个操作。它不像<code>forEach</code>那样消耗整个流，而是将其操作的元素转发给管道中的下一个操作。在下面的代码中，<code>peek</code>在流管道中的每个操作之前和之后打印中间值：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">peek</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;from stream: &#34;</span> <span class="o">+</span> <span class="n">x</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">17</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">peek</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;after map: &#34;</span> <span class="o">+</span> <span class="n">x</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">peek</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;after filter: &#34;</span> <span class="o">+</span> <span class="n">x</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="n">3</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">peek</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;after limit: &#34;</span> <span class="o">+</span> <span class="n">x</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span></code></pre></div>]]></content>
+		</item>
 		
 		<item>
 			<title>Collection API增强</title>
