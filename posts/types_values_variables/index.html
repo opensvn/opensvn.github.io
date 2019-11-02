@@ -7,7 +7,6 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
-
 <meta itemprop="name" content="类型、值和变量">
 <meta itemprop="description" content="Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefine">
 
@@ -23,8 +22,8 @@
 <meta property="og:description" content="Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefine" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://gitop.cc/posts/types_values_variables/" />
-<meta property="article:published_time" content="2018-10-28T14:24:21&#43;08:00"/>
-<meta property="article:modified_time" content="2018-10-28T14:24:21&#43;08:00"/>
+<meta property="article:published_time" content="2018-10-28T14:24:21+08:00" />
+<meta property="article:modified_time" content="2018-10-28T14:24:21+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="类型、值和变量"/>
 <meta name="twitter:description" content="Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefine"/>
@@ -37,7 +36,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>类型、值和变量</title>
-	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
 	
 </head>
 
@@ -298,9 +297,9 @@
 
 <p>JavaScript定义了RegExp()构造函数，用于创建表示文本模式的对象。Javascript使用一对斜杠之间的文本组成正则表达式：</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="o">/^</span><span class="nx">HTML</span><span class="o">/</span> <span class="c1">// Match the letters HTML at the start of a string
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="sr">/^HTML/</span> <span class="c1">// Match the letters HTML at the start of a string
 </span><span class="c1"></span><span class="sr">/1-9*/</span> <span class="c1">// Match a non-zero digit, followed by any # of digits
-</span><span class="c1"></span><span class="o">/</span><span class="err">\</span><span class="nx">bjavascript</span><span class="err">\</span><span class="nx">b</span><span class="o">/</span><span class="nx">i</span> <span class="c1">// Match &#34;javascript&#34; as a word, case-insensitive
+</span><span class="c1"></span><span class="sr">/\bjavascript\b/i</span> <span class="c1">// Match &#34;javascript&#34; as a word, case-insensitive
 </span></code></pre></div>
 
 <p>RegExp对象定义了许多有用的方法，字符串也有接受RegExp参数的方法：</p>
@@ -532,8 +531,8 @@
 
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;1,2,3&#34;
 </span><span class="c1"></span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="nx">f</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="p">}).</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;function(x) {\n f(x);\n}&#34;
-</span><span class="c1"></span><span class="o">/</span><span class="err">\</span><span class="nx">d</span><span class="o">+</span><span class="sr">/g.toString() /</span><span class="o">/</span> <span class="p">=&gt;</span> <span class="s2">&#34;/\d+/g&#34;</span>
-<span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">).</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;Fri Jan 01 2010 0000 GMT-0800 (PST)&#34;
+</span><span class="c1"></span><span class="sr">/\d+/g</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;/\d+/g&#34;
+</span><span class="c1"></span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">).</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;Fri Jan 01 2010 0000 GMT-0800 (PST)&#34;
 </span></code></pre></div>
 
 <p>另一个转换方法是valueOf()。包装类的valueOf()返回其原始类型。数组，函数和正则表达式只是继承默认方法。调用这些类型实例的valueOf()只是返回对象本身。Date类的valueOf()返回自1970年1月1日以来的毫秒数。</p>

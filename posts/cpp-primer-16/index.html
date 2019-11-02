@@ -7,14 +7,13 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
-
 <meta itemprop="name" content="第16章 模板和泛型编程">
 <meta itemprop="description" content="面向对象编程和泛型编程都是处理程序编写时类型未知的情况。两者的区别是面向对象编程直到运行时类型才能知道，而泛型编程类型在编译期间知道。 容器，">
 
 
 <meta itemprop="datePublished" content="2015-12-14T10:34:42&#43;00:00" />
 <meta itemprop="dateModified" content="2015-12-14T10:34:42&#43;00:00" />
-<meta itemprop="wordCount" content="16677">
+<meta itemprop="wordCount" content="16705">
 
 
 
@@ -23,8 +22,8 @@
 <meta property="og:description" content="面向对象编程和泛型编程都是处理程序编写时类型未知的情况。两者的区别是面向对象编程直到运行时类型才能知道，而泛型编程类型在编译期间知道。 容器，" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://gitop.cc/posts/cpp-primer-16/" />
-<meta property="article:published_time" content="2015-12-14T10:34:42&#43;00:00"/>
-<meta property="article:modified_time" content="2015-12-14T10:34:42&#43;00:00"/>
+<meta property="article:published_time" content="2015-12-14T10:34:42+00:00" />
+<meta property="article:modified_time" content="2015-12-14T10:34:42+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="第16章 模板和泛型编程"/>
 <meta name="twitter:description" content="面向对象编程和泛型编程都是处理程序编写时类型未知的情况。两者的区别是面向对象编程直到运行时类型才能知道，而泛型编程类型在编译期间知道。 容器，"/>
@@ -37,7 +36,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>第16章 模板和泛型编程</title>
-	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
 	
 </head>
 
@@ -175,7 +174,7 @@
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="n">N</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">M</span><span class="o">&gt;</span>
 <span class="kt">int</span> <span class="n">compare</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">p1</span><span class="p">)[</span><span class="n">N</span><span class="p">],</span> <span class="k">const</span> <span class="kt">char</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">p2</span><span class="p">)[</span><span class="n">M</span><span class="p">])</span>
 <span class="p">{</span>
-    <span class="k">return</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nf">strcmp</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="n">compare</span><span class="p">(</span><span class="s">&#34;hi&#34;</span><span class="p">,</span> <span class="s">&#34;mom&#34;</span><span class="p">)</span>
@@ -264,7 +263,7 @@
 
 <p>和函数模板一样，类模板以<strong>template</strong>关键字开头，后跟一个模板参数列表。在类模板（和它的成员）的定义中，我们使用模板参数作为当模板使用时提供的类型或值的替身。</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">Blob</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Blob</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="k">typedef</span> <span class="n">T</span> <span class="n">value_type</span><span class="p">;</span>
     <span class="k">typedef</span> <span class="k">typename</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">size_type</span> <span class="n">size_type</span><span class="p">;</span>
@@ -296,7 +295,7 @@
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Blob</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ia</span><span class="p">;</span>                <span class="c1">// empty Blob&lt;int&gt;
 </span><span class="c1"></span><span class="n">Blob</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ia2</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span> <span class="c1">// Blob&lt;int&gt; with five elements
 </span><span class="c1"></span>
-<span class="k">template</span> <span class="o">&lt;&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">Blob</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="k">template</span> <span class="o">&lt;&gt;</span> <span class="k">class</span> <span class="nc">Blob</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="k">typedef</span> <span class="k">typename</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">size_type</span> <span class="n">size_type</span><span class="p">;</span>
     <span class="n">Blob</span><span class="p">();</span>
     <span class="n">Blob</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">il</span><span class="p">);</span>
@@ -403,7 +402,7 @@
 <p>使用一个类模板类型必须提供一个模板实参有一个例外，在类模板作用域里面，我们可以不带模板实参使用模板名字。</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// BlobPtr throws an exception on attempts to access a nonexistent element
-</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">BlobPtr</span> <span class="p">{</span>
+</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">BlobPtr</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">BlobPtr</span><span class="p">()</span><span class="o">:</span> <span class="n">curr</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
     <span class="n">BlobPtr</span><span class="p">(</span><span class="n">Blob</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">sz</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span>
@@ -459,14 +458,14 @@
 <p>从一个类模板到另一个模板（类模板或函数模板）建立相应实例之间的友元关系是最常见友元关系形式。为了引用一个指定的模板实例（类模板或函数模板），我们必须先声明模板。一个模板声明包含模板参数列表。</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// forward declarations needed for friend declarations in Blob
-</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">BlobPtr</span><span class="p">;</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">Blob</span><span class="p">;</span> <span class="c1">// needed for parameters in operator==
+</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">BlobPtr</span><span class="p">;</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Blob</span><span class="p">;</span> <span class="c1">// needed for parameters in operator==
 </span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
     <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Blob</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Blob</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="p">);</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">Blob</span> <span class="p">{</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Blob</span> <span class="p">{</span>
     <span class="c1">// each instantiation of Blob grants access to the version of
 </span><span class="c1"></span>    <span class="c1">// BlobPtr and the equality operator instantiated with the same type
-</span><span class="c1"></span>    <span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">BlobPtr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="k">friend</span> <span class="k">class</span> <span class="nc">BlobPtr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
     <span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">==&lt;</span><span class="n">T</span><span class="o">&gt;</span>
            <span class="p">(</span><span class="k">const</span> <span class="n">Blob</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Blob</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="p">);</span>
     <span class="c1">// other members as in § 12.1.1 (p. 456)
@@ -481,20 +480,20 @@
 <p>一个类也可以指定另一个模板的每一个实例为友元，或限制指定实例为友元：</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// forward declaration necessary to befriend a specific instantiation of a template
-</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">Pal</span><span class="p">;</span>
-<span class="k">class</span><span class="err"> </span><span class="nc">C</span> <span class="p">{</span>  <span class="c1">//  C is an ordinary, nontemplate class
-</span><span class="c1"></span>    <span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">Pal</span><span class="o">&lt;</span><span class="n">C</span><span class="o">&gt;</span><span class="p">;</span>  <span class="c1">// Pal instantiated with class C is a friend to C
+</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Pal</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">C</span> <span class="p">{</span>  <span class="c1">//  C is an ordinary, nontemplate class
+</span><span class="c1"></span>    <span class="k">friend</span> <span class="k">class</span> <span class="nc">Pal</span><span class="o">&lt;</span><span class="n">C</span><span class="o">&gt;</span><span class="p">;</span>  <span class="c1">// Pal instantiated with class C is a friend to C
 </span><span class="c1"></span>    <span class="c1">// all instances of Pal2 are friends to C;
 </span><span class="c1"></span>    <span class="c1">// no forward declaration required when we befriend all instantiations
-</span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">Pal2</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">friend</span> <span class="k">class</span> <span class="nc">Pal2</span><span class="p">;</span>
 <span class="p">};</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">C2</span> <span class="p">{</span> <span class="c1">// C2 is itself a class template
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">C2</span> <span class="p">{</span> <span class="c1">// C2 is itself a class template
 </span><span class="c1"></span>    <span class="c1">// each instantiation of C2 has the same instance of Pal as a friend
-</span><span class="c1"></span>    <span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">Pal</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>  <span class="c1">// a template declaration for Pal must be in scope
+</span><span class="c1"></span>    <span class="k">friend</span> <span class="k">class</span> <span class="nc">Pal</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>  <span class="c1">// a template declaration for Pal must be in scope
 </span><span class="c1"></span>    <span class="c1">// all instances of Pal2 are friends of each instance of C2, prior declaration needed
-</span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">X</span><span class="o">&gt;</span> <span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">Pal2</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">X</span><span class="o">&gt;</span> <span class="k">friend</span> <span class="k">class</span> <span class="nc">Pal2</span><span class="p">;</span>
     <span class="c1">// Pal3 is a nontemplate class that is a friend of every instance of C2
-</span><span class="c1"></span>    <span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">Pal3</span><span class="p">;</span>    <span class="c1">// prior declaration for Pal3 not needed
+</span><span class="c1"></span>    <span class="k">friend</span> <span class="k">class</span> <span class="nc">Pal3</span><span class="p">;</span>    <span class="c1">// prior declaration for Pal3 not needed
 </span><span class="c1"></span><span class="p">};</span>
 </code></pre></div>
 
@@ -504,7 +503,7 @@
 
 <p>在新标准下，我们可以将模板类型参数作为友元：</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">Bar</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Bar</span> <span class="p">{</span>
 <span class="k">friend</span> <span class="n">Type</span><span class="p">;</span> <span class="c1">// grants access to the type used to instantiate Bar
 </span><span class="c1"></span>    <span class="c1">//  ...
 </span><span class="c1"></span><span class="p">};</span>
@@ -543,7 +542,7 @@
 
 <p>和其它类一样，类模板可以声明静态成员：</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">Foo</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">count</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">ctr</span><span class="p">;</span> <span class="p">}</span>
    <span class="c1">// other interface members
@@ -614,7 +613,7 @@
 
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// declares but does not define compare and Blob
 </span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">int</span> <span class="n">compare</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span><span class="p">);</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">Blob</span><span class="p">;</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Blob</span><span class="p">;</span>
 </code></pre></div>
 
 <p>和函数参数一样，模板参数名不需要和定义中的模板参数名一样：</p>
@@ -682,7 +681,7 @@
 
 <p>不管什么时候使用类模板，我们必须在模板名后面跟尖括号。尖括号指示类必须从模板实例化。特别地，如果一个类模板为所有模板参数提供了默认实参，且我们使用这些默认值，我们必须在模板名后面放一对空的尖括号：</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span><span class="err"> </span><span class="nc">T</span> <span class="o">=</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">Numbers</span> <span class="p">{</span>   <span class="c1">// by default T is int
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span> <span class="o">=</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Numbers</span> <span class="p">{</span>   <span class="c1">// by default T is int
 </span><span class="c1"></span><span class="k">public</span><span class="o">:</span>
     <span class="n">Numbers</span><span class="p">(</span><span class="n">T</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
     <span class="c1">// various operations on numbers
@@ -700,7 +699,7 @@
 <h3 id="普通类的成员模板">普通类的成员模板<a href="#普通类的成员模板" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// function-object class that calls delete on a given pointer
-</span><span class="c1"></span><span class="k">class</span><span class="err"> </span><span class="nc">DebugDelete</span> <span class="p">{</span>
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">DebugDelete</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">DebugDelete</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">s</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="p">)</span><span class="o">:</span> <span class="n">os</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
     <span class="c1">// as with any function template, the type of T is deduced by the compiler
@@ -740,7 +739,7 @@
 
 <p>我们也可以定义一个类模板的成员模板。这种情况下，类和成员都有它们自己的独立的模板参数。</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">Blob</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Blob</span> <span class="p">{</span>
     <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">It</span><span class="o">&gt;</span> <span class="n">Blob</span><span class="p">(</span><span class="n">It</span> <span class="n">b</span><span class="p">,</span> <span class="n">It</span> <span class="n">e</span><span class="p">);</span>
     <span class="c1">// ...
 </span><span class="c1"></span><span class="p">};</span>
@@ -786,7 +785,7 @@
 <p>declaration是一个类或函数声明，其模板参数被模板实参替换。</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// instantion declaration and definition
-</span><span class="c1"></span><span class="k">extern</span> <span class="k">template</span> <span class="k">class</span><span class="err"> </span><span class="nc">Blob</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">;</span>             <span class="c1">// declaration
+</span><span class="c1"></span><span class="k">extern</span> <span class="k">template</span> <span class="k">class</span> <span class="nc">Blob</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">;</span>             <span class="c1">// declaration
 </span><span class="c1"></span><span class="k">template</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span><span class="p">);</span>   <span class="c1">// definition
 </span></code></pre></div>
 
@@ -796,7 +795,7 @@
 
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Application.cc
 </span><span class="c1">// these template types must be instantiated elsewhere in the program
-</span><span class="c1"></span><span class="k">extern</span> <span class="k">template</span> <span class="k">class</span><span class="err"> </span><span class="nc">Blob</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span class="c1"></span><span class="k">extern</span> <span class="k">template</span> <span class="k">class</span> <span class="nc">Blob</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">;</span>
 <span class="k">extern</span> <span class="k">template</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span><span class="p">);</span>
 <span class="n">Blob</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">sa1</span><span class="p">,</span> <span class="n">sa2</span><span class="p">;</span> <span class="c1">// instantiation will appear elsewhere
 </span><span class="c1">// Blob&lt;int&gt; and its initializer_list constructor instantiated in this file
@@ -1538,7 +1537,7 @@ const转换和数组或函数到指针的转换是模板类型唯一的实参到
 <span class="n">ostream</span> <span class="o">&amp;</span><span class="n">errorMsg</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Args</span><span class="o">&amp;</span><span class="p">...</span> <span class="n">rest</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">// print(os, debug_rep(a1), debug_rep(a2), ..., debug_rep(an)
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">print</span><span class="p">(</span><span class="n">os</span><span class="p">,</span> <span class="n">debug_rep</span><span class="p">(</span><span class="n">rest</span><span class="p">)...);</span>
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nf">print</span><span class="p">(</span><span class="n">os</span><span class="p">,</span> <span class="n">debug_rep</span><span class="p">(</span><span class="n">rest</span><span class="p">)...);</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -1555,7 +1554,7 @@ const转换和数组或函数到指针的转换是模板类型唯一的实参到
 
 <p>我们知道，保存类型信息有2个步骤。第一，为了保存实参的类型信息，必须定义函数参数为右值模板参数。</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span><span class="err"> </span><span class="nc">StrVec</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">StrVec</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span><span class="err">... </span><span class="nc">Args</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">emplace_back</span><span class="p">(</span><span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...);</span>
     <span class="c1">// remaining members as in § 13.5 (p. 526)
@@ -1617,7 +1616,7 @@ const转换和数组或函数到指针的转换是模板类型唯一的实参到
 </span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;&gt;</span>
 <span class="kt">int</span> <span class="n">compare</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">p1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">p2</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">return</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nf">strcmp</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -1657,7 +1656,7 @@ const转换和数组或函数到指针的转换是模板类型唯一的实参到
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// open the std namespace so we can specialize std::hash
 </span><span class="c1"></span><span class="k">namespace</span> <span class="n">std</span> <span class="p">{</span>
 <span class="k">template</span> <span class="o">&lt;&gt;</span>  <span class="c1">// we&#39;re defining a specialization with
-</span><span class="c1"></span><span class="k">struct</span> <span class="n">hash</span><span class="o">&lt;</span><span class="n">Sales_data</span><span class="o">&gt;</span> <span class="c1">// the template parameter of Sales_data
+</span><span class="c1"></span><span class="k">struct</span> <span class="nc">hash</span><span class="o">&lt;</span><span class="n">Sales_data</span><span class="o">&gt;</span> <span class="c1">// the template parameter of Sales_data
 </span><span class="c1"></span><span class="p">{</span>
     <span class="c1">// the type used to hash an unordered container must define these types
 </span><span class="c1"></span>    <span class="k">typedef</span> <span class="n">size_t</span> <span class="n">result_type</span><span class="p">;</span>
@@ -1694,13 +1693,13 @@ const转换和数组或函数到指针的转换是模板类型唯一的实参到
 <p>标准库remove_reference类型就是通过一系列特化工作的：</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// original, most general template
-</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span><span class="err"> </span><span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">remove_reference</span> <span class="p">{</span>
+</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="nc">remove_reference</span> <span class="p">{</span>
     <span class="k">typedef</span> <span class="n">T</span> <span class="n">type</span><span class="p">;</span>
 <span class="p">};</span>
 <span class="c1">// partial specializations that will be used for lvalue and rvalue references
-</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span><span class="err"> </span><span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">remove_reference</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&amp;&gt;</span>  <span class="c1">// lvalue references
+</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="nc">remove_reference</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&amp;&gt;</span>  <span class="c1">// lvalue references
 </span><span class="c1"></span><span class="p">{</span> <span class="k">typedef</span> <span class="n">T</span> <span class="n">type</span><span class="p">;</span> <span class="p">};</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span><span class="err"> </span><span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">remove_reference</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&amp;&amp;&gt;</span> <span class="c1">// rvalue references
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="nc">remove_reference</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&amp;&amp;&gt;</span> <span class="c1">// rvalue references
 </span><span class="c1"></span><span class="p">{</span> <span class="k">typedef</span> <span class="n">T</span> <span class="n">type</span><span class="p">;</span> <span class="p">};</span>
 </code></pre></div>
 
@@ -1721,9 +1720,9 @@ const转换和数组或函数到指针的转换是模板类型唯一的实参到
 
 <p>我们可以仅仅特化指定的成员函数，而不是特化整个类模板。</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">Foo</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="nc">Foo</span> <span class="p">{</span>
     <span class="n">Foo</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">t</span> <span class="o">=</span> <span class="n">T</span><span class="p">())</span><span class="o">:</span> <span class="n">mem</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">Bar</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">Bar</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
     <span class="n">T</span> <span class="n">mem</span><span class="p">;</span>
     <span class="c1">// other members of Foo
 </span><span class="c1"></span><span class="p">};</span>
@@ -1748,7 +1747,7 @@ const转换和数组或函数到指针的转换是模板类型唯一的实参到
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/c&#43;&#43;">C&#43;&#43;</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>16677 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>16705 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2015-12-14 18:34 &#43;0800</p>
 			</footer>
 		</article>

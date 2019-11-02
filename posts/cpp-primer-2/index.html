@@ -7,14 +7,13 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
-
 <meta itemprop="name" content="第2章 变量和基本类型">
 <meta itemprop="description" content="2.1 基础内置类型 C&#43;&#43;定义了一组基础类型，包括算术类型和一个特殊的void类型。算术类型表示字符，整型，布尔值和浮点数类型。void类型不关联">
 
 
 <meta itemprop="datePublished" content="2016-03-21T20:27:17&#43;00:00" />
 <meta itemprop="dateModified" content="2016-03-21T20:27:17&#43;00:00" />
-<meta itemprop="wordCount" content="6570">
+<meta itemprop="wordCount" content="6575">
 
 
 
@@ -23,8 +22,8 @@
 <meta property="og:description" content="2.1 基础内置类型 C&#43;&#43;定义了一组基础类型，包括算术类型和一个特殊的void类型。算术类型表示字符，整型，布尔值和浮点数类型。void类型不关联" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://gitop.cc/posts/cpp-primer-2/" />
-<meta property="article:published_time" content="2016-03-21T20:27:17&#43;00:00"/>
-<meta property="article:modified_time" content="2016-03-21T20:27:17&#43;00:00"/>
+<meta property="article:published_time" content="2016-03-21T20:27:17+00:00" />
+<meta property="article:modified_time" content="2016-03-21T20:27:17+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="第2章 变量和基本类型"/>
 <meta name="twitter:description" content="2.1 基础内置类型 C&#43;&#43;定义了一组基础类型，包括算术类型和一个特殊的void类型。算术类型表示字符，整型，布尔值和浮点数类型。void类型不关联"/>
@@ -37,7 +36,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>第2章 变量和基本类型</title>
-	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
 	
 </head>
 
@@ -439,9 +438,9 @@
 </table>
 
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">newline</span>            <span class="err">\</span><span class="n">n</span>     <span class="n">horizontal</span> <span class="n">tab</span>      <span class="err">\</span><span class="n">t</span>     <span class="n">alert</span> <span class="p">(</span><span class="n">bell</span><span class="p">)</span>       <span class="err">\</span><span class="n">a</span>
-<span class="n">vertical</span> <span class="n">tab</span>       <span class="err">\</span><span class="n">v</span>     <span class="n">backspace</span>          <span class="err">\</span><span class="n">b</span>     <span class="kt">double</span> <span class="n">quote</span>  <span class="err">\</span><span class="s">&#34;</span><span class="err">
-</span><span class="err"></span><span class="s">backslash         </span><span class="se">\\</span><span class="s">     question mark     \?     single quote    </span><span class="se">\&#39;</span><span class="err">
-</span><span class="err"></span><span class="s">carriage return   </span><span class="se">\r</span><span class="s">     formfeed       </span><span class="se">\f</span><span class="s">&#34;</span>
+<span class="n">vertical</span> <span class="n">tab</span>       <span class="err">\</span><span class="n">v</span>     <span class="n">backspace</span>          <span class="err">\</span><span class="n">b</span>     <span class="kt">double</span> <span class="n">quote</span>  <span class="err">\</span><span class="s">&#34;</span>
+<span class="n">backslash</span>         <span class="err">\\</span>     <span class="n">question</span> <span class="n">mark</span>     <span class="err">\</span><span class="o">?</span>     <span class="n">single</span> <span class="n">quote</span>    <span class="err">\&#39;</span>
+<span class="n">carriage</span> <span class="k">return</span>   <span class="err">\</span><span class="n">r</span>     <span class="n">formfeed</span>       <span class="err">\</span><span class="n">f</span><span class="s">&#34;</span>
 </code></pre></div>
 
 <p>我们也可以写通用的转义序列，即\x后跟一个或多个16进制数字或者\后跟1至3个8进制数字。</p>
@@ -459,8 +458,8 @@
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="sa">L</span><span class="sc">&#39;a&#39;</span>     <span class="c1">// wide character literal, type is wchar_t
 </span><span class="c1"></span><span class="sa">u8</span><span class="s">&#34;hi!&#34;</span>  <span class="c1">// utf-8 string literal (utf-8 encodes a Unicode character in 8 bits)
 </span><span class="c1"></span><span class="mi">42ULL</span>    <span class="c1">// unsigned integer literal, type is unsigned long long
-</span><span class="c1"></span><span class="mf">1E-3</span><span class="n">F</span>    <span class="c1">// single-precision floating-point literal, type is float
-</span><span class="c1"></span><span class="mf">3.14159</span><span class="n">L</span> <span class="c1">// extended-precision floating-point literal, type is long double
+</span><span class="c1"></span><span class="mf">1E-3F</span>    <span class="c1">// single-precision floating-point literal, type is float
+</span><span class="c1"></span><span class="mf">3.14159L</span> <span class="c1">// extended-precision floating-point literal, type is long double
 </span></code></pre></div>
 
 <blockquote>
@@ -578,12 +577,12 @@
 <span class="k">auto</span>             <span class="k">delete</span>           <span class="kr">inline</span>           <span class="kt">short</span>            <span class="k">typeid</span>
 <span class="kt">bool</span>             <span class="k">do</span>               <span class="kt">int</span>              <span class="kt">signed</span>           <span class="k">typename</span>
 <span class="k">break</span>            <span class="kt">double</span>           <span class="kt">long</span>             <span class="k">sizeof</span>           <span class="k">union</span>
-<span class="k">case</span>             <span class="k">dynamic_cast</span>     <span class="k">mutable</span>          <span class="k">static</span>           <span class="kt">unsigned</span>
+<span class="nc">case</span>             <span class="k">dynamic_cast</span>     <span class="k">mutable</span>          <span class="k">static</span>           <span class="kt">unsigned</span>
 <span class="k">catch</span>            <span class="k">else</span>             <span class="k">namespace</span>        <span class="k">static_assert</span>    <span class="k">using</span>
-<span class="kt">char</span>             <span class="k">enum</span>             <span class="k">new</span>              <span class="k">static_cast</span>      <span class="k">virtual</span>
-<span class="kt">char16_t</span>         <span class="k">explicit</span>         <span class="k">noexcept</span>         <span class="k">struct</span>           <span class="kt">void</span>
+<span class="kt">char</span>             <span class="k">enum</span>             <span class="nc">new</span>              <span class="k">static_cast</span>      <span class="k">virtual</span>
+<span class="kt">char16_t</span>         <span class="k">explicit</span>         <span class="k">noexcept</span>         <span class="k">struct</span>           <span class="nc">void</span>
 <span class="kt">char32_t</span>         <span class="k">export</span>           <span class="k">nullptr</span>          <span class="k">switch</span>           <span class="k">volatile</span>
-<span class="k">class</span><span class="err">            </span><span class="nc">extern</span>           <span class="k">operator</span>         <span class="k">template</span>         <span class="n">wchar_t</span>
+<span class="k">class</span>            <span class="nc">extern</span>           <span class="k">operator</span>         <span class="k">template</span>         <span class="kt">wchar_t</span>
 <span class="k">const</span>            <span class="nb">false</span>            <span class="k">private</span>          <span class="k">this</span>             <span class="k">while</span>
 <span class="k">constexpr</span>        <span class="kt">float</span>            <span class="k">protected</span>        <span class="k">thread_local</span>
 <span class="k">const_cast</span>       <span class="k">for</span>              <span class="k">public</span>           <span class="k">throw</span>
@@ -858,7 +857,7 @@ decltype时，decltype返回这个变量的类型，包括top-level const和引�
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/c&#43;&#43;">C&#43;&#43;</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>6570 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>6575 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2016-03-22 04:27 &#43;0800</p>
 			</footer>
 		</article>

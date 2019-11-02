@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 静心</title>
@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 24 Jul 2019 20:30:19 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 Nov 2019 13:49:25 +0800</lastBuildDate>
     
 	<atom:link href="http://gitop.cc/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Other</title>
+      <link>http://gitop.cc/tags/other/</link>
+      <pubDate>Sat, 02 Nov 2019 13:49:25 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/other/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Java</title>
@@ -90,15 +99,6 @@
       <pubDate>Thu, 02 Aug 2018 20:31:02 +0800</pubDate>
       
       <guid>http://gitop.cc/tags/centos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;</title>
-      <link>http://gitop.cc/tags/c&#43;&#43;/</link>
-      <pubDate>Fri, 28 Oct 2016 14:46:23 +0000</pubDate>
-      
-      <guid>http://gitop.cc/tags/c&#43;&#43;/</guid>
       <description></description>
     </item>
     

@@ -7,7 +7,6 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
-
 <meta itemprop="name" content="Boost.Asio网络编程 第1章">
 <meta itemprop="description" content="什么是Boost.Asio 简单来说，Boost.Asio是一个跨平台的C&#43;&#43;库，主要是为了网络编程和一些其它低级输入/输出编程。 Boost.">
 
@@ -23,8 +22,8 @@
 <meta property="og:description" content="什么是Boost.Asio 简单来说，Boost.Asio是一个跨平台的C&#43;&#43;库，主要是为了网络编程和一些其它低级输入/输出编程。 Boost." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://gitop.cc/posts/asio-network-programming-1/" />
-<meta property="article:published_time" content="2016-03-13T10:55:46&#43;00:00"/>
-<meta property="article:modified_time" content="2016-03-13T10:55:46&#43;00:00"/>
+<meta property="article:published_time" content="2016-03-13T10:55:46+00:00" />
+<meta property="article:modified_time" content="2016-03-13T10:55:46+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Boost.Asio网络编程 第1章"/>
 <meta name="twitter:description" content="什么是Boost.Asio 简单来说，Boost.Asio是一个跨平台的C&#43;&#43;库，主要是为了网络编程和一些其它低级输入/输出编程。 Boost."/>
@@ -37,7 +36,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Boost.Asio网络编程 第1章</title>
-	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
 	
 </head>
 
@@ -142,11 +141,11 @@
 <span class="n">ip</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip</span><span class="o">::</span><span class="n">v4</span><span class="p">(),</span> <span class="mi">2001</span><span class="p">));</span> <span class="c1">// listen on 2001
 </span><span class="c1"></span><span class="n">ip</span><span class="o">::</span><span class="n">acceptor</span> <span class="n">acc</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">ep</span><span class="p">);</span>
 <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">socket_ptr</span> <span class="n">sock</span><span class="p">(</span><span class="k">new</span> <span class="n">ip</span><span class="o">::</span><span class="n">socket</span><span class="p">(</span><span class="n">service</span><span class="p">));</span>
+    <span class="n">socket_ptr</span> <span class="nf">sock</span><span class="p">(</span><span class="k">new</span> <span class="n">ip</span><span class="o">::</span><span class="n">socket</span><span class="p">(</span><span class="n">service</span><span class="p">));</span>
     <span class="n">acc</span><span class="p">.</span><span class="n">accept</span><span class="p">(</span><span class="o">*</span><span class="n">sock</span><span class="p">);</span>
     <span class="n">boost</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">client_session</span><span class="p">,</span> <span class="n">sock</span><span class="p">));</span>
 <span class="p">}</span>
-<span class="kt">void</span> <span class="n">client_session</span><span class="p">(</span><span class="n">socket_ptr</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">client_session</span><span class="p">(</span><span class="n">socket_ptr</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
         <span class="n">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">sock</span><span class="o">-&gt;</span><span class="n">read_some</span><span class="p">(</span><span class="n">buffer</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>

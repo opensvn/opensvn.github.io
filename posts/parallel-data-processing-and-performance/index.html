@@ -7,14 +7,13 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
-
 <meta itemprop="name" content="并行数据处理和性能">
 <meta itemprop="description" content="并行流 通过调用parallelStream方法，可以将集合转换为并行流。并行流是将元素分割成多个块的流，使用不同的线程处理每个块。因此，你可">
 
 
 <meta itemprop="datePublished" content="2019-07-23T20:00:47&#43;08:00" />
 <meta itemprop="dateModified" content="2019-07-23T20:00:47&#43;08:00" />
-<meta itemprop="wordCount" content="4080">
+<meta itemprop="wordCount" content="4082">
 
 
 
@@ -23,8 +22,8 @@
 <meta property="og:description" content="并行流 通过调用parallelStream方法，可以将集合转换为并行流。并行流是将元素分割成多个块的流，使用不同的线程处理每个块。因此，你可" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://gitop.cc/posts/parallel-data-processing-and-performance/" />
-<meta property="article:published_time" content="2019-07-23T20:00:47&#43;08:00"/>
-<meta property="article:modified_time" content="2019-07-23T20:00:47&#43;08:00"/>
+<meta property="article:published_time" content="2019-07-23T20:00:47+08:00" />
+<meta property="article:modified_time" content="2019-07-23T20:00:47+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="并行数据处理和性能"/>
 <meta name="twitter:description" content="并行流 通过调用parallelStream方法，可以将集合转换为并行流。并行流是将元素分割成多个块的流，使用不同的线程处理每个块。因此，你可"/>
@@ -37,7 +36,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>并行数据处理和性能</title>
-	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
 	
 </head>
 
@@ -83,17 +82,17 @@
 <h2 id="并行流">并行流<a href="#并行流" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>通过调用<code>parallelStream</code>方法，可以将集合转换为并行流。并行流是将元素分割成多个块的流，使用不同的线程处理每个块。因此，你可以自动划分指定操作的工作负载在多核处理器的所有核心上，并使它们一样忙。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">long</span> <span class="nf">sequentialSum</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">1L</span><span class="o">,</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">n</span><span class="o">).</span><span class="na">reduce</span><span class="o">(</span><span class="n">0L</span><span class="o">,</span> <span class="nl">Long:</span><span class="o">:</span><span class="n">sum</span><span class="o">);</span>
-<span class="o">}</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">long</span> <span class="n">sequentialSum</span><span class="p">(</span><span class="kt">long</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Stream</span><span class="p">.</span><span class="na">iterate</span><span class="p">(</span><span class="n">1L</span><span class="p">,</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="p">).</span><span class="na">limit</span><span class="p">(</span><span class="n">n</span><span class="p">).</span><span class="na">reduce</span><span class="p">(</span><span class="n">0L</span><span class="p">,</span> <span class="n">Long</span><span class="o">::</span><span class="n">sum</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
 <h3 id="将顺序流转为并行流">将顺序流转为并行流<a href="#将顺序流转为并行流" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>调用<code>parallel</code>方法可以将顺序流转为并行流：</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">long</span> <span class="nf">parallelSum</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">1L</span><span class="o">,</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">n</span><span class="o">).</span><span class="na">parallel</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0L</span><span class="o">,</span> <span class="nl">Long:</span><span class="o">:</span><span class="n">sum</span><span class="o">);</span>
-<span class="o">}</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">long</span> <span class="n">parallelSum</span><span class="p">(</span><span class="kt">long</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Stream</span><span class="p">.</span><span class="na">iterate</span><span class="p">(</span><span class="n">1L</span><span class="p">,</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="p">).</span><span class="na">limit</span><span class="p">(</span><span class="n">n</span><span class="p">).</span><span class="na">parallel</span><span class="p">().</span><span class="na">reduce</span><span class="p">(</span><span class="n">0L</span><span class="p">,</span> <span class="n">Long</span><span class="o">::</span><span class="n">sum</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
 <p>实际上，在顺序流上并行<code>parallel</code>方法并没有对流进行任何转换。在内部设置一个布尔值，标志<code>parallel</code>后面所有的操作需要并行处理。你也许会认为通过<code>sequential</code>方法和<code>parallel</code>方法可以更精细的控制流操作，比如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">stream</span><span class="o">.</span><span class="na">parallel</span><span class="o">().</span><span class="na">filter</span><span class="o">(...).</span><span class="na">sequential</span><span class="o">().</span><span class="na">map</span><span class="o">(...).</span><span class="na">parallel</span><span class="o">().</span><span class="na">reduce</span><span class="o">();</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">stream</span><span class="p">.</span><span class="na">parallel</span><span class="p">().</span><span class="na">filter</span><span class="p">(...).</span><span class="na">sequential</span><span class="p">().</span><span class="na">map</span><span class="p">(...).</span><span class="na">parallel</span><span class="p">().</span><span class="na">reduce</span><span class="p">();</span></code></pre></div>
 <p>但是<code>parallel</code>或<code>sequential</code>的最后一次调用获胜并影响整个流管道。</p>
 
 <blockquote>
@@ -142,31 +141,31 @@
       <span class="nt">&lt;/executions&gt;</span>
     <span class="nt">&lt;/plugin&gt;</span>
   <span class="nt">&lt;/plugins&gt;</span>
-<span class="nt">&lt;/build&gt;</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@BenchmarkMode</span><span class="o">(</span><span class="n">Mode</span><span class="o">.</span><span class="na">AverageTime</span><span class="o">)</span>
-<span class="nd">@OutputTimeUnit</span><span class="o">(</span><span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">)</span>
-<span class="nd">@Fork</span><span class="o">(</span><span class="n">2</span><span class="o">,</span> <span class="n">jvmArgs</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;-Xms4G&#34;</span><span class="o">,</span> <span class="s">&#34;-Xmx4G&#34;</span><span class="o">})</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ParallelStreamBenchmark</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">N</span> <span class="o">=</span> <span class="n">10_000_000L</span><span class="o">;</span>
+<span class="nt">&lt;/build&gt;</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@BenchmarkMode</span><span class="p">(</span><span class="n">Mode</span><span class="p">.</span><span class="na">AverageTime</span><span class="p">)</span>
+<span class="nd">@OutputTimeUnit</span><span class="p">(</span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MILLISECONDS</span><span class="p">)</span>
+<span class="nd">@Fork</span><span class="p">(</span><span class="n">2</span><span class="p">,</span> <span class="n">jvmArgs</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#34;-Xms4G&#34;</span><span class="p">,</span> <span class="s">&#34;-Xmx4G&#34;</span><span class="p">})</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">ParallelStreamBenchmark</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="nf">static</span> <span class="kd">final</span> <span class="nf">long</span> <span class="n">N</span> <span class="o">=</span> <span class="n">10_000_000L</span><span class="p">;</span>
 
     <span class="nd">@Benchmark</span>
-    <span class="kd">public</span> <span class="kt">long</span> <span class="nf">sequentialSum</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">1L</span><span class="o">,</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">N</span><span class="o">).</span><span class="na">reduce</span><span class="o">(</span><span class="n">0L</span><span class="o">,</span> <span class="nl">Long:</span><span class="o">:</span><span class="n">sum</span><span class="o">);</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">long</span> <span class="n">sequentialSum</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Stream</span><span class="p">.</span><span class="na">iterate</span><span class="p">(</span><span class="n">1L</span><span class="p">,</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="p">).</span><span class="na">limit</span><span class="p">(</span><span class="n">N</span><span class="p">).</span><span class="na">reduce</span><span class="p">(</span><span class="n">0L</span><span class="p">,</span> <span class="n">Long</span><span class="o">::</span><span class="n">sum</span><span class="p">);</span>
+    <span class="p">}</span>
 
     <span class="nd">@Benchmark</span>
-    <span class="kd">public</span> <span class="kt">long</span> <span class="nf">iterativeSum</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kt">long</span> <span class="n">result</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="n">result</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">long</span> <span class="n">iterativeSum</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">long</span> <span class="nf">result</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">1L</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="nd">@TearDown</span><span class="o">(</span><span class="n">Level</span><span class="o">.</span><span class="na">Invocation</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">tearDown</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">gc</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+    <span class="nd">@TearDown</span><span class="p">(</span><span class="n">Level</span><span class="p">.</span><span class="na">Invocation</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">tearDown</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">gc</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 <p>这说明了并行编程是多么棘手，有时甚至违反直觉。当被误用时，可能会降低程序的整体性能，因此必须了解调用并行方法的背后发生了什么。</p>
 
 <h4 id="使用更专业的方法">使用更专业的方法<a href="#使用更专业的方法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
@@ -175,30 +174,32 @@
 
 <ul>
 <li>LongStream.rangeClosed直接处理原始类型long，因此没有装箱和拆箱开销。</li>
-<li>LongStream.rangeClosed产生一个范围的数字，可以很容易地划分为独立的块。</li>
-</ul>
+
+<li><p>LongStream.rangeClosed产生一个范围的数字，可以很容易地划分为独立的块。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Benchmark</span>
-<span class="kd">public</span> <span class="kt">long</span> <span class="nf">rangedSum</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">LongStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">N</span><span class="o">).</span><span class="na">reduce</span><span class="o">(</span><span class="n">0L</span><span class="o">,</span> <span class="nl">Long:</span><span class="o">:</span><span class="n">sum</span><span class="o">);</span>
-<span class="o">}</span>
+<span class="kd">public</span> <span class="nf">long</span> <span class="n">rangedSum</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">return</span> <span class="n">LongStream</span><span class="p">.</span><span class="na">rangeClosed</span><span class="p">(</span><span class="n">1</span><span class="p">,</span> <span class="n">N</span><span class="p">).</span><span class="na">reduce</span><span class="p">(</span><span class="n">0L</span><span class="p">,</span> <span class="n">Long</span><span class="o">::</span><span class="n">sum</span><span class="p">);</span>
+<span class="p">}</span>
 
 <span class="nd">@Benchmark</span>
-<span class="kd">public</span> <span class="kt">long</span> <span class="nf">parallelRangedSum</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">LongStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">N</span><span class="o">).</span><span class="na">parallel</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0L</span><span class="o">,</span> <span class="nl">Long:</span><span class="o">:</span><span class="n">sum</span><span class="o">);</span>
-<span class="o">}</span></code></pre></div>
+<span class="kd">public</span> <span class="nf">long</span> <span class="n">parallelRangedSum</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">return</span> <span class="n">LongStream</span><span class="p">.</span><span class="na">rangeClosed</span><span class="p">(</span><span class="n">1</span><span class="p">,</span> <span class="n">N</span><span class="p">).</span><span class="na">parallel</span><span class="p">().</span><span class="na">reduce</span><span class="p">(</span><span class="n">0L</span><span class="p">,</span> <span class="n">Long</span><span class="o">::</span><span class="n">sum</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div></li>
+</ul>
+
 <h3 id="正确使用并行流">正确使用并行流<a href="#正确使用并行流" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>误用并行流产生错误的主要原因是使用了改变某些共享状态的算法。下面是一种方法通过修改共享累加器来求前n个自然数之和：</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">long</span> <span class="nf">sideEffectSum</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">Accumulator</span> <span class="n">accumulator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Accumulator</span><span class="o">();</span>
-    <span class="n">LongStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">n</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="nl">accumulator:</span><span class="o">:</span><span class="n">add</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">accumulator</span><span class="o">.</span><span class="na">total</span><span class="o">;</span>
-<span class="o">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">long</span> <span class="n">sideEffectSum</span><span class="p">(</span><span class="kt">long</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Accumulator</span> <span class="nf">accumulator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Accumulator</span><span class="p">();</span>
+    <span class="n">LongStream</span><span class="p">.</span><span class="na">rangeClosed</span><span class="p">(</span><span class="n">1</span><span class="p">,</span> <span class="n">n</span><span class="p">).</span><span class="na">forEach</span><span class="p">(</span><span class="n">accumulator</span><span class="o">::</span><span class="n">add</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">accumulator</span><span class="p">.</span><span class="na">total</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Accumulator</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">long</span> <span class="n">total</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">long</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="n">total</span> <span class="o">+=</span> <span class="n">value</span><span class="o">;</span> <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">Accumulator</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">long</span> <span class="n">total</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">add</span><span class="p">(</span><span class="kt">long</span> <span class="nf">value</span><span class="p">)</span> <span class="p">{</span> <span class="n">total</span> <span class="o">+=</span> <span class="n">value</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 <p>请记住，避免共享可变状态可以确保并行流产生正确的结果。</p>
 
 <h3 id="有效地使用并行流">有效地使用并行流<a href="#有效地使用并行流" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
@@ -266,54 +267,54 @@
 <h3 id="使用recursivetask">使用RecursiveTask<a href="#使用recursivetask" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>想要提交任务到线程池，你需要创建一个<code>RecursiveTask&lt;R&gt;</code>子类，其中R是并行任务产生的结果类型。如果任务不返回任何结果，则需要创建<code>RecursiveAction</code>的子类。要定义<code>RecursiveTask</code>，只需要实现它的一个抽象方法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kd">abstract</span> <span class="n">R</span> <span class="nf">compute</span><span class="o">();</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="nf">abstract</span> <span class="n">R</span> <span class="nf">compute</span><span class="p">();</span></code></pre></div>
 <p>该方法定义了将任务分解为子任务的逻辑，以及生成单个子任务结果的算法。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ForkJoinSumCalculator</span> <span class="kd">extends</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">concurrent</span><span class="o">.</span><span class="na">RecursiveTask</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">long</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">start</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">end</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">THRESHOLD</span> <span class="o">=</span> <span class="n">10_000</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">ForkJoinSumCalculator</span> <span class="nf">extends</span> <span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">concurrent</span><span class="p">.</span><span class="na">RecursiveTask</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="nf">final</span> <span class="kt">long</span><span class="p">[]</span> <span class="nf">numbers</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="nf">final</span> <span class="kt">int</span> <span class="nf">start</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="nf">final</span> <span class="kt">int</span> <span class="nf">end</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kd">final</span> <span class="nf">long</span> <span class="n">THRESHOLD</span> <span class="o">=</span> <span class="n">10_000</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="nf">ForkJoinSumCalculator</span><span class="o">(</span><span class="kt">long</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">ForkJoinSumCalculator</span><span class="p">(</span><span class="kt">long</span><span class="p">[]</span> <span class="nf">numbers</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">0</span><span class="p">,</span> <span class="n">numbers</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    <span class="kd">private</span> <span class="nf">ForkJoinSumCalculator</span><span class="o">(</span><span class="kt">long</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">numbers</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">start</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">end</span> <span class="o">=</span> <span class="n">end</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">private</span> <span class="nf">ForkJoinSumCalculator</span><span class="p">(</span><span class="kt">long</span><span class="p">[]</span> <span class="nf">numbers</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">start</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">end</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">numbers</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">start</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">end</span> <span class="o">=</span> <span class="n">end</span><span class="p">;</span>
+    <span class="p">}</span>
 
     <span class="nd">@Override</span>
-    <span class="kd">protected</span> <span class="n">Long</span> <span class="nf">compute</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">length</span> <span class="o">&lt;=</span> <span class="n">THRESHOLD</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">computeSequentially</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="n">ForkJoinSumCalculator</span> <span class="n">leftTask</span> <span class="o">=</span>
-            <span class="k">new</span> <span class="n">ForkJoinSumCalculator</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="n">start</span><span class="o">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span> <span class="o">/</span> <span class="n">2</span><span class="o">);</span>
-        <span class="n">leftTask</span><span class="o">.</span><span class="na">fork</span><span class="o">();</span>
-        <span class="n">ForkJoinSumCalculator</span> <span class="n">rightTask</span> <span class="o">=</span>
-            <span class="k">new</span> <span class="n">ForkJoinSumCalculator</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span> <span class="o">/</span> <span class="n">2</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
-        <span class="n">Long</span> <span class="n">rightResult</span> <span class="o">=</span> <span class="n">rightTask</span><span class="o">.</span><span class="na">compute</span><span class="o">();</span>
-        <span class="n">Long</span> <span class="n">leftResult</span> <span class="o">=</span> <span class="n">leftTask</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
-        <span class="k">return</span> <span class="n">leftResult</span> <span class="o">+</span> <span class="n">rightResult</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">protected</span> <span class="nf">Long</span> <span class="n">compute</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">length</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">length</span> <span class="o">&lt;=</span> <span class="n">THRESHOLD</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">computeSequentially</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="n">ForkJoinSumCalculator</span> <span class="nf">leftTask</span> <span class="o">=</span>
+            <span class="k">new</span> <span class="n">ForkJoinSumCalculator</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span> <span class="o">/</span> <span class="n">2</span><span class="p">);</span>
+        <span class="n">leftTask</span><span class="p">.</span><span class="na">fork</span><span class="p">();</span>
+        <span class="n">ForkJoinSumCalculator</span> <span class="nf">rightTask</span> <span class="o">=</span>
+            <span class="k">new</span> <span class="n">ForkJoinSumCalculator</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span> <span class="o">/</span> <span class="n">2</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+        <span class="n">Long</span> <span class="nf">rightResult</span> <span class="o">=</span> <span class="n">rightTask</span><span class="p">.</span><span class="na">compute</span><span class="p">();</span>
+        <span class="n">Long</span> <span class="nf">leftResult</span> <span class="o">=</span> <span class="n">leftTask</span><span class="p">.</span><span class="na">join</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">leftResult</span> <span class="o">+</span> <span class="n">rightResult</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">private</span> <span class="kt">long</span> <span class="nf">computeSequentially</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">end</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="n">sum</span> <span class="o">+=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+    <span class="kd">private</span> <span class="nf">long</span> <span class="n">computeSequentially</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">long</span> <span class="nf">sum</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">forkJoinSum</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">long</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="n">LongStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">n</span><span class="o">).</span><span class="na">toArray</span><span class="o">();</span>
-    <span class="n">ForkJoinTask</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ForkJoinSumCalculator</span><span class="o">(</span><span class="n">numbers</span><span class="o">);</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">ForkJoinPool</span><span class="o">().</span><span class="na">invoke</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
-<span class="o">}</span></code></pre></div>
+<span class="kd">public</span> <span class="nf">static</span> <span class="kt">long</span> <span class="nf">forkJoinSum</span><span class="p">(</span><span class="kt">long</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">long</span><span class="p">[]</span> <span class="nf">numbers</span> <span class="o">=</span> <span class="n">LongStream</span><span class="p">.</span><span class="na">rangeClosed</span><span class="p">(</span><span class="n">1</span><span class="p">,</span> <span class="n">n</span><span class="p">).</span><span class="na">toArray</span><span class="p">();</span>
+    <span class="n">ForkJoinTask</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="nf">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ForkJoinSumCalculator</span><span class="p">(</span><span class="n">numbers</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">ForkJoinPool</span><span class="p">().</span><span class="na">invoke</span><span class="p">(</span><span class="n">task</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
 <h3 id="使用fork-join框架的最佳实践">使用fork/join框架的最佳实践<a href="#使用fork-join框架的最佳实践" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>尽管fork/join框架相对容易使用，但它也很容易被误用。下面是一些有效使用它的最佳实践：</p>
@@ -333,12 +334,12 @@
 <h2 id="spliterator">Spliterator<a href="#spliterator" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>Spliterator是Java 8新增的一个接口。Collection接口提供了一个默认方法spliterator()，返回一个spliterator对象。Spliterator接口定义了几个方法，如下所示：</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Spliterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kt">boolean</span> <span class="nf">tryAdvance</span><span class="o">(</span><span class="n">Consumer</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">action</span><span class="o">);</span>
-    <span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">trySplit</span><span class="o">();</span>
-    <span class="kt">long</span> <span class="nf">estimateSize</span><span class="o">();</span>
-    <span class="kt">int</span> <span class="nf">characteristics</span><span class="o">();</span>
-<span class="o">}</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">interface</span> <span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kt">boolean</span> <span class="nf">tryAdvance</span><span class="p">(</span><span class="n">Consumer</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="nf">T</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">);</span>
+    <span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">trySplit</span><span class="p">();</span>
+    <span class="kt">long</span> <span class="nf">estimateSize</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="nf">characteristics</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
 <p><code>tryAdvance</code>方法与普通迭代器类似，用于顺序遍历Spliterator的元素，如果还有其他元素要遍历，则返回true。</p>
 
 <p><code>trySplit</code>方法用于将其部分元素分割到第二个Spliterator，从而允许并行处理这两个Spliterator。</p>
@@ -407,108 +408,108 @@
 <h3 id="实现自己的spliterator">实现自己的Spliterator<a href="#实现自己的spliterator" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>我们将开发一个简单的方法来计算字符串中的单词数量。其迭代版如下所示：</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">countWordsIteratively</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="kt">boolean</span> <span class="n">lastSpace</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">:</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">())</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">Character</span><span class="o">.</span><span class="na">isWhitespace</span><span class="o">(</span><span class="n">c</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">lastSpace</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">lastSpace</span><span class="o">)</span> <span class="n">counter</span><span class="o">++;</span>
-            <span class="n">lastSpace</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">counter</span><span class="o">;</span>
-<span class="o">}</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">int</span> <span class="n">countWordsIteratively</span><span class="p">(</span><span class="n">String</span> <span class="nf">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="nf">counter</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>
+    <span class="kt">boolean</span> <span class="nf">lastSpace</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="nf">c</span> <span class="o">:</span> <span class="n">s</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">Character</span><span class="p">.</span><span class="na">isWhitespace</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">lastSpace</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">lastSpace</span><span class="p">)</span> <span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">lastSpace</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">counter</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
 <h4 id="函数风格重写单词计数器">函数风格重写单词计数器<a href="#函数风格重写单词计数器" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 
 <p>首先，需要将字符串转换为流</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">SENTENCE</span><span class="o">.</span><span class="na">length</span><span class="o">()).</span><span class="na">mapToObj</span><span class="o">(</span><span class="nl">SENTENCE:</span><span class="o">:</span><span class="n">charAt</span><span class="o">);</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="nf">stream</span> <span class="o">=</span> <span class="n">IntStream</span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="n">0</span><span class="p">,</span> <span class="n">SENTENCE</span><span class="p">.</span><span class="na">length</span><span class="p">()).</span><span class="na">mapToObj</span><span class="p">(</span><span class="n">SENTENCE</span><span class="o">::</span><span class="n">charAt</span><span class="p">);</span></code></pre></div>
 <p>定义一个类WordCounter用于携带2个状态，一个是目前为止找到的单词数量，一个是最后字符是否为空格。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">WordCounter</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">counter</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">lastSpace</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nf">WordCounter</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="nf">final</span> <span class="kt">int</span> <span class="nf">counter</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="nf">final</span> <span class="kt">boolean</span> <span class="nf">lastSpace</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="nf">WordCounter</span><span class="o">(</span><span class="kt">int</span> <span class="n">counter</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">lastSpace</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">lastSpace</span> <span class="o">=</span> <span class="n">lastSpace</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">WordCounter</span><span class="p">(</span><span class="kt">int</span> <span class="nf">counter</span><span class="p">,</span> <span class="kt">boolean</span> <span class="nf">lastSpace</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">lastSpace</span> <span class="o">=</span> <span class="n">lastSpace</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="n">WordCounter</span> <span class="nf">accumulate</span><span class="o">(</span><span class="n">Character</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">Character</span><span class="o">.</span><span class="na">isWhitespace</span><span class="o">(</span><span class="n">c</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">lastSpace</span> <span class="o">?</span> <span class="k">this</span> <span class="o">:</span> <span class="k">new</span> <span class="n">WordCounter</span><span class="o">(</span><span class="n">counter</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">lastSpace</span> <span class="o">?</span> <span class="k">new</span> <span class="n">WordCounter</span><span class="o">(</span><span class="n">counter</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span> <span class="o">:</span> <span class="k">this</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">WordCounter</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">Character</span> <span class="nf">c</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">Character</span><span class="p">.</span><span class="na">isWhitespace</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">lastSpace</span> <span class="o">?</span> <span class="k">this</span> <span class="o">:</span> <span class="k">new</span> <span class="n">WordCounter</span><span class="p">(</span><span class="n">counter</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">lastSpace</span> <span class="o">?</span> <span class="k">new</span> <span class="n">WordCounter</span><span class="p">(</span><span class="n">counter</span> <span class="o">+</span> <span class="n">1</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span> <span class="o">:</span> <span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="n">WordCounter</span> <span class="nf">combine</span><span class="o">(</span><span class="n">WordCounter</span> <span class="n">wordCounter</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">WordCounter</span><span class="o">(</span><span class="n">counter</span> <span class="o">+</span> <span class="n">wordCounter</span><span class="o">.</span><span class="na">counter</span><span class="o">,</span>
-            <span class="n">wordCounter</span><span class="o">.</span><span class="na">lastSpace</span><span class="o">);</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">WordCounter</span> <span class="n">combine</span><span class="p">(</span><span class="n">WordCounter</span> <span class="nf">wordCounter</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">WordCounter</span><span class="p">(</span><span class="n">counter</span> <span class="o">+</span> <span class="n">wordCounter</span><span class="p">.</span><span class="na">counter</span><span class="p">,</span>
+            <span class="n">wordCounter</span><span class="p">.</span><span class="na">lastSpace</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getCounter</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">counter</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="nf">int</span> <span class="n">getCounter</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">counter</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 <p>如下所示计算流中的单词数：</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kt">int</span> <span class="nf">countWords</span><span class="o">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">stream</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">WordCounter</span> <span class="n">wordCounter</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="k">new</span> <span class="n">WordCounter</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="kc">true</span><span class="o">),</span><span class="nl">
-</span><span class="nl">        WordCounter:</span><span class="o">:</span><span class="n">accumulate</span><span class="o">,</span><span class="nl">
-</span><span class="nl">        WordCounter:</span><span class="o">:</span><span class="n">combine</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">wordCounter</span><span class="o">.</span><span class="na">getCounter</span><span class="o">();</span>
-<span class="o">}</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="nf">int</span> <span class="n">countWords</span><span class="p">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="nf">stream</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">WordCounter</span> <span class="nf">wordCounter</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="na">reduce</span><span class="p">(</span><span class="k">new</span> <span class="n">WordCounter</span><span class="p">(</span><span class="n">0</span><span class="p">,</span> <span class="kc">true</span><span class="p">),</span>
+        <span class="n">WordCounter</span><span class="o">::</span><span class="n">accumulate</span><span class="p">,</span>
+        <span class="n">WordCounter</span><span class="o">::</span><span class="n">combine</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">wordCounter</span><span class="p">.</span><span class="na">getCounter</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
 <h4 id="使单词计数器并行工作">使单词计数器并行工作<a href="#使单词计数器并行工作" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 
 <p>解决方案需确保字符串不是在随机位置拆分，而只在单词末尾拆分。所以需要实现一个字符Spliterator，只在两个单词之间分割字符串，然后从中创建并行流。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">WordCounterSpliterator</span> <span class="kd">implements</span> <span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">string</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">currentChar</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nf">WordCounterSpliterator</span> <span class="kd">implements</span> <span class="nf">Spliterator</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="nf">final</span> <span class="n">String</span> <span class="nf">string</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="nf">int</span> <span class="n">currentChar</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="nf">WordCounterSpliterator</span><span class="o">(</span><span class="n">String</span> <span class="n">string</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">tryAdvance</span><span class="o">(</span><span class="n">Consumer</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">Character</span><span class="o">&gt;</span> <span class="n">action</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">action</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">string</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">currentChar</span><span class="o">++));</span>
-        <span class="k">return</span> <span class="n">currentChar</span> <span class="o">&lt;</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">WordCounterSpliterator</span><span class="p">(</span><span class="n">String</span> <span class="nf">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">;</span>
+    <span class="p">}</span>
 
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="nf">trySplit</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">currentSize</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">currentChar</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">currentSize</span> <span class="o">&lt;</span> <span class="n">10</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">splitPos</span> <span class="o">=</span> <span class="n">currentSize</span> <span class="o">/</span> <span class="n">2</span> <span class="o">+</span> <span class="n">currentChar</span><span class="o">;</span>
-             <span class="n">splitPos</span> <span class="o">&lt;</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">splitPos</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">Character</span><span class="o">.</span><span class="na">isWhitespace</span><span class="o">(</span><span class="n">string</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">splitPos</span><span class="o">)))</span> <span class="o">{</span>
-                <span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">spliterator</span> <span class="o">=</span>
-                    <span class="k">new</span> <span class="n">WordCounterSpliterator</span><span class="o">(</span><span class="n">string</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">currentChar</span><span class="o">,</span>
-                        <span class="n">splitPos</span><span class="o">));</span>
-                <span class="n">currentChar</span> <span class="o">=</span> <span class="n">splitPos</span><span class="o">;</span>
-                <span class="k">return</span> <span class="n">spliterator</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">boolean</span> <span class="n">tryAdvance</span><span class="p">(</span><span class="n">Consumer</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="nf">Character</span><span class="o">&gt;</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">action</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">currentChar</span><span class="o">++</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">currentChar</span> <span class="o">&lt;</span> <span class="n">string</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+    <span class="p">}</span>
 
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">long</span> <span class="nf">estimateSize</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">currentChar</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">Spliterator</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="nf">trySplit</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">currentSize</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">-</span> <span class="n">currentChar</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">currentSize</span> <span class="o">&lt;</span> <span class="n">10</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">splitPos</span> <span class="o">=</span> <span class="n">currentSize</span> <span class="o">/</span> <span class="n">2</span> <span class="o">+</span> <span class="n">currentChar</span><span class="p">;</span>
+             <span class="n">splitPos</span> <span class="o">&lt;</span> <span class="n">string</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">splitPos</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Character</span><span class="p">.</span><span class="na">isWhitespace</span><span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">splitPos</span><span class="p">)))</span> <span class="p">{</span>
+                <span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="nf">spliterator</span> <span class="o">=</span>
+                    <span class="k">new</span> <span class="n">WordCounterSpliterator</span><span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">currentChar</span><span class="p">,</span>
+                        <span class="n">splitPos</span><span class="p">));</span>
+                <span class="n">currentChar</span> <span class="o">=</span> <span class="n">splitPos</span><span class="p">;</span>
+                <span class="k">return</span> <span class="n">spliterator</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
 
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">characteristics</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">ORDERED</span> <span class="o">+</span> <span class="n">SIZED</span> <span class="o">+</span> <span class="n">SUBSIZED</span> <span class="o">+</span> <span class="n">NON_NULL</span> <span class="o">+</span> <span class="n">IMMUTABLE</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="nf">long</span> <span class="n">estimateSize</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">string</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">-</span> <span class="n">currentChar</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">int</span> <span class="n">characteristics</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ORDERED</span> <span class="o">+</span> <span class="n">SIZED</span> <span class="o">+</span> <span class="n">SUBSIZED</span> <span class="o">+</span> <span class="n">NON_NULL</span> <span class="o">+</span> <span class="n">IMMUTABLE</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 <h4 id="使单词计数器spliterator工作">使单词计数器Spliterator工作<a href="#使单词计数器spliterator工作" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 
 <p>现在可以使用这个并行流，如下所示：</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">spliterator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WordCounterSpliterator</span><span class="o">(</span><span class="n">SENTENCE</span><span class="o">);</span>
-<span class="n">Stream</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">StreamSupport</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">spliterator</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="nf">spliterator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WordCounterSpliterator</span><span class="p">(</span><span class="n">SENTENCE</span><span class="p">);</span>
+<span class="n">Stream</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="nf">stream</span> <span class="o">=</span> <span class="n">StreamSupport</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">spliterator</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span></code></pre></div>
 <p>Spliterator的最后一个显著特性是，可以绑定要在第一次遍历、第一次拆分或第一次查询时(而不是在创建时)遍历的元素的数据源，称为后期绑定Spliterator。</p>
 
 			</div>
@@ -517,7 +518,7 @@
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://gitop.cc/tags/java">Java</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4080 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4082 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-07-23 20:00 &#43;0800</p>
 			</footer>
 		</article>

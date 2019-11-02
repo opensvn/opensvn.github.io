@@ -7,7 +7,6 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
-
 <meta itemprop="name" content="词法结构">
 <meta itemprop="description" content="介绍 JavaScript是一门大小写敏感的语言 JavaScript程序使用Unicode字符集编写 JavaScript使用\u后跟4位16进">
 
@@ -23,8 +22,8 @@
 <meta property="og:description" content="介绍 JavaScript是一门大小写敏感的语言 JavaScript程序使用Unicode字符集编写 JavaScript使用\u后跟4位16进" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://gitop.cc/posts/lexical_structure/" />
-<meta property="article:published_time" content="2018-10-16T08:29:23&#43;08:00"/>
-<meta property="article:modified_time" content="2018-10-16T08:29:23&#43;08:00"/>
+<meta property="article:published_time" content="2018-10-16T08:29:23+08:00" />
+<meta property="article:modified_time" content="2018-10-16T08:29:23+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="词法结构"/>
 <meta name="twitter:description" content="介绍 JavaScript是一门大小写敏感的语言 JavaScript程序使用Unicode字符集编写 JavaScript使用\u后跟4位16进"/>
@@ -37,7 +36,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>词法结构</title>
-	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
 	
 </head>
 
@@ -98,7 +97,7 @@
 </span><span class="c1"></span><span class="s1">&#39;Hi&#39;</span> 			<span class="c1">// Another string
 </span><span class="c1"></span><span class="kc">true</span> 			<span class="c1">// A Boolean value
 </span><span class="c1"></span><span class="kc">false</span> 			<span class="c1">// The other Boolean value
-</span><span class="c1"></span><span class="o">/</span><span class="nx">javascript</span><span class="o">/</span><span class="nx">gi</span>	<span class="c1">// A &#34;regular expression&#34; literal (for pattern matching)
+</span><span class="c1"></span><span class="sr">/javascript/gi</span>	<span class="c1">// A &#34;regular expression&#34; literal (for pattern matching)
 </span><span class="c1"></span><span class="kc">null</span> 			<span class="c1">// Absence of an object
 </span><span class="c1"></span><span class="p">{</span> <span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="mi">2</span> <span class="p">}</span> 	<span class="c1">// An object initializer
 </span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span> 	<span class="c1">// An array initializer
@@ -114,13 +113,13 @@
 <span class="k">case</span> 		<span class="k">do</span> 		<span class="k">if</span> 			<span class="k">switch</span> 	<span class="kd">var</span>
 <span class="k">catch</span> 		<span class="k">else</span> 	<span class="k">in</span> 			<span class="k">this</span> 	<span class="k">void</span>
 <span class="k">continue</span>	<span class="kc">false</span>	<span class="k">instanceof</span>	<span class="k">throw</span>	<span class="k">while</span>
-<span class="k">debugger</span> 	<span class="k">finally</span>	<span class="k">new</span> 		<span class="kc">true</span> 	<span class="kd">with</span>
+<span class="kr">debugger</span> 	<span class="k">finally</span>	<span class="k">new</span> 		<span class="kc">true</span> 	<span class="kd">with</span>
 <span class="k">default</span> 	<span class="k">for</span> 	<span class="kc">null</span> 		<span class="k">try</span>
 </code></pre></div>
 
 <p>JavaScript也保留了一些当前未使用但是未来可能会用到的关键字。ES5保留了下面的关键字：</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">class</span>	<span class="k">const</span>	<span class="kr">enum</span>	<span class="k">export</span>	<span class="k">extends</span>	<span class="k">import</span>	<span class="k">super</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">class</span>	<span class="kr">const</span>	<span class="kr">enum</span>	<span class="kr">export</span>	<span class="kr">extends</span>	<span class="kr">import</span>	<span class="kr">super</span>
 </code></pre></div>
 
 <p>此外，下列这些词在普通的Javascript代码中是合法的，但是在严格模式下被保留：</p>
@@ -137,11 +136,11 @@
 <p>ES3保留了所有Java语言的关键字，虽然在ES5中放松了，但是如果想要代码能在ES3下运行，你仍应该避免使用这些标识符：</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">abstract</span>	<span class="kr">double</span> 	<span class="kr">goto</span> 		<span class="kr">native</span> 		<span class="kr">static</span>
-<span class="kr">boolean</span> 	<span class="kr">enum</span> 	<span class="kr">implements</span>	<span class="kr">package</span> 	<span class="k">super</span>
-<span class="kr">byte</span> 		<span class="k">export</span> 	<span class="k">import</span> 		<span class="kr">private</span> 	<span class="kr">synchronized</span>
-<span class="kr">char</span> 		<span class="k">extends</span>	<span class="kr">int</span> 		<span class="kr">protected</span>	<span class="kr">throws</span>
-<span class="k">class</span> 		<span class="kr">final</span> 	<span class="kr">interface</span> 	<span class="kr">public</span> 		<span class="kr">transient</span>
-<span class="k">const</span> 		<span class="kr">float</span> 	<span class="kr">long</span> 		<span class="kr">short</span> 		<span class="kr">volatile</span>
+<span class="kr">boolean</span> 	<span class="kr">enum</span> 	<span class="kr">implements</span>	<span class="kr">package</span> 	<span class="kr">super</span>
+<span class="kr">byte</span> 		<span class="kr">export</span> 	<span class="kr">import</span> 		<span class="kr">private</span> 	<span class="kr">synchronized</span>
+<span class="kr">char</span> 		<span class="kr">extends</span>	<span class="kr">int</span> 		<span class="kr">protected</span>	<span class="kr">throws</span>
+<span class="kr">class</span> 		<span class="kr">final</span> 	<span class="kr">interface</span> 	<span class="kr">public</span> 		<span class="kr">transient</span>
+<span class="kr">const</span> 		<span class="kr">float</span> 	<span class="kr">long</span> 		<span class="kr">short</span> 		<span class="kr">volatile</span>
 </code></pre></div>
 
 <p>JavaScript预定义了很多全局变量和函数，你应该避免使用它们作为自己的变量或函数名：</p>

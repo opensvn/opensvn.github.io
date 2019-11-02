@@ -7,7 +7,6 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
-
 <meta itemprop="name" content="21世纪C语言 第1章 便利编译配置">
 <meta itemprop="description" content="使用包管理器 必须获取的包： * 编译器。必须安装gcc；clang可能也有用。 * gdb，调试器 * Valgrind，测试C内存使用错误。 * gpro">
 
@@ -23,8 +22,8 @@
 <meta property="og:description" content="使用包管理器 必须获取的包： * 编译器。必须安装gcc；clang可能也有用。 * gdb，调试器 * Valgrind，测试C内存使用错误。 * gpro" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://gitop.cc/posts/21st-c-1/" />
-<meta property="article:published_time" content="2015-12-15T19:55:08&#43;00:00"/>
-<meta property="article:modified_time" content="2015-12-15T19:55:08&#43;00:00"/>
+<meta property="article:published_time" content="2015-12-15T19:55:08+00:00" />
+<meta property="article:modified_time" content="2015-12-15T19:55:08+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="21世纪C语言 第1章 便利编译配置"/>
 <meta name="twitter:description" content="使用包管理器 必须获取的包： * 编译器。必须安装gcc；clang可能也有用。 * gdb，调试器 * Valgrind，测试C内存使用错误。 * gpro"/>
@@ -37,7 +36,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>21世纪C语言 第1章 便利编译配置</title>
-	<link rel="stylesheet" href="http://gitop.cc/css/style.min.568c54a56780af2a70c45272522247710b69dbfc080b315211fb98381e3796f8.css" integrity="sha256-VoxUpWeArypwxFJyUiJHcQtp2/wICzFSEfuYOB43lvg=">
+	<link rel="stylesheet" href="http://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
 	
 </head>
 
@@ -169,8 +168,8 @@
 * 当使用gcc，clang或icc基于libpath的库编译程序时，添加： LDADD=-Llibpath -Wl, -Rlibpath到makefile里面。-L标志告诉编译器去哪里查找库以确定符号；-Wl标志传递标志给链接器，链接器将指定-R标志的库嵌入运行时库的查找路径。pkg-config通常不知道运行时路径，因此需要手动输入。
 * 运行时，链接器将使用另一个路径查找不在常见位置也没有-Wl,R&hellip;指定的库。这个路径在shell的启动脚本里面设置：</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">export</span> <span class="n">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nl">libpath</span><span class="p">:</span><span class="err">$</span><span class="n">LD_LIBRARY_PATH</span>     <span class="cp">#Linux, Cygwin
-</span><span class="cp"></span><span class="n">export</span> <span class="n">DYLD_LIBRARY_PATH</span><span class="o">=</span><span class="nl">libpath</span><span class="p">:</span><span class="err">$</span><span class="n">DYLD_LIBRARY_PATH</span>    <span class="cp">#OS X</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">export</span> <span class="n">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nl">libpath</span><span class="p">:</span><span class="err">$</span><span class="n">LD_LIBRARY_PATH</span>     <span class="err">#</span><span class="n">Linux</span><span class="p">,</span> <span class="n">Cygwin</span>
+<span class="n">export</span> <span class="n">DYLD_LIBRARY_PATH</span><span class="o">=</span><span class="nl">libpath</span><span class="p">:</span><span class="err">$</span><span class="n">DYLD_LIBRARY_PATH</span>    <span class="err">#</span><span class="n">OS</span> <span class="n">X</span></code></pre></div>
 
 <h1 id="使用makefile">使用Makefile<a href="#使用makefile" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 
@@ -198,8 +197,8 @@
 * 早期的<strong>makefile</strong>可以在文件头设置变量。在<strong>makefile</strong>文件里面，等号两边可以有空格。
 * <strong>make</strong>允许在命令行设置变量，独立于<strong>shell</strong>。</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">make</span> <span class="n">CFLAGS</span><span class="o">=</span><span class="s">&#34;-g -Wall&#34;</span>  <span class="cp"># Set a makefile variable.
-</span><span class="cp"></span><span class="n">CFLAGS</span><span class="o">=</span><span class="s">&#34;-g -Wall&#34;</span> <span class="n">make</span>  <span class="cp"># Set an environment variable visible to make and its children.</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">make</span> <span class="n">CFLAGS</span><span class="o">=</span><span class="s">&#34;-g -Wall&#34;</span>  <span class="err">#</span> <span class="n">Set</span> <span class="n">a</span> <span class="n">makefile</span> <span class="n">variable</span><span class="p">.</span>
+<span class="n">CFLAGS</span><span class="o">=</span><span class="s">&#34;-g -Wall&#34;</span> <span class="n">make</span>  <span class="err">#</span> <span class="n">Set</span> <span class="n">an</span> <span class="n">environment</span> <span class="n">variable</span> <span class="n">visible</span> <span class="n">to</span> <span class="n">make</span> <span class="n">and</span> <span class="n">its</span> <span class="n">children</span><span class="p">.</span></code></pre></div>
 
 <h3 id="c语言中的环境变量">C语言中的环境变量<a href="#c语言中的环境变量" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
