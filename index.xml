@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 02 Nov 2019 13:49:25 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 04 Nov 2019 17:49:51 +0800</lastBuildDate>
     
 	<atom:link href="https://gitop.cc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Scrapy爬虫基础</title>
+      <link>https://gitop.cc/posts/scrapy-fundamental/</link>
+      <pubDate>Mon, 04 Nov 2019 17:49:51 +0800</pubDate>
+      
+      <guid>https://gitop.cc/posts/scrapy-fundamental/</guid>
+      <description>安装Scrapy 推荐virtualenv安装，步骤如下： 如果没有virtualenv，先安装virtualenv sudo pip3 install virtualenv 创建一个virtua</description>
+    </item>
     
     <item>
       <title>XPath教程</title>
@@ -91,15 +100,6 @@
       
       <guid>https://gitop.cc/posts/git-multi-sshkey/</guid>
       <description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 1.生成</description>
-    </item>
-    
-    <item>
-      <title>Greenplum TPC-H测试</title>
-      <link>https://gitop.cc/posts/tpch-test/</link>
-      <pubDate>Sun, 14 Apr 2019 15:40:23 +0800</pubDate>
-      
-      <guid>https://gitop.cc/posts/tpch-test/</guid>
-      <description>首先从官网下载TPC-H_Tools_v2.18.0.zip，解压 $ unzip TPC-H_Tools_v2.18.0.zip 进入dbgen目录，拷贝Makefile $ cd tpc/2.18.0_rc2/dbgen $ cp makefile.suite Makefile 修改Makef</description>
     </item>
     
   </channel>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Scrapy爬虫基础">
+<meta itemprop="description" content="安装Scrapy 推荐virtualenv安装，步骤如下： 如果没有virtualenv，先安装virtualenv sudo pip3 install virtualenv 创建一个virtua">
+
+
+<meta itemprop="datePublished" content="2019-11-04T17:49:51&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-04T17:49:51&#43;08:00" />
+<meta itemprop="wordCount" content="1866">
+
+
+
+<meta itemprop="keywords" content="Python,Scrapy," />
+<meta property="og:title" content="Scrapy爬虫基础" />
+<meta property="og:description" content="安装Scrapy 推荐virtualenv安装，步骤如下： 如果没有virtualenv，先安装virtualenv sudo pip3 install virtualenv 创建一个virtua" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/posts/scrapy-fundamental/" />
+<meta property="article:published_time" content="2019-11-04T17:49:51+08:00" />
+<meta property="article:modified_time" content="2019-11-04T17:49:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Scrapy爬虫基础"/>
+<meta name="twitter:description" content="安装Scrapy 推荐virtualenv安装，步骤如下： 如果没有virtualenv，先安装virtualenv sudo pip3 install virtualenv 创建一个virtua"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Scrapy爬虫基础</title>
+	<link rel="stylesheet" href="https://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://gitop.cc">静心</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://gitop.cc/posts/">Posts</a>
+				<a href="https://gitop.cc/tags/">Tags</a>
+				<a href="https://gitop.cc/about/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://gitop.cc/posts/">Posts</a></li>
+			<li><a href="https://gitop.cc/tags/">Tags</a></li>
+			<li><a href="https://gitop.cc/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 4, 2019</span></div>
+				<h1>Scrapy爬虫基础</h1>
+			</header>
+			<div class="content">
+				
+
+<h2 id="安装scrapy">安装Scrapy<a href="#安装scrapy" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>推荐virtualenv安装，步骤如下：</p>
+
+<ol>
+<li><p>如果没有virtualenv，先安装virtualenv</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo pip3 install virtualenv</code></pre></div></li>
+
+<li><p>创建一个virtualenv环境</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">virtualenv --no-site-packages scrapy</code></pre></div></li>
+
+<li><p>进入目录，激活virtualenv环境</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> bin/activate</code></pre></div></li>
+
+<li><p>安装Scrapy</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pip install Scrapy</code></pre></div></li>
+</ol>
+
+<h2 id="爬虫基本流程">爬虫基本流程<a href="#爬虫基本流程" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><img src="/static/images/2019/11/04/ur2im.png" alt="ur2im" /></p>
+
+<h3 id="url">URL<a href="#url" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>一切都从一个URL开始。您需要从您想要抓取的站点上获取一些示例url。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">scrapy shell -s <span class="nv">USER_AGENT</span><span class="o">=</span><span class="s2">&#34;Mozilla/5.0&#34;</span> http://www.gumtree.com/p/studios-bedsits-rent</code></pre></div>
+<p>要在使用scrapy shell时调试问题，请添加<code>--pdb</code>参数，以便在出现异常时启用交互式调试。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">scrapy shell --pdb https://gumtree.com</code></pre></div>
+<h3 id="请求和响应">请求和响应<a href="#请求和响应" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Scrapy shell为我们做了一些工作，我们给它提供了一个URL，它执行了默认的GET请求并获得了返回码200的响应。这意味着该页面上的信息已经加载并可以使用。如果尝试打印response.body的前50个字符，则会得到以下内容：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
+<span class="s1">&#39;&lt;!DOCTYPE html&gt;</span><span class="se">\n</span><span class="s1">&lt;html&gt;</span><span class="se">\n</span><span class="s1">&lt;head&gt;</span><span class="se">\n</span><span class="s1">&lt;meta charset=&#34;UTF-8&#34;&#39;</span></code></pre></div>
+<h3 id="物品">物品<a href="#物品" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>下一步是尝试将响应中的数据提取到物品的字段中。因为这个页面的格式是HTML，所以我们使用XPath表达式来实现。</p>
+
+<table>
+<thead>
+<tr>
+<th>主要字段</th>
+<th>XPath表达式</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>title</td>
+<td>//*[@itemprop=&ldquo;name&rdquo;][1]/text()</td>
+</tr>
+
+<tr>
+<td>price</td>
+<td>//*[@itemprop=&ldquo;price&rdquo;][1]/text()</td>
+</tr>
+
+<tr>
+<td>description</td>
+<td>//*[@itemprop=&ldquo;description&rdquo;][1]/text()</td>
+</tr>
+
+<tr>
+<td>address</td>
+<td>//*[@itemtype=&ldquo;<a href="http://schema.org/Place&quot;][1]/text(">http://schema.org/Place&quot;][1]/text(</a>)</td>
+</tr>
+
+<tr>
+<td>image_urls</td>
+<td>//*[@itemprop=&ldquo;image&rdquo;][1]/@src</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="一个scrapy项目">一个Scrapy项目<a href="#一个scrapy项目" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>首先创建一个名为&rdquo;properties&rdquo;的工程：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ scrapy startproject properties</code></pre></div>
+<h3 id="定义物品">定义物品<a href="#定义物品" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>让我们使用文件编辑器打开items.py。其中已经有一些模板代码，但是我们将针对我们的用例修改它。我们将重新定义PropertiesItem类，以添加我们在前一个表中总结的字段。</p>
+
+<p>我们还会添加一些辅助字段后面会用到。需要注意的一件重要的事情是，我们声明一个字段并不意味着我们要在每个爬行器上填充它，或者甚至一起使用它。您可以随意添加任何您认为合适的字段—您可以在以后修改它们。</p>
+
+<table>
+<thead>
+<tr>
+<th>计算字段</th>
+<th>Python表达式</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>images</td>
+<td>图像管道将根据image_urls自动填充这个。</td>
+</tr>
+
+<tr>
+<td>location</td>
+<td>我们的地理编码管道将在稍后填充此内容。</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>辅助字段</th>
+<th>Python表达式</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>url</td>
+<td>response.url</td>
+</tr>
+
+<tr>
+<td>project</td>
+<td>self.settings.get(&lsquo;BOT_NAME&rsquo;)</td>
+</tr>
+
+<tr>
+<td>spider</td>
+<td>self.name</td>
+</tr>
+
+<tr>
+<td>server</td>
+<td>socket.gethostname()</td>
+</tr>
+
+<tr>
+<td>date</td>
+<td>datetime.datetime.now()</td>
+</tr>
+</tbody>
+</table>
+
+<p>定义完这些字段，我们将items.py修改如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">scrapy.item</span> <span class="kn">import</span> <span class="n">Item</span><span class="p">,</span> <span class="n">Field</span>
+
+
+<span class="k">class</span> <span class="nc">PropertiesItem</span><span class="p">(</span><span class="n">Item</span><span class="p">):</span>
+    <span class="c1"># Primary fields</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+    <span class="n">address</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+    <span class="n">image_urls</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+
+    <span class="c1"># Calculated fields</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+
+    <span class="c1"># Housekeeping fields</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+    <span class="n">project</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+    <span class="n">spider</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span></code></pre></div>
+<h3 id="编写爬虫">编写爬虫<a href="#编写爬虫" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>一个爬虫的代码实现了整个$UR^2IM$过程。使用如下命令生成爬虫：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ scrapy genspider basic web
+Created spider <span class="s1">&#39;basic&#39;</span> using template <span class="s1">&#39;basic&#39;</span> in module:
+properties.spiders.basic</code></pre></div>
+<p>使用如下命令查看爬虫模板列表：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">scrapy genspider -l </code></pre></div>
+<p>basic.py内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scrapy</span>
+
+
+<span class="k">class</span> <span class="nc">BasicSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;basic&#34;</span>
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;web&#34;</span><span class="p">]</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">(</span>
+    	<span class="s1">&#39;http://www.web/&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    	<span class="k">pass</span></code></pre></div>
+<p>开始编码修改一下爬虫：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scrapy</span>
+
+
+<span class="k">class</span> <span class="nc">BasicSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;basic&#34;</span>
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;web&#34;</span><span class="p">]</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;http://web:9312/properties/property_000000.html&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;title: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span>
+            <span class="s1">&#39;//*[@itemprop=&#34;name&#34;][1]/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;price: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span>
+            <span class="s1">&#39;//*[@itemprop=&#34;price&#34;][1]/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">re</span><span class="p">(</span><span class="s1">&#39;[.0-9]+&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;description: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span>
+            <span class="s1">&#39;//*[@itemprop=&#34;description&#34;][1]/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;address: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span>
+            <span class="s1">&#39;//*[@itemtype=&#34;http://schema.org/&#39;</span>
+            <span class="s1">&#39;Place&#34;][1]/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;image_urls: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span>
+            <span class="s1">&#39;//*[@itemprop=&#34;image&#34;][1]/@src&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">())</span></code></pre></div>
+<p>使用如下命令运行爬虫：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ scrapy crawl basic</code></pre></div>
+<h3 id="填充物品">填充物品<a href="#填充物品" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>首先我们需要导入PropertiesItem类。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scrapy</span>
+<span class="kn">from</span> <span class="nn">properties.items</span> <span class="kn">import</span> <span class="n">PropertiesItem</span>
+
+
+<span class="k">class</span> <span class="nc">BasicSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;basic&#34;</span>
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;web&#34;</span><span class="p">]</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;http://web:9312/properties/property_000000.html&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">PropertiesItem</span><span class="p">()</span>
+        <span class="n">item</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span>
+            <span class="s1">&#39;//*[@itemprop=&#34;name&#34;][1]/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="n">item</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span>
+            <span class="s1">&#39;//*[@itemprop=&#34;price&#34;][1]/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">re</span><span class="p">(</span><span class="s1">&#39;[.0-9]+&#39;</span><span class="p">)</span>
+        <span class="n">item</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span>
+            <span class="s1">&#39;//*[@itemprop=&#34;description&#34;][1]/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="n">item</span><span class="p">[</span><span class="s1">&#39;address&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span>
+            <span class="s1">&#39;//*[@itemtype=&#34;http://schema.org/&#39;</span>
+            <span class="s1">&#39;Place&#34;][1]/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="n">item</span><span class="p">[</span><span class="s1">&#39;image_urls&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span>
+            <span class="s1">&#39;//*[@itemprop=&#34;image&#34;][1]/@src&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">item</span></code></pre></div>
+<h3 id="保存到文件">保存到文件<a href="#保存到文件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>以下命令可以将爬虫爬取到的数据保存到文件：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ scrapy crawl basic -o items.json
+$ scrapy crawl basic -o items.jl
+$ scrapy crawl basic -o items.csv
+$ scrapy crawl basic -o items.xml
+$ scrapy crawl basic -o <span class="s2">&#34;ftp://user:pass@ftp.scrapybook.com/items.json &#34;</span>
+$ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook/items.json&#34;</span></code></pre></div>
+<h3 id="清理">清理<a href="#清理" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>我们首先使用一个很好的实用工具类ItemLoader来替换所有那些看起来很混乱的extract()和xpath()操作。通过使用它，我们的parse()方法改变如下:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">ItemLoader</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">PropertiesItem</span><span class="p">(),</span> <span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+
+    <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@itemprop=&#34;name&#34;][1]/text()&#39;</span><span class="p">)</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;.//*[@itemprop=&#34;price&#34;]&#39;</span>
+    <span class="s1">&#39;[1]/text()&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">=</span><span class="s1">&#39;[,.0-9]+&#39;</span><span class="p">)</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@itemprop=&#34;description&#34;]&#39;</span>
+    <span class="s1">&#39;[1]/text()&#39;</span><span class="p">)</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@itemtype=&#39;</span>
+    <span class="s1">&#39;&#34;http://schema.org/Place&#34;][1]/text()&#39;</span><span class="p">)</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;image_urls&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@itemprop=&#34;image&#34;][1]/@src&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">l</span><span class="o">.</span><span class="n">load_item</span><span class="p">()</span></code></pre></div>
+<p>itemloader提供了许多有趣的方式来组合数据、格式化数据和清理数据。其中MapCompose可以用来组合任意一个或多个Python函数来实现复杂的功能。比如：</p>
+
+<table>
+<thead>
+<tr>
+<th>处理器</th>
+<th>功能</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Join()</td>
+<td>将多个结果合并成一个</td>
+</tr>
+
+<tr>
+<td>MapCompose(unicode.strip)</td>
+<td>删除开头和结尾的空白字符</td>
+</tr>
+
+<tr>
+<td>MapCompose(unicode.strip, unicode.title)</td>
+<td>删除开头和结尾的空白字符，并返回标题结果</td>
+</tr>
+
+<tr>
+<td>MapCompose(float)</td>
+<td>转换为数字</td>
+</tr>
+
+<tr>
+<td>MapCompose(lambda i: i.replace(&lsquo;,&rsquo;, &ldquo;), float)</td>
+<td>忽略&rsquo;,&lsquo;字符，并转换为数字</td>
+</tr>
+
+<tr>
+<td>MapCompose(lambda i: urlparse.urljoin(response.url, i))</td>
+<td>将相对路径URL转为绝对路径URL</td>
+</tr>
+</tbody>
+</table>
+
+<p>使用MapCompose修改过的爬虫如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@itemprop=&#34;name&#34;][1]/text()&#39;</span><span class="p">,</span>
+                <span class="n">MapCompose</span><span class="p">(</span><span class="nb">unicode</span><span class="o">.</span><span class="n">strip</span><span class="p">,</span> <span class="nb">unicode</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;.//*[@itemprop=&#34;price&#34;][1]/text()&#39;</span><span class="p">,</span>
+                <span class="n">MapCompose</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="nb">float</span><span class="p">),</span>
+                <span class="n">re</span><span class="o">=</span><span class="s1">&#39;[,.0-9]+&#39;</span><span class="p">)</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@itemprop=&#34;description&#34;][1]/text()&#39;</span><span class="p">,</span>
+                <span class="n">MapCompose</span><span class="p">(</span><span class="nb">unicode</span><span class="o">.</span><span class="n">strip</span><span class="p">),</span> <span class="n">Join</span><span class="p">())</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;//*[@itemtype=&#34;http://schema.org/Place&#34;][1]/text()&#39;</span><span class="p">,</span>
+                <span class="n">MapCompose</span><span class="p">(</span><span class="nb">unicode</span><span class="o">.</span><span class="n">strip</span><span class="p">))</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;image_urls&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@itemprop=&#34;image&#34;][1]/@src&#39;</span><span class="p">,</span>
+                <span class="n">MapCompose</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">i</span><span class="p">)))</span></code></pre></div>
+<h3 id="创建合约">创建合约<a href="#创建合约" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>合约有点像spider的单元测试。它们能让你很快知道是否发生了什么坏了。合约包含在注释中，就在函数名(docstring)后面，并且以@开头。看下面一个例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34; This function parses a property page.
+</span><span class="s2">
+</span><span class="s2">    @url http://web:9312/properties/property_000000.html
+</span><span class="s2">    @returns items 1
+</span><span class="s2">    @scrapes title price description address image_urls
+</span><span class="s2">    @scrapes url project spider server date
+</span><span class="s2">    &#34;&#34;&#34;</span></code></pre></div>
+<p>使用名<code>scrapy check</code>检查合约是否满足：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ scrapy check basic</code></pre></div>
+<h2 id="提取更多url">提取更多URL<a href="#提取更多url" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>到目前为止，我们只是爬取一个URL链接。很多网站是有很多分页的。因此一个典型的爬虫在两个方向爬取：</p>
+
+<ul>
+<li>水平方向——从一个分页到另一个分页</li>
+<li>垂直方向——从一个分页到列表页面</li>
+</ul>
+
+<p>将parse函数修改为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="c1"># Get the next index URLs and yield Requests</span>
+    <span class="n">next_selector</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[contains(@class, &#34;next&#34;)]//@href&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">next_selector</span><span class="o">.</span><span class="n">extract</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">Request</span><span class="p">(</span><span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">url</span><span class="p">))</span>
+    <span class="c1"># Get item URLs and yield Requests</span>
+    <span class="n">item_selector</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@itemprop=&#34;url&#34;]/@href&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">item_selector</span><span class="o">.</span><span class="n">extract</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">Request</span><span class="p">(</span><span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">url</span><span class="p">),</span>
+                      <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_item</span><span class="p">)</span></code></pre></div>
+<h3 id="两个方向爬取使用crawlspider">两个方向爬取使用CrawlSpider<a href="#两个方向爬取使用crawlspider" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>前面的代码太麻烦了，Scrapy使用CrawlSpider可以简单的实现同样的工作。首先使用crawl模板创建爬虫：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ scrapy genspider -t crawl easy web</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">EasySpider</span><span class="p">(</span><span class="n">CrawlSpider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;easy&#39;</span>
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;web&#34;</span><span class="p">]</span>
+
+    <span class="c1"># Start on the first index page</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;http://web:9312/properties/index_00000.html&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Rules for horizontal and vertical crawling</span>
+    <span class="n">rules</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">Rule</span><span class="p">(</span><span class="n">LinkExtractor</span><span class="p">(</span><span class="n">restrict_xpaths</span><span class="o">=</span><span class="s1">&#39;//*[contains(@class,&#34;next&#34;)]&#39;</span><span class="p">)),</span>
+        <span class="n">Rule</span><span class="p">(</span><span class="n">LinkExtractor</span><span class="p">(</span><span class="n">restrict_xpaths</span><span class="o">=</span><span class="s1">&#39;//*[@itemprop=&#34;url&#34;]&#39;</span><span class="p">),</span>
+             <span class="n">callback</span><span class="o">=</span><span class="s1">&#39;parse_item&#39;</span><span class="p">)</span>
+    <span class="p">)</span></code></pre></div>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://gitop.cc/tags/python">Python</a></span><span class="tag"><a href="https://gitop.cc/tags/scrapy">Scrapy</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1866 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-11-04 17:49 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://gitop.cc/posts/xpath/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>XPath教程</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="https://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+</body>
+
+</html>

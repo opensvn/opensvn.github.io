@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scrapy on 静心</title>
+    <link>https://gitop.cc/tags/scrapy/</link>
+    <description>Recent content in Scrapy on 静心</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 04 Nov 2019 17:49:51 +0800</lastBuildDate>
+    
+	<atom:link href="https://gitop.cc/tags/scrapy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Scrapy爬虫基础</title>
+      <link>https://gitop.cc/posts/scrapy-fundamental/</link>
+      <pubDate>Mon, 04 Nov 2019 17:49:51 +0800</pubDate>
+      
+      <guid>https://gitop.cc/posts/scrapy-fundamental/</guid>
+      <description>安装Scrapy 推荐virtualenv安装，步骤如下： 如果没有virtualenv，先安装virtualenv sudo pip3 install virtualenv 创建一个virtua</description>
+    </item>
+    
+  </channel>
+</rss>
