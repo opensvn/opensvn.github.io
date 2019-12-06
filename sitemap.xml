@@ -3,392 +3,392 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://gitop.cc/tags/other/</loc>
+    <loc>https://gitop.cc/tags/other/</loc>
     <lastmod>2019-11-02T13:49:25+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/</loc>
+    <loc>https://gitop.cc/posts/</loc>
     <lastmod>2019-11-02T13:49:25+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/</loc>
+    <loc>https://gitop.cc/tags/</loc>
     <lastmod>2019-11-02T13:49:25+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/xpath/</loc>
+    <loc>https://gitop.cc/posts/xpath/</loc>
     <lastmod>2019-11-02T13:49:25+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/</loc>
+    <loc>https://gitop.cc/</loc>
     <lastmod>2019-11-02T13:49:25+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/java/</loc>
+    <loc>https://gitop.cc/tags/java/</loc>
     <lastmod>2019-07-24T20:30:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/refactoring-testing-debugging/</loc>
+    <loc>https://gitop.cc/posts/refactoring-testing-debugging/</loc>
     <lastmod>2019-07-24T20:30:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/collection-api-enhancements/</loc>
+    <loc>https://gitop.cc/posts/collection-api-enhancements/</loc>
     <lastmod>2019-07-24T14:22:44+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/parallel-data-processing-and-performance/</loc>
+    <loc>https://gitop.cc/posts/parallel-data-processing-and-performance/</loc>
     <lastmod>2019-07-23T20:00:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/collecting-data-with-streams/</loc>
+    <loc>https://gitop.cc/posts/collecting-data-with-streams/</loc>
     <lastmod>2019-07-23T13:04:54+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/working-with-streams/</loc>
+    <loc>https://gitop.cc/posts/working-with-streams/</loc>
     <lastmod>2019-07-11T08:39:11+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/introducing-streams/</loc>
+    <loc>https://gitop.cc/posts/introducing-streams/</loc>
     <lastmod>2019-07-10T17:22:30+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/lambda-expressions/</loc>
+    <loc>https://gitop.cc/posts/lambda-expressions/</loc>
     <lastmod>2019-07-10T08:48:55+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/git-multi-sshkey/</loc>
+    <loc>https://gitop.cc/posts/git-multi-sshkey/</loc>
     <lastmod>2019-07-08T16:59:22+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/tool/</loc>
+    <loc>https://gitop.cc/tags/tool/</loc>
     <lastmod>2019-07-08T16:59:22+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/database/</loc>
+    <loc>https://gitop.cc/tags/database/</loc>
     <lastmod>2019-04-14T15:40:23+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/greenplum/</loc>
+    <loc>https://gitop.cc/tags/greenplum/</loc>
     <lastmod>2019-04-14T15:40:23+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/tpch-test/</loc>
+    <loc>https://gitop.cc/posts/tpch-test/</loc>
     <lastmod>2019-04-14T15:40:23+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/custom_gpdb_installation/</loc>
+    <loc>https://gitop.cc/posts/custom_gpdb_installation/</loc>
     <lastmod>2019-04-11T16:38:13+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/postgresql/</loc>
+    <loc>https://gitop.cc/tags/postgresql/</loc>
     <lastmod>2019-01-19T19:13:20+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/psql_intro/</loc>
+    <loc>https://gitop.cc/posts/psql_intro/</loc>
     <lastmod>2019-01-19T19:13:20+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/sql_intro/</loc>
+    <loc>https://gitop.cc/posts/sql_intro/</loc>
     <lastmod>2019-01-19T19:13:04+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/docker/</loc>
+    <loc>https://gitop.cc/tags/docker/</loc>
     <lastmod>2019-01-17T15:02:33+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/docker_install_gpdb_dev_env/</loc>
+    <loc>https://gitop.cc/posts/docker_install_gpdb_dev_env/</loc>
     <lastmod>2019-01-17T15:02:33+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/javascript/</loc>
+    <loc>https://gitop.cc/tags/javascript/</loc>
     <lastmod>2018-11-12T19:37:34+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/arrays/</loc>
+    <loc>https://gitop.cc/posts/arrays/</loc>
     <lastmod>2018-11-12T19:37:34+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/objects/</loc>
+    <loc>https://gitop.cc/posts/objects/</loc>
     <lastmod>2018-11-03T21:39:25+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/statements/</loc>
+    <loc>https://gitop.cc/posts/statements/</loc>
     <lastmod>2018-10-30T21:16:04+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/expressions_and_operators/</loc>
+    <loc>https://gitop.cc/posts/expressions_and_operators/</loc>
     <lastmod>2018-10-28T21:07:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/types_values_variables/</loc>
+    <loc>https://gitop.cc/posts/types_values_variables/</loc>
     <lastmod>2018-10-28T14:24:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/lexical_structure/</loc>
+    <loc>https://gitop.cc/posts/lexical_structure/</loc>
     <lastmod>2018-10-16T08:29:23+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/install-greenplum-in-docker/</loc>
+    <loc>https://gitop.cc/posts/install-greenplum-in-docker/</loc>
     <lastmod>2018-08-21T19:15:14+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/idea-key-bindings/</loc>
+    <loc>https://gitop.cc/posts/idea-key-bindings/</loc>
     <lastmod>2018-08-18T16:15:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/contact/</loc>
+    <loc>https://gitop.cc/contact/</loc>
     <lastmod>2018-08-18T10:30:16+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/ubuntu/</loc>
+    <loc>https://gitop.cc/tags/ubuntu/</loc>
     <lastmod>2018-08-18T09:19:20+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/ubuntu-18.04/</loc>
+    <loc>https://gitop.cc/posts/ubuntu-18.04/</loc>
     <lastmod>2018-08-18T09:19:20+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/centos/</loc>
+    <loc>https://gitop.cc/tags/centos/</loc>
     <lastmod>2018-08-02T20:31:02+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/centos7-environment-setup/</loc>
+    <loc>https://gitop.cc/posts/centos7-environment-setup/</loc>
     <lastmod>2018-08-02T20:31:02+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/about/</loc>
+    <loc>https://gitop.cc/about/</loc>
     <lastmod>2018-08-01T16:29:22+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/c&#43;&#43;/</loc>
+    <loc>https://gitop.cc/tags/c&#43;&#43;/</loc>
     <lastmod>2016-10-28T14:46:23+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/cpp-primer-12/</loc>
+    <loc>https://gitop.cc/posts/cpp-primer-12/</loc>
     <lastmod>2016-10-28T14:46:23+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/after-ubuntu-installation/</loc>
+    <loc>https://gitop.cc/posts/after-ubuntu-installation/</loc>
     <lastmod>2016-10-26T16:03:15+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/cpp-primer-17/</loc>
+    <loc>https://gitop.cc/posts/cpp-primer-17/</loc>
     <lastmod>2016-10-17T09:15:58+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/io-operations/</loc>
+    <loc>https://gitop.cc/posts/io-operations/</loc>
     <lastmod>2016-08-18T08:55:42+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/asio-cookbook-1/</loc>
+    <loc>https://gitop.cc/posts/asio-cookbook-1/</loc>
     <lastmod>2016-08-16T08:45:19+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/mysql/</loc>
+    <loc>https://gitop.cc/tags/mysql/</loc>
     <lastmod>2016-04-07T22:45:02+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/mysql-cookbook-5/</loc>
+    <loc>https://gitop.cc/posts/mysql-cookbook-5/</loc>
     <lastmod>2016-04-07T22:45:02+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/mysql-cookbook-4/</loc>
+    <loc>https://gitop.cc/posts/mysql-cookbook-4/</loc>
     <lastmod>2016-04-07T21:19:39+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/mysql-cookbook-3/</loc>
+    <loc>https://gitop.cc/posts/mysql-cookbook-3/</loc>
     <lastmod>2016-04-07T12:14:29+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/mysql-cookbook-2/</loc>
+    <loc>https://gitop.cc/posts/mysql-cookbook-2/</loc>
     <lastmod>2016-04-05T21:32:29+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/mysql-cookbook-1/</loc>
+    <loc>https://gitop.cc/posts/mysql-cookbook-1/</loc>
     <lastmod>2016-04-05T15:56:30+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/cpp-primer-2/</loc>
+    <loc>https://gitop.cc/posts/cpp-primer-2/</loc>
     <lastmod>2016-03-21T20:27:17+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/asio-network-programming-2/</loc>
+    <loc>https://gitop.cc/posts/asio-network-programming-2/</loc>
     <lastmod>2016-03-17T10:55:52+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/asio-network-programming-1/</loc>
+    <loc>https://gitop.cc/posts/asio-network-programming-1/</loc>
     <lastmod>2016-03-13T10:55:46+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/python/</loc>
+    <loc>https://gitop.cc/tags/python/</loc>
     <lastmod>2015-12-25T13:28:23+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/core-python-3/</loc>
+    <loc>https://gitop.cc/posts/core-python-3/</loc>
     <lastmod>2015-12-25T13:28:23+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/core-python-2/</loc>
+    <loc>https://gitop.cc/posts/core-python-2/</loc>
     <lastmod>2015-12-24T09:46:13+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/21st-c-2/</loc>
+    <loc>https://gitop.cc/posts/21st-c-2/</loc>
     <lastmod>2015-12-18T15:48:18+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/c/</loc>
+    <loc>https://gitop.cc/tags/c/</loc>
     <lastmod>2015-12-18T15:48:18+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/21st-c-1/</loc>
+    <loc>https://gitop.cc/posts/21st-c-1/</loc>
     <lastmod>2015-12-15T19:55:08+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/cpp-primer-16/</loc>
+    <loc>https://gitop.cc/posts/cpp-primer-16/</loc>
     <lastmod>2015-12-14T10:34:42+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/pygame-6/</loc>
+    <loc>https://gitop.cc/posts/pygame-6/</loc>
     <lastmod>2015-11-16T16:39:23+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/pygame-5/</loc>
+    <loc>https://gitop.cc/posts/pygame-5/</loc>
     <lastmod>2015-11-10T20:21:33+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/baiyu/</loc>
+    <loc>https://gitop.cc/posts/baiyu/</loc>
     <lastmod>2015-11-10T11:18:10+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/pygame-4/</loc>
+    <loc>https://gitop.cc/posts/pygame-4/</loc>
     <lastmod>2015-11-07T21:28:44+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/pygame-3/</loc>
+    <loc>https://gitop.cc/posts/pygame-3/</loc>
     <lastmod>2015-11-02T08:16:02+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/pyqt-8/</loc>
+    <loc>https://gitop.cc/posts/pyqt-8/</loc>
     <lastmod>2015-10-30T12:40:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/pyqt-7/</loc>
+    <loc>https://gitop.cc/posts/pyqt-7/</loc>
     <lastmod>2015-10-28T08:50:57+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/project-euler-1/</loc>
+    <loc>https://gitop.cc/posts/project-euler-1/</loc>
     <lastmod>2015-10-23T16:30:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/projecteuler/</loc>
+    <loc>https://gitop.cc/tags/projecteuler/</loc>
     <lastmod>2015-10-23T16:30:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/pyqt-6/</loc>
+    <loc>https://gitop.cc/posts/pyqt-6/</loc>
     <lastmod>2015-10-21T11:25:57+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/pyqt-5/</loc>
+    <loc>https://gitop.cc/posts/pyqt-5/</loc>
     <lastmod>2015-10-14T16:20:56+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/pyqt-4/</loc>
+    <loc>https://gitop.cc/posts/pyqt-4/</loc>
     <lastmod>2015-10-12T20:34:55+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/cpp-primer-15/</loc>
+    <loc>https://gitop.cc/posts/cpp-primer-15/</loc>
     <lastmod>2015-09-21T09:04:53+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/cpp-primer-14/</loc>
+    <loc>https://gitop.cc/posts/cpp-primer-14/</loc>
     <lastmod>2015-09-20T10:47:02+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/tags/markdown/</loc>
+    <loc>https://gitop.cc/tags/markdown/</loc>
     <lastmod>2015-09-19T19:47:02+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/syntax/</loc>
+    <loc>https://gitop.cc/posts/syntax/</loc>
     <lastmod>2015-09-19T19:47:02+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://gitop.cc/posts/postgres_data_type/</loc>
+    <loc>https://gitop.cc/posts/postgres_data_type/</loc>
     <priority>0</priority>
   </url>
   

@@ -2,49 +2,49 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Greenplum on 静心</title>
-    <link>http://gitop.cc/tags/greenplum/</link>
+    <link>https://gitop.cc/tags/greenplum/</link>
     <description>Recent content in Greenplum on 静心</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Sun, 14 Apr 2019 15:40:23 +0800</lastBuildDate>
     
-	<atom:link href="http://gitop.cc/tags/greenplum/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gitop.cc/tags/greenplum/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Greenplum TPC-H测试</title>
-      <link>http://gitop.cc/posts/tpch-test/</link>
+      <link>https://gitop.cc/posts/tpch-test/</link>
       <pubDate>Sun, 14 Apr 2019 15:40:23 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/tpch-test/</guid>
+      <guid>https://gitop.cc/posts/tpch-test/</guid>
       <description>首先从官网下载TPC-H_Tools_v2.18.0.zip，解压 $ unzip TPC-H_Tools_v2.18.0.zip 进入dbgen目录，拷贝Makefile $ cd tpc/2.18.0_rc2/dbgen $ cp makefile.suite Makefile 修改Makef</description>
     </item>
     
     <item>
       <title>gpdb官方安装包自定义安装路径的方法</title>
-      <link>http://gitop.cc/posts/custom_gpdb_installation/</link>
+      <link>https://gitop.cc/posts/custom_gpdb_installation/</link>
       <pubDate>Thu, 11 Apr 2019 16:38:13 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/custom_gpdb_installation/</guid>
+      <guid>https://gitop.cc/posts/custom_gpdb_installation/</guid>
       <description>下载安装包并解压，得到一个bin文件，从bin文件提取rpm文件 # 前960行为安装脚本 [root@hadoop2 ~]# tail -n +961 greenplum-db-5.16.0-rhel7-x86_64.bin &amp;gt; gpdb.tar.gz 如果集群没有gpadmin用户，可以利</description>
     </item>
     
     <item>
       <title>Docker安装gpdb测试数据库</title>
-      <link>http://gitop.cc/posts/docker_install_gpdb_dev_env/</link>
+      <link>https://gitop.cc/posts/docker_install_gpdb_dev_env/</link>
       <pubDate>Thu, 17 Jan 2019 15:02:33 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/docker_install_gpdb_dev_env/</guid>
+      <guid>https://gitop.cc/posts/docker_install_gpdb_dev_env/</guid>
       <description>下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便</description>
     </item>
     
     <item>
       <title>docker安装greenplum集群</title>
-      <link>http://gitop.cc/posts/install-greenplum-in-docker/</link>
+      <link>https://gitop.cc/posts/install-greenplum-in-docker/</link>
       <pubDate>Tue, 21 Aug 2018 19:15:14 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/install-greenplum-in-docker/</guid>
+      <guid>https://gitop.cc/posts/install-greenplum-in-docker/</guid>
       <description>本文参考这里安装greenplum成功，并记录一下过程 创建docker节点 拉取centos镜像 [xiaoyu@xiaoyu ~]$ docker pull centos 创建几个容器，作为greenplum</description>
     </item>
     

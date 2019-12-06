@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C on 静心</title>
-    <link>http://gitop.cc/tags/c/</link>
+    <link>https://gitop.cc/tags/c/</link>
     <description>Recent content in C on 静心</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Fri, 18 Dec 2015 15:48:18 +0000</lastBuildDate>
     
-	<atom:link href="http://gitop.cc/tags/c/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gitop.cc/tags/c/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>21世纪C语言 第2章 调试，测试，文档</title>
-      <link>http://gitop.cc/posts/21st-c-2/</link>
+      <link>https://gitop.cc/posts/21st-c-2/</link>
       <pubDate>Fri, 18 Dec 2015 15:48:18 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/21st-c-2/</guid>
+      <guid>https://gitop.cc/posts/21st-c-2/</guid>
       <description>使用调试器 关于调试器的第一个简明提示：总是使用调试器。 一个调试侦探故事 调试代码： #include &amp;lt;math.h&amp;gt;#include &amp;lt;stdio.h&amp;gt; //size_t typedef struct meanvar {double mean, var;} meanvar; meanvar mean_and_var(const double *data){ long double avg = 0, avg2 = 0; long double ratio; size_t count= 0; for(size_t</description>
     </item>
     
     <item>
       <title>21世纪C语言 第1章 便利编译配置</title>
-      <link>http://gitop.cc/posts/21st-c-1/</link>
+      <link>https://gitop.cc/posts/21st-c-1/</link>
       <pubDate>Tue, 15 Dec 2015 19:55:08 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/21st-c-1/</guid>
+      <guid>https://gitop.cc/posts/21st-c-1/</guid>
       <description>使用包管理器 必须获取的包： * 编译器。必须安装gcc；clang可能也有用。 * gdb，调试器 * Valgrind，测试C内存使用错误。 * gpro</description>
     </item>
     

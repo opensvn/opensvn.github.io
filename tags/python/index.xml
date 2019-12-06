@@ -2,103 +2,103 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on 静心</title>
-    <link>http://gitop.cc/tags/python/</link>
+    <link>https://gitop.cc/tags/python/</link>
     <description>Recent content in Python on 静心</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Fri, 25 Dec 2015 13:28:23 +0000</lastBuildDate>
     
-	<atom:link href="http://gitop.cc/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gitop.cc/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Python核心编程 第3章</title>
-      <link>http://gitop.cc/posts/core-python-3/</link>
+      <link>https://gitop.cc/posts/core-python-3/</link>
       <pubDate>Fri, 25 Dec 2015 13:28:23 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/core-python-3/</guid>
+      <guid>https://gitop.cc/posts/core-python-3/</guid>
       <description>3.1 语句和语法 关于Python语句的一些规则和符号： * 井号（#）指示Python注释。 * 换行（\n）是标准行分隔符（一个语句一行） * 反斜杠（\</description>
     </item>
     
     <item>
       <title>Python核心编程 第2章</title>
-      <link>http://gitop.cc/posts/core-python-2/</link>
+      <link>https://gitop.cc/posts/core-python-2/</link>
       <pubDate>Thu, 24 Dec 2015 09:46:13 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/core-python-2/</guid>
+      <guid>https://gitop.cc/posts/core-python-2/</guid>
       <description>命令行选项 -d 提供调试输出 -O 生成优化字节码（产生.pyo文件） -S 启动时不要运行导入地址查询Python路径 -v 详细输出（详细追踪import语句</description>
     </item>
     
     <item>
       <title>Pygame第6章 接受用户输入</title>
-      <link>http://gitop.cc/posts/pygame-6/</link>
+      <link>https://gitop.cc/posts/pygame-6/</link>
       <pubDate>Mon, 16 Nov 2015 16:39:23 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pygame-6/</guid>
+      <guid>https://gitop.cc/posts/pygame-6/</guid>
       <description>用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容</description>
     </item>
     
     <item>
       <title>Pygame第5章 让画面动起来</title>
-      <link>http://gitop.cc/posts/pygame-5/</link>
+      <link>https://gitop.cc/posts/pygame-5/</link>
       <pubDate>Tue, 10 Nov 2015 20:21:33 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pygame-5/</guid>
+      <guid>https://gitop.cc/posts/pygame-5/</guid>
       <description>这一章描述如何以一种可以预测的方式在屏幕上移动对象，和如何使运动在其他人电脑里面一致。 理解帧率 我们需要知道计算机游戏中关于运动的第一件事情就</description>
     </item>
     
     <item>
       <title>Pygame第4章 创建视觉</title>
-      <link>http://gitop.cc/posts/pygame-4/</link>
+      <link>https://gitop.cc/posts/pygame-4/</link>
       <pubDate>Sat, 07 Nov 2015 21:28:44 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pygame-4/</guid>
+      <guid>https://gitop.cc/posts/pygame-4/</guid>
       <description>电脑游戏倾向于视觉上很自然，游戏开发者花费很多精力在处理图像和提升视觉效果来创建最令人愉快的体验上。 像素的威力 显示器里的一个独立的点称为一个</description>
     </item>
     
     <item>
       <title>Pygame第3章 Pygame介绍</title>
-      <link>http://gitop.cc/posts/pygame-3/</link>
+      <link>https://gitop.cc/posts/pygame-3/</link>
       <pubDate>Mon, 02 Nov 2015 08:16:02 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pygame-3/</guid>
+      <guid>https://gitop.cc/posts/pygame-3/</guid>
       <description>安装Pygame Ubuntu下安装Pygame: sudo apt-get install python-pygame 装好后，查看Pygame版本: &amp;gt;&amp;gt;&amp;gt; import pygame &amp;gt;&amp;gt;&amp;gt; print pygame.ver 使用Pygame Pygame有很多模块。每</description>
     </item>
     
     <item>
       <title>PyQt编程第8章 数据处理和自定义文件类型</title>
-      <link>http://gitop.cc/posts/pyqt-8/</link>
+      <link>https://gitop.cc/posts/pyqt-8/</link>
       <pubDate>Fri, 30 Oct 2015 12:40:00 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pyqt-8/</guid>
+      <guid>https://gitop.cc/posts/pyqt-8/</guid>
       <description>主窗口的职责 主窗口的职责通常是为用户提供高级文件处理动作和展示程序数据。</description>
     </item>
     
     <item>
       <title>PyQt编程第7章 使用Qt Designer</title>
-      <link>http://gitop.cc/posts/pyqt-7/</link>
+      <link>https://gitop.cc/posts/pyqt-7/</link>
       <pubDate>Wed, 28 Oct 2015 08:50:57 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pyqt-7/</guid>
+      <guid>https://gitop.cc/posts/pyqt-7/</guid>
       <description>用户界面保存在.ui文件中，包含一个窗口部件和布局的详细情况。Qt Designer能够关联标签和它的伙伴， 设置tab顺序(这个也可以用QWi</description>
     </item>
     
     <item>
       <title>PyQt编程第6章 主窗口</title>
-      <link>http://gitop.cc/posts/pyqt-6/</link>
+      <link>https://gitop.cc/posts/pyqt-6/</link>
       <pubDate>Wed, 21 Oct 2015 11:25:57 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pyqt-6/</guid>
+      <guid>https://gitop.cc/posts/pyqt-6/</guid>
       <description>创建一个主窗口 import os import platform import sys from PyQt4.QtCore import * from PyQt4.QtGui import * import helpform import newimagedlg import qrc_resources __version__ = &amp;#34;1.0.0&amp;#34; import的顺序：先Python标准模块，然后第三方模块(比如PyQt)，最后</description>
     </item>
     
     <item>
       <title>PyQt编程第5章 对话框</title>
-      <link>http://gitop.cc/posts/pyqt-5/</link>
+      <link>https://gitop.cc/posts/pyqt-5/</link>
       <pubDate>Wed, 14 Oct 2015 16:20:56 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pyqt-5/</guid>
+      <guid>https://gitop.cc/posts/pyqt-5/</guid>
       <description>对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。 对话框以“模式”分类为：模式对话框和无模式对话框。 应用模式对话框一</description>
     </item>
     

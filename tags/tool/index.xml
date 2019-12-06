@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tool on 静心</title>
-    <link>http://gitop.cc/tags/tool/</link>
+    <link>https://gitop.cc/tags/tool/</link>
     <description>Recent content in Tool on 静心</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Mon, 08 Jul 2019 16:59:22 +0800</lastBuildDate>
     
-	<atom:link href="http://gitop.cc/tags/tool/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gitop.cc/tags/tool/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Git配置多个SSH-Key</title>
-      <link>http://gitop.cc/posts/git-multi-sshkey/</link>
+      <link>https://gitop.cc/posts/git-multi-sshkey/</link>
       <pubDate>Mon, 08 Jul 2019 16:59:22 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/git-multi-sshkey/</guid>
+      <guid>https://gitop.cc/posts/git-multi-sshkey/</guid>
       <description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 1.生成</description>
     </item>
     
     <item>
       <title>Idea快捷键</title>
-      <link>http://gitop.cc/posts/idea-key-bindings/</link>
+      <link>https://gitop.cc/posts/idea-key-bindings/</link>
       <pubDate>Sat, 18 Aug 2018 16:15:19 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/idea-key-bindings/</guid>
+      <guid>https://gitop.cc/posts/idea-key-bindings/</guid>
       <description>编辑基础 快捷键 说明 Ctrl+Shift+向右箭头 向右选择一个单词 Ctrl+Shift+向左箭头 向左选择一个单词 Alt+Shift+向上箭头 逐</description>
     </item>
     

@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PostgreSQL on 静心</title>
-    <link>http://gitop.cc/tags/postgresql/</link>
+    <link>https://gitop.cc/tags/postgresql/</link>
     <description>Recent content in PostgreSQL on 静心</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Sat, 19 Jan 2019 19:13:20 +0800</lastBuildDate>
     
-	<atom:link href="http://gitop.cc/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gitop.cc/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>psql使用介绍</title>
-      <link>http://gitop.cc/posts/psql_intro/</link>
+      <link>https://gitop.cc/posts/psql_intro/</link>
       <pubDate>Sat, 19 Jan 2019 19:13:20 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/psql_intro/</guid>
+      <guid>https://gitop.cc/posts/psql_intro/</guid>
       <description>psql介绍 psql是PostgreSQL中的一个命令行交互式客户端工具，类似Oracle中的命令行工具sqlplus，但它使用起来远比sq</description>
     </item>
     
     <item>
       <title>SQL入门</title>
-      <link>http://gitop.cc/posts/sql_intro/</link>
+      <link>https://gitop.cc/posts/sql_intro/</link>
       <pubDate>Sat, 19 Jan 2019 19:13:04 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/sql_intro/</guid>
+      <guid>https://gitop.cc/posts/sql_intro/</guid>
       <description>SQL语句分类 DQL(Data Query Language)：数据查询语言，基本就是select语句，用于数据查询。 DML(Data Manipulation Language)：数据操纵语言，包含ins</description>
     </item>
     

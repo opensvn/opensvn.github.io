@@ -2,58 +2,58 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MySQL on 静心</title>
-    <link>http://gitop.cc/tags/mysql/</link>
+    <link>https://gitop.cc/tags/mysql/</link>
     <description>Recent content in MySQL on 静心</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Thu, 07 Apr 2016 22:45:02 +0000</lastBuildDate>
     
-	<atom:link href="http://gitop.cc/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gitop.cc/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>MySQL Cookbook 第5章 处理字符串</title>
-      <link>http://gitop.cc/posts/mysql-cookbook-5/</link>
+      <link>https://gitop.cc/posts/mysql-cookbook-5/</link>
       <pubDate>Thu, 07 Apr 2016 22:45:02 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/mysql-cookbook-5/</guid>
+      <guid>https://gitop.cc/posts/mysql-cookbook-5/</guid>
       <description>5.0. Introduction A string can be binary or nonbinary. Binary strings are used for raw data such as images, music files, or encrypted values. Nonbinary strings are used for character data such as text and are associated with a character set and collation (sort order). A character set determines which characters are legal in a string. You can choose collations according to whether you need comparisons to be case sensitive</description>
     </item>
     
     <item>
       <title>MySQL Cookbook 第4章 表管理</title>
-      <link>http://gitop.cc/posts/mysql-cookbook-4/</link>
+      <link>https://gitop.cc/posts/mysql-cookbook-4/</link>
       <pubDate>Thu, 07 Apr 2016 21:19:39 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/mysql-cookbook-4/</guid>
+      <guid>https://gitop.cc/posts/mysql-cookbook-4/</guid>
       <description>4.0. Introduction This chapter covers topics that relate to creating and populating tables: • Cloning a table • Copying from one table to another • Using temporary tables • Generating unique table names • Determining what storage engine a table uses or converting it from one storage engine to another 4.1. Cloning a Table Problem You want to create a table that has exactly the same structure as an existing</description>
     </item>
     
     <item>
       <title>MySQL Cookbook 第3章 从表中查询数据</title>
-      <link>http://gitop.cc/posts/mysql-cookbook-3/</link>
+      <link>https://gitop.cc/posts/mysql-cookbook-3/</link>
       <pubDate>Thu, 07 Apr 2016 12:14:29 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/mysql-cookbook-3/</guid>
+      <guid>https://gitop.cc/posts/mysql-cookbook-3/</guid>
       <description>3.0. 介绍 本章专注使用SELECT语句从你的数据库获取信息。 3.1. 指定SELECT哪行哪列 问题 你想要从一张表中展示特定行和列。 解决方法 为了指示展示哪</description>
     </item>
     
     <item>
       <title>MySQL Cookbook 第2章 编写基于MySQL的程序</title>
-      <link>http://gitop.cc/posts/mysql-cookbook-2/</link>
+      <link>https://gitop.cc/posts/mysql-cookbook-2/</link>
       <pubDate>Tue, 05 Apr 2016 21:32:29 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/mysql-cookbook-2/</guid>
+      <guid>https://gitop.cc/posts/mysql-cookbook-2/</guid>
       <description>2.0. 介绍 MySQL Client API Architecture Each MySQL programming interface covered in this book uses a two-level architecture: The upper level provides database-independent methods that implement database access in a portable way that’s the same whether you use MySQL, PostgreSQL, Ora‐ cle, or whatever. The lower level consists of a set of drivers, each of which implements the details for a</description>
     </item>
     
     <item>
       <title>MySQL Cookbook 第1章 使用mysql客户端</title>
-      <link>http://gitop.cc/posts/mysql-cookbook-1/</link>
+      <link>https://gitop.cc/posts/mysql-cookbook-1/</link>
       <pubDate>Tue, 05 Apr 2016 15:56:30 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/mysql-cookbook-1/</guid>
+      <guid>https://gitop.cc/posts/mysql-cookbook-1/</guid>
       <description>1.0 介绍 本章描述了mysql的能力以使你能够更有效的使用它： 设置一个MySQL账户以使用cookbook数据库 指定连接参数和使用配置文件 交互模</description>
     </item>
     

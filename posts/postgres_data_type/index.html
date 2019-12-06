@@ -22,7 +22,7 @@
 <meta property="og:description" content="类型介绍 类型分类 PostgreSQL支持的数据类型分类如表：
    类型 说明 对比其他数据库     布尔类型 PostgreSQL支持SQL标准的boolean数据类型 与MySQL的BOOL、BOOLEAN类型相同，使用一字节存储空间   数值类型 整数类型有2字节的smallint、4字节的int、8字节的bigint，十进制精确类型有numeric，浮点类型有real和double precision。还有8字节的货币(money)类型 无MySQL的unsigned整数类型，也无MySQL 1字节长的tinyint整数类型和3字节长的medium int整数类型   字符类型 有varchar(n)、char(n)、text三种类型 PostgreSQL中的varchar(n)最大可以存储1GB，而MySQL中的varchar(n)最大只能是64KB。PostgreSQL中的text类型相当于MySQL中的LONGTEXT类型   二进制数据类型 只有一种bytea 对应MySQL的BLOB和LONGBLOB类型   位串类型 位串就是一串1和0的字符串，有bit(n)、bit varying(n)两种 N/A   日期和时间类型 有date、time、timestamp，而time和timestamp又分是否包括时区的两种类型 在PostgreSQL中，可以精确到秒以下，如毫秒。而MySQL的时间类型最多只能精确到秒，其日期时间的范围也与MySQL差异较大   枚举类型 枚举类型是一种包含一系列有序静态值集合的数据类型，等于某些编程语言中的enum类型 PostgreSQL使用枚举类型前需要先使用CREATE TYPE创建这个类型。MySQL也有枚举类型(ENUM)   几何类型 包括了点(point)、直线(line)、线段(lseg)、路径(path)、多边形(polygon)、圆(cycle)等类型 N/A   网络地址类型 有cidr、inet、macaddr三种类型 N/A   数组类型 可以存储一个数组 N/A   复合类型 可以把已有的简单类型组合成用户自定义的类型，就如C语言中的结构体一样 对应其他数据库的自定义类型   xml类型 可以存储XML数据的类型 N/A   json类型 可以存储json类型的数据 N/A   range类型 可以存储范围数据 N/A   对象标识符类型 PostgreSQL内部标识对象的类型，如oid类型、regproc类型、regclass类型等 N/A   伪类型 伪类型不能作为字段的数据类型，但是它可以用于声明一个函数的参数或者结果类型。有any、anyarray、anyelement、cstring、internal、language_handler、record、trigger、void、opaque N/A   其他类型 一些不好分类的类型都放到这里，如UUID类型、pg_Isn类型 N/A    为了提高SQL的兼容性，部分类型还有很多别名。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://gitop.cc/posts/postgres_data_type/" />
+<meta property="og:url" content="https://gitop.cc/posts/postgres_data_type/" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
@@ -37,7 +37,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title></title>
-	<link rel="stylesheet" href="http://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
+	<link rel="stylesheet" href="https://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
 	
 </head>
 
@@ -47,13 +47,13 @@
 		<div class="hdr-wrapper section-inner">
 			<div class="hdr-left">
 				<div class="site-branding">
-					<a href="http://gitop.cc">静心</a>
+					<a href="https://gitop.cc">静心</a>
 				</div>
 				<nav class="site-nav hide-in-mobile">
 					
-				<a href="http://gitop.cc/posts/">Posts</a>
-				<a href="http://gitop.cc/tags/">Tags</a>
-				<a href="http://gitop.cc/about/">About</a>
+				<a href="https://gitop.cc/posts/">Posts</a>
+				<a href="https://gitop.cc/tags/">Tags</a>
+				<a href="https://gitop.cc/about/">About</a>
 
 				</nav>
 			</div>
@@ -64,9 +64,9 @@
 	</header>
 	<div id="mobile-menu" class="animated fast">
 		<ul>
-			<li><a href="http://gitop.cc/posts/">Posts</a></li>
-			<li><a href="http://gitop.cc/tags/">Tags</a></li>
-			<li><a href="http://gitop.cc/about/">About</a></li>
+			<li><a href="https://gitop.cc/posts/">Posts</a></li>
+			<li><a href="https://gitop.cc/tags/">Tags</a></li>
+			<li><a href="https://gitop.cc/about/">About</a></li>
 		</ul>
 	</div>
 
@@ -454,7 +454,7 @@ expression is not unknown</code></pre></div>
 			</footer>
 		</article>
 		<div class="post-nav thin">
-			<a class="next-post" href="http://gitop.cc/posts/syntax/">
+			<a class="next-post" href="https://gitop.cc/posts/syntax/">
 				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Markdown语法</span>
 			</a>
 		</div>
@@ -463,14 +463,14 @@ expression is not unknown</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="http://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2019 <a href="https://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="http://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
 	</footer>
 
 
-	<script src="http://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+	<script src="https://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
 
 </body>
 

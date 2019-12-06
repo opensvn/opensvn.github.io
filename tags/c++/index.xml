@@ -2,103 +2,103 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C&#43;&#43; on 静心</title>
-    <link>http://gitop.cc/tags/c&#43;&#43;/</link>
+    <link>https://gitop.cc/tags/c&#43;&#43;/</link>
     <description>Recent content in C&#43;&#43; on 静心</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Fri, 28 Oct 2016 14:46:23 +0000</lastBuildDate>
     
-	<atom:link href="http://gitop.cc/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gitop.cc/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>第12章 动态内存</title>
-      <link>http://gitop.cc/posts/cpp-primer-12/</link>
+      <link>https://gitop.cc/posts/cpp-primer-12/</link>
       <pubDate>Fri, 28 Oct 2016 14:46:23 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-12/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-12/</guid>
       <description>静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈</description>
     </item>
     
     <item>
       <title>第17章 特殊的库设施</title>
-      <link>http://gitop.cc/posts/cpp-primer-17/</link>
+      <link>https://gitop.cc/posts/cpp-primer-17/</link>
       <pubDate>Mon, 17 Oct 2016 09:15:58 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-17/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-17/</guid>
       <description>17.1 tuple类型 tuple是一个类似pair的模板。每一个pair类型有2个不同类型的成员。一个tuple同样有不同类型的成员，但是它可以有</description>
     </item>
     
     <item>
       <title>Asio.Cookbook 第2章 IO操作</title>
-      <link>http://gitop.cc/posts/io-operations/</link>
+      <link>https://gitop.cc/posts/io-operations/</link>
       <pubDate>Thu, 18 Aug 2016 08:55:42 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/io-operations/</guid>
+      <guid>https://gitop.cc/posts/io-operations/</guid>
       <description>介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络</description>
     </item>
     
     <item>
       <title>Asio.Cookbook 第1章 基础</title>
-      <link>http://gitop.cc/posts/asio-cookbook-1/</link>
+      <link>https://gitop.cc/posts/asio-cookbook-1/</link>
       <pubDate>Tue, 16 Aug 2016 08:45:19 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/asio-cookbook-1/</guid>
+      <guid>https://gitop.cc/posts/asio-cookbook-1/</guid>
       <description>介绍 TCP协议是具有下列特性的传输层协议： 它是可靠的。这意味着TCP协议保证报文以正确的顺序传输，或者通知报文没有传输成功。TCP协议包含错</description>
     </item>
     
     <item>
       <title>第2章 变量和基本类型</title>
-      <link>http://gitop.cc/posts/cpp-primer-2/</link>
+      <link>https://gitop.cc/posts/cpp-primer-2/</link>
       <pubDate>Mon, 21 Mar 2016 20:27:17 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-2/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-2/</guid>
       <description>2.1 基础内置类型 C++定义了一组基础类型，包括算术类型和一个特殊的void类型。算术类型表示字符，整型，布尔值和浮点数类型。void类型不关联</description>
     </item>
     
     <item>
       <title>Boost.Asio网络编程 第2章</title>
-      <link>http://gitop.cc/posts/asio-network-programming-2/</link>
+      <link>https://gitop.cc/posts/asio-network-programming-2/</link>
       <pubDate>Thu, 17 Mar 2016 10:55:52 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/asio-network-programming-2/</guid>
+      <guid>https://gitop.cc/posts/asio-network-programming-2/</guid>
       <description>Boost.Asio命名空间 Boost.Asio所有东西都放在boost::asio命名空间或者子命名空间： boost::asio：核心类和</description>
     </item>
     
     <item>
       <title>Boost.Asio网络编程 第1章</title>
-      <link>http://gitop.cc/posts/asio-network-programming-1/</link>
+      <link>https://gitop.cc/posts/asio-network-programming-1/</link>
       <pubDate>Sun, 13 Mar 2016 10:55:46 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/asio-network-programming-1/</guid>
+      <guid>https://gitop.cc/posts/asio-network-programming-1/</guid>
       <description>什么是Boost.Asio 简单来说，Boost.Asio是一个跨平台的C++库，主要是为了网络编程和一些其它低级输入/输出编程。 Boost.</description>
     </item>
     
     <item>
       <title>第16章 模板和泛型编程</title>
-      <link>http://gitop.cc/posts/cpp-primer-16/</link>
+      <link>https://gitop.cc/posts/cpp-primer-16/</link>
       <pubDate>Mon, 14 Dec 2015 10:34:42 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-16/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-16/</guid>
       <description>面向对象编程和泛型编程都是处理程序编写时类型未知的情况。两者的区别是面向对象编程直到运行时类型才能知道，而泛型编程类型在编译期间知道。 容器，</description>
     </item>
     
     <item>
       <title>整理代码片段</title>
-      <link>http://gitop.cc/posts/baiyu/</link>
+      <link>https://gitop.cc/posts/baiyu/</link>
       <pubDate>Tue, 10 Nov 2015 11:18:10 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/baiyu/</guid>
+      <guid>https://gitop.cc/posts/baiyu/</guid>
       <description>根据pid获取进程名 void get_process_name_by_pid(int pid, char *name) { char buf[256] = {0}; char path[256] = {0}; sprintf(buf, &amp;#34;/proc/%d/exe&amp;#34;, pid); readlink(buf, path, sizeof(path)); char *filename = basename(path); strcpy(name, filename); } C语言变长数组 C99标准才有的特性 void test_vla(const char *str) { int len = strlen(str); char a[len + 1]; memset(a, 0, sizeof(a));</description>
     </item>
     
     <item>
       <title>第15章 面向对象编程</title>
-      <link>http://gitop.cc/posts/cpp-primer-15/</link>
+      <link>https://gitop.cc/posts/cpp-primer-15/</link>
       <pubDate>Mon, 21 Sep 2015 09:04:53 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-15/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-15/</guid>
       <description>15.1 OOP概述 面向对象编程的关键思想是数据抽象，继承和动态绑定。使用数据抽象，我们可以定义接口和实现分离的类。通过继承，我们可以定义相似类之间</description>
     </item>
     
