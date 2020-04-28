@@ -1,86 +1,198 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="MySQL Cookbook 第5章 处理字符串">
-<meta itemprop="description" content="5.0. Introduction A string can be binary or nonbinary. Binary strings are used for raw data such as images, music files, or encrypted values. Nonbinary strings are used for character data such as text and are associated with a character set and collation (sort order). A character set determines which characters are legal in a string. You can choose collations according to whether you need comparisons to be case sensitive">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MySQL Cookbook 第5章 处理字符串 | 招财猫的博客</title>
+    <meta property="og:title" content="MySQL Cookbook 第5章 处理字符串 - 招财猫的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2016-04-07T22:45:02&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2016-04-07T22:45:02&#43;08:00'>
+        
+    <meta name="Keywords" content="C,C&#43;&#43;,Python,Golang">
+    <meta name="description" content="MySQL Cookbook 第5章 处理字符串">
+        
+    <meta name="author" content="招财猫">
+    <meta property="og:url" content="http://gitop.cc/posts/mysql-cookbook-5/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
 
 
-<meta itemprop="datePublished" content="2016-04-07T22:45:02&#43;00:00" />
-<meta itemprop="dateModified" content="2016-04-07T22:45:02&#43;00:00" />
-<meta itemprop="wordCount" content="3829">
-
-
-
-<meta itemprop="keywords" content="MySQL," />
-<meta property="og:title" content="MySQL Cookbook 第5章 处理字符串" />
-<meta property="og:description" content="5.0. Introduction A string can be binary or nonbinary. Binary strings are used for raw data such as images, music files, or encrypted values. Nonbinary strings are used for character data such as text and are associated with a character set and collation (sort order). A character set determines which characters are legal in a string. You can choose collations according to whether you need comparisons to be case sensitive" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/posts/mysql-cookbook-5/" />
-<meta property="article:published_time" content="2016-04-07T22:45:02+00:00" />
-<meta property="article:modified_time" content="2016-04-07T22:45:02+00:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="MySQL Cookbook 第5章 处理字符串"/>
-<meta name="twitter:description" content="5.0. Introduction A string can be binary or nonbinary. Binary strings are used for raw data such as images, music files, or encrypted values. Nonbinary strings are used for character data such as text and are associated with a character set and collation (sort order). A character set determines which characters are legal in a string. You can choose collations according to whether you need comparisons to be case sensitive"/>
-
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>MySQL Cookbook 第5章 处理字符串</title>
-	<link rel="stylesheet" href="https://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
-	
+    
+    
 </head>
 
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://gitop.cc">静心</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://gitop.cc/posts/">Posts</a>
-				<a href="https://gitop.cc/tags/">Tags</a>
-				<a href="https://gitop.cc/about/">About</a>
 
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://gitop.cc/posts/">Posts</a></li>
-			<li><a href="https://gitop.cc/tags/">Tags</a></li>
-			<li><a href="https://gitop.cc/about/">About</a></li>
-		</ul>
-	</div>
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitop.cc">
+                        招财猫的博客
+                    </a>
+                
+                <p class="description">专注于C&#43;&#43;、Python、Golang</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitop.cc">首页</a>
+                    
+                    <a  href="http://gitop.cc/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitop.cc/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Apr 7, 2016</span></div>
-				<h1>MySQL Cookbook 第5章 处理字符串</h1>
-			</header>
-			<div class="content">
-				
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
-<h1 id="5-0-introduction">5.0. Introduction<a href="#5-0-introduction" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
 
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents"></nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">MySQL Cookbook 第5章 处理字符串</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年4月7日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Database'>Database</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h1 id="50-introduction">5.0. Introduction</h1>
 <ul>
 <li>A string can be binary or nonbinary. Binary strings are used for raw data such as
 images, music files, or encrypted values. Nonbinary strings are used for character
@@ -98,11 +210,8 @@ combined with other strings.</li>
 <li>You can apply pattern-matching operations to strings.</li>
 <li>Full-text searching is available for efficient queries on large collections of text.</li>
 </ul>
-
-<h1 id="5-1-string-properties">5.1. String Properties<a href="#5-1-string-properties" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="51-string-properties">5.1. String Properties</h1>
 <p>One string property is whether it is binary or nonbinary:</p>
-
 <ul>
 <li>A binary string is a sequence of bytes. It can contain any type of information, such
 as images, MP3 files, or compressed or encrypted data. A binary string is not as‐
@@ -113,9 +222,7 @@ character set and collation. The character set defines which characters can be s
 in the string. The collation defines the character ordering, which affects comparison
 and sorting operations.</li>
 </ul>
-
 <p>To see which character sets are available for nonbinary strings, use this statement:</p>
-
 <pre><code>mysql&gt; SHOW CHARACTER SET;
 +----------|-----------------------------|---------------------|--------+
 | Charset  | Description                 | Default collation   | Maxlen |
@@ -125,18 +232,17 @@ and sorting operations.</li>
 | cp850    | DOS West European           | cp850_general_ci    |      1 | 
 | hp8      | HP West European            | hp8_english_ci      |      1 | 
 </code></pre>
-
 <p>The default character set in MySQL is latin1. If you must store characters from several
 languages in a single column, consider using one of the Unicode character sets (such as
 utf8 or ucs2) because they can represent characters from multiple languages.</p>
-
 <p>To determine whether a given string contains multibyte characters, use the LENGTH()
 and CHAR_LENGTH() functions, which return the length of a string in bytes and charac‐
 ters, respectively. If LENGTH() is greater than CHAR_LENGTH() for a given string, multibyte
-characters are present:
-* The utf8 Unicode character set has multibyte characters, but a given utf8 string
-might contain only single-byte characters, as in the following example:</p>
-
+characters are present:</p>
+<ul>
+<li>The utf8 Unicode character set has multibyte characters, but a given utf8 string
+might contain only single-byte characters, as in the following example:</li>
+</ul>
 <pre><code>    mysql&gt; SET @s = CONVERT('abc' USING utf8);
     mysql&gt; SELECT LENGTH(@s), CHAR_LENGTH(@s);
     +------------|-----------------+
@@ -144,55 +250,44 @@ might contain only single-byte characters, as in the following example:</p>
     +------------|-----------------+
     |          3 |               3 | 
     +------------|-----------------+
-</code></pre>
-
-<ul>
-<li><p>For the ucs2 Unicode character set, all characters are encoded using two bytes, even
+</code></pre><ul>
+<li>For the ucs2 Unicode character set, all characters are encoded using two bytes, even
 if they are single-byte characters in another character set such as latin1. Thus,
-every ucs2 string contains multibyte characters:</p>
-
-<pre><code>mysql&gt; SET @s = CONVERT('abc' USING ucs2);
-mysql&gt; SELECT LENGTH(@s), CHAR_LENGTH(@s);
-+------------|-----------------+
-| LENGTH(@s) | CHAR_LENGTH(@s) |
-+------------|-----------------+
-|          6 |               3 | 
-+------------|-----------------+
-</code></pre>
-
-<p>Another property of nonbinary strings is collation, which determines the sort order of
+every ucs2 string contains multibyte characters:</li>
+</ul>
+<pre><code>    mysql&gt; SET @s = CONVERT('abc' USING ucs2);
+    mysql&gt; SELECT LENGTH(@s), CHAR_LENGTH(@s);
+    +------------|-----------------+
+    | LENGTH(@s) | CHAR_LENGTH(@s) |
+    +------------|-----------------+
+    |          6 |               3 | 
+    +------------|-----------------+
+</code></pre><p>Another property of nonbinary strings is collation, which determines the sort order of
 characters in the character set. Use SHOW COLLATION to see all available collations; add a
 LIKE clause to see the collations for a particular character set:</p>
-
-<pre><code>mysql&gt; SHOW COLLATION LIKE 'latin1%';
-+-------------------|---------|----|---------|----------|---------+
-| Collation         | Charset | Id | Default | Compiled | Sortlen |
-+-------------------|---------|----|---------|----------|---------+
-| latin1_german1_ci | latin1  |  5 |         | Yes      |       1 | 
-| latin1_swedish_ci | latin1  |  8 | Yes     | Yes      |       1 | 
-| latin1_danish_ci  | latin1  | 15 |         | Yes      |       1 | 
-| latin1_german2_ci | latin1  | 31 |         | Yes      |       2 | 
-| latin1_bin        | latin1  | 47 |         | Yes      |       1 | 
-| latin1_general_ci | latin1  | 48 |         | Yes      |       1 | 
-| latin1_general_cs | latin1  | 49 |         | Yes      |       1 | 
-| latin1_spanish_ci | latin1  | 94 |         | Yes      |       1 | 
-+-------------------|---------|----|---------|----------|---------+
-</code></pre>
-
-<p>In contexts where no collation is specified explicitly, strings in a given character set use
+<pre><code>    mysql&gt; SHOW COLLATION LIKE 'latin1%';
+    +-------------------|---------|----|---------|----------|---------+
+    | Collation         | Charset | Id | Default | Compiled | Sortlen |
+    +-------------------|---------|----|---------|----------|---------+
+    | latin1_german1_ci | latin1  |  5 |         | Yes      |       1 | 
+    | latin1_swedish_ci | latin1  |  8 | Yes     | Yes      |       1 | 
+    | latin1_danish_ci  | latin1  | 15 |         | Yes      |       1 | 
+    | latin1_german2_ci | latin1  | 31 |         | Yes      |       2 | 
+    | latin1_bin        | latin1  | 47 |         | Yes      |       1 | 
+    | latin1_general_ci | latin1  | 48 |         | Yes      |       1 | 
+    | latin1_general_cs | latin1  | 49 |         | Yes      |       1 | 
+    | latin1_spanish_ci | latin1  | 94 |         | Yes      |       1 | 
+    +-------------------|---------|----|---------|----------|---------+
+</code></pre><p>In contexts where no collation is specified explicitly, strings in a given character set use
 the collation with Yes in the Default column. As shown, the default collation for lat
 in1 is latin1_swedish_ci. (Default collations are also displayed by SHOW CHARACTER
-SET.)</p></li>
-</ul>
-
+SET.)</p>
 <p>A collation can be case sensitive (a and A are different), case insensitive (a and A are the
 same), or binary (two characters are the same or different based on whether their nu‐
 meric values are equal). A collation name ending in _ci, _cs, or _bin is case insensitive,
 case sensitive, or binary, respectively.</p>
-
 <p>The following example illustrates how collation affects sort order. Suppose that a table
 contains a latin1 string column and has the following rows:</p>
-
 <pre><code>mysql&gt; CREATE TABLE t (c CHAR(3) CHARACTER SET latin1);
 mysql&gt; INSERT INTO t (c) VALUES('AAA'),('bbb'),('aaa'),('BBB');
 mysql&gt; SELECT c FROM t;
@@ -205,101 +300,118 @@ mysql&gt; SELECT c FROM t;
 | BBB  | 
 +------+
 </code></pre>
-
 <p>By applying the COLLATE operator to the column, you can choose which collation to use
 for sorting and thus affect the order of the result:</p>
-
 <ul>
-<li><p>A case-insensitive collation sorts a and A together, placing them before b and B.
+<li>A case-insensitive collation sorts a and A together, placing them before b and B.
 However, for a given letter, it does not necessarily order one lettercase before an‐
-other, as shown by the following result:</p>
-
-<pre><code>mysql&gt; SELECT c FROM t ORDER BY c COLLATE latin1_swedish_ci;
-+------+
-| c    |
-+------+
-| AAA  | 
-| aaa  | 
-| bbb  | 
-| BBB  | 
-+------+
-</code></pre></li>
-
-<li><p>A case-sensitive collation puts A and a before B and b, and sorts uppercase before
-lowercase:</p>
-
-<pre><code>mysql&gt; SELECT c FROM t ORDER BY c COLLATE latin1_general_cs;
-+------+
-| c    |
-+------+
-| AAA  | 
-| aaa  | 
-| BBB  | 
-| bbb  | 
-+------+
-</code></pre></li>
-
-<li><p>A binary collation sorts characters using their numeric values. Assuming that up‐
+other, as shown by the following result:</li>
+</ul>
+<pre><code>    mysql&gt; SELECT c FROM t ORDER BY c COLLATE latin1_swedish_ci;
+    +------+
+    | c    |
+    +------+
+    | AAA  | 
+    | aaa  | 
+    | bbb  | 
+    | BBB  | 
+    +------+
+</code></pre><ul>
+<li>A case-sensitive collation puts A and a before B and b, and sorts uppercase before
+lowercase:</li>
+</ul>
+<pre><code>    mysql&gt; SELECT c FROM t ORDER BY c COLLATE latin1_general_cs;
+    +------+
+    | c    |
+    +------+
+    | AAA  | 
+    | aaa  | 
+    | BBB  | 
+    | bbb  | 
+    +------+
+</code></pre><ul>
+<li>A binary collation sorts characters using their numeric values. Assuming that up‐
 percase letters have numeric values less than those of lowercase letters, a binary
-collation results in the following ordering:</p>
-
-<pre><code>mysql&gt; SELECT c FROM t ORDER BY c COLLATE latin1_bin;
-+------+
-| c    |
-+------+
-| AAA  | 
-| BBB  | 
-| aaa  | 
-| bbb  | 
-+------+
-</code></pre>
-
-<p>If you require that comparison and sorting operations use the sorting rules of a particular
+collation results in the following ordering:</li>
+</ul>
+<pre><code>    mysql&gt; SELECT c FROM t ORDER BY c COLLATE latin1_bin;
+    +------+
+    | c    |
+    +------+
+    | AAA  | 
+    | BBB  | 
+    | aaa  | 
+    | bbb  | 
+    +------+
+</code></pre><p>If you require that comparison and sorting operations use the sorting rules of a particular
 language, choose a language-specific collation. For example, if you store strings using
 the utf8 character set, the default collation (utf8_general_ci) treats ch and ll as twocharacter strings. To use the traditional Spanish ordering that treats ch and ll as single
 characters that follow c and l, respectively, specify the utf8_spanish2_ci collation. The
 two collations produce different results, as shown here:</p>
-
-<pre><code>mysql&gt; CREATE TABLE t (c CHAR(2) CHARACTER SET utf8);
-mysql&gt; INSERT INTO t (c) VALUES('cg'),('ch'),('ci'),('lk'),('ll'),('lm');
-mysql&gt; SELECT c FROM t ORDER BY c COLLATE utf8_general_ci;
-mysql&gt; SELECT c FROM t ORDER BY c COLLATE utf8_spanish2_ci;
-</code></pre></li>
-</ul>
-
-<h1 id="5-2-choosing-a-string-data-type">5.2. Choosing a String Data Type<a href="#5-2-choosing-a-string-data-type" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<pre><code>    mysql&gt; CREATE TABLE t (c CHAR(2) CHARACTER SET utf8);
+    mysql&gt; INSERT INTO t (c) VALUES('cg'),('ch'),('ci'),('lk'),('ll'),('lm');
+    mysql&gt; SELECT c FROM t ORDER BY c COLLATE utf8_general_ci;
+    mysql&gt; SELECT c FROM t ORDER BY c COLLATE utf8_spanish2_ci;
+</code></pre><h1 id="52-choosing-a-string-data-type">5.2. Choosing a String Data Type</h1>
 <p>Problem</p>
-
 <p>You want to store string data but aren’t sure which is the most appropriate data type.</p>
-
 <p>Solution</p>
-
 <p>Choose the data type according to the characteristics of the information to be stored
-and how you need to use it. Consider questions such as these:
-* Are the strings binary or nonbinary?
-* Does case sensitivity matter?
-* What is the maximum string length?
-* Do you want to store fixed- or variable-length values?
-* Do you need to retain trailing spaces?
-* Is there a fixed set of permitted values?</p>
-
+and how you need to use it. Consider questions such as these:</p>
+<ul>
+<li>Are the strings binary or nonbinary?</li>
+<li>Does case sensitivity matter?</li>
+<li>What is the maximum string length?</li>
+<li>Do you want to store fixed- or variable-length values?</li>
+<li>Do you need to retain trailing spaces?</li>
+<li>Is there a fixed set of permitted values?</li>
+</ul>
 <p>Discussion</p>
-
 <p>MySQL provides several binary and nonbinary string data types. These types come in
 pairs as shown in the following table. The maximum length is in bytes, whether the type
 is binary or nonbinary. For nonbinary types, the maximum number of characters is less
 for strings that contain multibyte characters:</p>
-
-<p>| Binary data type | Nonbinary data type | Maximum length |
-| &ndash; | &ndash; | &ndash; |
-| BINARY | CHAR | 255 |
-| VARBINARY | VARCHAR | 65,535 |
-| TINYBLOB | TINYTEXT | 255 |
-| BLOB | TEXT | 65,535 |
-| MEDIUMBLOB | MEDIUMTEXT | 16,777,215 |
-| LONGBLOB | LONGTEXT | 4,294,967,295 |</p>
-
+<table>
+<thead>
+<tr>
+<th>Binary data type</th>
+<th>Nonbinary data type</th>
+<th>Maximum length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BINARY</td>
+<td>CHAR</td>
+<td>255</td>
+</tr>
+<tr>
+<td>VARBINARY</td>
+<td>VARCHAR</td>
+<td>65,535</td>
+</tr>
+<tr>
+<td>TINYBLOB</td>
+<td>TINYTEXT</td>
+<td>255</td>
+</tr>
+<tr>
+<td>BLOB</td>
+<td>TEXT</td>
+<td>65,535</td>
+</tr>
+<tr>
+<td>MEDIUMBLOB</td>
+<td>MEDIUMTEXT</td>
+<td>16,777,215</td>
+</tr>
+<tr>
+<td>LONGBLOB</td>
+<td>LONGTEXT</td>
+<td>4,294,967,295</td>
+</tr>
+</tbody>
+</table>
 <p>For the BINARY and CHAR data types, MySQL stores column values using a fixed width.
 For example, values stored in a BINARY(10) or CHAR(10) column always take 10 bytes
 or 10 characters, respectively. Shorter values are padded to the required length as nec‐essary when stored. For BINARY, the pad value is 0x00 (the zero-valued byte, also known
@@ -312,7 +424,6 @@ To preserve trailing pad values that are present in the original strings that ar
 use a data type for which no stripping occurs. For example, if you store character (non‐
 binary) strings that might end with spaces, and want to preserve them, use VARCHAR or
 one of the TEXT data types. The following statements illustrate the difference in trailingspace handling for CHAR and VARCHAR columns:</p>
-
 <pre><code>mysql&gt; CREATE TABLE t (c1 CHAR(10), c2 VARCHAR(10));
 mysql&gt; INSERT INTO t (c1,c2) VALUES('abc ','abc ');
 mysql&gt; SELECT c1, c2, CHAR_LENGTH(c1), CHAR_LENGTH(c2) FROM t;
@@ -322,157 +433,131 @@ mysql&gt; SELECT c1, c2, CHAR_LENGTH(c1), CHAR_LENGTH(c2) FROM t;
 | abc  | abc  |               3 |               4 | 
 +------|------|-----------------|-----------------+
 </code></pre>
-
 <p>A table can include a mix of binary and nonbinary string columns, and its nonbinary
 columns can use different character sets and collations. When you declare a nonbinary
 string column, use the CHARACTER SET and COLLATE attributes if you require a particular
 character set and collation. For example, if you need to store utf8 (Unicode) and sjis
 (Japanese) strings, you might define a table with two columns like this:</p>
-
 <pre><code>CREATE TABLE mytbl
 (
     utf8str VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_danish_ci,
     sjisstr VARCHAR(100) CHARACTER SET sjis COLLATE sjis_japanese_ci
 );
 </code></pre>
-
-<p>The CHARACTER SET and COLLATE clauses are each optional in a column definition:
-* If you specify CHARACTER SET and omit COLLATE, the default collation for the char‐
-acter set is used.
-* If you specify COLLATE and omit CHARACTER SET, the character set implied by the
+<p>The CHARACTER SET and COLLATE clauses are each optional in a column definition:</p>
+<ul>
+<li>
+<p>If you specify CHARACTER SET and omit COLLATE, the default collation for the char‐
+acter set is used.</p>
+</li>
+<li>
+<p>If you specify COLLATE and omit CHARACTER SET, the character set implied by the
 collation name (the first part of the name) is used. For example, utf8_danish_ci
 and sjis_japanese_ci imply utf8 and sjis, respectively. This means that the
 CHARACTER SET attributes could have been omitted from the preceding CREATE TABLE
 statement.</p>
-
-<ul>
-<li>If you omit both CHARACTER SET and COLLATE, the column is assigned the table
+</li>
+<li>
+<p>If you omit both CHARACTER SET and COLLATE, the column is assigned the table
 default character set and collation. A table definition can include those attributes
 following the closing parenthesis at the end of the CREATE TABLE statement. If
 present, they apply to columns that have no explicit character set or collation of
 their own. If omitted, the table defaults are taken from the database defaults. You
 can specify the database defaults when you create the database with the CREATE
-DATABASE statement. The server defaults apply to the database if they are omitted.</li>
+DATABASE statement. The server defaults apply to the database if they are omitted.</p>
+</li>
 </ul>
-
 <p>The server default character set and collation are latin1 and latin1_swedish_ci, so
 strings by default use the latin1 character set and are not case sensitive. To change this,
 set the character_set_server and collation_server system variables at server start‐
 up</p>
-
 <p>MySQL also supports ENUM and SET string types, which are used for columns that have
 a fixed set of permitted values. The CHARACTER SET and COLLATE attributes apply to these
 data types as well.</p>
-
-<h1 id="5-3-setting-the-client-connection-character-set">5.3. Setting the Client Connection Character Set<a href="#5-3-setting-the-client-connection-character-set" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="53-setting-the-client-connection-character-set">5.3. Setting the Client Connection Character Set</h1>
 <p>Problem</p>
-
 <p>You’re executing SQL statements or producing query results that don’t use the default
 character set.</p>
-
 <p>Solution</p>
-
 <p>Use SET NAMES or an equivalent method to set your connection to the proper character
 set</p>
-
 <p>Discussion</p>
-
 <p>To deal with this problem, configure your connection to use the appropriate character
 set. You have several ways to do this:</p>
-
 <ul>
-<li><p>Issue a SET NAMES statement after you connect:</p>
-
-<pre><code>mysql&gt; SET NAMES 'utf8';
-</code></pre>
-
-<p>SET NAMES permits the connection collation to be specified as well:</p>
-
-<pre><code>mysql&gt; SET NAMES 'utf8' COLLATE 'utf8_general_ci';
-</code></pre></li>
-
-<li><p>If your client program supports the &ndash;default-character-set option, you can use
+<li>Issue a SET NAMES statement after you connect:</li>
+</ul>
+<pre><code>    mysql&gt; SET NAMES 'utf8';
+</code></pre><p>SET NAMES permits the connection collation to be specified as well:</p>
+<pre><code>    mysql&gt; SET NAMES 'utf8' COLLATE 'utf8_general_ci';
+</code></pre><ul>
+<li>If your client program supports the &ndash;default-character-set option, you can use
 it to specify the character set at program invocation time. mysql is one such program.
 Put the option in an option file so that it takes effect each time you connect to the
-server:</p>
-
-<pre><code>[mysql]
-default-character-set=utf8
-</code></pre></li>
-
-<li><p>If you set the environment for your working environment using the LANG or LC_ALL
+server:</li>
+</ul>
+<pre><code>    [mysql]
+    default-character-set=utf8
+</code></pre><ul>
+<li>
+<p>If you set the environment for your working environment using the LANG or LC_ALL
 environment variable on Unix, or the code page setting on Windows, MySQL client
 programs automatically detect which character set to use. For example, setting
-LC_ALL to en_US.UTF-8 causes programs such as mysql to use utf8.</p></li>
-
-<li><p>Some programming interfaces provide their own method of setting the character
+LC_ALL to en_US.UTF-8 causes programs such as mysql to use utf8.</p>
+</li>
+<li>
+<p>Some programming interfaces provide their own method of setting the character
 set. For example, MySQL Connector/J for Java clients detects the character set used
 on the server side automatically when you connect, but you can specify a different
 set explicitly using the characterEncoding property in the connection URL. The
 property value should be the Java-style character-set name. To select utf8, you
 might use a connection URL like this:</p>
-
-<pre><code>jdbc:mysql://localhost/cookbook?characterEncoding=UTF-8
-</code></pre>
-
-<p>This is preferable to SET NAMES because Connector/J performs character-set con‐
+</li>
+</ul>
+<pre><code>    jdbc:mysql://localhost/cookbook?characterEncoding=UTF-8
+</code></pre><p>This is preferable to SET NAMES because Connector/J performs character-set con‐
 version on behalf of the application, but is unaware of which character set applies
 if you use SET NAMES. Similar principles apply to programs written for other APIs.
 For PDO, use a charset option in your data source name (DSN) string (this works
 in PHP 5.3.6 or later):</p>
-
-<pre><code>$dsn = &quot;mysql:host=localhost;dbname=cookbook;charset=utf8&quot;;
-</code></pre>
-
-<p>For Connector/Python, specify a charset connection parameter:</p>
-
-<pre><code>conn_params = {
-&quot;database&quot;: &quot;cookbook&quot;,
-&quot;host&quot;: &quot;localhost&quot;,
-&quot;user&quot;: &quot;cbuser&quot;,
-&quot;password&quot;: &quot;cbpass&quot;,
-&quot;charset&quot;: &quot;utf8&quot;,
-}
-</code></pre>
-
-<p>Some APIs may also provide a parameter to specify the collation.</p></li>
-</ul>
-
-<h1 id="5-4-writing-string-literals">5.4. Writing String Literals<a href="#5-4-writing-string-literals" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<pre><code>    $dsn = &quot;mysql:host=localhost;dbname=cookbook;charset=utf8&quot;;
+</code></pre><p>For Connector/Python, specify a charset connection parameter:</p>
+<pre><code>    conn_params = {
+    &quot;database&quot;: &quot;cookbook&quot;,
+    &quot;host&quot;: &quot;localhost&quot;,
+    &quot;user&quot;: &quot;cbuser&quot;,
+    &quot;password&quot;: &quot;cbpass&quot;,
+    &quot;charset&quot;: &quot;utf8&quot;,
+    }
+</code></pre><p>Some APIs may also provide a parameter to specify the collation.</p>
+<h1 id="54-writing-string-literals">5.4. Writing String Literals</h1>
 <p>Problem</p>
-
 <p>You need to write literal strings in SQL statements.</p>
-
 <p>Solution</p>
-
 <p>Learn the syntax rules that govern string values.</p>
-
 <p>Discussion</p>
-
 <p>You can write strings several ways:</p>
-
 <ul>
-<li><p>Enclose the text of the string within single quotes or double quotes:
+<li>
+<p>Enclose the text of the string within single quotes or double quotes:
 &lsquo;my string&rsquo;
 &ldquo;my string&rdquo;
 When the ANSI_QUOTES SQL mode is enabled, you cannot use double quotes for
 quoting strings: the server interprets double quote as the quoting character for
-identifiers such as table or column names, and not for strings</p></li>
-
-<li><p>Use hexadecimal notation. Each pair of hex digits produces one byte of the string.
+identifiers such as table or column names, and not for strings</p>
+</li>
+<li>
+<p>Use hexadecimal notation. Each pair of hex digits produces one byte of the string.
 abcd can be written using any of these formats:
 0x61626364
-X&rsquo;61626364&rsquo;
-x&rsquo;61626364&rsquo;
+X'61626364&rsquo;
+x'61626364&rsquo;
 MySQL treats strings written using hex notation as binary strings. Not coinciden‐
 tally, it’s common for applications to use hex strings when constructing SQL state‐
-ments that refer to binary values:</p></li>
+ments that refer to binary values:</p>
+</li>
 </ul>
-
 <p>INSERT INTO t SET binary_col = 0xdeadbeef;</p>
-
 <ul>
 <li>To specify a character set for interpretation of a literal string, use an introducer
 consisting of a character-set name preceded by an underscore:
@@ -483,85 +568,67 @@ in1 &lsquo;abcd&rsquo;, the server produces a string consisting of four single-b
 For _ucs2 &lsquo;abcd&rsquo;, the server produces a string consisting of two two-byte characters
 because ucs2 is a double-byte character set.</li>
 </ul>
-
 <p>A quoted string that includes the same quote character produces a syntax error:</p>
-
 <pre><code>mysql&gt; SELECT 'I'm asleep';
 ERROR 1064 (42000): You have an error in your SQL syntax near 'asleep''
 </code></pre>
-
-<p>You have several ways to deal with this:
-* Enclose a string containing single quotes within double quotes (assuming that
+<p>You have several ways to deal with this:</p>
+<ul>
+<li>Enclose a string containing single quotes within double quotes (assuming that
 ANSI_QUOTES is disabled), or enclose a string containing double quotes within single
-quotes:</p>
-
+quotes:</li>
+</ul>
 <pre><code>    mysql&gt; SELECT &quot;I'm asleep&quot;, 'He said, &quot;Boo!&quot;';
     +------------|-----------------+
     | I'm asleep | He said, &quot;Boo!&quot; |
     +------------|-----------------+
     | I'm asleep | He said, &quot;Boo!&quot; | 
     +------------|-----------------+
-</code></pre>
-
-<ul>
-<li><p>To include a quote character within a string quoted by the same kind of quote,
+</code></pre><ul>
+<li>To include a quote character within a string quoted by the same kind of quote,
 double the quote or precede it with a backslash. When MySQL reads the statement,
-it strips the extra quote or the backslash:</p>
-
-<pre><code>mysql&gt; SELECT 'I''m asleep', 'I\'m wide awake';
-+------------|----------------+
-| I'm asleep | I'm wide awake |
-+------------|----------------+
-| I'm asleep | I'm wide awake | 
-+------------|----------------+
-mysql&gt; SELECT &quot;He said, &quot;&quot;Boo!&quot;&quot;&quot;, &quot;And I said, \&quot;Yikes!\&quot;&quot;;
-+-----------------|----------------------+
-| He said, &quot;Boo!&quot; | And I said, &quot;Yikes!&quot; |
-+-----------------|----------------------+
-| He said, &quot;Boo!&quot; | And I said, &quot;Yikes!&quot; | 
-+-----------------|----------------------+
-</code></pre>
-
-<p>A backslash turns off any special meaning of the following character, including
-itself. To write a literal backslash within a string, double it:</p>
-
-<pre><code>mysql&gt; SELECT 'Install MySQL in C:\\mysql on Windows';
-+--------------------------------------+
-| Install MySQL in C:\mysql on Windows |
-+--------------------------------------+
-| Install MySQL in C:\mysql on Windows | 
-+--------------------------------------+
-</code></pre></li>
-
-<li><p>Write the string as a hex value:</p>
-
-<pre><code>mysql&gt; SELECT 0x49276D2061736C656570;
-+------------------------+
-| 0x49276D2061736C656570 |
-+------------------------+
-| I'm asleep             | 
-+------------------------+
-</code></pre></li>
+it strips the extra quote or the backslash:</li>
 </ul>
-
-<h1 id="5-5-checking-or-changing-a-string-s-character-set-or-collation">5.5. Checking or Changing a String’s Character Set or Collation<a href="#5-5-checking-or-changing-a-string-s-character-set-or-collation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<pre><code>    mysql&gt; SELECT 'I''m asleep', 'I\'m wide awake';
+    +------------|----------------+
+    | I'm asleep | I'm wide awake |
+    +------------|----------------+
+    | I'm asleep | I'm wide awake | 
+    +------------|----------------+
+    mysql&gt; SELECT &quot;He said, &quot;&quot;Boo!&quot;&quot;&quot;, &quot;And I said, \&quot;Yikes!\&quot;&quot;;
+    +-----------------|----------------------+
+    | He said, &quot;Boo!&quot; | And I said, &quot;Yikes!&quot; |
+    +-----------------|----------------------+
+    | He said, &quot;Boo!&quot; | And I said, &quot;Yikes!&quot; | 
+    +-----------------|----------------------+
+</code></pre><p>A backslash turns off any special meaning of the following character, including
+itself. To write a literal backslash within a string, double it:</p>
+<pre><code>    mysql&gt; SELECT 'Install MySQL in C:\\mysql on Windows';
+    +--------------------------------------+
+    | Install MySQL in C:\mysql on Windows |
+    +--------------------------------------+
+    | Install MySQL in C:\mysql on Windows | 
+    +--------------------------------------+
+</code></pre><ul>
+<li>Write the string as a hex value:</li>
+</ul>
+<pre><code>    mysql&gt; SELECT 0x49276D2061736C656570;
+    +------------------------+
+    | 0x49276D2061736C656570 |
+    +------------------------+
+    | I'm asleep             | 
+    +------------------------+
+</code></pre><h1 id="55-checking-or-changing-a-strings-character-set-or-collation">5.5. Checking or Changing a String’s Character Set or Collation</h1>
 <p>Problem</p>
-
 <p>You want to know the character set or collation of a string, or change a string to some
 other character set or collation.</p>
-
 <p>Solution</p>
-
 <p>To check a string’s character set or collation, use the CHARSET() or COLLATION() func‐
 tion. To change its character set, use the CONVERT() function. To change its collation,
 use the COLLATE operator.</p>
-
 <p>Discussion</p>
-
 <p>To determine a string’s character set or collation, use the CHARSET() or COLLATION()
 function. For example, did you know that the USER() function returns a Unicode string?</p>
-
 <pre><code>mysql&gt; SELECT USER(), CHARSET(USER()), COLLATION(USER());
 +------------------|-----------------|-------------------+
 | USER()           | CHARSET(USER()) | COLLATION(USER()) |
@@ -569,10 +636,8 @@ function. For example, did you know that the USER() function returns a Unicode s
 | cbuser@localhost | utf8            | utf8_general_ci   | 
 +------------------|-----------------|-------------------+
 </code></pre>
-
 <p>String values that take their character set and collation from the current configuration
 may change properties if the configuration changes. This is true for literal strings:</p>
-
 <pre><code>mysql&gt; SET NAMES 'latin1';
 mysql&gt; SELECT CHARSET('abc'), COLLATION('abc');
 +----------------|-------------------+
@@ -588,12 +653,10 @@ mysql&gt; SELECT CHARSET('abc'), COLLATION('abc');
 | utf8           | utf8_bin         | 
 +----------------|------------------+
 </code></pre>
-
 <p>For a binary string, the CHARSET() or COLLATION() functions return a value of binary,
 which means that the string is compared and sorted based on numeric byte values, not
 character collation values.
 To convert a string from one character set to another, use the CONVERT() function:</p>
-
 <pre><code>mysql&gt; SET @s1 = _latin1 'my string', @s2 = CONVERT(@s1 USING utf8);
 mysql&gt; SELECT CHARSET(@s1), CHARSET(@s2);
 +--------------|--------------+
@@ -602,9 +665,7 @@ mysql&gt; SELECT CHARSET(@s1), CHARSET(@s2);
 | latin1       | utf8         | 
 +--------------|--------------+
 </code></pre>
-
 <p>To change the collation of a string, use the COLLATE operator:</p>
-
 <pre><code>mysql&gt; SET @s1 = _latin1 'my string', @s2 = @s1 COLLATE latin1_spanish_ci;
 mysql&gt; SELECT COLLATION(@s1), COLLATION(@s2);
 +-------------------|-------------------+
@@ -613,18 +674,14 @@ mysql&gt; SELECT COLLATION(@s1), COLLATION(@s2);
 | latin1_swedish_ci | latin1_spanish_ci | 
 +-------------------|-------------------+
 </code></pre>
-
 <p>The new collation must be legal for the character set of the string. For example, you can
 use the utf8_general_ci collation with utf8 strings, but not with latin1 strings:</p>
-
 <pre><code>mysql&gt; SELECT _latin1 'abc' COLLATE utf8_bin;
 ERROR 1253 (42000): COLLATION 'utf8_bin' is not valid for
 CHARACTER SET 'latin1'
 </code></pre>
-
 <p>To convert both the character set and collation of a string, use CONVERT() to change the
 character set, and apply the COLLATE operator to the result:</p>
-
 <pre><code>mysql&gt; SET @s1 = _latin1 'my string';
 mysql&gt; SET @s2 = CONVERT(@s1 USING utf8) COLLATE utf8_spanish_ci;
 mysql&gt; SELECT CHARSET(@s1), COLLATION(@s1), CHARSET(@s2), COLLATION(@s2);
@@ -634,11 +691,9 @@ mysql&gt; SELECT CHARSET(@s1), COLLATION(@s1), CHARSET(@s2), COLLATION(@s2);
 | latin1       | latin1_swedish_ci | utf8         | utf8_spanish_ci | 
 +--------------|-------------------|--------------|-----------------+
 </code></pre>
-
 <p>The CONVERT() function can also convert binary strings to nonbinary strings and vice
 versa. To produce a binary string, use binary; any other character-set name produces
 a nonbinary string:</p>
-
 <pre><code>mysql&gt; SET @s1 = _latin1 'my string';
 mysql&gt; SET @s2 = CONVERT(@s1 USING binary);
 mysql&gt; SET @s3 = CONVERT(@s2 USING utf8);
@@ -649,10 +704,8 @@ mysql&gt; SELECT CHARSET(@s1), CHARSET(@s2), CHARSET(@s3);
 | latin1       | binary       | utf8         | 
 +--------------|--------------|--------------+
 </code></pre>
-
 <p>Alternatively, produce binary strings using the BINARY operator, which is equivalent to
 CONVERT(str USING binary):</p>
-
 <pre><code>mysql&gt; SELECT CHARSET(BINARY _latin1 'my string');
 +-------------------------------------+
 | CHARSET(BINARY _latin1 'my string') |
@@ -660,23 +713,15 @@ CONVERT(str USING binary):</p>
 | binary                              | 
 +-------------------------------------+
 </code></pre>
-
-<h1 id="5-6-converting-the-lettercase-of-a-string">5.6. Converting the Lettercase of a String<a href="#5-6-converting-the-lettercase-of-a-string" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="56-converting-the-lettercase-of-a-string">5.6. Converting the Lettercase of a String</h1>
 <p>Problem</p>
-
 <p>You want to convert a string to uppercase or lowercase.</p>
-
 <p>Solution</p>
-
 <p>Use the UPPER() or LOWER() function. If they don’t work, you’re probably trying to
 convert a binary string. Convert it to a nonbinary string that has a character set and
 collation and is subject to case mapping.</p>
-
 <p>Discussion</p>
-
 <p>The UPPER() and LOWER() functions convert the lettercase of a string:</p>
-
 <pre><code>mysql&gt; SELECT thing, UPPER(thing), LOWER(thing) FROM limbs;
 +--------------|--------------|--------------+
 | thing        | UPPER(thing) | LOWER(thing) |
@@ -686,9 +731,7 @@ collation and is subject to case mapping.</p>
 | squid        | SQUID        | squid        | 
 | fish         | FISH         | fish         | 
 </code></pre>
-
 <p>But some strings are “stubborn” and resist lettercase conversion:</p>
-
 <pre><code>mysql&gt; CREATE TABLE t (b BLOB) SELECT 'aBcD' AS b;
 mysql&gt; SELECT b, UPPER(b), LOWER(b) FROM t;
 +------|----------|----------+
@@ -697,15 +740,12 @@ mysql&gt; SELECT b, UPPER(b), LOWER(b) FROM t;
 | aBcD | aBcD     | aBcD     | 
 +------|----------|----------+
 </code></pre>
-
 <p>This problem occurs for strings that have a BINARY or BLOB data type. These are binary
 strings that have no character set or collation. Lettercase does not apply, and UPPER()
 and LOWER() do nothing.</p>
-
 <p>To map a binary string to a given lettercase, convert it to a nonbinary string, choosing
 a character set that has uppercase and lowercase characters. The case-conversion func‐
 tions then work as you expect because the collation provides case mapping</p>
-
 <pre><code>mysql&gt; SELECT b,
     -&gt; UPPER(CONVERT(b USING latin1)) AS upper,
     -&gt; LOWER(CONVERT(b USING latin1)) AS lower
@@ -716,23 +756,17 @@ tions then work as you expect because the collation provides case mapping</p>
 | aBcD | ABCD  | abcd  | 
 +------|-------|-------+
 </code></pre>
-
 <p>To convert the lettercase of only part of a string, break it into pieces, convert the relevant
 piece, and put the pieces back together. Suppose that you want to convert only the initial
 character of a string to uppercase. The following expression accomplishes that:</p>
-
 <p>CONCAT(UPPER(LEFT(str,1)),MID(str,2))</p>
-
 <p>But it’s ugly to write an expression like that each time you need it. For convenience,
 define a stored function:</p>
-
 <pre><code>mysql&gt; CREATE FUNCTION initial_cap (s VARCHAR(255))
     -&gt; RETURNS VARCHAR(255) DETERMINISTIC
     -&gt; RETURN CONCAT(UPPER(LEFT(s,1)),MID(s,2));
 </code></pre>
-
 <p>Then you can capitalize initial characters more easily:</p>
-
 <pre><code>mysql&gt; SELECT thing, initial_cap(thing) FROM limbs;
 +--------------|--------------------+
 | thing        | initial_cap(thing) |
@@ -751,37 +785,254 @@ define a stored function:</p>
 +--------------|--------------------+
 </code></pre>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://gitop.cc/tags/mysql">MySQL</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3829 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2016-04-08 06:45 &#43;0800</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="next-post" href="https://gitop.cc/posts/asio-cookbook-1/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Asio.Cookbook 第1章 基础</span>
-			</a>
-			<a class="prev-post" href="https://gitop.cc/posts/mysql-cookbook-4/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>MySQL Cookbook 第4章 表管理</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://gitop.cc">招财猫</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://gitop.cc/posts/mysql-cookbook-5/">http://gitop.cc/posts/mysql-cookbook-5/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
 </div>
-	</main>
-
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
+<br/>
 
 
-	<script src="https://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/mysql-cookbook-4/">MySQL Cookbook 第4章 表管理</a></li>
+        
+        <li><a href="/posts/mysql-cookbook-3/">MySQL Cookbook 第3章 从表中查询数据</a></li>
+        
+        <li><a href="/posts/mysql-cookbook-2/">MySQL Cookbook 第2章 编写基于MySQL的程序</a></li>
+        
+        <li><a href="/posts/mysql-cookbook-1/">MySQL Cookbook 第1章 使用mysql客户端</a></li>
+        
+        <li><a href="/posts/cpp-primer-2/">第2章 变量和基本类型</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://gitop.cc/tags/MySQL'>MySQL</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitop.cc">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Database/">Database (12)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/GUI/">GUI (5)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Gist/">Gist (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Language/">Language (23)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Linux/">Linux (3)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Network/">Network (4)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Tool/">Tool (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitop.cc/tags/C/">C</a>
+    
+    <a href="http://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://gitop.cc/tags/CentOS/">CentOS</a>
+    
+    <a href="http://gitop.cc/tags/Docker/">Docker</a>
+    
+    <a href="http://gitop.cc/tags/Git/">Git</a>
+    
+    <a href="http://gitop.cc/tags/Greenplum/">Greenplum</a>
+    
+    <a href="http://gitop.cc/tags/Idea/">Idea</a>
+    
+    <a href="http://gitop.cc/tags/Java/">Java</a>
+    
+    <a href="http://gitop.cc/tags/Javascript/">Javascript</a>
+    
+    <a href="http://gitop.cc/tags/Markdown/">Markdown</a>
+    
+    <a href="http://gitop.cc/tags/MySQL/">MySQL</a>
+    
+    <a href="http://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
+    
+    <a href="http://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
+    
+    <a href="http://gitop.cc/tags/Python/">Python</a>
+    
+    <a href="http://gitop.cc/tags/Scrapy/">Scrapy</a>
+    
+    <a href="http://gitop.cc/tags/Ubuntu/">Ubuntu</a>
+    
+    <a href="http://gitop.cc/tags/XPath/">XPath</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitop.cc/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://gitop.cc">招财猫的博客 By 招财猫</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
 
 </body>
 

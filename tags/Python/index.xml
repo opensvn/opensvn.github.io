@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on 招财猫的博客</title>
+    <link>http://gitop.cc/tags/Python/</link>
+    <description>Recent content in Python on 招财猫的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 04 Nov 2019 17:49:51 +0800</lastBuildDate>
+    
+	<atom:link href="http://gitop.cc/tags/Python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Scrapy爬虫基础</title>
+      <link>http://gitop.cc/posts/scrapy-fundamental/</link>
+      <pubDate>Mon, 04 Nov 2019 17:49:51 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/scrapy-fundamental/</guid>
+      <description>安装Scrapy 推荐virtualenv安装，步骤如下： 如果没有virtualenv，先安装virtualenv sudo pip3 install virtualenv 创建一个virtualenv环境 virtualenv --no-site-packages scrapy 进入目录，激活virtualenv环境 source bin/activate 安装Scrapy pip install Scrapy 爬虫基本流程 URL 一切都从一个URL开始。您需要从您想要抓取的</description>
+    </item>
+    
+    <item>
+      <title>Python核心编程 第3章</title>
+      <link>http://gitop.cc/posts/Core-Python-3/</link>
+      <pubDate>Fri, 25 Dec 2015 13:28:23 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/Core-Python-3/</guid>
+      <description>3.1 语句和语法 关于Python语句的一些规则和符号： 井号（#）指示Python注释。 换行（\n）是标准行分隔符（一个语句一行） 反斜杠（\）延续一行 分号（;）将2个语句连接在一行 冒号（:）分隔标题行和其单元 单元通过缩进界定 Python文件组织成模块 3.1.1 注释（#） Python注释以井号开</description>
+    </item>
+    
+    <item>
+      <title>Python核心编程 第2章</title>
+      <link>http://gitop.cc/posts/Core-Python-2/</link>
+      <pubDate>Thu, 24 Dec 2015 09:46:13 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/Core-Python-2/</guid>
+      <description>命令行选项 -d 提供调试输出 -O 生成优化字节码（产生.pyo文件） -S 启动时不要运行导入地址查询Python路径 -v 详细输出（详细追踪import语句） -m mod 将模块当脚本运行 -Q opt 除法选项 -c cmd 将cmd字符串当Python脚本执行 file 从指定文件运行Python脚本 2.1 程序输出，print语句和&amp;qu</description>
+    </item>
+    
+    <item>
+      <title>Pygame第6章 接受用户输入</title>
+      <link>http://gitop.cc/posts/pygame-6/</link>
+      <pubDate>Mon, 16 Nov 2015 16:39:23 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/pygame-6/</guid>
+      <description>用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。 控制游戏 玩过游戏的都知道鼠标和键盘是游戏不可或缺的输入设备。键盘可以控制有限的方向和诸</description>
+    </item>
+    
+    <item>
+      <title>Pygame第5章 让画面动起来</title>
+      <link>http://gitop.cc/posts/pygame-5/</link>
+      <pubDate>Tue, 10 Nov 2015 20:21:33 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/pygame-5/</guid>
+      <description>这一章描述如何以一种可以预测的方式在屏幕上移动对象，和如何使运动在其他人电脑里面一致。 理解帧率 我们需要知道计算机游戏中关于运动的第一件事情就是没有什么东西真正在移动。电脑屏幕或电视机展示给我们一系列图片，当两张图片间隔时间够短时，我们的大脑将这些图片混合在一起从而制造了流畅运动的</description>
+    </item>
+    
+    <item>
+      <title>Pygame第4章 创建视觉</title>
+      <link>http://gitop.cc/posts/pygame-4/</link>
+      <pubDate>Sat, 07 Nov 2015 21:28:44 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/pygame-4/</guid>
+      <description>电脑游戏倾向于视觉上很自然，游戏开发者花费很多精力在处理图像和提升视觉效果来创建最令人愉快的体验上。 像素的威力 显示器里的一个独立的点称为一个图像单元或像素。如果一个显示器分辨率为1280x1024，则像素总数为1310720。一个屏幕上像素越多，则图片的质量越好。典型的家用电脑可</description>
+    </item>
+    
+    <item>
+      <title>Pygame第3章 Pygame介绍</title>
+      <link>http://gitop.cc/posts/pygame-3/</link>
+      <pubDate>Mon, 02 Nov 2015 08:16:02 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/pygame-3/</guid>
+      <description>安装Pygame Ubuntu下安装Pygame: sudo apt-get install python-pygame 装好后，查看Pygame版本: &amp;gt;&amp;gt;&amp;gt; import pygame &amp;gt;&amp;gt;&amp;gt; print pygame.ver 使用Pygame Pygame有很多模块。每一个设备都有一个对应的模块。Pygame模块一览： 模块名 功能 pygame.cdrom 访问和控制光驱 pygame.cursors 加载光标图片 pygame.display 访问显示设备 pygame.draw 绘制形状、线和点 pygame.event 管理事件 pygame.font 使用字</description>
+    </item>
+    
+    <item>
+      <title>PyQt编程第8章 数据处理和自定义文件类型</title>
+      <link>http://gitop.cc/posts/pyqt-8/</link>
+      <pubDate>Fri, 30 Oct 2015 12:40:00 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/pyqt-8/</guid>
+      <description>主窗口的职责 主窗口的职责通常是为用户提供高级文件处理动作和展示程序数据。</description>
+    </item>
+    
+    <item>
+      <title>PyQt编程第7章 使用Qt Designer</title>
+      <link>http://gitop.cc/posts/pyqt-7/</link>
+      <pubDate>Wed, 28 Oct 2015 08:50:57 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/pyqt-7/</guid>
+      <description>用户界面保存在.ui文件中，包含一个窗口部件和布局的详细情况。Qt Designer能够关联标签和它的伙伴， 设置tab顺序(这个也可以用QWidget.setTabOrder()完成)。Qt Designer也能够关联信号和槽， 但是只能是内置的信号和槽。 一旦用户界面设计完成并保存在.</description>
+    </item>
+    
+    <item>
+      <title>PyQt编程第6章 主窗口</title>
+      <link>http://gitop.cc/posts/pyqt-6/</link>
+      <pubDate>Wed, 21 Oct 2015 11:25:57 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/pyqt-6/</guid>
+      <description>创建一个主窗口 import os import platform import sys from PyQt4.QtCore import * from PyQt4.QtGui import * import helpform import newimagedlg import qrc_resources __version__ = &amp;#34;1.0.0&amp;#34; import的顺序：先Python标准模块，然后第三方模块(比如PyQt)，最后自己定义的模块。 一个程序通常有一个版本字符串，按照惯例称为__version__。 class MainWindow(QMainWindow): def __init__(self, parent=None): super(MainWindow, self).__init__(parent) self.image = QImage() self.dirty = False self.filename = None self.mirroredvertically = False self.mirroredhorizontally = False QImage并</description>
+    </item>
+    
+    <item>
+      <title>PyQt编程第5章 对话框</title>
+      <link>http://gitop.cc/posts/pyqt-5/</link>
+      <pubDate>Wed, 14 Oct 2015 16:20:56 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/pyqt-5/</guid>
+      <description>对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。 对话框以“模式”分类为：模式对话框和无模式对话框。 应用模式对话框一旦被调用，用户只能与其交互，不能使用程序其它部分。 窗口模式对话框和应用模式对话框类似，只是它仅仅阻止与其父窗口交互。 无模式对话框允许用户与程</description>
+    </item>
+    
+    <item>
+      <title>PyQt编程第4章 GUI编程介绍</title>
+      <link>http://gitop.cc/posts/pyqt-4/</link>
+      <pubDate>Mon, 12 Oct 2015 20:34:55 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/pyqt-4/</guid>
+      <description>一个25行的弹出警告 import sys import time from PyQt4.QtCore import * from PyQt4.QtGui import * app = QApplication(sys.argv) try: due = QTime.currentTime() message = &amp;#34;Alert!&amp;#34; if len(sys.argv) &amp;lt; 2: raise ValueError hours, mins = sys.argv[1].split(&amp;#34;:&amp;#34;) due = QTime(int(hours), int(mins)) if not due.isValid(): raise ValueError if len(sys.argv) &amp;gt; 2: message = &amp;#34; &amp;#34;.join(sys.argv[2:]) except ValueError: message = &amp;#34;Usage: alert.pyw HH:MM [optional message]&amp;#34; # 24hr clock while QTime.currentTime() &amp;lt; due: time.sleep(20) # 20 seconds label = QLabel(&amp;#34;&amp;lt;font color=red size=72&amp;gt;&amp;lt;b&amp;gt;&amp;#34; + message + &amp;#34;&amp;lt;/b&amp;gt;&amp;lt;/font&amp;gt;&amp;#34;) label.setWindowFlags(Qt.SplashScreen) label.show() QTimer.singleShot(60000, app.quit) # 1 minute app.exec_() 每一个PyQt图形程序必须有一个QApplication对象，因为它能识别一些命令行的参</description>
+    </item>
+    
+  </channel>
+</rss>

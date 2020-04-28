@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XPath on 招财猫的博客</title>
+    <link>http://gitop.cc/tags/XPath/</link>
+    <description>Recent content in XPath on 招财猫的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 02 Nov 2019 13:49:25 +0800</lastBuildDate>
+    
+	<atom:link href="http://gitop.cc/tags/XPath/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>XPath教程</title>
+      <link>http://gitop.cc/posts/xpath/</link>
+      <pubDate>Sat, 02 Nov 2019 13:49:25 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/xpath/</guid>
+      <description>XPath是什么？ XPath代表XML路径语言 XPath使用“类似路径”的语法来标识和导航XML文档中的节点 XPath包含200多个内置函数 XPath是XSLT标准中的一个主要元素 XPath是W3C的推荐 XPath路径表达式 XPath使用路径表达式来选择XML文档中的节点或节点集</description>
+    </item>
+    
+  </channel>
+</rss>

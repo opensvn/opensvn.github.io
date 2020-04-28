@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PostgreSQL on 招财猫的博客</title>
+    <link>http://gitop.cc/tags/PostgreSQL/</link>
+    <description>Recent content in PostgreSQL on 招财猫的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 22 Jan 2019 16:20:20 +0800</lastBuildDate>
+    
+	<atom:link href="http://gitop.cc/tags/PostgreSQL/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PostgreSQL数据类型</title>
+      <link>http://gitop.cc/posts/postgres_data_type/</link>
+      <pubDate>Tue, 22 Jan 2019 16:20:20 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/postgres_data_type/</guid>
+      <description>类型介绍 类型分类 PostgreSQL支持的数据类型分类如表： 类型 说明 对比其他数据库 布尔类型 PostgreSQL支持SQL标准的boolean数据类型 与MySQL的BOOL、BOOLEAN类型相同，使用一字节存储空间 数值类型 整数类型有2字节的smallint、4字节的int、8字节</description>
+    </item>
+    
+    <item>
+      <title>psql使用介绍</title>
+      <link>http://gitop.cc/posts/psql_intro/</link>
+      <pubDate>Sat, 19 Jan 2019 19:13:20 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/psql_intro/</guid>
+      <description>psql介绍 psql是PostgreSQL中的一个命令行交互式客户端工具，类似Oracle中的命令行工具sqlplus，但它使用起来远比sqlplus方便。 在postgres用户下可以直接输入psql进入到数据库： $ psql psql (10.5 (Debian 10.5-1.pgdg90+1)) Type &amp;#34;help&amp;#34; for help. postgres=# 为什么不需要输入用户名和密码呢?因为在安装P</description>
+    </item>
+    
+    <item>
+      <title>SQL入门</title>
+      <link>http://gitop.cc/posts/sql_intro/</link>
+      <pubDate>Sat, 19 Jan 2019 19:13:04 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/sql_intro/</guid>
+      <description>SQL语句分类 DQL(Data Query Language)：数据查询语言，基本就是select语句，用于数据查询。 DML(Data Manipulation Language)：数据操纵语言，包含insert、update、delete三种语句。 DDL(Data Definition Language)：数据定义语言，主要用于创建、删除或修改表、索引等数据库对象。 创建表(cr</description>
+    </item>
+    
+  </channel>
+</rss>

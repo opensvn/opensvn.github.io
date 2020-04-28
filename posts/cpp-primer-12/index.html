@@ -1,111 +1,226 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="第12章 动态内存">
-<meta itemprop="description" content="静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>第12章 动态内存 | 招财猫的博客</title>
+    <meta property="og:title" content="第12章 动态内存 - 招财猫的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2016-10-28T14:46:23&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2016-10-28T14:46:23&#43;08:00'>
+        
+    <meta name="Keywords" content="C,C&#43;&#43;,Python,Golang">
+    <meta name="description" content="第12章 动态内存">
+        
+    <meta name="author" content="招财猫">
+    <meta property="og:url" content="http://gitop.cc/posts/cpp-primer-12/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
 
 
-<meta itemprop="datePublished" content="2016-10-28T14:46:23&#43;00:00" />
-<meta itemprop="dateModified" content="2016-10-28T14:46:23&#43;00:00" />
-<meta itemprop="wordCount" content="5517">
-
-
-
-<meta itemprop="keywords" content="C&#43;&#43;," />
-<meta property="og:title" content="第12章 动态内存" />
-<meta property="og:description" content="静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/posts/cpp-primer-12/" />
-<meta property="article:published_time" content="2016-10-28T14:46:23+00:00" />
-<meta property="article:modified_time" content="2016-10-28T14:46:23+00:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="第12章 动态内存"/>
-<meta name="twitter:description" content="静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈"/>
-
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>第12章 动态内存</title>
-	<link rel="stylesheet" href="https://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
-	
+    
+    
 </head>
 
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://gitop.cc">静心</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://gitop.cc/posts/">Posts</a>
-				<a href="https://gitop.cc/tags/">Tags</a>
-				<a href="https://gitop.cc/about/">About</a>
 
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://gitop.cc/posts/">Posts</a></li>
-			<li><a href="https://gitop.cc/tags/">Tags</a></li>
-			<li><a href="https://gitop.cc/about/">About</a></li>
-		</ul>
-	</div>
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitop.cc">
+                        招财猫的博客
+                    </a>
+                
+                <p class="description">专注于C&#43;&#43;、Python、Golang</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitop.cc">首页</a>
+                    
+                    <a  href="http://gitop.cc/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitop.cc/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Oct 28, 2016</span></div>
-				<h1>第12章 动态内存</h1>
-			</header>
-			<div class="content">
-				
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
-<p>静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈对象只当其定义的块在执行时存在。静态对象在被使用之前已经创建，当程序结束时销毁。</p>
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
 
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#121-动态内存和智能指针">12.1 动态内存和智能指针</a>
+      <ul>
+        <li><a href="#1211-shared_ptr类">12.1.1 shared_ptr类</a></li>
+        <li><a href="#1212-直接管理内存">12.1.2 直接管理内存</a></li>
+        <li><a href="#1213-用new使用shared_ptr">12.1.3 用new使用shared_ptr</a></li>
+        <li><a href="#1214-智能指针和异常">12.1.4 智能指针和异常</a></li>
+        <li><a href="#1215-unique_ptr">12.1.5 unique_ptr</a></li>
+        <li><a href="#1216-weak_ptr">12.1.6 weak_ptr</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">第12章 动态内存</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年10月28日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Language'>Language</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈对象只当其定义的块在执行时存在。静态对象在被使用之前已经创建，当程序结束时销毁。</p>
 <p>除了静态内存和栈内存，每一个程序还有一个自由存储区或叫堆。程序使用堆来动态创建对象。由程序控制动态对象的生命周期。必须显式销毁不再需要的动态对象。</p>
-
-<h2 id="12-1-动态内存和智能指针">12.1 动态内存和智能指针<a href="#12-1-动态内存和智能指针" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="121-动态内存和智能指针">12.1 动态内存和智能指针</h2>
 <p>C++使用<code>new</code>和<code>delete</code>来管理动态内存。<code>new</code>在堆上分配并初始化一个对象，返回指向该对象的指针。<code>delete</code>使用指向一个动态对象的指针，销毁该对象，释放相关的内存。</p>
-
 <p>新标准定义了2种智能指针。<code>shared_ptr</code>允许多个指针指向同一个对象，<code>unique_ptr</code>独占其指向的对象。新标准还定义了一个<code>weak_ptr</code>，它是<code>shared_ptr</code>管理对象的一个弱引用。这3个都定义在<strong>memory</strong>头文件中。</p>
-
-<h3 id="12-1-1-shared-ptr类">12.1.1 shared_ptr类<a href="#12-1-1-shared-ptr类" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="1211-shared_ptr类">12.1.1 shared_ptr类</h3>
 <p>和<code>vector</code>一样，智能指针是模板。因此当创建智能指针时，需要提供指向的类型信息：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">;</span>    <span class="c1">// shared_ptr that can point at a string
-</span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">p2</span><span class="p">;</span> <span class="c1">// shared_ptr that can point at a list of ints
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">shared_ptr<span style="color:#000;font-weight:bold">&lt;</span>string<span style="color:#000;font-weight:bold">&gt;</span> p1;    <span style="color:#998;font-style:italic">// shared_ptr that can point at a string
+</span><span style="color:#998;font-style:italic"></span>shared_ptr<span style="color:#000;font-weight:bold">&lt;</span>list<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;&gt;</span> p2; <span style="color:#998;font-style:italic">// shared_ptr that can point at a list of ints
 </span></code></pre></div>
-
 <p>默认初始化的智能指针保存一个空指针。智能指针的用法和普通指针类似。解引用智能指针返回所指向的对象，当在条件中使用智能指针时，其效果是测试指针是否为空：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// if p1 is not null, check whether it&#39;s the empty string
-</span><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="n">p1</span> <span class="o">&amp;&amp;</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">empty</span><span class="p">())</span>
-    <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="s">&#34;hi&#34;</span><span class="p">;</span>  <span class="c1">// if so, dereference p1 to assign a new value to that string
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#998;font-style:italic">// if p1 is not null, check whether it&#39;s the empty string
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">if</span> (p1 <span style="color:#000;font-weight:bold">&amp;&amp;</span> p1<span style="color:#000;font-weight:bold">-&gt;</span>empty())
+    <span style="color:#000;font-weight:bold">*</span>p1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;hi&#34;</span>;  <span style="color:#998;font-style:italic">// if so, dereference p1 to assign a new value to that string
 </span></code></pre></div>
-
 <p>下面是<code>shared_ptr</code>和<code>unique_ptr</code>共有的操作：</p>
-
 <table>
 <thead>
 <tr>
@@ -113,47 +228,38 @@
 <th align="left">说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">shared_ptr&lt;T&gt; sp<br>unique_ptr&lt;T&gt; up</td>
+<td align="left">shared_ptr&lt;T&gt; sp<!-- raw HTML omitted -->unique_ptr&lt;T&gt; up</td>
 <td align="left">指向T的空指针</td>
 </tr>
-
 <tr>
 <td align="left">p</td>
 <td align="left">使用p作为条件，如果p指向对象则为true</td>
 </tr>
-
 <tr>
 <td align="left">*p</td>
 <td align="left">解引用p获得p指向的对象</td>
 </tr>
-
 <tr>
 <td align="left">p-&gt;mem</td>
 <td align="left">等同于(*p).mem</td>
 </tr>
-
 <tr>
 <td align="left">p.get()</td>
 <td align="left">返回p维护的底层指针。小心使用，返回指针指向的对象可能被智能指针删除</td>
 </tr>
-
 <tr>
 <td align="left">swap(p, q)</td>
 <td align="left">交换p和q的底层指针</td>
 </tr>
-
 <tr>
 <td align="left">p.swap(q)</td>
 <td align="left">同上</td>
 </tr>
 </tbody>
 </table>
-
 <p>特定于<code>shared_ptr</code>的操作：</p>
-
 <table>
 <thead>
 <tr>
@@ -161,222 +267,171 @@
 <th align="left">说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">make_shared&lt;T&gt;(args)</td>
 <td align="left">返回指向动态创建的T类型对象的shared_ptr，使用args初始化该对象</td>
 </tr>
-
 <tr>
 <td align="left">shared_ptr&lt;T&gt; p(q)</td>
 <td align="left">p是q的一个拷贝，增加q的引用计数。q包含的指针必须能转换成T*</td>
 </tr>
-
 <tr>
 <td align="left">p = q</td>
 <td align="left">p和q包含的指针可以转换为另一个。减少p的引用计数，增加q的引用计数。如果p的引用计数为0，删除p指向的对象</td>
 </tr>
-
 <tr>
 <td align="left">p.unique()</td>
 <td align="left">如果p.use_count()为1，返回true，否则返回false</td>
 </tr>
-
 <tr>
 <td align="left">p.use_count()</td>
 <td align="left">返回引用计数的个数。可能是一个慢操作，主要用于调试</td>
 </tr>
 </tbody>
 </table>
-
 <p><strong>make_shared</strong>函数</p>
-
 <p>分配和使用动态内存最安全的方式是调用<code>make_shared</code>库函数。它定义在<strong>memory</strong>头文件中，是一个函数模板。这个函数在堆上分配和初始化一个对象并返回指向该对象的<code>shared_ptr</code>：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// shared_ptr that points to an int with value 42
-</span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p3</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="c1">// p4 points to a string with value 9999999999
-</span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p4</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="sc">&#39;9&#39;</span><span class="p">);</span>
-<span class="c1">// p5 points to an int that is value initialized (§ 3.3.1 (p. 98)) to 0
-</span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p5</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">();</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#998;font-style:italic">// shared_ptr that points to an int with value 42
+</span><span style="color:#998;font-style:italic"></span>shared_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> p3 <span style="color:#000;font-weight:bold">=</span> make_shared<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span>(<span style="color:#099">42</span>);
+<span style="color:#998;font-style:italic">// p4 points to a string with value 9999999999
+</span><span style="color:#998;font-style:italic"></span>shared_ptr<span style="color:#000;font-weight:bold">&lt;</span>string<span style="color:#000;font-weight:bold">&gt;</span> p4 <span style="color:#000;font-weight:bold">=</span> make_shared<span style="color:#000;font-weight:bold">&lt;</span>string<span style="color:#000;font-weight:bold">&gt;</span>(<span style="color:#099">10</span>, <span style="color:#d14">&#39;9&#39;</span>);
+<span style="color:#998;font-style:italic">// p5 points to an int that is value initialized (§ 3.3.1 (p. 98)) to 0
+</span><span style="color:#998;font-style:italic"></span>shared_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> p5 <span style="color:#000;font-weight:bold">=</span> make_shared<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span>();
 </code></pre></div>
-
 <p>和顺序容器的<code>emplace</code>成员函数一样，<code>make_shared</code>使用其参数构造一个指定类型的对象。如果不传任何参数，则对象被值初始化。当然通常使用<code>auto</code>可以简化<code>make_shared</code>返回指针的定义：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// p6 points to a dynamically allocated, empty vector&lt;string&gt;
-</span><span class="c1"></span><span class="k">auto</span> <span class="n">p6</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&gt;</span><span class="p">();</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#998;font-style:italic">// p6 points to a dynamically allocated, empty vector&lt;string&gt;
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">auto</span> p6 <span style="color:#000;font-weight:bold">=</span> make_shared<span style="color:#000;font-weight:bold">&lt;</span>vector<span style="color:#000;font-weight:bold">&lt;</span>string<span style="color:#000;font-weight:bold">&gt;&gt;</span>();
 </code></pre></div>
-
 <p><strong>复制和赋值shared_ptr</strong></p>
-
 <p>当复制或赋值一个<code>shared_ptr</code>时，每一个<code>shared_ptr</code>跟踪指向同一个对象的<code>shared_ptr</code>的个数：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span> <span class="c1">// object to which p points has one user
-</span><span class="c1"></span><span class="k">auto</span> <span class="nf">q</span><span class="p">(</span><span class="n">p</span><span class="p">);</span> <span class="c1">// p and q point to the same object
-</span><span class="c1"></span>           <span class="c1">// object to which p and q point has two users
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000;font-weight:bold">auto</span> p <span style="color:#000;font-weight:bold">=</span> make_shared<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span>(<span style="color:#099">42</span>); <span style="color:#998;font-style:italic">// object to which p points has one user
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">auto</span> <span style="color:#900;font-weight:bold">q</span>(p); <span style="color:#998;font-style:italic">// p and q point to the same object
+</span><span style="color:#998;font-style:italic"></span>           <span style="color:#998;font-style:italic">// object to which p and q point has two users
 </span></code></pre></div>
-
-<p>引用计数增加的场景：
-* 复制一个<code>shared_ptr</code>
-* 赋值操作符右边的操作数
-* 传值方式传递给函数参数
-* 从函数通过值返回</p>
-
-<p>引用计数减少的场景：
-* 赋值操作符左边的操作数
-* <code>shared_ptr</code>本身被销毁</p>
-
+<p>引用计数增加的场景：</p>
+<ul>
+<li>复制一个<code>shared_ptr</code></li>
+<li>赋值操作符右边的操作数</li>
+<li>传值方式传递给函数参数</li>
+<li>从函数通过值返回</li>
+</ul>
+<p>引用计数减少的场景：</p>
+<ul>
+<li>赋值操作符左边的操作数</li>
+<li><code>shared_ptr</code>本身被销毁</li>
+</ul>
 <p>当引用计数为0时，<code>shared_ptr</code>自动销毁它管理的对象：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">r</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span> <span class="c1">// int to which r points has one user
-</span><span class="c1"></span><span class="n">r</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span>  <span class="c1">// assign to r, making it point to a different address
-</span><span class="c1"></span>        <span class="c1">// increase the use count for the object to which q points
-</span><span class="c1"></span>    　　<span class="c1">// reduce the use count of the object to which r had pointed
-</span><span class="c1"></span>　　　　<span class="c1">// the object r had pointed to has no users; that object is automatically　freed
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000;font-weight:bold">auto</span> r <span style="color:#000;font-weight:bold">=</span> make_shared<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span>(<span style="color:#099">42</span>); <span style="color:#998;font-style:italic">// int to which r points has one user
+</span><span style="color:#998;font-style:italic"></span>r <span style="color:#000;font-weight:bold">=</span> q;  <span style="color:#998;font-style:italic">// assign to r, making it point to a different address
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#998;font-style:italic">// increase the use count for the object to which q points
+</span><span style="color:#998;font-style:italic"></span>    　　<span style="color:#998;font-style:italic">// reduce the use count of the object to which r had pointed
+</span><span style="color:#998;font-style:italic"></span>　　　　<span style="color:#998;font-style:italic">// the object r had pointed to has no users; that object is automatically　freed
 </span></code></pre></div>
-
 <blockquote>
 <p><strong>注解</strong>
 是否使用计数器或其他数据结构来跟踪有多少个指针共享状态取决于实现。关键点是<code>shared_ptr</code>类跟踪有多少个<code>shared_ptr</code>指针指向相同对象并在合适的时候自动释放该对象。</p>
 </blockquote>
-
 <p><code>shared_ptr</code>的析构函数减少指向对象的引用计数。当引用计数为0时，<code>shared_ptr</code>析构函数销毁指向的对象并释放内存。</p>
-
 <blockquote>
 <p><strong>注解</strong>
 如果将<code>shared_ptr</code>放进容器，记得删除不需要的<code>shared_ptr</code>元素以释放内存。</p>
 </blockquote>
-
 <p><strong>拥有动态生命周期资源的类</strong></p>
-
-<p>程序倾向于使用动态内存的3个目的：
-1. 不知道需要多少个对象
-2. 不知道所需对象的准确类型
-3. 想要在多个对象之间共享数据</p>
-
+<p>程序倾向于使用动态内存的3个目的：</p>
+<ol>
+<li>不知道需要多少个对象</li>
+<li>不知道所需对象的准确类型</li>
+<li>想要在多个对象之间共享数据</li>
+</ol>
 <p><strong>定义StrBlob类</strong></p>
-
 <p>实现一个新的集合类型最简单的方法是使用一个标准库容器管理元素。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">StrBlob</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">size_type</span> <span class="n">size_type</span><span class="p">;</span>
-    <span class="n">StrBlob</span><span class="p">();</span>
-    <span class="n">StrBlob</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">il</span><span class="p">);</span>
-    <span class="n">size_type</span> <span class="nf">size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">();</span> <span class="p">}</span>
-    <span class="kt">bool</span> <span class="nf">empty</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="o">-&gt;</span><span class="n">empty</span><span class="p">();</span> <span class="p">}</span>
-    <span class="c1">// add and remove elements
-</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">push_back</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="n">t</span><span class="p">)</span> <span class="p">{</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="n">t</span><span class="p">);}</span>
-    <span class="kt">void</span> <span class="nf">pop_back</span><span class="p">();</span>
-    <span class="c1">// element access
-</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">front</span><span class="p">();</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">back</span><span class="p">();</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">data</span><span class="p">;</span>
-    <span class="c1">// throws msg if data[i] isn&#39;t valid
-</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">check</span><span class="p">(</span><span class="n">size_type</span> <span class="n">i</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">msg</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-<span class="p">};</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">StrBlob</span> {
+<span style="color:#000;font-weight:bold">public</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#000;font-weight:bold">typedef</span> std<span style="color:#000;font-weight:bold">::</span>vector<span style="color:#000;font-weight:bold">&lt;</span>std<span style="color:#000;font-weight:bold">::</span>string<span style="color:#000;font-weight:bold">&gt;::</span>size_type size_type;
+    StrBlob();
+    StrBlob(std<span style="color:#000;font-weight:bold">::</span>initializer_list<span style="color:#000;font-weight:bold">&lt;</span>std<span style="color:#000;font-weight:bold">::</span>string<span style="color:#000;font-weight:bold">&gt;</span> il);
+    size_type <span style="color:#900;font-weight:bold">size</span>() <span style="color:#000;font-weight:bold">const</span> { <span style="color:#000;font-weight:bold">return</span> data<span style="color:#000;font-weight:bold">-&gt;</span>size(); }
+    <span style="color:#458;font-weight:bold">bool</span> <span style="color:#900;font-weight:bold">empty</span>() <span style="color:#000;font-weight:bold">const</span> { <span style="color:#000;font-weight:bold">return</span> data<span style="color:#000;font-weight:bold">-&gt;</span>empty(); }
+    <span style="color:#998;font-style:italic">// add and remove elements
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">push_back</span>(<span style="color:#000;font-weight:bold">const</span> std<span style="color:#000;font-weight:bold">::</span>string<span style="color:#000;font-weight:bold">&amp;</span>t) {data<span style="color:#000;font-weight:bold">-&gt;</span>push_back(t);}
+    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">pop_back</span>();
+    <span style="color:#998;font-style:italic">// element access
+</span><span style="color:#998;font-style:italic"></span>    std<span style="color:#000;font-weight:bold">::</span>string<span style="color:#000;font-weight:bold">&amp;</span> front();
+    std<span style="color:#000;font-weight:bold">::</span>string<span style="color:#000;font-weight:bold">&amp;</span> back();
+<span style="color:#000;font-weight:bold">private</span><span style="color:#000;font-weight:bold">:</span>
+    std<span style="color:#000;font-weight:bold">::</span>shared_ptr<span style="color:#000;font-weight:bold">&lt;</span>std<span style="color:#000;font-weight:bold">::</span>vector<span style="color:#000;font-weight:bold">&lt;</span>std<span style="color:#000;font-weight:bold">::</span>string<span style="color:#000;font-weight:bold">&gt;&gt;</span> data;
+    <span style="color:#998;font-style:italic">// throws msg if data[i] isn&#39;t valid
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">check</span>(size_type i, <span style="color:#000;font-weight:bold">const</span> std<span style="color:#000;font-weight:bold">::</span>string <span style="color:#000;font-weight:bold">&amp;</span>msg) <span style="color:#000;font-weight:bold">const</span>;
+};
 </code></pre></div>
-
-<h3 id="12-1-2-直接管理内存">12.1.2 直接管理内存<a href="#12-1-2-直接管理内存" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="1212-直接管理内存">12.1.2 直接管理内存</h3>
 <p>C++定义了2个操作符管理内存。<code>new</code>分配内存，<code>delete</code>释放由<code>new</code>分配的内存。使用<code>new</code>和<code>delete</code>直接管理内存容易出错，而且直接管理内存的类不能依赖默认定义的复制，赋值和析构成员函数。</p>
-
 <p><strong>使用new动态分配和初始化对象</strong></p>
-
 <p>动态分配的对象默认初始化，这意味着内置类型或组合类型的值未定义，类对象的值由默认构造函数初始化。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="o">*</span><span class="n">ps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">string</span><span class="p">;</span>  <span class="c1">// initialized to empty string
-</span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">pi</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">;</span>        <span class="c1">// pi points to an uninitialized int
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">string <span style="color:#000;font-weight:bold">*</span>ps <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> string;  <span style="color:#998;font-style:italic">// initialized to empty string
+</span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>pi <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>;        <span style="color:#998;font-style:italic">// pi points to an uninitialized int
 </span></code></pre></div>
-
 <p>可以直接初始化动态分配的对象，可以使用传统的()，也可以使用新标准的列表初始化{}</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="o">*</span><span class="n">pi</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span> <span class="c1">// object to which pi points has value 1024
-</span><span class="c1"></span><span class="n">string</span> <span class="o">*</span><span class="n">ps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">string</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="sc">&#39;9&#39;</span><span class="p">);</span>   <span class="c1">// *ps is &#34;9999999999&#34;
-</span><span class="c1">// vector with ten elements with values from 0 to 9
-</span><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">pv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">};</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>pi <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>(<span style="color:#099">1024</span>); <span style="color:#998;font-style:italic">// object to which pi points has value 1024
+</span><span style="color:#998;font-style:italic"></span>string <span style="color:#000;font-weight:bold">*</span>ps <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> string(<span style="color:#099">10</span>, <span style="color:#d14">&#39;9&#39;</span>);   <span style="color:#998;font-style:italic">// *ps is &#34;9999999999&#34;
+</span><span style="color:#998;font-style:italic">// vector with ten elements with values from 0 to 9
+</span><span style="color:#998;font-style:italic"></span>vector<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">*</span>pv <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> vector<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span>{<span style="color:#099">0</span>,<span style="color:#099">1</span>,<span style="color:#099">2</span>,<span style="color:#099">3</span>,<span style="color:#099">4</span>,<span style="color:#099">5</span>,<span style="color:#099">6</span>,<span style="color:#099">7</span>,<span style="color:#099">8</span>,<span style="color:#099">9</span>};
 </code></pre></div>
-
 <p>也可以值初始化动态对象，通过类型名加一对空括号：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="o">*</span><span class="n">ps1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">string</span><span class="p">;</span>  <span class="c1">// default initialized to the empty string
-</span><span class="c1"></span><span class="n">string</span> <span class="o">*</span><span class="n">ps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">string</span><span class="p">();</span> <span class="c1">// value initialized to the empty string
-</span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">pi1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">;</span>        <span class="c1">// default initialized; *pi1 is undefined
-</span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">pi2</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">();</span>      <span class="c1">// value initialized to 0; *pi2 is 0
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">string <span style="color:#000;font-weight:bold">*</span>ps1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> string;  <span style="color:#998;font-style:italic">// default initialized to the empty string
+</span><span style="color:#998;font-style:italic"></span>string <span style="color:#000;font-weight:bold">*</span>ps <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> string(); <span style="color:#998;font-style:italic">// value initialized to the empty string
+</span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>pi1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>;        <span style="color:#998;font-style:italic">// default initialized; *pi1 is undefined
+</span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>pi2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>();      <span style="color:#998;font-style:italic">// value initialized to 0; *pi2 is 0
 </span></code></pre></div>
-
 <blockquote>
 <p>最佳实践
 和初始化变量的原因一样，最好初始化动态分配的对象</p>
 </blockquote>
-
 <p><strong>C++11</strong>：当在括号里面提供初始值时，可以使用<code>auto</code>推导出我们要分配的对象。由于编译器使用初始值的类型推导要动态分配的对象类型，因此<code>auto</code>只能使用括号初始化，新分配的对象用括号里面的值初始化：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="k">auto</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>   <span class="c1">// p points to an object of the type of obj
-</span><span class="c1"></span>                           <span class="c1">// that object is initialized from obj
-</span><span class="c1"></span><span class="k">auto</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="k">auto</span><span class="p">{</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">};</span> <span class="c1">// error: must use parentheses for the initializer
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000;font-weight:bold">auto</span> p1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#000;font-weight:bold">auto</span>(obj);   <span style="color:#998;font-style:italic">// p points to an object of the type of obj
+</span><span style="color:#998;font-style:italic"></span>                           <span style="color:#998;font-style:italic">// that object is initialized from obj
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">auto</span> p2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#000;font-weight:bold">auto</span>{a,b,c}; <span style="color:#998;font-style:italic">// error: must use parentheses for the initializer
 </span></code></pre></div>
-
 <p><strong>动态分配的const对象</strong></p>
-
 <p>使用<code>new</code>动态分配const对象合法：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// allocate and initialize a const int
-</span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">pci</span> <span class="o">=</span> <span class="k">new</span> <span class="k">const</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
-<span class="c1">// allocate a default-initialized const empty string
-</span><span class="c1"></span><span class="k">const</span> <span class="n">string</span> <span class="o">*</span><span class="n">pcs</span> <span class="o">=</span> <span class="k">new</span> <span class="k">const</span> <span class="n">string</span><span class="p">;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#998;font-style:italic">// allocate and initialize a const int
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">const</span> <span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>pci <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#000;font-weight:bold">const</span> <span style="color:#458;font-weight:bold">int</span>(<span style="color:#099">1024</span>);
+<span style="color:#998;font-style:italic">// allocate a default-initialized const empty string
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">const</span> string <span style="color:#000;font-weight:bold">*</span>pcs <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#000;font-weight:bold">const</span> string;
 </code></pre></div>
-
 <p><strong>内存耗尽</strong></p>
-
 <p>如果<code>new</code>不能分配内存，默认抛出<code>bad_alloc</code>异常。可以使用另一种形式的<code>new</code>阻止抛出异常：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// if allocation fails, new returns a null pointer
-</span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">;</span> <span class="c1">// if allocation fails, new throws std::bad_alloc
-</span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">nothrow</span><span class="p">)</span> <span class="kt">int</span><span class="p">;</span> <span class="c1">// if allocation fails, new returns a null pointer
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#998;font-style:italic">// if allocation fails, new returns a null pointer
+</span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>p1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>; <span style="color:#998;font-style:italic">// if allocation fails, new throws std::bad_alloc
+</span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>p2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> (nothrow) <span style="color:#458;font-weight:bold">int</span>; <span style="color:#998;font-style:italic">// if allocation fails, new returns a null pointer
 </span></code></pre></div>
-
 <p>这种形式的<code>new</code>称为<strong>placement new</strong>。<strong>placement new</strong>表达式允许传递额外的参数给<code>new</code>。我们传递标准库定义的<code>nothrow</code>对象给<code>new</code>，告诉<code>new</code>不能抛出异常。如果<code>new</code>不能分配内存，则返回空指针。<code>bad_alloc</code>和<code>nothrow</code>都定义在头文件<strong>new</strong>中。</p>
-
 <p><strong>释放动态内存</strong></p>
-
 <p>delete销毁指针指向的对象，并释放相应的内存。传给delete的指针必须是指向动态分配的内存的指针或者是空指针。删除非new返回的指针或删除同一个指针多次是未定义的：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">pi1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">pi2</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
-<span class="kt">double</span> <span class="o">*</span><span class="n">pd</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">(</span><span class="mi">33</span><span class="p">),</span> <span class="o">*</span><span class="n">pd2</span> <span class="o">=</span> <span class="n">pd</span><span class="p">;</span>
-<span class="k">delete</span> <span class="n">i</span><span class="p">;</span>   <span class="c1">// error: i is not a pointer
-</span><span class="c1"></span><span class="k">delete</span> <span class="n">pi1</span><span class="p">;</span> <span class="c1">// undefined: pi1 refers to a local
-</span><span class="c1"></span><span class="k">delete</span> <span class="n">pd</span><span class="p">;</span>  <span class="c1">// ok
-</span><span class="c1"></span><span class="k">delete</span> <span class="n">pd2</span><span class="p">;</span> <span class="c1">// undefined: the memory pointed to by pd2 was already freed
-</span><span class="c1"></span><span class="k">delete</span> <span class="n">pi2</span><span class="p">;</span> <span class="c1">// ok: it is always ok to delete a null pointer
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#458;font-weight:bold">int</span> i, <span style="color:#000;font-weight:bold">*</span>pi1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">&amp;</span>i, <span style="color:#000;font-weight:bold">*</span>pi2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">nullptr</span>;
+<span style="color:#458;font-weight:bold">double</span> <span style="color:#000;font-weight:bold">*</span>pd <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">double</span>(<span style="color:#099">33</span>), <span style="color:#000;font-weight:bold">*</span>pd2 <span style="color:#000;font-weight:bold">=</span> pd;
+<span style="color:#000;font-weight:bold">delete</span> i;   <span style="color:#998;font-style:italic">// error: i is not a pointer
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> pi1; <span style="color:#998;font-style:italic">// undefined: pi1 refers to a local
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> pd;  <span style="color:#998;font-style:italic">// ok
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> pd2; <span style="color:#998;font-style:italic">// undefined: the memory pointed to by pd2 was already freed
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> pi2; <span style="color:#998;font-style:italic">// ok: it is always ok to delete a null pointer
 </span></code></pre></div>
-
 <p><strong>警告：动态内存管理是容易出错的</strong></p>
-
 <ol>
 <li>忘记释放内存。</li>
 <li>使用一个已被释放的对象。</li>
 <li>同一片内存释放2次。</li>
 </ol>
-
 <p><strong>删除时重置指针值</strong></p>
-
 <p>当删除一个指针时，指针就无效了。尽管指针无效，在多数机器上指针还是保存了被释放内存的地址，即指针成为所谓的<strong>悬垂指针</strong>。悬垂指针拥有未初始化指针的所有问题。可以将<code>nullptr</code>赋值给被删除的指针，清晰地指明指针不指向任何对象。</p>
-
 <p>删除时重置指针值只提供有限的保护。如果多个指针指向同一个对象，重置被删除的那个指针值并不影响其他指针。</p>
-
-<h3 id="12-1-3-用new使用shared-ptr">12.1.3 用new使用shared_ptr<a href="#12-1-3-用new使用shared-ptr" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="1213-用new使用shared_ptr">12.1.3 用new使用shared_ptr</h3>
 <p>可以使用<code>new</code>返回的指针初始化智能指针：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">;</span> <span class="c1">// shared_ptr that can point at a double
-</span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p2</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">42</span><span class="p">));</span> <span class="c1">// p2 points to an int with value 42
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">shared_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">double</span><span style="color:#000;font-weight:bold">&gt;</span> p1; <span style="color:#998;font-style:italic">// shared_ptr that can point at a double
+</span><span style="color:#998;font-style:italic"></span>shared_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> p2(<span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>(<span style="color:#099">42</span>)); <span style="color:#998;font-style:italic">// p2 points to an int with value 42
 </span></code></pre></div>
-
 <p>其他定义和改变shared_ptr的方式：</p>
-
 <table>
 <thead>
 <tr>
@@ -384,110 +439,88 @@
 <th align="left">说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">shared_ptr&lt;T&gt; p(q)</td>
 <td align="left">p管理内置指针q指向的对象，q必须是new返回的指针且能转换为T*</td>
 </tr>
-
 <tr>
 <td align="left">shared_ptr&lt;T&gt; p(u)</td>
 <td align="left">p从unique_ptr指针u接管所有权，使u变成nullptr</td>
 </tr>
-
 <tr>
 <td align="left">shared_ptr&lt;T&gt; p(q, d)</td>
 <td align="left">p接管内置指针q所指向的对象，q必须能转化为T*，p使用可调用对象d替代delete释放内存</td>
 </tr>
-
 <tr>
 <td align="left">shared_ptr&lt;T&gt; p(p2, d)</td>
 <td align="left">p是shared_ptr p2的拷贝，使用可调用对象d释放内存</td>
 </tr>
-
 <tr>
-<td align="left">p.reset()<br>p.reset(q)<br>p.reset(q, d)</td>
+<td align="left">p.reset()<!-- raw HTML omitted -->p.reset(q)<!-- raw HTML omitted -->p.reset(q, d)</td>
 <td align="left">如果p是指向对象的唯一shared_ptr，reset释放指向的对象。如果传递了可选的内置指针q，则使p指向q，否则使p为空指针。如果提供了可调用对象d，则用d释放内存</td>
 </tr>
 </tbody>
 </table>
-
 <p>智能指针带指针参数的构造函数是<code>explicit</code>的，因此不能隐式将内置指针转换为智能指针，必须使用直接初始化形式初始化智能指针：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>  <span class="c1">// error: must use direct initialization
-</span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p2</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1024</span><span class="p">));</span>   <span class="c1">// ok: uses direct initialization
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">shared_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> p1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>(<span style="color:#099">1024</span>);  <span style="color:#998;font-style:italic">// error: must use direct initialization
+</span><span style="color:#998;font-style:italic"></span>shared_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> p2(<span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>(<span style="color:#099">1024</span>));   <span style="color:#998;font-style:italic">// ok: uses direct initialization
 </span></code></pre></div>
-
 <p><strong>不要混合使用普通指针和智能指针</strong></p>
-
 <p>一个shared_ptr只能和其他是自己拷贝的shared_ptr协调销毁操作。这是我们推荐使用<code>make_shared</code>的一个原因。它在对象创建的同时绑定到shared_ptr，这样就没有办法将一个地址绑定到多个独立创建的shared_ptr。</p>
-
 <p>考虑下面的代码：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ptr is created and initialized when process is called
-</span><span class="c1"></span><span class="kt">void</span> <span class="nf">process</span><span class="p">(</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ptr</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">// use ptr
-</span><span class="c1"></span><span class="p">}</span> <span class="c1">// ptr goes out of scope and is destroyed
-</span><span class="c1"></span>
-<span class="kt">int</span> <span class="o">*</span><span class="nf">x</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1024</span><span class="p">));</span> <span class="c1">// dangerous: x is a plain pointer, not a smart　pointer
-</span><span class="c1"></span><span class="n">process</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>  <span class="c1">// error: cannot convert int* to shared_ptr&lt;int&gt;
-</span><span class="c1"></span><span class="n">process</span><span class="p">(</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">));</span> <span class="c1">// legal, but the memory will be deleted!
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="o">*</span><span class="n">x</span><span class="p">;</span>  <span class="c1">// undefined: x is a dangling pointer!
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#998;font-style:italic">// ptr is created and initialized when process is called
+</span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">process</span>(shared_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> ptr)
+{
+    <span style="color:#998;font-style:italic">// use ptr
+</span><span style="color:#998;font-style:italic"></span>} <span style="color:#998;font-style:italic">// ptr goes out of scope and is destroyed
+</span><span style="color:#998;font-style:italic"></span>
+<span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span><span style="color:#900;font-weight:bold">x</span>(<span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>(<span style="color:#099">1024</span>)); <span style="color:#998;font-style:italic">// dangerous: x is a plain pointer, not a smart　pointer
+</span><span style="color:#998;font-style:italic"></span>process(x);  <span style="color:#998;font-style:italic">// error: cannot convert int* to shared_ptr&lt;int&gt;
+</span><span style="color:#998;font-style:italic"></span>process(shared_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span>(x)); <span style="color:#998;font-style:italic">// legal, but the memory will be deleted!
+</span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">int</span> j <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">*</span>x;  <span style="color:#998;font-style:italic">// undefined: x is a dangling pointer!
 </span></code></pre></div>
-
 <blockquote>
 <p><strong>警告</strong>
 使用内置指针访问由智能指针管理的对象是非常危险的，因为我们不知道这个对象什么时候被释放了。</p>
 </blockquote>
-
 <p><strong>不要使用get初始化或赋值另一个智能指针</strong></p>
-
 <p>智能指针类型定义了一个get函数返回其管理对象的内置指针。使用get返回指针的代码不能删除该指针。将get返回的指针绑定到另外一个智能指针是错的。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">42</span><span class="p">));</span> <span class="c1">// reference count is 1
-</span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>  <span class="c1">// ok: but don&#39;t use q in any way that might delete its pointer
-</span><span class="c1"></span><span class="p">{</span> <span class="c1">// new block
-</span><span class="c1"></span>    <span class="c1">// undefined: two independent shared_ptrs point to the same memory
-</span><span class="c1"></span>    <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
-<span class="p">}</span> <span class="c1">// block ends, q is destroyed, and the memory to which q points is freed
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">foo</span> <span class="o">=</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span> <span class="c1">// undefined; the memory to which p points was freed
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">shared_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> p(<span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>(<span style="color:#099">42</span>)); <span style="color:#998;font-style:italic">// reference count is 1
+</span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>q <span style="color:#000;font-weight:bold">=</span> p.get();  <span style="color:#998;font-style:italic">// ok: but don&#39;t use q in any way that might delete its pointer
+</span><span style="color:#998;font-style:italic"></span>{ <span style="color:#998;font-style:italic">// new block
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">// undefined: two independent shared_ptrs point to the same memory
+</span><span style="color:#998;font-style:italic"></span>    shared_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span>(q);
+} <span style="color:#998;font-style:italic">// block ends, q is destroyed, and the memory to which q points is freed
+</span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">int</span> foo <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">*</span>p; <span style="color:#998;font-style:italic">// undefined; the memory to which p points was freed
 </span></code></pre></div>
-
-<h3 id="12-1-4-智能指针和异常">12.1.4 智能指针和异常<a href="#12-1-4-智能指针和异常" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="1214-智能指针和异常">12.1.4 智能指针和异常</h3>
 <p>使用异常处理的程序需要确保当异常发生时资源被正确释放，一个简单的方法是使用智能指针。</p>
-
 <p><strong>智能指针和哑巴类</strong></p>
-
 <p>我们通常可以使用管理动态内存一样的技巧管理没有良好析构函数的类。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000;font-weight:bold">struct</span> <span style="color:#458;font-weight:bold">destination</span>;  <span style="color:#998;font-style:italic">// represents what we are connecting to
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">struct</span> <span style="color:#458;font-weight:bold">connection</span>;   <span style="color:#998;font-style:italic">// information needed to use the connection
+</span><span style="color:#998;font-style:italic"></span>connection <span style="color:#900;font-weight:bold">connect</span>(destination<span style="color:#000;font-weight:bold">*</span>);  <span style="color:#998;font-style:italic">// open the connection
+</span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">disconnect</span>(connection);       <span style="color:#998;font-style:italic">// close the given connection
+</span><span style="color:#998;font-style:italic"></span><span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">f</span>(destination <span style="color:#000;font-weight:bold">&amp;</span>d <span style="color:#998;font-style:italic">/* other parameters */</span>)
+{
+    <span style="color:#998;font-style:italic">// get a connection; must remember to close it when done
+</span><span style="color:#998;font-style:italic"></span>    connection c <span style="color:#000;font-weight:bold">=</span> connect(<span style="color:#000;font-weight:bold">&amp;</span>d);
+    <span style="color:#998;font-style:italic">// use the connection
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">// if we forget to call disconnect before exiting f, there will be no way to close c
+</span><span style="color:#998;font-style:italic"></span>}
 
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">destination</span><span class="p">;</span>  <span class="c1">// represents what we are connecting to
-</span><span class="c1"></span><span class="k">struct</span> <span class="nc">connection</span><span class="p">;</span>   <span class="c1">// information needed to use the connection
-</span><span class="c1"></span><span class="n">connection</span> <span class="nf">connect</span><span class="p">(</span><span class="n">destination</span><span class="o">*</span><span class="p">);</span>  <span class="c1">// open the connection
-</span><span class="c1"></span><span class="kt">void</span> <span class="nf">disconnect</span><span class="p">(</span><span class="n">connection</span><span class="p">);</span>       <span class="c1">// close the given connection
-</span><span class="c1"></span><span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="n">destination</span> <span class="o">&amp;</span><span class="n">d</span> <span class="cm">/* other parameters */</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">// get a connection; must remember to close it when done
-</span><span class="c1"></span>    <span class="n">connection</span> <span class="n">c</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d</span><span class="p">);</span>
-    <span class="c1">// use the connection
-</span><span class="c1"></span>    <span class="c1">// if we forget to call disconnect before exiting f, there will be no way to close c
-</span><span class="c1"></span><span class="p">}</span>
+<span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">end_connection</span>(connection <span style="color:#000;font-weight:bold">*</span>p) { disconnect(<span style="color:#000;font-weight:bold">*</span>p); }
 
-<span class="kt">void</span> <span class="nf">end_connection</span><span class="p">(</span><span class="n">connection</span> <span class="o">*</span><span class="n">p</span><span class="p">)</span> <span class="p">{</span> <span class="n">disconnect</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">);</span> <span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="n">destination</span> <span class="o">&amp;</span><span class="n">d</span> <span class="cm">/* other parameters */</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">connection</span> <span class="n">c</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d</span><span class="p">);</span>
-    <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">connection</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="o">&amp;</span><span class="n">c</span><span class="p">,</span> <span class="n">end_connection</span><span class="p">);</span>
-    <span class="c1">// use the connection
-</span><span class="c1"></span>    <span class="c1">// when f exits, even if by an exception, the connection will be properly closed
-</span><span class="c1"></span><span class="p">}</span>
+<span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">f</span>(destination <span style="color:#000;font-weight:bold">&amp;</span>d <span style="color:#998;font-style:italic">/* other parameters */</span>)
+{
+    connection c <span style="color:#000;font-weight:bold">=</span> connect(<span style="color:#000;font-weight:bold">&amp;</span>d);
+    shared_ptr<span style="color:#000;font-weight:bold">&lt;</span>connection<span style="color:#000;font-weight:bold">&gt;</span> p(<span style="color:#000;font-weight:bold">&amp;</span>c, end_connection);
+    <span style="color:#998;font-style:italic">// use the connection
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">// when f exits, even if by an exception, the connection will be properly closed
+</span><span style="color:#998;font-style:italic"></span>}
 </code></pre></div>
-
 <p><strong>警告：智能指针陷阱</strong></p>
-
 <ul>
 <li>不要使用相同内置指针初始化（或重置）多个智能指针</li>
 <li>不要delete从get()返回的指针</li>
@@ -495,13 +528,9 @@
 <li>如果使用get()返回的指针，记住当最后一个智能指针消失后，这个指针变无效</li>
 <li>如果使用智能指针管理不是new分配的资源，记得传递一个deleter</li>
 </ul>
-
-<h3 id="12-1-5-unique-ptr">12.1.5 unique_ptr<a href="#12-1-5-unique-ptr" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="1215-unique_ptr">12.1.5 unique_ptr</h3>
 <p>一个unique_ptr拥有其指向的对象。不像shared_ptr，一次只有一个unique_ptr指向指定的对象。当unique_ptr销毁时，其指向的对象也被销毁。</p>
-
 <p>unique_ptr操作：</p>
-
 <table>
 <thead>
 <tr>
@@ -509,90 +538,69 @@
 <th align="left">说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">unique_ptr&lt;T&gt; u1<br>unique_ptr&lt;T, D&gt; u2</td>
+<td align="left">unique_ptr&lt;T&gt; u1<!-- raw HTML omitted -->unique_ptr&lt;T, D&gt; u2</td>
 <td align="left">指向T的空指针。u1使用delete释放指针，u2使用可调用对象D释放指针</td>
 </tr>
-
 <tr>
 <td align="left">unique_ptr&lt;T, D&gt; u(d)</td>
 <td align="left">指向T的空指针，使用d替代delete，d必须是D类型的对象</td>
 </tr>
-
 <tr>
 <td align="left">u=nullptr</td>
 <td align="left">删除u指向的对象，使u为空指针</td>
 </tr>
-
 <tr>
 <td align="left">u.release()</td>
 <td align="left">释放指针u的控制，返回u保存的指针，使u为空指针</td>
 </tr>
-
 <tr>
-<td align="left">u.reset()<br>u.reset(q)<br>u.reset(nullptr)</td>
+<td align="left">u.reset()<!-- raw HTML omitted -->u.reset(q)<!-- raw HTML omitted -->u.reset(nullptr)</td>
 <td align="left">删除u指向的对象。如果提供内置指针q，则是u指向那个对象，否则使u为空指针</td>
 </tr>
 </tbody>
 </table>
-
 <p>因为unique_ptr拥有其指向的对象，所以它不支持复制或赋值：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">(</span><span class="k">new</span> <span class="n">string</span><span class="p">(</span><span class="s">&#34;Stegosaurus&#34;</span><span class="p">));</span>
-<span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p2</span><span class="p">(</span><span class="n">p1</span><span class="p">);</span>  <span class="c1">// error: no copy for unique_ptr
-</span><span class="c1"></span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p3</span><span class="p">;</span>
-<span class="n">p3</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>                    <span class="c1">// error: no assign for unique_ptr
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">unique_ptr<span style="color:#000;font-weight:bold">&lt;</span>string<span style="color:#000;font-weight:bold">&gt;</span> p1(<span style="color:#000;font-weight:bold">new</span> string(<span style="color:#d14">&#34;Stegosaurus&#34;</span>));
+unique_ptr<span style="color:#000;font-weight:bold">&lt;</span>string<span style="color:#000;font-weight:bold">&gt;</span> p2(p1);  <span style="color:#998;font-style:italic">// error: no copy for unique_ptr
+</span><span style="color:#998;font-style:italic"></span>unique_ptr<span style="color:#000;font-weight:bold">&lt;</span>string<span style="color:#000;font-weight:bold">&gt;</span> p3;
+p3 <span style="color:#000;font-weight:bold">=</span> p2;                    <span style="color:#998;font-style:italic">// error: no assign for unique_ptr
 </span></code></pre></div>
-
 <p>尽管不支持复制和赋值操作，可以通过调用release或reset转移所有权：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// transfers ownership from p1 (which points to the string Stegosaurus) to p2
-</span><span class="c1"></span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p2</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">release</span><span class="p">());</span> <span class="c1">// release makes p1 null
-</span><span class="c1"></span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p3</span><span class="p">(</span><span class="k">new</span> <span class="n">string</span><span class="p">(</span><span class="s">&#34;Trex&#34;</span><span class="p">));</span>
-<span class="c1">// transfers ownership from p3 to p2
-</span><span class="c1"></span><span class="n">p2</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="n">p3</span><span class="p">.</span><span class="n">release</span><span class="p">());</span> <span class="c1">// reset deletes the memory to which p2 had pointed
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#998;font-style:italic">// transfers ownership from p1 (which points to the string Stegosaurus) to p2
+</span><span style="color:#998;font-style:italic"></span>unique_ptr<span style="color:#000;font-weight:bold">&lt;</span>string<span style="color:#000;font-weight:bold">&gt;</span> p2(p1.release()); <span style="color:#998;font-style:italic">// release makes p1 null
+</span><span style="color:#998;font-style:italic"></span>unique_ptr<span style="color:#000;font-weight:bold">&lt;</span>string<span style="color:#000;font-weight:bold">&gt;</span> p3(<span style="color:#000;font-weight:bold">new</span> string(<span style="color:#d14">&#34;Trex&#34;</span>));
+<span style="color:#998;font-style:italic">// transfers ownership from p3 to p2
+</span><span style="color:#998;font-style:italic"></span>p2.reset(p3.release()); <span style="color:#998;font-style:italic">// reset deletes the memory to which p2 had pointed
 </span></code></pre></div>
-
 <p>如果不使用另一个智能指针保存从release返回的指针，则记住要释放资源放。</p>
-
 <p><strong>返回unique_ptr</strong></p>
-
 <p>不能复制unique_ptr有一个例外，可以复制或赋值一个即将销毁的unique_ptr。最常见的例子是从函数返回一个unique_ptr：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">clone</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// ok: explicitly create a unique_ptr&lt;int&gt; from int*
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="n">p</span><span class="p">));</span>
-<span class="p">}</span>
-<span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">clone</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ret</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span> <span class="p">(</span><span class="n">p</span><span class="p">));</span>
-    <span class="c1">// . . .
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">unique_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> clone(<span style="color:#458;font-weight:bold">int</span> p) {
+    <span style="color:#998;font-style:italic">// ok: explicitly create a unique_ptr&lt;int&gt; from int*
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">return</span> unique_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span>(<span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>(p));
+}
+unique_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> clone(<span style="color:#458;font-weight:bold">int</span> p) {
+    unique_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> ret(<span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span> (p));
+    <span style="color:#998;font-style:italic">// . . .
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">return</span> ret;
+}
 </code></pre></div>
-
 <blockquote>
 <p><strong>向后兼容</strong>
 早期版本的库包含一个auto_ptr类，它拥有一些但不是全部unique_ptr的特性。特别是auto_ptr不能存进容器，也不能从函数返回。尽管auto_ptr仍然是标准库的一部分，程序应该使用unique_ptr</p>
 </blockquote>
-
 <p><strong>传递deleter给unique_ptr</strong></p>
-
 <p>和shared_ptr一样，unique_ptr默认使用delete释放其指向的对象。同样，可以覆盖unique_ptr的默认deleter。必须在尖括号里面提供deleter类型</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// p points to an object of type objT and uses an object of type delT to free that
-</span><span class="c1"></span><span class="n">object</span>
-<span class="c1">// it will call an object named fcn of type delT
-</span><span class="c1"></span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">objT</span><span class="p">,</span> <span class="n">delT</span><span class="o">&gt;</span> <span class="n">p</span> <span class="p">(</span><span class="k">new</span> <span class="n">objT</span><span class="p">,</span> <span class="n">fcn</span><span class="p">);</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#998;font-style:italic">// p points to an object of type objT and uses an object of type delT to free that
+</span><span style="color:#998;font-style:italic"></span>object
+<span style="color:#998;font-style:italic">// it will call an object named fcn of type delT
+</span><span style="color:#998;font-style:italic"></span>unique_ptr<span style="color:#000;font-weight:bold">&lt;</span>objT, delT<span style="color:#000;font-weight:bold">&gt;</span> p (<span style="color:#000;font-weight:bold">new</span> objT, fcn);
 </code></pre></div>
-
-<h3 id="12-1-6-weak-ptr">12.1.6 weak_ptr<a href="#12-1-6-weak-ptr" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="1216-weak_ptr">12.1.6 weak_ptr</h3>
 <p>weak_ptr是一个智能指针，它不控制其指向对象的生命周期。相反，weak_ptr指向一个由shared_ptr管理的对象。绑定一个weak_ptr到shared_ptr上不会改变shared_ptr的引用计数。一旦最后一个指向对象的shared_ptr销毁后，对象本身也被销毁，即使有weak_ptr指向它。</p>
-
 <p>weak_ptr的操作：</p>
-
 <table>
 <thead>
 <tr>
@@ -600,89 +608,295 @@
 <th align="left">说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">weak_ptr&lt;T&gt; w</td>
 <td align="left">可以指向T的空weak_ptr</td>
 </tr>
-
 <tr>
 <td align="left">weak_ptr&lt;T&gt; w(sp)</td>
 <td align="left">和shared_ptr sp指向相同对象的weak_ptr，T必须可以转换为sp指向的类型</td>
 </tr>
-
 <tr>
 <td align="left">w = p</td>
 <td align="left">p可以是shared_ptr或weak_ptr。赋值后，w于p共享所有权</td>
 </tr>
-
 <tr>
 <td align="left">w.reset()</td>
 <td align="left">使用w为空</td>
 </tr>
-
 <tr>
 <td align="left">w.use_count()</td>
 <td align="left">和w共享所有权的shared_ptr的数量</td>
 </tr>
-
 <tr>
 <td align="left">w.expired()</td>
 <td align="left">返回true如果w.use_count()为0，否则返回false</td>
 </tr>
-
 <tr>
 <td align="left">w.lock()</td>
 <td align="left">如果expired为true，返回一个空的shared_ptr，否则返回一个指向w所指对象的shared_ptr</td>
 </tr>
 </tbody>
 </table>
-
 <p>当创建一个weak_ptr时，用shared_ptr初始化它：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="n">weak_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">wp</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>  <span class="c1">// wp weakly shares with p; use count in p is unchanged
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000;font-weight:bold">auto</span> p <span style="color:#000;font-weight:bold">=</span> make_shared<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span>(<span style="color:#099">42</span>);
+weak_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> wp(p);  <span style="color:#998;font-style:italic">// wp weakly shares with p; use count in p is unchanged
 </span></code></pre></div>
-
 <p>因为对象可能不再存在，不能使用weak_ptr直接访问对象。为了访问对象，必须调用lock。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">if</span> <span class="p">(</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">np</span> <span class="o">=</span> <span class="n">wp</span><span class="p">.</span><span class="n">lock</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// true if np is not null
-</span><span class="c1"></span>    <span class="c1">// inside the if, np shares its object with p
-</span><span class="c1"></span><span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000;font-weight:bold">if</span> (shared_ptr<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">&gt;</span> np <span style="color:#000;font-weight:bold">=</span> wp.lock()) { <span style="color:#998;font-style:italic">// true if np is not null
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">// inside the if, np shares its object with p
+</span><span style="color:#998;font-style:italic"></span>}
 </code></pre></div>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://gitop.cc/tags/c&#43;&#43;">C&#43;&#43;</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>5517 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2016-10-28 22:46 &#43;0800</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="next-post" href="https://gitop.cc/posts/centos7-environment-setup/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Centos7环境配置</span>
-			</a>
-			<a class="prev-post" href="https://gitop.cc/posts/after-ubuntu-installation/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>安装完Ubuntu后需要做的事</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://gitop.cc">招财猫</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://gitop.cc/posts/cpp-primer-12/">http://gitop.cc/posts/cpp-primer-12/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
 </div>
-	</main>
-
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
+<br/>
 
 
-	<script src="https://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/cpp-primer-17/">第17章 特殊的库设施</a></li>
+        
+        <li><a href="/posts/io-operations/">Asio.Cookbook 第2章 IO操作</a></li>
+        
+        <li><a href="/posts/Asio-Cookbook-1/">Asio.Cookbook 第1章 基础</a></li>
+        
+        <li><a href="/posts/cpp-primer-2/">第2章 变量和基本类型</a></li>
+        
+        <li><a href="/posts/Asio-Network-Programming-2/">Boost.Asio网络编程 第2章</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://gitop.cc/tags/C&#43;&#43;'>C&#43;&#43;</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitop.cc">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Database/">Database (12)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/GUI/">GUI (5)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Gist/">Gist (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Language/">Language (23)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Linux/">Linux (3)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Network/">Network (4)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Tool/">Tool (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitop.cc/tags/C/">C</a>
+    
+    <a href="http://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://gitop.cc/tags/CentOS/">CentOS</a>
+    
+    <a href="http://gitop.cc/tags/Docker/">Docker</a>
+    
+    <a href="http://gitop.cc/tags/Git/">Git</a>
+    
+    <a href="http://gitop.cc/tags/Greenplum/">Greenplum</a>
+    
+    <a href="http://gitop.cc/tags/Idea/">Idea</a>
+    
+    <a href="http://gitop.cc/tags/Java/">Java</a>
+    
+    <a href="http://gitop.cc/tags/Javascript/">Javascript</a>
+    
+    <a href="http://gitop.cc/tags/Markdown/">Markdown</a>
+    
+    <a href="http://gitop.cc/tags/MySQL/">MySQL</a>
+    
+    <a href="http://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
+    
+    <a href="http://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
+    
+    <a href="http://gitop.cc/tags/Python/">Python</a>
+    
+    <a href="http://gitop.cc/tags/Scrapy/">Scrapy</a>
+    
+    <a href="http://gitop.cc/tags/Ubuntu/">Ubuntu</a>
+    
+    <a href="http://gitop.cc/tags/XPath/">XPath</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitop.cc/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://gitop.cc">招财猫的博客 By 招财猫</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
 
 </body>
 

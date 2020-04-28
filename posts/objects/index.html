@@ -1,102 +1,227 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="对象">
-<meta itemprop="description" content="对象的属性也有属性： 可写属性指定属性的值是否可以设置。 枚举属性指定属性名是否能由for/in循环返回。 可配置属性指定属性是否可以删除和更改。">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>对象 | 招财猫的博客</title>
+    <meta property="og:title" content="对象 - 招财猫的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2018-11-03T21:39:25&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2018-11-03T21:39:25&#43;08:00'>
+        
+    <meta name="Keywords" content="C,C&#43;&#43;,Python,Golang">
+    <meta name="description" content="对象">
+        
+    <meta name="author" content="招财猫">
+    <meta property="og:url" content="http://gitop.cc/posts/objects/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
 
 
-<meta itemprop="datePublished" content="2018-11-03T21:39:25&#43;08:00" />
-<meta itemprop="dateModified" content="2018-11-03T21:39:25&#43;08:00" />
-<meta itemprop="wordCount" content="9360">
-
-
-
-<meta itemprop="keywords" content="Javascript," />
-<meta property="og:title" content="对象" />
-<meta property="og:description" content="对象的属性也有属性： 可写属性指定属性的值是否可以设置。 枚举属性指定属性名是否能由for/in循环返回。 可配置属性指定属性是否可以删除和更改。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/posts/objects/" />
-<meta property="article:published_time" content="2018-11-03T21:39:25+08:00" />
-<meta property="article:modified_time" content="2018-11-03T21:39:25+08:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="对象"/>
-<meta name="twitter:description" content="对象的属性也有属性： 可写属性指定属性的值是否可以设置。 枚举属性指定属性名是否能由for/in循环返回。 可配置属性指定属性是否可以删除和更改。"/>
-
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>对象</title>
-	<link rel="stylesheet" href="https://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
-	
+    
+    
 </head>
 
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://gitop.cc">静心</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://gitop.cc/posts/">Posts</a>
-				<a href="https://gitop.cc/tags/">Tags</a>
-				<a href="https://gitop.cc/about/">About</a>
 
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://gitop.cc/posts/">Posts</a></li>
-			<li><a href="https://gitop.cc/tags/">Tags</a></li>
-			<li><a href="https://gitop.cc/about/">About</a></li>
-		</ul>
-	</div>
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitop.cc">
+                        招财猫的博客
+                    </a>
+                
+                <p class="description">专注于C&#43;&#43;、Python、Golang</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitop.cc">首页</a>
+                    
+                    <a  href="http://gitop.cc/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitop.cc/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Nov 3, 2018</span></div>
-				<h1>对象</h1>
-			</header>
-			<div class="content">
-				
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
-<p>对象的属性也有属性：</p>
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
 
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#创建对象">创建对象</a></li>
+        <li><a href="#查询和设置属性">查询和设置属性</a></li>
+        <li><a href="#删除属性">删除属性</a></li>
+        <li><a href="#测试属性">测试属性</a></li>
+        <li><a href="#枚举属性">枚举属性</a></li>
+        <li><a href="#属性getter和setter">属性getter和setter</a></li>
+        <li><a href="#属性的属性">属性的属性</a></li>
+        <li><a href="#对象属性">对象属性</a></li>
+        <li><a href="#序列化对象">序列化对象</a></li>
+        <li><a href="#对象方法">对象方法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">对象</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2018年11月3日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Language'>Language</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>对象的属性也有属性：</p>
 <ul>
 <li>可写属性指定属性的值是否可以设置。</li>
 <li>枚举属性指定属性名是否能由for/in循环返回。</li>
 <li>可配置属性指定属性是否可以删除和更改。</li>
 </ul>
-
 <p>在ES5之前，自己代码创建的对象中的所有属性都是可写的、可枚举的和可配置的。每个对象都有三个相关的对象属性：</p>
-
 <ul>
 <li>对象的prototype是对另一个对象的引用，从这个对象继承属性。</li>
 <li>对象的class是区分对象类型的字符串。</li>
 <li>对象的可扩展标志（ES5）指定是否可以向对象添加新的属性。</li>
 </ul>
-
 <p>我们使用以下术语来区分三大类JavaScript对象和两类属性：</p>
-
 <ul>
 <li>原生对象是由ECMAScript规范定义的对象。Array、function、Date和RegExp都是是原生对象。</li>
 <li>宿主对象是由嵌入JavaScript解释器的宿主环境（如web浏览器）定义的对象。在客户端JavaScript中表示web页面结构的HTMLElement对象就是宿主对象。</li>
@@ -104,464 +229,365 @@
 <li>自有属性是对象本身定义的属性。</li>
 <li>继承属性是由原型对象定义的属性。</li>
 </ul>
-
-<h3 id="创建对象">创建对象<a href="#创建对象" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
-<h4 id="对象字面值">对象字面值<a href="#对象字面值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h3 id="创建对象">创建对象</h3>
+<h4 id="对象字面值">对象字面值</h4>
 <p>对象字面值用逗号分隔的键值对。属性名是JavaScript标识符或字符串字面值（允许空字符串）。属性值是任何JavaScript表达式。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="o">:</span><span class="mi">2</span><span class="p">};</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> {x<span style="color:#000;font-weight:bold">:</span><span style="color:#099">1</span>, <span style="color:#d14">&#39;y&#39;</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>};
 </code></pre></div>
-
 <p>在ES5中，保留字可以作为属性名使用，不需要用引号括起来。在ES3中保留字作为属性名必须用引号括起来。在ES5中，最后一个属性后面的逗号被忽略。在大多数ES3实现中，结尾逗号被忽略，但IE认为它们是错误的。</p>
-
-<h4 id="用new创建对象">用new创建对象<a href="#用new创建对象" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="用new创建对象">用new创建对象</h4>
 <p>new操作符创建并初始化一个新对象。其后面必须有一个构造函数，用于初始化新创建的对象。JavaScript包含原生类型的内置构造函数。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span> <span class="c1">// Create an empty object: same as {}.
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span> <span class="c1">// Create an empty array: same as [].
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="c1">// Create a Date object representing the current time
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&#34;js&#34;</span><span class="p">);</span> <span class="c1">// Create a RegExp object for pattern matching.
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#0086b3">Object</span>(); <span style="color:#998;font-style:italic">// Create an empty object: same as {}.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> a <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#0086b3">Array</span>(); <span style="color:#998;font-style:italic">// Create an empty array: same as [].
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> d <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#0086b3">Date</span>(); <span style="color:#998;font-style:italic">// Create a Date object representing the current time
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> r <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#0086b3">RegExp</span>(<span style="color:#d14">&#34;js&#34;</span>); <span style="color:#998;font-style:italic">// Create a RegExp object for pattern matching.
 </span></code></pre></div>
-
-<h4 id="原型">原型<a href="#原型" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="原型">原型</h4>
 <p>每个JavaScript对象都有一个与之关联的原型对象。JavaScript对象从原型对象继承属性。</p>
-
 <p>由对象字面值创建的所有对象都有相同的原型对象，这个原型对象是Object.prototype。使用new关键字和构造函数创建的对象的原型是构造函数的prototype属性。因此，new object()创建的对象继承自Object.prototype。new Array()创建的对象使用Array.prototype作为其原型，由new Date()创建的对象使用 Date.prototype作为原型。</p>
-
 <p>Object.prototype是少有的没有原型的对象，它不继承任何属性。其他原型对象是有原型的普通对象。所有内置的构造函数（以及大多数用户定义的构造函数）都继承自Object.prototype。这一系列链接的原型对象被称为原型链。</p>
-
-<h4 id="object-create">Object.create()<a href="#object-create" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="objectcreate">Object.create()</h4>
 <p>ES5定义了一个方法Object.create()用于创建对象。第一个参数指定对象的原型。第二个参数可选，用于描述新对象的属性。Object.create()是一个静态函数，而不是方法：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o1</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">});</span> <span class="c1">// o1 inherits properties x and y.
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Object</span>.create({x<span style="color:#000;font-weight:bold">:</span><span style="color:#099">1</span>, y<span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>}); <span style="color:#998;font-style:italic">// o1 inherits properties x and y.
 </span></code></pre></div>
-
 <p>您可以传递null来创建一个没有原型的新对象，该对象没有继承任何东西：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o2</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span> <span class="c1">// o2 inherits no props or methods.
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Object</span>.create(<span style="color:#000;font-weight:bold">null</span>); <span style="color:#998;font-style:italic">// o2 inherits no props or methods.
 </span></code></pre></div>
-
 <p>如果您想创建一个普通的空对象（比如{}返回的对象或new object()），Object.prototype：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o3</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span> <span class="c1">// o3 is like {} or new Object().
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o3 <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Object</span>.create(<span style="color:#0086b3">Object</span>.prototype); <span style="color:#998;font-style:italic">// o3 is like {} or new Object().
 </span></code></pre></div>
-
 <p>我们可以在ES3中用下面这个函数模拟它：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// inherit() returns a newly created object that inherits properties from the
-</span><span class="c1">// prototype object p. It uses the ECMAScript 5 function Object.create() if
-</span><span class="c1">// it is defined, and otherwise falls back to an older technique.
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">inherit</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">p</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">TypeError</span><span class="p">();</span> <span class="c1">// p must be a non-null object
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">)</span> <span class="c1">// If Object.create() is defined...
-</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// then just use it.
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">p</span><span class="p">;</span> <span class="c1">// Otherwise do some more type checking
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">t</span> <span class="o">!==</span> <span class="s2">&#34;object&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span> <span class="o">!==</span> <span class="s2">&#34;function&#34;</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">TypeError</span><span class="p">();</span>
-    <span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{};</span> <span class="c1">// Define a dummy constructor function.
-</span><span class="c1"></span>    <span class="nx">f</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">p</span><span class="p">;</span> <span class="c1">// Set its prototype property to p.
-</span><span class="c1"></span>    <span class="k">return</span> <span class="k">new</span> <span class="nx">f</span><span class="p">();</span> <span class="c1">// Use f() to create an &#34;heir&#34; of p.
-</span><span class="c1"></span><span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#998;font-style:italic">// inherit() returns a newly created object that inherits properties from the
+</span><span style="color:#998;font-style:italic">// prototype object p. It uses the ECMAScript 5 function Object.create() if
+</span><span style="color:#998;font-style:italic">// it is defined, and otherwise falls back to an older technique.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">function</span> inherit(p) {
+    <span style="color:#000;font-weight:bold">if</span> (p <span style="color:#000;font-weight:bold">==</span> <span style="color:#000;font-weight:bold">null</span>) <span style="color:#000;font-weight:bold">throw</span> TypeError(); <span style="color:#998;font-style:italic">// p must be a non-null object
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">if</span> (<span style="color:#0086b3">Object</span>.create) <span style="color:#998;font-style:italic">// If Object.create() is defined...
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">Object</span>.create(p); <span style="color:#998;font-style:italic">// then just use it.
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">var</span> t <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">typeof</span> p; <span style="color:#998;font-style:italic">// Otherwise do some more type checking
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">if</span> (t <span style="color:#000;font-weight:bold">!==</span> <span style="color:#d14">&#34;object&#34;</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> t <span style="color:#000;font-weight:bold">!==</span> <span style="color:#d14">&#34;function&#34;</span>) <span style="color:#000;font-weight:bold">throw</span> TypeError();
+    <span style="color:#000;font-weight:bold">function</span> f() {}; <span style="color:#998;font-style:italic">// Define a dummy constructor function.
+</span><span style="color:#998;font-style:italic"></span>    f.prototype <span style="color:#000;font-weight:bold">=</span> p; <span style="color:#998;font-style:italic">// Set its prototype property to p.
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">new</span> f(); <span style="color:#998;font-style:italic">// Use f() to create an &#34;heir&#34; of p.
+</span><span style="color:#998;font-style:italic"></span>}
 </code></pre></div>
-
 <p>inherit()函数的一种用法是当你想防止你无法控制的库函数无意修改对象时使用。不直接将对象传递给函数，而是传递一个继承对象。如果函数读取继承对象的属性，它将看到继承的值。如果它设置属性，这些属性只会影响继承对象，而不会影响原始对象：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="s2">&#34;don&#39;t change this value&#34;</span> <span class="p">};</span>
-<span class="nx">library_function</span><span class="p">(</span><span class="nx">inherit</span><span class="p">(</span><span class="nx">o</span><span class="p">));</span> <span class="c1">// Guard against accidental modifications of o
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> { x<span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#34;don&#39;t change this value&#34;</span> };
+library_function(inherit(o)); <span style="color:#998;font-style:italic">// Guard against accidental modifications of o
 </span></code></pre></div>
-
-<h3 id="查询和设置属性">查询和设置属性<a href="#查询和设置属性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="查询和设置属性">查询和设置属性</h3>
 <p>使用.或[]获取属性。运算符左边是一个值为对象的表达式。如果使用点运算符，右边必须是一个表示属性名字的简单的标识符。如果使用方括号，方括号中的值必须是结果为字符串的表达式，该字符串包含所需的属性名：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">author</span> <span class="o">=</span> <span class="nx">book</span><span class="p">.</span><span class="nx">author</span><span class="p">;</span> <span class="c1">// Get the &#34;author&#34; property of the book.
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">author</span><span class="p">.</span><span class="nx">surname</span> <span class="c1">// Get the &#34;surname&#34; property of the author.
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">book</span><span class="p">[</span><span class="s2">&#34;main title&#34;</span><span class="p">]</span> <span class="c1">// Get the &#34;main title&#34; property of the book.
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> author <span style="color:#000;font-weight:bold">=</span> book.author; <span style="color:#998;font-style:italic">// Get the &#34;author&#34; property of the book.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> name <span style="color:#000;font-weight:bold">=</span> author.surname <span style="color:#998;font-style:italic">// Get the &#34;surname&#34; property of the author.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> title <span style="color:#000;font-weight:bold">=</span> book[<span style="color:#d14">&#34;main title&#34;</span>] <span style="color:#998;font-style:italic">// Get the &#34;main title&#34; property of the book.
 </span></code></pre></div>
-
 <p>要创建或设置属性，将.或[]表达式放在等号左边：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">book</span><span class="p">.</span><span class="nx">edition</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// Create an &#34;edition&#34; property of book.
-</span><span class="c1"></span><span class="nx">book</span><span class="p">[</span><span class="s2">&#34;main title&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;ECMAScript&#34;</span><span class="p">;</span> <span class="c1">// Set the &#34;main title&#34; property.
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">book.edition <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">6</span>; <span style="color:#998;font-style:italic">// Create an &#34;edition&#34; property of book.
+</span><span style="color:#998;font-style:italic"></span>book[<span style="color:#d14">&#34;main title&#34;</span>] <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;ECMAScript&#34;</span>; <span style="color:#998;font-style:italic">// Set the &#34;main title&#34; property.
 </span></code></pre></div>
-
 <p>在ES3中，点操作符后面的标识符不能是保留字，ES5放宽了这个限制。</p>
-
-<h4 id="继承">继承<a href="#继承" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="继承">继承</h4>
 <p>JavaScript对象有一组“自己的属性”，它们也从原型对象继承一组属性：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">// o inherits object methods from Object.prototype
-</span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// and has an own property x.
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">inherit</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span> <span class="c1">// p inherits properties from o and Object.prototype
-</span><span class="c1"></span><span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// and has an own property y.
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">q</span> <span class="o">=</span> <span class="nx">inherit</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// q inherits properties from p, o, and Object.prototype
-</span><span class="c1"></span><span class="nx">q</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// and has an own property z.
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">q</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span> <span class="c1">// toString is inherited from Object.prototype
-</span><span class="c1"></span><span class="nx">q</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">q</span><span class="p">.</span><span class="nx">y</span> <span class="c1">// =&gt; 3: x and y are inherited from o and p
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> {} <span style="color:#998;font-style:italic">// o inherits object methods from Object.prototype
+</span><span style="color:#998;font-style:italic"></span>o.x <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>; <span style="color:#998;font-style:italic">// and has an own property x.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> p <span style="color:#000;font-weight:bold">=</span> inherit(o); <span style="color:#998;font-style:italic">// p inherits properties from o and Object.prototype
+</span><span style="color:#998;font-style:italic"></span>p.y <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>; <span style="color:#998;font-style:italic">// and has an own property y.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> q <span style="color:#000;font-weight:bold">=</span> inherit(p); <span style="color:#998;font-style:italic">// q inherits properties from p, o, and Object.prototype
+</span><span style="color:#998;font-style:italic"></span>q.z <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">3</span>; <span style="color:#998;font-style:italic">// and has an own property z.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> s <span style="color:#000;font-weight:bold">=</span> q.toString(); <span style="color:#998;font-style:italic">// toString is inherited from Object.prototype
+</span><span style="color:#998;font-style:italic"></span>q.x <span style="color:#000;font-weight:bold">+</span> q.y <span style="color:#998;font-style:italic">// =&gt; 3: x and y are inherited from o and p
 </span></code></pre></div>
-
 <p>假设你给对象o的属性x赋值。如果o已经有了一个自己的属性x，那么赋值只会改变这个现有属性的值。否则赋值将在对象o上创建一个名为x的新属性。如果o之前继承了属性x，那么这个继承的属性现在被新创建的同名属性所隐藏。</p>
-
 <p>属性赋值检查原型链以确定是否允许赋值。如果o继承一个名为x的只读属性，则不允许赋值。如果允许赋值，则总是在原对象中创建或设置一个属性，并且从不修改原型链。继承发生在查询属性时，而不是设置属性时，这是JavaScript的一个关键特性，因为它允许我们有选择地覆盖继承属性：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">unitcircle</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">r</span><span class="o">:</span><span class="mi">1</span> <span class="p">};</span> <span class="c1">// An object to inherit from
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">inherit</span><span class="p">(</span><span class="nx">unitcircle</span><span class="p">);</span> <span class="c1">// c inherits the property r
-</span><span class="c1"></span><span class="nx">c</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// c defines two properties of its own
-</span><span class="c1"></span><span class="nx">c</span><span class="p">.</span><span class="nx">r</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// c overrides its inherited property
-</span><span class="c1"></span><span class="nx">unitcircle</span><span class="p">.</span><span class="nx">r</span><span class="p">;</span> <span class="c1">// =&gt; 1: the prototype object is not affected
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> unitcircle <span style="color:#000;font-weight:bold">=</span> { r<span style="color:#000;font-weight:bold">:</span><span style="color:#099">1</span> }; <span style="color:#998;font-style:italic">// An object to inherit from
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> c <span style="color:#000;font-weight:bold">=</span> inherit(unitcircle); <span style="color:#998;font-style:italic">// c inherits the property r
+</span><span style="color:#998;font-style:italic"></span>c.x <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>; c.y <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>; <span style="color:#998;font-style:italic">// c defines two properties of its own
+</span><span style="color:#998;font-style:italic"></span>c.r <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>; <span style="color:#998;font-style:italic">// c overrides its inherited property
+</span><span style="color:#998;font-style:italic"></span>unitcircle.r; <span style="color:#998;font-style:italic">// =&gt; 1: the prototype object is not affected
 </span></code></pre></div>
-
 <p>如果o继承了一个带有setter方法的访问属性x，则调用该setter方法，而不是在o中创建新的属性x。但是setter方法是在对象o上调用的，因此如果setter方法定义了任何属性，都作用于o上，不会修改原型链。</p>
-
-<h4 id="属性访问错误">属性访问错误<a href="#属性访问错误" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="属性访问错误">属性访问错误</h4>
 <p>查询不存在的属性不是错误。如果属性x不是o的自有属性或继承属性，则o.x值为undefined。null和undefined没有属性，查询或者设置它们的属性抛出TypeError。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// A verbose and explicit technique
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">book</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">book</span><span class="p">.</span><span class="nx">subtitle</span><span class="p">)</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">book</span><span class="p">.</span><span class="nx">subtitle</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="c1">// A concise and idiomatic alternative to get subtitle length or undefined
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">book</span> <span class="o">&amp;&amp;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">subtitle</span> <span class="o">&amp;&amp;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">subtitle</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#998;font-style:italic">// A verbose and explicit technique
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> len <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">undefined</span>;
+<span style="color:#000;font-weight:bold">if</span> (book) {
+    <span style="color:#000;font-weight:bold">if</span> (book.subtitle) len <span style="color:#000;font-weight:bold">=</span> book.subtitle.length;
+}
+<span style="color:#998;font-style:italic">// A concise and idiomatic alternative to get subtitle length or undefined
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> len <span style="color:#000;font-weight:bold">=</span> book <span style="color:#000;font-weight:bold">&amp;&amp;</span> book.subtitle <span style="color:#000;font-weight:bold">&amp;&amp;</span> book.subtitle.length;
 </code></pre></div>
-
 <p>设置属性不总是成功的：有些属性是只读的，不能设置，有些对象不允许添加新属性。这些操作通常是悄悄失败的：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// The prototype properties of built-in constructors are read-only.
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Assignment fails silently; Object.prototype unchanged
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#998;font-style:italic">// The prototype properties of built-in constructors are read-only.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#0086b3">Object</span>.prototype <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; <span style="color:#998;font-style:italic">// Assignment fails silently; Object.prototype unchanged
 </span></code></pre></div>
-
 <p>在ES5严格模式下，任何设置属性失败都会抛出TypeError。设置对象o的属性p在以下情况失败：</p>
-
 <ul>
 <li>o有一个只读属性p，不能设置只读属性。</li>
 <li>o有只读的继承属性p，不能使用同名的属性隐藏继承的只读属性。</li>
 <li>o没有自有属性p，o也没有通过setter方法继承属性p，而且o的可扩展属性为false。</li>
 </ul>
-
-<h3 id="删除属性">删除属性<a href="#删除属性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="删除属性">删除属性</h3>
 <p>delete从对象中删除属性，它的操作数是一个属性访问表达式。delete并不操作属性的值，而是操作属性本身：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">delete</span> <span class="nx">book</span><span class="p">.</span><span class="nx">author</span><span class="p">;</span> <span class="c1">// The book object now has no author property.
-</span><span class="c1"></span><span class="k">delete</span> <span class="nx">book</span><span class="p">[</span><span class="s2">&#34;main title&#34;</span><span class="p">];</span> <span class="c1">// Now it doesn&#39;t have &#34;main title&#34;, either.
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">delete</span> book.author; <span style="color:#998;font-style:italic">// The book object now has no author property.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> book[<span style="color:#d14">&#34;main title&#34;</span>]; <span style="color:#998;font-style:italic">// Now it doesn&#39;t have &#34;main title&#34;, either.
 </span></code></pre></div>
-
 <p>delete操作符只删除自己的属性，而不删除继承的属性。要删除继承的属性，必须从定义它的原型对象中删除它。这样做会影响从原型继承的每个对象。delete删除成功或删除没有效果时，返回true：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">};</span> <span class="c1">// o has own property x and inherits property toString
-</span><span class="c1"></span><span class="k">delete</span> <span class="nx">o</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// Delete x, and return true
-</span><span class="c1"></span><span class="k">delete</span> <span class="nx">o</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// Do nothing (x doesn&#39;t exist), and return true
-</span><span class="c1"></span><span class="k">delete</span> <span class="nx">o</span><span class="p">.</span><span class="nx">toString</span><span class="p">;</span> <span class="c1">// Do nothing (toString isn&#39;t an own property), return true
-</span><span class="c1"></span><span class="k">delete</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Nonsense, but evaluates to true
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">o <span style="color:#000;font-weight:bold">=</span> {x<span style="color:#000;font-weight:bold">:</span><span style="color:#099">1</span>}; <span style="color:#998;font-style:italic">// o has own property x and inherits property toString
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> o.x; <span style="color:#998;font-style:italic">// Delete x, and return true
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> o.x; <span style="color:#998;font-style:italic">// Do nothing (x doesn&#39;t exist), and return true
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> o.toString; <span style="color:#998;font-style:italic">// Do nothing (toString isn&#39;t an own property), return true
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> <span style="color:#099">1</span>; <span style="color:#998;font-style:italic">// Nonsense, but evaluates to true
 </span></code></pre></div>
-
 <p>delete不会删除不可配置的属性，但是它可以删除不可扩展对象的可配置属性。内置对象的某些属性是不可配置的，通过变量声明和函数声明创建的全局对象的属性也是不可配置的。在严格模式下，删除不可配置属性会导致TypeError。在非严格模式下，delete返回false：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">delete</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span> <span class="c1">// Can&#39;t delete; property is non-configurable
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Declare a global variable
-</span><span class="c1"></span><span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// Can&#39;t delete this property
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{}</span> <span class="c1">// Declare a global function
-</span><span class="c1"></span><span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">f</span><span class="p">;</span> <span class="c1">// Can&#39;t delete this property either
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">delete</span> <span style="color:#0086b3">Object</span>.prototype; <span style="color:#998;font-style:italic">// Can&#39;t delete; property is non-configurable
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> x <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>; <span style="color:#998;font-style:italic">// Declare a global variable
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> <span style="color:#000;font-weight:bold">this</span>.x; <span style="color:#998;font-style:italic">// Can&#39;t delete this property
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">function</span> f() {} <span style="color:#998;font-style:italic">// Declare a global function
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> <span style="color:#000;font-weight:bold">this</span>.f; <span style="color:#998;font-style:italic">// Can&#39;t delete this property either
 </span></code></pre></div>
-
 <p>在非严格模式下删除全局对象的可配置属性时，可以省略this：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Create a configurable global property (no var)
-</span><span class="c1"></span><span class="k">delete</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">// And delete it
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">this</span>.x <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>; <span style="color:#998;font-style:italic">// Create a configurable global property (no var)
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> x; <span style="color:#998;font-style:italic">// And delete it
 </span></code></pre></div>
-
 <p>在严格模式下，如果delete的操作数是一个非限定的标识符，那么就会引发SyntaxError：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">delete</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">// SyntaxError in strict mode
-</span><span class="c1"></span><span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// This works
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">delete</span> x; <span style="color:#998;font-style:italic">// SyntaxError in strict mode
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> <span style="color:#000;font-weight:bold">this</span>.x; <span style="color:#998;font-style:italic">// This works
 </span></code></pre></div>
-
-<h3 id="测试属性">测试属性<a href="#测试属性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="测试属性">测试属性</h3>
 <p>in操作符左边是一个属性名，右边是一个对象。如果对象这个名字的自有属性或继承的属性，则返回true：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span>
-<span class="s2">&#34;x&#34;</span> <span class="k">in</span> <span class="nx">o</span><span class="p">;</span> <span class="c1">// true: o has an own property &#34;x&#34;
-</span><span class="c1"></span><span class="s2">&#34;y&#34;</span> <span class="k">in</span> <span class="nx">o</span><span class="p">;</span> <span class="c1">// false: o doesn&#39;t have a property &#34;y&#34;
-</span><span class="c1"></span><span class="s2">&#34;toString&#34;</span> <span class="k">in</span> <span class="nx">o</span><span class="p">;</span> <span class="c1">// true: o inherits a toString property
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> { x<span style="color:#000;font-weight:bold">:</span> <span style="color:#099">1</span> }
+<span style="color:#d14">&#34;x&#34;</span> <span style="color:#000;font-weight:bold">in</span> o; <span style="color:#998;font-style:italic">// true: o has an own property &#34;x&#34;
+</span><span style="color:#998;font-style:italic"></span><span style="color:#d14">&#34;y&#34;</span> <span style="color:#000;font-weight:bold">in</span> o; <span style="color:#998;font-style:italic">// false: o doesn&#39;t have a property &#34;y&#34;
+</span><span style="color:#998;font-style:italic"></span><span style="color:#d14">&#34;toString&#34;</span> <span style="color:#000;font-weight:bold">in</span> o; <span style="color:#998;font-style:italic">// true: o inherits a toString property
 </span></code></pre></div>
-
 <p>对象的hasOwnProperty()方法测试该对象是否具有具有给定名称的自己的属性。对于继承的属性，返回false：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
 </code></pre></div>
-
 <p>propertyIsEnumerable()只有当指定的属性是自己的属性且是可枚举的时，它才返回true：</p>
-
-<p><div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nx">inherit</span><span class="p">({</span><span class="nx">y</span><span class="o">:</span> <span class="mi">2</span><span class="p">});</span>
-<span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="nx">o</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&#34;x&#34;</span><span class="p">);</span> <span class="c1">// true: o has an own enumerable property x
-</span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&#34;y&#34;</span><span class="p">);</span> <span class="c1">// false: y is inherited, not own
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&#34;toString&#34;</span><span class="p">);</span> <span class="c1">// false: not enumerable
+<p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> inherit({y<span style="color:#000;font-weight:bold">:</span> <span style="color:#099">2</span>});
+o.x <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span>;
+o.propertyIsEnumerable(<span style="color:#d14">&#34;x&#34;</span>); <span style="color:#998;font-style:italic">// true: o has an own enumerable property x
+</span><span style="color:#998;font-style:italic"></span>o.propertyIsEnumerable(<span style="color:#d14">&#34;y&#34;</span>); <span style="color:#998;font-style:italic">// false: y is inherited, not own
+</span><span style="color:#998;font-style:italic"></span><span style="color:#0086b3">Object</span>.prototype.propertyIsEnumerable(<span style="color:#d14">&#34;toString&#34;</span>); <span style="color:#998;font-style:italic">// false: not enumerable
 </span></code></pre></div>
 通常查询属性只需简单使用!==来确保它不是undefined：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span>
-<span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">// true: o has a property x
-</span><span class="c1"></span>
-<span class="nx">o</span><span class="p">.</span><span class="nx">y</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">// false: o doesn&#39;t have a property y
-</span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">toString</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">// true: o inherits a toString property
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> { x<span style="color:#000;font-weight:bold">:</span> <span style="color:#099">1</span> }
+o.x <span style="color:#000;font-weight:bold">!==</span> <span style="color:#000;font-weight:bold">undefined</span>; <span style="color:#998;font-style:italic">// true: o has a property x
+</span><span style="color:#998;font-style:italic"></span>
+o.y <span style="color:#000;font-weight:bold">!==</span> <span style="color:#000;font-weight:bold">undefined</span>; <span style="color:#998;font-style:italic">// false: o doesn&#39;t have a property y
+</span><span style="color:#998;font-style:italic"></span>o.toString <span style="color:#000;font-weight:bold">!==</span> <span style="color:#000;font-weight:bold">undefined</span>; <span style="color:#998;font-style:italic">// true: o inherits a toString property
 </span></code></pre></div>
-
 <p>有一件事是in操作符可以做的，而上面所示的简单属性访问技术做不到的。in可以区分不存在的属性和设置为undefined 的属性：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="kc">undefined</span> <span class="p">}</span> <span class="c1">// Property is explicitly set to undefined
-</span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="c1">// false: property exists but is undefined
-</span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">y</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="c1">// false: property doesn&#39;t even exist
-</span><span class="c1"></span><span class="s2">&#34;x&#34;</span> <span class="k">in</span> <span class="nx">o</span> <span class="c1">// true: the property exists
-</span><span class="c1"></span><span class="s2">&#34;y&#34;</span> <span class="k">in</span> <span class="nx">o</span> <span class="c1">// false: the property doesn&#39;t exists
-</span><span class="c1"></span><span class="k">delete</span> <span class="nx">o</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// Delete the property x
-</span><span class="c1"></span><span class="s2">&#34;x&#34;</span> <span class="k">in</span> <span class="nx">o</span> <span class="c1">// false: it doesn&#39;t exist anymore
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> { x<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">undefined</span> } <span style="color:#998;font-style:italic">// Property is explicitly set to undefined
+</span><span style="color:#998;font-style:italic"></span>o.x <span style="color:#000;font-weight:bold">!==</span> <span style="color:#000;font-weight:bold">undefined</span> <span style="color:#998;font-style:italic">// false: property exists but is undefined
+</span><span style="color:#998;font-style:italic"></span>o.y <span style="color:#000;font-weight:bold">!==</span> <span style="color:#000;font-weight:bold">undefined</span> <span style="color:#998;font-style:italic">// false: property doesn&#39;t even exist
+</span><span style="color:#998;font-style:italic"></span><span style="color:#d14">&#34;x&#34;</span> <span style="color:#000;font-weight:bold">in</span> o <span style="color:#998;font-style:italic">// true: the property exists
+</span><span style="color:#998;font-style:italic"></span><span style="color:#d14">&#34;y&#34;</span> <span style="color:#000;font-weight:bold">in</span> o <span style="color:#998;font-style:italic">// false: the property doesn&#39;t exists
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">delete</span> o.x; <span style="color:#998;font-style:italic">// Delete the property x
+</span><span style="color:#998;font-style:italic"></span><span style="color:#d14">&#34;x&#34;</span> <span style="color:#000;font-weight:bold">in</span> o <span style="color:#998;font-style:italic">// false: it doesn&#39;t exist anymore
 </span></code></pre></div>
-
-<h3 id="枚举属性">枚举属性<a href="#枚举属性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="枚举属性">枚举属性</h3>
 <p>通常使用for/in循环来枚举属性。对象继承来的内置方法是不可枚举的，但是自己代码添加的属性是可枚举的：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span> <span class="nx">z</span><span class="o">:</span><span class="mi">3</span><span class="p">};</span> <span class="c1">// Three enumerable own properties
-</span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&#34;toString&#34;</span><span class="p">)</span> <span class="c1">// =&gt; false: not enumerable
-</span><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">o</span><span class="p">)</span> <span class="c1">// Loop through the properties
-</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// Prints x, y, and z, but not toString
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> {x<span style="color:#000;font-weight:bold">:</span><span style="color:#099">1</span>, y<span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>, z<span style="color:#000;font-weight:bold">:</span><span style="color:#099">3</span>}; <span style="color:#998;font-style:italic">// Three enumerable own properties
+</span><span style="color:#998;font-style:italic"></span>o.propertyIsEnumerable(<span style="color:#d14">&#34;toString&#34;</span>) <span style="color:#998;font-style:italic">// =&gt; false: not enumerable
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">for</span>(p <span style="color:#000;font-weight:bold">in</span> o) <span style="color:#998;font-style:italic">// Loop through the properties
+</span><span style="color:#998;font-style:italic"></span>    console.log(p); <span style="color:#998;font-style:italic">// Prints x, y, and z, but not toString
 </span></code></pre></div>
-
 <p>一些库向会添加新方法或属性到Object.prototype，以便所有对象可以继承和使用用。在ES5之前，没有办法使这些属性不可枚举，因此for/in循环可以枚举它们。为了防止这种情况发生，您可能需要过滤for/in返回的属性：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">for</span>(p <span style="color:#000;font-weight:bold">in</span> o) {
+    <span style="color:#000;font-weight:bold">if</span> (<span style="color:#000;font-weight:bold">!</span>o.hasOwnProperty(p)) <span style="color:#000;font-weight:bold">continue</span>; <span style="color:#998;font-style:italic">// Skip inherited properties
+</span><span style="color:#998;font-style:italic"></span>}
 
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">o</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// Skip inherited properties
-</span><span class="c1"></span><span class="p">}</span>
-
-<span class="k">for</span><span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">o</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&#34;function&#34;</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// Skip methods
-</span><span class="c1"></span><span class="p">}</span>
+<span style="color:#000;font-weight:bold">for</span>(p <span style="color:#000;font-weight:bold">in</span> o) {
+    <span style="color:#000;font-weight:bold">if</span> (<span style="color:#000;font-weight:bold">typeof</span> o[p] <span style="color:#000;font-weight:bold">===</span> <span style="color:#d14">&#34;function&#34;</span>) <span style="color:#000;font-weight:bold">continue</span>; <span style="color:#998;font-style:italic">// Skip methods
+</span><span style="color:#998;font-style:italic"></span>}
 </code></pre></div>
-
 <p>下面定义了几个实用函数：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#998;font-style:italic">/*
+</span><span style="color:#998;font-style:italic">* Copy the enumerable properties of p to o, and return o.
+</span><span style="color:#998;font-style:italic">* If o and p have a property by the same name, o&#39;s property is overwritten.
+</span><span style="color:#998;font-style:italic">* This function does not handle getters and setters or copy attributes.
+</span><span style="color:#998;font-style:italic">*/</span>
+<span style="color:#000;font-weight:bold">function</span> extend(o, p) {
+    <span style="color:#000;font-weight:bold">for</span>(prop <span style="color:#000;font-weight:bold">in</span> p) { <span style="color:#998;font-style:italic">// For all props in p.
+</span><span style="color:#998;font-style:italic"></span>        o[prop] <span style="color:#000;font-weight:bold">=</span> p[prop]; <span style="color:#998;font-style:italic">// Add the property to o.
+</span><span style="color:#998;font-style:italic"></span>    }
+    <span style="color:#000;font-weight:bold">return</span> o;
+}
 
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/*
-</span><span class="cm">* Copy the enumerable properties of p to o, and return o.
-</span><span class="cm">* If o and p have a property by the same name, o&#39;s property is overwritten.
-</span><span class="cm">* This function does not handle getters and setters or copy attributes.
-</span><span class="cm">*/</span>
-<span class="kd">function</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="nx">prop</span> <span class="k">in</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// For all props in p.
-</span><span class="c1"></span>        <span class="nx">o</span><span class="p">[</span><span class="nx">prop</span><span class="p">]</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="nx">prop</span><span class="p">];</span> <span class="c1">// Add the property to o.
-</span><span class="c1"></span>    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
-<span class="p">}</span>
+<span style="color:#998;font-style:italic">/*
+</span><span style="color:#998;font-style:italic">* Copy the enumerable properties of p to o, and return o.
+</span><span style="color:#998;font-style:italic">* If o and p have a property by the same name, o&#39;s property is left alone.
+</span><span style="color:#998;font-style:italic">* This function does not handle getters and setters or copy attributes.
+</span><span style="color:#998;font-style:italic">*/</span>
+<span style="color:#000;font-weight:bold">function</span> merge(o, p) {
+    <span style="color:#000;font-weight:bold">for</span>(prop <span style="color:#000;font-weight:bold">in</span> p) { <span style="color:#998;font-style:italic">// For all props in p.
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">if</span> (o.hasOwnProperty[prop]) <span style="color:#000;font-weight:bold">continue</span>; <span style="color:#998;font-style:italic">// Except those already in o.
+</span><span style="color:#998;font-style:italic"></span>        o[prop] <span style="color:#000;font-weight:bold">=</span> p[prop]; <span style="color:#998;font-style:italic">// Add the property to o.
+</span><span style="color:#998;font-style:italic"></span>    }
+    <span style="color:#000;font-weight:bold">return</span> o;
+}
 
-<span class="cm">/*
-</span><span class="cm">* Copy the enumerable properties of p to o, and return o.
-</span><span class="cm">* If o and p have a property by the same name, o&#39;s property is left alone.
-</span><span class="cm">* This function does not handle getters and setters or copy attributes.
-</span><span class="cm">*/</span>
-<span class="kd">function</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="nx">prop</span> <span class="k">in</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// For all props in p.
-</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">[</span><span class="nx">prop</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// Except those already in o.
-</span><span class="c1"></span>        <span class="nx">o</span><span class="p">[</span><span class="nx">prop</span><span class="p">]</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="nx">prop</span><span class="p">];</span> <span class="c1">// Add the property to o.
-</span><span class="c1"></span>    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
-<span class="p">}</span>
+<span style="color:#998;font-style:italic">/*
+</span><span style="color:#998;font-style:italic">* Remove properties from o if there is not a property with the same name in p.
+</span><span style="color:#998;font-style:italic">* Return o.
+</span><span style="color:#998;font-style:italic">*/</span>
+<span style="color:#000;font-weight:bold">function</span> restrict(o, p) {
+    <span style="color:#000;font-weight:bold">for</span>(prop <span style="color:#000;font-weight:bold">in</span> o) { <span style="color:#998;font-style:italic">// For all props in o
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">if</span> (<span style="color:#000;font-weight:bold">!</span>(prop <span style="color:#000;font-weight:bold">in</span> p)) <span style="color:#000;font-weight:bold">delete</span> o[prop]; <span style="color:#998;font-style:italic">// Delete if not in p
+</span><span style="color:#998;font-style:italic"></span>    }
+    <span style="color:#000;font-weight:bold">return</span> o;
+}
 
-<span class="cm">/*
-</span><span class="cm">* Remove properties from o if there is not a property with the same name in p.
-</span><span class="cm">* Return o.
-</span><span class="cm">*/</span>
-<span class="kd">function</span> <span class="nx">restrict</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="nx">prop</span> <span class="k">in</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// For all props in o
-</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">prop</span> <span class="k">in</span> <span class="nx">p</span><span class="p">))</span> <span class="k">delete</span> <span class="nx">o</span><span class="p">[</span><span class="nx">prop</span><span class="p">];</span> <span class="c1">// Delete if not in p
-</span><span class="c1"></span>    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
-<span class="p">}</span>
+<span style="color:#998;font-style:italic">/*
+</span><span style="color:#998;font-style:italic">* For each property of p, delete the property with the same name from o.
+</span><span style="color:#998;font-style:italic">* Return o.
+</span><span style="color:#998;font-style:italic">*/</span>
+<span style="color:#000;font-weight:bold">function</span> subtract(o, p) {
+    <span style="color:#000;font-weight:bold">for</span>(prop <span style="color:#000;font-weight:bold">in</span> p) { <span style="color:#998;font-style:italic">// For all props in p
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">delete</span> o[prop]; <span style="color:#998;font-style:italic">// Delete from o (deleting a nonexistent prop is harmless)
+</span><span style="color:#998;font-style:italic"></span>    }
+    <span style="color:#000;font-weight:bold">return</span> o;
+}
 
-<span class="cm">/*
-</span><span class="cm">* For each property of p, delete the property with the same name from o.
-</span><span class="cm">* Return o.
-</span><span class="cm">*/</span>
-<span class="kd">function</span> <span class="nx">subtract</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="nx">prop</span> <span class="k">in</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// For all props in p
-</span><span class="c1"></span>        <span class="k">delete</span> <span class="nx">o</span><span class="p">[</span><span class="nx">prop</span><span class="p">];</span> <span class="c1">// Delete from o (deleting a nonexistent prop is harmless)
-</span><span class="c1"></span>    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
-<span class="p">}</span>
+<span style="color:#998;font-style:italic">/*
+</span><span style="color:#998;font-style:italic">* Return a new object that holds the properties of both o and p.
+</span><span style="color:#998;font-style:italic">* If o and p have properties by the same name, the values from o are used.
+</span><span style="color:#998;font-style:italic">*/</span>
+<span style="color:#000;font-weight:bold">function</span> union(o,p) { <span style="color:#000;font-weight:bold">return</span> extend(extend({},o), p); }
 
-<span class="cm">/*
-</span><span class="cm">* Return a new object that holds the properties of both o and p.
-</span><span class="cm">* If o and p have properties by the same name, the values from o are used.
-</span><span class="cm">*/</span>
-<span class="kd">function</span> <span class="nx">union</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">extend</span><span class="p">({},</span><span class="nx">o</span><span class="p">),</span> <span class="nx">p</span><span class="p">);</span> <span class="p">}</span>
+<span style="color:#998;font-style:italic">/*
+</span><span style="color:#998;font-style:italic">* Return a new object that holds only the properties of o that also appear
+</span><span style="color:#998;font-style:italic">* in p. This is something like the intersection of o and p, but the values of
+</span><span style="color:#998;font-style:italic">* the properties in p are discarded
+</span><span style="color:#998;font-style:italic">*/</span>
+<span style="color:#000;font-weight:bold">function</span> intersection(o,p) { <span style="color:#000;font-weight:bold">return</span> restrict(extend({}, o), p); }
 
-<span class="cm">/*
-</span><span class="cm">* Return a new object that holds only the properties of o that also appear
-</span><span class="cm">* in p. This is something like the intersection of o and p, but the values of
-</span><span class="cm">* the properties in p are discarded
-</span><span class="cm">*/</span>
-<span class="kd">function</span> <span class="nx">intersection</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">restrict</span><span class="p">(</span><span class="nx">extend</span><span class="p">({},</span> <span class="nx">o</span><span class="p">),</span> <span class="nx">p</span><span class="p">);</span> <span class="p">}</span>
-
-<span class="cm">/*
-</span><span class="cm">* Return an array that holds the names of the enumerable own properties of o.
-</span><span class="cm">*/</span>
-<span class="kd">function</span> <span class="nx">keys</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">o</span> <span class="o">!==</span> <span class="s2">&#34;object&#34;</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">TypeError</span><span class="p">();</span> <span class="c1">// Object argument required
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// The array we will return
-</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">prop</span> <span class="k">in</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// For all enumerable properties
-</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">prop</span><span class="p">))</span> <span class="c1">// If it is an own property
-</span><span class="c1"></span>            <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">prop</span><span class="p">);</span> <span class="c1">// add it to the array.
-</span><span class="c1"></span>    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span> <span class="c1">// Return the array.
-</span><span class="c1"></span><span class="p">}</span>
+<span style="color:#998;font-style:italic">/*
+</span><span style="color:#998;font-style:italic">* Return an array that holds the names of the enumerable own properties of o.
+</span><span style="color:#998;font-style:italic">*/</span>
+<span style="color:#000;font-weight:bold">function</span> keys(o) {
+    <span style="color:#000;font-weight:bold">if</span> (<span style="color:#000;font-weight:bold">typeof</span> o <span style="color:#000;font-weight:bold">!==</span> <span style="color:#d14">&#34;object&#34;</span>) <span style="color:#000;font-weight:bold">throw</span> TypeError(); <span style="color:#998;font-style:italic">// Object argument required
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">var</span> result <span style="color:#000;font-weight:bold">=</span> []; <span style="color:#998;font-style:italic">// The array we will return
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">for</span>(<span style="color:#000;font-weight:bold">var</span> prop <span style="color:#000;font-weight:bold">in</span> o) { <span style="color:#998;font-style:italic">// For all enumerable properties
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">if</span> (o.hasOwnProperty(prop)) <span style="color:#998;font-style:italic">// If it is an own property
+</span><span style="color:#998;font-style:italic"></span>            result.push(prop); <span style="color:#998;font-style:italic">// add it to the array.
+</span><span style="color:#998;font-style:italic"></span>    }
+    <span style="color:#000;font-weight:bold">return</span> result; <span style="color:#998;font-style:italic">// Return the array.
+</span><span style="color:#998;font-style:italic"></span>}
 </code></pre></div>
-
 <p>ES5定义了两个新函数来枚举属性名。第一个是Object.keys()，它返回一个对象的可枚举属性名数组。第二个是Object.getOwnPropertyNames()，它返回指定对象的所有自身属性名。</p>
-
-<h3 id="属性getter和setter">属性getter和setter<a href="#属性getter和setter" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="属性getter和setter">属性getter和setter</h3>
 <p>在ES5中，对象值可以被getter和setter方法替换。getter和setter定义的属性有时称为访问器属性，以区分数据属性。</p>
-
 <p>当查询访问器属性时，JavaScript调用getter方法，返回值即属性值。当设置访问器属性时，JavaScript调用setter方法，传递赋值右侧的值，setter方法的返回值被忽略。</p>
-
 <p>访问器属性不像数据属性那样具有可写属性。如果属性同时具有getter和setter方法，那么它就是可读/可写属性。如果它只有getter方法，它就是只读属性。如果它只有一个setter方法，那么它就是一个只写的属性，这对于数据属性不可能实现的，并且读取它总是返回undefined。</p>
-
 <p>定义访问器属性的最简单方法是使用对象字面值语法：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="c1">// An ordinary data property
-</span><span class="c1"></span>    <span class="nx">data_prop</span><span class="o">:</span> <span class="nx">value</span><span class="p">,</span>
-    <span class="c1">// An accessor property defined as a pair of functions
-</span><span class="c1"></span>    <span class="nx">get</span> <span class="nx">accessor_prop</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* function body here */</span> <span class="p">},</span>
-    <span class="nx">set</span> <span class="nx">accessor_prop</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* function body here */</span> <span class="p">}</span>
-<span class="p">};</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> {
+    <span style="color:#998;font-style:italic">// An ordinary data property
+</span><span style="color:#998;font-style:italic"></span>    data_prop<span style="color:#000;font-weight:bold">:</span> value,
+    <span style="color:#998;font-style:italic">// An accessor property defined as a pair of functions
+</span><span style="color:#998;font-style:italic"></span>    get accessor_prop() { <span style="color:#998;font-style:italic">/* function body here */</span> },
+    set accessor_prop(value) { <span style="color:#998;font-style:italic">/* function body here */</span> }
+};
 </code></pre></div>
-
 <p>访问器属性定义为一个或两个名称与属性名称相同的函数，并将function替换为get或set。没有使用冒号将属性的名称与访问该属性的函数分隔开，但是在函数体之后仍然需要使用逗号与下一个方法或数据属性分隔开。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="c1">// x and y are regular read-write data properties.
-</span><span class="c1"></span>    <span class="nx">x</span><span class="o">:</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="nx">y</span><span class="o">:</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="c1">// r is a read-write accessor property with getter and setter.
-</span><span class="c1"></span>    <span class="c1">// Don&#39;t forget to put a comma after accessor methods.
-</span><span class="c1"></span>    <span class="nx">get</span> <span class="nx">r</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span> <span class="p">},</span>
-    <span class="nx">set</span> <span class="nx">r</span><span class="p">(</span><span class="nx">newvalue</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">oldvalue</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
-        <span class="kd">var</span> <span class="nx">ratio</span> <span class="o">=</span> <span class="nx">newvalue</span><span class="o">/</span><span class="nx">oldvalue</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">*=</span> <span class="nx">ratio</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">*=</span> <span class="nx">ratio</span><span class="p">;</span>
-    <span class="p">},</span>
-    <span class="c1">// theta is a read-only accessor property with getter only.
-</span><span class="c1"></span>    <span class="nx">get</span> <span class="nx">theta</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">atan2</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span> <span class="p">}</span>
-<span class="p">};</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> p <span style="color:#000;font-weight:bold">=</span> {
+    <span style="color:#998;font-style:italic">// x and y are regular read-write data properties.
+</span><span style="color:#998;font-style:italic"></span>    x<span style="color:#000;font-weight:bold">:</span> <span style="color:#099">1.0</span>,
+    y<span style="color:#000;font-weight:bold">:</span> <span style="color:#099">1.0</span>,
+    <span style="color:#998;font-style:italic">// r is a read-write accessor property with getter and setter.
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">// Don&#39;t forget to put a comma after accessor methods.
+</span><span style="color:#998;font-style:italic"></span>    get r() { <span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">Math</span>.sqrt(<span style="color:#000;font-weight:bold">this</span>.x <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">this</span>.x <span style="color:#000;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">this</span>.y <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">this</span>.y); },
+    set r(newvalue) {
+        <span style="color:#000;font-weight:bold">var</span> oldvalue <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Math</span>.sqrt(<span style="color:#000;font-weight:bold">this</span>.x <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">this</span>.x <span style="color:#000;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">this</span>.y <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">this</span>.y);
+        <span style="color:#000;font-weight:bold">var</span> ratio <span style="color:#000;font-weight:bold">=</span> newvalue<span style="color:#000;font-weight:bold">/</span>oldvalue;
+        <span style="color:#000;font-weight:bold">this</span>.x <span style="color:#000;font-weight:bold">*=</span> ratio;
+        <span style="color:#000;font-weight:bold">this</span>.y <span style="color:#000;font-weight:bold">*=</span> ratio;
+    },
+    <span style="color:#998;font-style:italic">// theta is a read-only accessor property with getter only.
+</span><span style="color:#998;font-style:italic"></span>    get theta() { <span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">Math</span>.atan2(<span style="color:#000;font-weight:bold">this</span>.y, <span style="color:#000;font-weight:bold">this</span>.x); }
+};
 </code></pre></div>
-
 <p>JavaScript将getter和setter函数作为定义它们的对象的方法，这意味着这些函数可以引用对象的属性。访问器属性是可以继承的，就像数据属性一样：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">q</span> <span class="o">=</span> <span class="nx">inherit</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// Create a new object that inherits getters and setters
-</span><span class="c1"></span><span class="nx">q</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">q</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Create q&#39;s own data properties
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">r</span><span class="p">);</span> <span class="c1">// And use the inherited accessor properties
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">theta</span><span class="p">);</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> q <span style="color:#000;font-weight:bold">=</span> inherit(p); <span style="color:#998;font-style:italic">// Create a new object that inherits getters and setters
+</span><span style="color:#998;font-style:italic"></span>q.x <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>, q.y <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; <span style="color:#998;font-style:italic">// Create q&#39;s own data properties
+</span><span style="color:#998;font-style:italic"></span>console.log(q.r); <span style="color:#998;font-style:italic">// And use the inherited accessor properties
+</span><span style="color:#998;font-style:italic"></span>console.log(q.theta);
 </code></pre></div>
-
 <p>使用访问器属性的另一个原因是对属性写入进行完整性检查，并且可以在读取的属性返回不同的值：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// This object generates strictly increasing serial numbers
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">serialnum</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="c1">// This data property holds the next serial number.
-</span><span class="c1"></span>    <span class="c1">// The $ in the property name hints that it is a private property.
-</span><span class="c1"></span>    <span class="nx">$n</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="c1">// Return the current value and increment it
-</span><span class="c1"></span>    <span class="nx">get</span> <span class="nx">next</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$n</span><span class="o">++</span><span class="p">;</span> <span class="p">},</span>
-    <span class="c1">// Set a new value of n, but only if it is larger than current
-</span><span class="c1"></span>    <span class="nx">set</span> <span class="nx">next</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$n</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">$n</span> <span class="o">=</span> <span class="nx">n</span><span class="p">;</span>
-        <span class="k">else</span> <span class="k">throw</span> <span class="s2">&#34;serial number can only be set to a larger value&#34;</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#998;font-style:italic">// This object generates strictly increasing serial numbers
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> serialnum <span style="color:#000;font-weight:bold">=</span> {
+    <span style="color:#998;font-style:italic">// This data property holds the next serial number.
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">// The $ in the property name hints that it is a private property.
+</span><span style="color:#998;font-style:italic"></span>    $n<span style="color:#000;font-weight:bold">:</span> <span style="color:#099">0</span>,
+    <span style="color:#998;font-style:italic">// Return the current value and increment it
+</span><span style="color:#998;font-style:italic"></span>    get next() { <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">this</span>.$n<span style="color:#000;font-weight:bold">++</span>; },
+    <span style="color:#998;font-style:italic">// Set a new value of n, but only if it is larger than current
+</span><span style="color:#998;font-style:italic"></span>    set next(n) {
+        <span style="color:#000;font-weight:bold">if</span> (n <span style="color:#000;font-weight:bold">&gt;=</span> <span style="color:#000;font-weight:bold">this</span>.$n) <span style="color:#000;font-weight:bold">this</span>.$n <span style="color:#000;font-weight:bold">=</span> n;
+        <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">throw</span> <span style="color:#d14">&#34;serial number can only be set to a larger value&#34;</span>;
+    }
+};
 </code></pre></div>
-
 <p>最后，这里还有一个使用getter方法实现具有“神奇”行为的属性的示例：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// This object has accessor properties that return random numbers.
-</span><span class="c1">// The expression &#34;random.octet&#34;, for example, yields a random number
-</span><span class="c1">// between 0 and 255 each time it is evaluated.
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">random</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">get</span> <span class="nx">octet</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">256</span><span class="p">);</span> <span class="p">},</span>
-    <span class="nx">get</span> <span class="nx">uint16</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">65536</span><span class="p">);</span> <span class="p">},</span>
-    <span class="nx">get</span> <span class="nx">int16</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mi">65536</span><span class="p">)</span><span class="o">-</span><span class="mi">32768</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">};</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#998;font-style:italic">// This object has accessor properties that return random numbers.
+</span><span style="color:#998;font-style:italic">// The expression &#34;random.octet&#34;, for example, yields a random number
+</span><span style="color:#998;font-style:italic">// between 0 and 255 each time it is evaluated.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> random <span style="color:#000;font-weight:bold">=</span> {
+    get octet() { <span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">Math</span>.floor(<span style="color:#0086b3">Math</span>.random() <span style="color:#000;font-weight:bold">*</span> <span style="color:#099">256</span>); },
+    get uint16() { <span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">Math</span>.floor(<span style="color:#0086b3">Math</span>.random() <span style="color:#000;font-weight:bold">*</span> <span style="color:#099">65536</span>); },
+    get int16() { <span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">Math</span>.floor(<span style="color:#0086b3">Math</span>.random()<span style="color:#000;font-weight:bold">*</span><span style="color:#099">65536</span>)<span style="color:#000;font-weight:bold">-</span><span style="color:#099">32768</span>; }
+};
 </code></pre></div>
-
-<h3 id="属性的属性">属性的属性<a href="#属性的属性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="属性的属性">属性的属性</h3>
 <p>数据属性的四个属性是值、可写、可枚举和可配置。访问器属性没有值属性和可写属性，它们是否可写取决于setter存在与否。因此访问器属性的四个属性是get、set、枚举和可配置。</p>
-
 <p>ES5查询和设置属性的方法使用一个称为属性描述符的对象来表示四个属性的集合。使用Object.getOwnPropertyDescriptor()获得指定对象的属性描述符：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Returns {value: 1, writable:true, enumerable:true, configurable:true}
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span> <span class="s2">&#34;x&#34;</span><span class="p">);</span>
-<span class="c1">// Now query the octet property of the random object defined above.
-</span><span class="c1">// Returns { get: /func/, set:undefined, enumerable:true, configurable:true}
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">random</span><span class="p">,</span> <span class="s2">&#34;octet&#34;</span><span class="p">);</span>
-<span class="c1">// Returns undefined for inherited properties and properties that don&#39;t exist.
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">({},</span> <span class="s2">&#34;x&#34;</span><span class="p">);</span> <span class="c1">// undefined, no such prop
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">({},</span> <span class="s2">&#34;toString&#34;</span><span class="p">);</span> <span class="c1">// undefined, inherited
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#998;font-style:italic">// Returns {value: 1, writable:true, enumerable:true, configurable:true}
+</span><span style="color:#998;font-style:italic"></span><span style="color:#0086b3">Object</span>.getOwnPropertyDescriptor({x<span style="color:#000;font-weight:bold">:</span><span style="color:#099">1</span>}, <span style="color:#d14">&#34;x&#34;</span>);
+<span style="color:#998;font-style:italic">// Now query the octet property of the random object defined above.
+</span><span style="color:#998;font-style:italic">// Returns { get: /func/, set:undefined, enumerable:true, configurable:true}
+</span><span style="color:#998;font-style:italic"></span><span style="color:#0086b3">Object</span>.getOwnPropertyDescriptor(random, <span style="color:#d14">&#34;octet&#34;</span>);
+<span style="color:#998;font-style:italic">// Returns undefined for inherited properties and properties that don&#39;t exist.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#0086b3">Object</span>.getOwnPropertyDescriptor({}, <span style="color:#d14">&#34;x&#34;</span>); <span style="color:#998;font-style:italic">// undefined, no such prop
+</span><span style="color:#998;font-style:italic"></span><span style="color:#0086b3">Object</span>.getOwnPropertyDescriptor({}, <span style="color:#d14">&#34;toString&#34;</span>); <span style="color:#998;font-style:italic">// undefined, inherited
 </span></code></pre></div>
-
 <p>getownpropertydescriptor()只适用于自己的属性。要查询继承属性的属性，必须显式地遍历原型链。</p>
-
 <p>object.defineproperty()用于设置指定对象属性：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// Start with no properties at all
-</span><span class="c1">// Add a nonenumerable data property x with value 1.
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="s2">&#34;x&#34;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">value</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nx">enumerable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="nx">configurable</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
-<span class="c1">// Check that the property is there but is nonenumerable
-</span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// =&gt; 1
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="c1">// =&gt; []
-</span><span class="c1">// Now modify the property x so that it is read-only
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="s2">&#34;x&#34;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">writable</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
-<span class="c1">// Try to change the value of the property
-</span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Fails silently or throws TypeError in strict mode
-</span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="c1">// =&gt; 1
-</span><span class="c1">// The property is still configurable, so we can change its value like this:
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="s2">&#34;x&#34;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">2</span> <span class="p">});</span>
-<span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="c1">// =&gt; 2
-</span><span class="c1">// Now change x from a data property to an accessor property
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="s2">&#34;x&#34;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-<span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="c1">// =&gt; 0
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> {}; <span style="color:#998;font-style:italic">// Start with no properties at all
+</span><span style="color:#998;font-style:italic">// Add a nonenumerable data property x with value 1.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#0086b3">Object</span>.defineProperty(o, <span style="color:#d14">&#34;x&#34;</span>, { value <span style="color:#000;font-weight:bold">:</span> <span style="color:#099">1</span>,
+    writable<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">true</span>,
+    enumerable<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">false</span>,
+    configurable<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">true</span>});
+<span style="color:#998;font-style:italic">// Check that the property is there but is nonenumerable
+</span><span style="color:#998;font-style:italic"></span>o.x; <span style="color:#998;font-style:italic">// =&gt; 1
+</span><span style="color:#998;font-style:italic"></span><span style="color:#0086b3">Object</span>.keys(o) <span style="color:#998;font-style:italic">// =&gt; []
+</span><span style="color:#998;font-style:italic">// Now modify the property x so that it is read-only
+</span><span style="color:#998;font-style:italic"></span><span style="color:#0086b3">Object</span>.defineProperty(o, <span style="color:#d14">&#34;x&#34;</span>, { writable<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">false</span> });
+<span style="color:#998;font-style:italic">// Try to change the value of the property
+</span><span style="color:#998;font-style:italic"></span>o.x <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>; <span style="color:#998;font-style:italic">// Fails silently or throws TypeError in strict mode
+</span><span style="color:#998;font-style:italic"></span>o.x <span style="color:#998;font-style:italic">// =&gt; 1
+</span><span style="color:#998;font-style:italic">// The property is still configurable, so we can change its value like this:
+</span><span style="color:#998;font-style:italic"></span><span style="color:#0086b3">Object</span>.defineProperty(o, <span style="color:#d14">&#34;x&#34;</span>, { value<span style="color:#000;font-weight:bold">:</span> <span style="color:#099">2</span> });
+o.x <span style="color:#998;font-style:italic">// =&gt; 2
+</span><span style="color:#998;font-style:italic">// Now change x from a data property to an accessor property
+</span><span style="color:#998;font-style:italic"></span><span style="color:#0086b3">Object</span>.defineProperty(o, <span style="color:#d14">&#34;x&#34;</span>, { get<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">function</span>() { <span style="color:#000;font-weight:bold">return</span> <span style="color:#099">0</span>; } });
+o.x <span style="color:#998;font-style:italic">// =&gt; 0
 </span></code></pre></div>
-
 <p>传递给Object.defineProperty()的属性描述符不需要包含所有四个属性。如果创建一个新属性，那么省略的属性值被设为false或undefined。如果修改现有属性，则忽略的属性将保持不变。Object.defineProperty()只能用于创建或修改自有属性，不会修改继承的属性。</p>
-
 <p>如果要创建或修改多个属性，使用Object.defineProperties()。第一个参数是要修改的对象，第二个参数是一个对象，它将要创建或修改的属性名映射到相应的属性描述符：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperties</span><span class="p">({},</span> <span class="p">{</span>
-    <span class="nx">x</span><span class="o">:</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">enumerable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">configurable</span><span class="o">:</span><span class="kc">true</span> <span class="p">},</span>
-    <span class="nx">y</span><span class="o">:</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">enumerable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">configurable</span><span class="o">:</span><span class="kc">true</span> <span class="p">},</span>
-    <span class="nx">r</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">xthis</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">ythis</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span> <span class="p">},</span>
-        <span class="nx">enumerable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
-        <span class="nx">configurable</span><span class="o">:</span><span class="kc">true</span>
-    <span class="p">}</span>
-<span class="p">});</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> p <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Object</span>.defineProperties({}, {
+    x<span style="color:#000;font-weight:bold">:</span> { value<span style="color:#000;font-weight:bold">:</span> <span style="color:#099">1</span>, writable<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">true</span>, enumerable<span style="color:#000;font-weight:bold">:</span><span style="color:#000;font-weight:bold">true</span>, configurable<span style="color:#000;font-weight:bold">:</span><span style="color:#000;font-weight:bold">true</span> },
+    y<span style="color:#000;font-weight:bold">:</span> { value<span style="color:#000;font-weight:bold">:</span> <span style="color:#099">1</span>, writable<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">true</span>, enumerable<span style="color:#000;font-weight:bold">:</span><span style="color:#000;font-weight:bold">true</span>, configurable<span style="color:#000;font-weight:bold">:</span><span style="color:#000;font-weight:bold">true</span> },
+    r<span style="color:#000;font-weight:bold">:</span> {
+        get<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">function</span>() { <span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">Math</span>.sqrt(<span style="color:#000;font-weight:bold">this</span>.xthis.x <span style="color:#000;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">this</span>.ythis.y) },
+        enumerable<span style="color:#000;font-weight:bold">:</span><span style="color:#000;font-weight:bold">true</span>,
+        configurable<span style="color:#000;font-weight:bold">:</span><span style="color:#000;font-weight:bold">true</span>
+    }
+});
 </code></pre></div>
-
 <p>Object.create方法的第一个参数是新创建对象的原型对象，它的第二个可选参数是与Object.defineProperties()的第二个参数相同的对象。如果您将一组属性描述符传递给object.create()，那么它们将用于向新创建的对象添加属性。</p>
-
 <p>当不允许创建或修改属性时，Object.defineProperty()和Object.defineProperties()会抛出TypeError：</p>
-
 <ul>
 <li>如果对象不可扩展，可以编辑现有的属性，但不能向其添加新属性。</li>
 <li>如果属性不可配置，则无法更改其可配置或可枚举属性。</li>
@@ -570,172 +596,349 @@
 <li>如果数据属性不可配置，则不能将其可写属性从false更改为true，但可以将其从true更改为false。</li>
 <li>如果数据属性不可配置且不可写入，则无法更改其值。但是您可以更改可配置但不可写入的属性的值。</li>
 </ul>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/*
-</span><span class="cm">* Add a nonenumerable extend() method to Object.prototype.
-</span><span class="cm">* This method extends the object on which it is called by copying properties
-</span><span class="cm">* from the object passed as its argument. All property attributes are
-</span><span class="cm">* copied, not just the property value. All own properties (even non-
-</span><span class="cm">* enumerable ones) of the argument object are copied unless a property
-</span><span class="cm">* with the same name already exists in the target object.
-</span><span class="cm">*/</span>
-<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&#34;extend&#34;</span><span class="p">,</span> <span class="c1">// Define Object.prototype.extend
-</span><span class="c1"></span>    <span class="p">{</span>
-        <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="nx">enumerable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// Make it nonenumerable
-</span><span class="c1"></span>        <span class="nx">configurable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Its value is this function
-</span><span class="c1"></span>            <span class="c1">// Get all own props, even nonenumerable ones
-</span><span class="c1"></span>            <span class="kd">var</span> <span class="nx">names</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyNames</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
-            <span class="c1">// Loop through them
-</span><span class="c1"></span>            <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">names</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                <span class="c1">// Skip props already in this object
-</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="nx">names</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="k">in</span> <span class="k">this</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
-                <span class="c1">// Get property description from o
-</span><span class="c1"></span>                <span class="kd">var</span> <span class="nx">desc</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">names</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-                <span class="c1">// Use it to create property on this
-</span><span class="c1"></span>                <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">names</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">desc</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">});</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#998;font-style:italic">/*
+</span><span style="color:#998;font-style:italic">* Add a nonenumerable extend() method to Object.prototype.
+</span><span style="color:#998;font-style:italic">* This method extends the object on which it is called by copying properties
+</span><span style="color:#998;font-style:italic">* from the object passed as its argument. All property attributes are
+</span><span style="color:#998;font-style:italic">* copied, not just the property value. All own properties (even non-
+</span><span style="color:#998;font-style:italic">* enumerable ones) of the argument object are copied unless a property
+</span><span style="color:#998;font-style:italic">* with the same name already exists in the target object.
+</span><span style="color:#998;font-style:italic">*/</span>
+<span style="color:#0086b3">Object</span>.defineProperty(<span style="color:#0086b3">Object</span>.prototype, <span style="color:#d14">&#34;extend&#34;</span>, <span style="color:#998;font-style:italic">// Define Object.prototype.extend
+</span><span style="color:#998;font-style:italic"></span>    {
+        writable<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">true</span>,
+        enumerable<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">false</span>, <span style="color:#998;font-style:italic">// Make it nonenumerable
+</span><span style="color:#998;font-style:italic"></span>        configurable<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">true</span>,
+        value<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">function</span>(o) { <span style="color:#998;font-style:italic">// Its value is this function
+</span><span style="color:#998;font-style:italic"></span>            <span style="color:#998;font-style:italic">// Get all own props, even nonenumerable ones
+</span><span style="color:#998;font-style:italic"></span>            <span style="color:#000;font-weight:bold">var</span> names <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Object</span>.getOwnPropertyNames(o);
+            <span style="color:#998;font-style:italic">// Loop through them
+</span><span style="color:#998;font-style:italic"></span>            <span style="color:#000;font-weight:bold">for</span>(<span style="color:#000;font-weight:bold">var</span> i <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; i <span style="color:#000;font-weight:bold">&lt;</span> names.length; i<span style="color:#000;font-weight:bold">++</span>) {
+                <span style="color:#998;font-style:italic">// Skip props already in this object
+</span><span style="color:#998;font-style:italic"></span>                <span style="color:#000;font-weight:bold">if</span> (names[i] <span style="color:#000;font-weight:bold">in</span> <span style="color:#000;font-weight:bold">this</span>) <span style="color:#000;font-weight:bold">continue</span>;
+                <span style="color:#998;font-style:italic">// Get property description from o
+</span><span style="color:#998;font-style:italic"></span>                <span style="color:#000;font-weight:bold">var</span> desc <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Object</span>.getOwnPropertyDescriptor(o,names[i]);
+                <span style="color:#998;font-style:italic">// Use it to create property on this
+</span><span style="color:#998;font-style:italic"></span>                <span style="color:#0086b3">Object</span>.defineProperty(<span style="color:#000;font-weight:bold">this</span>, names[i], desc);
+            }
+        }
+    });
 </code></pre></div>
-
-<h4 id="getter和setter的遗留api">getter和setter的遗留API<a href="#getter和setter的遗留api" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="getter和setter的遗留api">getter和setter的遗留API</h4>
 <p><code>__lookupGetter__()</code>和<code>__lookupSetter__()</code>返回指定属性的getter或setter方法。<code>__defineGetter__()</code>和<code>__defineSetter__()</code>定义getter或setter方法，先传递属性名，然后传递getter或setter方法。这些方法是非标准方法。</p>
-
-<h3 id="对象属性">对象属性<a href="#对象属性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="对象属性">对象属性</h3>
 <p>每个对象都有相关的原型、类和可扩展属性。</p>
-
-<h4 id="原型属性">原型属性<a href="#原型属性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="原型属性">原型属性</h4>
 <p>对象的原型属性指定它从哪个对象继承属性。原型属性是在创建对象时设置的。用new创建的对象使用其构造函数的原型属性的值作为原型。使用Object.create()创建的对象使用该函数的第一个参数（可能为空）作为原型。</p>
-
 <p>在ES5中，可以使用Object.getPrototypeOf()来查询任何对象的原型。ES3中没有等价的函数，但是通常可以使用o.constructor.prototype来确定对象o的原型。</p>
-
 <p>要确定一个对象是另一个对象的原型或其原型链的一部分，使用isPrototypeOf()方法：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">};</span> <span class="c1">// Define a prototype object.
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// Create an object with that prototype.
-</span><span class="c1"></span><span class="nx">p</span><span class="p">.</span><span class="nx">isPrototypeOf</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="c1">// =&gt; true: o inherits from p
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isPrototypeOf</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="c1">// =&gt; true: p inherits from Object.prototype
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">var</span> p <span style="color:#000;font-weight:bold">=</span> {x<span style="color:#000;font-weight:bold">:</span><span style="color:#099">1</span>}; <span style="color:#998;font-style:italic">// Define a prototype object.
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Object</span>.create(p); <span style="color:#998;font-style:italic">// Create an object with that prototype.
+</span><span style="color:#998;font-style:italic"></span>p.isPrototypeOf(o) <span style="color:#998;font-style:italic">// =&gt; true: o inherits from p
+</span><span style="color:#998;font-style:italic"></span><span style="color:#0086b3">Object</span>.prototype.isPrototypeOf(o) <span style="color:#998;font-style:italic">// =&gt; true: p inherits from Object.prototype
 </span></code></pre></div>
-
 <p>Mozilla的JavaScript实现通过特殊命名的<code>__proto__</code>属性公开了原型属性，您可以使用该属性直接查询或设置任何对象的原型。</p>
-
-<h4 id="类属性">类属性<a href="#类属性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="类属性">类属性</h4>
 <p>对象的类属性是一个字符串，它提供关于对象类型的信息。ES3和ES5都没有提供任何方法来设置这个属性，并且只有一种间接的技术来查询它。默认的toString()方法返回这种形式的字符串：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[</span><span class="nx">object</span> <span class="kr">class</span><span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">[object <span style="color:#000;font-weight:bold">class</span>]
 </code></pre></div>
-
 <p>因此要获得对象的类，可以在其上调用toString()方法，并通过返回的字符提取。棘手的是，许多对象继承了其他更有用的toString()方法，为了调用正确的toString()版本，我们必须使用Function.call()方法间接地这样做：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">classof</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">o</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="s2">&#34;Null&#34;</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">o</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="k">return</span> <span class="s2">&#34;Undefined&#34;</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">o</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">function</span> classof(o) {
+    <span style="color:#000;font-weight:bold">if</span> (o <span style="color:#000;font-weight:bold">===</span> <span style="color:#000;font-weight:bold">null</span>) <span style="color:#000;font-weight:bold">return</span> <span style="color:#d14">&#34;Null&#34;</span>;
+    <span style="color:#000;font-weight:bold">if</span> (o <span style="color:#000;font-weight:bold">===</span> <span style="color:#000;font-weight:bold">undefined</span>) <span style="color:#000;font-weight:bold">return</span> <span style="color:#d14">&#34;Undefined&#34;</span>;
+    <span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">Object</span>.prototype.toString.call(o).slice(<span style="color:#099">8</span>,<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>);
+}
 </code></pre></div>
-
-<p>数组和Date等对象具有与构造函数名称一样的类属性。宿主对象通常也具有有意义的类属性。通过对象字面值或Object.create创建的对象类属性为&rdquo;Object&rdquo;。自己定义的构造函数，创建的任何对象类属性都是&rdquo;Object&rdquo;：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">classof</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span> <span class="c1">// =&gt; &#34;Null&#34;
-</span><span class="c1"></span><span class="nx">classof</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// =&gt; &#34;Number&#34;
-</span><span class="c1"></span><span class="nx">classof</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="c1">// =&gt; &#34;String&#34;
-</span><span class="c1"></span><span class="nx">classof</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span> <span class="c1">// =&gt; &#34;Boolean&#34;
-</span><span class="c1"></span><span class="nx">classof</span><span class="p">({})</span> <span class="c1">// =&gt; &#34;Object&#34;
-</span><span class="c1"></span><span class="nx">classof</span><span class="p">([])</span> <span class="c1">// =&gt; &#34;Array&#34;
-</span><span class="c1"></span><span class="nx">classof</span><span class="p">(</span><span class="sr">/./</span><span class="p">)</span> <span class="c1">// =&gt; &#34;Regexp&#34;
-</span><span class="c1"></span><span class="nx">classof</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">())</span> <span class="c1">// =&gt; &#34;Date&#34;
-</span><span class="c1"></span><span class="nx">classof</span><span class="p">(</span><span class="nb">window</span><span class="p">)</span> <span class="c1">// =&gt; &#34;Window&#34; (a client-side host object)
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{};</span> <span class="c1">// Define a custom constructor
-</span><span class="c1"></span><span class="nx">classof</span><span class="p">(</span><span class="k">new</span> <span class="nx">f</span><span class="p">());</span> <span class="c1">// =&gt; &#34;Object&#34;
+<p>数组和Date等对象具有与构造函数名称一样的类属性。宿主对象通常也具有有意义的类属性。通过对象字面值或Object.create创建的对象类属性为&quot;Object&rdquo;。自己定义的构造函数，创建的任何对象类属性都是&quot;Object&rdquo;：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">classof(<span style="color:#000;font-weight:bold">null</span>) <span style="color:#998;font-style:italic">// =&gt; &#34;Null&#34;
+</span><span style="color:#998;font-style:italic"></span>classof(<span style="color:#099">1</span>) <span style="color:#998;font-style:italic">// =&gt; &#34;Number&#34;
+</span><span style="color:#998;font-style:italic"></span>classof(<span style="color:#d14">&#34;&#34;</span>) <span style="color:#998;font-style:italic">// =&gt; &#34;String&#34;
+</span><span style="color:#998;font-style:italic"></span>classof(<span style="color:#000;font-weight:bold">false</span>) <span style="color:#998;font-style:italic">// =&gt; &#34;Boolean&#34;
+</span><span style="color:#998;font-style:italic"></span>classof({}) <span style="color:#998;font-style:italic">// =&gt; &#34;Object&#34;
+</span><span style="color:#998;font-style:italic"></span>classof([]) <span style="color:#998;font-style:italic">// =&gt; &#34;Array&#34;
+</span><span style="color:#998;font-style:italic"></span>classof(<span style="color:#009926">/./</span>) <span style="color:#998;font-style:italic">// =&gt; &#34;Regexp&#34;
+</span><span style="color:#998;font-style:italic"></span>classof(<span style="color:#000;font-weight:bold">new</span> <span style="color:#0086b3">Date</span>()) <span style="color:#998;font-style:italic">// =&gt; &#34;Date&#34;
+</span><span style="color:#998;font-style:italic"></span>classof(<span style="color:#0086b3">window</span>) <span style="color:#998;font-style:italic">// =&gt; &#34;Window&#34; (a client-side host object)
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">function</span> f() {}; <span style="color:#998;font-style:italic">// Define a custom constructor
+</span><span style="color:#998;font-style:italic"></span>classof(<span style="color:#000;font-weight:bold">new</span> f()); <span style="color:#998;font-style:italic">// =&gt; &#34;Object&#34;
 </span></code></pre></div>
-
-<h4 id="可扩展属性">可扩展属性<a href="#可扩展属性" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="可扩展属性">可扩展属性</h4>
 <p>对象的可扩展属性指定是否可以向对象添加新属性。所有内置和用户定义的对象都是隐式可扩展的，宿主对象的可扩展性是由实现定义的。但在ES5中，可以将它们被转换为不可扩展的。</p>
-
 <p>ES5定义了查询和设置对象可扩展性的函数。Object.isExtensible()确定对象是否可扩展。Object.preventExtensions()使对象不可扩展，一旦使对象不可扩展，就无法使其再次可扩展。preventExtensions()只会影响对象本身的可扩展性，如果将新属性添加到不可扩展对象的原型中，该对象将继承这些新属性。</p>
-
 <p>可扩展属性的目的是能够将对象“锁定”为已知状态，并防止外部篡改。可扩展对象属性通常与可配置和可写的属性属性一起使用，ES5定义了一些函数，可以很容易地设置这些属性。</p>
-
 <p>Object.seal()除了使对象不可扩展之外，它还使该对象的所有属性都不可配置。这意味着不能向对象添加新属性，也不能删除或配置现有属性。但是仍然可以设置可写的现有属性。没有办法解封这个对象。可以使用Object.isSealed()来确定一个对象是否被密封。</p>
-
 <p>Object.freeze()将对象锁得更紧。除了使对象不可扩展和其属性不可配置之外，它还使对象的所有数据属性都是只读的。（如果对象具有setter方法的访问器属性，这些属性不会受到影响）使用Object.isFrozen()来确定一个对象是否被冻结。</p>
-
 <p>Object.seal() 和Object.freeze()只影响传递给它们的对象，对它们对原型对象没有影响。如果您想彻底锁定一个对象，您可能还需要密封或冻结原型链中的对象。</p>
-
 <p>Object.preventExtensions() ，Object.seal() 和Object.freeze()都返回传递给它们的对象：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Create a sealed object with a frozen prototype and a nonenumerable property
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">seal</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">freeze</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">}),</span>
-    <span class="p">{</span><span class="nx">y</span><span class="o">:</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">}}));</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#998;font-style:italic">// Create a sealed object with a frozen prototype and a nonenumerable property
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">var</span> o <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Object</span>.seal(<span style="color:#0086b3">Object</span>.create(<span style="color:#0086b3">Object</span>.freeze({x<span style="color:#000;font-weight:bold">:</span><span style="color:#099">1</span>}),
+    {y<span style="color:#000;font-weight:bold">:</span> {value<span style="color:#000;font-weight:bold">:</span> <span style="color:#099">2</span>, writable<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">true</span>}}));
 </code></pre></div>
-
-<h3 id="序列化对象">序列化对象<a href="#序列化对象" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="序列化对象">序列化对象</h3>
 <p>ES5提供JSON.stringify()和JSON.parse()来序列化和反序列化JavaScript对象：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="p">{</span><span class="nx">z</span><span class="o">:</span><span class="p">[</span><span class="kc">false</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">]}};</span> <span class="c1">// Define a test object
-</span><span class="c1"></span><span class="nx">s</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span> <span class="c1">// s is &#39;{&#34;x&#34;:1,&#34;y&#34;:{&#34;z&#34;:[false,null,&#34;&#34;]}}&#39;
-</span><span class="c1"></span><span class="nx">p</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="c1">// p is a deep copy of o
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">o <span style="color:#000;font-weight:bold">=</span> {x<span style="color:#000;font-weight:bold">:</span><span style="color:#099">1</span>, y<span style="color:#000;font-weight:bold">:</span>{z<span style="color:#000;font-weight:bold">:</span>[<span style="color:#000;font-weight:bold">false</span>,<span style="color:#000;font-weight:bold">null</span>,<span style="color:#d14">&#34;&#34;</span>]}}; <span style="color:#998;font-style:italic">// Define a test object
+</span><span style="color:#998;font-style:italic"></span>s <span style="color:#000;font-weight:bold">=</span> JSON.stringify(o); <span style="color:#998;font-style:italic">// s is &#39;{&#34;x&#34;:1,&#34;y&#34;:{&#34;z&#34;:[false,null,&#34;&#34;]}}&#39;
+</span><span style="color:#998;font-style:italic"></span>p <span style="color:#000;font-weight:bold">=</span> JSON.parse(s); <span style="color:#998;font-style:italic">// p is a deep copy of o
 </span></code></pre></div>
-
 <p>JSON语法是JavaScript语法的一个子集，它不能表示所有JavaScript值。对象、数组、字符串、有限数字、true、false和null可以序列化和还原。NaN、 Infinity和-Infinity序列化为null。日期对象被序列化为ISO格式的日期字符串，但是JSON.parse()将这些字符串保留为字符串形式。函数、RegExp和Error对象以及undefined无法序列化或恢复。JSON.stringify()只序列化对象的可枚举属性。如果一个属性值不能被序列化，则忽略这个属性。JSON.stringify()和JSON.parse()都接受可选的第二个参数，具体参考文档。</p>
-
-<h3 id="对象方法">对象方法<a href="#对象方法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
-<h4 id="tostring">toString()<a href="#tostring" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h3 id="对象方法">对象方法</h3>
+<h4 id="tostring">toString()</h4>
 <p>toString()方法返回一个字符串，该字符串以某种方式表示对象的值。当需要将对象转换为字符串时，JavaScript将调用对象的此方法。由于这个默认方法没有太多有用的信息，许多类都定义了自己的toString()版本。</p>
-
-<h4 id="tolocalestring">toLocaleString()<a href="#tolocalestring" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="tolocalestring">toLocaleString()</h4>
 <p>除了toString()方法外，对象都有一个toLocaleString()。此方法的目的是返回对象的本地化字符串表示。Object定义的默认toLocaleString()方法本身不做任何本地化，它只调用toString()。Date和Number类定义了toLocaleString()的定制版本，这些版本试图根据本地约定格式化数字、日期和时间。Array定义了一个toLocaleString()方法，它的工作原理与toString()类似，只是它通过调用数组元素的toLocaleString()方法。</p>
-
-<h4 id="tojson">toJSON()<a href="#tojson" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="tojson">toJSON()</h4>
 <p>Object.prototype没有定义toJSON()方法，但是JSON.stringify()方法寻找toJSON()序列化对象。如果该方法存在，则调用该方法，而不是序列化原始对象。</p>
-
-<h4 id="valueof">valueOf()<a href="#valueof" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="valueof">valueOf()</h4>
 <p>valueOf()方法与toString()方法非常相似，但是当JavaScript需要将对象转换为字符串以外的基本类型时调用它。默认的valueOf()方法没有什么有趣的地方，但是一些内置类定义了它们自己的valueOf()方法。</p>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://gitop.cc/tags/javascript">Javascript</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>9360 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-11-03 21:39 &#43;0800</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="next-post" href="https://gitop.cc/posts/arrays/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>数组</span>
-			</a>
-			<a class="prev-post" href="https://gitop.cc/posts/statements/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>语句</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://gitop.cc">招财猫</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://gitop.cc/posts/objects/">http://gitop.cc/posts/objects/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
 </div>
-	</main>
-
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
+<br/>
 
 
-	<script src="https://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/statements/">语句</a></li>
+        
+        <li><a href="/posts/expressions_and_operators/">表达式和操作符</a></li>
+        
+        <li><a href="/posts/types_values_variables/">类型、值和变量</a></li>
+        
+        <li><a href="/posts/lexical_structure/">词法结构</a></li>
+        
+        <li><a href="/posts/install-greenplum-in-docker/">docker安装greenplum集群</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://gitop.cc/tags/Javascript'>Javascript</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitop.cc">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Database/">Database (12)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/GUI/">GUI (5)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Gist/">Gist (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Language/">Language (23)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Linux/">Linux (3)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Network/">Network (4)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Tool/">Tool (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitop.cc/tags/C/">C</a>
+    
+    <a href="http://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://gitop.cc/tags/CentOS/">CentOS</a>
+    
+    <a href="http://gitop.cc/tags/Docker/">Docker</a>
+    
+    <a href="http://gitop.cc/tags/Git/">Git</a>
+    
+    <a href="http://gitop.cc/tags/Greenplum/">Greenplum</a>
+    
+    <a href="http://gitop.cc/tags/Idea/">Idea</a>
+    
+    <a href="http://gitop.cc/tags/Java/">Java</a>
+    
+    <a href="http://gitop.cc/tags/Javascript/">Javascript</a>
+    
+    <a href="http://gitop.cc/tags/Markdown/">Markdown</a>
+    
+    <a href="http://gitop.cc/tags/MySQL/">MySQL</a>
+    
+    <a href="http://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
+    
+    <a href="http://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
+    
+    <a href="http://gitop.cc/tags/Python/">Python</a>
+    
+    <a href="http://gitop.cc/tags/Scrapy/">Scrapy</a>
+    
+    <a href="http://gitop.cc/tags/Ubuntu/">Ubuntu</a>
+    
+    <a href="http://gitop.cc/tags/XPath/">XPath</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitop.cc/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://gitop.cc">招财猫的博客 By 招财猫</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
 
 </body>
 

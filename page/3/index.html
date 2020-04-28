@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta name="generator" content="Hugo 0.69.1" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>招财猫的博客 | 专注于C&#43;&#43;、Python、Golang</title>
+    <meta property="og:title" content="招财猫的博客 | 专注于C&#43;&#43;、Python、Golang">
+    <meta property="og:type" content="website">
+    <meta name="Keywords" content="C,C&#43;&#43;,Python,Golang">
+    <meta name="description" content="专注写代码">
+    <meta property="og:url" content="http://gitop.cc/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <link rel="alternate" type="application/rss+xml+xml" href="http://gitop.cc/index.xml" title="招财猫的博客" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <h1>
+                        <a id="logo" href="http://gitop.cc">
+                            招财猫的博客
+                        </a>
+                    </h1>
+                
+                <p class="description">专注于C&#43;&#43;、Python、Golang</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://gitop.cc">首页</a>
+                    
+                    <a  href="http://gitop.cc/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitop.cc/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://gitop.cc/posts/types_values_variables/" title="类型、值和变量">类型、值和变量</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2018年10月28日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Language'>Language</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefined。null和undefined是它们自己类型的唯一成员。任何不是原始类型的Javascript值都是一个对象。每个对象都是类型Object……
+        </div>
+        <p class="readmore"><a href="http://gitop.cc/posts/types_values_variables/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://gitop.cc/posts/lexical_structure/" title="词法结构">词法结构</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2018年10月16日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Language'>Language</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            介绍 JavaScript是一门大小写敏感的语言 JavaScript程序使用Unicode字符集编写 JavaScript使用\u后跟4位16进制数字代表任何16位Unicode码点 字面值 字面值是程序中直接出现的数据值，下列这些都是字面值： 12 // The number twelve 1.2 // The number one point two &#34;hello world&#34; // A string of text &#39;Hi&#39; // Another……
+        </div>
+        <p class="readmore"><a href="http://gitop.cc/posts/lexical_structure/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://gitop.cc/posts/install-greenplum-in-docker/" title="docker安装greenplum集群">docker安装greenplum集群</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2018年8月21日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Database'>Database</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            本文参考这里安装greenplum成功，并记录一下过程 创建docker节点 拉取centos镜像 [xiaoyu@xiaoyu ~]$ docker pull centos 创建几个容器，作为greenplum的节点 [xiaoyu@xiaoyu ~]$ docker run -it --name gp-master centos /bin/bash [xiaoyu@xiaoyu ~]$ docker run -it --name gp-segment1 centos /bin/bash [xiaoyu@xiaoyu ~]$ docker run -it --name gp-segment2 centos /bin/bash [xiaoyu@xiaoyu ~]$ docker run -it --name gp-segment3 centos /bin/bash 配置基础环境 进入每个greenplum节点，配置基础环境 安装相……
+        </div>
+        <p class="readmore"><a href="http://gitop.cc/posts/install-greenplum-in-docker/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://gitop.cc/posts/idea-key-bindings/" title="Idea快捷键">Idea快捷键</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2018年8月18日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Tool'>Tool</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            编辑基础 快捷键 说明 Ctrl+Shift+向右箭头 向右选择一个单词 Ctrl+Shift+向左箭头 向左选择一个单词 Alt+Shift+向上箭头 逐级选择一个代码块 Alt+Shift+向下箭头 逐级缩小代码块选择 Shift+向下箭头 向下选择多行 Shift+向上箭头 向上选择多行 Ctrl+A 选择整个文件……
+        </div>
+        <p class="readmore"><a href="http://gitop.cc/posts/idea-key-bindings/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://gitop.cc/posts/ubuntu-18.04/" title="Ubuntu 18.04">Ubuntu 18.04</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2018年8月18日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Linux'>Linux</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            Ubuntu 18.04安装后做的事情 安装openssh-server sudo apt install openssh-server 安装curl sudo apt install curl 安装git sudo apt install git 安装zsh sudo apt install zsh 安装oh my zsh sh -c &#34;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&#34; 安装JDK sudo apt install openjdk-11-jdk sudo apt install openjdk-8-jdk 安装SVN sudo apt install subversion 安装mariadb sudo apt install mariadb-server 安装Vim sudo apt install vim 安装emacs sudo apt install emacs 安装nginx sudo apt install nginx 安装……
+        </div>
+        <p class="readmore"><a href="http://gitop.cc/posts/ubuntu-18.04/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://gitop.cc/posts/centos7-environment-setup/" title="Centos7环境配置">Centos7环境配置</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2018年8月2日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Linux'>Linux</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            开启EPEL仓库 EPEL(Extra Packages for Enterprise Linux)是Fedora小组维护的一个软件仓库项目，为RHEL/CentOS提供他们默认不提供的软件包。 wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm sudo rpm -ivh epel-release-latest-7.noarch.rpm sudo yum update 安装git sudo yum install git 安装zsh sudo yum install zsh 安装oh my zsh sh -c &#34;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&#34; 安装开发工具 sudo yum groupinstall &#34;Development Tools&#34; 安装cmake sudo yum install cmake 安装JDK sudo rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.181-2.6.14.8.el7_5.x86_64 sudo rpm -e --nodeps java-1.7.0-openjdk-1.7.0.181-2.6.14.8.el7_5.x86_64……
+        </div>
+        <p class="readmore"><a href="http://gitop.cc/posts/centos7-environment-setup/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://gitop.cc/posts/cpp-primer-12/" title="第12章 动态内存">第12章 动态内存</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年10月28日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Language'>Language</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈对象只当其定义的块在执行时存在。静态对象在被使用之前已经创建，当程序结束时销毁。 除了静态内存和栈内存，每一个程序还有一个自由存储区或叫堆。程……
+        </div>
+        <p class="readmore"><a href="http://gitop.cc/posts/cpp-primer-12/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://gitop.cc/posts/after-ubuntu-installation/" title="安装完Ubuntu后需要做的事">安装完Ubuntu后需要做的事</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年10月26日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Linux'>Linux</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            我会安装的工具 开发相关 g++，必须的，C++编译器 clang，据说是比gcc更好用的编译器，emacs的一些补全工具会用这个做后端 emacs，编辑器之神，谁用谁知道，入门门槛稍微高了一点，我现在还是菜鸟hoho git，连接github开源代码 vim，自从加入emacs阵营后，这个……
+        </div>
+        <p class="readmore"><a href="http://gitop.cc/posts/after-ubuntu-installation/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://gitop.cc/posts/cpp-primer-17/" title="第17章 特殊的库设施">第17章 特殊的库设施</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年10月17日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Language'>Language</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            17.1 tuple类型 tuple是一个类似pair的模板。每一个pair类型有2个不同类型的成员。一个tuple同样有不同类型的成员，但是它可以有任意数量的成员。tuple类型定义在tuple头文件。 注解 tuple可以认为是一个“快捷且脏”的数据结构。 17.1.1 定义和初始化tuple 当我们定义……
+        </div>
+        <p class="readmore"><a href="http://gitop.cc/posts/cpp-primer-17/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://gitop.cc/posts/io-operations/" title="Asio.Cookbook 第2章 IO操作">Asio.Cookbook 第2章 IO操作</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年8月18日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Network'>Network</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络编程都是关于通过计算机网络进行进程间通信。像其他类型的IO操作一样，网络IO操作涉及使用内存缓冲区。 同步和异步IO操作 Boost.Asio支……
+        </div>
+        <p class="readmore"><a href="http://gitop.cc/posts/io-operations/">阅读全文</a></p>
+    </article>
+    
+    
+
+
+
+<ol class="page-navigator">
+    
+    <li class="prev">
+        <a href="http://gitop.cc/page/2/">上一页</a>
+    </li>
+    
+
+    
+    <li >
+        <a href="http://gitop.cc/">1</a>
+    </li>
+    
+    <li >
+        <a href="http://gitop.cc/page/2/">2</a>
+    </li>
+    
+    <li  class="current">
+        <a href="http://gitop.cc/page/3/">3</a>
+    </li>
+    
+    <li >
+        <a href="http://gitop.cc/page/4/">4</a>
+    </li>
+    
+    <li >
+        <a href="http://gitop.cc/page/5/">5</a>
+    </li>
+    
+    <li >
+        <a href="http://gitop.cc/page/6/">6</a>
+    </li>
+    
+
+    
+    <li class="next">
+        <a href="http://gitop.cc/page/4/">下一页</a>
+    </li>
+    
+</ol>
+
+
+
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitop.cc">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Database/">Database (12)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/GUI/">GUI (5)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Gist/">Gist (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Language/">Language (23)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Linux/">Linux (3)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Network/">Network (4)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Tool/">Tool (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitop.cc/tags/C/">C</a>
+    
+    <a href="http://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://gitop.cc/tags/CentOS/">CentOS</a>
+    
+    <a href="http://gitop.cc/tags/Docker/">Docker</a>
+    
+    <a href="http://gitop.cc/tags/Git/">Git</a>
+    
+    <a href="http://gitop.cc/tags/Greenplum/">Greenplum</a>
+    
+    <a href="http://gitop.cc/tags/Idea/">Idea</a>
+    
+    <a href="http://gitop.cc/tags/Java/">Java</a>
+    
+    <a href="http://gitop.cc/tags/Javascript/">Javascript</a>
+    
+    <a href="http://gitop.cc/tags/Markdown/">Markdown</a>
+    
+    <a href="http://gitop.cc/tags/MySQL/">MySQL</a>
+    
+    <a href="http://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
+    
+    <a href="http://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
+    
+    <a href="http://gitop.cc/tags/Python/">Python</a>
+    
+    <a href="http://gitop.cc/tags/Scrapy/">Scrapy</a>
+    
+    <a href="http://gitop.cc/tags/Ubuntu/">Ubuntu</a>
+    
+    <a href="http://gitop.cc/tags/XPath/">XPath</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitop.cc/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://gitop.cc">招财猫的博客 By 招财猫</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+
+</html>

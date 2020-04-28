@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on 招财猫的博客</title>
+    <link>http://gitop.cc/tags/Git/</link>
+    <description>Recent content in Git on 招财猫的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 08 Jul 2019 16:59:22 +0800</lastBuildDate>
+    
+	<atom:link href="http://gitop.cc/tags/Git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git配置多个SSH-Key</title>
+      <link>http://gitop.cc/posts/git-multi-sshkey/</link>
+      <pubDate>Mon, 08 Jul 2019 16:59:22 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/git-multi-sshkey/</guid>
+      <description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 1.生成一个公司用的SSH-Key $ ssh-keygen -t rsa -C &amp;#39;xxxxx@company.com&amp;#39; -f ~/.ssh/gitee_id_rsa 2.生成一个github用的SSH-Key $ ssh-keygen -t rsa -C &amp;#39;xxxxx@qq.com&amp;#39; -f ~/.ssh/github_id_rsa 3.在 ~/.ssh 目录下新建一个config文件，</description>
+    </item>
+    
+  </channel>
+</rss>

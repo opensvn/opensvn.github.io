@@ -1,153 +1,263 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="Pygame第6章 接受用户输入">
-<meta itemprop="description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pygame第6章 接受用户输入 | 招财猫的博客</title>
+    <meta property="og:title" content="Pygame第6章 接受用户输入 - 招财猫的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2015-11-16T16:39:23&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2015-11-16T16:39:23&#43;08:00'>
+        
+    <meta name="Keywords" content="C,C&#43;&#43;,Python,Golang">
+    <meta name="description" content="Pygame第6章 接受用户输入">
+        
+    <meta name="author" content="招财猫">
+    <meta property="og:url" content="http://gitop.cc/posts/pygame-6/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
 
 
-<meta itemprop="datePublished" content="2015-11-16T16:39:23&#43;00:00" />
-<meta itemprop="dateModified" content="2015-11-16T16:39:23&#43;00:00" />
-<meta itemprop="wordCount" content="1625">
-
-
-
-<meta itemprop="keywords" content="Python," />
-<meta property="og:title" content="Pygame第6章 接受用户输入" />
-<meta property="og:description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/posts/pygame-6/" />
-<meta property="article:published_time" content="2015-11-16T16:39:23+00:00" />
-<meta property="article:modified_time" content="2015-11-16T16:39:23+00:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Pygame第6章 接受用户输入"/>
-<meta name="twitter:description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容"/>
-
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>Pygame第6章 接受用户输入</title>
-	<link rel="stylesheet" href="https://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
-	
+    
+    
 </head>
 
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://gitop.cc">静心</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://gitop.cc/posts/">Posts</a>
-				<a href="https://gitop.cc/tags/">Tags</a>
-				<a href="https://gitop.cc/about/">About</a>
 
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://gitop.cc/posts/">Posts</a></li>
-			<li><a href="https://gitop.cc/tags/">Tags</a></li>
-			<li><a href="https://gitop.cc/about/">About</a></li>
-		</ul>
-	</div>
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitop.cc">
+                        招财猫的博客
+                    </a>
+                
+                <p class="description">专注于C&#43;&#43;、Python、Golang</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitop.cc">首页</a>
+                    
+                    <a  href="http://gitop.cc/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitop.cc/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Nov 16, 2015</span></div>
-				<h1>Pygame第6章 接受用户输入</h1>
-			</header>
-			<div class="content">
-				
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
-<p>用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。</p>
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
 
-<h1 id="控制游戏">控制游戏<a href="#控制游戏" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
 
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#检测键盘按下">检测键盘按下</a></li>
+        <li><a href="#使用键盘控制方向">使用键盘控制方向</a></li>
+        <li><a href="#键盘旋转移动">键盘旋转移动</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">Pygame第6章 接受用户输入</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2015年11月16日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/'></a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。</p>
+<h1 id="控制游戏">控制游戏</h1>
 <p>玩过游戏的都知道鼠标和键盘是游戏不可或缺的输入设备。键盘可以控制有限的方向和诸多的命令操作，而鼠标更是提供了全方位的方向和位置操作。不过这两个设备并不是为游戏而生，专业的游戏手柄给玩家提供了更好的操作感，加上力反馈等技术，应该说游戏设备越来越丰富，玩家们也是越来越幸福。</p>
-
-<h1 id="理解键盘控制">理解键盘控制<a href="#理解键盘控制" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="理解键盘控制">理解键盘控制</h1>
 <p>现在大多数键盘都是qwerty键盘。我们可以使用<strong>pygame.key</strong>模块检测所有的键。</p>
-
-<h3 id="检测键盘按下">检测键盘按下<a href="#检测键盘按下" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="检测键盘按下">检测键盘按下</h3>
 <p>在Pygame里面有两种方式检测键盘按下。一种方式是处理<strong>KEYDOWN</strong>事件和<strong>KEYUP</strong>事件，分别对应键盘按下和键盘松开。当我们使用键盘输入代表移动时，我们只需知道键是否被按下，这种情况可以直接使用<strong>pygame.key</strong>模块。</p>
-
-<p>每一个键盘上的键都有一个常量键值关联它。每一个常量以<strong>K_</strong>开头，比如字母是K_a到K_z，数字是K_0到K_9，其它的如K_F1，K_LEFT，K_RETURN等。完整列表参考(<a href="http://www.pygame.org/docs/ref/key.html">http://www.pygame.org/docs/ref/key.html</a>)。没有大写字母对应的键值，因为大写字母是小写字母和其它键的组合。</p>
-
+<p>每一个键盘上的键都有一个常量键值关联它。每一个常量以**K_**开头，比如字母是K_a到K_z，数字是K_0到K_9，其它的如K_F1，K_LEFT，K_RETURN等。完整列表参考(<a href="http://www.pygame.org/docs/ref/key.html">http://www.pygame.org/docs/ref/key.html</a>)。没有大写字母对应的键值，因为大写字母是小写字母和其它键的组合。</p>
 <p>我们可以使用<strong>pygame.key.get_pressed</strong>函数检查一个键是否被按下。它返回一个布尔值列表，每一个布尔值对应一个键值常量。要查询某一个键，使用其键值常量作为列表下标。比如查看空格是否被按下：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pressed_keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
-<span class="k">if</span> <span class="n">pressed_keys</span><span class="p">[</span><span class="n">K_SPACE</span><span class="p">]:</span>
-    <span class="c1"># Space key has been pressed</span>
-    <span class="n">fire</span><span class="p">()</span></code></pre></div>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pressed_keys <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>key<span style="color:#000;font-weight:bold">.</span>get_pressed()
+<span style="color:#000;font-weight:bold">if</span> pressed_keys[K_SPACE]:
+    <span style="color:#998;font-style:italic"># Space key has been pressed</span>
+    fire()</code></pre></div>
 <blockquote>
 <p><strong>注意</strong> 由于硬件的限制，有些键组合不能被检测。原因请看<a href="http://www.sjbaker.org/steve/omniv/keyboards_are_evil.html">http://www.sjbaker.org/steve/omniv/keyboards_are_evil.html</a></p>
 </blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+font <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>font<span style="color:#000;font-weight:bold">.</span>SysFont(<span style="color:#d14">&#39;arial&#39;</span>, <span style="color:#099">32</span>)
+font_height <span style="color:#000;font-weight:bold">=</span> font<span style="color:#000;font-weight:bold">.</span>get_linesize()
 
-<span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">SysFont</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
-<span class="n">font_height</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">get_linesize</span><span class="p">()</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+    screen<span style="color:#000;font-weight:bold">.</span>fill((<span style="color:#099">255</span>, <span style="color:#099">255</span>, <span style="color:#099">255</span>))
 
-    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+    pressed_key_text <span style="color:#000;font-weight:bold">=</span> []
+    pressed_keys <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>key<span style="color:#000;font-weight:bold">.</span>get_pressed()
+    y <span style="color:#000;font-weight:bold">=</span> font_height
 
-    <span class="n">pressed_key_text</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">pressed_keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">font_height</span>
+    <span style="color:#000;font-weight:bold">for</span> key_constant, pressed <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">enumerate</span>(pressed_keys):
+        <span style="color:#000;font-weight:bold">if</span> pressed:
+            key_name <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>key<span style="color:#000;font-weight:bold">.</span>name(key_constant)
+            text_surface <span style="color:#000;font-weight:bold">=</span> font<span style="color:#000;font-weight:bold">.</span>render(key_name <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#39; pressed&#39;</span>, <span style="color:#999">True</span>, (<span style="color:#099">0</span>, <span style="color:#099">0</span>, <span style="color:#099">0</span>))
+            screen<span style="color:#000;font-weight:bold">.</span>blit(text_surface, (<span style="color:#099">8</span>, y))
+            y <span style="color:#000;font-weight:bold">+=</span> font_height
 
-    <span class="k">for</span> <span class="n">key_constant</span><span class="p">,</span> <span class="n">pressed</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pressed_keys</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">pressed</span><span class="p">:</span>
-            <span class="n">key_name</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">key_constant</span><span class="p">)</span>
-            <span class="n">text_surface</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">key_name</span> <span class="o">+</span> <span class="s1">&#39; pressed&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-            <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">text_surface</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-            <span class="n">y</span> <span class="o">+=</span> <span class="n">font_height</span>
-
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
-<p>让我们更详细地复习<strong>pygame.key</strong>：
-* <strong>pygame.key.get_focused</strong> - Pygame窗口只有获得焦点后才会接受键事件。如果窗口获得焦点，<strong>get_focused</strong>函数返回真，否则返回假。全屏模式，总是返回真。
-* <strong>pygame.key.get_pressed</strong> - 返回一个包含每一个键的布尔值列表。如果值为True，则对应键被按下。
-* <strong>pygame.key.get_mods</strong> - 返回一个值，指示哪一个修饰键被按下。要检查哪一个修饰键被按下，可以对KMOD_常量使用位与操作。比如检查左shift键被按下，pygame.key.get_mods() &amp; KMOD_LSHIFT。
-* <strong>pygame.key.set_mods</strong> - 可以设置修饰键模拟组合键按下的效果。要设置一个或多个修饰键，对KMOD_常量使用位或操作。比如设置shift和alt键，可以使用pygame.key.set_mods(KMOD_SHIFT | KMOD_ALT)。
-* <strong>pygame.key.set_repeat</strong> - 可以使用<strong>set_repeat</strong>函数重复<strong>KEY_DOWN</strong>事件，它接受一个初始延迟时间和重复事件延迟时间，单位为毫秒。<strong>set_repeat</strong>不带参数禁用重复按键事件。
-* <strong>pygame.key.name</strong> - 接受一个KEY_常量返回一个描述该键的字符串。</p>
-
-<h3 id="使用键盘控制方向">使用键盘控制方向<a href="#使用键盘控制方向" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
+<p>让我们更详细地复习<strong>pygame.key</strong>：</p>
+<ul>
+<li><strong>pygame.key.get_focused</strong> - Pygame窗口只有获得焦点后才会接受键事件。如果窗口获得焦点，<strong>get_focused</strong>函数返回真，否则返回假。全屏模式，总是返回真。</li>
+<li><strong>pygame.key.get_pressed</strong> - 返回一个包含每一个键的布尔值列表。如果值为True，则对应键被按下。</li>
+<li><strong>pygame.key.get_mods</strong> - 返回一个值，指示哪一个修饰键被按下。要检查哪一个修饰键被按下，可以对KMOD_常量使用位与操作。比如检查左shift键被按下，pygame.key.get_mods() &amp; KMOD_LSHIFT。</li>
+<li><strong>pygame.key.set_mods</strong> - 可以设置修饰键模拟组合键按下的效果。要设置一个或多个修饰键，对KMOD_常量使用位或操作。比如设置shift和alt键，可以使用pygame.key.set_mods(KMOD_SHIFT | KMOD_ALT)。</li>
+<li><strong>pygame.key.set_repeat</strong> - 可以使用<strong>set_repeat</strong>函数重复<strong>KEY_DOWN</strong>事件，它接受一个初始延迟时间和重复事件延迟时间，单位为毫秒。<strong>set_repeat</strong>不带参数禁用重复按键事件。</li>
+<li><strong>pygame.key.name</strong> - 接受一个KEY_常量返回一个描述该键的字符串。</li>
+</ul>
+<h3 id="使用键盘控制方向">使用键盘控制方向</h3>
 <p>四个基本方向向量：</p>
-
 <table>
 <thead>
 <tr>
@@ -155,175 +265,384 @@
 <th align="left">向量</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Left</td>
 <td align="left">(-1.0, 0.0)</td>
 </tr>
-
 <tr>
 <td>Right</td>
 <td align="left">(1.0, 0.0)</td>
 </tr>
-
 <tr>
 <td>Up</td>
 <td align="left">(0.0, –1.0)</td>
 </tr>
-
 <tr>
 <td>Down</td>
 <td align="left">(0.0, 1.0)</td>
 </tr>
 </tbody>
 </table>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">background_image_filename <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;sushiplate.jpg&#39;</span>
+sprite_iamge_filename <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;fugu.png&#39;</span>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
-<span class="n">sprite_iamge_filename</span> <span class="o">=</span> <span class="s1">&#39;fugu.png&#39;</span>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">gameobjects.vector2</span> <span style="color:#000;font-weight:bold">import</span> Vector2
 
-<span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
-<span class="kn">from</span> <span class="nn">gameobjects.vector2</span> <span class="kn">import</span> <span class="n">Vector2</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
+background <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>image<span style="color:#000;font-weight:bold">.</span>load(background_image_filename)<span style="color:#000;font-weight:bold">.</span>convert()
+sprite <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>image<span style="color:#000;font-weight:bold">.</span>load(sprite_iamge_filename)<span style="color:#000;font-weight:bold">.</span>convert_alpha()
 
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
-<span class="n">background</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">background_image_filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
-<span class="n">sprite</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">sprite_iamge_filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert_alpha</span><span class="p">()</span>
+clock <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>time<span style="color:#000;font-weight:bold">.</span>Clock()
 
-<span class="n">clock</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">Clock</span><span class="p">()</span>
+sprite_pos <span style="color:#000;font-weight:bold">=</span> Vector2(<span style="color:#099">200</span>, <span style="color:#099">150</span>)
+sprite_speed <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">300.</span>
 
-<span class="n">sprite_pos</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
-<span class="n">sprite_speed</span> <span class="o">=</span> <span class="mf">300.</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+    pressed_keys <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>key<span style="color:#000;font-weight:bold">.</span>get_pressed()
+    key_direction <span style="color:#000;font-weight:bold">=</span> Vector2(<span style="color:#099">0</span>, <span style="color:#099">0</span>)
+    <span style="color:#000;font-weight:bold">if</span> pressed_keys[K_LEFT]:
+        key_direction<span style="color:#000;font-weight:bold">.</span>x <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>
+    <span style="color:#000;font-weight:bold">elif</span> pressed_keys[K_RIGHT]:
+        key_direction<span style="color:#000;font-weight:bold">.</span>x <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>
+    <span style="color:#000;font-weight:bold">if</span> pressed_keys[K_UP]:
+        key_direction<span style="color:#000;font-weight:bold">.</span>y <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>
+    <span style="color:#000;font-weight:bold">elif</span> pressed_keys[K_DOWN]:
+        key_direction<span style="color:#000;font-weight:bold">.</span>y <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>
 
-    <span class="n">pressed_keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
-    <span class="n">key_direction</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">pressed_keys</span><span class="p">[</span><span class="n">K_LEFT</span><span class="p">]:</span>
-        <span class="n">key_direction</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="k">elif</span> <span class="n">pressed_keys</span><span class="p">[</span><span class="n">K_RIGHT</span><span class="p">]:</span>
-        <span class="n">key_direction</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">+</span><span class="mi">1</span>
-    <span class="k">if</span> <span class="n">pressed_keys</span><span class="p">[</span><span class="n">K_UP</span><span class="p">]:</span>
-        <span class="n">key_direction</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="k">elif</span> <span class="n">pressed_keys</span><span class="p">[</span><span class="n">K_DOWN</span><span class="p">]:</span>
-        <span class="n">key_direction</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">+</span><span class="mi">1</span>
+    key_direction<span style="color:#000;font-weight:bold">.</span>normalize()
 
-    <span class="n">key_direction</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
+    screen<span style="color:#000;font-weight:bold">.</span>blit(background, (<span style="color:#099">0</span>, <span style="color:#099">0</span>))
+    screen<span style="color:#000;font-weight:bold">.</span>blit(sprite, sprite_pos)
 
-    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">sprite</span><span class="p">,</span> <span class="n">sprite_pos</span><span class="p">)</span>
+    time_passed <span style="color:#000;font-weight:bold">=</span> clock<span style="color:#000;font-weight:bold">.</span>tick(<span style="color:#099">30</span>)
+    time_passed_seconds <span style="color:#000;font-weight:bold">=</span> time_passed <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">1000.0</span>
 
-    <span class="n">time_passed</span> <span class="o">=</span> <span class="n">clock</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
-    <span class="n">time_passed_seconds</span> <span class="o">=</span> <span class="n">time_passed</span> <span class="o">/</span> <span class="mf">1000.0</span>
+    sprite_pos <span style="color:#000;font-weight:bold">+=</span> key_direction <span style="color:#000;font-weight:bold">*</span> sprite_speed <span style="color:#000;font-weight:bold">*</span> time_passed_seconds
 
-    <span class="n">sprite_pos</span> <span class="o">+=</span> <span class="n">key_direction</span> <span class="o">*</span> <span class="n">sprite_speed</span> <span class="o">*</span> <span class="n">time_passed_seconds</span>
-
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
-<h3 id="键盘旋转移动">键盘旋转移动<a href="#键盘旋转移动" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
+<h3 id="键盘旋转移动">键盘旋转移动</h3>
 <p>往八个方向移动有点像人造的，现实中很少看到这样移动的，大多数东西都能自由转向。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">background_image_filename <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;sushiplate.jpg&#39;</span>
+sprite_image_filename <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;fugu.png&#39;</span>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
-<span class="n">sprite_image_filename</span> <span class="o">=</span> <span class="s1">&#39;fugu.png&#39;</span>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">gameobjects.vector2</span> <span style="color:#000;font-weight:bold">import</span> Vector2
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">math</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
 
-<span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
-<span class="kn">from</span> <span class="nn">gameobjects.vector2</span> <span class="kn">import</span> <span class="n">Vector2</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+background <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>image<span style="color:#000;font-weight:bold">.</span>load(background_image_filename)<span style="color:#000;font-weight:bold">.</span>convert()
+sprite <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>image<span style="color:#000;font-weight:bold">.</span>load(sprite_image_filename)<span style="color:#000;font-weight:bold">.</span>convert_alpha()
 
-<span class="n">background</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">background_image_filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
-<span class="n">sprite</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">sprite_image_filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert_alpha</span><span class="p">()</span>
+clock <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>time<span style="color:#000;font-weight:bold">.</span>Clock()
 
-<span class="n">clock</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">Clock</span><span class="p">()</span>
+sprite_pos <span style="color:#000;font-weight:bold">=</span> Vector2(<span style="color:#099">200</span>, <span style="color:#099">150</span>)
+sprite_speed <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">300.</span>
+sprite_rotation <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.</span>
+sprite_rotation_speed <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">360.</span> <span style="color:#998;font-style:italic"># Degrees per second</span>
 
-<span class="n">sprite_pos</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
-<span class="n">sprite_speed</span> <span class="o">=</span> <span class="mf">300.</span>
-<span class="n">sprite_rotation</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="n">sprite_rotation_speed</span> <span class="o">=</span> <span class="mf">360.</span> <span class="c1"># Degrees per second</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+    pressed_keys <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>key<span style="color:#000;font-weight:bold">.</span>get_pressed()
 
-    <span class="n">pressed_keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
+    rotation_direction <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.</span>
+    movement_direction <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.</span>
 
-    <span class="n">rotation_direction</span> <span class="o">=</span> <span class="mf">0.</span>
-    <span class="n">movement_direction</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span style="color:#000;font-weight:bold">if</span> pressed_keys[K_LEFT]:
+        rotation_direction <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">+</span><span style="color:#099">1.0</span>
+    <span style="color:#000;font-weight:bold">if</span> pressed_keys[K_RIGHT]:
+        rotation_direction <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1.0</span>
+    <span style="color:#000;font-weight:bold">if</span> pressed_keys[K_UP]:
+        movement_direction <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">+</span><span style="color:#099">1.0</span>
+    <span style="color:#000;font-weight:bold">if</span> pressed_keys[K_DOWN]:
+        movement_direction <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1.0</span>
 
-    <span class="k">if</span> <span class="n">pressed_keys</span><span class="p">[</span><span class="n">K_LEFT</span><span class="p">]:</span>
-        <span class="n">rotation_direction</span> <span class="o">=</span> <span class="o">+</span><span class="mf">1.0</span>
-    <span class="k">if</span> <span class="n">pressed_keys</span><span class="p">[</span><span class="n">K_RIGHT</span><span class="p">]:</span>
-        <span class="n">rotation_direction</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
-    <span class="k">if</span> <span class="n">pressed_keys</span><span class="p">[</span><span class="n">K_UP</span><span class="p">]:</span>
-        <span class="n">movement_direction</span> <span class="o">=</span> <span class="o">+</span><span class="mf">1.0</span>
-    <span class="k">if</span> <span class="n">pressed_keys</span><span class="p">[</span><span class="n">K_DOWN</span><span class="p">]:</span>
-        <span class="n">movement_direction</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+    screen<span style="color:#000;font-weight:bold">.</span>blit(background, (<span style="color:#099">0</span>, <span style="color:#099">0</span>))
 
-    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    rotated_sprite <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>transform<span style="color:#000;font-weight:bold">.</span>rotate(sprite, sprite_rotation)
+    w, h <span style="color:#000;font-weight:bold">=</span> rotated_sprite<span style="color:#000;font-weight:bold">.</span>get_size()
+    sprite_draw_pos <span style="color:#000;font-weight:bold">=</span> Vector2(sprite_pos<span style="color:#000;font-weight:bold">.</span>x <span style="color:#000;font-weight:bold">-</span> w <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">2</span>, sprite_pos<span style="color:#000;font-weight:bold">.</span>y <span style="color:#000;font-weight:bold">-</span> h <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">2</span>)
+    screen<span style="color:#000;font-weight:bold">.</span>blit(rotated_sprite, sprite_draw_pos)
 
-    <span class="n">rotated_sprite</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">sprite</span><span class="p">,</span> <span class="n">sprite_rotation</span><span class="p">)</span>
-    <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">rotated_sprite</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span>
-    <span class="n">sprite_draw_pos</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">sprite_pos</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">w</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sprite_pos</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">rotated_sprite</span><span class="p">,</span> <span class="n">sprite_draw_pos</span><span class="p">)</span>
+    time_passed <span style="color:#000;font-weight:bold">=</span> clock<span style="color:#000;font-weight:bold">.</span>tick()
+    time_passed_seconds <span style="color:#000;font-weight:bold">=</span> time_passed <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">1000.0</span>
 
-    <span class="n">time_passed</span> <span class="o">=</span> <span class="n">clock</span><span class="o">.</span><span class="n">tick</span><span class="p">()</span>
-    <span class="n">time_passed_seconds</span> <span class="o">=</span> <span class="n">time_passed</span> <span class="o">/</span> <span class="mf">1000.0</span>
+    sprite_rotation <span style="color:#000;font-weight:bold">+=</span> rotation_direction <span style="color:#000;font-weight:bold">*</span> sprite_rotation_speed <span style="color:#000;font-weight:bold">*</span> time_passed_seconds
 
-    <span class="n">sprite_rotation</span> <span class="o">+=</span> <span class="n">rotation_direction</span> <span class="o">*</span> <span class="n">sprite_rotation_speed</span> <span class="o">*</span> <span class="n">time_passed_seconds</span>
+    heading_x <span style="color:#000;font-weight:bold">=</span> sin(sprite_rotation <span style="color:#000;font-weight:bold">*</span> pi <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">180.0</span>)
+    heading_y <span style="color:#000;font-weight:bold">=</span> cos(sprite_rotation <span style="color:#000;font-weight:bold">*</span> pi <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">180.0</span>)
+    heading <span style="color:#000;font-weight:bold">=</span> Vector2(heading_x, heading_y)
+    heading <span style="color:#000;font-weight:bold">*=</span> movement_direction
 
-    <span class="n">heading_x</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">sprite_rotation</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mf">180.0</span><span class="p">)</span>
-    <span class="n">heading_y</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">sprite_rotation</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mf">180.0</span><span class="p">)</span>
-    <span class="n">heading</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">heading_x</span><span class="p">,</span> <span class="n">heading_y</span><span class="p">)</span>
-    <span class="n">heading</span> <span class="o">*=</span> <span class="n">movement_direction</span>
+    sprite_pos <span style="color:#000;font-weight:bold">+=</span> heading <span style="color:#000;font-weight:bold">*</span> sprite_speed <span style="color:#000;font-weight:bold">*</span> time_passed_seconds
 
-    <span class="n">sprite_pos</span> <span class="o">+=</span> <span class="n">heading</span> <span class="o">*</span> <span class="n">sprite_speed</span> <span class="o">*</span> <span class="n">time_passed_seconds</span>
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
 
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
+        </div>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://gitop.cc/tags/python">Python</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1625 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2015-11-17 00:39 &#43;0800</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="next-post" href="https://gitop.cc/posts/cpp-primer-16/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>第16章 模板和泛型编程</span>
-			</a>
-			<a class="prev-post" href="https://gitop.cc/posts/pygame-5/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Pygame第5章 让画面动起来</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://gitop.cc">招财猫</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://gitop.cc/posts/pygame-6/">http://gitop.cc/posts/pygame-6/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
 </div>
-	</main>
-
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
+<br/>
 
 
-	<script src="https://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/pygame-5/">Pygame第5章 让画面动起来</a></li>
+        
+        <li><a href="/posts/pygame-4/">Pygame第4章 创建视觉</a></li>
+        
+        <li><a href="/posts/pygame-3/">Pygame第3章 Pygame介绍</a></li>
+        
+        <li><a href="/posts/pyqt-8/">PyQt编程第8章 数据处理和自定义文件类型</a></li>
+        
+        <li><a href="/posts/pyqt-7/">PyQt编程第7章 使用Qt Designer</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://gitop.cc/tags/Python'>Python</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitop.cc">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Database/">Database (12)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/GUI/">GUI (5)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Gist/">Gist (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Language/">Language (23)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Linux/">Linux (3)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Network/">Network (4)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Tool/">Tool (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitop.cc/tags/C/">C</a>
+    
+    <a href="http://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://gitop.cc/tags/CentOS/">CentOS</a>
+    
+    <a href="http://gitop.cc/tags/Docker/">Docker</a>
+    
+    <a href="http://gitop.cc/tags/Git/">Git</a>
+    
+    <a href="http://gitop.cc/tags/Greenplum/">Greenplum</a>
+    
+    <a href="http://gitop.cc/tags/Idea/">Idea</a>
+    
+    <a href="http://gitop.cc/tags/Java/">Java</a>
+    
+    <a href="http://gitop.cc/tags/Javascript/">Javascript</a>
+    
+    <a href="http://gitop.cc/tags/Markdown/">Markdown</a>
+    
+    <a href="http://gitop.cc/tags/MySQL/">MySQL</a>
+    
+    <a href="http://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
+    
+    <a href="http://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
+    
+    <a href="http://gitop.cc/tags/Python/">Python</a>
+    
+    <a href="http://gitop.cc/tags/Scrapy/">Scrapy</a>
+    
+    <a href="http://gitop.cc/tags/Ubuntu/">Ubuntu</a>
+    
+    <a href="http://gitop.cc/tags/XPath/">XPath</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitop.cc/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://gitop.cc">招财猫的博客 By 招财猫</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
 
 </body>
 

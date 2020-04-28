@@ -1,86 +1,203 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="MySQL Cookbook 第4章 表管理">
-<meta itemprop="description" content="4.0. Introduction This chapter covers topics that relate to creating and populating tables: • Cloning a table • Copying from one table to another • Using temporary tables • Generating unique table names • Determining what storage engine a table uses or converting it from one storage engine to another 4.1. Cloning a Table Problem You want to create a table that has exactly the same structure as an existing">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MySQL Cookbook 第4章 表管理 | 招财猫的博客</title>
+    <meta property="og:title" content="MySQL Cookbook 第4章 表管理 - 招财猫的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2016-04-07T21:19:39&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2016-04-07T21:19:39&#43;08:00'>
+        
+    <meta name="Keywords" content="C,C&#43;&#43;,Python,Golang">
+    <meta name="description" content="MySQL Cookbook 第4章 表管理">
+        
+    <meta name="author" content="招财猫">
+    <meta property="og:url" content="http://gitop.cc/posts/mysql-cookbook-4/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
 
 
-<meta itemprop="datePublished" content="2016-04-07T21:19:39&#43;00:00" />
-<meta itemprop="dateModified" content="2016-04-07T21:19:39&#43;00:00" />
-<meta itemprop="wordCount" content="3012">
-
-
-
-<meta itemprop="keywords" content="MySQL," />
-<meta property="og:title" content="MySQL Cookbook 第4章 表管理" />
-<meta property="og:description" content="4.0. Introduction This chapter covers topics that relate to creating and populating tables: • Cloning a table • Copying from one table to another • Using temporary tables • Generating unique table names • Determining what storage engine a table uses or converting it from one storage engine to another 4.1. Cloning a Table Problem You want to create a table that has exactly the same structure as an existing" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/posts/mysql-cookbook-4/" />
-<meta property="article:published_time" content="2016-04-07T21:19:39+00:00" />
-<meta property="article:modified_time" content="2016-04-07T21:19:39+00:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="MySQL Cookbook 第4章 表管理"/>
-<meta name="twitter:description" content="4.0. Introduction This chapter covers topics that relate to creating and populating tables: • Cloning a table • Copying from one table to another • Using temporary tables • Generating unique table names • Determining what storage engine a table uses or converting it from one storage engine to another 4.1. Cloning a Table Problem You want to create a table that has exactly the same structure as an existing"/>
-
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>MySQL Cookbook 第4章 表管理</title>
-	<link rel="stylesheet" href="https://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
-	
+    
+    
 </head>
 
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://gitop.cc">静心</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://gitop.cc/posts/">Posts</a>
-				<a href="https://gitop.cc/tags/">Tags</a>
-				<a href="https://gitop.cc/about/">About</a>
 
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://gitop.cc/posts/">Posts</a></li>
-			<li><a href="https://gitop.cc/tags/">Tags</a></li>
-			<li><a href="https://gitop.cc/about/">About</a></li>
-		</ul>
-	</div>
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitop.cc">
+                        招财猫的博客
+                    </a>
+                
+                <p class="description">专注于C&#43;&#43;、Python、Golang</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitop.cc">首页</a>
+                    
+                    <a  href="http://gitop.cc/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitop.cc/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Apr 7, 2016</span></div>
-				<h1>MySQL Cookbook 第4章 表管理</h1>
-			</header>
-			<div class="content">
-				
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
-<h1 id="4-0-introduction">4.0. Introduction<a href="#4-0-introduction" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
 
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#copying-tables-within-a-single-mysql-server">Copying tables within a single MySQL server</a></li>
+    <li><a href="#copying-tables-between-mysql-servers">Copying tables between MySQL servers</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">MySQL Cookbook 第4章 表管理</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年4月7日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Database'>Database</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h1 id="40-introduction">4.0. Introduction</h1>
 <p>This chapter covers topics that relate to creating and populating tables:
 • Cloning a table
 • Copying from one table to another
@@ -88,125 +205,89 @@
 • Generating unique table names
 • Determining what storage engine a table uses or converting it from one storage
 engine to another</p>
-
-<h1 id="4-1-cloning-a-table">4.1. Cloning a Table<a href="#4-1-cloning-a-table" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="41-cloning-a-table">4.1. Cloning a Table</h1>
 <p>Problem</p>
-
 <p>You want to create a table that has exactly the same structure as an existing table.</p>
-
 <p>Solution</p>
-
 <p>Use CREATE TABLE &hellip; LIKE to clone the table structure. To also copy some or all of the
 rows from the original table to the new one, use INSERT INTO &hellip; SELECT .</p>
-
 <p>Discussion</p>
-
 <p>To create a new table that is just like an existing table, use this statement:</p>
-
 <pre><code>CREATE TABLE new_table LIKE original_table;
 </code></pre>
-
 <p>The structure of the new table is the same as that of the original table, with a few ex‐
 ceptions: CREATE TABLE &hellip; LIKE does not copy foreign key definitions, and it doesn’t
 copy any DATA DIRECTORY or INDEX DIRECTORY table options that the table might use.</p>
-
 <p>The new table is empty. If you also want the contents to be the same as the original table,
 copy the rows using an INSERT INTO &hellip; SELECT statement:</p>
-
 <pre><code>INSERT INTO new_table SELECT * FROM original_table;
 </code></pre>
-
 <p>To copy only part of the table, add an appropriate WHERE clause that identifies which
 rows to copy. For example, these statements create a copy of the mail table named
 mail2 , populated only with the rows for mail sent by barb :</p>
-
 <pre><code>CREATE TABLE mail2 LIKE mail;
 INSERT INTO mail2 SELECT * FROM mail WHERE srcuser = 'barb';
 </code></pre>
-
-<h1 id="4-2-saving-a-query-result-in-a-table">4.2. Saving a Query Result in a Table<a href="#4-2-saving-a-query-result-in-a-table" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="42-saving-a-query-result-in-a-table">4.2. Saving a Query Result in a Table</h1>
 <p>Problem</p>
-
 <p>You want to save the result from a SELECT statement to a table rather than display it.</p>
-
 <p>Solution</p>
-
 <p>If the table exists, retrieve rows into it using INSERT INTO &hellip; SELECT . If the table does
 not exist, create it on the fly using CREATE TABLE &hellip; SELECT .</p>
-
 <p>Discussion</p>
-
 <p>The MySQL server normally returns the result of a SELECT statement to the client that
 executed the statement. For example, when you execute a statement from within the
 mysql program, the server returns the result to mysql, which in turn displays it on the
 screen. It’s possible to save the results of a SELECT statement in a table instead, which is
 useful in several ways:</p>
-
 <p>• You can easily create a complete or partial copy of a table. If you’re developing an
 algorithm that modifies a table, it’s safer to work with a copy of a table so that you
 need not worry about the consequences of mistakes. If the original table is large,
 creating a partial copy can speed the development process because queries run
 against it take less time.</p>
-
 <p>• For a data-loading operation based on information that might be malformed, load
 new rows into a temporary table, perform some preliminary checks, and correct
 the rows as necessary. When you’re satisfied that the new rows are okay, copy them
 from the temporary table to your main table.</p>
-
 <p>• Some applications maintain a large repository table and a smaller working table
 into which rows are inserted on a regular basis, copying the working table rows to
 the repository periodically and clearing the working table.
 • To perform summary operations on a large table more efficiently, avoid running
 expensive summary operations repeatedly on it. Instead, select summary informa‐
 tion once into a second table and use that for further analysis.</p>
-
 <pre><code>INSERT INTO dst_tbl (i, s) SELECT val, name FROM src_tbl;
 </code></pre>
-
 <p>The number of columns to be inserted must match the number of selected columns,
 with the correspondence between columns based on position rather than name. To copy
 all columns, you can shorten the statement to this form:</p>
-
 <pre><code>INSERT INTO dst_tbl SELECT * FROM src_tbl;
 </code></pre>
-
 <p>To copy only certain rows, add a WHERE clause that selects those rows:</p>
-
 <pre><code>INSERT INTO dst_tbl SELECT * FROM src_tbl
 WHERE val &gt; 100 AND name LIKE 'A%';
 </code></pre>
-
 <p>The SELECT statement can produce values from expressions, too. For example, the fol‐
 lowing statement counts the number of times each name occurs in src_tbl and stores
 both the counts and the names in dst_tbl :</p>
-
 <pre><code>INSERT INTO dst_tbl (i, s) SELECT COUNT(*), name
 FROM src_tbl GROUP BY name;
 
 CREATE TABLE dst_tbl SELECT * FROM src_tbl;
 </code></pre>
-
 <p>MySQL creates the columns in dst_tbl based on the name, number, and type of the
 columns in src_tbl . To copy only certain rows, add an appropriate WHERE clause. To
 create an empty table, use a WHERE clause that selects no rows:</p>
-
 <pre><code>CREATE TABLE dst_tbl SELECT * FROM src_tbl WHERE FALSE;
 </code></pre>
-
 <p>To create columns in an order different from that in which they appear in the source
 table, name them in the desired order. If the source table contains columns a , b , and c
 that should appear in the destination table in the order c , a , b , do this:</p>
-
 <pre><code>CREATE TABLE dst_tbl SELECT c, a, b FROM src_tbl;
 </code></pre>
-
 <p>To create columns in the destination table in addition to those selected from the source
 table, provide appropriate column definitions in the CREATE TABLE part of the statement.
 The following statement creates id as an AUTO_INCREMENT column in dst_tbl and adds
 columns a , b , and c from src_tbl :</p>
-
 <pre><code>CREATE TABLE dst_tbl
 (
     id INT NOT NULL AUTO_INCREMENT,
@@ -214,57 +295,43 @@ columns a , b , and c from src_tbl :</p>
 )
 SELECT a, b, c FROM src_tbl;
 </code></pre>
-
 <p>If you derive a column’s values from an expression, its default name is the expression
 itself, which can be difficult to work with later. In this case, it’s prudent to give the column
 a better name by providing an alias (see Recipe 3.2). Suppose that src_tbl contains
 invoice information that lists items in each invoice. The following statement generates
 a summary that lists each invoice named in the table and the total cost of its items, using
 an alias for the expression:</p>
-
 <pre><code>CREATE TABLE dst_tbl
 SELECT inv_no, SUM(unit_cost*quantity) AS total_cost
 FROM src_tbl GROUP BY inv_no;
 </code></pre>
-
 <p>CREATE TABLE &hellip; SELECT is extremely convenient, but has some limitations that arise
 from the fact that the information available from a result set is not as extensive as what
 you can specify in a CREATE TABLE statement. For example, MySQL has no idea whether
 a result set column should be indexed or what its default value is. If it’s important to
 include this information in the destination table, use the following techniques:</p>
-
 <p>• To make the destination table an exact copy of the source table, use the cloning
 technique described in Recipe 4.1.
 • To include indexes in the destination table, specify them explicitly. For example, if
 src_tbl has a PRIMARY KEY on the id column, and a multiple-column index on
 state and city , specify them for dst_tbl as well:</p>
-
 <pre><code>CREATE TABLE dst_tbl (PRIMARY KEY (id), INDEX(state,city))
 SELECT * FROM src_tbl;
 </code></pre>
-
 <p>• Column attributes such as AUTO_INCREMENT and a column’s default value are not
 copied to the destination table. To preserve these attributes, create the table, then
 use ALTER TABLE to apply the appropriate modifications to the column definition.
 For example, if src_tbl has an id column that is not only a PRIMARY KEY but also
 an AUTO_INCREMENT column, copy the table and modify the copy:</p>
-
 <pre><code>CREATE TABLE dst_tbl (PRIMARY KEY (id)) SELECT * FROM src_tbl;
 ALTER TABLE dst_tbl MODIFY id INT UNSIGNED NOT NULL AUTO_INCREMENT;
 </code></pre>
-
-<h1 id="4-3-creating-temporary-tables">4.3. Creating Temporary Tables<a href="#4-3-creating-temporary-tables" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="43-creating-temporary-tables">4.3. Creating Temporary Tables</h1>
 <p>Problem</p>
-
 <p>You need a table only for a short time, after which you want it to disappear automatically.</p>
-
 <p>Solution</p>
-
 <p>Create a table using the TEMPORARY keyword, and let MySQL take care of removing it.</p>
-
 <p>Discussion</p>
-
 <p>Some operations require a table that exists only temporarily and that should disappear
 when it’s no longer needed. You can, of course, execute a DROP TABLE statement explicitly
 to remove a table when you’re done with it. Another option is to use CREATE TEMPORA
@@ -273,20 +340,17 @@ when your session with the server ends, if you haven’t already removed it your
 is extremely useful behavior because MySQL drops the table for you automatically; you
 need not remember to do it. TEMPORARY can be used with the usual table-creation meth‐
 ods:</p>
-
 <p>• Create the table from explicit column definitions:
 CREATE TEMPORARY TABLE tbl_name (&hellip;column definitions&hellip;);
 • Create the table from an existing table:
 CREATE TEMPORARY TABLE new_table LIKE original_table;
 • Create the table on the fly from a result set:
 CREATE TEMPORARY TABLE tbl_name SELECT &hellip; ;</p>
-
 <p>A temporary table can have the same name as a permanent table. In this case, the tem‐
 porary table “hides” the permanent table for the duration of its existence, which can be
 useful for making a copy of a table that you can modify without affecting the original
 by mistake. The DELETE statement in the following example removes rows from a tem‐
 porary mail table, leaving the original permanent table unaffected:</p>
-
 <p>mysql&gt; CREATE TEMPORARY TABLE mail SELECT * FROM mail;
 mysql&gt; SELECT COUNT(<em>) FROM mail;
 +&mdash;&mdash;&mdash;-+
@@ -310,7 +374,6 @@ mysql&gt; SELECT COUNT(<em>) FROM mail;
 +&mdash;&mdash;&mdash;-+
 Although temporary tables created with CREATE TEMPORARY TABLE have the benefits just
 discussed, keep the following caveats in mind:</p>
-
 <p>• To reuse a temporary table within a given session, you must still drop it explicitly
 before re-creating it. Attempting to create a second temporary table with the same
 name results in an error.
@@ -326,38 +389,27 @@ over when the connection closes. This means it can be prudent to execute the fol
 lowing statement prior to creating a temporary table, just in case it’s still in existence
 from a previous execution of the script:
 DROP TEMPORARY TABLE IF EXISTS tbl_name</p>
-
-<h1 id="4-4-generating-unique-table-names">4.4. Generating Unique Table Names<a href="#4-4-generating-unique-table-names" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="44-generating-unique-table-names">4.4. Generating Unique Table Names</h1>
 <p>Problem</p>
-
 <p>You need to create a table with a name guaranteed not to exist.</p>
-
 <p>Solution</p>
-
 <p>If you create a TEMPORARY table, it doesn’t matter whether a permanent table with that
 name exists. Otherwise, try to generate a value that is unique to your client program
 and incorporate it into the table name.</p>
-
 <p>Discussion</p>
-
 <p>If you cannot or do not want to use a TEMPORARY table, make sure that each invocation
 of the script creates a uniquely named table and drops the table when it is no longer
 needed.</p>
-
 <p>Pro‐
 cess ID (PID) values are a better source of unique values. PIDs are reused over time,
 but never for two processes at the same time, so a given PID is guaranteed to be unique
 among the set of currently executing processes.</p>
-
 <p>Connection identifiers are another source of unique values. The MySQL server reuses
 these numbers over time, but no two simultaneous connections to the server have the
 same ID.</p>
-
 <p>It’s possible to incorporate a connection ID into a table name within SQL by using
 prepared statements. The following example illustrates this, referring to the table name
 in the CREATE TABLE statement and a precautionary DROP TABLE statement:</p>
-
 <pre><code>SET @tbl_name = CONCAT('tmp_tbl_', CONNECTION_ID());
 SET @stmt = CONCAT('DROP TABLE IF EXISTS ', @tbl_name);
 PREPARE stmt FROM @stmt;
@@ -368,30 +420,21 @@ PREPARE stmt FROM @stmt;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
 </code></pre>
-
-<h1 id="4-5-checking-or-changing-a-table-storage-engine">4.5. Checking or Changing a Table Storage Engine<a href="#4-5-checking-or-changing-a-table-storage-engine" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="45-checking-or-changing-a-table-storage-engine">4.5. Checking or Changing a Table Storage Engine</h1>
 <p>Problem</p>
-
 <p>You want to check which storage engine a table uses so that you can determine what
 engine capabilities are applicable. Or you need to change a table’s storage engine because
 you realize that the capabilities of another engine are more suitable for the way you use
 the table.</p>
-
 <p>Solution</p>
-
 <p>To determine a table’s storage engine, you can use any of several statements. To change
 the table’s engine, use ALTER TABLE with an ENGINE clause.</p>
-
 <p>Discussion</p>
-
 <p>MySQL supports multiple storage engines, which have differing characteristics. For
 example, the InnoDB engine supports transactions, whereas MyISAM does not.</p>
-
 <p>To determine the current engine for a table, check INFORMATION_SCHEMA or use the SHOW
 TABLE STATUS or SHOW CREATE TABLE statement. For the mail table, obtain engine in‐
 formation as follows:</p>
-
 <pre><code>mysql&gt; SELECT ENGINE FROM INFORMATION_SCHEMA.TABLES
     -&gt; WHERE TABLE_SCHEMA = 'cookbook' AND TABLE_NAME = 'mail';
 +--------+
@@ -433,32 +476,21 @@ Create Table: CREATE TABLE `mail` (
   KEY `t` (`t`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 </code></pre>
-
 <p>To change the storage engine for a table, use ALTER TABLE with an ENGINE specifier. For
 example, to convert the mail table to use the MyISAM storage engine, use this statement:</p>
-
 <pre><code>ALTER TABLE mail ENGINE = MyISAM;
 </code></pre>
-
 <p>Be aware that converting a large table to a different storage engine might take a long
 time and be expensive in terms of CPU and I/O activity.</p>
-
 <p>To determine which storage engines your MySQL server supports, check the output
 from the SHOW ENGINES statement or query the INFORMATION_SCHEMA ENGINES table.</p>
-
-<h1 id="4-6-copying-a-table-using-mysqldump">4.6. Copying a Table Using mysqldump<a href="#4-6-copying-a-table-using-mysqldump" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="46-copying-a-table-using-mysqldump">4.6. Copying a Table Using mysqldump</h1>
 <p>Problem</p>
-
 <p>You want to copy a table or tables, either among the databases managed by a MySQL
 server, or from one server to another.</p>
-
 <p>Solution</p>
-
 <p>Use the mysqldump program.</p>
-
 <p>Discussion</p>
-
 <p>The mysqldump program makes a backup file that can be reloaded to re-create the
 original table or tables:
 % mysqldump cookbook mail &gt; mail.sql
@@ -466,13 +498,10 @@ The output file mail.sql consists of a CREATE TABLE statement to create the mail
 and a set of INSERT statements to insert its rows. You can reload the file to re-create the
 table should the original be lost:
 % mysql cookbook &lt; mail.sql</p>
-
 <p>This method also makes it easy to deal with any triggers the table has. By default,
 mysqldump writes the triggers to the dump file, so reloading the file copies the triggers
 along with the table with no special handling.</p>
-
-<h2 id="copying-tables-within-a-single-mysql-server">Copying tables within a single MySQL server<a href="#copying-tables-within-a-single-mysql-server" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="copying-tables-within-a-single-mysql-server">Copying tables within a single MySQL server</h2>
 <p>• Copy a single table to a different database:
 % mysqldump cookbook mail &gt; mail.sql
 % mysql other_db &lt; mail.sql
@@ -498,66 +527,275 @@ Or, to move the table into another database at the same time, qualify the new
 name with the database name:
 % mysql other_db
 mysql&gt; RENAME mail TO cookbook.mail2;</p>
-
 <p>To perform a table-copying operation without an intermediary file, use a pipe to connect
 the mysqldump and mysql commands:
 % mysqldump cookbook mail | mysql other_db
 % mysqldump cookbook | mysql other_db</p>
-
-<h2 id="copying-tables-between-mysql-servers">Copying tables between MySQL servers<a href="#copying-tables-between-mysql-servers" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="copying-tables-between-mysql-servers">Copying tables between MySQL servers</h2>
 <p>Suppose that you want to copy the mail table from the cook
 book database on the local host to the other_db database on the host other-
 host.example.com. One way to do this is to dump the output into a file:</p>
-
 <p>% mysqldump cookbook mail &gt; mail.sql</p>
-
 <p>Then copy mail.sql to other-host.example.com, and run the following command there
 to load the table into that MySQL server’s other_db database:</p>
-
 <p>% mysql other_db &lt; mail.sql</p>
-
 <p>To accomplish this without an intermediary file, use a pipe to send the output of mysql‐
 dump directly over the network to the remote MySQL server. If you can connect to both
 servers from your local host, use this command:
 % mysqldump cookbook mail | mysql -h other-host.example.com other_db</p>
-
 <p>If you cannot connect directly to the remote server using mysql from your local host,
 send the dump output into a pipe that uses ssh to invoke mysql remotely on other-
 host.example.com:
 % mysqldump cookbook mail | ssh other-host.example.com mysql other_db</p>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://gitop.cc/tags/mysql">MySQL</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3012 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2016-04-08 05:19 &#43;0800</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="next-post" href="https://gitop.cc/posts/mysql-cookbook-5/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>MySQL Cookbook 第5章 处理字符串</span>
-			</a>
-			<a class="prev-post" href="https://gitop.cc/posts/mysql-cookbook-3/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>MySQL Cookbook 第3章 从表中查询数据</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://gitop.cc">招财猫</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://gitop.cc/posts/mysql-cookbook-4/">http://gitop.cc/posts/mysql-cookbook-4/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
 </div>
-	</main>
-
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
+<br/>
 
 
-	<script src="https://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/mysql-cookbook-3/">MySQL Cookbook 第3章 从表中查询数据</a></li>
+        
+        <li><a href="/posts/mysql-cookbook-2/">MySQL Cookbook 第2章 编写基于MySQL的程序</a></li>
+        
+        <li><a href="/posts/mysql-cookbook-1/">MySQL Cookbook 第1章 使用mysql客户端</a></li>
+        
+        <li><a href="/posts/cpp-primer-2/">第2章 变量和基本类型</a></li>
+        
+        <li><a href="/posts/Asio-Network-Programming-2/">Boost.Asio网络编程 第2章</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://gitop.cc/tags/MySQL'>MySQL</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitop.cc">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Database/">Database (12)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/GUI/">GUI (5)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Gist/">Gist (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Language/">Language (23)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Linux/">Linux (3)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Network/">Network (4)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Tool/">Tool (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitop.cc/tags/C/">C</a>
+    
+    <a href="http://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://gitop.cc/tags/CentOS/">CentOS</a>
+    
+    <a href="http://gitop.cc/tags/Docker/">Docker</a>
+    
+    <a href="http://gitop.cc/tags/Git/">Git</a>
+    
+    <a href="http://gitop.cc/tags/Greenplum/">Greenplum</a>
+    
+    <a href="http://gitop.cc/tags/Idea/">Idea</a>
+    
+    <a href="http://gitop.cc/tags/Java/">Java</a>
+    
+    <a href="http://gitop.cc/tags/Javascript/">Javascript</a>
+    
+    <a href="http://gitop.cc/tags/Markdown/">Markdown</a>
+    
+    <a href="http://gitop.cc/tags/MySQL/">MySQL</a>
+    
+    <a href="http://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
+    
+    <a href="http://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
+    
+    <a href="http://gitop.cc/tags/Python/">Python</a>
+    
+    <a href="http://gitop.cc/tags/Scrapy/">Scrapy</a>
+    
+    <a href="http://gitop.cc/tags/Ubuntu/">Ubuntu</a>
+    
+    <a href="http://gitop.cc/tags/XPath/">XPath</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitop.cc/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://gitop.cc">招财猫的博客 By 招财猫</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
 
 </body>
 

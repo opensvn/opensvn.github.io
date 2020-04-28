@@ -1,104 +1,166 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on 静心</title>
-    <link>https://gitop.cc/tags/</link>
-    <description>Recent content in Tags on 静心</description>
+    <title>Tags on 招财猫的博客</title>
+    <link>http://gitop.cc/tags/</link>
+    <description>Recent content in Tags on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <language>zh-CN</language>
     <lastBuildDate>Mon, 04 Nov 2019 17:49:51 +0800</lastBuildDate>
     
-	<atom:link href="https://gitop.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://gitop.cc/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Python</title>
-      <link>https://gitop.cc/tags/python/</link>
+      <link>http://gitop.cc/tags/Python/</link>
       <pubDate>Mon, 04 Nov 2019 17:49:51 +0800</pubDate>
       
-      <guid>https://gitop.cc/tags/python/</guid>
+      <guid>http://gitop.cc/tags/Python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Scrapy</title>
-      <link>https://gitop.cc/tags/scrapy/</link>
+      <link>http://gitop.cc/tags/Scrapy/</link>
       <pubDate>Mon, 04 Nov 2019 17:49:51 +0800</pubDate>
       
-      <guid>https://gitop.cc/tags/scrapy/</guid>
+      <guid>http://gitop.cc/tags/Scrapy/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Other</title>
-      <link>https://gitop.cc/tags/other/</link>
+      <title>XPath</title>
+      <link>http://gitop.cc/tags/XPath/</link>
       <pubDate>Sat, 02 Nov 2019 13:49:25 +0800</pubDate>
       
-      <guid>https://gitop.cc/tags/other/</guid>
+      <guid>http://gitop.cc/tags/XPath/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java</title>
-      <link>https://gitop.cc/tags/java/</link>
+      <link>http://gitop.cc/tags/Java/</link>
       <pubDate>Wed, 24 Jul 2019 20:30:19 +0800</pubDate>
       
-      <guid>https://gitop.cc/tags/java/</guid>
+      <guid>http://gitop.cc/tags/Java/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Tool</title>
-      <link>https://gitop.cc/tags/tool/</link>
+      <title>Git</title>
+      <link>http://gitop.cc/tags/Git/</link>
       <pubDate>Mon, 08 Jul 2019 16:59:22 +0800</pubDate>
       
-      <guid>https://gitop.cc/tags/tool/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Database</title>
-      <link>https://gitop.cc/tags/database/</link>
-      <pubDate>Sun, 14 Apr 2019 15:40:23 +0800</pubDate>
-      
-      <guid>https://gitop.cc/tags/database/</guid>
+      <guid>http://gitop.cc/tags/Git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Greenplum</title>
-      <link>https://gitop.cc/tags/greenplum/</link>
+      <link>http://gitop.cc/tags/Greenplum/</link>
       <pubDate>Sun, 14 Apr 2019 15:40:23 +0800</pubDate>
       
-      <guid>https://gitop.cc/tags/greenplum/</guid>
+      <guid>http://gitop.cc/tags/Greenplum/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PostgreSQL</title>
-      <link>https://gitop.cc/tags/postgresql/</link>
-      <pubDate>Sat, 19 Jan 2019 19:13:20 +0800</pubDate>
+      <link>http://gitop.cc/tags/PostgreSQL/</link>
+      <pubDate>Tue, 22 Jan 2019 16:20:20 +0800</pubDate>
       
-      <guid>https://gitop.cc/tags/postgresql/</guid>
+      <guid>http://gitop.cc/tags/PostgreSQL/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>https://gitop.cc/tags/docker/</link>
+      <link>http://gitop.cc/tags/Docker/</link>
       <pubDate>Thu, 17 Jan 2019 15:02:33 +0800</pubDate>
       
-      <guid>https://gitop.cc/tags/docker/</guid>
+      <guid>http://gitop.cc/tags/Docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Javascript</title>
-      <link>https://gitop.cc/tags/javascript/</link>
+      <link>http://gitop.cc/tags/Javascript/</link>
       <pubDate>Mon, 12 Nov 2018 19:37:34 +0800</pubDate>
       
-      <guid>https://gitop.cc/tags/javascript/</guid>
+      <guid>http://gitop.cc/tags/Javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Idea</title>
+      <link>http://gitop.cc/tags/Idea/</link>
+      <pubDate>Sat, 18 Aug 2018 16:15:19 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/Idea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu</title>
+      <link>http://gitop.cc/tags/Ubuntu/</link>
+      <pubDate>Sat, 18 Aug 2018 09:19:20 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/Ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C</title>
+      <link>http://gitop.cc/tags/C/</link>
+      <pubDate>Thu, 02 Aug 2018 20:31:02 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CentOS</title>
+      <link>http://gitop.cc/tags/CentOS/</link>
+      <pubDate>Thu, 02 Aug 2018 20:31:02 +0800</pubDate>
+      
+      <guid>http://gitop.cc/tags/CentOS/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>http://gitop.cc/tags/C&#43;&#43;/</link>
+      <pubDate>Fri, 28 Oct 2016 14:46:23 +0000</pubDate>
+      
+      <guid>http://gitop.cc/tags/C&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySQL</title>
+      <link>http://gitop.cc/tags/MySQL/</link>
+      <pubDate>Thu, 07 Apr 2016 22:45:02 +0000</pubDate>
+      
+      <guid>http://gitop.cc/tags/MySQL/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ProjectEuler</title>
+      <link>http://gitop.cc/tags/ProjectEuler/</link>
+      <pubDate>Fri, 23 Oct 2015 16:30:00 +0000</pubDate>
+      
+      <guid>http://gitop.cc/tags/ProjectEuler/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Markdown</title>
+      <link>http://gitop.cc/tags/Markdown/</link>
+      <pubDate>Sat, 19 Sep 2015 19:47:02 +0000</pubDate>
+      
+      <guid>http://gitop.cc/tags/Markdown/</guid>
       <description></description>
     </item>
     

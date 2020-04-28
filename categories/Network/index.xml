@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network on 招财猫的博客</title>
+    <link>http://gitop.cc/categories/Network/</link>
+    <description>Recent content in Network on 招财猫的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 18 Aug 2016 08:55:42 +0000</lastBuildDate>
+    
+	<atom:link href="http://gitop.cc/categories/Network/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Asio.Cookbook 第2章 IO操作</title>
+      <link>http://gitop.cc/posts/io-operations/</link>
+      <pubDate>Thu, 18 Aug 2016 08:55:42 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/io-operations/</guid>
+      <description>介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络编程都是关于通过计算机网络进行进程间通信。像其他类型的IO操作一样，网络IO操作涉及使用内存缓冲区。 同步和异步IO操作 Boost.Asio支</description>
+    </item>
+    
+    <item>
+      <title>Asio.Cookbook 第1章 基础</title>
+      <link>http://gitop.cc/posts/Asio-Cookbook-1/</link>
+      <pubDate>Tue, 16 Aug 2016 08:45:19 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/Asio-Cookbook-1/</guid>
+      <description>介绍 TCP协议是具有下列特性的传输层协议： 它是可靠的。这意味着TCP协议保证报文以正确的顺序传输，或者通知报文没有传输成功。TCP协议包含错误处理机制。 它假定建立逻辑连接。在一个程序通过TCP协议与另一个程序通信之前，它必须根据标准通过交换服务报文建立一个逻辑连接。 它假定点对点通</description>
+    </item>
+    
+    <item>
+      <title>Boost.Asio网络编程 第2章</title>
+      <link>http://gitop.cc/posts/Asio-Network-Programming-2/</link>
+      <pubDate>Thu, 17 Mar 2016 10:55:52 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/Asio-Network-Programming-2/</guid>
+      <description>Boost.Asio命名空间 Boost.Asio所有东西都放在boost::asio命名空间或者子命名空间： boost::asio：核心类和函数放在这里。重要的类有io_service和streambuf。重要的自由函数，比如read，read_at，read_util，它们相应</description>
+    </item>
+    
+    <item>
+      <title>Boost.Asio网络编程 第1章</title>
+      <link>http://gitop.cc/posts/Asio-Network-Programming-1/</link>
+      <pubDate>Sun, 13 Mar 2016 10:55:46 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/Asio-Network-Programming-1/</guid>
+      <description>什么是Boost.Asio 简单来说，Boost.Asio是一个跨平台的C++库，主要是为了网络编程和一些其它低级输入/输出编程。 Boost.Asio成功地抽象出输入和输出的概念，不仅仅是网络，还有COM串行端口，文件等。在此之上，你可以同步或异步进行输入或输出编程： read(stream, buffer [, extra options]) async_read(stream, buffer</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on 招财猫的博客</title>
+    <link>http://gitop.cc/tags/Docker/</link>
+    <description>Recent content in Docker on 招财猫的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 17 Jan 2019 15:02:33 +0800</lastBuildDate>
+    
+	<atom:link href="http://gitop.cc/tags/Docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker安装gpdb测试数据库</title>
+      <link>http://gitop.cc/posts/docker_install_gpdb_dev_env/</link>
+      <pubDate>Thu, 17 Jan 2019 15:02:33 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/docker_install_gpdb_dev_env/</guid>
+      <description>下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便一点。 docker pull pivotaldata/gpdb-dev:centos7 下载gpdb源码到指定目录 git clone https://github.com/greenplum-db/gpdb.git ~/github 创建目录用于容器数据库 sudo mkdir -p /var/lib/centos-gpdb-dev-data sudo chown xiaoyu:xiaoyu /var/lib/centos-gpdb-dev-data 运行容器 docker run -it --name centos-gpdb-dev -v ~/github/gpdb:/home/gpadmin/gpdb_src -v /var/lib/centos-gpdb-dev-data:/home/gpadmin/data -p 15432:15432 pivotaldata/gpdb-dev:centos7 安装依赖 /home/gpadmin/gpdb_src/README.CentOS.bash 添加动态库搜索</description>
+    </item>
+    
+    <item>
+      <title>docker安装greenplum集群</title>
+      <link>http://gitop.cc/posts/install-greenplum-in-docker/</link>
+      <pubDate>Tue, 21 Aug 2018 19:15:14 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/install-greenplum-in-docker/</guid>
+      <description>本文参考这里安装greenplum成功，并记录一下过程 创建docker节点 拉取centos镜像 [xiaoyu@xiaoyu ~]$ docker pull centos 创建几个容器，作为greenplum的节点 [xiaoyu@xiaoyu ~]$ docker run -it --name gp-master centos /bin/bash [xiaoyu@xiaoyu ~]$ docker run -it --name gp-segment1 centos /bin/bash [xiaoyu@xiaoyu ~]$ docker run -it --name gp-segment2 centos /bin/bash [xiaoyu@xiaoyu ~]$ docker run -it --name gp-segment3 centos /bin/bash 配置基础环境 进入每个greenplum节点，配置基础环境 安装相</description>
+    </item>
+    
+  </channel>
+</rss>

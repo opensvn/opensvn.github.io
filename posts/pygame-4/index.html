@@ -1,128 +1,277 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="Pygame第4章 创建视觉">
-<meta itemprop="description" content="电脑游戏倾向于视觉上很自然，游戏开发者花费很多精力在处理图像和提升视觉效果来创建最令人愉快的体验上。 像素的威力 显示器里的一个独立的点称为一个">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pygame第4章 创建视觉 | 招财猫的博客</title>
+    <meta property="og:title" content="Pygame第4章 创建视觉 - 招财猫的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2015-11-07T21:28:44&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2015-11-07T21:28:44&#43;08:00'>
+        
+    <meta name="Keywords" content="C,C&#43;&#43;,Python,Golang">
+    <meta name="description" content="Pygame第4章 创建视觉">
+        
+    <meta name="author" content="招财猫">
+    <meta property="og:url" content="http://gitop.cc/posts/pygame-4/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
 
 
-<meta itemprop="datePublished" content="2015-11-07T21:28:44&#43;00:00" />
-<meta itemprop="dateModified" content="2015-11-07T21:28:44&#43;00:00" />
-<meta itemprop="wordCount" content="6036">
-
-
-
-<meta itemprop="keywords" content="Python," />
-<meta property="og:title" content="Pygame第4章 创建视觉" />
-<meta property="og:description" content="电脑游戏倾向于视觉上很自然，游戏开发者花费很多精力在处理图像和提升视觉效果来创建最令人愉快的体验上。 像素的威力 显示器里的一个独立的点称为一个" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/posts/pygame-4/" />
-<meta property="article:published_time" content="2015-11-07T21:28:44+00:00" />
-<meta property="article:modified_time" content="2015-11-07T21:28:44+00:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Pygame第4章 创建视觉"/>
-<meta name="twitter:description" content="电脑游戏倾向于视觉上很自然，游戏开发者花费很多精力在处理图像和提升视觉效果来创建最令人愉快的体验上。 像素的威力 显示器里的一个独立的点称为一个"/>
-
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>Pygame第4章 创建视觉</title>
-	<link rel="stylesheet" href="https://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
-	
+    
+    
 </head>
 
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://gitop.cc">静心</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://gitop.cc/posts/">Posts</a>
-				<a href="https://gitop.cc/tags/">Tags</a>
-				<a href="https://gitop.cc/about/">About</a>
 
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://gitop.cc/posts/">Posts</a></li>
-			<li><a href="https://gitop.cc/tags/">Tags</a></li>
-			<li><a href="https://gitop.cc/about/">About</a></li>
-		</ul>
-	</div>
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitop.cc">
+                        招财猫的博客
+                    </a>
+                
+                <p class="description">专注于C&#43;&#43;、Python、Golang</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitop.cc">首页</a>
+                    
+                    <a  href="http://gitop.cc/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitop.cc/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Nov 7, 2015</span></div>
-				<h1>Pygame第4章 创建视觉</h1>
-			</header>
-			<div class="content">
-				
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
-<p>电脑游戏倾向于视觉上很自然，游戏开发者花费很多精力在处理图像和提升视觉效果来创建最令人愉快的体验上。</p>
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
 
-<h1 id="像素的威力">像素的威力<a href="#像素的威力" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
 
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#pygame中表示颜色">Pygame中表示颜色</a></li>
+        <li><a href="#调整颜色">调整颜色</a></li>
+        <li><a href="#混合颜色">混合颜色</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#存储图片">存储图片</a></li>
+        <li><a href="#使用surface对象">使用Surface对象</a></li>
+        <li><a href="#创建surface对象">创建Surface对象</a></li>
+        <li><a href="#转换surface">转换Surface</a></li>
+        <li><a href="#矩形对象">矩形对象</a></li>
+        <li><a href="#剪裁">剪裁</a></li>
+        <li><a href="#子表面subsurface">子表面(Subsurface)</a></li>
+        <li><a href="#填充表面">填充表面</a></li>
+        <li><a href="#设置表面像素">设置表面像素</a></li>
+        <li><a href="#获得表面的像素">获得表面的像素</a></li>
+        <li><a href="#锁定surface">锁定Surface</a></li>
+        <li><a href="#blitting">Blitting</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#pygamedrawrect">pygame.draw.rect</a></li>
+        <li><a href="#pygamedrawpolygon">pygame.draw.polygon</a></li>
+        <li><a href="#pygamedrawcircle">pygame.draw.circle</a></li>
+        <li><a href="#pygamedrawellipse">pygame.draw.ellipse</a></li>
+        <li><a href="#pygamedrawarc">pygame.draw.arc</a></li>
+        <li><a href="#pygamedrawline">pygame.draw.line</a></li>
+        <li><a href="#pygamedrawlines">pygame.draw.lines</a></li>
+        <li><a href="#pygamedrawaaline">pygame.draw.aaline</a></li>
+        <li><a href="#pygamedrawaalines">pygame.draw.aalines</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">Pygame第4章 创建视觉</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2015年11月7日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/'></a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>电脑游戏倾向于视觉上很自然，游戏开发者花费很多精力在处理图像和提升视觉效果来创建最令人愉快的体验上。</p>
+<h1 id="像素的威力">像素的威力</h1>
 <p>显示器里的一个独立的点称为一个图像单元或像素。如果一个显示器分辨率为1280x1024，则像素总数为1310720。一个屏幕上像素越多，则图片的质量越好。典型的家用电脑可以显示的颜色数量最高为16.7百万个。如果你想显示每一种颜色，你需要一个分辨率4096x4096的显示器。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>))
 
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">))</span>
+all_colors <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>Surface((<span style="color:#099">4096</span>, <span style="color:#099">4096</span>), depth<span style="color:#000;font-weight:bold">=</span><span style="color:#099">24</span>)
 
-<span class="n">all_colors</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Surface</span><span class="p">((</span><span class="mi">4096</span><span class="p">,</span> <span class="mi">4096</span><span class="p">),</span> <span class="n">depth</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span style="color:#000;font-weight:bold">for</span> r <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">xrange</span>(<span style="color:#099">256</span>):
+    <span style="color:#000;font-weight:bold">print</span> r <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>, <span style="color:#d14">&#39;out of 256&#39;</span>
+    x <span style="color:#000;font-weight:bold">=</span> (r <span style="color:#000;font-weight:bold">&amp;</span> <span style="color:#099">15</span>) <span style="color:#000;font-weight:bold">*</span> <span style="color:#099">256</span>
+    y <span style="color:#000;font-weight:bold">=</span> (r <span style="color:#000;font-weight:bold">&gt;&gt;</span> <span style="color:#099">4</span>) <span style="color:#000;font-weight:bold">*</span> <span style="color:#099">256</span>
+    <span style="color:#000;font-weight:bold">for</span> g <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">xrange</span>(<span style="color:#099">256</span>):
+        <span style="color:#000;font-weight:bold">for</span> b <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">xrange</span>(<span style="color:#099">256</span>):
+            all_colors<span style="color:#000;font-weight:bold">.</span>set_at((x <span style="color:#000;font-weight:bold">+</span> g, y <span style="color:#000;font-weight:bold">+</span> b), (r, g, b))
 
-<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
-    <span class="k">print</span> <span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;out of 256&#39;</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span> <span class="o">&amp;</span> <span class="mi">15</span><span class="p">)</span> <span class="o">*</span> <span class="mi">256</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">256</span>
-    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
-            <span class="n">all_colors</span><span class="o">.</span><span class="n">set_at</span><span class="p">((</span><span class="n">x</span> <span class="o">+</span> <span class="n">g</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">b</span><span class="p">),</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
-
-<span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">all_colors</span><span class="p">,</span> <span class="s1">&#39;allcolors.bmp&#39;</span><span class="p">)</span></code></pre></div>
-
+pygame<span style="color:#000;font-weight:bold">.</span>image<span style="color:#000;font-weight:bold">.</span>save(all_colors, <span style="color:#d14">&#39;allcolors.bmp&#39;</span>)</code></pre></div>
 <p>上面程序用到的类或方法：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Surface</span>(__builtin__<span style="color:#000;font-weight:bold">.</span>object)
+ <span style="color:#000;font-weight:bold">|</span>  pygame<span style="color:#000;font-weight:bold">.</span>Surface((width, height), flags<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>, depth<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>, masks<span style="color:#000;font-weight:bold">=</span><span style="color:#999">None</span>): <span style="color:#000;font-weight:bold">return</span> Surface
+ <span style="color:#000;font-weight:bold">|</span>  pygame<span style="color:#000;font-weight:bold">.</span>Surface((width, height), flags<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>, Surface): <span style="color:#000;font-weight:bold">return</span> Surface
+ <span style="color:#000;font-weight:bold">|</span>  pygame <span style="color:#0086b3">object</span> <span style="color:#000;font-weight:bold">for</span> representing images
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Surface</span><span class="p">(</span><span class="n">__builtin__</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
- <span class="o">|</span>  <span class="n">pygame</span><span class="o">.</span><span class="n">Surface</span><span class="p">((</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">masks</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span> <span class="k">return</span> <span class="n">Surface</span>
- <span class="o">|</span>  <span class="n">pygame</span><span class="o">.</span><span class="n">Surface</span><span class="p">((</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">Surface</span><span class="p">):</span> <span class="k">return</span> <span class="n">Surface</span>
- <span class="o">|</span>  <span class="n">pygame</span> <span class="nb">object</span> <span class="k">for</span> <span class="n">representing</span> <span class="n">images</span>
+set_at(<span style="color:#000;font-weight:bold">...</span>)
+    Surface<span style="color:#000;font-weight:bold">.</span>set_at((x, y), Color): <span style="color:#000;font-weight:bold">return</span> <span style="color:#999">None</span>
+    <span style="color:#0086b3">set</span> the color value <span style="color:#000;font-weight:bold">for</span> a single pixel
 
-<span class="n">set_at</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-    <span class="n">Surface</span><span class="o">.</span><span class="n">set_at</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">Color</span><span class="p">):</span> <span class="k">return</span> <span class="bp">None</span>
-    <span class="nb">set</span> <span class="n">the</span> <span class="n">color</span> <span class="n">value</span> <span class="k">for</span> <span class="n">a</span> <span class="n">single</span> <span class="n">pixel</span>
-
-<span class="n">save</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-    <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">Surface</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span> <span class="k">return</span> <span class="bp">None</span>
-    <span class="n">save</span> <span class="n">an</span> <span class="n">image</span> <span class="n">to</span> <span class="n">disk</span></code></pre></div>
-
-<h1 id="和颜色打交道">和颜色打交道<a href="#和颜色打交道" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
-<h3 id="pygame中表示颜色">Pygame中表示颜色<a href="#pygame中表示颜色" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+save(<span style="color:#000;font-weight:bold">...</span>)
+    pygame<span style="color:#000;font-weight:bold">.</span>image<span style="color:#000;font-weight:bold">.</span>save(Surface, filename): <span style="color:#000;font-weight:bold">return</span> <span style="color:#999">None</span>
+    save an image to disk</code></pre></div>
+<h1 id="和颜色打交道">和颜色打交道</h1>
+<h3 id="pygame中表示颜色">Pygame中表示颜色</h3>
 <p>当Pygame需要一种颜色，你需要传进一个包含三个数字的元组，分别对应红绿蓝三种颜色，每个数值范围为[0, 255]。</p>
-
 <table>
 <thead>
 <tr>
@@ -133,7 +282,6 @@
 <th align="left">元组</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>黑(Black)</td>
@@ -142,7 +290,6 @@
 <td align="left">0</td>
 <td align="left">(0, 0, 0)</td>
 </tr>
-
 <tr>
 <td>蓝(Blue)</td>
 <td align="left">0</td>
@@ -150,7 +297,6 @@
 <td align="left">255</td>
 <td align="left">(0, 0, 255)</td>
 </tr>
-
 <tr>
 <td>绿(Green)</td>
 <td align="left">0</td>
@@ -158,7 +304,6 @@
 <td align="left">0</td>
 <td align="left">(0, 255, 0)</td>
 </tr>
-
 <tr>
 <td>蓝绿(Cyan)</td>
 <td align="left">0</td>
@@ -166,7 +311,6 @@
 <td align="left">255</td>
 <td align="left">(0, 255, 255)</td>
 </tr>
-
 <tr>
 <td>红(Red)</td>
 <td align="left">255</td>
@@ -174,7 +318,6 @@
 <td align="left">0</td>
 <td align="left">(255, 0, 0)</td>
 </tr>
-
 <tr>
 <td>洋红(Magenta)</td>
 <td align="left">255</td>
@@ -182,7 +325,6 @@
 <td align="left">255</td>
 <td align="left">(255, 0, 255)</td>
 </tr>
-
 <tr>
 <td>黄(Yellow)</td>
 <td align="left">255</td>
@@ -190,7 +332,6 @@
 <td align="left">0</td>
 <td align="left">(255, 255, 0)</td>
 </tr>
-
 <tr>
 <td>白(White)</td>
 <td align="left">255</td>
@@ -200,187 +341,164 @@
 </tr>
 </tbody>
 </table>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span style="color:#998;font-style:italic"># Creates images with smooth gradients</span>
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">create_scales</span>(height):
+    red_scale_surface <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>surface<span style="color:#000;font-weight:bold">.</span>Surface((<span style="color:#099">640</span>, height))
+    green_scale_surface <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>surface<span style="color:#000;font-weight:bold">.</span>Surface((<span style="color:#099">640</span>, height))
+    blue_scale_surface <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>surface<span style="color:#000;font-weight:bold">.</span>Surface((<span style="color:#099">640</span>, height))
+    <span style="color:#000;font-weight:bold">for</span> x <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">range</span>(<span style="color:#099">640</span>):
+        c <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">int</span>((x <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">639.</span>) <span style="color:#000;font-weight:bold">*</span> <span style="color:#099">255.</span>)
+        red <span style="color:#000;font-weight:bold">=</span> (c, <span style="color:#099">0</span>, <span style="color:#099">0</span>)
+        green <span style="color:#000;font-weight:bold">=</span> (<span style="color:#099">0</span>, c, <span style="color:#099">0</span>)
+        blue <span style="color:#000;font-weight:bold">=</span> (<span style="color:#099">0</span>, <span style="color:#099">0</span>, c)
+        line_rect <span style="color:#000;font-weight:bold">=</span> Rect(x, <span style="color:#099">0</span>, <span style="color:#099">1</span>, height)
+        pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>rect(red_scale_surface, red, line_rect)
+        pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>rect(green_scale_surface, green, line_rect)
+        pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>rect(blue_scale_surface, blue, line_rect)
+    <span style="color:#000;font-weight:bold">return</span> red_scale_surface, green_scale_surface, blue_scale_surface
 
-<span class="c1"># Creates images with smooth gradients</span>
-<span class="k">def</span> <span class="nf">create_scales</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
-    <span class="n">red_scale_surface</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">Surface</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
-    <span class="n">green_scale_surface</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">Surface</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
-    <span class="n">blue_scale_surface</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">Surface</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">640</span><span class="p">):</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">x</span> <span class="o">/</span> <span class="mf">639.</span><span class="p">)</span> <span class="o">*</span> <span class="mf">255.</span><span class="p">)</span>
-        <span class="n">red</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">green</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">blue</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-        <span class="n">line_rect</span> <span class="o">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">red_scale_surface</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="n">line_rect</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">green_scale_surface</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">line_rect</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">blue_scale_surface</span><span class="p">,</span> <span class="n">blue</span><span class="p">,</span> <span class="n">line_rect</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">red_scale_surface</span><span class="p">,</span> <span class="n">green_scale_surface</span><span class="p">,</span> <span class="n">blue_scale_surface</span>
+red_scale, green_scale, blue_scale <span style="color:#000;font-weight:bold">=</span> create_scales(<span style="color:#099">80</span>)
 
-<span class="n">red_scale</span><span class="p">,</span> <span class="n">green_scale</span><span class="p">,</span> <span class="n">blue_scale</span> <span class="o">=</span> <span class="n">create_scales</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+color <span style="color:#000;font-weight:bold">=</span> [<span style="color:#099">127</span>, <span style="color:#099">127</span>, <span style="color:#099">127</span>]
 
-<span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="mi">127</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">127</span><span class="p">]</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+    screen<span style="color:#000;font-weight:bold">.</span>fill((<span style="color:#099">0</span>, <span style="color:#099">0</span>, <span style="color:#099">0</span>))
 
-    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span style="color:#998;font-style:italic"># Draw the scales to the screen</span>
+    screen<span style="color:#000;font-weight:bold">.</span>blit(red_scale, (<span style="color:#099">0</span>, <span style="color:#099">0</span>))
+    screen<span style="color:#000;font-weight:bold">.</span>blit(green_scale, (<span style="color:#099">0</span>, <span style="color:#099">80</span>))
+    screen<span style="color:#000;font-weight:bold">.</span>blit(blue_scale, (<span style="color:#099">0</span>, <span style="color:#099">160</span>))
 
-    <span class="c1"># Draw the scales to the screen</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">red_scale</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">green_scale</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">blue_scale</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">160</span><span class="p">))</span>
+    x, y <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>mouse<span style="color:#000;font-weight:bold">.</span>get_pos()
 
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pos</span><span class="p">()</span>
+    <span style="color:#998;font-style:italic"># If the mouse was pressed on one of the sliders, adjust the color component</span>
+    <span style="color:#000;font-weight:bold">if</span> pygame<span style="color:#000;font-weight:bold">.</span>mouse<span style="color:#000;font-weight:bold">.</span>get_pressed()[<span style="color:#099">0</span>]:
+        <span style="color:#000;font-weight:bold">for</span> component <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">range</span>(<span style="color:#099">3</span>):
+            <span style="color:#000;font-weight:bold">if</span> y <span style="color:#000;font-weight:bold">&gt;</span> component <span style="color:#000;font-weight:bold">*</span> <span style="color:#099">80</span> <span style="color:#000;font-weight:bold">and</span> y <span style="color:#000;font-weight:bold">&lt;</span> (component <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>) <span style="color:#000;font-weight:bold">*</span> <span style="color:#099">80</span>:
+                color[component] <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">int</span>((x <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">639.</span>) <span style="color:#000;font-weight:bold">*</span> <span style="color:#099">255.</span>)
+        pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_caption(<span style="color:#d14">&#39;Pygame Color Test - &#39;</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#0086b3">str</span>(<span style="color:#0086b3">tuple</span>(color)))
 
-    <span class="c1"># If the mouse was pressed on one of the sliders, adjust the color component</span>
-    <span class="k">if</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()[</span><span class="mi">0</span><span class="p">]:</span>
-        <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="n">component</span> <span class="o">*</span> <span class="mi">80</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">component</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">80</span><span class="p">:</span>
-                <span class="n">color</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">x</span> <span class="o">/</span> <span class="mf">639.</span><span class="p">)</span> <span class="o">*</span> <span class="mf">255.</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s1">&#39;Pygame Color Test - &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">color</span><span class="p">)))</span>
+    <span style="color:#998;font-style:italic"># Draw a circle for each slider to represent the current setting</span>
+    <span style="color:#000;font-weight:bold">for</span> component <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">range</span>(<span style="color:#099">3</span>):
+        pos <span style="color:#000;font-weight:bold">=</span> (<span style="color:#0086b3">int</span>((color[component] <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">255.</span>) <span style="color:#000;font-weight:bold">*</span> <span style="color:#099">639</span>), component <span style="color:#000;font-weight:bold">*</span> <span style="color:#099">80</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">40</span>)
+        pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>circle(screen, (<span style="color:#099">255</span>, <span style="color:#099">255</span>, <span style="color:#099">255</span>), pos, <span style="color:#099">20</span>)
 
-    <span class="c1"># Draw a circle for each slider to represent the current setting</span>
-    <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-        <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">((</span><span class="n">color</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">/</span> <span class="mf">255.</span><span class="p">)</span> <span class="o">*</span> <span class="mi">639</span><span class="p">),</span> <span class="n">component</span> <span class="o">*</span> <span class="mi">80</span> <span class="o">+</span> <span class="mi">40</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">pos</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>rect(screen, <span style="color:#0086b3">tuple</span>(color), (<span style="color:#099">0</span>, <span style="color:#099">240</span>, <span style="color:#099">640</span>, <span style="color:#099">240</span>))
 
-    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">color</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">240</span><span class="p">))</span>
-
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
 <p>上面程序用到的类或方法：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Rect</span>(__builtin__<span style="color:#000;font-weight:bold">.</span>object)
+ <span style="color:#000;font-weight:bold">|</span>  pygame<span style="color:#000;font-weight:bold">.</span>Rect(left, top, width, height): <span style="color:#000;font-weight:bold">return</span> Rect
+ <span style="color:#000;font-weight:bold">|</span>  pygame<span style="color:#000;font-weight:bold">.</span>Rect((left, top), (width, height)): <span style="color:#000;font-weight:bold">return</span> Rect
+ <span style="color:#000;font-weight:bold">|</span>  pygame<span style="color:#000;font-weight:bold">.</span>Rect(<span style="color:#0086b3">object</span>): <span style="color:#000;font-weight:bold">return</span> Rect
+ <span style="color:#000;font-weight:bold">|</span>  pygame <span style="color:#0086b3">object</span> <span style="color:#000;font-weight:bold">for</span> storing rectangular coordinates
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Rect</span><span class="p">(</span><span class="n">__builtin__</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
- <span class="o">|</span>  <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span> <span class="k">return</span> <span class="n">Rect</span>
- <span class="o">|</span>  <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">((</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">),</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)):</span> <span class="k">return</span> <span class="n">Rect</span>
- <span class="o">|</span>  <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span> <span class="k">return</span> <span class="n">Rect</span>
- <span class="o">|</span>  <span class="n">pygame</span> <span class="nb">object</span> <span class="k">for</span> <span class="n">storing</span> <span class="n">rectangular</span> <span class="n">coordinates</span>
+rect(<span style="color:#000;font-weight:bold">...</span>)
+    pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>rect(Surface, color, Rect, width<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>): <span style="color:#000;font-weight:bold">return</span> Rect
+    draw a rectangle shape
 
-<span class="n">rect</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">Surface</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">Rect</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span> <span class="k">return</span> <span class="n">Rect</span>
-    <span class="n">draw</span> <span class="n">a</span> <span class="n">rectangle</span> <span class="n">shape</span>
+get_pressed(<span style="color:#000;font-weight:bold">...</span>)
+    pygame<span style="color:#000;font-weight:bold">.</span>mouse<span style="color:#000;font-weight:bold">.</span>get_pressed(): <span style="color:#000;font-weight:bold">return</span> (button1, button2, button3)
+    get the state of the mouse buttons
 
-<span class="n">get_pressed</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-    <span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">():</span> <span class="k">return</span> <span class="p">(</span><span class="n">button1</span><span class="p">,</span> <span class="n">button2</span><span class="p">,</span> <span class="n">button3</span><span class="p">)</span>
-    <span class="n">get</span> <span class="n">the</span> <span class="n">state</span> <span class="n">of</span> <span class="n">the</span> <span class="n">mouse</span> <span class="n">buttons</span>
-
-<span class="n">circle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">Surface</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span> <span class="k">return</span> <span class="n">Rect</span>
-    <span class="n">draw</span> <span class="n">a</span> <span class="n">circle</span> <span class="n">around</span> <span class="n">a</span> <span class="n">point</span></code></pre></div>
-
-<h3 id="调整颜色">调整颜色<a href="#调整颜色" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+circle(<span style="color:#000;font-weight:bold">...</span>)
+    pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>circle(Surface, color, pos, radius, width<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>): <span style="color:#000;font-weight:bold">return</span> Rect
+    draw a circle around a point</code></pre></div>
+<h3 id="调整颜色">调整颜色</h3>
 <p>要使颜色变暗，只需RGB每一个值都乘于一个0和1之间的系数。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">scale_color</span>(color, scale):
+    red, green, blue <span style="color:#000;font-weight:bold">=</span> color
+    red <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">int</span>(red <span style="color:#000;font-weight:bold">*</span> scale)
+    green <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">int</span>(green <span style="color:#000;font-weight:bold">*</span> scale)
+    blue <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">int</span>(blue <span style="color:#000;font-weight:bold">*</span> scale)
+    <span style="color:#000;font-weight:bold">return</span> red, green, blue
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">scale_color</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
-    <span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span> <span class="o">=</span> <span class="n">color</span>
-    <span class="n">red</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">red</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span>
-    <span class="n">green</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">green</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span>
-    <span class="n">blue</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">blue</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span>
-
-<span class="n">fireball_orange</span> <span class="o">=</span> <span class="p">(</span><span class="mi">221</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">fireball_orange</span>
-<span class="k">print</span> <span class="n">scale_color</span><span class="p">(</span><span class="n">fireball_orange</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span></code></pre></div>
-
+fireball_orange <span style="color:#000;font-weight:bold">=</span> (<span style="color:#099">221</span>, <span style="color:#099">99</span>, <span style="color:#099">20</span>)
+<span style="color:#000;font-weight:bold">print</span> fireball_orange
+<span style="color:#000;font-weight:bold">print</span> scale_color(fireball_orange, <span style="color:#000;font-weight:bold">.</span><span style="color:#099">5</span>)</code></pre></div>
 <p>如果乘于一个大于1的数，颜色会变得更亮。但是如果颜色值大于255时，Pygame会抛出TypeError异常。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">saturate_color</span><span class="p">(</span><span class="n">color</span><span class="p">):</span>
-    <span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span> <span class="o">=</span> <span class="n">color</span>
-    <span class="n">red</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">red</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
-    <span class="n">green</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">green</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
-    <span class="n">blue</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">blue</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span></code></pre></div>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">saturate_color</span>(color):
+    red, green, blue <span style="color:#000;font-weight:bold">=</span> color
+    red <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">min</span>(red, <span style="color:#099">255</span>)
+    green <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">min</span>(green, <span style="color:#099">255</span>)
+    blue <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">min</span>(blue, <span style="color:#099">255</span>)
+    <span style="color:#000;font-weight:bold">return</span> red, green, blue</code></pre></div>
 <p>当颜色饱和至255时，可能就失去原来的色调了，所以需要注意调整的系数。</p>
-
-<h3 id="混合颜色">混合颜色<a href="#混合颜色" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="混合颜色">混合颜色</h3>
 <p>有时候我们想要将一种颜色逐渐混入另一种颜色，比如一个僵尸在路过一个火山熔岩坑的时候，它会由绿色变成橙红色，再变为正常的绿色。我们怎样才能计算中间的颜色使得颜色转换平滑自然呢？
-我们用一种叫做<strong>线性插值(linear interpolation)</strong>的方法来做这件事情。公式如下：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lerp</span><span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">value1</span> <span class="o">+</span> <span class="p">(</span><span class="n">value2</span> <span class="o">-</span> <span class="n">value1</span><span class="p">)</span> <span class="o">*</span> <span class="n">factor</span></code></pre></div>
-
+我们用一种叫做**线性插值(linear interpolation)**的方法来做这件事情。公式如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">lerp</span>(value1, value2, factor):
+    <span style="color:#000;font-weight:bold">return</span> value1 <span style="color:#000;font-weight:bold">+</span> (value2 <span style="color:#000;font-weight:bold">-</span> value1) <span style="color:#000;font-weight:bold">*</span> factor</code></pre></div>
 <p>如果逐渐改变系数因子，就会产生颜色的平滑转换。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+color1 <span style="color:#000;font-weight:bold">=</span> (<span style="color:#099">221</span>, <span style="color:#099">99</span>, <span style="color:#099">20</span>) <span style="color:#998;font-style:italic"># 火球黄</span>
+color2 <span style="color:#000;font-weight:bold">=</span> (<span style="color:#099">96</span>, <span style="color:#099">130</span>, <span style="color:#099">51</span>) <span style="color:#998;font-style:italic"># 僵尸绿</span>
 
-<span class="n">color1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">221</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span> <span class="c1"># 火球黄</span>
-<span class="n">color2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">51</span><span class="p">)</span> <span class="c1"># 僵尸绿</span>
+factor <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>
 
-<span class="n">factor</span> <span class="o">=</span> <span class="mi">0</span>
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">lerp</span>(value1, value2, factor):
+    <span style="color:#000;font-weight:bold">return</span> value1 <span style="color:#000;font-weight:bold">+</span> (value2 <span style="color:#000;font-weight:bold">-</span> value1) <span style="color:#000;font-weight:bold">*</span> factor
 
-<span class="k">def</span> <span class="nf">lerp</span><span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">value1</span> <span class="o">+</span> <span class="p">(</span><span class="n">value2</span> <span class="o">-</span> <span class="n">value1</span><span class="p">)</span> <span class="o">*</span> <span class="n">factor</span>
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">blend_color</span>(color1, color2, blend_factor):
+    red1, green1, blue1 <span style="color:#000;font-weight:bold">=</span> color1
+    red2, green2, blue2 <span style="color:#000;font-weight:bold">=</span> color2
+    red <span style="color:#000;font-weight:bold">=</span> lerp(red1, red2, blend_factor)
+    green <span style="color:#000;font-weight:bold">=</span> lerp(green1, green2, blend_factor)
+    blue <span style="color:#000;font-weight:bold">=</span> lerp(blue1, blue2, blend_factor)
+    <span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">int</span>(red), <span style="color:#0086b3">int</span>(green), <span style="color:#0086b3">int</span>(blue)
 
-<span class="k">def</span> <span class="nf">blend_color</span><span class="p">(</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span> <span class="n">blend_factor</span><span class="p">):</span>
-    <span class="n">red1</span><span class="p">,</span> <span class="n">green1</span><span class="p">,</span> <span class="n">blue1</span> <span class="o">=</span> <span class="n">color1</span>
-    <span class="n">red2</span><span class="p">,</span> <span class="n">green2</span><span class="p">,</span> <span class="n">blue2</span> <span class="o">=</span> <span class="n">color2</span>
-    <span class="n">red</span> <span class="o">=</span> <span class="n">lerp</span><span class="p">(</span><span class="n">red1</span><span class="p">,</span> <span class="n">red2</span><span class="p">,</span> <span class="n">blend_factor</span><span class="p">)</span>
-    <span class="n">green</span> <span class="o">=</span> <span class="n">lerp</span><span class="p">(</span><span class="n">green1</span><span class="p">,</span> <span class="n">green2</span><span class="p">,</span> <span class="n">blend_factor</span><span class="p">)</span>
-    <span class="n">blue</span> <span class="o">=</span> <span class="n">lerp</span><span class="p">(</span><span class="n">blue1</span><span class="p">,</span> <span class="n">blue2</span><span class="p">,</span> <span class="n">blend_factor</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">red</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">green</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">blue</span><span class="p">)</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+    screen<span style="color:#000;font-weight:bold">.</span>fill((<span style="color:#099">255</span>, <span style="color:#099">255</span>, <span style="color:#099">255</span>))
 
-    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+    tri <span style="color:#000;font-weight:bold">=</span> [(<span style="color:#099">0</span>, <span style="color:#099">120</span>), (<span style="color:#099">639</span>, <span style="color:#099">100</span>), (<span style="color:#099">639</span>, <span style="color:#099">140</span>)]
+    pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>polygon(screen, (<span style="color:#099">0</span>, <span style="color:#099">255</span>, <span style="color:#099">0</span>), tri)
+    pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>circle(screen, (<span style="color:#099">0</span>, <span style="color:#099">0</span>, <span style="color:#099">0</span>), (<span style="color:#0086b3">int</span>(factor <span style="color:#000;font-weight:bold">*</span> <span style="color:#099">639.</span>), <span style="color:#099">120</span>), <span style="color:#099">10</span>)
 
-    <span class="n">tri</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">120</span><span class="p">),</span> <span class="p">(</span><span class="mi">639</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">639</span><span class="p">,</span> <span class="mi">140</span><span class="p">)]</span>
-    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">polygon</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">tri</span><span class="p">)</span>
-    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">factor</span> <span class="o">*</span> <span class="mf">639.</span><span class="p">),</span> <span class="mi">120</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+    x, y <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>mouse<span style="color:#000;font-weight:bold">.</span>get_pos()
+    <span style="color:#000;font-weight:bold">if</span> pygame<span style="color:#000;font-weight:bold">.</span>mouse<span style="color:#000;font-weight:bold">.</span>get_pressed()[<span style="color:#099">0</span>]:
+        factor <span style="color:#000;font-weight:bold">=</span> x <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">639.</span>
+        pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_caption(<span style="color:#d14">&#39;Pygame Color Blend Test - </span><span style="color:#d14">%.3f</span><span style="color:#d14">&#39;</span> <span style="color:#000;font-weight:bold">%</span> factor)
 
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pos</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()[</span><span class="mi">0</span><span class="p">]:</span>
-        <span class="n">factor</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">639.</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s1">&#39;Pygame Color Blend Test - </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">factor</span><span class="p">)</span>
+    color <span style="color:#000;font-weight:bold">=</span> blend_color(color1, color2, factor)
+    pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>rect(screen, color, (<span style="color:#099">0</span>, <span style="color:#099">240</span>, <span style="color:#099">640</span>, <span style="color:#099">240</span>))
 
-    <span class="n">color</span> <span class="o">=</span> <span class="n">blend_color</span><span class="p">(</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span>
-    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">240</span><span class="p">))</span>
-
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
 <p>用到的方法：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">polygon</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">polygon</span><span class="p">(</span><span class="n">Surface</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">pointlist</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span> <span class="k">return</span> <span class="n">Rect</span>
-    <span class="n">draw</span> <span class="n">a</span> <span class="n">shape</span> <span class="k">with</span> <span class="nb">any</span> <span class="n">number</span> <span class="n">of</span> <span class="n">sides</span></code></pre></div>
-
-<h1 id="使用图片">使用图片<a href="#使用图片" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">polygon(<span style="color:#000;font-weight:bold">...</span>)
+    pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>polygon(Surface, color, pointlist, width<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>): <span style="color:#000;font-weight:bold">return</span> Rect
+    draw a shape <span style="color:#000;font-weight:bold">with</span> <span style="color:#0086b3">any</span> number of sides</code></pre></div>
+<h1 id="使用图片">使用图片</h1>
 <p>图片对大多数游戏都是一个必须的部分。电脑存储图片为颜色的网阵。除了常见的红绿蓝，有些图片还存储额外的信息(alpha通道)。颜色的alpha值通常用来表示当图片画在另一张图片上的透明度。</p>
-
-<h3 id="存储图片">存储图片<a href="#存储图片" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="存储图片">存储图片</h3>
 <p>有很多方式存储图片到硬盘。多年来，多种图片格式被开发出来。最有用的两种格式是JPEG和PNG。</p>
-
 <ul>
 <li>JPEG(Joint Photographic Expert Group)-JPEG图片文件扩展名为.jpg或.jpeg。数码相机常用这种格式，因为它是特别设计来存储图片的。它使用有损压缩，会降低图片质量，但是能很好地减小文件大小。JPEG不支持透明，对拥有硬边缘的东西比如字体和图表支持不好。</li>
 <li>PNG(Portable Network Graphics)-PNG可能是最全面的图片格式，因为它能保存很多种图片类型并且压缩也很好。它也支持alpha通道，对游戏开发者来说是福利。PNG使用的压缩是无损压缩，缺点就是文件比JPEG文件大。</li>
 </ul>
-
 <p>除了JPEG和PNG，Pygame支持读取下面的格式：</p>
-
 <ul>
 <li>GIF(非动态)-网上使用的很多，支持透明和动画，只是只能有256种颜色，软件和游戏中使用很少</li>
 <li>BMP-Windows上的标准图像格式，无压缩，质量很高但尺寸很大，一般不使用</li>
@@ -391,173 +509,119 @@
 <li>PBM(和PGM，PPM)</li>
 <li>XPM</li>
 </ul>
-
 <p>根据经验，对于拥有很多颜色变化的大图片文件使用JPEG，否则使用PNG。</p>
-
-<h3 id="使用surface对象">使用Surface对象<a href="#使用surface对象" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="使用surface对象">使用Surface对象</h3>
 <p>加载图片到Pygame只需一行，<strong>pygame.image.load</strong>接收一个图片文件名返回一个Surface对象，它是图片的容器。Surface对象可以表示许多种图片类型，但是Pygame隐藏了大多数细节，因此我们能够以相同的方式对待它们。你可以在Surface对象上画图，变形，或拷贝到另一个Surface。甚至屏幕也是一个Surface对象。</p>
-
-<h3 id="创建surface对象">创建Surface对象<a href="#创建surface对象" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="创建surface对象">创建Surface对象</h3>
 <p>调用<strong>pygame.image.load</strong>是一种创建Surface的方式，它会创建和图片文件相同尺寸和颜色的Surface。也可以创建任意尺寸的空白Surface。使用<strong>pygame.Surface</strong>构造函数可以创建一个空白Surface。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">blank_surface</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Surface</span><span class="p">((</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span></code></pre></div>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">blank_surface <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>Surface((<span style="color:#099">256</span>, <span style="color:#099">256</span>))</code></pre></div>
 <p>还有一些选项会影响图片的创建。第一个参数是flags：</p>
-
 <ul>
 <li>HWSURFACE-创建硬件外观，比非硬件外观更快。通常最好不要设置这个标志，而是留给Pygame决定是否使用硬件外观。</li>
 <li>SRCALPHA-创建拥有alpha信息的外观。这个选项需要depth参数设为32。</li>
 </ul>
-
 <p>第二个参数为depth，这个参数和<strong>pygame.display.set_mode</strong>的depth参数一样。通常最好不要设置这个参数(或设置为0)，但是如果想要保留alpha信息，则必须设置为32。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">blank_alpha_surface</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Surface</span><span class="p">((</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">flags</span><span class="o">=</span><span class="n">SRCALPHA</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span></code></pre></div>
-
-<h3 id="转换surface">转换Surface<a href="#转换surface" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">blank_alpha_surface <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>Surface((<span style="color:#099">256</span>, <span style="color:#099">256</span>), flags<span style="color:#000;font-weight:bold">=</span>SRCALPHA, depth<span style="color:#000;font-weight:bold">=</span><span style="color:#099">32</span>)</code></pre></div>
+<h3 id="转换surface">转换Surface</h3>
 <p>当你使用Surface对象时，你不需要担心图像信息在内存是怎么存储的，因为Pygame隐藏了这些细节，因此不管什么图片类型，你的代码都能工作。自动转换的唯一缺点是如果你使用不同格式的图片，Pygame需要做更多工作，这可能会降低游戏性能。解决的方法是使用<strong>convert</strong>方法转换所有的图片为相同的格式。</p>
-
-<p>如果不带参数调用<strong>convert</strong>，Surface会被转换为和显示设备的Surface一样的格式。这很有用因为通常起点和终点是相同类型的话拷贝Surface非常快，而大多数图片最终会被拷贝到显示设备。调用<strong>pygame.image.load</strong>时附加<strong>.convert()</strong>是个好习惯。Pygame还提供<strong>convert_alpha</strong>方法，转换Surface并保留alpha信息。</p>
-
+<p>如果不带参数调用<strong>convert</strong>，Surface会被转换为和显示设备的Surface一样的格式。这很有用因为通常起点和终点是相同类型的话拷贝Surface非常快，而大多数图片最终会被拷贝到显示设备。调用<strong>pygame.image.load</strong>时附加**.convert()**是个好习惯。Pygame还提供**convert_alpha**方法，转换Surface并保留alpha信息。</p>
 <p><strong>convert</strong>和<strong>convert_alpha</strong>可以接收另外一个Surface参数，如果提供了这个参数，则Surface会被转换为和参数一样的Surface。</p>
-
-<h3 id="矩形对象">矩形对象<a href="#矩形对象" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="矩形对象">矩形对象</h3>
 <p>当一个函数调用会影响到屏幕的某一部分时，Pygame通常需要你提供一个矩形区域。你可以使用一个4元组定义矩形区域，(left, top, width, height)。或者使用2个2元组，((left, top), (width, height))。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">my_rect1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
-<span class="n">my_rect2</span> <span class="o">=</span> <span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">))</span></code></pre></div>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">my_rect1 <span style="color:#000;font-weight:bold">=</span> (<span style="color:#099">100</span>, <span style="color:#099">100</span>, <span style="color:#099">200</span>, <span style="color:#099">150</span>)
+my_rect2 <span style="color:#000;font-weight:bold">=</span> ((<span style="color:#099">100</span>, <span style="color:#099">100</span>), (<span style="color:#099">200</span>, <span style="color:#099">150</span>))</code></pre></div>
 <p>Pygame有一个Rect类存储和处理矩形对象。因为Rect对象很常使用，所以它包含在<strong>pygame.locals</strong>里面。创建Rect对象使用一样的元组参数。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">my_rect3</span> <span class="o">=</span> <span class="n">Rect</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
-<span class="n">my_rect4</span> <span class="o">=</span> <span class="n">Rect</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">))</span></code></pre></div>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">my_rect3 <span style="color:#000;font-weight:bold">=</span> Rect(<span style="color:#099">100</span>, <span style="color:#099">100</span>, <span style="color:#099">200</span>, <span style="color:#099">150</span>)
+my_rect4 <span style="color:#000;font-weight:bold">=</span> Rect((<span style="color:#099">100</span>, <span style="color:#099">100</span>), (<span style="color:#099">200</span>, <span style="color:#099">150</span>))</code></pre></div>
 <p>一旦创建了Rect对象，就可以使用它来调整位置和大小，检查一个点是否在其中，判断矩形是否交叉等。详细请参考<a href="http://www.pygame.org/docs/ref/rect.html">http://www.pygame.org/docs/ref/rect.html</a></p>
-
-<h3 id="剪裁">剪裁<a href="#剪裁" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="剪裁">剪裁</h3>
 <p>通常创建游戏画面的时候，你可能想只绘制一部分。为了解决这个问题，Surface有一个剪裁区域，定义了屏幕的哪一部分可以被绘制。使用<strong>set_clip</strong>方法设置剪裁区域，<strong>get_clip</strong>获得当前剪裁区域。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">screen</span><span class="o">.</span><span class="n">set_clip</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
-<span class="n">draw_map</span><span class="p">()</span>
-<span class="n">screen</span><span class="o">.</span><span class="n">set_clip</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
-<span class="n">draw_panel</span><span class="p">()</span></code></pre></div>
-
-<h3 id="子表面-subsurface">子表面(Subsurface)<a href="#子表面-subsurface" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">screen<span style="color:#000;font-weight:bold">.</span>set_clip(<span style="color:#099">0</span>, <span style="color:#099">0</span>, <span style="color:#099">640</span>, <span style="color:#099">300</span>)
+draw_map()
+screen<span style="color:#000;font-weight:bold">.</span>set_clip(<span style="color:#099">0</span>, <span style="color:#099">300</span>, <span style="color:#099">640</span>, <span style="color:#099">180</span>)
+draw_panel()</code></pre></div>
+<h3 id="子表面subsurface">子表面(Subsurface)</h3>
 <p>一个子表面在其它Surface里面的Surface。当你在子表面上画图时，也会画在父表面上。子表面的一个用法是画图形字体。<strong>pygame.font</strong>模块可以产生漂亮的一种颜色的文字，但是游戏可能需要更丰富的表现。你可以为每一个字母保存一个文本，但是更简单的方法是保存所有字母到一张图片，然后创建26个子表面。</p>
-
 <p>使用Surface对象的<strong>subsurface</strong>方法创建子表面，它接收一个Rect参数，表示覆盖父表面哪一部分，返回一个新的和父表面一样格式的Surface对象。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">my_font_image <span style="color:#000;font-weight:bold">=</span> Pygame<span style="color:#000;font-weight:bold">.</span>load(<span style="color:#d14">&#34;font.png&#34;</span>)
+letters <span style="color:#000;font-weight:bold">=</span> {}
+letters[<span style="color:#d14">&#34;a&#34;</span>] <span style="color:#000;font-weight:bold">=</span> my_font_image<span style="color:#000;font-weight:bold">.</span>subsurface((<span style="color:#099">0</span>,<span style="color:#099">0</span>), (<span style="color:#099">80</span>,<span style="color:#099">80</span>))
+letters[<span style="color:#d14">&#34;b&#34;</span>] <span style="color:#000;font-weight:bold">=</span> my_font_image<span style="color:#000;font-weight:bold">.</span>subsurface((<span style="color:#099">80</span>,<span style="color:#099">0</span>), (<span style="color:#099">80</span>,<span style="color:#099">80</span>))
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">my_font_image</span> <span class="o">=</span> <span class="n">Pygame</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&#34;font.png&#34;</span><span class="p">)</span>
-<span class="n">letters</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">letters</span><span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_font_image</span><span class="o">.</span><span class="n">subsurface</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="mi">80</span><span class="p">))</span>
-<span class="n">letters</span><span class="p">[</span><span class="s2">&#34;b&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_font_image</span><span class="o">.</span><span class="n">subsurface</span><span class="p">((</span><span class="mi">80</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="mi">80</span><span class="p">))</span>
-
-<span class="n">subsurface</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-    <span class="n">Surface</span><span class="o">.</span><span class="n">subsurface</span><span class="p">(</span><span class="n">Rect</span><span class="p">):</span> <span class="k">return</span> <span class="n">Surface</span>
-    <span class="n">create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">surface</span> <span class="n">that</span> <span class="n">references</span> <span class="n">its</span> <span class="n">parent</span></code></pre></div>
-
+subsurface(<span style="color:#000;font-weight:bold">...</span>)
+    Surface<span style="color:#000;font-weight:bold">.</span>subsurface(Rect): <span style="color:#000;font-weight:bold">return</span> Surface
+    create a new surface that references its parent</code></pre></div>
 <p>当你使用子表面时，需要记住它们拥有自己的坐标系统。</p>
-
-<h3 id="填充表面">填充表面<a href="#填充表面" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="填充表面">填充表面</h3>
 <p><strong>fill</strong>方法使用指定颜色填充Surface对象。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span></code></pre></div>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">screen<span style="color:#000;font-weight:bold">.</span>fill((<span style="color:#099">0</span>, <span style="color:#099">0</span>, <span style="color:#099">0</span>))</code></pre></div>
 <p><strong>fill</strong>方法也可以带一个可选的Rect参数，指定填充区域。</p>
-
 <blockquote>
 <p><strong>注意</strong> 如果你使用其它方法画整个屏幕，就不必调用<strong>fill</strong>来清屏了。</p>
 </blockquote>
-
-<h3 id="设置表面像素">设置表面像素<a href="#设置表面像素" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="设置表面像素">设置表面像素</h3>
 <p>你能对表面做的一个最基本的事情就是设置单一像素，效果就是画一个非常小的点。很少需要一次画一个像素，因为有更多有效的画图方式，但是你需要处理脱机图片将会很有用。
 使用<strong>set_at</strong>方法，参数为坐标和颜色，可以在表面画一个像素。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+    <span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+    <span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
+    <span style="color:#000;font-weight:bold">from</span> <span style="color:#555">random</span> <span style="color:#000;font-weight:bold">import</span> randint
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">pygame</span>
-    <span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-    <span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
-    <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+    pygame<span style="color:#000;font-weight:bold">.</span>init()
+    screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-    <span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-    <span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+    <span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+        <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+            <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+                <span style="color:#0086b3">exit</span>()
 
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-                <span class="nb">exit</span><span class="p">()</span>
+        rand_col <span style="color:#000;font-weight:bold">=</span> (randint(<span style="color:#099">0</span>, <span style="color:#099">255</span>), randint(<span style="color:#099">0</span>, <span style="color:#099">255</span>), randint(<span style="color:#099">0</span>, <span style="color:#099">255</span>))
+        <span style="color:#000;font-weight:bold">for</span> _ <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">xrange</span>(<span style="color:#099">100</span>):
+            rand_pos <span style="color:#000;font-weight:bold">=</span> (randint(<span style="color:#099">0</span>, <span style="color:#099">639</span>), randint(<span style="color:#099">0</span>, <span style="color:#099">479</span>))
+            screen<span style="color:#000;font-weight:bold">.</span>set_at(rand_pos, rand_col)
 
-        <span class="n">rand_col</span> <span class="o">=</span> <span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-            <span class="n">rand_pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">639</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">479</span><span class="p">))</span>
-            <span class="n">screen</span><span class="o">.</span><span class="n">set_at</span><span class="p">(</span><span class="n">rand_pos</span><span class="p">,</span> <span class="n">rand_col</span><span class="p">)</span>
-
-        <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
-<h3 id="获得表面的像素">获得表面的像素<a href="#获得表面的像素" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+        pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
+<h3 id="获得表面的像素">获得表面的像素</h3>
 <p>与<strong>set_at</strong>相对的是<strong>get_at</strong>，它返回给定坐标像素的颜色。获取像素有时候对于碰撞检测很必要。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">my_color</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">get_at</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span></code></pre></div>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">my_color <span style="color:#000;font-weight:bold">=</span> screen<span style="color:#000;font-weight:bold">.</span>get_at((<span style="color:#099">100</span>, <span style="color:#099">100</span>))</code></pre></div>
 <blockquote>
 <p><strong>注意</strong> <strong>get_at</strong>在读取硬件表面时很慢。显示可能是硬件表面，尤其是全屏显示的时候，所以这时应该避免使用<strong>get_at</strong>。</p>
 </blockquote>
-
-<h3 id="锁定surface">锁定Surface<a href="#锁定surface" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="锁定surface">锁定Surface</h3>
 <p>当Pygame在surface上画图时，surface必须先锁定。当surface被锁定时，Pygame完全控制surface，计算机其它进程只能等到surface解锁时才能使用。当你在surface上画图时，加锁和解锁自动发生。但是如果Pygame需要做太多加锁和解锁，程序会变得没有效率。我们可以通过手动加锁和解锁来减少加锁和解锁的次数，从而提高运行速度。</p>
-
 <blockquote>
 <p><strong>注意</strong> <strong>lock</strong>和<strong>unlock</strong>的次数必须一样，如果忘记了<strong>unlock</strong>一个surface，Pygame将失去响应。</p>
 </blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">random</span> <span style="color:#000;font-weight:bold">import</span> randint
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
-<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
-
-    <span class="n">rand_col</span> <span class="o">=</span> <span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">rand_pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">639</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">479</span><span class="p">))</span>
-        <span class="n">screen</span><span class="o">.</span><span class="n">set_at</span><span class="p">(</span><span class="n">rand_pos</span><span class="p">,</span> <span class="n">rand_col</span><span class="p">)</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">unlock</span><span class="p">()</span>
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
+    rand_col <span style="color:#000;font-weight:bold">=</span> (randint(<span style="color:#099">0</span>, <span style="color:#099">255</span>), randint(<span style="color:#099">0</span>, <span style="color:#099">255</span>), randint(<span style="color:#099">0</span>, <span style="color:#099">255</span>))
+    screen<span style="color:#000;font-weight:bold">.</span>lock()
+    <span style="color:#000;font-weight:bold">for</span> _ <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">xrange</span>(<span style="color:#099">100</span>):
+        rand_pos <span style="color:#000;font-weight:bold">=</span> (randint(<span style="color:#099">0</span>, <span style="color:#099">639</span>), randint(<span style="color:#099">0</span>, <span style="color:#099">479</span>))
+        screen<span style="color:#000;font-weight:bold">.</span>set_at(rand_pos, rand_col)
+    screen<span style="color:#000;font-weight:bold">.</span>unlock()
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
 <p>不是所有的surface需要加锁。硬件surface需要(屏幕通常是硬件surface)，普通的surface不需要。Pygame提供一个<strong>mustlock</strong>方法返回True如果surface需要加锁。加锁不需要加锁的surface没有问题。</p>
-
-<h3 id="blitting">Blitting<a href="#blitting" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="blitting">Blitting</h3>
 <p>最常用的surface对象的方法可能是<strong>blit</strong>，是位块传输(<strong>bit block transfer</strong>)的缩写。Blitting意思是从一个surface拷贝图片数据到另一个surface。你可以使用它来画背景，字体，角色和游戏中几乎所有的事。</p>
-
 <p>为了blit一个surface，用目标surface对象调用<strong>blit</strong>，传递源surface和目的坐标。也可以只blit一部分surface。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">ogre</span><span class="p">,</span> <span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">frame_no</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span></code></pre></div>
-
-<h1 id="用pygame画图">用Pygame画图<a href="#用pygame画图" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">screen<span style="color:#000;font-weight:bold">.</span>blit(background, (<span style="color:#099">0</span>,<span style="color:#099">0</span>))
+screen<span style="color:#000;font-weight:bold">.</span>blit(ogre, (<span style="color:#099">300</span>, <span style="color:#099">200</span>), (<span style="color:#099">100</span><span style="color:#000;font-weight:bold">*</span>frame_no, <span style="color:#099">0</span>, <span style="color:#099">100</span>, <span style="color:#099">100</span>))</code></pre></div>
+<h1 id="用pygame画图">用Pygame画图</h1>
 <p>我们在之前的例子中已经使用过一些<strong>pygame.draw</strong>模块的函数了。这个模块的用途就是在屏幕上画几何图形。你可以使用它创建整个游戏而不需要加载其它图片。</p>
-
 <p><strong>pygame.draw</strong>模块的函数前两个参数都是surface和颜色。每一个函数也会至少带一个点，也许是一个点的列表。每个点是一个包含坐标的元组。</p>
-
 <p>画图函数返回一个Rect对象包含了绘制过的区域，对于只想绘制屏幕的一部分很有用。</p>
-
 <table>
 <thead>
 <tr>
@@ -565,293 +629,471 @@
 <th align="left">用途</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>rect</td>
 <td align="left">绘制矩形</td>
 </tr>
-
 <tr>
 <td>polygon</td>
 <td align="left">绘制多边形(三条边或更多)</td>
 </tr>
-
 <tr>
 <td>circle</td>
 <td align="left">绘制圆</td>
 </tr>
-
 <tr>
 <td>ellipse</td>
 <td align="left">绘制椭圆</td>
 </tr>
-
 <tr>
 <td>arc</td>
 <td align="left">绘制圆弧</td>
 </tr>
-
 <tr>
 <td>line</td>
 <td align="left">绘制直线</td>
 </tr>
-
 <tr>
 <td>lines</td>
 <td align="left">绘制多个直线</td>
 </tr>
-
 <tr>
 <td>aaline</td>
 <td align="left">绘制平滑直线</td>
 </tr>
-
 <tr>
 <td>aalines</td>
 <td align="left">绘制多个平滑直线</td>
 </tr>
 </tbody>
 </table>
-
-<h3 id="pygame-draw-rect">pygame.draw.rect<a href="#pygame-draw-rect" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="pygamedrawrect">pygame.draw.rect</h3>
 <p>这个函数在surface上画一个矩形。除了目的surface和颜色，<strong>pygame.draw.rect</strong>接收一个Rect对象和width作为参数。如果width为0或忽略，则用固定颜色填充矩形，否则只画边缘。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">random</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
 
-<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="o">*</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+    screen<span style="color:#000;font-weight:bold">.</span>lock()
+    <span style="color:#000;font-weight:bold">for</span> count <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">range</span>(<span style="color:#099">10</span>):
+        random_color <span style="color:#000;font-weight:bold">=</span> (randint(<span style="color:#099">0</span>, <span style="color:#099">255</span>), randint(<span style="color:#099">0</span>, <span style="color:#099">255</span>), randint(<span style="color:#099">0</span>, <span style="color:#099">255</span>))
+        random_pos <span style="color:#000;font-weight:bold">=</span> (randint(<span style="color:#099">0</span>, <span style="color:#099">639</span>), randint(<span style="color:#099">0</span>, <span style="color:#099">479</span>))
+        random_size <span style="color:#000;font-weight:bold">=</span> (<span style="color:#099">639</span> <span style="color:#000;font-weight:bold">-</span> randint(random_pos[<span style="color:#099">0</span>], <span style="color:#099">639</span>), <span style="color:#099">479</span> <span style="color:#000;font-weight:bold">-</span>
+            randint(random_pos[<span style="color:#099">1</span>], <span style="color:#099">479</span>))
+        pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>rect(screen, random_color, Rect(random_pos, random_size))
+    screen<span style="color:#000;font-weight:bold">.</span>unlock()
 
-    <span class="n">screen</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-        <span class="n">random_color</span> <span class="o">=</span> <span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
-        <span class="n">random_pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">639</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">479</span><span class="p">))</span>
-        <span class="n">random_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">639</span> <span class="o">-</span> <span class="n">randint</span><span class="p">(</span><span class="n">random_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">639</span><span class="p">),</span> <span class="mi">479</span> <span class="o">-</span>
-            <span class="n">randint</span><span class="p">(</span><span class="n">random_pos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">479</span><span class="p">))</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="n">random_color</span><span class="p">,</span> <span class="n">Rect</span><span class="p">(</span><span class="n">random_pos</span><span class="p">,</span> <span class="n">random_size</span><span class="p">))</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">unlock</span><span class="p">()</span>
-
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
 <p>还有另外一个方法画填充的矩形。surface的<strong>fill</strong>方法接收一个Rect对象指定要填充的区域。<strong>fill</strong>比<strong>pygame.draw.rect</strong>要快，因为<strong>fill</strong>由显卡来执行。</p>
-
-<h3 id="pygame-draw-polygon">pygame.draw.polygon<a href="#pygame-draw-polygon" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="pygamedrawpolygon">pygame.draw.polygon</h3>
 <p><strong>pygame.draw.polygon</strong>接收一系列点的列表并在它们之间画形状。它也有一个width参数，如果width被忽略或设置为0，则多边形被填充，否则只画边缘。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+points <span style="color:#000;font-weight:bold">=</span> []
 
-<span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> MOUSEBUTTONDOWN:
+            points<span style="color:#000;font-weight:bold">.</span>append(event<span style="color:#000;font-weight:bold">.</span>pos)
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">MOUSEBUTTONDOWN</span><span class="p">:</span>
-            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">)</span>
+    screen<span style="color:#000;font-weight:bold">.</span>fill((<span style="color:#099">255</span>, <span style="color:#099">255</span>, <span style="color:#099">255</span>))
 
-    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+    <span style="color:#000;font-weight:bold">if</span> <span style="color:#0086b3">len</span>(points) <span style="color:#000;font-weight:bold">&gt;=</span> <span style="color:#099">3</span>:
+        pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>polygon(screen, (<span style="color:#099">0</span>, <span style="color:#099">255</span>, <span style="color:#099">0</span>), points, <span style="color:#099">1</span>)
+    <span style="color:#000;font-weight:bold">for</span> point <span style="color:#000;font-weight:bold">in</span> points:
+        pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>circle(screen, (<span style="color:#099">0</span>, <span style="color:#099">0</span>, <span style="color:#099">255</span>), point, <span style="color:#099">5</span>)
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">polygon</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">points</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">point</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
-<h3 id="pygame-draw-circle">pygame.draw.circle<a href="#pygame-draw-circle" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
+<h3 id="pygamedrawcircle">pygame.draw.circle</h3>
 <p><strong>circle</strong>函数在surface上画圆。它接收一个圆心坐标和半径作为参数。和之前一样，width参数如果为0或忽略，则圆被填充，否则只画边缘。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">random</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
-<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="o">*</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+    random_color <span style="color:#000;font-weight:bold">=</span> (randint(<span style="color:#099">0</span>, <span style="color:#099">255</span>), randint(<span style="color:#099">0</span>, <span style="color:#099">255</span>), randint(<span style="color:#099">0</span>, <span style="color:#099">255</span>))
+    random_pos <span style="color:#000;font-weight:bold">=</span> (randint(<span style="color:#099">0</span>, <span style="color:#099">639</span>), randint(<span style="color:#099">0</span>, <span style="color:#099">479</span>))
+    random_radius <span style="color:#000;font-weight:bold">=</span> randint(<span style="color:#099">1</span>, <span style="color:#099">200</span>)
+    pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>circle(screen, random_color, random_pos, random_radius)
 
-    <span class="n">random_color</span> <span class="o">=</span> <span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
-    <span class="n">random_pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">639</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">479</span><span class="p">))</span>
-    <span class="n">random_radius</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
-    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="n">random_color</span><span class="p">,</span> <span class="n">random_pos</span><span class="p">,</span> <span class="n">random_radius</span><span class="p">)</span>
-
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
-<h3 id="pygame-draw-ellipse">pygame.draw.ellipse<a href="#pygame-draw-ellipse" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
+<h3 id="pygamedrawellipse">pygame.draw.ellipse</h3>
 <p><strong>用法</strong>： pygame.draw.ellipse(Surface, color, Rect, width=0)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">random</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+    x, y <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>mouse<span style="color:#000;font-weight:bold">.</span>get_pos()
+    screen<span style="color:#000;font-weight:bold">.</span>fill((<span style="color:#099">255</span>, <span style="color:#099">255</span>, <span style="color:#099">255</span>))
+    pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>ellipse(screen, (<span style="color:#099">0</span>, <span style="color:#099">255</span>, <span style="color:#099">0</span>), (<span style="color:#099">0</span>, <span style="color:#099">0</span>, x, y))
 
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pos</span><span class="p">()</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
-    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
-<h3 id="pygame-draw-arc">pygame.draw.arc<a href="#pygame-draw-arc" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
+<h3 id="pygamedrawarc">pygame.draw.arc</h3>
 <p><strong>用法</strong>：pygame.draw.arc(Surface, color, Rect, start_angle, stop_angle, width=1)
 <strong>arc</strong>函数仅仅画椭圆的一部分，而且只画边缘。圆弧是不封闭的，因此没有<strong>fill</strong>方法。这个函数的width参数默认为1，你也可以设置为更大的值以得到更粗的线。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">random</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">math</span> <span style="color:#000;font-weight:bold">import</span> pi
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
-<span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+    x, y <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>mouse<span style="color:#000;font-weight:bold">.</span>get_pos()
+    angle <span style="color:#000;font-weight:bold">=</span> (x <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">639.</span>) <span style="color:#000;font-weight:bold">*</span> pi <span style="color:#000;font-weight:bold">*</span> <span style="color:#099">2</span>
+    screen<span style="color:#000;font-weight:bold">.</span>fill((<span style="color:#099">255</span>, <span style="color:#099">255</span>, <span style="color:#099">255</span>))
+    pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>arc(screen, (<span style="color:#099">0</span>, <span style="color:#099">0</span>, <span style="color:#099">0</span>), (<span style="color:#099">0</span>, <span style="color:#099">0</span>, <span style="color:#099">639</span>, <span style="color:#099">479</span>), <span style="color:#099">0</span>, angle)
 
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pos</span><span class="p">()</span>
-    <span class="n">angle</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mf">639.</span><span class="p">)</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="mi">2</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
-    <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">arc</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">639</span><span class="p">,</span> <span class="mi">479</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span>
-
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
-<h3 id="pygame-draw-line">pygame.draw.line<a href="#pygame-draw-line" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
+<h3 id="pygamedrawline">pygame.draw.line</h3>
 <p><strong>用法</strong>：pygame.draw.line(Surface, color, start_pos, end_pos, width=1)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+    screen<span style="color:#000;font-weight:bold">.</span>fill((<span style="color:#099">255</span>, <span style="color:#099">255</span>, <span style="color:#099">255</span>))
+    mouse_pos <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>mouse<span style="color:#000;font-weight:bold">.</span>get_pos()
 
-    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
-    <span class="n">mouse_pos</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pos</span><span class="p">()</span>
+    <span style="color:#000;font-weight:bold">for</span> x <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">xrange</span>(<span style="color:#099">0</span>, <span style="color:#099">640</span>, <span style="color:#099">20</span>):
+        pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>line(screen, (<span style="color:#099">0</span>, <span style="color:#099">0</span>, <span style="color:#099">0</span>), (x, <span style="color:#099">0</span>), mouse_pos)
+        pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>line(screen, (<span style="color:#099">0</span>, <span style="color:#099">0</span>, <span style="color:#099">0</span>), (x, <span style="color:#099">479</span>), mouse_pos)
 
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">mouse_pos</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">479</span><span class="p">),</span> <span class="n">mouse_pos</span><span class="p">)</span>
+    <span style="color:#000;font-weight:bold">for</span> y <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">xrange</span>(<span style="color:#099">0</span>, <span style="color:#099">480</span>, <span style="color:#099">20</span>):
+        pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>line(screen, (<span style="color:#099">0</span>, <span style="color:#099">0</span>, <span style="color:#099">0</span>), (<span style="color:#099">0</span>, y), mouse_pos)
+        pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>line(screen, (<span style="color:#099">0</span>, <span style="color:#099">0</span>, <span style="color:#099">0</span>), (<span style="color:#099">639</span>, y), mouse_pos)
 
-    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">480</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">mouse_pos</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">639</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">mouse_pos</span><span class="p">)</span>
-
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
-<h3 id="pygame-draw-lines">pygame.draw.lines<a href="#pygame-draw-lines" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
+<h3 id="pygamedrawlines">pygame.draw.lines</h3>
 <p><strong>用法</strong>：pygame.draw.lines(Surface, color, closed, pointlist, width=1)</p>
-
 <p>closed是一个布尔值，指明是否需要多画一条线来使这些线条闭合。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pygame</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pygame.locals</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">sys</span> <span style="color:#000;font-weight:bold">import</span> <span style="color:#0086b3">exit</span>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
-<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+pygame<span style="color:#000;font-weight:bold">.</span>init()
+screen <span style="color:#000;font-weight:bold">=</span> pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>set_mode((<span style="color:#099">640</span>, <span style="color:#099">480</span>), <span style="color:#099">0</span>, <span style="color:#099">32</span>)
 
-<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+points <span style="color:#000;font-weight:bold">=</span> []
 
-<span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+<span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
+    <span style="color:#000;font-weight:bold">for</span> event <span style="color:#000;font-weight:bold">in</span> pygame<span style="color:#000;font-weight:bold">.</span>event<span style="color:#000;font-weight:bold">.</span>get():
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> QUIT:
+            <span style="color:#0086b3">exit</span>()
+        <span style="color:#000;font-weight:bold">if</span> event<span style="color:#000;font-weight:bold">.</span>type <span style="color:#000;font-weight:bold">==</span> MOUSEMOTION:
+            points<span style="color:#000;font-weight:bold">.</span>append(event<span style="color:#000;font-weight:bold">.</span>pos)
+            <span style="color:#000;font-weight:bold">if</span> <span style="color:#0086b3">len</span>(points) <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">100</span>:
+                <span style="color:#000;font-weight:bold">del</span> points[<span style="color:#099">0</span>]
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">MOUSEMOTION</span><span class="p">:</span>
-            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
-                <span class="k">del</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    screen<span style="color:#000;font-weight:bold">.</span>fill((<span style="color:#099">255</span>, <span style="color:#099">255</span>, <span style="color:#099">255</span>))
 
-    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+    <span style="color:#000;font-weight:bold">if</span> <span style="color:#0086b3">len</span>(points) <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">1</span>:
+        pygame<span style="color:#000;font-weight:bold">.</span>draw<span style="color:#000;font-weight:bold">.</span>lines(screen, (<span style="color:#099">255</span>, <span style="color:#099">0</span>, <span style="color:#099">0</span>), <span style="color:#999">False</span>, points, <span style="color:#099">2</span>)
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">lines</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="bp">False</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
-
-<h3 id="pygame-draw-aaline">pygame.draw.aaline<a href="#pygame-draw-aaline" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+    pygame<span style="color:#000;font-weight:bold">.</span>display<span style="color:#000;font-weight:bold">.</span>update()</code></pre></div>
+<h3 id="pygamedrawaaline">pygame.draw.aaline</h3>
 <p><strong>用法</strong>：pygame.draw.aaline(Surface, color, start_pos, end_pos, width=1)</p>
-
 <p>你可能注意到了上一个画线函数画出的线有锯齿。这是因为一个像素对应一个坐标，而这个坐标可能没有直接在线里面，这个现象叫做锯齿。任何试图避免或减少锯齿的方法称为抗锯齿。</p>
-
 <p><strong>pygame.draw.aaline</strong>和<strong>pygame.draw.line</strong>参数一样，但是能画出平滑的直线。缺点是它慢一点。</p>
-
-<h3 id="pygame-draw-aalines">pygame.draw.aalines<a href="#pygame-draw-aalines" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="pygamedrawaalines">pygame.draw.aalines</h3>
 <p><strong>用法</strong>：pygame.draw.aalines(Surface, color, closed, pointlist, width=1)</p>
-
 <p><strong>pygame.draw.aalines</strong>和<strong>pygame.draw.lines</strong>用法一样。</p>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://gitop.cc/tags/python">Python</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>6036 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2015-11-08 05:28 &#43;0800</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="next-post" href="https://gitop.cc/posts/baiyu/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>整理代码片段</span>
-			</a>
-			<a class="prev-post" href="https://gitop.cc/posts/pygame-3/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Pygame第3章 Pygame介绍</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://gitop.cc">招财猫</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://gitop.cc/posts/pygame-4/">http://gitop.cc/posts/pygame-4/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
 </div>
-	</main>
-
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
+<br/>
 
 
-	<script src="https://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/pygame-3/">Pygame第3章 Pygame介绍</a></li>
+        
+        <li><a href="/posts/pyqt-8/">PyQt编程第8章 数据处理和自定义文件类型</a></li>
+        
+        <li><a href="/posts/pyqt-7/">PyQt编程第7章 使用Qt Designer</a></li>
+        
+        <li><a href="/posts/pyqt-6/">PyQt编程第6章 主窗口</a></li>
+        
+        <li><a href="/posts/pyqt-5/">PyQt编程第5章 对话框</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://gitop.cc/tags/Python'>Python</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitop.cc">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Database/">Database (12)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/GUI/">GUI (5)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Gist/">Gist (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Language/">Language (23)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Linux/">Linux (3)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Network/">Network (4)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Tool/">Tool (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitop.cc/tags/C/">C</a>
+    
+    <a href="http://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://gitop.cc/tags/CentOS/">CentOS</a>
+    
+    <a href="http://gitop.cc/tags/Docker/">Docker</a>
+    
+    <a href="http://gitop.cc/tags/Git/">Git</a>
+    
+    <a href="http://gitop.cc/tags/Greenplum/">Greenplum</a>
+    
+    <a href="http://gitop.cc/tags/Idea/">Idea</a>
+    
+    <a href="http://gitop.cc/tags/Java/">Java</a>
+    
+    <a href="http://gitop.cc/tags/Javascript/">Javascript</a>
+    
+    <a href="http://gitop.cc/tags/Markdown/">Markdown</a>
+    
+    <a href="http://gitop.cc/tags/MySQL/">MySQL</a>
+    
+    <a href="http://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
+    
+    <a href="http://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
+    
+    <a href="http://gitop.cc/tags/Python/">Python</a>
+    
+    <a href="http://gitop.cc/tags/Scrapy/">Scrapy</a>
+    
+    <a href="http://gitop.cc/tags/Ubuntu/">Ubuntu</a>
+    
+    <a href="http://gitop.cc/tags/XPath/">XPath</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitop.cc/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://gitop.cc">招财猫的博客 By 招财猫</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
 
 </body>
 

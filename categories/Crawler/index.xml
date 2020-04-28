@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Crawler on 招财猫的博客</title>
+    <link>http://gitop.cc/categories/Crawler/</link>
+    <description>Recent content in Crawler on 招财猫的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 04 Nov 2019 17:49:51 +0800</lastBuildDate>
+    
+	<atom:link href="http://gitop.cc/categories/Crawler/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Scrapy爬虫基础</title>
+      <link>http://gitop.cc/posts/scrapy-fundamental/</link>
+      <pubDate>Mon, 04 Nov 2019 17:49:51 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/scrapy-fundamental/</guid>
+      <description>安装Scrapy 推荐virtualenv安装，步骤如下： 如果没有virtualenv，先安装virtualenv sudo pip3 install virtualenv 创建一个virtualenv环境 virtualenv --no-site-packages scrapy 进入目录，激活virtualenv环境 source bin/activate 安装Scrapy pip install Scrapy 爬虫基本流程 URL 一切都从一个URL开始。您需要从您想要抓取的</description>
+    </item>
+    
+  </channel>
+</rss>

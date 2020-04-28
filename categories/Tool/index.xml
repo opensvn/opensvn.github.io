@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tool on 招财猫的博客</title>
+    <link>http://gitop.cc/categories/Tool/</link>
+    <description>Recent content in Tool on 招财猫的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 02 Nov 2019 13:49:25 +0800</lastBuildDate>
+    
+	<atom:link href="http://gitop.cc/categories/Tool/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>XPath教程</title>
+      <link>http://gitop.cc/posts/xpath/</link>
+      <pubDate>Sat, 02 Nov 2019 13:49:25 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/xpath/</guid>
+      <description>XPath是什么？ XPath代表XML路径语言 XPath使用“类似路径”的语法来标识和导航XML文档中的节点 XPath包含200多个内置函数 XPath是XSLT标准中的一个主要元素 XPath是W3C的推荐 XPath路径表达式 XPath使用路径表达式来选择XML文档中的节点或节点集</description>
+    </item>
+    
+    <item>
+      <title>Git配置多个SSH-Key</title>
+      <link>http://gitop.cc/posts/git-multi-sshkey/</link>
+      <pubDate>Mon, 08 Jul 2019 16:59:22 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/git-multi-sshkey/</guid>
+      <description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 1.生成一个公司用的SSH-Key $ ssh-keygen -t rsa -C &amp;#39;xxxxx@company.com&amp;#39; -f ~/.ssh/gitee_id_rsa 2.生成一个github用的SSH-Key $ ssh-keygen -t rsa -C &amp;#39;xxxxx@qq.com&amp;#39; -f ~/.ssh/github_id_rsa 3.在 ~/.ssh 目录下新建一个config文件，</description>
+    </item>
+    
+    <item>
+      <title>Idea快捷键</title>
+      <link>http://gitop.cc/posts/idea-key-bindings/</link>
+      <pubDate>Sat, 18 Aug 2018 16:15:19 +0800</pubDate>
+      
+      <guid>http://gitop.cc/posts/idea-key-bindings/</guid>
+      <description>编辑基础 快捷键 说明 Ctrl+Shift+向右箭头 向右选择一个单词 Ctrl+Shift+向左箭头 向左选择一个单词 Alt+Shift+向上箭头 逐级选择一个代码块 Alt+Shift+向下箭头 逐级缩小代码块选择 Shift+向下箭头 向下选择多行 Shift+向上箭头 向上选择多行 Ctrl+A 选择整个文件</description>
+    </item>
+    
+    <item>
+      <title>Markdown语法</title>
+      <link>http://gitop.cc/posts/syntax/</link>
+      <pubDate>Sat, 19 Sep 2015 19:47:02 +0000</pubDate>
+      
+      <guid>http://gitop.cc/posts/syntax/</guid>
+      <description>原文拷贝自~~这里~~. NOTE: This is Simplelified Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to Markdown: Syntax. 声明： 这份文档派生(fork)于繁体中文版，在此基础上进行了繁体转简体工作，并进行了适当的润色。此文档用 Markdown 语法编写，你可以到这里~~查看它的源文件~~。「繁体中文版的原始文件可以查看这里 。」&amp;ndash;By @riku</description>
+    </item>
+    
+  </channel>
+</rss>

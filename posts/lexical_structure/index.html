@@ -1,213 +1,527 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="词法结构">
-<meta itemprop="description" content="介绍 JavaScript是一门大小写敏感的语言 JavaScript程序使用Unicode字符集编写 JavaScript使用\u后跟4位16进">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>词法结构 | 招财猫的博客</title>
+    <meta property="og:title" content="词法结构 - 招财猫的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2018-10-16T08:29:23&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2018-10-16T08:29:23&#43;08:00'>
+        
+    <meta name="Keywords" content="C,C&#43;&#43;,Python,Golang">
+    <meta name="description" content="词法结构">
+        
+    <meta name="author" content="招财猫">
+    <meta property="og:url" content="http://gitop.cc/posts/lexical_structure/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
 
 
-<meta itemprop="datePublished" content="2018-10-16T08:29:23&#43;08:00" />
-<meta itemprop="dateModified" content="2018-10-16T08:29:23&#43;08:00" />
-<meta itemprop="wordCount" content="906">
-
-
-
-<meta itemprop="keywords" content="Javascript," />
-<meta property="og:title" content="词法结构" />
-<meta property="og:description" content="介绍 JavaScript是一门大小写敏感的语言 JavaScript程序使用Unicode字符集编写 JavaScript使用\u后跟4位16进" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/posts/lexical_structure/" />
-<meta property="article:published_time" content="2018-10-16T08:29:23+08:00" />
-<meta property="article:modified_time" content="2018-10-16T08:29:23+08:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="词法结构"/>
-<meta name="twitter:description" content="介绍 JavaScript是一门大小写敏感的语言 JavaScript程序使用Unicode字符集编写 JavaScript使用\u后跟4位16进"/>
-
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>词法结构</title>
-	<link rel="stylesheet" href="https://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
-	
+    
+    
 </head>
 
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://gitop.cc">静心</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://gitop.cc/posts/">Posts</a>
-				<a href="https://gitop.cc/tags/">Tags</a>
-				<a href="https://gitop.cc/about/">About</a>
 
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://gitop.cc/posts/">Posts</a></li>
-			<li><a href="https://gitop.cc/tags/">Tags</a></li>
-			<li><a href="https://gitop.cc/about/">About</a></li>
-		</ul>
-	</div>
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitop.cc">
+                        招财猫的博客
+                    </a>
+                
+                <p class="description">专注于C&#43;&#43;、Python、Golang</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitop.cc">首页</a>
+                    
+                    <a  href="http://gitop.cc/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitop.cc/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Oct 16, 2018</span></div>
-				<h1>词法结构</h1>
-			</header>
-			<div class="content">
-				
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
-<h3 id="介绍">介绍<a href="#介绍" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
 
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#介绍">介绍</a></li>
+        <li><a href="#字面值">字面值</a></li>
+        <li><a href="#标识符和保留字">标识符和保留字</a></li>
+        <li><a href="#可选的分号">可选的分号</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">词法结构</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2018年10月16日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Language'>Language</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h3 id="介绍">介绍</h3>
 <ul>
 <li>JavaScript是一门大小写敏感的语言</li>
 <li>JavaScript程序使用Unicode字符集编写</li>
 <li>JavaScript使用\u后跟4位16进制数字代表任何16位Unicode码点</li>
 </ul>
-
-<h3 id="字面值">字面值<a href="#字面值" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="字面值">字面值</h3>
 <p>字面值是程序中直接出现的数据值，下列这些都是字面值：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">12</span>				<span class="c1">// The number twelve
-</span><span class="c1"></span><span class="mf">1.2</span> 			<span class="c1">// The number one point two
-</span><span class="c1"></span><span class="s2">&#34;hello world&#34;</span>	<span class="c1">// A string of text
-</span><span class="c1"></span><span class="s1">&#39;Hi&#39;</span> 			<span class="c1">// Another string
-</span><span class="c1"></span><span class="kc">true</span> 			<span class="c1">// A Boolean value
-</span><span class="c1"></span><span class="kc">false</span> 			<span class="c1">// The other Boolean value
-</span><span class="c1"></span><span class="sr">/javascript/gi</span>	<span class="c1">// A &#34;regular expression&#34; literal (for pattern matching)
-</span><span class="c1"></span><span class="kc">null</span> 			<span class="c1">// Absence of an object
-</span><span class="c1"></span><span class="p">{</span> <span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="mi">2</span> <span class="p">}</span> 	<span class="c1">// An object initializer
-</span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span> 	<span class="c1">// An array initializer
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#099">12</span>				<span style="color:#998;font-style:italic">// The number twelve
+</span><span style="color:#998;font-style:italic"></span><span style="color:#099">1.2</span> 			<span style="color:#998;font-style:italic">// The number one point two
+</span><span style="color:#998;font-style:italic"></span><span style="color:#d14">&#34;hello world&#34;</span>	<span style="color:#998;font-style:italic">// A string of text
+</span><span style="color:#998;font-style:italic"></span><span style="color:#d14">&#39;Hi&#39;</span> 			<span style="color:#998;font-style:italic">// Another string
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">true</span> 			<span style="color:#998;font-style:italic">// A Boolean value
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">false</span> 			<span style="color:#998;font-style:italic">// The other Boolean value
+</span><span style="color:#998;font-style:italic"></span><span style="color:#009926">/javascript/gi</span>	<span style="color:#998;font-style:italic">// A &#34;regular expression&#34; literal (for pattern matching)
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">null</span> 			<span style="color:#998;font-style:italic">// Absence of an object
+</span><span style="color:#998;font-style:italic"></span>{ x<span style="color:#000;font-weight:bold">:</span><span style="color:#099">1</span>, y<span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span> } 	<span style="color:#998;font-style:italic">// An object initializer
+</span><span style="color:#998;font-style:italic"></span>[<span style="color:#099">1</span>,<span style="color:#099">2</span>,<span style="color:#099">3</span>,<span style="color:#099">4</span>,<span style="color:#099">5</span>] 	<span style="color:#998;font-style:italic">// An array initializer
 </span></code></pre></div>
-
-<h3 id="标识符和保留字">标识符和保留字<a href="#标识符和保留字" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="标识符和保留字">标识符和保留字</h3>
 <p><strong>标识符</strong>必须以字母，下划线(_)，或美元符($)开头，后续字符可以是字母，数字，下划线或美元符。</p>
-
 <p><strong>关键字</strong></p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">break</span>		<span class="k">delete</span>	<span class="kd">function</span> 	<span class="k">return</span> 	<span class="k">typeof</span>
-<span class="k">case</span> 		<span class="k">do</span> 		<span class="k">if</span> 			<span class="k">switch</span> 	<span class="kd">var</span>
-<span class="k">catch</span> 		<span class="k">else</span> 	<span class="k">in</span> 			<span class="k">this</span> 	<span class="k">void</span>
-<span class="k">continue</span>	<span class="kc">false</span>	<span class="k">instanceof</span>	<span class="k">throw</span>	<span class="k">while</span>
-<span class="kr">debugger</span> 	<span class="k">finally</span>	<span class="k">new</span> 		<span class="kc">true</span> 	<span class="kd">with</span>
-<span class="k">default</span> 	<span class="k">for</span> 	<span class="kc">null</span> 		<span class="k">try</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">break</span>		<span style="color:#000;font-weight:bold">delete</span>	<span style="color:#000;font-weight:bold">function</span> 	<span style="color:#000;font-weight:bold">return</span> 	<span style="color:#000;font-weight:bold">typeof</span>
+<span style="color:#000;font-weight:bold">case</span> 		<span style="color:#000;font-weight:bold">do</span> 		<span style="color:#000;font-weight:bold">if</span> 			<span style="color:#000;font-weight:bold">switch</span> 	<span style="color:#000;font-weight:bold">var</span>
+<span style="color:#000;font-weight:bold">catch</span> 		<span style="color:#000;font-weight:bold">else</span> 	<span style="color:#000;font-weight:bold">in</span> 			<span style="color:#000;font-weight:bold">this</span> 	<span style="color:#000;font-weight:bold">void</span>
+<span style="color:#000;font-weight:bold">continue</span>	<span style="color:#000;font-weight:bold">false</span>	<span style="color:#000;font-weight:bold">instanceof</span>	<span style="color:#000;font-weight:bold">throw</span>	<span style="color:#000;font-weight:bold">while</span>
+<span style="color:#000;font-weight:bold">debugger</span> 	<span style="color:#000;font-weight:bold">finally</span>	<span style="color:#000;font-weight:bold">new</span> 		<span style="color:#000;font-weight:bold">true</span> 	<span style="color:#000;font-weight:bold">with</span>
+<span style="color:#000;font-weight:bold">default</span> 	<span style="color:#000;font-weight:bold">for</span> 	<span style="color:#000;font-weight:bold">null</span> 		<span style="color:#000;font-weight:bold">try</span>
 </code></pre></div>
-
 <p>JavaScript也保留了一些当前未使用但是未来可能会用到的关键字。ES5保留了下面的关键字：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">class</span>	<span class="kr">const</span>	<span class="kr">enum</span>	<span class="kr">export</span>	<span class="kr">extends</span>	<span class="kr">import</span>	<span class="kr">super</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">class</span>	<span style="color:#000;font-weight:bold">const</span>	<span style="color:#000;font-weight:bold">enum</span>	<span style="color:#000;font-weight:bold">export</span>	<span style="color:#000;font-weight:bold">extends</span>	<span style="color:#000;font-weight:bold">import</span>	<span style="color:#000;font-weight:bold">super</span>
 </code></pre></div>
-
 <p>此外，下列这些词在普通的Javascript代码中是合法的，但是在严格模式下被保留：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">implements</span>	<span class="kd">let</span> 	<span class="kr">private</span> 	<span class="kr">public</span>	<span class="k">yield</span>
-<span class="kr">interface</span> 	<span class="kr">package</span>	<span class="kr">protected</span> 	<span class="kr">static</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">implements</span>	<span style="color:#000;font-weight:bold">let</span> 	<span style="color:#000;font-weight:bold">private</span> 	<span style="color:#000;font-weight:bold">public</span>	<span style="color:#000;font-weight:bold">yield</span>
+<span style="color:#000;font-weight:bold">interface</span> 	<span style="color:#000;font-weight:bold">package</span>	<span style="color:#000;font-weight:bold">protected</span> 	<span style="color:#000;font-weight:bold">static</span>
 </code></pre></div>
-
 <p>严格模式还对以下标识符施加限制。它们没有完全被保留，但是不允许用作变量，函数名或参数名：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">arguments</span>	<span class="nb">eval</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">arguments	<span style="color:#0086b3">eval</span>
 </code></pre></div>
-
 <p>ES3保留了所有Java语言的关键字，虽然在ES5中放松了，但是如果想要代码能在ES3下运行，你仍应该避免使用这些标识符：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">abstract</span>	<span class="kr">double</span> 	<span class="kr">goto</span> 		<span class="kr">native</span> 		<span class="kr">static</span>
-<span class="kr">boolean</span> 	<span class="kr">enum</span> 	<span class="kr">implements</span>	<span class="kr">package</span> 	<span class="kr">super</span>
-<span class="kr">byte</span> 		<span class="kr">export</span> 	<span class="kr">import</span> 		<span class="kr">private</span> 	<span class="kr">synchronized</span>
-<span class="kr">char</span> 		<span class="kr">extends</span>	<span class="kr">int</span> 		<span class="kr">protected</span>	<span class="kr">throws</span>
-<span class="kr">class</span> 		<span class="kr">final</span> 	<span class="kr">interface</span> 	<span class="kr">public</span> 		<span class="kr">transient</span>
-<span class="kr">const</span> 		<span class="kr">float</span> 	<span class="kr">long</span> 		<span class="kr">short</span> 		<span class="kr">volatile</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">abstract</span>	<span style="color:#000;font-weight:bold">double</span> 	<span style="color:#000;font-weight:bold">goto</span> 		<span style="color:#000;font-weight:bold">native</span> 		<span style="color:#000;font-weight:bold">static</span>
+<span style="color:#000;font-weight:bold">boolean</span> 	<span style="color:#000;font-weight:bold">enum</span> 	<span style="color:#000;font-weight:bold">implements</span>	<span style="color:#000;font-weight:bold">package</span> 	<span style="color:#000;font-weight:bold">super</span>
+<span style="color:#000;font-weight:bold">byte</span> 		<span style="color:#000;font-weight:bold">export</span> 	<span style="color:#000;font-weight:bold">import</span> 		<span style="color:#000;font-weight:bold">private</span> 	<span style="color:#000;font-weight:bold">synchronized</span>
+<span style="color:#000;font-weight:bold">char</span> 		<span style="color:#000;font-weight:bold">extends</span>	<span style="color:#000;font-weight:bold">int</span> 		<span style="color:#000;font-weight:bold">protected</span>	<span style="color:#000;font-weight:bold">throws</span>
+<span style="color:#000;font-weight:bold">class</span> 		<span style="color:#000;font-weight:bold">final</span> 	<span style="color:#000;font-weight:bold">interface</span> 	<span style="color:#000;font-weight:bold">public</span> 		<span style="color:#000;font-weight:bold">transient</span>
+<span style="color:#000;font-weight:bold">const</span> 		<span style="color:#000;font-weight:bold">float</span> 	<span style="color:#000;font-weight:bold">long</span> 		<span style="color:#000;font-weight:bold">short</span> 		<span style="color:#000;font-weight:bold">volatile</span>
 </code></pre></div>
-
 <p>JavaScript预定义了很多全局变量和函数，你应该避免使用它们作为自己的变量或函数名：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">arguments</span> 			<span class="nb">encodeURI</span> 			<span class="kc">Infinity</span> 	<span class="nb">Number</span> 			<span class="nb">RegExp</span>
-<span class="nb">Array</span> 				<span class="nb">encodeURIComponent</span>	<span class="nb">isFinite</span>	<span class="nb">Object</span> 			<span class="nb">String</span>
-<span class="nb">Boolean</span> 			<span class="nb">Error</span> 				<span class="nb">isNaN</span> 		<span class="nb">parseFloat</span> 		<span class="nx">SyntaxError</span>
-<span class="nb">Date</span> 				<span class="nb">eval</span> 				<span class="nx">JSON</span> 		<span class="nb">parseInt</span> 		<span class="nx">TypeError</span>
-<span class="nb">decodeURI</span> 			<span class="nx">EvalError</span> 			<span class="nb">Math</span> 		<span class="nx">RangeError</span> 		<span class="kc">undefined</span>
-<span class="nb">decodeURIComponent</span>	<span class="nb">Function</span> 			<span class="kc">NaN</span> 		<span class="nx">ReferenceError</span>	<span class="nx">URIError</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">arguments 			<span style="color:#0086b3">encodeURI</span> 			<span style="color:#000;font-weight:bold">Infinity</span> 	<span style="color:#0086b3">Number</span> 			<span style="color:#0086b3">RegExp</span>
+<span style="color:#0086b3">Array</span> 				<span style="color:#0086b3">encodeURIComponent</span>	<span style="color:#0086b3">isFinite</span>	<span style="color:#0086b3">Object</span> 			<span style="color:#0086b3">String</span>
+<span style="color:#0086b3">Boolean</span> 			<span style="color:#0086b3">Error</span> 				<span style="color:#0086b3">isNaN</span> 		<span style="color:#0086b3">parseFloat</span> 		SyntaxError
+<span style="color:#0086b3">Date</span> 				<span style="color:#0086b3">eval</span> 				JSON 		<span style="color:#0086b3">parseInt</span> 		TypeError
+<span style="color:#0086b3">decodeURI</span> 			EvalError 			<span style="color:#0086b3">Math</span> 		RangeError 		<span style="color:#000;font-weight:bold">undefined</span>
+<span style="color:#0086b3">decodeURIComponent</span>	<span style="color:#0086b3">Function</span> 			<span style="color:#000;font-weight:bold">NaN</span> 		ReferenceError	URIError
 </code></pre></div>
-
-<h3 id="可选的分号">可选的分号<a href="#可选的分号" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="可选的分号">可选的分号</h3>
 <p>JavaScript不会将每个换行符当成分号，如果下一个非空字符不能解释成当前语句的延续时，Javascript将换行当成分号。如果一个语句以(，[，/，+，或-开头，就有可能被解释成上一个语句的延续。下面是2个例外：</p>
-
 <p><strong>return，break和continue语句</strong>，Javascript总是将它们后面的换行符当成分号。</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">return</span>
-<span class="kc">true</span><span class="p">;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">return</span>
+<span style="color:#000;font-weight:bold">true</span>;
 </code></pre></div>
-
 <p>JavaScript认为是：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">return</span><span class="p">;</span> <span class="kc">true</span><span class="p">;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">return</span>; <span style="color:#000;font-weight:bold">true</span>;
 </code></pre></div>
-
 <p><strong>++和&ndash;操作符</strong>，这些操作可以是前缀操作符或后缀操作符。如果你想使用它们作为后缀操作符，那么它们必须出现在它们所应用的表达式同一行上。否则换行符会被当做分号，而++或&ndash;将被解释为作用于后面代码的前置操作符。比如：</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">x</span>
-<span class="o">++</span>
-<span class="nx">y</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">x
+<span style="color:#000;font-weight:bold">++</span>
+y
 </code></pre></div>
-
 <p>被解释为<code>x; ++y;</code>，而不是<code>x++; y</code>。</p>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://gitop.cc/tags/javascript">Javascript</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>906 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-10-16 08:29 &#43;0800</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="next-post" href="https://gitop.cc/posts/types_values_variables/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>类型、值和变量</span>
-			</a>
-			<a class="prev-post" href="https://gitop.cc/posts/install-greenplum-in-docker/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>docker安装greenplum集群</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://gitop.cc">招财猫</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://gitop.cc/posts/lexical_structure/">http://gitop.cc/posts/lexical_structure/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
 </div>
-	</main>
-
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
+<br/>
 
 
-	<script src="https://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/install-greenplum-in-docker/">docker安装greenplum集群</a></li>
+        
+        <li><a href="/posts/idea-key-bindings/">Idea快捷键</a></li>
+        
+        <li><a href="/contact/">Contact me</a></li>
+        
+        <li><a href="/posts/ubuntu-18.04/">Ubuntu 18.04</a></li>
+        
+        <li><a href="/posts/centos7-environment-setup/">Centos7环境配置</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://gitop.cc/tags/Javascript'>Javascript</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitop.cc">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Database/">Database (12)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/GUI/">GUI (5)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Gist/">Gist (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Language/">Language (23)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Linux/">Linux (3)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Network/">Network (4)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Tool/">Tool (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitop.cc/tags/C/">C</a>
+    
+    <a href="http://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://gitop.cc/tags/CentOS/">CentOS</a>
+    
+    <a href="http://gitop.cc/tags/Docker/">Docker</a>
+    
+    <a href="http://gitop.cc/tags/Git/">Git</a>
+    
+    <a href="http://gitop.cc/tags/Greenplum/">Greenplum</a>
+    
+    <a href="http://gitop.cc/tags/Idea/">Idea</a>
+    
+    <a href="http://gitop.cc/tags/Java/">Java</a>
+    
+    <a href="http://gitop.cc/tags/Javascript/">Javascript</a>
+    
+    <a href="http://gitop.cc/tags/Markdown/">Markdown</a>
+    
+    <a href="http://gitop.cc/tags/MySQL/">MySQL</a>
+    
+    <a href="http://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
+    
+    <a href="http://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
+    
+    <a href="http://gitop.cc/tags/Python/">Python</a>
+    
+    <a href="http://gitop.cc/tags/Scrapy/">Scrapy</a>
+    
+    <a href="http://gitop.cc/tags/Ubuntu/">Ubuntu</a>
+    
+    <a href="http://gitop.cc/tags/XPath/">XPath</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitop.cc/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://gitop.cc">招财猫的博客 By 招财猫</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
 
 </body>
 

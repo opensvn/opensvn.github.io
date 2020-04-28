@@ -1,88 +1,213 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="MySQL Cookbook 第1章 使用mysql客户端">
-<meta itemprop="description" content="1.0 介绍 本章描述了mysql的能力以使你能够更有效的使用它： 设置一个MySQL账户以使用cookbook数据库 指定连接参数和使用配置文件 交互模">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MySQL Cookbook 第1章 使用mysql客户端 | 招财猫的博客</title>
+    <meta property="og:title" content="MySQL Cookbook 第1章 使用mysql客户端 - 招财猫的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2016-04-05T15:56:30&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2016-04-05T15:56:30&#43;08:00'>
+        
+    <meta name="Keywords" content="C,C&#43;&#43;,Python,Golang">
+    <meta name="description" content="MySQL Cookbook 第1章 使用mysql客户端">
+        
+    <meta name="author" content="招财猫">
+    <meta property="og:url" content="http://gitop.cc/posts/mysql-cookbook-1/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
 
 
-<meta itemprop="datePublished" content="2016-04-05T15:56:30&#43;00:00" />
-<meta itemprop="dateModified" content="2016-04-05T15:56:30&#43;00:00" />
-<meta itemprop="wordCount" content="5322">
-
-
-
-<meta itemprop="keywords" content="MySQL," />
-<meta property="og:title" content="MySQL Cookbook 第1章 使用mysql客户端" />
-<meta property="og:description" content="1.0 介绍 本章描述了mysql的能力以使你能够更有效的使用它： 设置一个MySQL账户以使用cookbook数据库 指定连接参数和使用配置文件 交互模" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/posts/mysql-cookbook-1/" />
-<meta property="article:published_time" content="2016-04-05T15:56:30+00:00" />
-<meta property="article:modified_time" content="2016-04-05T15:56:30+00:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="MySQL Cookbook 第1章 使用mysql客户端"/>
-<meta name="twitter:description" content="1.0 介绍 本章描述了mysql的能力以使你能够更有效的使用它： 设置一个MySQL账户以使用cookbook数据库 指定连接参数和使用配置文件 交互模"/>
-
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>MySQL Cookbook 第1章 使用mysql客户端</title>
-	<link rel="stylesheet" href="https://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
-	
+    
+    
 </head>
 
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://gitop.cc">静心</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://gitop.cc/posts/">Posts</a>
-				<a href="https://gitop.cc/tags/">Tags</a>
-				<a href="https://gitop.cc/about/">About</a>
 
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://gitop.cc/posts/">Posts</a></li>
-			<li><a href="https://gitop.cc/tags/">Tags</a></li>
-			<li><a href="https://gitop.cc/about/">About</a></li>
-		</ul>
-	</div>
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitop.cc">
+                        招财猫的博客
+                    </a>
+                
+                <p class="description">专注于C&#43;&#43;、Python、Golang</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitop.cc">首页</a>
+                    
+                    <a  href="http://gitop.cc/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitop.cc/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Apr 5, 2016</span></div>
-				<h1>MySQL Cookbook 第1章 使用mysql客户端</h1>
-			</header>
-			<div class="content">
-				
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
-<h1 id="1-0-介绍">1.0 介绍<a href="#1-0-介绍" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
 
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#使用配置文件指定连接参数">使用配置文件指定连接参数</a></li>
+    <li><a href="#组合命令行和配置文件参数">组合命令行和配置文件参数</a></li>
+    <li><a href="#从其他用户保护配置文件">从其他用户保护配置文件</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#产生表格或tab分隔的输出">产生表格或tab分隔的输出</a></li>
+    <li><a href="#产生html或xml输出">产生HTML或XML输出</a></li>
+    <li><a href="#查询结果中丢弃列头">查询结果中丢弃列头</a></li>
+    <li><a href="#指定输出列分隔符">指定输出列分隔符</a></li>
+    <li><a href="#控制mysql的详细级别">控制mysql的详细级别</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">MySQL Cookbook 第1章 使用mysql客户端</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年4月5日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://gitop.cc/categories/Database'>Database</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h1 id="10-介绍">1.0 介绍</h1>
 <p>本章描述了mysql的能力以使你能够更有效的使用它：</p>
-
 <ul>
 <li>设置一个MySQL账户以使用cookbook数据库</li>
 <li>指定连接参数和使用配置文件</li>
@@ -90,27 +215,18 @@
 <li>控制mysql输出格式</li>
 <li>使用用户定义的变量保存信息</li>
 </ul>
-
 <p>为了你自己试验本书中的例子，你需要一个MySQL用户和一个数据库。接下来假设：:</p>
-
 <ul>
 <li>MySQL服务器运行在本地系统中</li>
 <li>你的MySQL用户和密码是cbuser和cbpass</li>
 <li>你的数据库是cookbook</li>
 </ul>
-
-<h1 id="1-1-创建一个mysql用户">1.1 创建一个MySQL用户<a href="#1-1-创建一个mysql用户" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="11-创建一个mysql用户">1.1 创建一个MySQL用户</h1>
 <p><strong>问题</strong></p>
-
 <p>你需要一个账户来连接MySQL服务器</p>
-
 <p><strong>解决方法</strong></p>
-
 <p>使用<strong>CREATE USER</strong>和<strong>GRANT</strong>语句配置账户，然后使用账户名密码连接服务器</p>
-
 <p><strong>讨论</strong></p>
-
 <pre><code>% mysql -h localhost -u root -p
 Enter password: ******
 mysql&gt; CREATE USER 'cbuser'@'localhost' IDENTIFIED BY 'cbpass';
@@ -119,48 +235,30 @@ Query OK, 0 rows affected (0.09 sec)
 mysql&gt; quit
 Bye
 </code></pre>
-
 <p>如果你想要连接到其他主机的服务器上，在<strong>CREATE USER</strong>和<strong>GRANT</strong>语句里面替换为其他主机，语句类似：</p>
-
 <pre><code>mysql&gt; CREATE USER 'cbuser'@'myhost.example.com' IDENTIFIED BY 'cbpass';
 mysql&gt; GRANT ALL ON cookbook.* TO 'cbuser'@'myhost.example.com';
 </code></pre>
-
 <p><strong>CREATE USER</strong>和<strong>GRANT</strong>只能被有管理权限的用户比如root使用。创建cbuser用户后，确认你能使用它连接MySQL：</p>
-
 <pre><code>% mysql -h localhost -u cbuser -p
 Enter password: cbpass
 </code></pre>
-
-<h1 id="1-2-创建一个数据库和一个样例表">1.2 创建一个数据库和一个样例表<a href="#1-2-创建一个数据库和一个样例表" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="12-创建一个数据库和一个样例表">1.2 创建一个数据库和一个样例表</h1>
 <p><strong>问题</strong></p>
-
 <p>你想要创建一个数据库并在里面创建表</p>
-
 <p><strong>解决方法</strong></p>
-
 <p>使用<strong>CREATE DATABASE</strong>语句创建数据库，<strong>CREATE TABLE</strong>语句创建每一个表，<strong>INSERT</strong>语句添加行到表中。</p>
-
 <p><strong>讨论</strong></p>
-
 <p>如下创建一个数据库：</p>
-
 <pre><code>mysql&gt; CREATE DATABASE cookbook;
 </code></pre>
-
 <p>既然有了一个数据库，你可以在里面创建表。首先，选择cookbook作为默认数据库：</p>
-
 <pre><code>mysql&gt; USE cookbook;
 </code></pre>
-
 <p>然后创建一个简单的表：</p>
-
 <pre><code>mysql&gt; CREATE TABLE limbs (thing VARCHAR(20), legs INT, arms INT);
 </code></pre>
-
 <p>并用一些行填充它：</p>
-
 <pre><code>mysql&gt; INSERT INTO limbs (thing,legs,arms) VALUES('human',2,2);
 mysql&gt; INSERT INTO limbs (thing,legs,arms) VALUES('insect',6,0);
 mysql&gt; INSERT INTO limbs (thing,legs,arms) VALUES('squid',0,10);
@@ -173,9 +271,7 @@ mysql&gt; INSERT INTO limbs (thing,legs,arms) VALUES('tripod',3,0);
 mysql&gt; INSERT INTO limbs (thing,legs,arms) VALUES('Peg Leg Pete',1,2);
 mysql&gt; INSERT INTO limbs (thing,legs,arms) VALUES('space alien',NULL,NULL);
 </code></pre>
-
 <p>执行<strong>SELECT</strong>语句确认这些行被添加进表：</p>
-
 <pre><code>mysql&gt; SELECT * FROM limbs;
 +--------------|------|------+
 | thing        | legs | arms |
@@ -193,101 +289,62 @@ mysql&gt; INSERT INTO limbs (thing,legs,arms) VALUES('space alien',NULL,NULL);
 | space alien  | NULL | NULL | 
 +--------------|------|------+
 </code></pre>
-
-<h1 id="1-3-如果mysql找不到要做什么">1.3 如果mysql找不到要做什么<a href="#1-3-如果mysql找不到要做什么" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="13-如果mysql找不到要做什么">1.3 如果mysql找不到要做什么</h1>
 <p><strong>问题</strong></p>
-
 <p>当你从命令行调用mysql时，命令行解释器找不到mysql。</p>
-
 <p><strong>解决方法</strong></p>
-
 <p>添加mysql所在目录到<strong>PATH</strong>路径。</p>
-
 <p><strong>讨论</strong></p>
-
 <p>告诉命令解释器哪里查找mysql的一种方法是使用绝对路径。Unix下面命令可能看起来像：</p>
-
 <pre><code>% /usr/local/mysql/bin/mysql
 </code></pre>
-
 <p>Windows下面看起来像：</p>
-
 <pre><code>C:\&gt; &quot;C:\Program Files\MySQL\MySQL Server 5.6\bin\mysql&quot;
 </code></pre>
-
 <p>一个更好的方案是修改你的<strong>PATH</strong>搜索路径环境变量，添加mysql所在目录，然后你就可以在任何地方调用mysql了。</p>
-
 <p>可以从任何地方调用mysql有一个显著的额外的好处是，你不需要将数据文件放在mysql安装目录，你可以自由地以你认为合理的方式组织这些文件。</p>
-
-<h1 id="1-4-指定mysql命令选项">1.4. 指定mysql命令选项<a href="#1-4-指定mysql命令选项" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="14-指定mysql命令选项">1.4. 指定mysql命令选项</h1>
 <p><strong>问题</strong></p>
-
 <p>当你调用mysql程序不带命令选项时，程序返回一个“拒绝访问”的信息并立即退出。</p>
-
 <p><strong>解决方法</strong></p>
-
 <p>你必须指定连接参数，在命令行，配置文件或两者结合。</p>
-
 <p><strong>讨论</strong></p>
-
 <p>每一个选项是单破折号“短”形式：-h和-u指定主机名和用户名，-p提示输入密码。也有相应的双破折号“长”形式：&ndash;host，&ndash;user和&ndash;password。像这样使用：</p>
-
 <pre><code>% mysql --host=localhost --user=cbuser --password
 Enter password: cbpass
 </code></pre>
-
 <p>使用这个命令了解mysql支持的所有选项：</p>
-
 <pre><code>% mysql --help
 </code></pre>
-
 <p>为mysql指定的命令选项也适用于其他MySQL程序，比如mysqldump和mysqladmin。</p>
-
 <pre><code>% mysqldump -h localhost -u cbuser -p cookbook &gt; cookbook.sql
 Enter password: cbpass
 </code></pre>
-
 <p>某些操作需要一个MySQL管理员用户。mysqladmin可以执行MySQL root用户才能够的操作：</p>
-
 <pre><code>% mysqladmin -h localhost -u root -p shutdown
 Enter password: ← enter MySQL root account password here
 </code></pre>
-
 <p>如果你使用的选项值和默认值一样，你可以忽略这个选项。没有默认密码。如果你喜欢，你可以直接在命令行用-ppassword或&ndash;password=password指定密码。不推荐这种方式。</p>
-
 <p>因为默认主机就是本地主机，你可以忽略-h（&ndash;host）选项：</p>
-
 <pre><code>% mysql -u cbuser -p
 </code></pre>
-
 <p>假设你不想指定任何选项，你怎么让mysql知道使用什么值呢？很简单，因为MySQL支持配置文件：</p>
-
 <ul>
 <li>如果你在配置文件放入一个选项，你不需要在命令行指定它。</li>
 <li>你可以混合命令行和配置文件的选项。这使你可以将最常使用的选项保存到配置文件并根据需要在命令行覆盖它们。</li>
 </ul>
-
 <blockquote>
 <p><strong>MySQL中localhost的意义</strong></p>
-
 <p>Unix下面，MySQL程序表现不一样：按照惯例，他们将主机名hostname特殊处理并尝试用一个Unix socket文件连接本地服务器。为了强制使用TCP/IP连接到本地服务器，使用IP地址127.0.0.1（或::1）而不是localhost。</p>
-
 <p>TCP/IP连接的默认端口是3306。Unix域套接字的路径各不相同，虽然通常是/tmp/mysql.sock。使用-S file_name或&ndash;socket=file_name显示指定套接字路径。</p>
 </blockquote>
-
-<h2 id="使用配置文件指定连接参数">使用配置文件指定连接参数<a href="#使用配置文件指定连接参数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="使用配置文件指定连接参数">使用配置文件指定连接参数</h2>
 <p>为了避免每次调用mysql都输入命令行选项，将它们放入配置文件，mysql会自动读取它们。配置文件是纯文本文件：</p>
-
 <ul>
 <li>在Unix下，个人配置文件在个人目录，名为.my.cnf。也有管理员可以使用的指定给所有用户的全局参数的配置文件，在/etc或etc/mysql或MySQL安装目录下的etc目录。</li>
 <li>在Windows下，你可以使用的文件包括安装目录下的my.ini或my.cnf文件.</li>
 </ul>
-
 <p>下面这个例子展示了MySQL配置文件使用的格式：</p>
-
 <pre><code># general client program connection options
 [client]
 host = localhost
@@ -298,63 +355,39 @@ password = cbpass
 skip-auto-rehash
 pager=&quot;/usr/bin/less -E&quot; # specify pager for interactive mode
 </code></pre>
-
 <p>使用刚刚展示的[client]组列出的连接参数，你可以不带参数调用mysql：</p>
-
 <pre><code>% mysql
 </code></pre>
-
 <p>使用这个命令找出mysql程序从配置文件读取的默认参数：</p>
-
 <pre><code>% mysql --print-defaults
 </code></pre>
-
 <p>你也可以使用my_print_defaults工具，它接受配置文件中的组名作为参数：</p>
-
 <pre><code>% my_print_defaults client mysqldump
 </code></pre>
-
-<h2 id="组合命令行和配置文件参数">组合命令行和配置文件参数<a href="#组合命令行和配置文件参数" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="组合命令行和配置文件参数">组合命令行和配置文件参数</h2>
 <p>MySQL程序首先读取配置文件中连接参数，然后检查命令行中额外的参数。这意味着你可以一种方式指定某些参数，以另一种方式指定其它参数：</p>
-
 <pre><code>% mysql -p
 Enter password: ← enter your password here
 </code></pre>
-
 <p>命令行参数优先于配置文件中的参数，因此为了覆盖一个配置文件中的参数，只要在命令行指定就行：</p>
-
 <pre><code>% mysql -u root -p
 Enter password: ← enter MySQL root account password here
 </code></pre>
-
 <p>当配置文件中有一个非空的密码选项，为了显示指定“无密码”，在命令行中使用&ndash;skip-password选项：</p>
-
 <pre><code>% mysql --skip-password
 </code></pre>
-
-<h2 id="从其他用户保护配置文件">从其他用户保护配置文件<a href="#从其他用户保护配置文件" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="从其他用户保护配置文件">从其他用户保护配置文件</h2>
 <p>在一个多用户的操作系统比如Unix中，保护你目录下配置文件以阻止其他用户阅读并发现如何使用你的账户连接MySQL。使用chmod将文件变为私有：</p>
-
 <pre><code>% chmod 600 .my.cnf
 % chmod go-rwx .my.cnf
 </code></pre>
-
-<h1 id="1-5-交互执行sql语句">1.5. 交互执行SQL语句<a href="#1-5-交互执行sql语句" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="15-交互执行sql语句">1.5. 交互执行SQL语句</h1>
 <p><strong>问题</strong></p>
-
 <p>你已经启动了mysql。现在你想要发送SQL语句到MySQL服务器执行。</p>
-
 <p><strong>解决方法</strong></p>
-
 <p>输入语句，让mysql知道每一句在哪里结束，或者直接在命令行指定“单行”语句。</p>
-
 <p><strong>讨论</strong></p>
-
 <p>分号是最常见的终结符，你也可以使用\g（“go”）作为分号的同义词。</p>
-
 <pre><code>mysql&gt; SELECT NOW();
 +---------------------+
 | NOW()               |
@@ -369,11 +402,8 @@ mysql&gt; SELECT
 | 2016-04-05 20:20:40 |
 +---------------------+
 </code></pre>
-
 <p>;和\g不是语言的一部分。它们是mysql程序使用的惯例，在发送语句到MySQL服务器前，mysql识别这些终结符并从语句中去除它们。</p>
-
 <p>某些语句产生输出的行很长以致它们占据终端一行以上，使得查询结果很难读。为了避免这个问题，使用\G产生“垂直”输出：</p>
-
 <pre><code>mysql&gt; SHOW FULL COLUMNS FROM limbs LIKE 'thing'\G
 *************************** 1. row ***************************
      Field: thing
@@ -386,11 +416,8 @@ mysql&gt; SELECT
 Privileges: select,insert,update,references
    Comment: 
 </code></pre>
-
 <p>为了在一个会话中所有语句执行的结果产生垂直输出，使用-E（或&ndash;vertical）选项。为了那些只超过终端宽度的结果产生垂直输出，使用&ndash;auto-vertical-output选项。</p>
-
 <p>为了从命令行直接执行一个语句，指定-e（或&ndash;execute）选项：</p>
-
 <pre><code>% mysql -u cbuser -p -e &quot;SELECT COUNT(*) FROM limbs&quot; cookbook
 Enter password: 
 +----------+
@@ -399,9 +426,7 @@ Enter password:
 |       11 |
 +----------+
 </code></pre>
-
 <p>为了执行多个语句，用分号分隔它们：</p>
-
 <pre><code>% mysql -u cbuser -p -e &quot;SELECT COUNT(*) FROM limbs; SELECT NOW()&quot; cookbook
 Enter password: 
 +----------+
@@ -415,69 +440,42 @@ Enter password:
 | 2016-04-05 20:27:14 |
 +---------------------+
 </code></pre>
-
-<h1 id="1-6-从文件或程序输出中执行sql语句">1.6. 从文件或程序输出中执行SQL语句<a href="#1-6-从文件或程序输出中执行sql语句" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="16-从文件或程序输出中执行sql语句">1.6. 从文件或程序输出中执行SQL语句</h1>
 <p><strong>问题</strong></p>
-
 <p>你想要mysql读取保存在文件中的语句而不必手动输入它们。或者你想要mysql读取其他程序的输出。</p>
-
 <p><strong>解决方法</strong></p>
-
 <p>为了读一个文件，重定向mysql的输入，或使用source命令。为了读取程序输出，使用管道。</p>
-
 <p><strong>讨论</strong></p>
-
 <p>为了创建一个mysql批量执行的SQL脚本，将你的语句放进一个文本文件。然后调用mysql并重定向输入读取那个文件：</p>
-
 <pre><code>% mysql cookbook &lt; file_name
 </code></pre>
-
 <p>从输入文件读取的语句必须以;，\g或\G结尾。交互和批量模式的输出格式不一样。交互模式默认输出表格形式，批量模式默认以tab分隔。使用合适的命令选项可以覆盖默认行为。</p>
-
 <p>为了在一个mysql会话中读取包含SQL语句的文件，使用source filename命令（或. filename）：</p>
-
 <pre><code>mysql&gt; source limbs.sql;
 mysql&gt; \. limbs.sql;
 </code></pre>
-
 <p>SQL脚本自己可以包含source或.命令包含其它脚本。这样更具灵活性，但是要注意避免source循环。</p>
-
 <p>SQL脚本不需要手写，它可以是程序生成的：</p>
-
 <pre><code>% mysqldump cookbook &gt; dump.sql
 % mysql -h other-host.example.com cookbook &lt; dump.sql
 </code></pre>
-
 <p>任何程序输出产生包含正确结尾的SQL语句，都可以作为mysql的输入源：</p>
-
 <pre><code>% mysqldump cookbook | mysql -h other-host.example.com cookbook
 % generate-test-data | mysql cookbook
 </code></pre>
-
-<h1 id="1-7-控制mysql输出的目的地和格式">1.7. 控制mysql输出的目的地和格式<a href="#1-7-控制mysql输出的目的地和格式" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="17-控制mysql输出的目的地和格式">1.7. 控制mysql输出的目的地和格式</h1>
 <p><strong>问题</strong></p>
-
 <p>你想要mysql输出到别的地方而不是屏幕，且你不想要默认的输出格式。</p>
-
 <p><strong>解决方法</strong></p>
-
 <p>重定向输出到一个文件，或使用管道将输出发送给一个程序。你也可以控制mysql的输出，产生表格，tab分隔的，HTML或XML输出，去掉列头，或使mysql更加详细或更少信息。</p>
-
 <p><strong>讨论</strong></p>
-
 <p>使用shell的重定向能力保存mysql输出到文件：</p>
-
 <pre><code>% mysql cookbook &gt; outputfile
 % mysql cookbook &lt; inputfile &gt; outputfile
 % mysql cookbook &lt; inputfile | mail paul
 </code></pre>
-
-<h2 id="产生表格或tab分隔的输出">产生表格或tab分隔的输出<a href="#产生表格或tab分隔的输出" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="产生表格或tab分隔的输出">产生表格或tab分隔的输出</h2>
 <p>交互模式下，mysql默认使用表格输出：</p>
-
 <pre><code>mysql&gt; SELECT * FROM limbs WHERE legs = 0;
 +------------|------|------+
 | thing      | legs | arms |
@@ -487,9 +485,7 @@ mysql&gt; \. limbs.sql;
 | phonograph |    0 |    1 |
 +------------|------|------+
 </code></pre>
-
 <p>非交互模式下，mysql默认使用tab分隔输出：</p>
-
 <pre><code>% echo &quot;SELECT * FROM limbs WHERE legs = 0&quot; | mysql -u cbuser -p cookbook
 Enter password: 
 thing   legs    arms
@@ -497,9 +493,7 @@ squid   0   10
 fish    0   0
 phonograph  0   1
 </code></pre>
-
 <p>非交互模式下，使用-t（或&ndash;table）选项产生表格输出：</p>
-
 <pre><code>% echo &quot;SELECT * FROM limbs WHERE legs = 0&quot; | mysql -u cbuser -p cookbook -t
 Enter password: 
 +------------|------|------+
@@ -510,31 +504,21 @@ Enter password:
 | phonograph |    0 |    1 |
 +------------|------|------+
 </code></pre>
-
 <p>使用-B或&ndash;batch在交互模式下产生tab分隔的输出。</p>
-
-<h2 id="产生html或xml输出">产生HTML或XML输出<a href="#产生html或xml输出" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="产生html或xml输出">产生HTML或XML输出</h2>
 <p>mysql从每一个查询结果里面产生一个HTML表，如果使用-H选项：</p>
-
 <pre><code>% mysql -u cbuser -p -H -e &quot;SELECT * FROM limbs WHERE legs = 0&quot;  cookbook
 Enter password: 
 &lt;TABLE BORDER=1&gt;&lt;TR&gt;&lt;TH&gt;thing&lt;/TH&gt;&lt;TH&gt;legs&lt;/TH&gt;&lt;TH&gt;arms&lt;/TH&gt;&lt;/TR&gt;&lt;TR&gt;&lt;TD&gt;squid&lt;/TD&gt;&lt;TD&gt;0&lt;/TD&gt;&lt;TD&gt;10&lt;/TD&gt;&lt;/TR&gt;&lt;TR&gt;&lt;TD&gt;fish&lt;/TD&gt;&lt;TD&gt;0&lt;/TD&gt;&lt;TD&gt;0&lt;/TD&gt;&lt;/TR&gt;&lt;TR&gt;&lt;TD&gt;phonograph&lt;/TD&gt;&lt;TD&gt;0&lt;/TD&gt;&lt;TD&gt;1&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;
 </code></pre>
-
 <p>你可以将输出保存到一个文件，然后在浏览器中查看：</p>
-
 <pre><code>% mysql -H -e &quot;SELECT * FROM limbs WHERE legs=0&quot; cookbook &gt; limbs.html
 % open -a safari limbs.html
 </code></pre>
-
 <p>使用-X（或&ndash;xml）选项产生XML文件：</p>
-
 <pre><code>% mysql -u cbuser -p -X -e &quot;SELECT * FROM limbs WHERE legs = 0&quot;  cookbook &gt; limbs.xml
 </code></pre>
-
 <p>像这样使用转换：</p>
-
 <pre><code>% mysql -X -e &quot;SELECT * FROM limbs WHERE legs=0&quot; cookbook \
 | xsltproc mysql-xml.xsl -
 Query: SELECT * FROM limbs WHERE legs=0
@@ -543,60 +527,38 @@ squid, 0, 10
 fish, 0, 0
 phonograph, 0, 1
 </code></pre>
-
 <p>-H，&ndash;html，-X和&ndash;xml选项只对产生结果集的语句有用，对INSERT或UPDATE无效。</p>
-
-<h2 id="查询结果中丢弃列头">查询结果中丢弃列头<a href="#查询结果中丢弃列头" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="查询结果中丢弃列头">查询结果中丢弃列头</h2>
 <p>使用&ndash;skip-column-names选项创建输出只包含数据值，丢弃了头：</p>
-
 <pre><code>% mysql --skip-column-names -e &quot;SELECT arms FROM limbs&quot; cookbook | summarize
 </code></pre>
-
 <p>指定“沉默”选项（-s或&ndash;silent）2次是一样的效果：</p>
-
 <pre><code>% mysql -ss -e &quot;SELECT arms FROM limbs&quot; cookbook | summarize
 </code></pre>
-
-<h2 id="指定输出列分隔符">指定输出列分隔符<a href="#指定输出列分隔符" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="指定输出列分隔符">指定输出列分隔符</h2>
 <p>在非交互模式下，mysql使用tab分隔输出列，没有指定输出分隔符的选项。可以处理mysql输出以使用不同的分隔符：</p>
-
 <pre><code>% mysql cookbook &lt; inputfile | sed -e &quot;s/TAB/:/g&quot; &gt; outputfile
 % mysql cookbook &lt; inputfile | tr &quot;TAB&quot; &quot;:&quot; &gt; outputfile
 % mysql cookbook &lt; inputfile | tr &quot;\011&quot; &quot;:&quot; &gt; outputfile
 % mysql cookbook &lt; inputfile \
 | sed -e 's/&quot;/&quot;&quot;/g' -e 's/TAB/&quot;,&quot;/g' -e 's/^/&quot;/' -e 's/$/&quot;/' &gt; outputfile
 </code></pre>
-
-<h2 id="控制mysql的详细级别">控制mysql的详细级别<a href="#控制mysql的详细级别" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="控制mysql的详细级别">控制mysql的详细级别</h2>
 <p>使用-v或&ndash;verbose告诉mysql变得更详细，指定选项多次可以增强详细度：</p>
-
 <pre><code>% mysql -u cbuser -p -e &quot;SELECT NOW()&quot;
 % mysql -u cbuser -p -e &quot;SELECT NOW()&quot; -v
 % mysql -u cbuser -p -e &quot;SELECT NOW()&quot; -vv
 % mysql -u cbuser -p -e &quot;SELECT NOW()&quot; -vvv
 </code></pre>
-
 <p>-s和&ndash;silent也有一样的效果。</p>
-
-<h1 id="1-8-在sql语句中使用用户定义的变量">1.8. 在SQL语句中使用用户定义的变量<a href="#1-8-在sql语句中使用用户定义的变量" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
-
+<h1 id="18-在sql语句中使用用户定义的变量">1.8. 在SQL语句中使用用户定义的变量</h1>
 <p><strong>问题</strong></p>
-
 <p>你想要在一个语句中使用之前语句产生值。</p>
-
 <p><strong>解决方法</strong></p>
-
 <p>保存这个值在用户定义的变量里以供以后使用。</p>
-
 <p><strong>讨论</strong></p>
-
 <p>用户定义的变量使你在用一个会话中其他语句中使用它。用户变量是MySQL特定的扩展，不是标准SQL。</p>
-
 <p>使用语法@var_name := val定义用户变量，变量可以在接下来的语句中使用：</p>
-
 <pre><code>mysql&gt; SELECT @max_limbs := MAX(arms + legs) FROM limbs;
 +--------------------------------+
 | @max_limbs := MAX(arms + legs) |
@@ -610,16 +572,11 @@ mysql&gt; SELECT * FROM limbs WHERE arms + legs = @max_limbs;
 | centipede |  100 |    0 |
 +-----------|------|------+
 </code></pre>
-
 <p>变量的另一个用法是保存LAST_INSERT_ID()的结果在创建一个具有AUTO_INCREMENT列的表的新行后：</p>
-
 <pre><code>mysql&gt; SELECT @last_id := LAST_INSERT_ID();
 </code></pre>
-
 <p>LAST_INSERT_ID() 返回最新的AUTO_INCREMENT值。</p>
-
 <p>用户变量保存单一值，如果一个语句返回多行，最后一行保存到变量中：</p>
-
 <pre><code>mysql&gt; SELECT @name := thing FROM limbs WHERE legs = 0;
 +----------------+
 | @name := thing |
@@ -635,9 +592,7 @@ mysql&gt; SELECT @name;
 | phonograph |
 +------------+
 </code></pre>
-
 <p>如果语句返回0行，赋值不会发生，且变量保存原来的值。如果变量之前没用过，则其值为NULL：</p>
-
 <pre><code>mysql&gt; SELECT @name2 := thing FROM limbs WHERE legs &lt; 0;
 Empty set (0.00 sec)
 mysql&gt; SELECT @name2;
@@ -647,9 +602,7 @@ mysql&gt; SELECT @name2;
 | NULL   |
 +--------+
 </code></pre>
-
 <p>为了显式设置某个值给一个变量，使用SET语句。SET语法可以使用:=或=作为赋值操作符：</p>
-
 <pre><code>mysql&gt; SET @sum = 4 + 7;
 mysql&gt; SELECT @sum;
 +------+
@@ -658,14 +611,10 @@ mysql&gt; SELECT @sum;
 |   11 |
 +------+
 </code></pre>
-
 <p>你可以将SELECT结果赋值个一个变量，只要它是一个标量子查询（括号里面的只返回一个值的查询）：</p>
-
 <pre><code>mysql&gt; SET @max_limbs = (SELECT MAX(arms+legs) FROM limbs);
 </code></pre>
-
 <p>用户变量名大小写不敏感：</p>
-
 <pre><code>mysql&gt; SET @x = 1, @X = 2; SELECT @x, @X;
 +------|------+
 | @x   | @X   |
@@ -673,48 +622,262 @@ mysql&gt; SELECT @sum;
 |    2 |    2 |
 +------|------+
 </code></pre>
-
 <p>用户变量只能出现在表达式允许出现的地方，不是常量或字符标识符必须提供。变量不能用了作为表名：</p>
-
 <pre><code>mysql&gt; SET @tbl_name = CONCAT('tmp_tbl_', CONNECTION_ID());
 mysql&gt; CREATE TABLE @tbl_name (int_col INT);
 ERROR 1064: You have an error in your SQL syntax near '@tbl_name
 (int_col INT)'
 </code></pre>
-
 <p>SET也被用来给存储程序参数，本地变量和系统变量赋值。</p>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://gitop.cc/tags/mysql">MySQL</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>5322 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2016-04-05 23:56 &#43;0800</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="next-post" href="https://gitop.cc/posts/mysql-cookbook-2/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>MySQL Cookbook 第2章 编写基于MySQL的程序</span>
-			</a>
-			<a class="prev-post" href="https://gitop.cc/posts/cpp-primer-2/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>第2章 变量和基本类型</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://gitop.cc">招财猫</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://gitop.cc/posts/mysql-cookbook-1/">http://gitop.cc/posts/mysql-cookbook-1/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
 </div>
-	</main>
-
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
+<br/>
 
 
-	<script src="https://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/cpp-primer-2/">第2章 变量和基本类型</a></li>
+        
+        <li><a href="/posts/Asio-Network-Programming-2/">Boost.Asio网络编程 第2章</a></li>
+        
+        <li><a href="/posts/Asio-Network-Programming-1/">Boost.Asio网络编程 第1章</a></li>
+        
+        <li><a href="/posts/Core-Python-3/">Python核心编程 第3章</a></li>
+        
+        <li><a href="/posts/Core-Python-2/">Python核心编程 第2章</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://gitop.cc/tags/MySQL'>MySQL</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitop.cc">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Database/">Database (12)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/GUI/">GUI (5)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Gist/">Gist (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Language/">Language (23)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Linux/">Linux (3)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Network/">Network (4)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Tool/">Tool (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitop.cc/tags/C/">C</a>
+    
+    <a href="http://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://gitop.cc/tags/CentOS/">CentOS</a>
+    
+    <a href="http://gitop.cc/tags/Docker/">Docker</a>
+    
+    <a href="http://gitop.cc/tags/Git/">Git</a>
+    
+    <a href="http://gitop.cc/tags/Greenplum/">Greenplum</a>
+    
+    <a href="http://gitop.cc/tags/Idea/">Idea</a>
+    
+    <a href="http://gitop.cc/tags/Java/">Java</a>
+    
+    <a href="http://gitop.cc/tags/Javascript/">Javascript</a>
+    
+    <a href="http://gitop.cc/tags/Markdown/">Markdown</a>
+    
+    <a href="http://gitop.cc/tags/MySQL/">MySQL</a>
+    
+    <a href="http://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
+    
+    <a href="http://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
+    
+    <a href="http://gitop.cc/tags/Python/">Python</a>
+    
+    <a href="http://gitop.cc/tags/Scrapy/">Scrapy</a>
+    
+    <a href="http://gitop.cc/tags/Ubuntu/">Ubuntu</a>
+    
+    <a href="http://gitop.cc/tags/XPath/">XPath</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitop.cc/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://gitop.cc">招财猫的博客 By 招财猫</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
 
 </body>
 

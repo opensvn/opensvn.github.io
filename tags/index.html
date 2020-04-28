@@ -1,202 +1,633 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="Tags">
-<meta itemprop="description" content="">
 
-<meta property="og:title" content="Tags" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://gitop.cc/tags/" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta property="og:updated_time" content="2019-11-04T17:49:51+08:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tags"/>
-<meta name="twitter:description" content=""/>
+    <title>Tags | 招财猫的博客</title>
+    <meta property="og:title" content="Tags - 招财猫的博客">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="C,C&#43;&#43;,Python,Golang">
+    <meta name="description" content="Tags">
+        
+    <meta name="author" content="招财猫">
+    <meta property="og:url" content="http://gitop.cc/tags/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <link rel="alternate" type="application/rss+xml+xml" href="http://gitop.cc/tags/index.xml" title="招财猫的博客" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-	<title>Tags</title>
-	<link rel="alternate" type="application/rss+xml+xml" href="https://gitop.cc/tags/index.xml" title="静心" />
-	<link rel="stylesheet" href="https://gitop.cc/css/style.min.574d8c6248cc82ef15f1ad92df37a0e749a3d11c6d81e64dcc2ed1f90be506cc.css" integrity="sha256-V02MYkjMgu8V8a2S3zeg50mj0RxtgeZNzC7R+QvlBsw=">
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
 </head>
 
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://gitop.cc">静心</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://gitop.cc/posts/">Posts</a>
-				<a href="https://gitop.cc/tags/">Tags</a>
-				<a href="https://gitop.cc/about/">About</a>
 
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://github.com/opensvn" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://gitop.cc/posts/">Posts</a></li>
-			<li><a href="https://gitop.cc/tags/">Tags</a></li>
-			<li><a href="https://gitop.cc/about/">About</a></li>
-		</ul>
-	</div>
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitop.cc">
+                        招财猫的博客
+                    </a>
+                
+                <p class="description">专注于C&#43;&#43;、Python、Golang</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitop.cc">首页</a>
+                    
+                    <a  href="http://gitop.cc/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitop.cc/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<header>
+    
+        <h1>共有17个标签</h1>
+    
+</header>
+<div class="post-archive">
+    
+    <h2><a href="http://gitop.cc/tags/Python">Python</a> (12)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2019/11/04</span>
+            <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/12/25</span>
+            <a href="http://gitop.cc/posts/Core-Python-3/" title="Python核心编程 第3章">Python核心编程 第3章</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/12/24</span>
+            <a href="http://gitop.cc/posts/Core-Python-2/" title="Python核心编程 第2章">Python核心编程 第2章</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/11/16</span>
+            <a href="http://gitop.cc/posts/pygame-6/" title="Pygame第6章 接受用户输入">Pygame第6章 接受用户输入</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/11/10</span>
+            <a href="http://gitop.cc/posts/pygame-5/" title="Pygame第5章 让画面动起来">Pygame第5章 让画面动起来</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/11/07</span>
+            <a href="http://gitop.cc/posts/pygame-4/" title="Pygame第4章 创建视觉">Pygame第4章 创建视觉</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/11/02</span>
+            <a href="http://gitop.cc/posts/pygame-3/" title="Pygame第3章 Pygame介绍">Pygame第3章 Pygame介绍</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/10/30</span>
+            <a href="http://gitop.cc/posts/pyqt-8/" title="PyQt编程第8章 数据处理和自定义文件类型">PyQt编程第8章 数据处理和自定义文件类型</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/10/28</span>
+            <a href="http://gitop.cc/posts/pyqt-7/" title="PyQt编程第7章 使用Qt Designer">PyQt编程第7章 使用Qt Designer</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/10/21</span>
+            <a href="http://gitop.cc/posts/pyqt-6/" title="PyQt编程第6章 主窗口">PyQt编程第6章 主窗口</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/10/14</span>
+            <a href="http://gitop.cc/posts/pyqt-5/" title="PyQt编程第5章 对话框">PyQt编程第5章 对话框</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/10/12</span>
+            <a href="http://gitop.cc/posts/pyqt-4/" title="PyQt编程第4章 GUI编程介绍">PyQt编程第4章 GUI编程介绍</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/C&#43;&#43;">C&#43;&#43;</a> (10)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2016/10/28</span>
+            <a href="http://gitop.cc/posts/cpp-primer-12/" title="第12章 动态内存">第12章 动态内存</a>
+        </li>
+        
+        <li>
+            <span class="date">2016/10/17</span>
+            <a href="http://gitop.cc/posts/cpp-primer-17/" title="第17章 特殊的库设施">第17章 特殊的库设施</a>
+        </li>
+        
+        <li>
+            <span class="date">2016/08/18</span>
+            <a href="http://gitop.cc/posts/io-operations/" title="Asio.Cookbook 第2章 IO操作">Asio.Cookbook 第2章 IO操作</a>
+        </li>
+        
+        <li>
+            <span class="date">2016/08/16</span>
+            <a href="http://gitop.cc/posts/Asio-Cookbook-1/" title="Asio.Cookbook 第1章 基础">Asio.Cookbook 第1章 基础</a>
+        </li>
+        
+        <li>
+            <span class="date">2016/03/21</span>
+            <a href="http://gitop.cc/posts/cpp-primer-2/" title="第2章 变量和基本类型">第2章 变量和基本类型</a>
+        </li>
+        
+        <li>
+            <span class="date">2016/03/17</span>
+            <a href="http://gitop.cc/posts/Asio-Network-Programming-2/" title="Boost.Asio网络编程 第2章">Boost.Asio网络编程 第2章</a>
+        </li>
+        
+        <li>
+            <span class="date">2016/03/13</span>
+            <a href="http://gitop.cc/posts/Asio-Network-Programming-1/" title="Boost.Asio网络编程 第1章">Boost.Asio网络编程 第1章</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/12/14</span>
+            <a href="http://gitop.cc/posts/cpp-primer-16/" title="第16章 模板和泛型编程">第16章 模板和泛型编程</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/09/21</span>
+            <a href="http://gitop.cc/posts/cpp-primer-15/" title="第15章 面向对象编程">第15章 面向对象编程</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/09/20</span>
+            <a href="http://gitop.cc/posts/cpp-primer-14/" title="第14章 重载操作和转换">第14章 重载操作和转换</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/Java">Java</a> (7)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2019/07/24</span>
+            <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+        </li>
+        
+        <li>
+            <span class="date">2019/07/24</span>
+            <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+        </li>
+        
+        <li>
+            <span class="date">2019/07/23</span>
+            <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+        </li>
+        
+        <li>
+            <span class="date">2019/07/23</span>
+            <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+        </li>
+        
+        <li>
+            <span class="date">2019/07/11</span>
+            <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+        </li>
+        
+        <li>
+            <span class="date">2019/07/10</span>
+            <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+        </li>
+        
+        <li>
+            <span class="date">2019/07/10</span>
+            <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/Javascript">Javascript</a> (6)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2018/11/12</span>
+            <a href="http://gitop.cc/posts/arrays/" title="数组">数组</a>
+        </li>
+        
+        <li>
+            <span class="date">2018/11/03</span>
+            <a href="http://gitop.cc/posts/objects/" title="对象">对象</a>
+        </li>
+        
+        <li>
+            <span class="date">2018/10/30</span>
+            <a href="http://gitop.cc/posts/statements/" title="语句">语句</a>
+        </li>
+        
+        <li>
+            <span class="date">2018/10/28</span>
+            <a href="http://gitop.cc/posts/expressions_and_operators/" title="表达式和操作符">表达式和操作符</a>
+        </li>
+        
+        <li>
+            <span class="date">2018/10/28</span>
+            <a href="http://gitop.cc/posts/types_values_variables/" title="类型、值和变量">类型、值和变量</a>
+        </li>
+        
+        <li>
+            <span class="date">2018/10/16</span>
+            <a href="http://gitop.cc/posts/lexical_structure/" title="词法结构">词法结构</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/MySQL">MySQL</a> (5)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2016/04/07</span>
+            <a href="http://gitop.cc/posts/mysql-cookbook-5/" title="MySQL Cookbook 第5章 处理字符串">MySQL Cookbook 第5章 处理字符串</a>
+        </li>
+        
+        <li>
+            <span class="date">2016/04/07</span>
+            <a href="http://gitop.cc/posts/mysql-cookbook-4/" title="MySQL Cookbook 第4章 表管理">MySQL Cookbook 第4章 表管理</a>
+        </li>
+        
+        <li>
+            <span class="date">2016/04/07</span>
+            <a href="http://gitop.cc/posts/mysql-cookbook-3/" title="MySQL Cookbook 第3章 从表中查询数据">MySQL Cookbook 第3章 从表中查询数据</a>
+        </li>
+        
+        <li>
+            <span class="date">2016/04/05</span>
+            <a href="http://gitop.cc/posts/mysql-cookbook-2/" title="MySQL Cookbook 第2章 编写基于MySQL的程序">MySQL Cookbook 第2章 编写基于MySQL的程序</a>
+        </li>
+        
+        <li>
+            <span class="date">2016/04/05</span>
+            <a href="http://gitop.cc/posts/mysql-cookbook-1/" title="MySQL Cookbook 第1章 使用mysql客户端">MySQL Cookbook 第1章 使用mysql客户端</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/Greenplum">Greenplum</a> (4)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2019/04/14</span>
+            <a href="http://gitop.cc/posts/tpch-test/" title="Greenplum TPC-H测试">Greenplum TPC-H测试</a>
+        </li>
+        
+        <li>
+            <span class="date">2019/04/11</span>
+            <a href="http://gitop.cc/posts/custom_gpdb_installation/" title="gpdb官方安装包自定义安装路径的方法">gpdb官方安装包自定义安装路径的方法</a>
+        </li>
+        
+        <li>
+            <span class="date">2019/01/17</span>
+            <a href="http://gitop.cc/posts/docker_install_gpdb_dev_env/" title="Docker安装gpdb测试数据库">Docker安装gpdb测试数据库</a>
+        </li>
+        
+        <li>
+            <span class="date">2018/08/21</span>
+            <a href="http://gitop.cc/posts/install-greenplum-in-docker/" title="docker安装greenplum集群">docker安装greenplum集群</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/C">C</a> (3)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2015/12/18</span>
+            <a href="http://gitop.cc/posts/21st-c-2/" title="21世纪C语言 第2章 调试，测试，文档">21世纪C语言 第2章 调试，测试，文档</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/12/15</span>
+            <a href="http://gitop.cc/posts/21st-c-1/" title="21世纪C语言 第1章 便利编译配置">21世纪C语言 第1章 便利编译配置</a>
+        </li>
+        
+        <li>
+            <span class="date">2015/11/10</span>
+            <a href="http://gitop.cc/posts/baiyu/" title="整理代码片段">整理代码片段</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/PostgreSQL">PostgreSQL</a> (3)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2019/01/22</span>
+            <a href="http://gitop.cc/posts/postgres_data_type/" title="PostgreSQL数据类型">PostgreSQL数据类型</a>
+        </li>
+        
+        <li>
+            <span class="date">2019/01/19</span>
+            <a href="http://gitop.cc/posts/psql_intro/" title="psql使用介绍">psql使用介绍</a>
+        </li>
+        
+        <li>
+            <span class="date">2019/01/19</span>
+            <a href="http://gitop.cc/posts/sql_intro/" title="SQL入门">SQL入门</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/Docker">Docker</a> (2)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2019/01/17</span>
+            <a href="http://gitop.cc/posts/docker_install_gpdb_dev_env/" title="Docker安装gpdb测试数据库">Docker安装gpdb测试数据库</a>
+        </li>
+        
+        <li>
+            <span class="date">2018/08/21</span>
+            <a href="http://gitop.cc/posts/install-greenplum-in-docker/" title="docker安装greenplum集群">docker安装greenplum集群</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/Ubuntu">Ubuntu</a> (2)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2018/08/18</span>
+            <a href="http://gitop.cc/posts/ubuntu-18.04/" title="Ubuntu 18.04">Ubuntu 18.04</a>
+        </li>
+        
+        <li>
+            <span class="date">2016/10/26</span>
+            <a href="http://gitop.cc/posts/after-ubuntu-installation/" title="安装完Ubuntu后需要做的事">安装完Ubuntu后需要做的事</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/CentOS">CentOS</a> (1)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2018/08/02</span>
+            <a href="http://gitop.cc/posts/centos7-environment-setup/" title="Centos7环境配置">Centos7环境配置</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/Git">Git</a> (1)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2019/07/08</span>
+            <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/Idea">Idea</a> (1)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2018/08/18</span>
+            <a href="http://gitop.cc/posts/idea-key-bindings/" title="Idea快捷键">Idea快捷键</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/Markdown">Markdown</a> (1)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2015/09/19</span>
+            <a href="http://gitop.cc/posts/syntax/" title="Markdown语法">Markdown语法</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/ProjectEuler">ProjectEuler</a> (1)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2015/10/23</span>
+            <a href="http://gitop.cc/posts/project-euler-1/" title="Project Euler Problem 1">Project Euler Problem 1</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/Scrapy">Scrapy</a> (1)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2019/11/04</span>
+            <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+        </li>
+        
+    </ul>
+    
+    <h2><a href="http://gitop.cc/tags/XPath">XPath</a> (1)</h2>
+    <ul class="listing">
+        
+        <li>
+            <span class="date">2019/11/02</span>
+            <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+        </li>
+        
+    </ul>
+    
+
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitop.cc">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+    </li>
+    
+    <li>
+        <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Database/">Database (12)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/GUI/">GUI (5)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Gist/">Gist (1)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Language/">Language (23)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Linux/">Linux (3)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Network/">Network (4)</a></li>
+    
+    <li><a href="http://gitop.cc/categories/Tool/">Tool (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitop.cc/tags/C/">C</a>
+    
+    <a href="http://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://gitop.cc/tags/CentOS/">CentOS</a>
+    
+    <a href="http://gitop.cc/tags/Docker/">Docker</a>
+    
+    <a href="http://gitop.cc/tags/Git/">Git</a>
+    
+    <a href="http://gitop.cc/tags/Greenplum/">Greenplum</a>
+    
+    <a href="http://gitop.cc/tags/Idea/">Idea</a>
+    
+    <a href="http://gitop.cc/tags/Java/">Java</a>
+    
+    <a href="http://gitop.cc/tags/Javascript/">Javascript</a>
+    
+    <a href="http://gitop.cc/tags/Markdown/">Markdown</a>
+    
+    <a href="http://gitop.cc/tags/MySQL/">MySQL</a>
+    
+    <a href="http://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
+    
+    <a href="http://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
+    
+    <a href="http://gitop.cc/tags/Python/">Python</a>
+    
+    <a href="http://gitop.cc/tags/Scrapy/">Scrapy</a>
+    
+    <a href="http://gitop.cc/tags/Ubuntu/">Ubuntu</a>
+    
+    <a href="http://gitop.cc/tags/XPath/">XPath</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitop.cc/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://gitop.cc">招财猫的博客 By 招财猫</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
 
 
-	<main class="site-main section-inner thin animated fadeIn faster">
-		<h1>Tags</h1>
-		<div class="posts-group">
-			<div class="post-year" id="2019">2019</div>
-			<ul class="posts-list">
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/scrapy/">
-						<span class="post-title">Scrapy</span>
-						<span class="post-day">Nov 4</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/python/">
-						<span class="post-title">Python</span>
-						<span class="post-day">Nov 4</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/other/">
-						<span class="post-title">Other</span>
-						<span class="post-day">Nov 2</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/java/">
-						<span class="post-title">Java</span>
-						<span class="post-day">Jul 24</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/tool/">
-						<span class="post-title">Tool</span>
-						<span class="post-day">Jul 8</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/greenplum/">
-						<span class="post-title">Greenplum</span>
-						<span class="post-day">Apr 14</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/database/">
-						<span class="post-title">Database</span>
-						<span class="post-day">Apr 14</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/postgresql/">
-						<span class="post-title">PostgreSQL</span>
-						<span class="post-day">Jan 19</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/docker/">
-						<span class="post-title">Docker</span>
-						<span class="post-day">Jan 17</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-		<div class="posts-group">
-			<div class="post-year" id="2018">2018</div>
-			<ul class="posts-list">
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/javascript/">
-						<span class="post-title">Javascript</span>
-						<span class="post-day">Nov 12</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/ubuntu/">
-						<span class="post-title">Ubuntu</span>
-						<span class="post-day">Aug 18</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/centos/">
-						<span class="post-title">CentOS</span>
-						<span class="post-day">Aug 2</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-		<div class="posts-group">
-			<div class="post-year" id="2016">2016</div>
-			<ul class="posts-list">
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/c&#43;&#43;/">
-						<span class="post-title">C&#43;&#43;</span>
-						<span class="post-day">Oct 28</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/mysql/">
-						<span class="post-title">MySQL</span>
-						<span class="post-day">Apr 7</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-		<div class="posts-group">
-			<div class="post-year" id="2015">2015</div>
-			<ul class="posts-list">
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/c/">
-						<span class="post-title">C</span>
-						<span class="post-day">Dec 18</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/projecteuler/">
-						<span class="post-title">ProjectEuler</span>
-						<span class="post-day">Oct 23</span>
-					</a>
-				</li>
-				<li class="post-item">
-					<a href="https://gitop.cc/tags/markdown/">
-						<span class="post-title">Markdown</span>
-						<span class="post-day">Sep 19</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</main>
 
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://gitop.cc">gitop</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://gitop.cc/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
 
 
-	<script src="https://gitop.cc/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js" integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
 
 </body>
 
