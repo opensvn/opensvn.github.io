@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ProjectEuler on 招财猫的博客</title>
-    <link>http://gitop.cc/tags/ProjectEuler/</link>
+    <link>https://gitop.cc/tags/ProjectEuler/</link>
     <description>Recent content in ProjectEuler on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 23 Oct 2015 16:30:00 +0000</lastBuildDate>
     
-	<atom:link href="http://gitop.cc/tags/ProjectEuler/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gitop.cc/tags/ProjectEuler/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Project Euler Problem 1</title>
-      <link>http://gitop.cc/posts/project-euler-1/</link>
+      <link>https://gitop.cc/posts/project-euler-1/</link>
       <pubDate>Fri, 23 Oct 2015 16:30:00 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/project-euler-1/</guid>
+      <guid>https://gitop.cc/posts/project-euler-1/</guid>
       <description>Multiples of 3 and 5 If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000. sum = 3 * (1 + 999 / 3) * (999 / 3) / 2 + \ 5 * (1 + 999 / 5) * (999 / 5) / 2 - \ 15 * (1 + 999 / 15) * (999 / 15) / 2 print sum 3和5的倍数 如果我们列出所有小于10且为3或5的倍数的自然数，我们得到3，5，6和9。这些</description>
     </item>
     

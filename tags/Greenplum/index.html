@@ -15,12 +15,12 @@
     <meta name="description" content="Greenplum">
         
     <meta name="author" content="招财猫">
-    <meta property="og:url" content="http://gitop.cc/tags/Greenplum/">
+    <meta property="og:url" content="https://gitop.cc/tags/Greenplum/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href='/css/normalize.css'>
     <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://gitop.cc/tags/Greenplum/index.xml" title="招财猫的博客" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://gitop.cc/tags/Greenplum/index.xml" title="招财猫的博客" />
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -45,7 +45,7 @@
         <div class="col-group">
             <div class="site-name ">
                 
-                    <a id="logo" href="http://gitop.cc">
+                    <a id="logo" href="https://gitop.cc">
                         招财猫的博客
                     </a>
                 
@@ -53,11 +53,11 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://gitop.cc">首页</a>
+                    <a class="" href="https://gitop.cc">首页</a>
                     
-                    <a  href="http://gitop.cc/archives/" title="归档">归档</a>
+                    <a  href="https://gitop.cc/archives/" title="归档">归档</a>
                     
-                    <a  href="http://gitop.cc/about/" title="关于">关于</a>
+                    <a  href="https://gitop.cc/about/" title="关于">关于</a>
                     
                 </nav>
             </div>
@@ -84,7 +84,7 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://gitop.cc/posts/tpch-test/">Greenplum TPC-H测试</a>
+                <a href="https://gitop.cc/posts/tpch-test/">Greenplum TPC-H测试</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -94,20 +94,20 @@
         <div class="post-meta meta-category">
             |
             
-            <a href='http://gitop.cc/categories/Database'>Database</a>
+            <a href='https://gitop.cc/categories/Database'>Database</a>
             
         </div>
         
         <div class="post-content">
             首先从官网下载TPC-H_Tools_v2.18.0.zip，解压 $ unzip TPC-H_Tools_v2.18.0.zip 进入dbgen目录，拷贝Makefile $ cd tpc/2.18.0_rc2/dbgen $ cp makefile.suite Makefile 修改Makefile，主要修改如下 CC = gcc DATABASE = ORACLE MACHINE = LINUX WORKLOAD = TPCH 编译dbgen $ make ./dbgen -h可以查看dbgen的用法 使用dbgen产生一些测试数据，-s表示scal……
-            <p class="readmore"><a href="http://gitop.cc/posts/tpch-test/">阅读全文</a></p>
+            <p class="readmore"><a href="https://gitop.cc/posts/tpch-test/">阅读全文</a></p>
         </div>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://gitop.cc/posts/custom_gpdb_installation/">gpdb官方安装包自定义安装路径的方法</a>
+                <a href="https://gitop.cc/posts/custom_gpdb_installation/">gpdb官方安装包自定义安装路径的方法</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -117,20 +117,20 @@
         <div class="post-meta meta-category">
             |
             
-            <a href='http://gitop.cc/categories/Database'>Database</a>
+            <a href='https://gitop.cc/categories/Database'>Database</a>
             
         </div>
         
         <div class="post-content">
             下载安装包并解压，得到一个bin文件，从bin文件提取rpm文件 # 前960行为安装脚本 [root@hadoop2 ~]# tail -n +961 greenplum-db-5.16.0-rhel7-x86_64.bin &gt; gpdb.tar.gz 如果集群没有gpadmin用户，可以利用gpssh批量创建gpadmin用户。首先以root用户登陆master节点，解压gpdb.tar.gz： [root@hadoop2 ~]# mkdir gpdb-5.16.0 [root@hadoop2 ~]# tar zxf gpdb.tar.gz -C gpdb-5.16.0 修改gpd……
-            <p class="readmore"><a href="http://gitop.cc/posts/custom_gpdb_installation/">阅读全文</a></p>
+            <p class="readmore"><a href="https://gitop.cc/posts/custom_gpdb_installation/">阅读全文</a></p>
         </div>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://gitop.cc/posts/docker_install_gpdb_dev_env/">Docker安装gpdb测试数据库</a>
+                <a href="https://gitop.cc/posts/docker_install_gpdb_dev_env/">Docker安装gpdb测试数据库</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -140,20 +140,20 @@
         <div class="post-meta meta-category">
             |
             
-            <a href='http://gitop.cc/categories/Database'>Database</a>
+            <a href='https://gitop.cc/categories/Database'>Database</a>
             
         </div>
         
         <div class="post-content">
             下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便一点。 docker pull pivotaldata/gpdb-dev:centos7 下载gpdb源码到指定目录 git clone https://github.com/greenplum-db/gpdb.git ~/github 创建目录用于容器数据库 sudo mkdir -p /var/lib/centos-gpdb-dev-data sudo chown xiaoyu:xiaoyu /var/lib/centos-gpdb-dev-data 运行容器 docker run -it --name centos-gpdb-dev -v ~/github/gpdb:/home/gpadmin/gpdb_src -v /var/lib/centos-gpdb-dev-data:/home/gpadmin/data -p 15432:15432 pivotaldata/gpdb-dev:centos7 安装依赖 /home/gpadmin/gpdb_src/README.CentOS.bash 添加动态库搜索……
-            <p class="readmore"><a href="http://gitop.cc/posts/docker_install_gpdb_dev_env/">阅读全文</a></p>
+            <p class="readmore"><a href="https://gitop.cc/posts/docker_install_gpdb_dev_env/">阅读全文</a></p>
         </div>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://gitop.cc/posts/install-greenplum-in-docker/">docker安装greenplum集群</a>
+                <a href="https://gitop.cc/posts/install-greenplum-in-docker/">docker安装greenplum集群</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -163,13 +163,13 @@
         <div class="post-meta meta-category">
             |
             
-            <a href='http://gitop.cc/categories/Database'>Database</a>
+            <a href='https://gitop.cc/categories/Database'>Database</a>
             
         </div>
         
         <div class="post-content">
             本文参考这里安装greenplum成功，并记录一下过程 创建docker节点 拉取centos镜像 [xiaoyu@xiaoyu ~]$ docker pull centos 创建几个容器，作为greenplum的节点 [xiaoyu@xiaoyu ~]$ docker run -it --name gp-master centos /bin/bash [xiaoyu@xiaoyu ~]$ docker run -it --name gp-segment1 centos /bin/bash [xiaoyu@xiaoyu ~]$ docker run -it --name gp-segment2 centos /bin/bash [xiaoyu@xiaoyu ~]$ docker run -it --name gp-segment3 centos /bin/bash 配置基础环境 进入每个greenplum节点，配置基础环境 安装相……
-            <p class="readmore"><a href="http://gitop.cc/posts/install-greenplum-in-docker/">阅读全文</a></p>
+            <p class="readmore"><a href="https://gitop.cc/posts/install-greenplum-in-docker/">阅读全文</a></p>
         </div>
     </article>
     
@@ -186,10 +186,10 @@
 
                 <div id="secondary">
     <section class="widget">
-        <form id="search" action='http://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+        <form id="search" action='https://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
       
       <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://gitop.cc">
+      <input type="hidden" name="sitesearch" value="https://gitop.cc">
       <button type="submit" class="submit icon-search"></button>
 </form>
     </section>
@@ -199,43 +199,43 @@
 <ul class="widget-list">
     
     <li>
-        <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+        <a href="https://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+        <a href="https://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+        <a href="https://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+        <a href="https://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+        <a href="https://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+        <a href="https://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+        <a href="https://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+        <a href="https://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+        <a href="https://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+        <a href="https://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
     </li>
     
 </ul>
@@ -247,21 +247,21 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="http://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
+    <li><a href="https://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
     
-    <li><a href="http://gitop.cc/categories/Database/">Database (12)</a></li>
+    <li><a href="https://gitop.cc/categories/Database/">Database (12)</a></li>
     
-    <li><a href="http://gitop.cc/categories/GUI/">GUI (5)</a></li>
+    <li><a href="https://gitop.cc/categories/GUI/">GUI (5)</a></li>
     
-    <li><a href="http://gitop.cc/categories/Gist/">Gist (1)</a></li>
+    <li><a href="https://gitop.cc/categories/Gist/">Gist (1)</a></li>
     
-    <li><a href="http://gitop.cc/categories/Language/">Language (23)</a></li>
+    <li><a href="https://gitop.cc/categories/Language/">Language (23)</a></li>
     
-    <li><a href="http://gitop.cc/categories/Linux/">Linux (3)</a></li>
+    <li><a href="https://gitop.cc/categories/Linux/">Linux (3)</a></li>
     
-    <li><a href="http://gitop.cc/categories/Network/">Network (4)</a></li>
+    <li><a href="https://gitop.cc/categories/Network/">Network (4)</a></li>
     
-    <li><a href="http://gitop.cc/categories/Tool/">Tool (4)</a></li>
+    <li><a href="https://gitop.cc/categories/Tool/">Tool (4)</a></li>
     
 </ul>
     </section>
@@ -270,39 +270,39 @@
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://gitop.cc/tags/C/">C</a>
+    <a href="https://gitop.cc/tags/C/">C</a>
     
-    <a href="http://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    <a href="https://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
     
-    <a href="http://gitop.cc/tags/CentOS/">CentOS</a>
+    <a href="https://gitop.cc/tags/CentOS/">CentOS</a>
     
-    <a href="http://gitop.cc/tags/Docker/">Docker</a>
+    <a href="https://gitop.cc/tags/Docker/">Docker</a>
     
-    <a href="http://gitop.cc/tags/Git/">Git</a>
+    <a href="https://gitop.cc/tags/Git/">Git</a>
     
-    <a href="http://gitop.cc/tags/Greenplum/">Greenplum</a>
+    <a href="https://gitop.cc/tags/Greenplum/">Greenplum</a>
     
-    <a href="http://gitop.cc/tags/Idea/">Idea</a>
+    <a href="https://gitop.cc/tags/Idea/">Idea</a>
     
-    <a href="http://gitop.cc/tags/Java/">Java</a>
+    <a href="https://gitop.cc/tags/Java/">Java</a>
     
-    <a href="http://gitop.cc/tags/Javascript/">Javascript</a>
+    <a href="https://gitop.cc/tags/Javascript/">Javascript</a>
     
-    <a href="http://gitop.cc/tags/Markdown/">Markdown</a>
+    <a href="https://gitop.cc/tags/Markdown/">Markdown</a>
     
-    <a href="http://gitop.cc/tags/MySQL/">MySQL</a>
+    <a href="https://gitop.cc/tags/MySQL/">MySQL</a>
     
-    <a href="http://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
+    <a href="https://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
     
-    <a href="http://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
+    <a href="https://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
     
-    <a href="http://gitop.cc/tags/Python/">Python</a>
+    <a href="https://gitop.cc/tags/Python/">Python</a>
     
-    <a href="http://gitop.cc/tags/Scrapy/">Scrapy</a>
+    <a href="https://gitop.cc/tags/Scrapy/">Scrapy</a>
     
-    <a href="http://gitop.cc/tags/Ubuntu/">Ubuntu</a>
+    <a href="https://gitop.cc/tags/Ubuntu/">Ubuntu</a>
     
-    <a href="http://gitop.cc/tags/XPath/">XPath</a>
+    <a href="https://gitop.cc/tags/XPath/">XPath</a>
     
 </div>
     </section>
@@ -312,7 +312,7 @@
     <section class="widget">
         <h3 class="widget-title">其它</h3>
         <ul class="widget-list">
-            <li><a href="http://gitop.cc/index.xml">文章 RSS</a></li>
+            <li><a href="https://gitop.cc/index.xml">文章 RSS</a></li>
         </ul>
     </section>
 </div>
@@ -321,7 +321,7 @@
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="http://gitop.cc">招财猫的博客 By 招财猫</a>.
+        &copy; 2020 <a href="https://gitop.cc">招财猫的博客 By 招财猫</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         

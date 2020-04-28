@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CentOS on 招财猫的博客</title>
-    <link>http://gitop.cc/tags/CentOS/</link>
+    <link>https://gitop.cc/tags/CentOS/</link>
     <description>Recent content in CentOS on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 02 Aug 2018 20:31:02 +0800</lastBuildDate>
     
-	<atom:link href="http://gitop.cc/tags/CentOS/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gitop.cc/tags/CentOS/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Centos7环境配置</title>
-      <link>http://gitop.cc/posts/centos7-environment-setup/</link>
+      <link>https://gitop.cc/posts/centos7-environment-setup/</link>
       <pubDate>Thu, 02 Aug 2018 20:31:02 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/centos7-environment-setup/</guid>
+      <guid>https://gitop.cc/posts/centos7-environment-setup/</guid>
       <description>开启EPEL仓库 EPEL(Extra Packages for Enterprise Linux)是Fedora小组维护的一个软件仓库项目，为RHEL/CentOS提供他们默认不提供的软件包。 wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm sudo rpm -ivh epel-release-latest-7.noarch.rpm sudo yum update 安装git sudo yum install git 安装zsh sudo yum install zsh 安装oh my zsh sh -c &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&amp;#34; 安装开发工具 sudo yum groupinstall &amp;#34;Development Tools&amp;#34; 安装cmake sudo yum install cmake 安装JDK sudo rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.181-2.6.14.8.el7_5.x86_64 sudo rpm -e --nodeps java-1.7.0-openjdk-1.7.0.181-2.6.14.8.el7_5.x86_64</description>
     </item>
     

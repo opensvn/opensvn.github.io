@@ -15,12 +15,12 @@
     <meta name="description" content="Gist">
         
     <meta name="author" content="招财猫">
-    <meta property="og:url" content="http://gitop.cc/categories/Gist/">
+    <meta property="og:url" content="https://gitop.cc/categories/Gist/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href='/css/normalize.css'>
     <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://gitop.cc/categories/Gist/index.xml" title="招财猫的博客" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://gitop.cc/categories/Gist/index.xml" title="招财猫的博客" />
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -45,7 +45,7 @@
         <div class="col-group">
             <div class="site-name ">
                 
-                    <a id="logo" href="http://gitop.cc">
+                    <a id="logo" href="https://gitop.cc">
                         招财猫的博客
                     </a>
                 
@@ -53,11 +53,11 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://gitop.cc">首页</a>
+                    <a class="" href="https://gitop.cc">首页</a>
                     
-                    <a  href="http://gitop.cc/archives/" title="归档">归档</a>
+                    <a  href="https://gitop.cc/archives/" title="归档">归档</a>
                     
-                    <a  href="http://gitop.cc/about/" title="关于">关于</a>
+                    <a  href="https://gitop.cc/about/" title="关于">关于</a>
                     
                 </nav>
             </div>
@@ -84,7 +84,7 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://gitop.cc/posts/baiyu/">整理代码片段</a>
+                <a href="https://gitop.cc/posts/baiyu/">整理代码片段</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -94,13 +94,13 @@
         <div class="post-meta meta-category">
             |
             
-            <a href='http://gitop.cc/categories/Gist'>Gist</a>
+            <a href='https://gitop.cc/categories/Gist'>Gist</a>
             
         </div>
         
         <div class="post-content">
             根据pid获取进程名 void get_process_name_by_pid(int pid, char *name) { char buf[256] = {0}; char path[256] = {0}; sprintf(buf, &#34;/proc/%d/exe&#34;, pid); readlink(buf, path, sizeof(path)); char *filename = basename(path); strcpy(name, filename); } C语言变长数组 C99标准才有的特性 void test_vla(const char *str) { int len = strlen(str); char a[len + 1]; memset(a, 0, sizeof(a)); strcpy(a, str); printf(&#34;%s\n&#34;, a); } 确保路径存在 bool besure_path(const char *pathname) { int len = strlen(pathname); char buffer[len + 1]; memset(buffer, 0, sizeof(buffer)); strcpy(buffer, pathname); for (int i = 0; i &lt; len; ++i) { if (buffer[i] == &#39;/&#39;) { buffer[i] = 0; if (access(buffer, F_OK) &lt; 0) { if (mkdir(buffer, 0755) &lt; 0) { return false; } } buffer[i] = &#39;/&#39;; } } return true;……
-            <p class="readmore"><a href="http://gitop.cc/posts/baiyu/">阅读全文</a></p>
+            <p class="readmore"><a href="https://gitop.cc/posts/baiyu/">阅读全文</a></p>
         </div>
     </article>
     
@@ -117,10 +117,10 @@
 
                 <div id="secondary">
     <section class="widget">
-        <form id="search" action='http://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+        <form id="search" action='https://gitop.cc/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
       
       <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://gitop.cc">
+      <input type="hidden" name="sitesearch" value="https://gitop.cc">
       <button type="submit" class="submit icon-search"></button>
 </form>
     </section>
@@ -130,43 +130,43 @@
 <ul class="widget-list">
     
     <li>
-        <a href="http://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
+        <a href="https://gitop.cc/posts/scrapy-fundamental/" title="Scrapy爬虫基础">Scrapy爬虫基础</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
+        <a href="https://gitop.cc/posts/xpath/" title="XPath教程">XPath教程</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
+        <a href="https://gitop.cc/posts/refactoring-testing-debugging/" title="重构、测试和调试">重构、测试和调试</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
+        <a href="https://gitop.cc/posts/collection-api-enhancements/" title="Collection API增强">Collection API增强</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
+        <a href="https://gitop.cc/posts/parallel-data-processing-and-performance/" title="并行数据处理和性能">并行数据处理和性能</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
+        <a href="https://gitop.cc/posts/collecting-data-with-streams/" title="使用流收集数据">使用流收集数据</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
+        <a href="https://gitop.cc/posts/working-with-streams/" title="使用流">使用流</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
+        <a href="https://gitop.cc/posts/introducing-streams/" title="流介绍">流介绍</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
+        <a href="https://gitop.cc/posts/lambda-expressions/" title="Lambda表达式">Lambda表达式</a>
     </li>
     
     <li>
-        <a href="http://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
+        <a href="https://gitop.cc/posts/git-multi-sshkey/" title="Git配置多个SSH-Key">Git配置多个SSH-Key</a>
     </li>
     
 </ul>
@@ -178,21 +178,21 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="http://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
+    <li><a href="https://gitop.cc/categories/Crawler/">Crawler (1)</a></li>
     
-    <li><a href="http://gitop.cc/categories/Database/">Database (12)</a></li>
+    <li><a href="https://gitop.cc/categories/Database/">Database (12)</a></li>
     
-    <li><a href="http://gitop.cc/categories/GUI/">GUI (5)</a></li>
+    <li><a href="https://gitop.cc/categories/GUI/">GUI (5)</a></li>
     
-    <li><a href="http://gitop.cc/categories/Gist/">Gist (1)</a></li>
+    <li><a href="https://gitop.cc/categories/Gist/">Gist (1)</a></li>
     
-    <li><a href="http://gitop.cc/categories/Language/">Language (23)</a></li>
+    <li><a href="https://gitop.cc/categories/Language/">Language (23)</a></li>
     
-    <li><a href="http://gitop.cc/categories/Linux/">Linux (3)</a></li>
+    <li><a href="https://gitop.cc/categories/Linux/">Linux (3)</a></li>
     
-    <li><a href="http://gitop.cc/categories/Network/">Network (4)</a></li>
+    <li><a href="https://gitop.cc/categories/Network/">Network (4)</a></li>
     
-    <li><a href="http://gitop.cc/categories/Tool/">Tool (4)</a></li>
+    <li><a href="https://gitop.cc/categories/Tool/">Tool (4)</a></li>
     
 </ul>
     </section>
@@ -201,39 +201,39 @@
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://gitop.cc/tags/C/">C</a>
+    <a href="https://gitop.cc/tags/C/">C</a>
     
-    <a href="http://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    <a href="https://gitop.cc/tags/C&#43;&#43;/">C&#43;&#43;</a>
     
-    <a href="http://gitop.cc/tags/CentOS/">CentOS</a>
+    <a href="https://gitop.cc/tags/CentOS/">CentOS</a>
     
-    <a href="http://gitop.cc/tags/Docker/">Docker</a>
+    <a href="https://gitop.cc/tags/Docker/">Docker</a>
     
-    <a href="http://gitop.cc/tags/Git/">Git</a>
+    <a href="https://gitop.cc/tags/Git/">Git</a>
     
-    <a href="http://gitop.cc/tags/Greenplum/">Greenplum</a>
+    <a href="https://gitop.cc/tags/Greenplum/">Greenplum</a>
     
-    <a href="http://gitop.cc/tags/Idea/">Idea</a>
+    <a href="https://gitop.cc/tags/Idea/">Idea</a>
     
-    <a href="http://gitop.cc/tags/Java/">Java</a>
+    <a href="https://gitop.cc/tags/Java/">Java</a>
     
-    <a href="http://gitop.cc/tags/Javascript/">Javascript</a>
+    <a href="https://gitop.cc/tags/Javascript/">Javascript</a>
     
-    <a href="http://gitop.cc/tags/Markdown/">Markdown</a>
+    <a href="https://gitop.cc/tags/Markdown/">Markdown</a>
     
-    <a href="http://gitop.cc/tags/MySQL/">MySQL</a>
+    <a href="https://gitop.cc/tags/MySQL/">MySQL</a>
     
-    <a href="http://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
+    <a href="https://gitop.cc/tags/PostgreSQL/">PostgreSQL</a>
     
-    <a href="http://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
+    <a href="https://gitop.cc/tags/ProjectEuler/">ProjectEuler</a>
     
-    <a href="http://gitop.cc/tags/Python/">Python</a>
+    <a href="https://gitop.cc/tags/Python/">Python</a>
     
-    <a href="http://gitop.cc/tags/Scrapy/">Scrapy</a>
+    <a href="https://gitop.cc/tags/Scrapy/">Scrapy</a>
     
-    <a href="http://gitop.cc/tags/Ubuntu/">Ubuntu</a>
+    <a href="https://gitop.cc/tags/Ubuntu/">Ubuntu</a>
     
-    <a href="http://gitop.cc/tags/XPath/">XPath</a>
+    <a href="https://gitop.cc/tags/XPath/">XPath</a>
     
 </div>
     </section>
@@ -243,7 +243,7 @@
     <section class="widget">
         <h3 class="widget-title">其它</h3>
         <ul class="widget-list">
-            <li><a href="http://gitop.cc/index.xml">文章 RSS</a></li>
+            <li><a href="https://gitop.cc/index.xml">文章 RSS</a></li>
         </ul>
     </section>
 </div>
@@ -252,7 +252,7 @@
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="http://gitop.cc">招财猫的博客 By 招财猫</a>.
+        &copy; 2020 <a href="https://gitop.cc">招财猫的博客 By 招财猫</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Idea on 招财猫的博客</title>
-    <link>http://gitop.cc/tags/Idea/</link>
+    <link>https://gitop.cc/tags/Idea/</link>
     <description>Recent content in Idea on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 18 Aug 2018 16:15:19 +0800</lastBuildDate>
     
-	<atom:link href="http://gitop.cc/tags/Idea/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gitop.cc/tags/Idea/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Idea快捷键</title>
-      <link>http://gitop.cc/posts/idea-key-bindings/</link>
+      <link>https://gitop.cc/posts/idea-key-bindings/</link>
       <pubDate>Sat, 18 Aug 2018 16:15:19 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/idea-key-bindings/</guid>
+      <guid>https://gitop.cc/posts/idea-key-bindings/</guid>
       <description>编辑基础 快捷键 说明 Ctrl+Shift+向右箭头 向右选择一个单词 Ctrl+Shift+向左箭头 向左选择一个单词 Alt+Shift+向上箭头 逐级选择一个代码块 Alt+Shift+向下箭头 逐级缩小代码块选择 Shift+向下箭头 向下选择多行 Shift+向上箭头 向上选择多行 Ctrl+A 选择整个文件</description>
     </item>
     

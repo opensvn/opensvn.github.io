@@ -2,561 +2,561 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>招财猫的博客</title>
-    <link>http://gitop.cc/</link>
+    <link>https://gitop.cc/</link>
     <description>Recent content on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 18 Aug 2018 10:30:16 +0800</lastBuildDate>
     
-	<atom:link href="http://gitop.cc/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gitop.cc/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Scrapy爬虫基础</title>
-      <link>http://gitop.cc/posts/scrapy-fundamental/</link>
+      <link>https://gitop.cc/posts/scrapy-fundamental/</link>
       <pubDate>Mon, 04 Nov 2019 17:49:51 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/scrapy-fundamental/</guid>
+      <guid>https://gitop.cc/posts/scrapy-fundamental/</guid>
       <description>安装Scrapy 推荐virtualenv安装，步骤如下： 如果没有virtualenv，先安装virtualenv sudo pip3 install virtualenv 创建一个virtualenv环境 virtualenv --no-site-packages scrapy 进入目录，激活virtualenv环境 source bin/activate 安装Scrapy pip install Scrapy 爬虫基本流程 URL 一切都从一个URL开始。您需要从您想要抓取的</description>
     </item>
     
     <item>
       <title>XPath教程</title>
-      <link>http://gitop.cc/posts/xpath/</link>
+      <link>https://gitop.cc/posts/xpath/</link>
       <pubDate>Sat, 02 Nov 2019 13:49:25 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/xpath/</guid>
+      <guid>https://gitop.cc/posts/xpath/</guid>
       <description>XPath是什么？ XPath代表XML路径语言 XPath使用“类似路径”的语法来标识和导航XML文档中的节点 XPath包含200多个内置函数 XPath是XSLT标准中的一个主要元素 XPath是W3C的推荐 XPath路径表达式 XPath使用路径表达式来选择XML文档中的节点或节点集</description>
     </item>
     
     <item>
       <title>重构、测试和调试</title>
-      <link>http://gitop.cc/posts/refactoring-testing-debugging/</link>
+      <link>https://gitop.cc/posts/refactoring-testing-debugging/</link>
       <pubDate>Wed, 24 Jul 2019 20:30:19 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/refactoring-testing-debugging/</guid>
+      <guid>https://gitop.cc/posts/refactoring-testing-debugging/</guid>
       <description>重构以提高可读性和灵活性 提高代码的可读性 我们介绍三个简单的重构，使用lambda、方法引用和流，将它们应用到代码中，以提高代码的可读性： 将匿名类重构为lambda表达式 将lambda表达式重构为方法引用 将命令式数据处理重构为流处理 从匿名类到lambda表达式 下面是使用匿名类创建一</description>
     </item>
     
     <item>
       <title>Collection API增强</title>
-      <link>http://gitop.cc/posts/collection-api-enhancements/</link>
+      <link>https://gitop.cc/posts/collection-api-enhancements/</link>
       <pubDate>Wed, 24 Jul 2019 14:22:44 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/collection-api-enhancements/</guid>
+      <guid>https://gitop.cc/posts/collection-api-enhancements/</guid>
       <description>Collection工厂 Java 9引入了一些创建小型集合对象的方法，比如Arrays.asList()： List&amp;lt;String&amp;gt; friends = Arrays.asList(&amp;#34;Raphael&amp;#34;, &amp;#34;Olivia&amp;#34;, &amp;#34;Thibaut&amp;#34;); Arrays.asList()返回一个固定大小的列表，可以对其进行更新，但不能添加或删除元素，否则抛出UnsupportedModificationException异常</description>
     </item>
     
     <item>
       <title>并行数据处理和性能</title>
-      <link>http://gitop.cc/posts/parallel-data-processing-and-performance/</link>
+      <link>https://gitop.cc/posts/parallel-data-processing-and-performance/</link>
       <pubDate>Tue, 23 Jul 2019 20:00:47 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/parallel-data-processing-and-performance/</guid>
+      <guid>https://gitop.cc/posts/parallel-data-processing-and-performance/</guid>
       <description>并行流 通过调用parallelStream方法，可以将集合转换为并行流。并行流是将元素分割成多个块的流，使用不同的线程处理每个块。因此，你可以自动划分指定操作的工作负载在多核处理器的所有核心上，并使它们一样忙。 public long sequentialSum(long n) { return Stream.iterate(1L, i -&amp;gt; i + 1).limit(n).reduce(0L, Long::sum); } 将顺序流转为并行流 调用parallel方法</description>
     </item>
     
     <item>
       <title>使用流收集数据</title>
-      <link>http://gitop.cc/posts/collecting-data-with-streams/</link>
+      <link>https://gitop.cc/posts/collecting-data-with-streams/</link>
       <pubDate>Tue, 23 Jul 2019 13:04:54 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/collecting-data-with-streams/</guid>
+      <guid>https://gitop.cc/posts/collecting-data-with-streams/</guid>
       <description>假设有一个事务列表，你希望根据货币对它们进行分组。在Java 8之前，即使是这样一个简单的例子也很难实现，如下所示： Map&amp;lt;Currency, List&amp;lt;Transaction&amp;gt;&amp;gt; transactionsByCurrencies = new HashMap&amp;lt;&amp;gt;(); for (Transaction transaction : transactions) { Currency currency = transaction.getCurrency(); List&amp;lt;Transaction&amp;gt; transactionsForCurrency = transactionsByCurrencies.get(currency); if (transactionsForCurrency == null) { transactionsForCurrency = new ArrayList&amp;lt;&amp;gt;(); transactionsByCurrencies.put(currency, transactionsForCurrency); } transactionsForCurrency.add(transaction); } 在Java 8之后，仅用一条语句就可以获得完全相同的结果： Map&amp;lt;Currency, List&amp;lt;Transaction&amp;gt;&amp;gt; transactionsByCurrencies = transactions.stream().collect(groupingBy(Transaction::getCurrency)); Collector接口提供了三个</description>
     </item>
     
     <item>
       <title>使用流</title>
-      <link>http://gitop.cc/posts/working-with-streams/</link>
+      <link>https://gitop.cc/posts/working-with-streams/</link>
       <pubDate>Thu, 11 Jul 2019 08:39:11 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/working-with-streams/</guid>
+      <guid>https://gitop.cc/posts/working-with-streams/</guid>
       <description>过滤 使用谓词过滤 filter方法接受一个谓词函数为参数，并返回包含所有匹配谓词的元素的流。如下例： List&amp;lt;Dish&amp;gt; vegetarianMenu = menu.stream().filter(Dish::isVegetarian).collect(toList()); 如下图所示： 过滤唯一元素 distinct方法返回包含唯一元素的流。如下例： List&amp;lt;Integer&amp;gt; numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4); numbers.stream().filter(i -&amp;gt; i % 2 == 0).distinct().forEach(System.out::println); 如下图所示： 切分流 Java 9添加了两个新方法takeWhile和drop</description>
     </item>
     
     <item>
       <title>流介绍</title>
-      <link>http://gitop.cc/posts/introducing-streams/</link>
+      <link>https://gitop.cc/posts/introducing-streams/</link>
       <pubDate>Wed, 10 Jul 2019 17:22:30 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/introducing-streams/</guid>
+      <guid>https://gitop.cc/posts/introducing-streams/</guid>
       <description>流是什么 流是对Java API的更新，允许你以声明式的方式操作数据集合。首先看一个例子，假设你想获得所有热量低于400卡的菜肴的名字，并按热量排序。在Java 8之前，你可以这样做： List&amp;lt;Dish&amp;gt; lowCaloricDishes = new ArrayList&amp;lt;&amp;gt;(); for (Dish dish : menu) { if (dish.getCalories() &amp;lt; 400) { lowCaloricDishes.add(dish); } } Collections.sort(lowCaloricDishes, new Comparator&amp;lt;Dish&amp;gt;() { public int compare(Dish dish1, Dish dish2) { return Integer.compare(dish1.getCalories(), dish2.getCalories()); } }); List&amp;lt;String&amp;gt; lowCaloricDishesName = new ArrayList&amp;lt;&amp;gt;(); for (Dish dish : lowCaloricDishes) { lowCaloricDishesName.add(dish.getName()); } 在Ja</description>
     </item>
     
     <item>
       <title>Lambda表达式</title>
-      <link>http://gitop.cc/posts/lambda-expressions/</link>
+      <link>https://gitop.cc/posts/lambda-expressions/</link>
       <pubDate>Wed, 10 Jul 2019 08:48:55 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/lambda-expressions/</guid>
+      <guid>https://gitop.cc/posts/lambda-expressions/</guid>
       <description>Lambda概述 lambda表达式没有名称，但是它有参数列表，函数体和返回类型，还可能包含一个异常列表。 匿名，lambda表达式不像方法一样有一个显式的名字 函数，lambda表达式不像方法一样关联到一个特定的类 传递，lambda表达式可以像函数参数一样传递，或者保存到变量里面 简洁</description>
     </item>
     
     <item>
       <title>Git配置多个SSH-Key</title>
-      <link>http://gitop.cc/posts/git-multi-sshkey/</link>
+      <link>https://gitop.cc/posts/git-multi-sshkey/</link>
       <pubDate>Mon, 08 Jul 2019 16:59:22 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/git-multi-sshkey/</guid>
+      <guid>https://gitop.cc/posts/git-multi-sshkey/</guid>
       <description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 1.生成一个公司用的SSH-Key $ ssh-keygen -t rsa -C &amp;#39;xxxxx@company.com&amp;#39; -f ~/.ssh/gitee_id_rsa 2.生成一个github用的SSH-Key $ ssh-keygen -t rsa -C &amp;#39;xxxxx@qq.com&amp;#39; -f ~/.ssh/github_id_rsa 3.在 ~/.ssh 目录下新建一个config文件，</description>
     </item>
     
     <item>
       <title>Greenplum TPC-H测试</title>
-      <link>http://gitop.cc/posts/tpch-test/</link>
+      <link>https://gitop.cc/posts/tpch-test/</link>
       <pubDate>Sun, 14 Apr 2019 15:40:23 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/tpch-test/</guid>
+      <guid>https://gitop.cc/posts/tpch-test/</guid>
       <description>首先从官网下载TPC-H_Tools_v2.18.0.zip，解压 $ unzip TPC-H_Tools_v2.18.0.zip 进入dbgen目录，拷贝Makefile $ cd tpc/2.18.0_rc2/dbgen $ cp makefile.suite Makefile 修改Makefile，主要修改如下 CC = gcc DATABASE = ORACLE MACHINE = LINUX WORKLOAD = TPCH 编译dbgen $ make ./dbgen -h可以查看dbgen的用法 使用dbgen产生一些测试数据，-s表示scal</description>
     </item>
     
     <item>
       <title>gpdb官方安装包自定义安装路径的方法</title>
-      <link>http://gitop.cc/posts/custom_gpdb_installation/</link>
+      <link>https://gitop.cc/posts/custom_gpdb_installation/</link>
       <pubDate>Thu, 11 Apr 2019 16:38:13 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/custom_gpdb_installation/</guid>
+      <guid>https://gitop.cc/posts/custom_gpdb_installation/</guid>
       <description>下载安装包并解压，得到一个bin文件，从bin文件提取rpm文件 # 前960行为安装脚本 [root@hadoop2 ~]# tail -n +961 greenplum-db-5.16.0-rhel7-x86_64.bin &amp;gt; gpdb.tar.gz 如果集群没有gpadmin用户，可以利用gpssh批量创建gpadmin用户。首先以root用户登陆master节点，解压gpdb.tar.gz： [root@hadoop2 ~]# mkdir gpdb-5.16.0 [root@hadoop2 ~]# tar zxf gpdb.tar.gz -C gpdb-5.16.0 修改gpd</description>
     </item>
     
     <item>
       <title>PostgreSQL数据类型</title>
-      <link>http://gitop.cc/posts/postgres_data_type/</link>
+      <link>https://gitop.cc/posts/postgres_data_type/</link>
       <pubDate>Tue, 22 Jan 2019 16:20:20 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/postgres_data_type/</guid>
+      <guid>https://gitop.cc/posts/postgres_data_type/</guid>
       <description>类型介绍 类型分类 PostgreSQL支持的数据类型分类如表： 类型 说明 对比其他数据库 布尔类型 PostgreSQL支持SQL标准的boolean数据类型 与MySQL的BOOL、BOOLEAN类型相同，使用一字节存储空间 数值类型 整数类型有2字节的smallint、4字节的int、8字节</description>
     </item>
     
     <item>
       <title>psql使用介绍</title>
-      <link>http://gitop.cc/posts/psql_intro/</link>
+      <link>https://gitop.cc/posts/psql_intro/</link>
       <pubDate>Sat, 19 Jan 2019 19:13:20 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/psql_intro/</guid>
+      <guid>https://gitop.cc/posts/psql_intro/</guid>
       <description>psql介绍 psql是PostgreSQL中的一个命令行交互式客户端工具，类似Oracle中的命令行工具sqlplus，但它使用起来远比sqlplus方便。 在postgres用户下可以直接输入psql进入到数据库： $ psql psql (10.5 (Debian 10.5-1.pgdg90+1)) Type &amp;#34;help&amp;#34; for help. postgres=# 为什么不需要输入用户名和密码呢?因为在安装P</description>
     </item>
     
     <item>
       <title>SQL入门</title>
-      <link>http://gitop.cc/posts/sql_intro/</link>
+      <link>https://gitop.cc/posts/sql_intro/</link>
       <pubDate>Sat, 19 Jan 2019 19:13:04 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/sql_intro/</guid>
+      <guid>https://gitop.cc/posts/sql_intro/</guid>
       <description>SQL语句分类 DQL(Data Query Language)：数据查询语言，基本就是select语句，用于数据查询。 DML(Data Manipulation Language)：数据操纵语言，包含insert、update、delete三种语句。 DDL(Data Definition Language)：数据定义语言，主要用于创建、删除或修改表、索引等数据库对象。 创建表(cr</description>
     </item>
     
     <item>
       <title>Docker安装gpdb测试数据库</title>
-      <link>http://gitop.cc/posts/docker_install_gpdb_dev_env/</link>
+      <link>https://gitop.cc/posts/docker_install_gpdb_dev_env/</link>
       <pubDate>Thu, 17 Jan 2019 15:02:33 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/docker_install_gpdb_dev_env/</guid>
+      <guid>https://gitop.cc/posts/docker_install_gpdb_dev_env/</guid>
       <description>下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便一点。 docker pull pivotaldata/gpdb-dev:centos7 下载gpdb源码到指定目录 git clone https://github.com/greenplum-db/gpdb.git ~/github 创建目录用于容器数据库 sudo mkdir -p /var/lib/centos-gpdb-dev-data sudo chown xiaoyu:xiaoyu /var/lib/centos-gpdb-dev-data 运行容器 docker run -it --name centos-gpdb-dev -v ~/github/gpdb:/home/gpadmin/gpdb_src -v /var/lib/centos-gpdb-dev-data:/home/gpadmin/data -p 15432:15432 pivotaldata/gpdb-dev:centos7 安装依赖 /home/gpadmin/gpdb_src/README.CentOS.bash 添加动态库搜索</description>
     </item>
     
     <item>
       <title>数组</title>
-      <link>http://gitop.cc/posts/arrays/</link>
+      <link>https://gitop.cc/posts/arrays/</link>
       <pubDate>Mon, 12 Nov 2018 19:37:34 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/arrays/</guid>
+      <guid>https://gitop.cc/posts/arrays/</guid>
       <description>创建数组 创建数组的最简单方法是使用数组字面值： var empty = []; // An array with no elements var primes = [2, 3, 5, 7, 11]; // An array with 5 numeric elements var misc = [1.1, true, &amp;#34;a&amp;#34;,]; // 3 elements of various types + trailing comma 数组字面值中的元素可以是任意的表达式。如果数组中有省略的元素，其值为undefined： var count = [1,,3]; // An array with 3 elements, the middle one undefined. var undefs = [,,]; // An array with 2 elements, both undefined. 另一种方式是使</description>
     </item>
     
     <item>
       <title>对象</title>
-      <link>http://gitop.cc/posts/objects/</link>
+      <link>https://gitop.cc/posts/objects/</link>
       <pubDate>Sat, 03 Nov 2018 21:39:25 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/objects/</guid>
+      <guid>https://gitop.cc/posts/objects/</guid>
       <description>对象的属性也有属性： 可写属性指定属性的值是否可以设置。 枚举属性指定属性名是否能由for/in循环返回。 可配置属性指定属性是否可以删除和更改。 在ES5之前，自己代码创建的对象中的所有属性都是可写的、可枚举的和可配置的。每个对象都有三个相关的对象属性： 对象的prototype是对另一</description>
     </item>
     
     <item>
       <title>语句</title>
-      <link>http://gitop.cc/posts/statements/</link>
+      <link>https://gitop.cc/posts/statements/</link>
       <pubDate>Tue, 30 Oct 2018 21:16:04 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/statements/</guid>
+      <guid>https://gitop.cc/posts/statements/</guid>
       <description>JavaScript语句以分号结束。表达式被计算以产生值，但是语句被执行以使某些事情发生。 表达式语句 JavaScript中最简单的语句是具有副作用的表达式，比如赋值语句、自增自减运算符、delete操作符和函数调用： greeting = &amp;#34;Hello &amp;#34; + name; i *= 3; counter++; delete o.x; window.close(); 复合语句和空语句 复合语句是包含在大括号</description>
     </item>
     
     <item>
       <title>表达式和操作符</title>
-      <link>http://gitop.cc/posts/expressions_and_operators/</link>
+      <link>https://gitop.cc/posts/expressions_and_operators/</link>
       <pubDate>Sun, 28 Oct 2018 21:07:21 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/expressions_and_operators/</guid>
+      <guid>https://gitop.cc/posts/expressions_and_operators/</guid>
       <description>表达式是JavaScript的一个短语，JavaScript解释器可以对其进行求值。 主表达式 最简单的表达式，称为主表达式，是那些独立的表达式——它们不包含任何简单的表达式。JavaScript中的主要表达式是常量或文字值、特定语言关键字和变量引用。 true // Evalutes to the boolean true value false // Evaluates to the boolean false value</description>
     </item>
     
     <item>
       <title>类型、值和变量</title>
-      <link>http://gitop.cc/posts/types_values_variables/</link>
+      <link>https://gitop.cc/posts/types_values_variables/</link>
       <pubDate>Sun, 28 Oct 2018 14:24:21 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/types_values_variables/</guid>
+      <guid>https://gitop.cc/posts/types_values_variables/</guid>
       <description>Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefined。null和undefined是它们自己类型的唯一成员。任何不是原始类型的Javascript值都是一个对象。每个对象都是类型Object</description>
     </item>
     
     <item>
       <title>词法结构</title>
-      <link>http://gitop.cc/posts/lexical_structure/</link>
+      <link>https://gitop.cc/posts/lexical_structure/</link>
       <pubDate>Tue, 16 Oct 2018 08:29:23 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/lexical_structure/</guid>
+      <guid>https://gitop.cc/posts/lexical_structure/</guid>
       <description>介绍 JavaScript是一门大小写敏感的语言 JavaScript程序使用Unicode字符集编写 JavaScript使用\u后跟4位16进制数字代表任何16位Unicode码点 字面值 字面值是程序中直接出现的数据值，下列这些都是字面值： 12 // The number twelve 1.2 // The number one point two &amp;#34;hello world&amp;#34; // A string of text &amp;#39;Hi&amp;#39; // Another</description>
     </item>
     
     <item>
       <title>docker安装greenplum集群</title>
-      <link>http://gitop.cc/posts/install-greenplum-in-docker/</link>
+      <link>https://gitop.cc/posts/install-greenplum-in-docker/</link>
       <pubDate>Tue, 21 Aug 2018 19:15:14 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/install-greenplum-in-docker/</guid>
+      <guid>https://gitop.cc/posts/install-greenplum-in-docker/</guid>
       <description>本文参考这里安装greenplum成功，并记录一下过程 创建docker节点 拉取centos镜像 [xiaoyu@xiaoyu ~]$ docker pull centos 创建几个容器，作为greenplum的节点 [xiaoyu@xiaoyu ~]$ docker run -it --name gp-master centos /bin/bash [xiaoyu@xiaoyu ~]$ docker run -it --name gp-segment1 centos /bin/bash [xiaoyu@xiaoyu ~]$ docker run -it --name gp-segment2 centos /bin/bash [xiaoyu@xiaoyu ~]$ docker run -it --name gp-segment3 centos /bin/bash 配置基础环境 进入每个greenplum节点，配置基础环境 安装相</description>
     </item>
     
     <item>
       <title>Idea快捷键</title>
-      <link>http://gitop.cc/posts/idea-key-bindings/</link>
+      <link>https://gitop.cc/posts/idea-key-bindings/</link>
       <pubDate>Sat, 18 Aug 2018 16:15:19 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/idea-key-bindings/</guid>
+      <guid>https://gitop.cc/posts/idea-key-bindings/</guid>
       <description>编辑基础 快捷键 说明 Ctrl+Shift+向右箭头 向右选择一个单词 Ctrl+Shift+向左箭头 向左选择一个单词 Alt+Shift+向上箭头 逐级选择一个代码块 Alt+Shift+向下箭头 逐级缩小代码块选择 Shift+向下箭头 向下选择多行 Shift+向上箭头 向上选择多行 Ctrl+A 选择整个文件</description>
     </item>
     
     <item>
       <title>Contact me</title>
-      <link>http://gitop.cc/contact/</link>
+      <link>https://gitop.cc/contact/</link>
       <pubDate>Sat, 18 Aug 2018 10:30:16 +0800</pubDate>
       
-      <guid>http://gitop.cc/contact/</guid>
+      <guid>https://gitop.cc/contact/</guid>
       <description>Welcome to email to me.</description>
     </item>
     
     <item>
       <title>Ubuntu 18.04</title>
-      <link>http://gitop.cc/posts/ubuntu-18.04/</link>
+      <link>https://gitop.cc/posts/ubuntu-18.04/</link>
       <pubDate>Sat, 18 Aug 2018 09:19:20 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/ubuntu-18.04/</guid>
+      <guid>https://gitop.cc/posts/ubuntu-18.04/</guid>
       <description>Ubuntu 18.04安装后做的事情 安装openssh-server sudo apt install openssh-server 安装curl sudo apt install curl 安装git sudo apt install git 安装zsh sudo apt install zsh 安装oh my zsh sh -c &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&amp;#34; 安装JDK sudo apt install openjdk-11-jdk sudo apt install openjdk-8-jdk 安装SVN sudo apt install subversion 安装mariadb sudo apt install mariadb-server 安装Vim sudo apt install vim 安装emacs sudo apt install emacs 安装nginx sudo apt install nginx 安装</description>
     </item>
     
     <item>
       <title>Centos7环境配置</title>
-      <link>http://gitop.cc/posts/centos7-environment-setup/</link>
+      <link>https://gitop.cc/posts/centos7-environment-setup/</link>
       <pubDate>Thu, 02 Aug 2018 20:31:02 +0800</pubDate>
       
-      <guid>http://gitop.cc/posts/centos7-environment-setup/</guid>
+      <guid>https://gitop.cc/posts/centos7-environment-setup/</guid>
       <description>开启EPEL仓库 EPEL(Extra Packages for Enterprise Linux)是Fedora小组维护的一个软件仓库项目，为RHEL/CentOS提供他们默认不提供的软件包。 wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm sudo rpm -ivh epel-release-latest-7.noarch.rpm sudo yum update 安装git sudo yum install git 安装zsh sudo yum install zsh 安装oh my zsh sh -c &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&amp;#34; 安装开发工具 sudo yum groupinstall &amp;#34;Development Tools&amp;#34; 安装cmake sudo yum install cmake 安装JDK sudo rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.181-2.6.14.8.el7_5.x86_64 sudo rpm -e --nodeps java-1.7.0-openjdk-1.7.0.181-2.6.14.8.el7_5.x86_64</description>
     </item>
     
     <item>
       <title>关于我</title>
-      <link>http://gitop.cc/about/</link>
+      <link>https://gitop.cc/about/</link>
       <pubDate>Wed, 01 Aug 2018 16:29:22 +0800</pubDate>
       
-      <guid>http://gitop.cc/about/</guid>
+      <guid>https://gitop.cc/about/</guid>
       <description>以前不懂事，现在迷途知返，踏踏实实学习</description>
     </item>
     
     <item>
       <title>第12章 动态内存</title>
-      <link>http://gitop.cc/posts/cpp-primer-12/</link>
+      <link>https://gitop.cc/posts/cpp-primer-12/</link>
       <pubDate>Fri, 28 Oct 2016 14:46:23 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-12/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-12/</guid>
       <description>静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈对象只当其定义的块在执行时存在。静态对象在被使用之前已经创建，当程序结束时销毁。 除了静态内存和栈内存，每一个程序还有一个自由存储区或叫堆。程</description>
     </item>
     
     <item>
       <title>安装完Ubuntu后需要做的事</title>
-      <link>http://gitop.cc/posts/after-ubuntu-installation/</link>
+      <link>https://gitop.cc/posts/after-ubuntu-installation/</link>
       <pubDate>Wed, 26 Oct 2016 16:03:15 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/after-ubuntu-installation/</guid>
+      <guid>https://gitop.cc/posts/after-ubuntu-installation/</guid>
       <description>我会安装的工具 开发相关 g++，必须的，C++编译器 clang，据说是比gcc更好用的编译器，emacs的一些补全工具会用这个做后端 emacs，编辑器之神，谁用谁知道，入门门槛稍微高了一点，我现在还是菜鸟hoho git，连接github开源代码 vim，自从加入emacs阵营后，这个</description>
     </item>
     
     <item>
       <title>第17章 特殊的库设施</title>
-      <link>http://gitop.cc/posts/cpp-primer-17/</link>
+      <link>https://gitop.cc/posts/cpp-primer-17/</link>
       <pubDate>Mon, 17 Oct 2016 09:15:58 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-17/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-17/</guid>
       <description>17.1 tuple类型 tuple是一个类似pair的模板。每一个pair类型有2个不同类型的成员。一个tuple同样有不同类型的成员，但是它可以有任意数量的成员。tuple类型定义在tuple头文件。 注解 tuple可以认为是一个“快捷且脏”的数据结构。 17.1.1 定义和初始化tuple 当我们定义</description>
     </item>
     
     <item>
       <title>Asio.Cookbook 第2章 IO操作</title>
-      <link>http://gitop.cc/posts/io-operations/</link>
+      <link>https://gitop.cc/posts/io-operations/</link>
       <pubDate>Thu, 18 Aug 2016 08:55:42 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/io-operations/</guid>
+      <guid>https://gitop.cc/posts/io-operations/</guid>
       <description>介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络编程都是关于通过计算机网络进行进程间通信。像其他类型的IO操作一样，网络IO操作涉及使用内存缓冲区。 同步和异步IO操作 Boost.Asio支</description>
     </item>
     
     <item>
       <title>Asio.Cookbook 第1章 基础</title>
-      <link>http://gitop.cc/posts/Asio-Cookbook-1/</link>
+      <link>https://gitop.cc/posts/Asio-Cookbook-1/</link>
       <pubDate>Tue, 16 Aug 2016 08:45:19 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/Asio-Cookbook-1/</guid>
+      <guid>https://gitop.cc/posts/Asio-Cookbook-1/</guid>
       <description>介绍 TCP协议是具有下列特性的传输层协议： 它是可靠的。这意味着TCP协议保证报文以正确的顺序传输，或者通知报文没有传输成功。TCP协议包含错误处理机制。 它假定建立逻辑连接。在一个程序通过TCP协议与另一个程序通信之前，它必须根据标准通过交换服务报文建立一个逻辑连接。 它假定点对点通</description>
     </item>
     
     <item>
       <title>MySQL Cookbook 第5章 处理字符串</title>
-      <link>http://gitop.cc/posts/mysql-cookbook-5/</link>
+      <link>https://gitop.cc/posts/mysql-cookbook-5/</link>
       <pubDate>Thu, 07 Apr 2016 22:45:02 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/mysql-cookbook-5/</guid>
+      <guid>https://gitop.cc/posts/mysql-cookbook-5/</guid>
       <description>5.0. Introduction A string can be binary or nonbinary. Binary strings are used for raw data such as images, music files, or encrypted values. Nonbinary strings are used for character data such as text and are associated with a character set and collation (sort order). A character set determines which characters are legal in a string. You can choose collations according to whether you need comparisons to be case sensitive or case insensitive, or to use the rules of a particular language. Data types for binary strings are BINARY, VARBINARY, and BLOB. Data types for nonbinary strings are CHAR, VARCHAR, and TEXT, each of which permits CHARACTER SET and COLLATE attributes. You can convert a binary string to a nonbinary string and vice versa, or convert a nonbinary string from one character set or collation to another. You can use</description>
     </item>
     
     <item>
       <title>MySQL Cookbook 第4章 表管理</title>
-      <link>http://gitop.cc/posts/mysql-cookbook-4/</link>
+      <link>https://gitop.cc/posts/mysql-cookbook-4/</link>
       <pubDate>Thu, 07 Apr 2016 21:19:39 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/mysql-cookbook-4/</guid>
+      <guid>https://gitop.cc/posts/mysql-cookbook-4/</guid>
       <description>4.0. Introduction This chapter covers topics that relate to creating and populating tables: • Cloning a table • Copying from one table to another • Using temporary tables • Generating unique table names • Determining what storage engine a table uses or converting it from one storage engine to another 4.1. Cloning a Table Problem You want to create a table that has exactly the same structure as an existing table. Solution Use CREATE TABLE &amp;hellip; LIKE to clone the table structure. To also copy some or all of the rows from the original table to the new one, use INSERT INTO &amp;hellip; SELECT . Discussion To create a new table that is just like an existing table, use this statement: CREATE TABLE new_table LIKE original_table; The structure of the new table is the same as that of the original</description>
     </item>
     
     <item>
       <title>MySQL Cookbook 第3章 从表中查询数据</title>
-      <link>http://gitop.cc/posts/mysql-cookbook-3/</link>
+      <link>https://gitop.cc/posts/mysql-cookbook-3/</link>
       <pubDate>Thu, 07 Apr 2016 12:14:29 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/mysql-cookbook-3/</guid>
+      <guid>https://gitop.cc/posts/mysql-cookbook-3/</guid>
       <description>3.0. 介绍 本章专注使用SELECT语句从你的数据库获取信息。 3.1. 指定SELECT哪行哪列 问题 你想要从一张表中展示特定行和列。 解决方法 为了指示展示哪一列，在输出列表中指定它。为了指示展示哪一行，使用WHERE语句指定满足条件的行。 讨论 从一个表中显示列最简单的方式是使用SELECT * FROM tb</description>
     </item>
     
     <item>
       <title>MySQL Cookbook 第2章 编写基于MySQL的程序</title>
-      <link>http://gitop.cc/posts/mysql-cookbook-2/</link>
+      <link>https://gitop.cc/posts/mysql-cookbook-2/</link>
       <pubDate>Tue, 05 Apr 2016 21:32:29 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/mysql-cookbook-2/</guid>
+      <guid>https://gitop.cc/posts/mysql-cookbook-2/</guid>
       <description>2.0. 介绍 MySQL Client API Architecture Each MySQL programming interface covered in this book uses a two-level architecture: The upper level provides database-independent methods that implement database access in a portable way that’s the same whether you use MySQL, PostgreSQL, Ora‐ cle, or whatever. The lower level consists of a set of drivers, each of which implements the details for a single database system. 2.1. Connecting, Selecting a Database, and Disconnecting Problem You need to establish a connection to the database server and shut down the connection when you’re done. Solution Each API provides routines for connecting and disconnecting. The connection routines require that you provide parameters specifying the host on which the MySQL server is running and the MySQL account to use. You can also</description>
     </item>
     
     <item>
       <title>MySQL Cookbook 第1章 使用mysql客户端</title>
-      <link>http://gitop.cc/posts/mysql-cookbook-1/</link>
+      <link>https://gitop.cc/posts/mysql-cookbook-1/</link>
       <pubDate>Tue, 05 Apr 2016 15:56:30 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/mysql-cookbook-1/</guid>
+      <guid>https://gitop.cc/posts/mysql-cookbook-1/</guid>
       <description>1.0 介绍 本章描述了mysql的能力以使你能够更有效的使用它： 设置一个MySQL账户以使用cookbook数据库 指定连接参数和使用配置文件 交互模式和批量模式执行SQL语句 控制mysql输出格式 使用用户定义的变量保存信息 为了你自己试验本书中的例子，你需要一个MySQL用户和一个数据库。</description>
     </item>
     
     <item>
       <title>第2章 变量和基本类型</title>
-      <link>http://gitop.cc/posts/cpp-primer-2/</link>
+      <link>https://gitop.cc/posts/cpp-primer-2/</link>
       <pubDate>Mon, 21 Mar 2016 20:27:17 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-2/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-2/</guid>
       <description>2.1 基础内置类型 C++定义了一组基础类型，包括算术类型和一个特殊的void类型。算术类型表示字符，整型，布尔值和浮点数类型。void类型不关联任何值，而且只能用在一些场合，最常见是用作函数的返回类型。 2.1.1 算术类型 算术类型分为2类：整型（包含了字符和布尔值）和浮点数类型。算术类型的大小</description>
     </item>
     
     <item>
       <title>Boost.Asio网络编程 第2章</title>
-      <link>http://gitop.cc/posts/Asio-Network-Programming-2/</link>
+      <link>https://gitop.cc/posts/Asio-Network-Programming-2/</link>
       <pubDate>Thu, 17 Mar 2016 10:55:52 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/Asio-Network-Programming-2/</guid>
+      <guid>https://gitop.cc/posts/Asio-Network-Programming-2/</guid>
       <description>Boost.Asio命名空间 Boost.Asio所有东西都放在boost::asio命名空间或者子命名空间： boost::asio：核心类和函数放在这里。重要的类有io_service和streambuf。重要的自由函数，比如read，read_at，read_util，它们相应</description>
     </item>
     
     <item>
       <title>Boost.Asio网络编程 第1章</title>
-      <link>http://gitop.cc/posts/Asio-Network-Programming-1/</link>
+      <link>https://gitop.cc/posts/Asio-Network-Programming-1/</link>
       <pubDate>Sun, 13 Mar 2016 10:55:46 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/Asio-Network-Programming-1/</guid>
+      <guid>https://gitop.cc/posts/Asio-Network-Programming-1/</guid>
       <description>什么是Boost.Asio 简单来说，Boost.Asio是一个跨平台的C++库，主要是为了网络编程和一些其它低级输入/输出编程。 Boost.Asio成功地抽象出输入和输出的概念，不仅仅是网络，还有COM串行端口，文件等。在此之上，你可以同步或异步进行输入或输出编程： read(stream, buffer [, extra options]) async_read(stream, buffer</description>
     </item>
     
     <item>
       <title>Python核心编程 第3章</title>
-      <link>http://gitop.cc/posts/Core-Python-3/</link>
+      <link>https://gitop.cc/posts/Core-Python-3/</link>
       <pubDate>Fri, 25 Dec 2015 13:28:23 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/Core-Python-3/</guid>
+      <guid>https://gitop.cc/posts/Core-Python-3/</guid>
       <description>3.1 语句和语法 关于Python语句的一些规则和符号： 井号（#）指示Python注释。 换行（\n）是标准行分隔符（一个语句一行） 反斜杠（\）延续一行 分号（;）将2个语句连接在一行 冒号（:）分隔标题行和其单元 单元通过缩进界定 Python文件组织成模块 3.1.1 注释（#） Python注释以井号开</description>
     </item>
     
     <item>
       <title>Python核心编程 第2章</title>
-      <link>http://gitop.cc/posts/Core-Python-2/</link>
+      <link>https://gitop.cc/posts/Core-Python-2/</link>
       <pubDate>Thu, 24 Dec 2015 09:46:13 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/Core-Python-2/</guid>
+      <guid>https://gitop.cc/posts/Core-Python-2/</guid>
       <description>命令行选项 -d 提供调试输出 -O 生成优化字节码（产生.pyo文件） -S 启动时不要运行导入地址查询Python路径 -v 详细输出（详细追踪import语句） -m mod 将模块当脚本运行 -Q opt 除法选项 -c cmd 将cmd字符串当Python脚本执行 file 从指定文件运行Python脚本 2.1 程序输出，print语句和&amp;qu</description>
     </item>
     
     <item>
       <title>21世纪C语言 第2章 调试，测试，文档</title>
-      <link>http://gitop.cc/posts/21st-c-2/</link>
+      <link>https://gitop.cc/posts/21st-c-2/</link>
       <pubDate>Fri, 18 Dec 2015 15:48:18 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/21st-c-2/</guid>
+      <guid>https://gitop.cc/posts/21st-c-2/</guid>
       <description>使用调试器 关于调试器的第一个简明提示：总是使用调试器。 一个调试侦探故事 调试代码： #include &amp;lt;math.h&amp;gt;#include &amp;lt;stdio.h&amp;gt; //size_t typedef struct meanvar {double mean, var;} meanvar; meanvar mean_and_var(const double *data){ long double avg = 0, avg2 = 0; long double ratio; size_t count= 0; for(size_t i=0; !isnan(data[i]); i++){ ratio = count/(count+1); count ++; avg *= ratio; avg2 *= ratio; avg += data[i]/(count +0.0); avg2 += pow(data[i], 2)/(count +0.0); } return (meanvar){.mean = avg, .var = avg2 - pow(avg, 2)}; //E[x^2] - E^2[x] } int main(){ double d[] = { 34124.75, 34124.48, 34124.90, 34125.31, 34125.05, 34124.98, NAN}; meanvar mv = mean_and_var(d); printf(&amp;#34;mean: %.10g var: %.10g\n&amp;#34;, mv.mean, mv.var*6/5.); double d2[] = { 4.75, 4.48, 4.90, 5.31, 5.05,</description>
     </item>
     
     <item>
       <title>21世纪C语言 第1章 便利编译配置</title>
-      <link>http://gitop.cc/posts/21st-c-1/</link>
+      <link>https://gitop.cc/posts/21st-c-1/</link>
       <pubDate>Tue, 15 Dec 2015 19:55:08 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/21st-c-1/</guid>
+      <guid>https://gitop.cc/posts/21st-c-1/</guid>
       <description>使用包管理器 必须获取的包： 编译器。必须安装gcc；clang可能也有用。 gdb，调试器 Valgrind，测试C内存使用错误。 gprof，一个分析工具 make，你永远不需要直接调用编译器 pkg-config，查找库 Doxygen，文档生成 文本编辑器。Emacs或vim。 自动工具：A</description>
     </item>
     
     <item>
       <title>第16章 模板和泛型编程</title>
-      <link>http://gitop.cc/posts/cpp-primer-16/</link>
+      <link>https://gitop.cc/posts/cpp-primer-16/</link>
       <pubDate>Mon, 14 Dec 2015 10:34:42 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-16/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-16/</guid>
       <description>面向对象编程和泛型编程都是处理程序编写时类型未知的情况。两者的区别是面向对象编程直到运行时类型才能知道，而泛型编程类型在编译期间知道。 容器，迭代器和算法都是泛型编程的例子。当编写一个泛型程序，我们用一种独立于任何类型的方式编写代码。当使用一个泛型程序，我们提供程序的实例将操作的类</description>
     </item>
     
     <item>
       <title>Pygame第6章 接受用户输入</title>
-      <link>http://gitop.cc/posts/pygame-6/</link>
+      <link>https://gitop.cc/posts/pygame-6/</link>
       <pubDate>Mon, 16 Nov 2015 16:39:23 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pygame-6/</guid>
+      <guid>https://gitop.cc/posts/pygame-6/</guid>
       <description>用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容易交互对任何游戏都至关重要，不管你有多好的外观和声音。 控制游戏 玩过游戏的都知道鼠标和键盘是游戏不可或缺的输入设备。键盘可以控制有限的方向和诸</description>
     </item>
     
     <item>
       <title>Pygame第5章 让画面动起来</title>
-      <link>http://gitop.cc/posts/pygame-5/</link>
+      <link>https://gitop.cc/posts/pygame-5/</link>
       <pubDate>Tue, 10 Nov 2015 20:21:33 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pygame-5/</guid>
+      <guid>https://gitop.cc/posts/pygame-5/</guid>
       <description>这一章描述如何以一种可以预测的方式在屏幕上移动对象，和如何使运动在其他人电脑里面一致。 理解帧率 我们需要知道计算机游戏中关于运动的第一件事情就是没有什么东西真正在移动。电脑屏幕或电视机展示给我们一系列图片，当两张图片间隔时间够短时，我们的大脑将这些图片混合在一起从而制造了流畅运动的</description>
     </item>
     
     <item>
       <title>整理代码片段</title>
-      <link>http://gitop.cc/posts/baiyu/</link>
+      <link>https://gitop.cc/posts/baiyu/</link>
       <pubDate>Tue, 10 Nov 2015 11:18:10 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/baiyu/</guid>
+      <guid>https://gitop.cc/posts/baiyu/</guid>
       <description>根据pid获取进程名 void get_process_name_by_pid(int pid, char *name) { char buf[256] = {0}; char path[256] = {0}; sprintf(buf, &amp;#34;/proc/%d/exe&amp;#34;, pid); readlink(buf, path, sizeof(path)); char *filename = basename(path); strcpy(name, filename); } C语言变长数组 C99标准才有的特性 void test_vla(const char *str) { int len = strlen(str); char a[len + 1]; memset(a, 0, sizeof(a)); strcpy(a, str); printf(&amp;#34;%s\n&amp;#34;, a); } 确保路径存在 bool besure_path(const char *pathname) { int len = strlen(pathname); char buffer[len + 1]; memset(buffer, 0, sizeof(buffer)); strcpy(buffer, pathname); for (int i = 0; i &amp;lt; len; ++i) { if (buffer[i] == &amp;#39;/&amp;#39;) { buffer[i] = 0; if (access(buffer, F_OK) &amp;lt; 0) { if (mkdir(buffer, 0755) &amp;lt; 0) { return false; } } buffer[i] = &amp;#39;/&amp;#39;; } } return true;</description>
     </item>
     
     <item>
       <title>Pygame第4章 创建视觉</title>
-      <link>http://gitop.cc/posts/pygame-4/</link>
+      <link>https://gitop.cc/posts/pygame-4/</link>
       <pubDate>Sat, 07 Nov 2015 21:28:44 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pygame-4/</guid>
+      <guid>https://gitop.cc/posts/pygame-4/</guid>
       <description>电脑游戏倾向于视觉上很自然，游戏开发者花费很多精力在处理图像和提升视觉效果来创建最令人愉快的体验上。 像素的威力 显示器里的一个独立的点称为一个图像单元或像素。如果一个显示器分辨率为1280x1024，则像素总数为1310720。一个屏幕上像素越多，则图片的质量越好。典型的家用电脑可</description>
     </item>
     
     <item>
       <title>Pygame第3章 Pygame介绍</title>
-      <link>http://gitop.cc/posts/pygame-3/</link>
+      <link>https://gitop.cc/posts/pygame-3/</link>
       <pubDate>Mon, 02 Nov 2015 08:16:02 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pygame-3/</guid>
+      <guid>https://gitop.cc/posts/pygame-3/</guid>
       <description>安装Pygame Ubuntu下安装Pygame: sudo apt-get install python-pygame 装好后，查看Pygame版本: &amp;gt;&amp;gt;&amp;gt; import pygame &amp;gt;&amp;gt;&amp;gt; print pygame.ver 使用Pygame Pygame有很多模块。每一个设备都有一个对应的模块。Pygame模块一览： 模块名 功能 pygame.cdrom 访问和控制光驱 pygame.cursors 加载光标图片 pygame.display 访问显示设备 pygame.draw 绘制形状、线和点 pygame.event 管理事件 pygame.font 使用字</description>
     </item>
     
     <item>
       <title>PyQt编程第8章 数据处理和自定义文件类型</title>
-      <link>http://gitop.cc/posts/pyqt-8/</link>
+      <link>https://gitop.cc/posts/pyqt-8/</link>
       <pubDate>Fri, 30 Oct 2015 12:40:00 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pyqt-8/</guid>
+      <guid>https://gitop.cc/posts/pyqt-8/</guid>
       <description>主窗口的职责 主窗口的职责通常是为用户提供高级文件处理动作和展示程序数据。</description>
     </item>
     
     <item>
       <title>PyQt编程第7章 使用Qt Designer</title>
-      <link>http://gitop.cc/posts/pyqt-7/</link>
+      <link>https://gitop.cc/posts/pyqt-7/</link>
       <pubDate>Wed, 28 Oct 2015 08:50:57 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pyqt-7/</guid>
+      <guid>https://gitop.cc/posts/pyqt-7/</guid>
       <description>用户界面保存在.ui文件中，包含一个窗口部件和布局的详细情况。Qt Designer能够关联标签和它的伙伴， 设置tab顺序(这个也可以用QWidget.setTabOrder()完成)。Qt Designer也能够关联信号和槽， 但是只能是内置的信号和槽。 一旦用户界面设计完成并保存在.</description>
     </item>
     
     <item>
       <title>Project Euler Problem 1</title>
-      <link>http://gitop.cc/posts/project-euler-1/</link>
+      <link>https://gitop.cc/posts/project-euler-1/</link>
       <pubDate>Fri, 23 Oct 2015 16:30:00 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/project-euler-1/</guid>
+      <guid>https://gitop.cc/posts/project-euler-1/</guid>
       <description>Multiples of 3 and 5 If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000. sum = 3 * (1 + 999 / 3) * (999 / 3) / 2 + \ 5 * (1 + 999 / 5) * (999 / 5) / 2 - \ 15 * (1 + 999 / 15) * (999 / 15) / 2 print sum 3和5的倍数 如果我们列出所有小于10且为3或5的倍数的自然数，我们得到3，5，6和9。这些</description>
     </item>
     
     <item>
       <title>PyQt编程第6章 主窗口</title>
-      <link>http://gitop.cc/posts/pyqt-6/</link>
+      <link>https://gitop.cc/posts/pyqt-6/</link>
       <pubDate>Wed, 21 Oct 2015 11:25:57 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pyqt-6/</guid>
+      <guid>https://gitop.cc/posts/pyqt-6/</guid>
       <description>创建一个主窗口 import os import platform import sys from PyQt4.QtCore import * from PyQt4.QtGui import * import helpform import newimagedlg import qrc_resources __version__ = &amp;#34;1.0.0&amp;#34; import的顺序：先Python标准模块，然后第三方模块(比如PyQt)，最后自己定义的模块。 一个程序通常有一个版本字符串，按照惯例称为__version__。 class MainWindow(QMainWindow): def __init__(self, parent=None): super(MainWindow, self).__init__(parent) self.image = QImage() self.dirty = False self.filename = None self.mirroredvertically = False self.mirroredhorizontally = False QImage并</description>
     </item>
     
     <item>
       <title>PyQt编程第5章 对话框</title>
-      <link>http://gitop.cc/posts/pyqt-5/</link>
+      <link>https://gitop.cc/posts/pyqt-5/</link>
       <pubDate>Wed, 14 Oct 2015 16:20:56 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pyqt-5/</guid>
+      <guid>https://gitop.cc/posts/pyqt-5/</guid>
       <description>对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。 对话框以“模式”分类为：模式对话框和无模式对话框。 应用模式对话框一旦被调用，用户只能与其交互，不能使用程序其它部分。 窗口模式对话框和应用模式对话框类似，只是它仅仅阻止与其父窗口交互。 无模式对话框允许用户与程</description>
     </item>
     
     <item>
       <title>PyQt编程第4章 GUI编程介绍</title>
-      <link>http://gitop.cc/posts/pyqt-4/</link>
+      <link>https://gitop.cc/posts/pyqt-4/</link>
       <pubDate>Mon, 12 Oct 2015 20:34:55 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/pyqt-4/</guid>
+      <guid>https://gitop.cc/posts/pyqt-4/</guid>
       <description>一个25行的弹出警告 import sys import time from PyQt4.QtCore import * from PyQt4.QtGui import * app = QApplication(sys.argv) try: due = QTime.currentTime() message = &amp;#34;Alert!&amp;#34; if len(sys.argv) &amp;lt; 2: raise ValueError hours, mins = sys.argv[1].split(&amp;#34;:&amp;#34;) due = QTime(int(hours), int(mins)) if not due.isValid(): raise ValueError if len(sys.argv) &amp;gt; 2: message = &amp;#34; &amp;#34;.join(sys.argv[2:]) except ValueError: message = &amp;#34;Usage: alert.pyw HH:MM [optional message]&amp;#34; # 24hr clock while QTime.currentTime() &amp;lt; due: time.sleep(20) # 20 seconds label = QLabel(&amp;#34;&amp;lt;font color=red size=72&amp;gt;&amp;lt;b&amp;gt;&amp;#34; + message + &amp;#34;&amp;lt;/b&amp;gt;&amp;lt;/font&amp;gt;&amp;#34;) label.setWindowFlags(Qt.SplashScreen) label.show() QTimer.singleShot(60000, app.quit) # 1 minute app.exec_() 每一个PyQt图形程序必须有一个QApplication对象，因为它能识别一些命令行的参</description>
     </item>
     
     <item>
       <title>第15章 面向对象编程</title>
-      <link>http://gitop.cc/posts/cpp-primer-15/</link>
+      <link>https://gitop.cc/posts/cpp-primer-15/</link>
       <pubDate>Mon, 21 Sep 2015 09:04:53 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-15/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-15/</guid>
       <description>15.1 OOP概述 面向对象编程的关键思想是数据抽象，继承和动态绑定。使用数据抽象，我们可以定义接口和实现分离的类。通过继承，我们可以定义相似类之间的关系模型。通过动态绑定，我们可以使用这些类对象而忽略它们之间的差别。 继承 通过继承联系的类构成一个层级关系。典型地，有一个基类在层级的顶端，</description>
     </item>
     
     <item>
       <title>第14章 重载操作和转换</title>
-      <link>http://gitop.cc/posts/cpp-primer-14/</link>
+      <link>https://gitop.cc/posts/cpp-primer-14/</link>
       <pubDate>Sun, 20 Sep 2015 10:47:02 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-14/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-14/</guid>
       <description>基本概念 重载操作符是具有特殊名字的函数：关键字operator后面跟着需要被定义的操作符的符号。像其它函数一样，重载操作符有返回值，参数列表和函数体。 重载操作符的参数和操作符的操作数一样多。除了函数调用操作符(operator())，重载操作符没有默认实参。 注意 当重载操作符是成员</description>
     </item>
     
     <item>
       <title>Markdown语法</title>
-      <link>http://gitop.cc/posts/syntax/</link>
+      <link>https://gitop.cc/posts/syntax/</link>
       <pubDate>Sat, 19 Sep 2015 19:47:02 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/syntax/</guid>
+      <guid>https://gitop.cc/posts/syntax/</guid>
       <description>原文拷贝自~~这里~~. NOTE: This is Simplelified Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to Markdown: Syntax. 声明： 这份文档派生(fork)于繁体中文版，在此基础上进行了繁体转简体工作，并进行了适当的润色。此文档用 Markdown 语法编写，你可以到这里~~查看它的源文件~~。「繁体中文版的原始文件可以查看这里 。」&amp;ndash;By @riku</description>
     </item>
     
     <item>
       <title>归档</title>
-      <link>http://gitop.cc/archives/</link>
+      <link>https://gitop.cc/archives/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://gitop.cc/archives/</guid>
+      <guid>https://gitop.cc/archives/</guid>
       <description></description>
     </item>
     

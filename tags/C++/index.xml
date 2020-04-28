@@ -2,102 +2,102 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C&#43;&#43; on 招财猫的博客</title>
-    <link>http://gitop.cc/tags/C&#43;&#43;/</link>
+    <link>https://gitop.cc/tags/C&#43;&#43;/</link>
     <description>Recent content in C&#43;&#43; on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 28 Oct 2016 14:46:23 +0000</lastBuildDate>
     
-	<atom:link href="http://gitop.cc/tags/C++/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gitop.cc/tags/C++/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>第12章 动态内存</title>
-      <link>http://gitop.cc/posts/cpp-primer-12/</link>
+      <link>https://gitop.cc/posts/cpp-primer-12/</link>
       <pubDate>Fri, 28 Oct 2016 14:46:23 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-12/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-12/</guid>
       <description>静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈对象只当其定义的块在执行时存在。静态对象在被使用之前已经创建，当程序结束时销毁。 除了静态内存和栈内存，每一个程序还有一个自由存储区或叫堆。程</description>
     </item>
     
     <item>
       <title>第17章 特殊的库设施</title>
-      <link>http://gitop.cc/posts/cpp-primer-17/</link>
+      <link>https://gitop.cc/posts/cpp-primer-17/</link>
       <pubDate>Mon, 17 Oct 2016 09:15:58 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-17/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-17/</guid>
       <description>17.1 tuple类型 tuple是一个类似pair的模板。每一个pair类型有2个不同类型的成员。一个tuple同样有不同类型的成员，但是它可以有任意数量的成员。tuple类型定义在tuple头文件。 注解 tuple可以认为是一个“快捷且脏”的数据结构。 17.1.1 定义和初始化tuple 当我们定义</description>
     </item>
     
     <item>
       <title>Asio.Cookbook 第2章 IO操作</title>
-      <link>http://gitop.cc/posts/io-operations/</link>
+      <link>https://gitop.cc/posts/io-operations/</link>
       <pubDate>Thu, 18 Aug 2016 08:55:42 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/io-operations/</guid>
+      <guid>https://gitop.cc/posts/io-operations/</guid>
       <description>介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络编程都是关于通过计算机网络进行进程间通信。像其他类型的IO操作一样，网络IO操作涉及使用内存缓冲区。 同步和异步IO操作 Boost.Asio支</description>
     </item>
     
     <item>
       <title>Asio.Cookbook 第1章 基础</title>
-      <link>http://gitop.cc/posts/Asio-Cookbook-1/</link>
+      <link>https://gitop.cc/posts/Asio-Cookbook-1/</link>
       <pubDate>Tue, 16 Aug 2016 08:45:19 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/Asio-Cookbook-1/</guid>
+      <guid>https://gitop.cc/posts/Asio-Cookbook-1/</guid>
       <description>介绍 TCP协议是具有下列特性的传输层协议： 它是可靠的。这意味着TCP协议保证报文以正确的顺序传输，或者通知报文没有传输成功。TCP协议包含错误处理机制。 它假定建立逻辑连接。在一个程序通过TCP协议与另一个程序通信之前，它必须根据标准通过交换服务报文建立一个逻辑连接。 它假定点对点通</description>
     </item>
     
     <item>
       <title>第2章 变量和基本类型</title>
-      <link>http://gitop.cc/posts/cpp-primer-2/</link>
+      <link>https://gitop.cc/posts/cpp-primer-2/</link>
       <pubDate>Mon, 21 Mar 2016 20:27:17 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-2/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-2/</guid>
       <description>2.1 基础内置类型 C++定义了一组基础类型，包括算术类型和一个特殊的void类型。算术类型表示字符，整型，布尔值和浮点数类型。void类型不关联任何值，而且只能用在一些场合，最常见是用作函数的返回类型。 2.1.1 算术类型 算术类型分为2类：整型（包含了字符和布尔值）和浮点数类型。算术类型的大小</description>
     </item>
     
     <item>
       <title>Boost.Asio网络编程 第2章</title>
-      <link>http://gitop.cc/posts/Asio-Network-Programming-2/</link>
+      <link>https://gitop.cc/posts/Asio-Network-Programming-2/</link>
       <pubDate>Thu, 17 Mar 2016 10:55:52 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/Asio-Network-Programming-2/</guid>
+      <guid>https://gitop.cc/posts/Asio-Network-Programming-2/</guid>
       <description>Boost.Asio命名空间 Boost.Asio所有东西都放在boost::asio命名空间或者子命名空间： boost::asio：核心类和函数放在这里。重要的类有io_service和streambuf。重要的自由函数，比如read，read_at，read_util，它们相应</description>
     </item>
     
     <item>
       <title>Boost.Asio网络编程 第1章</title>
-      <link>http://gitop.cc/posts/Asio-Network-Programming-1/</link>
+      <link>https://gitop.cc/posts/Asio-Network-Programming-1/</link>
       <pubDate>Sun, 13 Mar 2016 10:55:46 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/Asio-Network-Programming-1/</guid>
+      <guid>https://gitop.cc/posts/Asio-Network-Programming-1/</guid>
       <description>什么是Boost.Asio 简单来说，Boost.Asio是一个跨平台的C++库，主要是为了网络编程和一些其它低级输入/输出编程。 Boost.Asio成功地抽象出输入和输出的概念，不仅仅是网络，还有COM串行端口，文件等。在此之上，你可以同步或异步进行输入或输出编程： read(stream, buffer [, extra options]) async_read(stream, buffer</description>
     </item>
     
     <item>
       <title>第16章 模板和泛型编程</title>
-      <link>http://gitop.cc/posts/cpp-primer-16/</link>
+      <link>https://gitop.cc/posts/cpp-primer-16/</link>
       <pubDate>Mon, 14 Dec 2015 10:34:42 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-16/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-16/</guid>
       <description>面向对象编程和泛型编程都是处理程序编写时类型未知的情况。两者的区别是面向对象编程直到运行时类型才能知道，而泛型编程类型在编译期间知道。 容器，迭代器和算法都是泛型编程的例子。当编写一个泛型程序，我们用一种独立于任何类型的方式编写代码。当使用一个泛型程序，我们提供程序的实例将操作的类</description>
     </item>
     
     <item>
       <title>第15章 面向对象编程</title>
-      <link>http://gitop.cc/posts/cpp-primer-15/</link>
+      <link>https://gitop.cc/posts/cpp-primer-15/</link>
       <pubDate>Mon, 21 Sep 2015 09:04:53 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-15/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-15/</guid>
       <description>15.1 OOP概述 面向对象编程的关键思想是数据抽象，继承和动态绑定。使用数据抽象，我们可以定义接口和实现分离的类。通过继承，我们可以定义相似类之间的关系模型。通过动态绑定，我们可以使用这些类对象而忽略它们之间的差别。 继承 通过继承联系的类构成一个层级关系。典型地，有一个基类在层级的顶端，</description>
     </item>
     
     <item>
       <title>第14章 重载操作和转换</title>
-      <link>http://gitop.cc/posts/cpp-primer-14/</link>
+      <link>https://gitop.cc/posts/cpp-primer-14/</link>
       <pubDate>Sun, 20 Sep 2015 10:47:02 +0000</pubDate>
       
-      <guid>http://gitop.cc/posts/cpp-primer-14/</guid>
+      <guid>https://gitop.cc/posts/cpp-primer-14/</guid>
       <description>基本概念 重载操作符是具有特殊名字的函数：关键字operator后面跟着需要被定义的操作符的符号。像其它函数一样，重载操作符有返回值，参数列表和函数体。 重载操作符的参数和操作符的操作数一样多。除了函数调用操作符(operator())，重载操作符没有默认实参。 注意 当重载操作符是成员</description>
     </item>
     
