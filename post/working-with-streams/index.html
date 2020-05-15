@@ -209,7 +209,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>如下图所示：</p>
-<p><img src="/static/images/2019/07/11/filter.png" alt="filter.png"></p>
+<p><img src="/img/2019/07/11/filter.png" alt="filter.png"></p>
 <h3 id="过滤唯一元素">过滤唯一元素</h3>
 <p><code>distinct</code>方法返回包含唯一元素的流。如下例：</p>
 <div class="highlight"><div class="chroma">
@@ -223,7 +223,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>如下图所示：</p>
-<p><img src="/static/images/2019/07/11/distinct.png" alt="distinct.png"></p>
+<p><img src="/img/2019/07/11/distinct.png" alt="distinct.png"></p>
 <h2 id="切分流">切分流</h2>
 <p>Java 9添加了两个新方法<code>takeWhile</code>和<code>dropWhile</code>，可以有效地选择流中的元素。</p>
 <h3 id="takewhile">takeWhile</h3>
@@ -289,7 +289,7 @@
 </div>
 </div><p><code>map</code>返回的流为<code>Stream&lt;String[]&gt;</code>，而你想要的流是<code>Stream&lt;String&gt;</code>，这样不对。</p>
 <p>如下图所示：</p>
-<p><img src="/static/images/2019/07/11/first-try.png" alt="first-try.png"></p>
+<p><img src="/img/2019/07/11/first-try.png" alt="first-try.png"></p>
 <h4 id="尝试使用map和arraysstream">尝试使用map和Arrays.stream</h4>
 <p>首先你需要一个字符串流而不是数组流。<code>Arrays.stream</code>方法接受一个数组并产生一个包含数组元素的流：</p>
 <div class="highlight"><div class="chroma">
@@ -324,7 +324,7 @@
 </div>
 </div><p><code>flatMap</code>将<code>map(Arrays::stream)</code>产生的一组流合并为一个流。</p>
 <p>如下图所示：</p>
-<p><img src="/static/images/2019/07/11/flatmap.png" alt="flatmap.png"></p>
+<p><img src="/img/2019/07/11/flatmap.png" alt="flatmap.png"></p>
 <h2 id="查找和匹配">查找和匹配</h2>
 <h3 id="匹配至少一个元素">匹配至少一个元素</h3>
 <p><code>anyMatch </code>用于查找至少一个匹配给定谓词，返回boolean</p>
@@ -412,7 +412,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>如下图所示：</p>
-<p><img src="/static/images/2019/07/11/reduce.png" alt="reduce.png"></p>
+<p><img src="/img/2019/07/11/reduce.png" alt="reduce.png"></p>
 <h4 id="没有初始值">没有初始值</h4>
 <p>还有一个不带初始值的<code>reduce</code>重载版本，它返回一个<code>Optional</code>对象</p>
 <div class="highlight"><div class="chroma">
