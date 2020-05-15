@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database on 招财猫的博客</title>
+    <link>https://gitop.cc/categories/database/</link>
+    <description>Recent content in Database on 招财猫的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 14 Apr 2019 15:40:23 +0800</lastBuildDate>
+    
+	<atom:link href="https://gitop.cc/categories/database/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Greenplum TPC-H测试</title>
+      <link>https://gitop.cc/post/tpch-test/</link>
+      <pubDate>Sun, 14 Apr 2019 15:40:23 +0800</pubDate>
+      
+      <guid>https://gitop.cc/post/tpch-test/</guid>
+      <description>首先从官网下载TPC-H_Tools_v2.18.0.zip，解压 1 $ unzip TPC-H_Tools_v2.18.0.zip 进入dbgen目录，拷贝Makefile 1 2 $ cd tpc/2.18.0_rc2/dbgen $ cp makefile.suite Makefile 修改Ma</description>
+    </item>
+    
+    <item>
+      <title>gpdb官方安装包自定义安装路径的方法</title>
+      <link>https://gitop.cc/post/custom_gpdb_installation/</link>
+      <pubDate>Thu, 11 Apr 2019 16:38:13 +0800</pubDate>
+      
+      <guid>https://gitop.cc/post/custom_gpdb_installation/</guid>
+      <description>下载安装包并解压，得到一个bin文件，从bin文件提取rpm文件 1 2 # 前960行为安装脚本 [root@hadoop2 ~]# tail -n +961 greenplum-db-5.16.0-rhel7-x86_64.bin &amp;gt; gpdb.tar.gz 如果集群没有gpadmin用户，可</description>
+    </item>
+    
+    <item>
+      <title>PostgreSQL数据类型</title>
+      <link>https://gitop.cc/post/postgres_data_type/</link>
+      <pubDate>Tue, 22 Jan 2019 16:20:20 +0800</pubDate>
+      
+      <guid>https://gitop.cc/post/postgres_data_type/</guid>
+      <description>类型介绍 类型分类 PostgreSQL支持的数据类型分类如表： 类型 说明 对比其他数据库 布尔类型 PostgreSQL支持SQL标准的boolean</description>
+    </item>
+    
+    <item>
+      <title>psql使用介绍</title>
+      <link>https://gitop.cc/post/psql_intro/</link>
+      <pubDate>Sat, 19 Jan 2019 19:13:20 +0800</pubDate>
+      
+      <guid>https://gitop.cc/post/psql_intro/</guid>
+      <description>psql介绍 psql是PostgreSQL中的一个命令行交互式客户端工具，类似Oracle中的命令行工具sqlplus，但它使用起来远比sq</description>
+    </item>
+    
+    <item>
+      <title>SQL入门</title>
+      <link>https://gitop.cc/post/sql_intro/</link>
+      <pubDate>Sat, 19 Jan 2019 19:13:04 +0800</pubDate>
+      
+      <guid>https://gitop.cc/post/sql_intro/</guid>
+      <description>SQL语句分类 DQL(Data Query Language)：数据查询语言，基本就是select语句，用于数据查询。 DML(Data Manipulation Language)：数据操纵语言，包含ins</description>
+    </item>
+    
+    <item>
+      <title>Docker安装gpdb测试数据库</title>
+      <link>https://gitop.cc/post/docker_install_gpdb_dev_env/</link>
+      <pubDate>Thu, 17 Jan 2019 15:02:33 +0800</pubDate>
+      
+      <guid>https://gitop.cc/post/docker_install_gpdb_dev_env/</guid>
+      <description>下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便</description>
+    </item>
+    
+    <item>
+      <title>docker安装greenplum集群</title>
+      <link>https://gitop.cc/post/install-greenplum-in-docker/</link>
+      <pubDate>Tue, 21 Aug 2018 19:15:14 +0800</pubDate>
+      
+      <guid>https://gitop.cc/post/install-greenplum-in-docker/</guid>
+      <description>本文参考这里安装greenplum成功，并记录一下过程 创建docker节点 拉取centos镜像 1 [xiaoyu@xiaoyu ~]$ docker pull centos 创建几个容器，作为greenplu</description>
+    </item>
+    
+    <item>
+      <title>MySQL Cookbook 第5章 处理字符串</title>
+      <link>https://gitop.cc/post/mysql-cookbook-5/</link>
+      <pubDate>Thu, 07 Apr 2016 22:45:02 +0000</pubDate>
+      
+      <guid>https://gitop.cc/post/mysql-cookbook-5/</guid>
+      <description>5.0. Introduction A string can be binary or nonbinary. Binary strings are used for raw data such as images, music files, or encrypted values. Nonbinary strings are used for character data such as text and are associated with a character set and collation (sort order). A character set determines which characters are legal in a string. You can choose collations according to whether you need comparisons to be case sensitive</description>
+    </item>
+    
+    <item>
+      <title>MySQL Cookbook 第4章 表管理</title>
+      <link>https://gitop.cc/post/mysql-cookbook-4/</link>
+      <pubDate>Thu, 07 Apr 2016 21:19:39 +0000</pubDate>
+      
+      <guid>https://gitop.cc/post/mysql-cookbook-4/</guid>
+      <description>4.0. Introduction This chapter covers topics that relate to creating and populating tables: • Cloning a table • Copying from one table to another • Using temporary tables • Generating unique table names • Determining what storage engine a table uses or converting it from one storage engine to another 4.1. Cloning a Table Problem You want to create a table that has exactly the same structure as an existing</description>
+    </item>
+    
+    <item>
+      <title>MySQL Cookbook 第3章 从表中查询数据</title>
+      <link>https://gitop.cc/post/mysql-cookbook-3/</link>
+      <pubDate>Thu, 07 Apr 2016 12:14:29 +0000</pubDate>
+      
+      <guid>https://gitop.cc/post/mysql-cookbook-3/</guid>
+      <description>3.0. 介绍 本章专注使用SELECT语句从你的数据库获取信息。 3.1. 指定SELECT哪行哪列 问题 你想要从一张表中展示特定行和列。 解决方法 为了指示展示哪</description>
+    </item>
+    
+    <item>
+      <title>MySQL Cookbook 第2章 编写基于MySQL的程序</title>
+      <link>https://gitop.cc/post/mysql-cookbook-2/</link>
+      <pubDate>Tue, 05 Apr 2016 21:32:29 +0000</pubDate>
+      
+      <guid>https://gitop.cc/post/mysql-cookbook-2/</guid>
+      <description>2.0. 介绍 MySQL Client API Architecture Each MySQL programming interface covered in this book uses a two-level architecture: The upper level provides database-independent methods that implement database access in a portable way that’s the same whether you use MySQL, PostgreSQL, Ora‐ cle, or whatever. The lower level consists of a set of drivers, each of which implements the details for a</description>
+    </item>
+    
+    <item>
+      <title>MySQL Cookbook 第1章 使用mysql客户端</title>
+      <link>https://gitop.cc/post/mysql-cookbook-1/</link>
+      <pubDate>Tue, 05 Apr 2016 15:56:30 +0000</pubDate>
+      
+      <guid>https://gitop.cc/post/mysql-cookbook-1/</guid>
+      <description>1.0 介绍 本章描述了mysql的能力以使你能够更有效的使用它： 设置一个MySQL账户以使用cookbook数据库 指定连接参数和使用配置文件 交互模</description>
+    </item>
+    
+  </channel>
+</rss>

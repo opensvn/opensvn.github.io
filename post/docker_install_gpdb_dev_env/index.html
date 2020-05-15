@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Docker安装gpdb测试数据库 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/docker_install_gpdb_dev_env/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Docker安装gpdb测试数据库" />
+<meta property="og:description" content="下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/docker_install_gpdb_dev_env/" />
+<meta property="article:published_time" content="2019-01-17T15:02:33+08:00" />
+<meta property="article:modified_time" content="2019-01-17T15:02:33+08:00" />
+<meta itemprop="name" content="Docker安装gpdb测试数据库">
+<meta itemprop="description" content="下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便">
+<meta itemprop="datePublished" content="2019-01-17T15:02:33&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-17T15:02:33&#43;08:00" />
+<meta itemprop="wordCount" content="568">
+
+
+
+<meta itemprop="keywords" content="Docker,Greenplum," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker安装gpdb测试数据库"/>
+<meta name="twitter:description" content="下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Docker安装gpdb测试数据库</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-01-17 </span>
+        <div class="post-category">
+            <a href="/categories/database/"> Database </a>
+            </div>
+          <span class="more-meta"> 约 568 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>下载gpdb-dev镜像</strong></p>
+<p><code>pivotaldata/gpdb-dev:centos7</code>是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便一点。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">docker pull pivotaldata/gpdb-dev:centos7</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>下载gpdb源码到指定目录</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/greenplum-db/gpdb.git ~/github</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>创建目录用于容器数据库</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /var/lib/centos-gpdb-dev-data
+sudo chown xiaoyu:xiaoyu /var/lib/centos-gpdb-dev-data</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>运行容器</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">docker run -it --name centos-gpdb-dev -v ~/github/gpdb:/home/gpadmin/gpdb_src -v /var/lib/centos-gpdb-dev-data:/home/gpadmin/data -p 15432:15432 pivotaldata/gpdb-dev:centos7</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>安装依赖</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">/home/gpadmin/gpdb_src/README.CentOS.bash</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>添加动态库搜索路径，并使之生效</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> /usr/local/lib &gt;&gt; /etc/ld.so.conf
+<span class="nb">echo</span> /usr/local/lib64 &gt;&gt; /etc/ld.so.conf
+ldconfig</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>设置启动sshd</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> /usr/sbin/sshd &gt;&gt; ~/.bashrc
+/usr/sbin/sshd <span class="c1"># 第一次手动启动</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>切换到gpadmin用户，并进入源码目录</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">su - gpadmin
+mkdir gpdb <span class="c1"># 创建gpdb目录作为gpdb安装目录</span>
+<span class="nb">cd</span> /home/gpadmin/gpdb_src</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>编译gp-xerces</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/greenplum-db/gp-xerces.git
+<span class="nb">cd</span> gp-xerces
+./configure <span class="o">&amp;&amp;</span> make -j4
+sudo make install
+<span class="nb">cd</span> ..</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>安装conan</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo pip install --upgrade pip
+sudo pip install -I conan <span class="c1"># -I忽略已安装的包</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>编译ORCA</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> depends
+./configure <span class="o">&amp;&amp;</span> make -j4 orca
+sudo make install_local
+sudo ldconfig
+<span class="nb">cd</span> ..</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>编译gpdb</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">./configure --enable-debug --with-perl --with-python --with-libxml --with-gssapi --prefix<span class="o">=</span>/home/gpadmin/gpdb
+make -j4 <span class="o">&amp;&amp;</span> make -j4 install</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>使greenplum环境变量生效</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="nb">source</span> /home/gpadmin/gpdb/greenplum_path.sh &gt;&gt; ~/.bashrc
+<span class="nb">source</span> ~/.bashrc</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>创建测试数据库</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">MASTER_DATADIR</span><span class="o">=</span>~/data <span class="c1"># 脚本demo_cluster.sh中用到</span>
+make create-demo-cluster
+<span class="nb">echo</span> <span class="nb">source</span> /home/gpadmin/gpdb_src/gpAux/gpdemo/gpdemo-env.sh &gt;&gt; ~/.bashrc
+<span class="nb">source</span> ~/.bashrc</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>修改数据库用户名密码</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">USER</span> <span class="n">gpadmin</span> <span class="n">PASSWORD</span> <span class="s1">&#39;gpadmin&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>修改master数据目录的配置文件pg_hba.conf，在最后添加以下内容</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">host    all     all     192.168.0.0/16  md5</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>修改master数据目录的配置文件postgresql.conf，找到listen_addresses，去掉前面的#，让gpdb重新加载配置文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">gpstop -ua</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>至此，gpdb测试数据库可以接受内网的访问。</strong></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-01-17
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/docker/">Docker</a>
+          <a href="/tags/greenplum/">Greenplum</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/sql_intro/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">SQL入门</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/arrays/">
+            <span class="next-text nav-default">数组</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/docker_install_gpdb_dev_env/" class="leancloud_visitors" data-flag-title="Docker安装gpdb测试数据库">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>安装完Ubuntu后需要做的事 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="我会安装的工具 开发相关 g&#43;&#43;，必须的，C&#43;&#43;编译器 clang，据说是比gcc更好用的编译器，emacs的一些补全工具会用这个做后端 emacs" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/after-ubuntu-installation/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="安装完Ubuntu后需要做的事" />
+<meta property="og:description" content="我会安装的工具 开发相关 g&#43;&#43;，必须的，C&#43;&#43;编译器 clang，据说是比gcc更好用的编译器，emacs的一些补全工具会用这个做后端 emacs" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/after-ubuntu-installation/" />
+<meta property="article:published_time" content="2016-10-26T16:03:15+00:00" />
+<meta property="article:modified_time" content="2016-10-26T16:03:15+00:00" />
+<meta itemprop="name" content="安装完Ubuntu后需要做的事">
+<meta itemprop="description" content="我会安装的工具 开发相关 g&#43;&#43;，必须的，C&#43;&#43;编译器 clang，据说是比gcc更好用的编译器，emacs的一些补全工具会用这个做后端 emacs">
+<meta itemprop="datePublished" content="2016-10-26T16:03:15&#43;00:00" />
+<meta itemprop="dateModified" content="2016-10-26T16:03:15&#43;00:00" />
+<meta itemprop="wordCount" content="1707">
+
+
+
+<meta itemprop="keywords" content="Ubuntu," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="安装完Ubuntu后需要做的事"/>
+<meta name="twitter:description" content="我会安装的工具 开发相关 g&#43;&#43;，必须的，C&#43;&#43;编译器 clang，据说是比gcc更好用的编译器，emacs的一些补全工具会用这个做后端 emacs"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">安装完Ubuntu后需要做的事</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-10-26 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 约 1707 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#我会安装的工具">我会安装的工具</a></li>
+    <li><a href="#你自己的github-通过坚果云管理代码参见httpblogjianguoyuncomp321">你自己的Github-通过坚果云管理代码（<a href="http://blog.jianguoyun.com/?p=321">参见</a>）</a></li>
+    <li><a href="#ubuntu美化">Ubuntu美化</a></li>
+    <li><a href="#安装jekyll用于github-page步骤">安装jekyll（用于github page）步骤</a></li>
+    <li><a href="#一些开发用到的库请忽略">一些开发用到的库（请忽略）</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="我会安装的工具">我会安装的工具</h2>
+<p><strong>开发相关</strong></p>
+<ul>
+<li>g++，必须的，C++编译器</li>
+<li>clang，据说是比gcc更好用的编译器，emacs的一些补全工具会用这个做后端</li>
+<li>emacs，编辑器之神，谁用谁知道，入门门槛稍微高了一点，我现在还是菜鸟hoho</li>
+<li>git，连接github开源代码</li>
+<li>vim，自从加入emacs阵营后，这个就用的少了</li>
+<li>subversion，公司代码还是用svn管理</li>
+<li>cmake，使用cmake自动生成Makefile，编译工程很方便</li>
+<li>global，emacs里面用来生成GTAGS，利于阅读代码</li>
+<li>meld，文件比较工具，支持整个目录的比较，以及版本控制系统，比如svn，git</li>
+<li>git cola，一个非常好用的git客户端工具</li>
+<li>LiteIDE，Go语言IDE</li>
+<li>CLion，JetBrains出品的C++IDE，很少用，最大的缺点耗内存，其他功能都不错</li>
+<li>curl，命令行抓取工具</li>
+<li>CodeBlocks，C++IDE，公司目前用的，比较少用，只用来编译发布。下面的操作安装最新的16.01版本。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:damien-moore/codeblocks-stable
+sudo apt-get update
+sudo apt-get install codeblocks</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>日常使用</strong></p>
+<ul>
+<li>ubuntu-tweak，该工具已经停止更新，16.04已经不能安装了，我是14.04升级到16.04，保留了该工具</li>
+<li>cryptomator，本地目录加密工具，加密指定目录所有文件。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:sebastian-stenzel/cryptomator
+sudo apt-get update
+sudo apt-get install cryptomator</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>
+<p>keepassx，本地密码管理软件，再也不用担心忘记密码了，只需记住一个主密码即可，保险一点可以再加一个key文件。这里讲一个配合cryptomator和云盘（推荐坚果云）的靠谱方法：</p>
+<ol>
+<li>首先用keepassx生成一个密码库的key文件</li>
+<li>将key文件放入cryptomator加密的目录（称为保险箱吧）中</li>
+<li>将保险箱同步到云盘</li>
+<li>密码库文件不用放入保险箱，同步到云盘。</li>
+</ol>
+<p>这样就可以在不同机器上使用和修改密码库文件，云盘会自动同步。因为key文件放在保险箱里面，非常安全。没有key文件和主密码是打不开密码库的。当然理论上存在保险箱被破解的可能，如果你觉得不放心，可以将key文件保存在自己认为安全的地方（千万不能丢）。</p>
+</li>
+<li>
+<p>坚果云（Nutstore），<a href="https://www.jianguoyun.com/s/downloads/linux">下载地址</a></p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install default-jre-headless
+sudo dpkg -i nautilus_nutstore_amd64.deb</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>
+<p><a href="https://getlantern.org/">蓝灯</a>，<a href="https://github.com/getlantern/lantern-binaries">下载地址</a></p>
+</li>
+<li>
+<p>搜狗输入法，<a href="http://pinyin.sogou.com/linux/?r=pinyin">下载地址</a>。安装完成后，设置系统输入法，通过<strong>系统设置&gt;语言支持&gt;键盘输入方式系统</strong>，选择<strong>fcitx</strong>，注销并重新登录即可</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install fcitx fcitx-libs fcitx-libs-qt
+sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>oh-my-zsh，首先要安装zsh。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="你自己的github-通过坚果云管理代码参见httpblogjianguoyuncomp321">你自己的Github-通过坚果云管理代码（<a href="http://blog.jianguoyun.com/?p=321">参见</a>）</h2>
+<p>切换到用来管理代码的目录，初始化本地仓库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git init
+$ git add .
+$ git commit -m <span class="s2">&#34;first commit&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>在坚果云同步目录中创建远程仓库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir -p ~/Nutstore/git/project
+$ <span class="nb">cd</span> ~/Nutstore/git/project
+$ git init –bare</code></pre></td></tr></table>
+</div>
+</div>
+<p>回到本地仓库目录，push代码到坚果云中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git remote add orig ~/Nutstore/git/project
+$ git push orig master</code></pre></td></tr></table>
+</div>
+</div>
+<p>这样在所有装了坚果云的电脑上都可以用git管理自己的代码。另一台电脑可以这样拉取代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git init
+$ git remote add orig ~/Nutstore/git/project
+$ git pull orig master</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="ubuntu美化">Ubuntu美化</h2>
+<p><strong>安装主题numix（强烈推荐）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:numix/ppa
+sudo apt update
+sudo apt install numix-gtk-theme numix-icon-theme-circle</code></pre></td></tr></table>
+</div>
+</div>
+<p>numix安装完成后，使用unity-tweak-tool将gtk主题换成Numix，图标换成Numix-Circle就大功告成了。</p>
+<p><strong>安装Plank</strong></p>
+<p>Plank是一个轻量的Dock工具。将Ubuntu侧边栏收起，Plank设置自动隐藏，可以获得一个很大的桌面空间，赏心悦目。在Dash里面搜索<strong>startup</strong>，打开<strong>Startup Applications</strong>，<strong>命令</strong>项填<code>sh -c &quot;sleep 10 &amp;&amp; plank&quot;</code>将Plank添加为自启动。如果不设置延迟，则关机会变成注销，这是unity的一个bug。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install plank</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="安装jekyll用于github-page步骤">安装jekyll（用于github page）步骤</h2>
+<p>安装ruby和ruby-dev</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install ruby ruby-dev</code></pre></td></tr></table>
+</div>
+</div>
+<p>到<a href="https://rubygems.org">RubyGems</a>网站下载最新的ruby-gem，解压安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo ruby setup.rb</code></pre></td></tr></table>
+</div>
+</div>
+<p>由于ruby-gem官方源很慢，所以更换成国内源</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/</code></pre></td></tr></table>
+</div>
+</div>
+<p>安装jekyll，bundler</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo gem install jekyll bundler</code></pre></td></tr></table>
+</div>
+</div>
+<p>更换bundle源</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">bundle config mirror.https://rubygems.org https://gems.ruby-china.org</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="一些开发用到的库请忽略">一些开发用到的库（请忽略）</h2>
+<ul>
+<li>libboost-all-dev</li>
+<li>libxerces-c-dev</li>
+<li>libjsoncpp-dev</li>
+<li>libcurl4-gnutls-dev</li>
+<li>libmysqlcppconn-dev</li>
+<li>libssl-dev</li>
+<li>libmemcached-dev</li>
+<li>libiconv-1.14</li>
+</ul>
+<p>编译libiconv-1.14代码会出错，需要改动srclib/stdio.in.h文件，将698行的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">_GL_WARN_ON_USE</span> <span class="p">(</span><span class="n">gets</span><span class="p">,</span> <span class="s">&#34;gets is a security hole - use fgets instead&#34;</span><span class="p">);</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>替换为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#if defined(__GLIBC__) &amp;&amp; !defined(__UCLIBC__) &amp;&amp; !__GLIBC_PREREQ(2, 16)
+</span><span class="cp"></span><span class="n">_GL_WARN_ON_USE</span> <span class="p">(</span><span class="n">gets</span><span class="p">,</span> <span class="s">&#34;gets is a security hole - use fgets instead&#34;</span><span class="p">);</span>
+<span class="cp">#endif</span></code></pre></td></tr></table>
+</div>
+</div>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-10-26
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/ubuntu/">Ubuntu</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/cpp-primer-12/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">第12章 动态内存</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/cpp-primer-17/">
+            <span class="next-text nav-default">第17章 特殊的库设施</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/after-ubuntu-installation/" class="leancloud_visitors" data-flag-title="安装完Ubuntu后需要做的事">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

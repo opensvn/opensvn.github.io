@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Javascript on 静心</title>
+    <title>Javascript on 招财猫的博客</title>
     <link>https://gitop.cc/tags/javascript/</link>
-    <description>Recent content in Javascript on 静心</description>
+    <description>Recent content in Javascript on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <language>zh-cn</language>
     <lastBuildDate>Mon, 12 Nov 2018 19:37:34 +0800</lastBuildDate>
     
 	<atom:link href="https://gitop.cc/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
@@ -14,55 +13,55 @@
     
     <item>
       <title>数组</title>
-      <link>https://gitop.cc/posts/arrays/</link>
+      <link>https://gitop.cc/post/arrays/</link>
       <pubDate>Mon, 12 Nov 2018 19:37:34 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/arrays/</guid>
-      <description>创建数组 创建数组的最简单方法是使用数组字面值： var empty = []; // An array with no elements var primes = [2, 3, 5, 7, 11]; // An array with 5 numeric elements var misc = [1.1, true, &amp;#34;a&amp;#34;,]; // 3 elements of various types + trailing comma 数组字面值中的</description>
+      <guid>https://gitop.cc/post/arrays/</guid>
+      <description>创建数组 创建数组的最简单方法是使用数组字面值： 1 2 3 var empty = []; // An array with no elements var primes = [2, 3, 5, 7, 11]; // An array with 5 numeric elements var misc = [1.1, true, &amp;#34;a&amp;#34;,]; // 3 elements of various types + trailing comma 数组字面</description>
     </item>
     
     <item>
       <title>对象</title>
-      <link>https://gitop.cc/posts/objects/</link>
+      <link>https://gitop.cc/post/objects/</link>
       <pubDate>Sat, 03 Nov 2018 21:39:25 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/objects/</guid>
+      <guid>https://gitop.cc/post/objects/</guid>
       <description>对象的属性也有属性： 可写属性指定属性的值是否可以设置。 枚举属性指定属性名是否能由for/in循环返回。 可配置属性指定属性是否可以删除和更改。</description>
     </item>
     
     <item>
       <title>语句</title>
-      <link>https://gitop.cc/posts/statements/</link>
+      <link>https://gitop.cc/post/statements/</link>
       <pubDate>Tue, 30 Oct 2018 21:16:04 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/statements/</guid>
+      <guid>https://gitop.cc/post/statements/</guid>
       <description>JavaScript语句以分号结束。表达式被计算以产生值，但是语句被执行以使某些事情发生。 表达式语句 JavaScript中最简单的语句是具有</description>
     </item>
     
     <item>
       <title>表达式和操作符</title>
-      <link>https://gitop.cc/posts/expressions_and_operators/</link>
+      <link>https://gitop.cc/post/expressions_and_operators/</link>
       <pubDate>Sun, 28 Oct 2018 21:07:21 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/expressions_and_operators/</guid>
+      <guid>https://gitop.cc/post/expressions_and_operators/</guid>
       <description>表达式是JavaScript的一个短语，JavaScript解释器可以对其进行求值。 主表达式 最简单的表达式，称为主表达式，是那些独立的表达式</description>
     </item>
     
     <item>
       <title>类型、值和变量</title>
-      <link>https://gitop.cc/posts/types_values_variables/</link>
+      <link>https://gitop.cc/post/types_values_variables/</link>
       <pubDate>Sun, 28 Oct 2018 14:24:21 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/types_values_variables/</guid>
+      <guid>https://gitop.cc/post/types_values_variables/</guid>
       <description>Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefine</description>
     </item>
     
     <item>
       <title>词法结构</title>
-      <link>https://gitop.cc/posts/lexical_structure/</link>
+      <link>https://gitop.cc/post/lexical_structure/</link>
       <pubDate>Tue, 16 Oct 2018 08:29:23 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/lexical_structure/</guid>
+      <guid>https://gitop.cc/post/lexical_structure/</guid>
       <description>介绍 JavaScript是一门大小写敏感的语言 JavaScript程序使用Unicode字符集编写 JavaScript使用\u后跟4位16进</description>
     </item>
     

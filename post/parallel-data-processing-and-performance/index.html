@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>并行数据处理和性能 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="并行流 通过调用parallelStream方法，可以将集合转换为并行流。并行流是将元素分割成多个块的流，使用不同的线程处理每个块。因此，你可" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/parallel-data-processing-and-performance/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="并行数据处理和性能" />
+<meta property="og:description" content="并行流 通过调用parallelStream方法，可以将集合转换为并行流。并行流是将元素分割成多个块的流，使用不同的线程处理每个块。因此，你可" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/parallel-data-processing-and-performance/" />
+<meta property="article:published_time" content="2019-07-23T20:00:47+08:00" />
+<meta property="article:modified_time" content="2019-07-23T20:00:47+08:00" />
+<meta itemprop="name" content="并行数据处理和性能">
+<meta itemprop="description" content="并行流 通过调用parallelStream方法，可以将集合转换为并行流。并行流是将元素分割成多个块的流，使用不同的线程处理每个块。因此，你可">
+<meta itemprop="datePublished" content="2019-07-23T20:00:47&#43;08:00" />
+<meta itemprop="dateModified" content="2019-07-23T20:00:47&#43;08:00" />
+<meta itemprop="wordCount" content="4312">
+
+
+
+<meta itemprop="keywords" content="Java," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="并行数据处理和性能"/>
+<meta name="twitter:description" content="并行流 通过调用parallelStream方法，可以将集合转换为并行流。并行流是将元素分割成多个块的流，使用不同的线程处理每个块。因此，你可"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">并行数据处理和性能</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-23 </span>
+        <div class="post-category">
+            <a href="/categories/language/"> Language </a>
+            </div>
+          <span class="more-meta"> 约 4312 字 </span>
+          <span class="more-meta"> 预计阅读 9 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#并行流">并行流</a>
+      <ul>
+        <li><a href="#将顺序流转为并行流">将顺序流转为并行流</a></li>
+        <li><a href="#测量流处理性能">测量流处理性能</a></li>
+        <li><a href="#正确使用并行流">正确使用并行流</a></li>
+        <li><a href="#有效地使用并行流">有效地使用并行流</a></li>
+      </ul>
+    </li>
+    <li><a href="#forkjoin框架">fork/join框架</a>
+      <ul>
+        <li><a href="#使用recursivetask">使用RecursiveTask</a></li>
+        <li><a href="#使用forkjoin框架的最佳实践">使用fork/join框架的最佳实践</a></li>
+        <li><a href="#工作窃取">工作窃取</a></li>
+      </ul>
+    </li>
+    <li><a href="#spliterator">Spliterator</a>
+      <ul>
+        <li><a href="#分裂过程">分裂过程</a></li>
+        <li><a href="#实现自己的spliterator">实现自己的Spliterator</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="并行流">并行流</h2>
+<p>通过调用<code>parallelStream</code>方法，可以将集合转换为并行流。并行流是将元素分割成多个块的流，使用不同的线程处理每个块。因此，你可以自动划分指定操作的工作负载在多核处理器的所有核心上，并使它们一样忙。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">long</span> <span class="nf">sequentialSum</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">1L</span><span class="o">,</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">n</span><span class="o">).</span><span class="na">reduce</span><span class="o">(</span><span class="n">0L</span><span class="o">,</span> <span class="n">Long</span><span class="o">::</span><span class="n">sum</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="将顺序流转为并行流">将顺序流转为并行流</h3>
+<p>调用<code>parallel</code>方法可以将顺序流转为并行流：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">long</span> <span class="nf">parallelSum</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">1L</span><span class="o">,</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">n</span><span class="o">).</span><span class="na">parallel</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0L</span><span class="o">,</span> <span class="n">Long</span><span class="o">::</span><span class="n">sum</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>实际上，在顺序流上并行<code>parallel</code>方法并没有对流进行任何转换。在内部设置一个布尔值，标志<code>parallel</code>后面所有的操作需要并行处理。你也许会认为通过<code>sequential</code>方法和<code>parallel</code>方法可以更精细的控制流操作，比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">stream</span><span class="o">.</span><span class="na">parallel</span><span class="o">().</span><span class="na">filter</span><span class="o">(...).</span><span class="na">sequential</span><span class="o">().</span><span class="na">map</span><span class="o">(...).</span><span class="na">parallel</span><span class="o">().</span><span class="na">reduce</span><span class="o">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是<code>parallel</code>或<code>sequential </code>的最后一次调用获胜并影响整个流管道。</p>
+<blockquote>
+<p>配置并行流使用的线程池</p>
+<p>并行流在内部使用默认的ForkJoinPool。默认情况下，它的线程数与处理器的数量相同，由Runtime.getRuntime().availableprocessors()返回。</p>
+<p>但是你可以修改系统属性java.util.concurrent.ForkJoinPool.common.parallelism修改线程池大小，比如：System.setProperty(&ldquo;java.util.concurrent.ForkJoinPool.common.parallelism&rdquo;, &ldquo;12&rdquo;);</p>
+<p>这是一个全局设置，因此它将影响代码中的所有并行流。不推荐修改这个值。</p>
+</blockquote>
+<h3 id="测量流处理性能">测量流处理性能</h3>
+<p>如果使用Maven作为构建工具，那么要在项目中使用JMH，需要向pom.xml文件添加几个依赖项：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.openjdk.jmh<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>jmh-core<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.17.4<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.openjdk.jmh<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>jmh-generator-annprocess<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.17.4<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;build&gt;</span>
+  <span class="nt">&lt;plugins&gt;</span>
+    <span class="nt">&lt;plugin&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>maven-shade-plugin<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;executions&gt;</span>
+        <span class="nt">&lt;execution&gt;</span>
+          <span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+          <span class="nt">&lt;goals&gt;&lt;goal&gt;</span>shade<span class="nt">&lt;/goal&gt;&lt;/goals&gt;</span>
+          <span class="nt">&lt;configuration&gt;</span>
+            <span class="nt">&lt;finalName&gt;</span>benchmarks<span class="nt">&lt;/finalName&gt;</span>
+            <span class="nt">&lt;transformers&gt;</span>
+              <span class="nt">&lt;transformer</span> <span class="na">implementation=</span><span class="s">&#34;org.apache.maven.plugins.shade.
+</span><span class="s">resource.ManifestResourceTransformer&#34;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;mainClass&gt;</span>org.openjdk.jmh.Main<span class="nt">&lt;/mainClass&gt;</span>
+              <span class="nt">&lt;/transformer&gt;</span>
+            <span class="nt">&lt;/transformers&gt;</span>
+          <span class="nt">&lt;/configuration&gt;</span>
+        <span class="nt">&lt;/execution&gt;</span>
+      <span class="nt">&lt;/executions&gt;</span>
+    <span class="nt">&lt;/plugin&gt;</span>
+  <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@BenchmarkMode</span><span class="o">(</span><span class="n">Mode</span><span class="o">.</span><span class="na">AverageTime</span><span class="o">)</span>
+<span class="nd">@OutputTimeUnit</span><span class="o">(</span><span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">)</span>
+<span class="nd">@Fork</span><span class="o">(</span><span class="n">2</span><span class="o">,</span> <span class="n">jvmArgs</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;-Xms4G&#34;</span><span class="o">,</span> <span class="s">&#34;-Xmx4G&#34;</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ParallelStreamBenchmark</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">N</span> <span class="o">=</span> <span class="n">10_000_000L</span><span class="o">;</span>
+
+    <span class="nd">@Benchmark</span>
+    <span class="kd">public</span> <span class="kt">long</span> <span class="nf">sequentialSum</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">1L</span><span class="o">,</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">N</span><span class="o">).</span><span class="na">reduce</span><span class="o">(</span><span class="n">0L</span><span class="o">,</span> <span class="n">Long</span><span class="o">::</span><span class="n">sum</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Benchmark</span>
+    <span class="kd">public</span> <span class="kt">long</span> <span class="nf">iterativeSum</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">long</span> <span class="n">result</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@TearDown</span><span class="o">(</span><span class="n">Level</span><span class="o">.</span><span class="na">Invocation</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">tearDown</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">gc</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这说明了并行编程是多么棘手，有时甚至违反直觉。当被误用时，可能会降低程序的整体性能，因此必须了解调用并行方法的背后发生了什么。</p>
+<h4 id="使用更专业的方法">使用更专业的方法</h4>
+<p><code>LongStream.rangeClosed</code>相比<code>iterate</code>有2个好处：</p>
+<ul>
+<li>LongStream.rangeClosed直接处理原始类型long，因此没有装箱和拆箱开销。</li>
+<li>LongStream.rangeClosed产生一个范围的数字，可以很容易地划分为独立的块。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Benchmark</span>
+<span class="kd">public</span> <span class="kt">long</span> <span class="nf">rangedSum</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">LongStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">N</span><span class="o">).</span><span class="na">reduce</span><span class="o">(</span><span class="n">0L</span><span class="o">,</span> <span class="n">Long</span><span class="o">::</span><span class="n">sum</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Benchmark</span>
+<span class="kd">public</span> <span class="kt">long</span> <span class="nf">parallelRangedSum</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">LongStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">N</span><span class="o">).</span><span class="na">parallel</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0L</span><span class="o">,</span> <span class="n">Long</span><span class="o">::</span><span class="n">sum</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="正确使用并行流">正确使用并行流</h3>
+<p>误用并行流产生错误的主要原因是使用了改变某些共享状态的算法。下面是一种方法通过修改共享累加器来求前n个自然数之和：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">long</span> <span class="nf">sideEffectSum</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Accumulator</span> <span class="n">accumulator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Accumulator</span><span class="o">();</span>
+    <span class="n">LongStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">n</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">accumulator</span><span class="o">::</span><span class="n">add</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">accumulator</span><span class="o">.</span><span class="na">total</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Accumulator</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">long</span> <span class="n">total</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">long</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="n">total</span> <span class="o">+=</span> <span class="n">value</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>请记住，避免共享可变状态可以确保并行流产生正确的结果。</p>
+<h3 id="有效地使用并行流">有效地使用并行流</h3>
+<p>以下是使用并行流的一些建议：</p>
+<ul>
+<li>并行流并不总是比相应的顺序流快，因此在选择顺序流和并行流时，最重要的建议是使用适当的基准测试它们的性能。</li>
+<li>自动装箱和拆箱操作会极大地影响性能。可能使用IntStream、LongStream和DoubleStream。</li>
+<li>有些操作在并行流上的性能比在顺序流上差。特别是依赖于元素顺序的limit和findFirst之类的操作在并行流中非常昂贵。</li>
+<li>考虑流管道操作的总成本，成本越高，使用并行流性能越好。</li>
+<li>对于少量数据，选择并行流不是个好决定。并行处理只有几个元素的优势不足以补偿并行化过程带来的额外成本。</li>
+<li>考虑流下面的数据结构是否容易分解。比如ArrayList比LinkedList更容易分割。原始类型流的<code>range</code>方法能快速分解。你也可以实现自己的<code>Spliterator</code>来完全控制分解过程。</li>
+<li>流的特征以及管道的中间操作如何修改它们，会改变分解过程的性能。比如一个固定大小的流可以分成多个相等的部分，然后可以更有效地并行处理每个部分，但是<code>filter</code>操作会丢弃不可预知的元素数量，从而使流本身的大小未知。</li>
+<li>考虑终端操作的合并步骤是否昂贵。</li>
+</ul>
+<p>下表从可分解性的角度总结了某些集合的并行友好性。</p>
+<table>
+<thead>
+<tr>
+<th>数据源</th>
+<th>可分解性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ArrayList</td>
+<td>极好</td>
+</tr>
+<tr>
+<td>LinkedList</td>
+<td>差</td>
+</tr>
+<tr>
+<td>IntStream.range</td>
+<td>极好</td>
+</tr>
+<tr>
+<td>Stream.iterate</td>
+<td>差</td>
+</tr>
+<tr>
+<td>HashSet</td>
+<td>好</td>
+</tr>
+<tr>
+<td>TreeSet</td>
+<td>好</td>
+</tr>
+</tbody>
+</table>
+<h2 id="forkjoin框架">fork/join框架</h2>
+<p>fork/join框架的设计目的是递归地将一个可并行化的任务分解为更小的任务，然后将每个子任务的结果组合起来，以生成总体结果。它是ExecutorService接口的实现，该接口将这些子任务分发给线程池（称为ForkJoinPool）中的工作线程。</p>
+<h3 id="使用recursivetask">使用RecursiveTask</h3>
+<p>想要提交任务到线程池，你需要创建一个<code>RecursiveTask&lt;R&gt;</code>子类，其中R是并行任务产生的结果类型。如果任务不返回任何结果，则需要创建<code>RecursiveAction</code>的子类。要定义<code>RecursiveTask</code>，只需要实现它的一个抽象方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kd">abstract</span> <span class="n">R</span> <span class="nf">compute</span><span class="o">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>该方法定义了将任务分解为子任务的逻辑，以及生成单个子任务结果的算法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ForkJoinSumCalculator</span> <span class="kd">extends</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">concurrent</span><span class="o">.</span><span class="na">RecursiveTask</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">long</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">start</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">end</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">THRESHOLD</span> <span class="o">=</span> <span class="n">10_000</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ForkJoinSumCalculator</span><span class="o">(</span><span class="kt">long</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="nf">ForkJoinSumCalculator</span><span class="o">(</span><span class="kt">long</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">numbers</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">start</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">end</span> <span class="o">=</span> <span class="n">end</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="n">Long</span> <span class="nf">compute</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">length</span> <span class="o">&lt;=</span> <span class="n">THRESHOLD</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">computeSequentially</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="n">ForkJoinSumCalculator</span> <span class="n">leftTask</span> <span class="o">=</span>
+            <span class="k">new</span> <span class="n">ForkJoinSumCalculator</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="n">start</span><span class="o">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span> <span class="o">/</span> <span class="n">2</span><span class="o">);</span>
+        <span class="n">leftTask</span><span class="o">.</span><span class="na">fork</span><span class="o">();</span>
+        <span class="n">ForkJoinSumCalculator</span> <span class="n">rightTask</span> <span class="o">=</span>
+            <span class="k">new</span> <span class="n">ForkJoinSumCalculator</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span> <span class="o">/</span> <span class="n">2</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+        <span class="n">Long</span> <span class="n">rightResult</span> <span class="o">=</span> <span class="n">rightTask</span><span class="o">.</span><span class="na">compute</span><span class="o">();</span>
+        <span class="n">Long</span> <span class="n">leftResult</span> <span class="o">=</span> <span class="n">leftTask</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">leftResult</span> <span class="o">+</span> <span class="n">rightResult</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">long</span> <span class="nf">computeSequentially</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">end</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">forkJoinSum</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">long</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="n">LongStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">n</span><span class="o">).</span><span class="na">toArray</span><span class="o">();</span>
+    <span class="n">ForkJoinTask</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ForkJoinSumCalculator</span><span class="o">(</span><span class="n">numbers</span><span class="o">);</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">ForkJoinPool</span><span class="o">().</span><span class="na">invoke</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="使用forkjoin框架的最佳实践">使用fork/join框架的最佳实践</h3>
+<p>尽管fork/join框架相对容易使用，但它也很容易被误用。下面是一些有效使用它的最佳实践：</p>
+<ul>
+<li>在任务上调用<code>join</code>方法会阻塞调用者，直到该任务生成的结果就绪为止。因此必须在启动两个子任务的计算之后调用它。</li>
+<li>不应该在<code>RecursiveTask</code>中调用<code>ForkJoinPool</code>的<code>invoke</code>方法。只有顺序代码才应该使用<code>invoke</code>开始并行计算。</li>
+<li>在子任务上调用fork方法实际上是将任务放入ForkJoinPool。在其中一个子任务上直接调用compute可以重用一个的线程，避免在池中不必要地分配另一个任务而造成的开销。</li>
+<li>调试使用fort/join框架的并行计算比较棘手，因为在不同的线程执行计算。</li>
+<li>和使用并行流一样，不能想当然地认为在多核处理器上使用fork/join框架进行计算比顺序处理会更快。一个任务应该可以分解为几个独立的子任务，以便能够获得相应的性能提升。这些子任务的执行时间应该比创建一个新任务时间要长。</li>
+</ul>
+<h3 id="工作窃取">工作窃取</h3>
+<p>ForkJoinPool中每个线程都持有一个双链表，包含分配给它的任务。每完成一个任务，线程从队列头部取出另一个任务并开始执行。但是由于一些原因，一个线程可能比其他线程更快地完成分配给它的所有任务，这意味着当其他线程仍然非常忙时，它的队列将变为空。在这种情况下，该线程会随机选择另一个线程的工作队列，并从队列尾部“窃取”任务。这个过程一直进行直到所有任务都完成。这就是为什么有许多较小的任务，而不是只有几个较大的任务，可以帮助更好地平衡工作线程之间的工作负载。</p>
+<h2 id="spliterator">Spliterator</h2>
+<p>Spliterator是Java 8新增的一个接口。Collection接口提供了一个默认方法spliterator()，返回一个spliterator对象。Spliterator接口定义了几个方法，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Spliterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kt">boolean</span> <span class="nf">tryAdvance</span><span class="o">(</span><span class="n">Consumer</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">action</span><span class="o">);</span>
+    <span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">trySplit</span><span class="o">();</span>
+    <span class="kt">long</span> <span class="nf">estimateSize</span><span class="o">();</span>
+    <span class="kt">int</span> <span class="nf">characteristics</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>tryAdvance</code>方法与普通迭代器类似，用于顺序遍历Spliterator的元素，如果还有其他元素要遍历，则返回true。</p>
+<p><code>trySplit</code>方法用于将其部分元素分割到第二个Spliterator，从而允许并行处理这两个Spliterator。</p>
+<p><code>estimateSize</code>方法估计剩余要遍历的元素的数量。</p>
+<h3 id="分裂过程">分裂过程</h3>
+<p>将一个流分成多个部分是一个递归过程。首先，在第一个Spliterator上调用trySplit并生成第二个Spliterator。然后在这两个spliterator上再次调用trySplit，得到四个Spliterator。不断调用方法trySplit，直到返回null，说明正在处理的数据是不可再分割的。当所有Spliterators调用trySplit返回null时，分裂过程终止。分裂过程会受到Spliterator本身的特性的影响，它们由<code>characteristics</code>方法声明的。</p>
+<h4 id="spliterator特征">Spliterator特征</h4>
+<p><code>characteristics</code>方法返回一个int，包含一组Spliterator的特征。可以使用这些特性更好地控制和优化Spliterator使用。</p>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ORDERED</td>
+<td>元素有顺序，因此Spliterator在遍历和分区时保持这个顺序</td>
+</tr>
+<tr>
+<td>DISTINCT</td>
+<td>所有元素唯一</td>
+</tr>
+<tr>
+<td>SORTED</td>
+<td>遍历的元素遵循预定义的排序顺序</td>
+</tr>
+<tr>
+<td>SIZED</td>
+<td>遍历的元素大小已知</td>
+</tr>
+<tr>
+<td>NON_NULL</td>
+<td>元素非空</td>
+</tr>
+<tr>
+<td>IMMUTABLE</td>
+<td>数据源不能修改</td>
+</tr>
+<tr>
+<td>CONCURRENT</td>
+<td>可并行</td>
+</tr>
+<tr>
+<td>SUBSIZED</td>
+<td>所有的Spliterator大小已知</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实现自己的spliterator">实现自己的Spliterator</h3>
+<p>我们将开发一个简单的方法来计算字符串中的单词数量。其迭代版如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">countWordsIteratively</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+    <span class="kt">boolean</span> <span class="n">lastSpace</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">:</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Character</span><span class="o">.</span><span class="na">isWhitespace</span><span class="o">(</span><span class="n">c</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">lastSpace</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">lastSpace</span><span class="o">)</span> <span class="n">counter</span><span class="o">++;</span>
+            <span class="n">lastSpace</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">counter</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="函数风格重写单词计数器">函数风格重写单词计数器</h4>
+<p>首先，需要将字符串转换为流</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">SENTENCE</span><span class="o">.</span><span class="na">length</span><span class="o">()).</span><span class="na">mapToObj</span><span class="o">(</span><span class="n">SENTENCE</span><span class="o">::</span><span class="n">charAt</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>定义一个类WordCounter用于携带2个状态，一个是目前为止找到的单词数量，一个是最后字符是否为空格。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">WordCounter</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">counter</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">lastSpace</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">WordCounter</span><span class="o">(</span><span class="kt">int</span> <span class="n">counter</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">lastSpace</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">counter</span> <span class="o">=</span> <span class="n">counter</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">lastSpace</span> <span class="o">=</span> <span class="n">lastSpace</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">WordCounter</span> <span class="nf">accumulate</span><span class="o">(</span><span class="n">Character</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Character</span><span class="o">.</span><span class="na">isWhitespace</span><span class="o">(</span><span class="n">c</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">lastSpace</span> <span class="o">?</span> <span class="k">this</span> <span class="o">:</span> <span class="k">new</span> <span class="n">WordCounter</span><span class="o">(</span><span class="n">counter</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">lastSpace</span> <span class="o">?</span> <span class="k">new</span> <span class="n">WordCounter</span><span class="o">(</span><span class="n">counter</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span> <span class="o">:</span> <span class="k">this</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">WordCounter</span> <span class="nf">combine</span><span class="o">(</span><span class="n">WordCounter</span> <span class="n">wordCounter</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">WordCounter</span><span class="o">(</span><span class="n">counter</span> <span class="o">+</span> <span class="n">wordCounter</span><span class="o">.</span><span class="na">counter</span><span class="o">,</span>
+            <span class="n">wordCounter</span><span class="o">.</span><span class="na">lastSpace</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getCounter</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">counter</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如下所示计算流中的单词数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kt">int</span> <span class="nf">countWords</span><span class="o">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">stream</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">WordCounter</span> <span class="n">wordCounter</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="k">new</span> <span class="n">WordCounter</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="kc">true</span><span class="o">),</span>
+        <span class="n">WordCounter</span><span class="o">::</span><span class="n">accumulate</span><span class="o">,</span>
+        <span class="n">WordCounter</span><span class="o">::</span><span class="n">combine</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">wordCounter</span><span class="o">.</span><span class="na">getCounter</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="使单词计数器并行工作">使单词计数器并行工作</h4>
+<p>解决方案需确保字符串不是在随机位置拆分，而只在单词末尾拆分。所以需要实现一个字符Spliterator，只在两个单词之间分割字符串，然后从中创建并行流。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">WordCounterSpliterator</span> <span class="kd">implements</span> <span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">string</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">currentChar</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">WordCounterSpliterator</span><span class="o">(</span><span class="n">String</span> <span class="n">string</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">tryAdvance</span><span class="o">(</span><span class="n">Consumer</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">Character</span><span class="o">&gt;</span> <span class="n">action</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">action</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">string</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">currentChar</span><span class="o">++));</span>
+        <span class="k">return</span> <span class="n">currentChar</span> <span class="o">&lt;</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="nf">trySplit</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">currentSize</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">currentChar</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">currentSize</span> <span class="o">&lt;</span> <span class="n">10</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">splitPos</span> <span class="o">=</span> <span class="n">currentSize</span> <span class="o">/</span> <span class="n">2</span> <span class="o">+</span> <span class="n">currentChar</span><span class="o">;</span>
+             <span class="n">splitPos</span> <span class="o">&lt;</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">splitPos</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">Character</span><span class="o">.</span><span class="na">isWhitespace</span><span class="o">(</span><span class="n">string</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">splitPos</span><span class="o">)))</span> <span class="o">{</span>
+                <span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">spliterator</span> <span class="o">=</span>
+                    <span class="k">new</span> <span class="n">WordCounterSpliterator</span><span class="o">(</span><span class="n">string</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">currentChar</span><span class="o">,</span>
+                        <span class="n">splitPos</span><span class="o">));</span>
+                <span class="n">currentChar</span> <span class="o">=</span> <span class="n">splitPos</span><span class="o">;</span>
+                <span class="k">return</span> <span class="n">spliterator</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">long</span> <span class="nf">estimateSize</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">currentChar</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">characteristics</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">ORDERED</span> <span class="o">+</span> <span class="n">SIZED</span> <span class="o">+</span> <span class="n">SUBSIZED</span> <span class="o">+</span> <span class="n">NON_NULL</span> <span class="o">+</span> <span class="n">IMMUTABLE</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="使单词计数器spliterator工作">使单词计数器Spliterator工作</h4>
+<p>现在可以使用这个并行流，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Spliterator</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">spliterator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WordCounterSpliterator</span><span class="o">(</span><span class="n">SENTENCE</span><span class="o">);</span>
+<span class="n">Stream</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">StreamSupport</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">spliterator</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Spliterator的最后一个显著特性是，可以绑定要在第一次遍历、第一次拆分或第一次查询时(而不是在创建时)遍历的元素的数据源，称为后期绑定Spliterator。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-07-23
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">Java</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/collection-api-enhancements/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Collection API增强</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/collecting-data-with-streams/">
+            <span class="next-text nav-default">使用流收集数据</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/parallel-data-processing-and-performance/" class="leancloud_visitors" data-flag-title="并行数据处理和性能">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

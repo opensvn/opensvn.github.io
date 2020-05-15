@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Lambda表达式 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="Lambda概述 lambda表达式没有名称，但是它有参数列表，函数体和返回类型，还可能包含一个异常列表。 匿名，lambda表达式不像方法一样" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/lambda-expressions/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Lambda表达式" />
+<meta property="og:description" content="Lambda概述 lambda表达式没有名称，但是它有参数列表，函数体和返回类型，还可能包含一个异常列表。 匿名，lambda表达式不像方法一样" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/lambda-expressions/" />
+<meta property="article:published_time" content="2019-07-10T08:48:55+08:00" />
+<meta property="article:modified_time" content="2019-07-10T08:48:55+08:00" />
+<meta itemprop="name" content="Lambda表达式">
+<meta itemprop="description" content="Lambda概述 lambda表达式没有名称，但是它有参数列表，函数体和返回类型，还可能包含一个异常列表。 匿名，lambda表达式不像方法一样">
+<meta itemprop="datePublished" content="2019-07-10T08:48:55&#43;08:00" />
+<meta itemprop="dateModified" content="2019-07-10T08:48:55&#43;08:00" />
+<meta itemprop="wordCount" content="2601">
+
+
+
+<meta itemprop="keywords" content="Java," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lambda表达式"/>
+<meta name="twitter:description" content="Lambda概述 lambda表达式没有名称，但是它有参数列表，函数体和返回类型，还可能包含一个异常列表。 匿名，lambda表达式不像方法一样"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Lambda表达式</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-10 </span>
+        <div class="post-category">
+            <a href="/categories/language/"> Language </a>
+            </div>
+          <span class="more-meta"> 约 2601 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lambda概述">Lambda概述</a></li>
+    <li><a href="#哪里可以使用lambda">哪里可以使用lambda</a>
+      <ul>
+        <li><a href="#函数接口">函数接口</a></li>
+        <li><a href="#函数描述符">函数描述符</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用函数接口">使用函数接口</a>
+      <ul>
+        <li><a href="#predicatet">Predicate&lt;T&gt;</a></li>
+        <li><a href="#consumert">Consumer&lt;T&gt;</a></li>
+        <li><a href="#functiont-r">Function&lt;T, R&gt;</a></li>
+      </ul>
+    </li>
+    <li><a href="#类型检查类型推断与限制">类型检查，类型推断与限制</a>
+      <ul>
+        <li><a href="#类型检查">类型检查</a></li>
+        <li><a href="#同样的lambda不同的函数接口">同样的lambda不同的函数接口</a></li>
+        <li><a href="#类型推断">类型推断</a></li>
+        <li><a href="#使用局部变量">使用局部变量</a></li>
+      </ul>
+    </li>
+    <li><a href="#方法引用">方法引用</a>
+      <ul>
+        <li></li>
+        <li><a href="#构造函数引用">构造函数引用</a></li>
+      </ul>
+    </li>
+    <li><a href="#组合lambda表达式的有用方法">组合lambda表达式的有用方法</a>
+      <ul>
+        <li><a href="#组合comparators">组合Comparators</a></li>
+        <li><a href="#组合predicates">组合Predicates</a></li>
+        <li><a href="#组合functions">组合Functions</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="lambda概述">Lambda概述</h2>
+<p>lambda表达式没有名称，但是它有参数列表，函数体和返回类型，还可能包含一个异常列表。</p>
+<ul>
+<li>匿名，lambda表达式不像方法一样有一个显式的名字</li>
+<li>函数，lambda表达式不像方法一样关联到一个特定的类</li>
+<li>传递，lambda表达式可以像函数参数一样传递，或者保存到变量里面</li>
+<li>简洁，不需要像匿名类一样写很多样板代码</li>
+</ul>
+<p>lambda基本语法有2种</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="o">(</span><span class="n">parameters</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">expression</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>和</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="o">(</span><span class="n">parameters</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="n">statements</span><span class="o">;</span> <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>用例</th>
+<th>lambda示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>布尔表达式</td>
+<td>(List&lt;String&gt; list) -&gt; list.isEmpty()</td>
+</tr>
+<tr>
+<td>创建对象</td>
+<td>() -&gt; new Apple(10)</td>
+</tr>
+<tr>
+<td>消费对象</td>
+<td>(Apple a) -&gt; { System.out.println(a.getWeight()); }</td>
+</tr>
+<tr>
+<td>从对象中提取属性</td>
+<td>(String s) -&gt; s.length()</td>
+</tr>
+<tr>
+<td>合并两个值</td>
+<td>(int a, int b) -&gt; a * b</td>
+</tr>
+<tr>
+<td>比较两个对象</td>
+<td>(Apple a1, Apple a2) -&gt; a1.getWeight().compareTo(a2.getWeight())</td>
+</tr>
+</tbody>
+</table>
+<h2 id="哪里可以使用lambda">哪里可以使用lambda</h2>
+<p>你可以在函数接口上下文中使用lambda表达式</p>
+<h3 id="函数接口">函数接口</h3>
+<p>简单地说，函数接口就是只有一个抽象方法的接口，比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Predicate</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kt">boolean</span> <span class="nf">test</span> <span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Comparator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">T</span> <span class="n">o1</span><span class="o">,</span> <span class="n">T</span> <span class="n">o2</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Runnable</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">run</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ActionListener</span> <span class="kd">extends</span> <span class="n">EventListener</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Callable</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="n">V</span> <span class="nf">call</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PrivilegedAction</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="n">T</span> <span class="nf">run</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意，接口现在可以有默认方法。如果一个接口有许多默认方法，只要它只有一个抽象方法，那么它仍然是一个函数接口。</p>
+</blockquote>
+<p>lambda表达式可以为函数接口的抽象方法提供实现，并将整个表达式看做函数接口的一个实例。</p>
+<h3 id="函数描述符">函数描述符</h3>
+<p>函数接口的抽象方法的签名描述了lambda表达式的签名，我们称这个抽象方法为函数描述符。我们使用一个特殊的标记来描述函数描述符，比如() -&gt; void表示参数为空并返回void的函数。</p>
+<p>只要lambda表达式具有与函数接口的抽象方法相同的签名，就可以将lambda表达式赋值给变量或传递给参数为函数接口的方法。</p>
+<blockquote>
+<p>下面这个lambda表达式合法：() -&gt; System.out.println(&ldquo;This is awesome&rdquo;);
+<code>System.out.println</code>不是一个表达式，为什么不需要用花括号括起来？ 原来，在Java语言规范中定义了一个用于void方法调用的特殊规则，void方法调用不需要使用花括号。</p>
+</blockquote>
+<blockquote>
+<p>@FunctionalInterface用于指示一个接口是函数接口。如果使用@FunctionalInterface定义一个不是函数接口的接口，编译器会返回一个警告。@FunctionalInterface不是强制性的，但是使用它定义函数接口是个好习惯。</p>
+</blockquote>
+<h2 id="使用函数接口">使用函数接口</h2>
+<h3 id="predicatet">Predicate&lt;T&gt;</h3>
+<p><code>java.util.function.Predicate&lt;T&gt;</code>定义如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@FunctionalInterface</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Predicate</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="consumert">Consumer&lt;T&gt;</h3>
+<p><code>java.util.function.Consumer&lt;T&gt;</code>定义如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@FunctionalInterface</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Consumer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">accept</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="functiont-r">Function&lt;T, R&gt;</h3>
+<p><code>java.util.function.Function&lt;T, R&gt;</code>定义如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@FunctionalInterface</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Function</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="n">R</span> <span class="nf">apply</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Java 8同样添加了特殊版的函数接口以避免基础类型的autoboxing：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IntPredicate</span> <span class="o">{</span>
+    <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>常用函数接口表</p>
+<table>
+<thead>
+<tr>
+<th>函数接口</th>
+<th>函数描述符</th>
+<th>特殊版本函数接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Predicate&lt;T&gt;</td>
+<td>T -&gt; boolean</td>
+<td>IntPredicate<!-- raw HTML omitted -->LongPredicate<!-- raw HTML omitted -->DoublePredicate</td>
+</tr>
+<tr>
+<td>Consumer&lt;T&gt;</td>
+<td>T -&gt; void</td>
+<td>IntConsumer<!-- raw HTML omitted -->LongConsumer<!-- raw HTML omitted -->DoubleConsumer</td>
+</tr>
+<tr>
+<td>Function&lt;T, R&gt;</td>
+<td>T -&gt; R</td>
+<td>IntFunction&lt;R&gt;<!-- raw HTML omitted -->IntToDoubleFunction<!-- raw HTML omitted -->IntToLongFunction<!-- raw HTML omitted -->LongFunction&lt;R&gt;<!-- raw HTML omitted -->LongToDoubleFunction<!-- raw HTML omitted -->LongToIntFunction<!-- raw HTML omitted -->DoubleFunction&lt;R&gt;<!-- raw HTML omitted -->DoubleToIntFunction<!-- raw HTML omitted -->DoubleToLongFunction<!-- raw HTML omitted -->ToIntFunction&lt;T&gt;<!-- raw HTML omitted -->ToDoubleFunction&lt;T&gt;<!-- raw HTML omitted -->ToLongFunction&lt;T&gt;</td>
+</tr>
+<tr>
+<td>Supplier&lt;T&gt;</td>
+<td>() -&gt; T</td>
+<td>BooleanSupplier<!-- raw HTML omitted -->IntSupplier<!-- raw HTML omitted -->LongSupplier<!-- raw HTML omitted -->DoubleSupplier</td>
+</tr>
+<tr>
+<td>UnaryOperator&lt;T&gt;</td>
+<td>T -&gt; T</td>
+<td>IntUnaryOperator<!-- raw HTML omitted -->LongUnaryOperator<!-- raw HTML omitted -->DoubleUnaryOperator</td>
+</tr>
+<tr>
+<td>BinaryOperator&lt;T&gt;</td>
+<td>(T, T) -&gt; T</td>
+<td>IntBinaryOperator<!-- raw HTML omitted -->LongBinaryOperator<!-- raw HTML omitted -->DoubleBinaryOperator</td>
+</tr>
+<tr>
+<td>BiPredicate&lt;T, U&gt;</td>
+<td>(T, U) -&gt; boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>BiConsumer&lt;T, U&gt;</td>
+<td>(T, U) -&gt; void</td>
+<td>ObjIntConsumer&lt;T&gt;<!-- raw HTML omitted -->ObjLongConsumer&lt;T&gt;<!-- raw HTML omitted -->ObjDoubleConsumer&lt;T&gt;</td>
+</tr>
+<tr>
+<td>BiFunction&lt;T, U, R&gt;</td>
+<td>(T, U) -&gt; R</td>
+<td>ToIntBiFunction&lt;T, U&gt;<!-- raw HTML omitted -->ToLongBiFunction&lt;T, U&gt;<!-- raw HTML omitted -->ToDoubleBiFunction&lt;T, U&gt;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意这些函数接口都不允许抛出checked异常。如果你需要lambda表达式抛出异常，你可以定义自己的函数接口声明checked异常，或者在lambda表达式函数体中catch异常。</p>
+</blockquote>
+<h2 id="类型检查类型推断与限制">类型检查，类型推断与限制</h2>
+<h3 id="类型检查">类型检查</h3>
+<p>lambda表达式的类型是从使用lambda表达式的上下文中推导出来的。lambda表达式上下文中期待的类型称为目标类型。</p>
+<h3 id="同样的lambda不同的函数接口">同样的lambda不同的函数接口</h3>
+<p>由于目标类型的原因，如果不同的函数接口具有兼容的抽象方法签名，相同的lambda表达式可以关联到它们。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c1</span> <span class="o">=</span> <span class="o">(</span><span class="n">Apple</span> <span class="n">a1</span><span class="o">,</span> <span class="n">Apple</span> <span class="n">a2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="na">getWeight</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">a2</span><span class="o">.</span><span class="na">getWeight</span><span class="o">());</span>
+<span class="n">ToIntBiFunction</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">,</span> <span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c2</span> <span class="o">=</span> <span class="o">(</span><span class="n">Apple</span> <span class="n">a1</span><span class="o">,</span> <span class="n">Apple</span> <span class="n">a2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="na">getWeight</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">a2</span><span class="o">.</span><span class="na">getWeight</span><span class="o">());</span>
+<span class="n">BiFunction</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">,</span> <span class="n">Apple</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">c3</span> <span class="o">=</span> <span class="o">(</span><span class="n">Apple</span> <span class="n">a1</span><span class="o">,</span> <span class="n">Apple</span> <span class="n">a2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="na">getWeight</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">a2</span><span class="o">.</span><span class="na">getWeight</span><span class="o">());</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>特殊的void兼容规则</p>
+</blockquote>
+<blockquote>
+<p>如果lambda函数体是一个表达式语句，则它和返回void的函数描述符兼容。比如：</p>
+</blockquote>
+<blockquote>
+<p>// Predicate has a boolean return</p>
+</blockquote>
+<blockquote>
+<p>Predicate&lt;String&gt; p = (String s) -&gt; list.add(s);</p>
+</blockquote>
+<blockquote>
+<p>// Consumer has a void return</p>
+</blockquote>
+<blockquote>
+<p>Consumer&lt;String&gt; b = (String s) -&gt; list.add(s);</p>
+</blockquote>
+<h3 id="类型推断">类型推断</h3>
+<p>Java编译器可以推断出lambda表达式关联的函数接口，意味着它也能够推导出相应的抽象函数的签名。好处是Java编译器知道lambda表达式的参数类型，因此lambda表达式可以忽略掉参数类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">greenApples</span> <span class="o">=</span> <span class="n">filter</span><span class="o">(</span><span class="n">inventory</span><span class="o">,</span> <span class="n">apple</span> <span class="o">-&gt;</span> <span class="n">GREEN</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">apple</span><span class="o">.</span><span class="na">getColor</span><span class="o">()));</span>
+<span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="n">Apple</span> <span class="n">a1</span><span class="o">,</span> <span class="n">Apple</span> <span class="n">a2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="na">getWeight</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">a2</span><span class="o">.</span><span class="na">getWeight</span><span class="o">());</span>
+<span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="n">a1</span><span class="o">,</span> <span class="n">a2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="na">getWeight</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">a2</span><span class="o">.</span><span class="na">getWeight</span><span class="o">());</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="使用局部变量">使用局部变量</h3>
+<p>lambda表达式允许使用自由变量（不是参数且定义在外部作用域），就像匿名类一样。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="n">portNumber</span> <span class="o">=</span> <span class="n">1337</span><span class="o">;</span>
+<span class="n">Runnable</span> <span class="n">r</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">portNumber</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Lambda可以不受限制地捕获实例变量和静态变量。但是当捕获局部变量时，必须显式地声明它们为final或有效的final。Lambda表达式可以捕获只分赋值一次的局部变量。下面的代码将编译不了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">int portNumber = 1337;
+Runnable r = () -&gt; System.out.println(portNumber);
+portNumber = 31337;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="局部变量的限制">局部变量的限制</h4>
+<p>实例变量和局部变量在实现方式上有一个关键区别。实例变量存储在堆上，而局部变量存储在堆栈上。如果lambda可以直接访问局部变量，并且lambda在线程中使用，那么使用lambda的线程可以在分配变量的线程释放变量之后尝试访问该变量。因此Java将对自由变量的访问实现为对它的副本的访问，而不是对原始变量的访问。</p>
+<h2 id="方法引用">方法引用</h2>
+<p>方法引用可以看作是只调用特定方法的lambda表达式的简写，可以将方法引用看作lambda的语法糖。</p>
+<table>
+<thead>
+<tr>
+<th>Lambda</th>
+<th>等价方法引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(Apple apple) -&gt; apple.getWeight()</td>
+<td>Apple::getWeight</td>
+</tr>
+<tr>
+<td>() -&gt; Thread.currentThread().dumpStack()</td>
+<td>Thread.currentThread()::dumpStack</td>
+</tr>
+<tr>
+<td>(str, i) -&gt; str.substring(i)</td>
+<td>String::substring</td>
+</tr>
+<tr>
+<td>(String s) -&gt; System.out.println(s)</td>
+<td>System.out::println</td>
+</tr>
+<tr>
+<td>(String s) -&gt; this.isValidName(s)</td>
+<td>this::isValidName</td>
+</tr>
+</tbody>
+</table>
+<h4 id="构造方法引用">构造方法引用</h4>
+<p>如下图：</p>
+<p><img src="/static/images/2019/07/10/method-reference.png" alt="method-reference.png"></p>
+<h3 id="构造函数引用">构造函数引用</h3>
+<p>使用类名和关键字new创建构造函数引用：<code>ClassName::new</code>，类似静态方法引用。比如，如果有不带参数的构造函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">Apple</span><span class="o">::</span><span class="k">new</span><span class="o">;</span>
+<span class="n">Apple</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>等价于</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c1</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">Apple</span><span class="o">();</span>
+<span class="n">Apple</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果有带一个参数的构造函数，则满足Function函数接口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">Apple</span><span class="o">::</span><span class="k">new</span><span class="o">;</span>
+<span class="n">Apple</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">c2</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">110</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果有带亮个参数的构造函数，则满足BiFunction函数接口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">BiFunction</span><span class="o">&lt;</span><span class="n">Color</span><span class="o">,</span> <span class="n">Integer</span><span class="o">,</span> <span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c3</span> <span class="o">=</span> <span class="n">Apple</span><span class="o">::</span><span class="k">new</span><span class="o">;</span>
+<span class="n">Apple</span> <span class="n">a3</span> <span class="o">=</span> <span class="n">c3</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">GREEN</span><span class="o">,</span> <span class="n">110</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="组合lambda表达式的有用方法">组合lambda表达式的有用方法</h2>
+<h3 id="组合comparators">组合Comparators</h3>
+<p>静态方法<code>Comparator.comparing</code>返回一个基于函数的Comparator，该函数提取一个关键字进行比较，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">Comparator</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="n">Apple</span><span class="o">::</span><span class="n">getWeight</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="反向比较">反向比较</h4>
+<p><code>reversed</code>方法反转指定Comparator的顺序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">inventory</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">comparing</span><span class="o">(</span><span class="n">Apple</span><span class="o">::</span><span class="n">getWeight</span><span class="o">).</span><span class="na">reversed</span><span class="o">());</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="链接comparators">链接Comparators</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">inventory</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">comparing</span><span class="o">(</span><span class="n">Apple</span><span class="o">::</span><span class="n">getWeight</span><span class="o">).</span><span class="na">reversed</span><span class="o">().</span><span class="na">thenComparing</span><span class="o">(</span><span class="n">Apple</span><span class="o">::</span><span class="n">getCountry</span><span class="o">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="组合predicates">组合Predicates</h3>
+<p>谓词接口包含三个方法，可以重用现有的谓词来创建更复杂的谓词：<code>negate</code>、<code>and</code>和<code>or</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">notRedApple</span> <span class="o">=</span> <span class="n">redApple</span><span class="o">.</span><span class="na">negate</span><span class="o">();</span>
+<span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">redAndHeavyApple</span> <span class="o">=</span> <span class="n">redApple</span><span class="o">.</span><span class="na">and</span><span class="o">(</span><span class="n">apple</span> <span class="o">-&gt;</span> <span class="n">apple</span><span class="o">.</span><span class="na">getWeight</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">150</span><span class="o">);</span>
+<span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">redAndHeavyAppleOrGreen</span> <span class="o">=</span> <span class="n">redApple</span><span class="o">.</span><span class="na">and</span><span class="o">(</span><span class="n">apple</span> <span class="o">-&gt;</span> <span class="n">apple</span><span class="o">.</span><span class="na">getWeight</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">150</span><span class="o">).</span><span class="na">or</span><span class="o">(</span><span class="n">apple</span> <span class="o">-&gt;</span> <span class="n">GREEN</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">getColor</span><span class="o">()));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>注意方法的优先级是从左到右。</p>
+<h3 id="组合functions">组合Functions</h3>
+<p>Function接口提供2个方法用于组合lambda表达式：<code>andThen</code>和<code>compose</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
+<span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="n">2</span><span class="o">;</span>
+<span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">h</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">andThen</span><span class="o">(</span><span class="n">g</span><span class="o">);</span> <span class="c1">// In mathematics you’d write g(f(x))
+</span><span class="c1"></span><span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">j</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">compose</span><span class="o">(</span><span class="n">g</span><span class="o">);</span> <span class="c1">// In mathematics you’d write f(g(x))
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">result1</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">result2</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-07-10
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">Java</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/introducing-streams/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">流介绍</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/git-multi-sshkey/">
+            <span class="next-text nav-default">Git配置多个SSH-Key</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/lambda-expressions/" class="leancloud_visitors" data-flag-title="Lambda表达式">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Asio.Cookbook 第1章 基础 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="介绍 TCP协议是具有下列特性的传输层协议： 它是可靠的。这意味着TCP协议保证报文以正确的顺序传输，或者通知报文没有传输成功。TCP协议包含错" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/asio-cookbook-1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Asio.Cookbook 第1章 基础" />
+<meta property="og:description" content="介绍 TCP协议是具有下列特性的传输层协议： 它是可靠的。这意味着TCP协议保证报文以正确的顺序传输，或者通知报文没有传输成功。TCP协议包含错" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/asio-cookbook-1/" />
+<meta property="article:published_time" content="2016-08-16T08:45:19+00:00" />
+<meta property="article:modified_time" content="2016-08-16T08:45:19+00:00" />
+<meta itemprop="name" content="Asio.Cookbook 第1章 基础">
+<meta itemprop="description" content="介绍 TCP协议是具有下列特性的传输层协议： 它是可靠的。这意味着TCP协议保证报文以正确的顺序传输，或者通知报文没有传输成功。TCP协议包含错">
+<meta itemprop="datePublished" content="2016-08-16T08:45:19&#43;00:00" />
+<meta itemprop="dateModified" content="2016-08-16T08:45:19&#43;00:00" />
+<meta itemprop="wordCount" content="3829">
+
+
+
+<meta itemprop="keywords" content="C&#43;&#43;," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Asio.Cookbook 第1章 基础"/>
+<meta name="twitter:description" content="介绍 TCP协议是具有下列特性的传输层协议： 它是可靠的。这意味着TCP协议保证报文以正确的顺序传输，或者通知报文没有传输成功。TCP协议包含错"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Asio.Cookbook 第1章 基础</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-08-16 </span>
+        <div class="post-category">
+            <a href="/categories/network/"> Network </a>
+            </div>
+          <span class="more-meta"> 约 3829 字 </span>
+          <span class="more-meta"> 预计阅读 8 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#介绍">介绍</a></li>
+    <li><a href="#创建一个端点">创建一个端点</a>
+      <ul>
+        <li><a href="#客户端创建端点">客户端创建端点</a></li>
+        <li><a href="#服务端创建端点">服务端创建端点</a></li>
+      </ul>
+    </li>
+    <li><a href="#创建一个主动套接字">创建一个主动套接字</a></li>
+    <li><a href="#创建一个被动套接字">创建一个被动套接字</a></li>
+    <li><a href="#解析域名">解析域名</a></li>
+    <li><a href="#绑定套接字到端点">绑定套接字到端点</a></li>
+    <li><a href="#连接一个套接字">连接一个套接字</a></li>
+    <li><a href="#接受连接">接受连接</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="介绍">介绍</h2>
+<p>TCP协议是具有下列特性的传输层协议：</p>
+<ul>
+<li>它是可靠的。这意味着TCP协议保证报文以正确的顺序传输，或者通知报文没有传输成功。TCP协议包含错误处理机制。</li>
+<li>它假定建立逻辑连接。在一个程序通过TCP协议与另一个程序通信之前，它必须根据标准通过交换服务报文建立一个逻辑连接。</li>
+<li>它假定点对点通信模型。也就是在单个连接上只有两个程序可以通信，不支持多播消息。</li>
+<li>它是面向数据流的。这意味着一个程序发送给另一个程序的数据会被TCP协议解释为字节流。</li>
+</ul>
+<p>UDP协议是一个与TCP协议不同的传输层协议，它具有下列特性：</p>
+<ul>
+<li>它是不可靠的。这意味着如果一个发送者通过UDP协议发送一个报文，不保证报文会被发送。UDP协议不会尝试检查或修复任何错误。开发者负责所有的错误处理。</li>
+<li>它是无连接的。这意味着在程序通信之前不需要建立连接。</li>
+<li>它支持一对一或一对多通信模型。UDP协议支持多播消息。</li>
+<li>它是面向数据报的。这意味着UDP协议将数据解释为特定大小的报文并且会尝试将报文作为一个整体发送。数据报文要么被作为一个整体发送，要么当发送失败时根本不会发送。</li>
+</ul>
+<p>因为UDP协议是不可靠的，它通常被用在可靠的局域网。如果想在因特网使用UDP协议，开发者必须实现错误处理机制。当需要在因特网传输时，因为可靠性，TCP协议通常是最好的选择。</p>
+<h2 id="创建一个端点">创建一个端点</h2>
+<p>端点服务两个目标：</p>
+<ul>
+<li>客户端程序使用端点指定一个想要通信的特定的服务端程序。</li>
+<li>服务端程序使用端点指定一个本地的IP地址和端口，在此之上接收来自客户端的报文。</li>
+</ul>
+<h3 id="客户端创建端点">客户端创建端点</h3>
+<ol>
+<li>获取服务器程序的IP地址和端口。IP地址应该是点号隔开的字符串（IPv4）或者16进制的字符串（IPv6）。</li>
+<li>使用一个asio::ip::address对象代表IP地址。</li>
+<li>用address对象和端口初始化一个asio::ip::tcp::endpoint对象。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;boost/asio.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">raw_ip_address</span> <span class="o">=</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">port_num</span> <span class="o">=</span> <span class="mi">3333</span><span class="p">;</span>
+
+<span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span> <span class="n">ec</span><span class="p">;</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address</span> <span class="n">ip_address</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="n">raw_ip_address</span><span class="p">,</span> <span class="n">ec</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">ec</span><span class="p">.</span><span class="n">value</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle error
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip_address</span><span class="p">,</span> <span class="n">port_num</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="服务端创建端点">服务端创建端点</h3>
+<ol>
+<li>获取一个服务器将要监听请求的端口。</li>
+<li>创建一个特殊的asio::ip::address对象表示这个服务器所有可用的IP地址。</li>
+<li>使用address对象和端口初始化一个asio::ip::tcp::endpoint对象。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;boost/asio.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">port_num</span> <span class="o">=</span> <span class="mi">3333</span><span class="p">;</span>
+
+<span class="c1">// IPv6
+</span><span class="c1"></span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address</span> <span class="n">ip_address</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address_v6</span><span class="o">::</span><span class="n">any</span><span class="p">();</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">ip_address</span><span class="p">,</span> <span class="n">port_num</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>Boost.Asio提供3个类用来表示IP地址：</p>
+<ul>
+<li>asio::ip::address_v4，代表IPv4地址</li>
+<li>asio::ip::address_v6，代表IPv6地址</li>
+<li>asio::ip::address，代表IPv4或IPv6地址</li>
+</ul>
+<p>from_string()是asio::ip::address的静态方法，它有4个重载形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">static</span> <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address</span> <span class="n">from_string</span><span class="p">(</span>
+    <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+    
+<span class="k">static</span> <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address</span> <span class="n">from_string</span><span class="p">(</span>
+    <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&amp;</span> <span class="n">ec</span><span class="p">);</span>
+    
+<span class="k">static</span> <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address</span> <span class="n">from_string</span><span class="p">(</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">);</span>
+    
+<span class="k">static</span> <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address</span> <span class="n">from_string</span><span class="p">(</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&amp;</span> <span class="n">ec</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>为了表示主机可用的所有IP地址，asio::ip::address_v4和asio::ip::address_v6提供了一个静态方法any()。</p>
+<p>asio::ip::tcp::endpoint其实是basic_endpoint&lt;&gt;模板的一个特例。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="n">basic_endpoint</span><span class="o">&lt;</span><span class="n">tcp</span><span class="o">&gt;</span> <span class="n">endpoint</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>同样asio::ip::udp::endpoint也是basic_endpoint&lt;&gt;模板的一个特例。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="n">basic_endpoint</span><span class="o">&lt;</span><span class="n">udp</span><span class="o">&gt;</span> <span class="n">endpoint</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="创建一个主动套接字">创建一个主动套接字</h2>
+<p>基本上，套接字有两种类型。主动套接字用来发起一个连接建立过程。被动套接字用来被动地等待传入的连接请求。</p>
+<ol>
+<li>创建一个asio::io_service实例，或者使用之前创建的。</li>
+<li>创建一个代表传输层协议（TCP或UDP）和下层IP协议（IPv4或IPv6）的类对象。</li>
+<li>创建一个代表套接字的对象，传递asio::io_service给它的构造函数。</li>
+<li>调用open()方法，传递协议参数给它。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">asio_io_service</span> <span class="n">ios</span><span class="p">;</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">v4</span><span class="p">();</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">ios</span><span class="p">);</span>
+<span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span> <span class="n">ec</span><span class="p">;</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="n">ec</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">ec</span><span class="p">.</span><span class="n">value</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle error
+</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Error code = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ec</span><span class="p">.</span><span class="n">value</span><span class="p">()</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&#34; Message: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ec</span><span class="p">.</span><span class="n">message</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">ec</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>asio::ip::tcp类代表TCP协议，它没有提供功能，而是像一个数据结构包含一组描述协议的值。</p>
+<p>asio::ip::tcp没有公开的构造函数。相反它提供了2个静态方法（v4()和v6()）返回该类对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">tcp</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">typedef</span> <span class="n">basic_endpoint</span><span class="o">&lt;</span><span class="n">tcp</span><span class="o">&gt;</span> <span class="n">endpoint</span><span class="p">;</span>
+    <span class="k">typedef</span> <span class="n">basic_stream_socket</span><span class="o">&lt;</span><span class="n">tcp</span><span class="o">&gt;</span> <span class="n">socket</span><span class="p">;</span>
+    <span class="k">typedef</span> <span class="n">basic_socket_acceptor</span><span class="o">&lt;</span><span class="n">tcp</span><span class="o">&gt;</span> <span class="n">acceptor</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>使用UDP协议创建主动套接字和TCP类似：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">asio</span><span class="o">::</span><span class="n">io_service</span> <span class="n">ios</span><span class="p">;</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">udp</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">udp</span><span class="o">::</span><span class="n">v6</span><span class="p">();</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">udp</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">ios</span><span class="p">,</span> <span class="n">protocol</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">system_error</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">code</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="创建一个被动套接字">创建一个被动套接字</h2>
+<p>一个被动套接字或者接收器套接字是一种用来等待建立连接请求的套接字。它有2个重要的暗示：</p>
+<ul>
+<li>被动套接字只用在服务端程序或者既是服务端又是客户端的程序。</li>
+<li>被动套接字只被TCP协议定义。</li>
+</ul>
+<p>在Boost.Asio里面一个被动套接字由asio::ip::tcp::acceptor类来表示。</p>
+<ol>
+<li>创建一个asio::io_service实例或使用之前创建的。</li>
+<li>创建一个asio::ip::tcp类对象代表TCP协议和所需底层的IP协议（IPv4和IPv6）。</li>
+<li>创建一个asio::ip::tcp::acceptor类对象表示接收器套接字，传递asio::io_service类对象给它的构造函数。</li>
+<li>调用接收器套接字的open()函数，传递第2步创建的对象给它。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">asio</span><span class="o">::</span><span class="n">io_service</span> <span class="n">ios</span><span class="p">;</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">v6</span><span class="p">();</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">acceptor</span> <span class="n">acceptor</span><span class="p">(</span><span class="n">ios</span><span class="p">);</span>
+<span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span> <span class="n">ec</span><span class="p">;</span>
+<span class="n">acceptor</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="n">ec</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">ec</span><span class="p">.</span><span class="n">value</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">ec</span><span class="p">.</span><span class="n">value</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ec</span><span class="p">.</span><span class="n">message</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="解析域名">解析域名</h2>
+<p>域名系统是一个分布式的命名系统，它允许将人类友好的名字和计算机网络中的设备关联起来。一个域名是一个表示计算机网络设备名字的字符串。更确切地说，一个域名是一个或多个IP地址的别名。</p>
+<p>域名系统作为一个分布式的数据库，存储了域名到相应IP地址的映射，并提供一个接口，允许查询一个特定域名所映射的IP地址。将域名转换为相应IP地址的过程称为域名解析。</p>
+<ol>
+<li>获取DNS域名和端口，并用字符串表示。</li>
+<li>创建一个asio::io_service实例或使用之前创建的。</li>
+<li>创建一个resolver::query类对象。</li>
+<li>创建一个适合必要协议的DNS解析对象。</li>
+<li>调用解析器的resolve()方法，用query对象作为参数。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">host</span> <span class="o">=</span> <span class="s">&#34;samplehost.com&#34;</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">port_num</span> <span class="o">=</span> <span class="s">&#34;3333&#34;</span><span class="p">;</span>
+
+<span class="n">asio</span><span class="o">::</span><span class="n">io_service</span> <span class="n">ios</span><span class="p">;</span>
+
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">resolver</span><span class="o">::</span><span class="n">query</span> <span class="n">query</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port_num</span><span class="p">,</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">resolver</span><span class="o">::</span><span class="n">query</span><span class="o">::</span><span class="n">numeric_service</span><span class="p">);</span>
+    
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">resolver</span> <span class="n">resolver</span><span class="p">(</span><span class="n">ios</span><span class="p">);</span>
+
+<span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span> <span class="n">ec</span><span class="p">;</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">resolver</span><span class="o">::</span><span class="n">iterator</span> <span class="n">it</span> <span class="o">=</span> 
+    <span class="n">resolver</span><span class="p">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">ec</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">ec</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle error
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>asio::ip::tcp::resolver::iterator类是一个迭代器，它指向解析结果的第一个元素，元素类型是asio::ip::basic_resolver_entry&lt;tcp&gt;。每一个结果包含一个endpoint对象，可以通过asio::ip::basic_resolver_entry&lt;tcp&gt;::endpoint()获取。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">resolver</span><span class="o">::</span><span class="n">iterator</span> <span class="n">it</span> <span class="o">=</span>
+    <span class="n">resolver</span><span class="p">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">ec</span><span class="p">);</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">resolver</span><span class="o">::</span><span class="n">iterator</span> <span class="n">it_end</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(;</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">it_end</span><span class="p">;</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">endpoint</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>当域名被映射到多个IP地址，并且有些是IPv4，有些是IPv6时，则结果集合中包含2种endpoint。</p>
+<p>通过UDP协议解析域名也是类似的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">host</span> <span class="o">=</span> <span class="s">&#34;www.samplehost.com&#34;</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">port_num</span> <span class="o">=</span> <span class="s">&#34;3333&#34;</span><span class="p">;</span>
+
+<span class="n">asio</span><span class="o">::</span><span class="n">io_service</span> <span class="n">ios</span><span class="p">;</span>
+
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">udp</span><span class="o">::</span><span class="n">resolver</span><span class="o">::</span><span class="n">query</span> <span class="n">query</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port_num</span><span class="p">,</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">udp</span><span class="o">::</span><span class="n">resolver</span><span class="o">::</span><span class="n">query</span><span class="o">::</span><span class="n">numeric_service</span><span class="p">);</span>
+
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">udp</span><span class="o">::</span><span class="n">resolver</span> <span class="n">resolver</span><span class="p">(</span><span class="n">ios</span><span class="p">);</span>
+
+<span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span> <span class="n">ec</span><span class="p">;</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">udp</span><span class="o">::</span><span class="n">resolver</span><span class="o">::</span><span class="n">iterator</span> <span class="n">it</span> <span class="o">=</span> 
+    <span class="n">resolver</span><span class="p">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">ec</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">ec</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle error
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="绑定套接字到端点">绑定套接字到端点</h2>
+<p>有些操作隐式绑定未绑定套接字。比如主动套接字连接服务器，客户端程序不需要特定的端点与服务器通信，因此它通常将选择绑定IP地址和端口的权利委托给操作系统。服务端程序通常需要显示将被动套接字绑定到特定的端点。</p>
+<ol>
+<li>获取服务器监听连接请求的端口。</li>
+<li>创建一个表示主机所有可用IP地址的端点。</li>
+<li>创建并打开一个接收器套接字。</li>
+<li>调用接收器套接字的bind()方法，将断点作为参数传给它。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">port_num</span> <span class="o">=</span> <span class="mi">3333</span><span class="p">;</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address_v4</span><span class="o">::</span><span class="n">any</span><span class="p">(),</span> <span class="n">port_num</span><span class="p">);</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">acceptor</span> <span class="n">acceptor</span><span class="p">(</span><span class="n">ios</span><span class="p">,</span> <span class="n">ep</span><span class="p">.</span><span class="n">protocol</span><span class="p">());</span>
+
+<span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span> <span class="n">ec</span><span class="p">;</span>
+<span class="n">acceptor</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">ec</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">ec</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle error
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>UDP服务器不建立连接，而且使用主动套接字等待到来的请求。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">port_num</span> <span class="o">=</span> <span class="mi">3333</span><span class="p">;</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">udp</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address_v4</span><span class="o">::</span><span class="n">any</span><span class="p">(),</span> <span class="n">port_num</span><span class="p">);</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">io_service</span> <span class="n">ios</span><span class="p">;</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">udp</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">ios</span><span class="p">,</span> <span class="n">ep</span><span class="p">.</span><span class="n">protocol</span><span class="p">());</span>
+
+<span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span> <span class="n">ec</span><span class="p">;</span>
+<span class="n">sock</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">ec</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">ec</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle error
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="连接一个套接字">连接一个套接字</h2>
+<ol>
+<li>获取服务器程序的IP地址和端口。</li>
+<li>用IP地址和端口创建一个endpoint对象。</li>
+<li>创建并打开一个主动套接字。</li>
+<li>用endpoint对象作参数调用connect()方法。</li>
+<li>如果方法成功，套接字被认为已连接并可以用来发送和接收来自服务器的数据。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">raw_ip_address</span> <span class="o">=</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">port_num</span> <span class="o">=</span> <span class="mi">3333</span><span class="p">;</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span>
+        <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="n">raw_ip_address</span><span class="p">),</span> <span class="n">port_num</span><span class="p">);</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">io_service</span> <span class="n">ios</span><span class="p">;</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">ios</span><span class="p">,</span> <span class="n">ep</span><span class="p">.</span><span class="n">protocol</span><span class="p">());</span>
+    <span class="n">sock</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ep</span><span class="p">);</span>
+    <span class="c1">// At this point socket &#39;sock&#39; is connected to the server
+</span><span class="c1"></span>    <span class="c1">// connect()方法会将客户端IP地址和操作系统选好端口绑定到&#39;sock&#39;
+</span><span class="c1"></span><span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">system_error</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">code</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>自由函数asio::connect()接收一个主动套接字对象和一个asio::ip::tcp::resolver::iterator对象作为参数，遍历所有端点。</p>
+<ol>
+<li>获取DNS域名和端口，并用字符串表示。</li>
+<li>使用asio::ip::tcp::resolver类解析域名。</li>
+<li>创建一个主动套接字，不打开它。</li>
+<li>调用asio::connect()函数。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">host</span> <span class="o">=</span> <span class="s">&#34;samplehost.com&#34;</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">port_num</span> <span class="o">=</span> <span class="s">&#34;3333&#34;</span><span class="p">;</span>
+
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">resolver</span><span class="o">::</span><span class="n">query</span> <span class="n">query</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port_num</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">resolver</span><span class="o">::</span><span class="n">query</span><span class="o">::</span><span class="n">numeric_service</span><span class="p">);</span>
+    
+<span class="n">asio</span><span class="o">::</span><span class="n">io_service</span> <span class="n">ios</span><span class="p">;</span>
+
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">resolver</span> <span class="n">resolver</span><span class="p">(</span><span class="n">ios</span><span class="p">);</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">resolver</span><span class="o">::</span><span class="n">iterator</span> <span class="n">it</span> <span class="o">=</span> 
+        <span class="n">resolver</span><span class="p">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+    
+    <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">ios</span><span class="p">);</span>
+
+    <span class="n">asio</span><span class="o">::</span><span class="n">connect</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">it</span><span class="p">);</span>
+    <span class="c1">// At this point &#39;sock&#39; is connected to the server
+</span><span class="c1"></span><span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">system_error</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">code</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="接受连接">接受连接</h2>
+<ol>
+<li>获取服务器监听连接请求的端口。</li>
+<li>创建一个端点。</li>
+<li>初始化并打开一个接收器套接字。</li>
+<li>绑定接收器套接字到端点。</li>
+<li>调用listen()方法开始监听端点上到来的连接请求。</li>
+<li>初始化一个主动套接字对象。</li>
+<li>当准备好处理连接请求时，用主动套接字作为参数，调用接收器套接字的accept()方法。</li>
+<li>如果调用成功，主动套接字和客户端程序就连上了，可以用来通信了。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="n">BACKLOG_SIZE</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">port_num</span> <span class="o">=</span> <span class="mi">3333</span><span class="p">;</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address_v4</span><span class="o">::</span><span class="n">any</span><span class="p">(),</span> <span class="n">port_num</span><span class="p">);</span>
+
+<span class="n">asio</span><span class="o">::</span><span class="n">io_service</span> <span class="n">ios</span><span class="p">;</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">acceptor</span> <span class="n">acceptor</span><span class="p">(</span><span class="n">ios</span><span class="p">,</span> <span class="n">ep</span><span class="p">.</span><span class="n">protocol</span><span class="p">());</span>
+    <span class="n">acceptor</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ep</span><span class="p">);</span>
+
+    <span class="n">acceptor</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="n">BACKLOG_SIZE</span><span class="p">);</span>
+
+    <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span> <span class="n">sock</span><span class="p">(</span><span class="n">ios</span><span class="p">);</span>
+    <span class="n">acceptor</span><span class="p">.</span><span class="n">accept</span><span class="p">(</span><span class="n">sock</span><span class="p">);</span>
+    <span class="c1">// At this point &#39;sock&#39; is connected to the client
+</span><span class="c1"></span><span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">system_error</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">code</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>注意UDP服务器不使用接收器套接字，因为UDP协议不需要建立连接。相反，主动套接字被使用来绑定到一个端点并监听到来的报文，而且同一个主动套接字也用来通信。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-08-16
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/io-operations/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Asio.Cookbook 第2章 IO操作</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/mysql-cookbook-5/">
+            <span class="next-text nav-default">MySQL Cookbook 第5章 处理字符串</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/asio-cookbook-1/" class="leancloud_visitors" data-flag-title="Asio.Cookbook 第1章 基础">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

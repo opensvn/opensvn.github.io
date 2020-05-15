@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ProjectEuler on 静心</title>
+    <title>ProjectEuler on 招财猫的博客</title>
     <link>https://gitop.cc/tags/projecteuler/</link>
-    <description>Recent content in ProjectEuler on 静心</description>
+    <description>Recent content in ProjectEuler on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <language>zh-cn</language>
     <lastBuildDate>Fri, 23 Oct 2015 16:30:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gitop.cc/tags/projecteuler/index.xml" rel="self" type="application/rss+xml" />
@@ -14,11 +13,11 @@
     
     <item>
       <title>Project Euler Problem 1</title>
-      <link>https://gitop.cc/posts/project-euler-1/</link>
+      <link>https://gitop.cc/post/project-euler-1/</link>
       <pubDate>Fri, 23 Oct 2015 16:30:00 +0000</pubDate>
       
-      <guid>https://gitop.cc/posts/project-euler-1/</guid>
-      <description>Multiples of 3 and 5 If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000. sum = 3 * (1 + 999 / 3) * (999 / 3) / 2 + \ 5 * (1 + 999</description>
+      <guid>https://gitop.cc/post/project-euler-1/</guid>
+      <description>Multiples of 3 and 5 If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000. 1 2 3 4 sum = 3 * (1 + 999 / 3) * (999 / 3) / 2 + \ 5</description>
     </item>
     
   </channel>

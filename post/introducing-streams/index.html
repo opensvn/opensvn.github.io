@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>流介绍 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="流是什么 流是对Java API的更新，允许你以声明式的方式操作数据集合。首先看一个例子，假设你想获得所有热量低于400卡的菜肴的名字，并按热量" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/introducing-streams/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="流介绍" />
+<meta property="og:description" content="流是什么 流是对Java API的更新，允许你以声明式的方式操作数据集合。首先看一个例子，假设你想获得所有热量低于400卡的菜肴的名字，并按热量" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/introducing-streams/" />
+<meta property="article:published_time" content="2019-07-10T17:22:30+08:00" />
+<meta property="article:modified_time" content="2019-07-10T17:22:30+08:00" />
+<meta itemprop="name" content="流介绍">
+<meta itemprop="description" content="流是什么 流是对Java API的更新，允许你以声明式的方式操作数据集合。首先看一个例子，假设你想获得所有热量低于400卡的菜肴的名字，并按热量">
+<meta itemprop="datePublished" content="2019-07-10T17:22:30&#43;08:00" />
+<meta itemprop="dateModified" content="2019-07-10T17:22:30&#43;08:00" />
+<meta itemprop="wordCount" content="1152">
+
+
+
+<meta itemprop="keywords" content="Java," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="流介绍"/>
+<meta name="twitter:description" content="流是什么 流是对Java API的更新，允许你以声明式的方式操作数据集合。首先看一个例子，假设你想获得所有热量低于400卡的菜肴的名字，并按热量"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">流介绍</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-10 </span>
+        <div class="post-category">
+            <a href="/categories/language/"> Language </a>
+            </div>
+          <span class="more-meta"> 约 1152 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#流是什么">流是什么</a></li>
+    <li><a href="#开始使用流">开始使用流</a></li>
+    <li><a href="#流与集合">流与集合</a>
+      <ul>
+        <li><a href="#只遍历一次">只遍历一次</a></li>
+        <li><a href="#外部迭代与内部迭代">外部迭代与内部迭代</a></li>
+      </ul>
+    </li>
+    <li><a href="#流操作">流操作</a>
+      <ul>
+        <li><a href="#中间操作">中间操作</a></li>
+        <li><a href="#结束操作">结束操作</a></li>
+        <li><a href="#使用流">使用流</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="流是什么">流是什么</h2>
+<p>流是对Java API的更新，允许你以声明式的方式操作数据集合。首先看一个例子，假设你想获得所有热量低于400卡的菜肴的名字，并按热量排序。在Java 8之前，你可以这样做：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;</span> <span class="n">lowCaloricDishes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">Dish</span> <span class="n">dish</span> <span class="o">:</span> <span class="n">menu</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">400</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">lowCaloricDishes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">dish</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">lowCaloricDishes</span><span class="o">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Dish</span> <span class="n">dish1</span><span class="o">,</span> <span class="n">Dish</span> <span class="n">dish2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">dish1</span><span class="o">.</span><span class="na">getCalories</span><span class="o">(),</span> <span class="n">dish2</span><span class="o">.</span><span class="na">getCalories</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lowCaloricDishesName</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">Dish</span> <span class="n">dish</span> <span class="o">:</span> <span class="n">lowCaloricDishes</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">lowCaloricDishesName</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在Java 8之后，你只需这样做：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import static</span> <span class="nn">java.util.Comparator.comparing</span><span class="o">;</span>
+<span class="kn">import static</span> <span class="nn">java.util.stream.Collectors.toList</span><span class="o">;</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lowCaloricDishesName</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">d</span> <span class="o">-&gt;</span> <span class="n">d</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">400</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="n">comparing</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getCalories</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getName</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>要利用多核体系结构并行执行此代码，只需将<code>stream()</code>更改为<code>parallelStream()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lowCaloricDishesName</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">parallelStream</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">d</span> <span class="o">-&gt;</span> <span class="n">d</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">400</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="n">comparing</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getCalories</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getName</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>总之，Java 8中的流API允许你编写这样的代码</p>
+<ul>
+<li>声明式：更简洁，可读性更强</li>
+<li>可组合：更灵活</li>
+<li>可并行：更好的性能</li>
+</ul>
+<h2 id="开始使用流">开始使用流</h2>
+<p>首先，流到底是什么？一个简短的定义是，来自某个数据源的支持数据处理操作的元素序列。</p>
+<ul>
+<li>元素序列：与集合类似，流提供了访问特定类型元素集的接口。集合是关于数据的，流是关于计算的。</li>
+<li>数据源：流从数据源（如集合、数组或I/O资源）消费。从集合生成的流保留了集合中元素的顺序。</li>
+<li>数据处理操作：流支持类似数据库的操作，以及函数式编程语言的常见操作来操作数据。比如filter，map，reduce，find， match， sort等。流操作可以顺序执行，也可以并行执行。</li>
+</ul>
+<p>此外，流操作还有两个重要特征：</p>
+<ul>
+<li>流管道：许多流操作返回流本身，允许将操作链接起来形成一个更大的流管道。这样可以支持某些优化，比如惰性求值和短路求值。在数据源上的流管道操作可以看作类似数据库的查询。</li>
+<li>内部迭代：与集合相反，流操作在内部进行迭代。</li>
+</ul>
+<h2 id="流与集合">流与集合</h2>
+<h3 id="只遍历一次">只遍历一次</h3>
+<p>与迭代器类似，流只能遍历一次，遍历之后流就被消耗殆尽了。你可以从初始数据源获得一个新的流来再次遍历它。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;Modern&#34;</span><span class="o">,</span> <span class="s">&#34;Java&#34;</span><span class="o">,</span> <span class="s">&#34;In&#34;</span><span class="o">,</span> <span class="s">&#34;Action&#34;</span><span class="o">);</span>
+<span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="na">stream</span><span class="o">();</span>
+<span class="n">s</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+<span class="n">s</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> <span class="c1">// java.lang.IllegalStateException
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="外部迭代与内部迭代">外部迭代与内部迭代</h3>
+<p>集合需要用户进行迭代，比如使用foreach，这称为外部迭代。与之相反，流使用内部迭代，即为你执行迭代，并负责将流产生的值存储在某个地方，你只需提供一个函数说明要做什么。</p>
+<h2 id="流操作">流操作</h2>
+<p>可以连接的流操作称为中间操作，关闭流的操作称为结束操作。</p>
+<h3 id="中间操作">中间操作</h3>
+<p>中间操作（如filter或sorted）返回另一个流，这允许将操作连接起来形成查询。重要的是，在调用结束操作之前，中间操作不会执行任何处理，它们是惰性求值的。这是因为中间操作通常可以被结束操作合并一次处理。</p>
+<h3 id="结束操作">结束操作</h3>
+<p>结束操作从流管道产生一个非流值结果。</p>
+<h3 id="使用流">使用流</h3>
+<p>总而言之，使用流通常包括三个部分：</p>
+<ul>
+<li>执行查询的数据源，比如集合</li>
+<li>形成流管道的一系列中间操作</li>
+<li>执行流管道并产生结果的结束操作</li>
+</ul>
+<p>下表总结了一些常见流操作。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>类型</th>
+<th>返回类型</th>
+<th>参数</th>
+<th>函数描述符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filter</td>
+<td>中间操作</td>
+<td>Stream&lt;T&gt;</td>
+<td>Predicate&lt;T&gt;</td>
+<td>T -&gt; boolean</td>
+</tr>
+<tr>
+<td>map</td>
+<td>中间操作</td>
+<td>Stream&lt;R&gt;</td>
+<td>Function&lt;T, R&gt;</td>
+<td>T -&gt; R</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>中间操作</td>
+<td>Stream&lt;T&gt;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sorted</td>
+<td>中间操作</td>
+<td>Stream&lt;T&gt;</td>
+<td>Comparator&lt;T&gt;</td>
+<td>(T, T) -&gt; int</td>
+</tr>
+<tr>
+<td>distinct</td>
+<td>中间操作</td>
+<td>Stream&lt;T&gt;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>forEach</td>
+<td>结束操作</td>
+<td>void</td>
+<td>Consumer&lt;T&gt;</td>
+<td>T -&gt; void</td>
+</tr>
+<tr>
+<td>count</td>
+<td>结束操作</td>
+<td>long</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>collect</td>
+<td>结束操作</td>
+<td>R</td>
+<td>Collector&lt;T, A, R&gt;</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-07-10
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">Java</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/working-with-streams/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用流</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/lambda-expressions/">
+            <span class="next-text nav-default">Lambda表达式</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/introducing-streams/" class="leancloud_visitors" data-flag-title="流介绍">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

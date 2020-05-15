@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>表达式和操作符 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="表达式是JavaScript的一个短语，JavaScript解释器可以对其进行求值。 主表达式 最简单的表达式，称为主表达式，是那些独立的表达式" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/expressions_and_operators/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="表达式和操作符" />
+<meta property="og:description" content="表达式是JavaScript的一个短语，JavaScript解释器可以对其进行求值。 主表达式 最简单的表达式，称为主表达式，是那些独立的表达式" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/expressions_and_operators/" />
+<meta property="article:published_time" content="2018-10-28T21:07:21+08:00" />
+<meta property="article:modified_time" content="2018-10-28T21:07:21+08:00" />
+<meta itemprop="name" content="表达式和操作符">
+<meta itemprop="description" content="表达式是JavaScript的一个短语，JavaScript解释器可以对其进行求值。 主表达式 最简单的表达式，称为主表达式，是那些独立的表达式">
+<meta itemprop="datePublished" content="2018-10-28T21:07:21&#43;08:00" />
+<meta itemprop="dateModified" content="2018-10-28T21:07:21&#43;08:00" />
+<meta itemprop="wordCount" content="6775">
+
+
+
+<meta itemprop="keywords" content="Javascript," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="表达式和操作符"/>
+<meta name="twitter:description" content="表达式是JavaScript的一个短语，JavaScript解释器可以对其进行求值。 主表达式 最简单的表达式，称为主表达式，是那些独立的表达式"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">表达式和操作符</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-10-28 </span>
+        <div class="post-category">
+            <a href="/categories/language/"> Language </a>
+            </div>
+          <span class="more-meta"> 约 6775 字 </span>
+          <span class="more-meta"> 预计阅读 14 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#主表达式">主表达式</a></li>
+        <li><a href="#对象和数组初始化式">对象和数组初始化式</a></li>
+        <li><a href="#函数定义表达式">函数定义表达式</a></li>
+        <li><a href="#属性访问表达式">属性访问表达式</a></li>
+        <li><a href="#调用表达式">调用表达式</a></li>
+        <li><a href="#对象创建表达式">对象创建表达式</a></li>
+        <li><a href="#操作符概述">操作符概述</a></li>
+        <li><a href="#算术表达式">算术表达式</a></li>
+        <li><a href="#关系表达式">关系表达式</a></li>
+        <li><a href="#逻辑表达式">逻辑表达式（&amp;&amp;，||，!）</a></li>
+        <li><a href="#赋值表达式">赋值表达式</a></li>
+        <li><a href="#估值表达式">估值表达式</a></li>
+        <li><a href="#严格eval">严格eval()</a></li>
+        <li><a href="#其他运算符">其他运算符</a></li>
+        <li><a href="#delete运算符">delete运算符</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>表达式是JavaScript的一个短语，JavaScript解释器可以对其进行求值。</p>
+<h3 id="主表达式">主表达式</h3>
+<p>最简单的表达式，称为主表达式，是那些独立的表达式——它们不包含任何简单的表达式。JavaScript中的主要表达式是常量或文字值、特定语言关键字和变量引用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kc">true</span> <span class="c1">// Evalutes to the boolean true value
+</span><span class="c1"></span><span class="kc">false</span> <span class="c1">// Evaluates to the boolean false value
+</span><span class="c1"></span><span class="kc">null</span> <span class="c1">// Evaluates to the null value
+</span><span class="c1"></span><span class="k">this</span> <span class="c1">// Evaluates to the &#34;current&#34; object
+</span><span class="c1"></span><span class="nx">i</span> <span class="c1">// Evaluates to the value of the variable i.
+</span><span class="c1"></span><span class="nx">sum</span> <span class="c1">// Evaluates to the value of the variable sum.
+</span><span class="c1"></span><span class="kc">undefined</span> <span class="c1">// undefined is a global variable, not a keyword like null.
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>当任何标识符单独出现在程序中时，JavaScript假设它是一个变量，并查找它的值。如果不存在具有该名称的变量，则表达式计算为未定义的值。然而，在ES5的严格模式中，计算不存在的变量会抛出一个ReferenceError。</p>
+<h3 id="对象和数组初始化式">对象和数组初始化式</h3>
+<p>数组初始化式是方括号中包含的以逗号分隔的表达式列表。数组初始化式的值是一个新创建的数组。这个新数组的元素被初始化为逗号分隔表达式的值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[]</span> <span class="c1">// An empty array: no expressions inside brackets means no elements
+</span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span> <span class="c1">// A 2-element array. First element is 3, second is 7
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>每次计算数组初始化式时，其中的元素表达式都会被计算。这意味着数组初始化式的值在每次求值时可能不同。通过在逗号之间省略值，可以将未定义的元素包含在数组字面值中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">sparseArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,,,,</span><span class="mi">5</span><span class="p">];</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>在数组初始化式最后一个表达式后面允许有一个逗号，并且不会创建未定义的元素。</p>
+<p>对象初始化表达式类似于数组初始化表达式，但是方括号被大括号替换，并且每个子表达式的前缀都有一个属性名和一个冒号：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span><span class="mf">2.3</span><span class="p">,</span> <span class="nx">y</span><span class="o">:-</span><span class="mf">1.2</span> <span class="p">};</span> <span class="c1">// An object with 2 properties
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">q</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// An empty object with no properties
+</span><span class="c1"></span><span class="nx">q</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mf">2.3</span><span class="p">;</span> <span class="nx">q</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">;</span> <span class="c1">// Now q has the same properties as p
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="函数定义表达式">函数定义表达式</h3>
+<p>函数定义表达式定义了一个JavaScript函数，该表达式的值是新定义的函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// This function returns the square of the value passed to it.
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">square</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="属性访问表达式">属性访问表达式</h3>
+<p>属性访问表达式求值为对象属性或数组元素的值。JavaScript为属性访问定义了两种语法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">expression</span><span class="p">.</span><span class="nx">identifier</span>
+<span class="nx">expression</span><span class="p">[</span><span class="nx">expression</span><span class="p">]</span>
+
+<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="nx">y</span><span class="o">:</span><span class="p">{</span><span class="nx">z</span><span class="o">:</span><span class="mi">3</span><span class="p">}};</span> <span class="c1">// An example object
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="nx">o</span><span class="p">,</span><span class="mi">4</span><span class="p">,[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]];</span> <span class="c1">// An example array that contains the object
+</span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="c1">// =&gt; 1: property x of expression o
+</span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">y</span><span class="p">.</span><span class="nx">z</span> <span class="c1">// =&gt; 3: property z of expression o.y
+</span><span class="c1"></span><span class="nx">o</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">]</span> <span class="c1">// =&gt; 1: property x of object o
+</span><span class="c1"></span><span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">// =&gt; 4: element at index 1 of expression a
+</span><span class="c1"></span><span class="nx">a2</span> <span class="c1">// =&gt; 6: element at index 1 of expression a[2]
+</span><span class="c1"></span><span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">x</span> <span class="c1">// =&gt; 1: property x of expression a[0]
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>对于任一种属性访问表达式，.或[之前的表达式先计算。如果其值为null或undefined，抛出TypeError。如果指定的属性不存在，则属性访问表达式的值为undefined。</p>
+<h3 id="调用表达式">调用表达式</h3>
+<p>调用表达式用于JavaScript调用函数或方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">// f is the function expression; 0 is the argument expression.
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">z</span><span class="p">)</span> <span class="c1">// Math.max is the function; x, y and z are the arguments.
+</span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">sort</span><span class="p">()</span> <span class="c1">// a.sort is the function; there are no arguments.
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>当对调用表达式求值时，首先对函数表达式求值，然后对参数表达式求值，以生成参数值列表。如果函数表达式的值不是可调用对象，则抛出TypeError。如果函数使用return语句返回值，则该值成为调用表达式的值。否则，调用表达式的值是undefined。</p>
+<p>每一个调用表达式都包含一对括号和括号之前的表达式。如果该表达式是属性访问表达式，则调用称为方法调用。在方法调用中，对象或数组成为函数体执行时this参数的值。</p>
+<p>非方法调用的调用表达式通常使用全局对象作为this关键字的值。在ES5中严格模式下定义的函数被调用时，this的值为undefined，而不是全局对象。</p>
+<h3 id="对象创建表达式">对象创建表达式</h3>
+<p>对象创建表达式创建一个新对象并调用一个函数（称为构造函数）来初始化该对象的属性。对象创建表达式类似于调用表达式，只是它们的前缀是关键字new：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">new</span> <span class="nb">Object</span><span class="p">()</span>
+<span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>如果在对象创建表达式中没有参数传递给构造函数，则可以省略括号：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">new</span> <span class="nb">Object</span>
+<span class="k">new</span> <span class="nb">Date</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>当计算对象创建表达式时，JavaScript首先创建一个新的空对象，就像{}创建的对象一样。接下来，它使用指定的参数调用指定的函数，将新对象传递给this参数。然后函数可以使用this来初始化新创建对象的属性。构造函数不返回值，且对象创建表达式的值是新创建和初始化的对象。如果构造函数返回一个对象值，该值将成为对象创建表达式的值，新创建的对象将被丢弃。</p>
+<h3 id="操作符概述">操作符概述</h3>
+<p><img src="/static/images/2018/10/28/operators.jpg" alt="operators.jpg"></p>
+<h4 id="左值">左值</h4>
+<p>左值是一个历史术语，意思是“可以合法地出现在赋值表达式左边的表达式”。在JavaScript中，变量、对象属性和数组元素都是lvalue。ECMAScript规范允许内置函数返回左值，但没有任何以这种方式运行的函数。</p>
+<h4 id="操作符的副作用">操作符的副作用</h4>
+<p>有些表达有副作用，它们的计算会影响到将来计算的结果。赋值操作符是最明显的例子：如果将值赋给变量或属性，则会更改使用该变量或属性的任何表达式的值。++和&ndash;操作符类似，因为它们执行隐式赋值。delete操作符也有副作用：删除一个属性就像给这个属性赋值undefined。</p>
+<p>没有其他JavaScript操作符有副作用，但是如果函数或构造函数中使用的任何操作符有副作用，那么函数调用和对象创建表达式就会有副作用。</p>
+<h4 id="运算符优先级">运算符优先级</h4>
+<p>运算符优先控制执行操作的顺序。优先级较高的操作符在优先级较低的操作符之前执行。可以通过显式使用括号覆盖运算符优先级。属性访问和调用表达式的优先级高于上表任何操作符。</p>
+<h4 id="运算符结合性">运算符结合性</h4>
+<p>运算符的结合性指定执行相同优先级的操作的顺序。从左到右的结合律意味着操作是从左到右执行的。</p>
+<h4 id="求值顺序">求值顺序</h4>
+<p>运算符优先级和结合性指定在复杂表达式中执行操作的顺序，但它们没有指定计算子表达式的顺序。JavaScript总是严格按照从左到右的顺序计算表达式。</p>
+<h3 id="算术表达式">算术表达式</h3>
+<p>基本的算术运算符是*、/、%、+和-。我们将在后面单独讨论+运算符。其他四个运算符只是计算它们的操作数，如果需要的话，将值转换为数字，然后计算。不能转换为数字的操作数转换为NaN。如果操作数是NaN，则结果也是NaN。</p>
+<p>在JavaScript中，所有数字都是浮点数，因此所有除法操的结果都是浮点数。除以0得到正无穷或负无穷，而0/0得到NaN。</p>
+<p>运算符%计算第一个操作数对第二个操作数的取模，结果的符号与第一个操作数的符号相同。模运算符通常与整数操作数一起使用，但它也适用于浮点值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">5</span> <span class="o">%</span> <span class="mi">2</span> <span class="c1">//=&gt; 1
+</span><span class="c1"></span><span class="o">-</span><span class="mi">5</span> <span class="o">%</span> <span class="mi">2</span> <span class="c1">//=&gt; -1
+</span><span class="c1"></span><span class="mf">6.5</span> <span class="o">%</span> <span class="mf">2.1</span> <span class="c1">//=&gt; 0.2
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="运算符">+运算符</h4>
+<p>如果有一个操作数是对象，使用对象到原始类型转换：日期对象使用toString()方法，其他对象使用valueOf()方法。大多数对象没有一个有用的valueOf()方法，因此它们也通过toString()进行转换。</p>
+<ul>
+<li>如果任何一个操作数是字符串，那么另一个操作数将转换为字符串，并执行连接</li>
+<li>将两个操作数转换为数字（或NaN）并执行加法。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="c1">// =&gt; 3: addition
+</span><span class="c1"></span><span class="s2">&#34;1&#34;</span> <span class="o">+</span> <span class="s2">&#34;2&#34;</span> <span class="c1">// =&gt; &#34;12&#34;: concatenation
+</span><span class="c1"></span><span class="s2">&#34;1&#34;</span> <span class="o">+</span> <span class="mi">2</span> <span class="c1">// =&gt; &#34;12&#34;: concatenation after number-to-string
+</span><span class="c1"></span><span class="mi">1</span> <span class="o">+</span> <span class="p">{}</span> <span class="c1">// =&gt; &#34;1[object Object]&#34;: concatenation after object-to-string
+</span><span class="c1"></span><span class="kc">true</span> <span class="o">+</span> <span class="kc">true</span> <span class="c1">// =&gt; 2: addition after boolean-to-number
+</span><span class="c1"></span><span class="mi">2</span> <span class="o">+</span> <span class="kc">null</span> <span class="c1">// =&gt; 2: addition after null converts to 0
+</span><span class="c1"></span><span class="mi">2</span> <span class="o">+</span> <span class="kc">undefined</span> <span class="c1">// =&gt; NaN: addition after undefined converts to NaN
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="一元运算符">一元运算符</h4>
+<p>在JavaScript中，一元运算符的优先级都很高，且都是右关联的。如果需要，算术一元运算符（+、-、++和&ndash;）都将其操作数转换为数字。</p>
+<h4 id="位运算符">位运算符</h4>
+<p>位运算符将其操作数转换为数字，通过删除小数部分和超过32位的部分，将数值强制转换为32位整数。NaN，Infinity和-Infinity都转换为0。</p>
+<p><code>&amp;</code>运算符对操作数每个位执行与操作。只有两位都为1，结果才为1。</p>
+<p><code>|</code>运算符对操作数每个位执行或操作。只有两位都为0，结果才为0。</p>
+<p><code>^</code>运算符对操作数每个位执行异或操作。两位相同结果为0，两位不相同结果为1。</p>
+<p><code>~</code>按位取反，相当于更改符号并减去1。</p>
+<p><code>&lt;&lt;</code>左移运算符，将其第一个操作数中的所有位向左移动，移动的位置是第二个操作数指定的位数。</p>
+<p><code>&gt;&gt;</code>右移操作符，将其第一个操作数中的所有位向右移动，移动的位置是第二个操作数指定的位数，左边填充符号位。</p>
+<p><code>&gt;&gt;&gt;</code>类似于<code>&gt;&gt;</code>，只是左边总是填充0。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mh">0x1234</span> <span class="o">&amp;</span> <span class="mh">0x00FF</span> <span class="c1">// 0x0034
+</span><span class="c1"></span><span class="mh">0x1234</span> <span class="o">|</span> <span class="mh">0x00FF</span> <span class="c1">// 0x12FF
+</span><span class="c1"></span><span class="mh">0xFF00</span> <span class="o">^</span> <span class="mh">0xF0F0</span> <span class="c1">// 0x0FF0
+</span><span class="c1"></span><span class="o">~</span><span class="mh">0x0F</span> <span class="c1">// 0xFFFFFFF0
+</span><span class="c1"></span><span class="mi">7</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span> <span class="c1">// 28
+</span><span class="c1"></span><span class="err">−</span><span class="mi">7</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span> <span class="c1">// −4
+</span><span class="c1"></span><span class="o">-</span><span class="mi">1</span> <span class="o">&gt;&gt;&gt;</span> <span class="mi">4</span> <span class="c1">// 0x0FFFFFFF
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="关系表达式">关系表达式</h3>
+<h4 id="相等和不等操作符">相等和不等操作符</h4>
+<p>JavaScript对象通过引用而不是值进行比较。严格相等运算符===计算其操作数，然后按照如下方式比较这两个值，不执行类型转换：</p>
+<ul>
+<li>如果这两个值有不同的类型，它们就不相等</li>
+<li>如果两个值都为null或undefined ，则它们相等。</li>
+<li>如果两个值都是布尔值true或都是布尔值false，则它们相等。</li>
+<li>如果一个或两个值都是NaN，则它们不相等。NaN值永远不等于任何其他值，包括它自己。</li>
+<li>如果两个值都是数字且值相同，则它们相等。0和-0相等。</li>
+<li>如果两个值是字符串且长度和内容相同则它们相等，否则它们不相等。</li>
+<li>如果两个值引用相同的对象、数组或函数，则它们相等。如果它们引用不同的对象，它们就不相等，即使两个对象具有相同的属性。</li>
+</ul>
+<p>==运算符没有===严格。如果两个操作数的值不是相同的类型，它会尝试一些类型转换并再次比较：</p>
+<ul>
+<li>
+<p>如果两个值具有相同的类型，则用===比较它们。</p>
+</li>
+<li>
+<p>如果两个值的类型不相同，使用以下规则和类型转换检查是否相等</p>
+<ol>
+<li>如果一个是null，另一个是undefined，它们相等。</li>
+<li>如果一个是数字，另一个是字符串，将字符串转换为数字，再使用转换后的值进行比较</li>
+<li>如果任一值为true或false，将其转换数字再进行比较。</li>
+<li>如果一个是对象，另一个是数字或字符串，将对象转换原始类型再进行比较。</li>
+</ol>
+</li>
+<li>
+<p>任何其他值的组合都不相等</p>
+</li>
+</ul>
+<h4 id="比较运算符">比较运算符（&lt;，&gt;，&lt;=，&gt;=）</h4>
+<p>这些比较运算符的操作数可以是任何类型的。但是，比较只能在数字和字符串上执行，因此转换的操作数不是数字或字符串。比较和转换如下所示：</p>
+<ul>
+<li>如果操作数是一个对象，将该对象转换为原始值。如果valueOf()方法返回一个原始值，则使用该值。否则使用toString()方法返回的值。</li>
+<li>如果进行对象到原始值转换之后，两个操作数都是字符串，那么使用字母顺序比较这两个字符串。</li>
+<li>如果进行对象到原始值转换之后，至少有一个操作数不是字符串，那么两个操作数都转换为数字再进行数值比较。如果有一个是NaN，总是返回false。</li>
+</ul>
+<p>+偏爱字符串，如果任何一个操作数是字符串，它都会执行连接。比较运算符更喜欢数字，如果两个操作数都是字符串，才进行字符串比较。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="c1">// Addition. Result is 3.
+</span><span class="c1"></span><span class="s2">&#34;1&#34;</span> <span class="o">+</span> <span class="s2">&#34;2&#34;</span> <span class="c1">// Concatenation. Result is &#34;12&#34;.
+</span><span class="c1"></span><span class="s2">&#34;1&#34;</span> <span class="o">+</span> <span class="mi">2</span> <span class="c1">// Concatenation. 2 is converted to &#34;2&#34;. Result is &#34;12&#34;.
+</span><span class="c1"></span><span class="mi">11</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="c1">// Numeric comparison. Result is false.
+</span><span class="c1"></span><span class="s2">&#34;11&#34;</span> <span class="o">&lt;</span> <span class="s2">&#34;3&#34;</span> <span class="c1">// String comparison. Result is true.
+</span><span class="c1"></span><span class="s2">&#34;11&#34;</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="c1">// Numeric comparison. &#34;11&#34; converted to 11. Result is false.
+</span><span class="c1"></span><span class="s2">&#34;one&#34;</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="c1">// Numeric comparison. &#34;one&#34; converted to NaN. Result is false.
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="in操作符">in操作符</h4>
+<p>in操作符左边是字符串，右边是一个对象。如果左侧值是右侧对象的属性名，则结果为true：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">point</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="mi">1</span> <span class="p">};</span> <span class="c1">// Define an object
+</span><span class="c1"></span><span class="s2">&#34;x&#34;</span> <span class="k">in</span> <span class="nx">point</span> <span class="c1">// =&gt; true: object has property named &#34;x&#34;
+</span><span class="c1"></span><span class="s2">&#34;z&#34;</span> <span class="k">in</span> <span class="nx">point</span> <span class="c1">// =&gt; false: object has no &#34;z&#34; property.
+</span><span class="c1"></span><span class="s2">&#34;toString&#34;</span> <span class="k">in</span> <span class="nx">point</span> <span class="c1">// =&gt; true: object inherits toString method
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">];</span> <span class="c1">// An array with elements 0, 1, and 2
+</span><span class="c1"></span><span class="s2">&#34;0&#34;</span> <span class="k">in</span> <span class="nx">data</span> <span class="c1">// =&gt; true: array has an element &#34;0&#34;
+</span><span class="c1"></span><span class="mi">1</span> <span class="k">in</span> <span class="nx">data</span> <span class="c1">// =&gt; true: numbers are converted to strings
+</span><span class="c1"></span><span class="mi">3</span> <span class="k">in</span> <span class="nx">data</span> <span class="c1">// =&gt; false: no element 3
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="instanceof操作符">instanceof操作符</h4>
+<p>instanceof操作符左侧是一个对象，右侧是一个类。如果左边的对象是右侧类的实例，则结果为true：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="c1">// Create a new object with the Date() constructor
+</span><span class="c1"></span><span class="nx">d</span> <span class="k">instanceof</span> <span class="nb">Date</span><span class="p">;</span> <span class="c1">// Evaluates to true; d was created with Date()
+</span><span class="c1"></span><span class="nx">d</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">;</span> <span class="c1">// Evaluates to true; all objects are instances of Object
+</span><span class="c1"></span><span class="nx">d</span> <span class="k">instanceof</span> <span class="nb">Number</span><span class="p">;</span> <span class="c1">// Evaluates to false; d is not a Number object
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span> <span class="c1">// Create an array with array literal syntax
+</span><span class="c1"></span><span class="nx">a</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">;</span> <span class="c1">// Evaluates to true; a is an array
+</span><span class="c1"></span><span class="nx">a</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">;</span> <span class="c1">// Evaluates to true; all arrays are objects
+</span><span class="c1"></span><span class="nx">a</span> <span class="k">instanceof</span> <span class="nb">RegExp</span><span class="p">;</span> <span class="c1">// Evaluates to false; arrays are not regular expressions
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>注意，所有对象都是Object的实例。instanceof在决定对象是否为类的实例考虑的是基类。如果instanceof的左边操作数不是对象，将返回false。如果右边不是函数，它会抛出TypeError 。</p>
+<h3 id="逻辑表达式">逻辑表达式（&amp;&amp;，||，!）</h3>
+<p>&amp;&amp;和||具有短路求值的特性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">stop</span><span class="p">();</span>
+<span class="kd">function</span> <span class="nx">copy</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">p</span> <span class="o">=</span> <span class="nx">p</span> <span class="o">||</span> <span class="p">{};</span> <span class="c1">// If no object passed for p, use a newly created object.
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="赋值表达式">赋值表达式</h3>
+<p>赋值运算符左侧是一个左值，右侧可以是任意类型的值。赋值表达式的值就是右侧操作数的值。作为副作用，赋值运算符将右侧的值赋给左侧的变量或属性。赋值运算符是右结合的。</p>
+<p>大多数情况下，<code>a op= b</code>等价于<code>a = a op b</code>。只有当a包含了诸如函数调用或递增操作符等副作用时，它们不等价。</p>
+<h3 id="估值表达式">估值表达式</h3>
+<p>像许多解释语言一样，JavaScript能够解释JavaScript源代码字符串，并对其进行计算。JavaScript通过全局函数eval()来实现的。</p>
+<h4 id="eval">eval()</h4>
+<p>如果传递一个字符串，eval()将尝试解析该字符串为JavaScript代码，如果失败则抛出SyntaxError。如果成功，则返回字符串中最后一个表达式或语句的值，如果最后一个表达式或语句没有值，则返回undefined。如果该串代码抛出异常，eval()传播该异常。</p>
+<p>如果传递其他值，则返回该值。</p>
+<p>eval()会使用当前代码作用域的变量，也可以像本地代码一样定义变量和函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="c1">// 1
+</span><span class="c1"></span><span class="nb">eval</span><span class="p">(</span><span class="s2">&#34;function f() { return x+1; }&#34;</span><span class="p">);</span>
+<span class="nx">f</span><span class="p">()</span> <span class="c1">// 2
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>如果从顶级代码调用eval()，它将对全局变量和全局函数进行操作。</p>
+<h4 id="全局eval">全局eval()</h4>
+<p>eval()更改本地变量的能力对JavaScript优化器来说是一个很大的问题。解释器对任何调用eval()的函数只做较少的优化。</p>
+<p>ES5废弃了EvalError并标准化了eval()的行为。直接调用eval()使用调用上下文的变量环境。任何其他调用都使用全局对象作为其变量环境，不能读写或定义局部变量和函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">geval</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">;</span> <span class="c1">// Using another name does a global eval
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="s2">&#34;global&#34;</span><span class="p">,</span> <span class="nx">y</span> <span class="o">=</span> <span class="s2">&#34;global&#34;</span><span class="p">;</span> <span class="c1">// Two global variables
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// This function does a local eval
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="s2">&#34;local&#34;</span><span class="p">;</span> <span class="c1">// Define a local variable
+</span><span class="c1"></span>    <span class="nb">eval</span><span class="p">(</span><span class="s2">&#34;x += &#39;changed&#39;;&#34;</span><span class="p">);</span> <span class="c1">// Direct eval sets local variable
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">// Return changed local variable
+</span><span class="c1"></span><span class="p">}</span>
+<span class="kd">function</span> <span class="nx">g</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// This function does a global eval
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="s2">&#34;local&#34;</span><span class="p">;</span> <span class="c1">// A local variable
+</span><span class="c1"></span>    <span class="nx">geval</span><span class="p">(</span><span class="s2">&#34;y += &#39;changed&#39;;&#34;</span><span class="p">);</span> <span class="c1">// Indirect eval sets global variable
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">y</span><span class="p">;</span> <span class="c1">// Return unchanged local variable
+</span><span class="c1"></span><span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f</span><span class="p">(),</span> <span class="nx">x</span><span class="p">);</span> <span class="c1">// &#34;localchanged global&#34;
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">g</span><span class="p">(),</span> <span class="nx">y</span><span class="p">);</span> <span class="c1">// &#34;local globalchanged&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>在IE9之前，当使用不同的名称调用eval()时，它不会执行全局eval。也不会抛出一个EvalError，它只做局部运算。但IE定义了一个execScript()的全局函数，它会像执行顶级脚本一样执行字符串参数。然而，与eval()不同的是，execScript()总是返回null。</p>
+<h3 id="严格eval">严格eval()</h3>
+<p>ES5严格模式进一步限制eval()函数的行为，甚至是标识符eval的使用。当在严格模式中调用eval()时，eval()用私有变量环境执行本地eval。这意味着在严格模式下，求值代码可以查询和设置局部变量，但不能在局部作用域中定义新的变量或函数。</p>
+<p>此外，严格eval()更像操作符。不允许使用新值覆盖eval()函数，且不允许使用“eval”名称声明变量、函数、函数参数或catch块参数。</p>
+<h3 id="其他运算符">其他运算符</h3>
+<h4 id="条件运算符">条件运算符（?:）</h4>
+<p>条件运算符的操作数可以是任何类型的。如果第一个操作数的值为真，则计算第二个操作数，并返回其值。否则，计算第三个操作数并返回其值。</p>
+<h4 id="typeof运算符">typeof运算符</h4>
+<p><img src="/static/images/2018/10/28/typeof.png" alt="typeof.png"></p>
+<p>JavaScript在函数和“可调用对象”之间做了细微的区分。所有的函数都是可调用的，但也有可能一个可调用对象不是一个真正的函数。ES3规范说所有可调用的本机对象返回&quot;function&rdquo;。ES5规范对此进行了扩展，要求所有可调用对象都返回&quot;function&rdquo;。</p>
+<h3 id="delete运算符">delete运算符</h3>
+<p>delete是一个一元运算符，它删除指定对象的属性或数组元素。与赋值、递增和递减运算符一样，使用delete通常是为了其副作用，而不是返回的值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">2</span><span class="p">};</span> <span class="c1">// Start with an object
+</span><span class="c1"></span><span class="k">delete</span> <span class="nx">o</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// Delete one of its properties
+</span><span class="c1"></span><span class="s2">&#34;x&#34;</span> <span class="k">in</span> <span class="nx">o</span> <span class="c1">// =&gt; false: the property does not exist anymore
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// Start with an array
+</span><span class="c1"></span><span class="k">delete</span> <span class="nx">a</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">// Delete the last element of the array
+</span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span> <span class="c1">// =&gt; 2: array only has two elements now
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>删除属性或数组元素不等同于将其值设为undefined。当一个属性被删除时，该属性就不存在了。尝试读取不存在的属性将返回未定义的值，但是可以使用in操作符测试属性的是否存在。</p>
+<p>delete的操作数是一个左值。如果它不是左值，delete不采取任何操作并返回true。否则，delete尝试删除该左值。如果d删除成功，则返回true。并不是所有的属性都可以删除：一些内置的核心属性和客户端属性不受删除的影响，并且不能删除使用var语句声明的用户定义的变量。由function声明的函数和参数也不能删除。</p>
+<p>在ES5严格模式下，如果delete的操作数是一个非限定的标识符（如变量、函数或函数参数），那么它抛出SyntaxError错误，只有当操作数是一个属性访问表达式时，它才会工作。如果删除任何不可配置属性，将抛出TypeError。在严格模式之外，这些情况下不会发生异常，delete返回false表示操作数无法删除：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">};</span> <span class="c1">// Define a variable; initialize it to an object
+</span><span class="c1"></span><span class="k">delete</span> <span class="nx">o</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// Delete one of the object properties; returns true
+</span><span class="c1"></span><span class="k">typeof</span> <span class="nx">o</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// Property does not exist; returns &#34;undefined&#34;
+</span><span class="c1"></span><span class="k">delete</span> <span class="nx">o</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// Delete a nonexistent property; returns true
+</span><span class="c1"></span><span class="k">delete</span> <span class="nx">o</span><span class="p">;</span> <span class="c1">// Can&#39;t delete a declared variable; returns false.
+</span><span class="c1">// Would raise an exception in strict mode.
+</span><span class="c1"></span><span class="k">delete</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Argument is not an lvalue: returns true
+</span><span class="c1"></span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Define a property of the a global object without var
+</span><span class="c1"></span><span class="k">delete</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">// Try to delete it: returns true in non-strict mode
+</span><span class="c1"></span>		  <span class="c1">// Exception in strict mode. Use &#39;delete this.x&#39; instead
+</span><span class="c1"></span><span class="k">delete</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">// Runtime error: x is not defined
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="void运算符">void运算符</h4>
+<p>void是一个一元运算符，其操作数可以是任何类型。它计算并丢弃其操作数的值，然后返回undefined。由于操作数的值被丢弃，所以只有当操作数有副作用时，使用void运算符才有意义。</p>
+<p>这个操作符最常见的用法是在客户端javascript的URL中，它允许你为了表达式的副作用，而不需要浏览器显示表达式的值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&#34;javascript:void window.open();&#34;</span><span class="o">&gt;</span><span class="nx">Open</span> <span class="nx">New</span> <span class="nx">Window</span><span class="o">&lt;</span><span class="err">/a&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="逗号运算符">逗号运算符</h4>
+<p>逗号操作符是一个二进制操作符，其操作数可以是任何类型。它从左到右计算操作数，然后返回右操作数的值。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-10-28
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">Javascript</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/statements/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">语句</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/types_values_variables/">
+            <span class="next-text nav-default">类型、值和变量</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/expressions_and_operators/" class="leancloud_visitors" data-flag-title="表达式和操作符">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

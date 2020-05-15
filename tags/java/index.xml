@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java on 静心</title>
+    <title>Java on 招财猫的博客</title>
     <link>https://gitop.cc/tags/java/</link>
-    <description>Recent content in Java on 静心</description>
+    <description>Recent content in Java on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <language>zh-cn</language>
     <lastBuildDate>Wed, 24 Jul 2019 20:30:19 +0800</lastBuildDate>
     
 	<atom:link href="https://gitop.cc/tags/java/index.xml" rel="self" type="application/rss+xml" />
@@ -14,64 +13,64 @@
     
     <item>
       <title>重构、测试和调试</title>
-      <link>https://gitop.cc/posts/refactoring-testing-debugging/</link>
+      <link>https://gitop.cc/post/refactoring-testing-debugging/</link>
       <pubDate>Wed, 24 Jul 2019 20:30:19 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/refactoring-testing-debugging/</guid>
+      <guid>https://gitop.cc/post/refactoring-testing-debugging/</guid>
       <description>重构以提高可读性和灵活性 提高代码的可读性 我们介绍三个简单的重构，使用lambda、方法引用和流，将它们应用到代码中，以提高代码的可读性： 将匿</description>
     </item>
     
     <item>
       <title>Collection API增强</title>
-      <link>https://gitop.cc/posts/collection-api-enhancements/</link>
+      <link>https://gitop.cc/post/collection-api-enhancements/</link>
       <pubDate>Wed, 24 Jul 2019 14:22:44 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/collection-api-enhancements/</guid>
-      <description>Collection工厂 Java 9引入了一些创建小型集合对象的方法，比如Arrays.asList()： List&amp;lt;String&amp;gt; friends = Arrays.asList(&amp;#34;Raphael&amp;#34;, &amp;#34;Olivia&amp;#34;, &amp;#34;Thibaut&amp;#34;); Arrays.asList()</description>
+      <guid>https://gitop.cc/post/collection-api-enhancements/</guid>
+      <description>Collection工厂 Java 9引入了一些创建小型集合对象的方法，比如Arrays.asList()： 1 List&amp;lt;String&amp;gt; friends = Arrays.asList(&amp;#34;Raphael&amp;#34;, &amp;#34;Olivia&amp;#34;, &amp;#34;Thibaut&amp;#34;); Arrays.asList(</description>
     </item>
     
     <item>
       <title>并行数据处理和性能</title>
-      <link>https://gitop.cc/posts/parallel-data-processing-and-performance/</link>
+      <link>https://gitop.cc/post/parallel-data-processing-and-performance/</link>
       <pubDate>Tue, 23 Jul 2019 20:00:47 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/parallel-data-processing-and-performance/</guid>
+      <guid>https://gitop.cc/post/parallel-data-processing-and-performance/</guid>
       <description>并行流 通过调用parallelStream方法，可以将集合转换为并行流。并行流是将元素分割成多个块的流，使用不同的线程处理每个块。因此，你可</description>
     </item>
     
     <item>
       <title>使用流收集数据</title>
-      <link>https://gitop.cc/posts/collecting-data-with-streams/</link>
+      <link>https://gitop.cc/post/collecting-data-with-streams/</link>
       <pubDate>Tue, 23 Jul 2019 13:04:54 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/collecting-data-with-streams/</guid>
-      <description>假设有一个事务列表，你希望根据货币对它们进行分组。在Java 8之前，即使是这样一个简单的例子也很难实现，如下所示： Map&amp;lt;Currency, List&amp;lt;Transaction&amp;gt;&amp;gt; transactionsByCurrencies = new HashMap&amp;lt;&amp;gt;(); for (Transaction transaction : transactions) { Currency</description>
+      <guid>https://gitop.cc/post/collecting-data-with-streams/</guid>
+      <description>假设有一个事务列表，你希望根据货币对它们进行分组。在Java 8之前，即使是这样一个简单的例子也很难实现，如下所示： 1 2 3 4 5 6 7 8 9 10 Map&amp;lt;Currency, List&amp;lt;Transaction&amp;gt;&amp;gt; transactionsByCurrencies</description>
     </item>
     
     <item>
       <title>使用流</title>
-      <link>https://gitop.cc/posts/working-with-streams/</link>
+      <link>https://gitop.cc/post/working-with-streams/</link>
       <pubDate>Thu, 11 Jul 2019 08:39:11 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/working-with-streams/</guid>
-      <description>过滤 使用谓词过滤 filter方法接受一个谓词函数为参数，并返回包含所有匹配谓词的元素的流。如下例： List&amp;lt;Dish&amp;gt; vegetarianMenu = menu.stream().filter(Dish::isVegetarian).collect(toList()); 如下图所示： 过滤唯一元素 disti</description>
+      <guid>https://gitop.cc/post/working-with-streams/</guid>
+      <description>过滤 使用谓词过滤 filter方法接受一个谓词函数为参数，并返回包含所有匹配谓词的元素的流。如下例： 1 List&amp;lt;Dish&amp;gt; vegetarianMenu = menu.stream().filter(Dish::isVegetarian).collect(toList()); 如下图所示： 过滤唯一元素 dist</description>
     </item>
     
     <item>
       <title>流介绍</title>
-      <link>https://gitop.cc/posts/introducing-streams/</link>
+      <link>https://gitop.cc/post/introducing-streams/</link>
       <pubDate>Wed, 10 Jul 2019 17:22:30 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/introducing-streams/</guid>
+      <guid>https://gitop.cc/post/introducing-streams/</guid>
       <description>流是什么 流是对Java API的更新，允许你以声明式的方式操作数据集合。首先看一个例子，假设你想获得所有热量低于400卡的菜肴的名字，并按热量</description>
     </item>
     
     <item>
       <title>Lambda表达式</title>
-      <link>https://gitop.cc/posts/lambda-expressions/</link>
+      <link>https://gitop.cc/post/lambda-expressions/</link>
       <pubDate>Wed, 10 Jul 2019 08:48:55 +0800</pubDate>
       
-      <guid>https://gitop.cc/posts/lambda-expressions/</guid>
+      <guid>https://gitop.cc/post/lambda-expressions/</guid>
       <description>Lambda概述 lambda表达式没有名称，但是它有参数列表，函数体和返回类型，还可能包含一个异常列表。 匿名，lambda表达式不像方法一样</description>
     </item>
     

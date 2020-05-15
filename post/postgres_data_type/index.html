@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>PostgreSQL数据类型 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="类型介绍 类型分类 PostgreSQL支持的数据类型分类如表： 类型 说明 对比其他数据库 布尔类型 PostgreSQL支持SQL标准的boolean" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/postgres_data_type/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="PostgreSQL数据类型" />
+<meta property="og:description" content="类型介绍 类型分类 PostgreSQL支持的数据类型分类如表： 类型 说明 对比其他数据库 布尔类型 PostgreSQL支持SQL标准的boolean" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/postgres_data_type/" />
+<meta property="article:published_time" content="2019-01-22T16:20:20+08:00" />
+<meta property="article:modified_time" content="2019-01-22T16:20:20+08:00" />
+<meta itemprop="name" content="PostgreSQL数据类型">
+<meta itemprop="description" content="类型介绍 类型分类 PostgreSQL支持的数据类型分类如表： 类型 说明 对比其他数据库 布尔类型 PostgreSQL支持SQL标准的boolean">
+<meta itemprop="datePublished" content="2019-01-22T16:20:20&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-22T16:20:20&#43;08:00" />
+<meta itemprop="wordCount" content="1722">
+
+
+
+<meta itemprop="keywords" content="PostgreSQL," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PostgreSQL数据类型"/>
+<meta name="twitter:description" content="类型介绍 类型分类 PostgreSQL支持的数据类型分类如表： 类型 说明 对比其他数据库 布尔类型 PostgreSQL支持SQL标准的boolean"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">PostgreSQL数据类型</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-01-22 </span>
+        <div class="post-category">
+            <a href="/categories/database/"> Database </a>
+            </div>
+          <span class="more-meta"> 约 1722 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#类型介绍">类型介绍</a>
+      <ul>
+        <li><a href="#类型分类">类型分类</a></li>
+        <li><a href="#类型输入与转换">类型输入与转换</a></li>
+      </ul>
+    </li>
+    <li><a href="#布尔类型">布尔类型</a></li>
+    <li><a href="#数值类型">数值类型</a>
+      <ul>
+        <li><a href="#精确的小数类型">精确的小数类型</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="类型介绍">类型介绍</h2>
+<h3 id="类型分类">类型分类</h3>
+<p>PostgreSQL支持的数据类型分类如表：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>对比其他数据库</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>布尔类型</td>
+<td>PostgreSQL支持SQL标准的boolean数据类型</td>
+<td>与MySQL的BOOL、BOOLEAN类型相同，使用一字节存储空间</td>
+</tr>
+<tr>
+<td>数值类型</td>
+<td>整数类型有2字节的smallint、4字节的int、8字节的bigint，十进制精确类型有numeric，浮点类型有real和double precision。还有8字节的货币(money)类型</td>
+<td>无MySQL的unsigned整数类型，也无MySQL 1字节长的tinyint整数类型和3字节长的medium int整数类型</td>
+</tr>
+<tr>
+<td>字符类型</td>
+<td>有varchar(n)、char(n)、text三种类型</td>
+<td>PostgreSQL中的varchar(n)最大可以存储1GB，而MySQL中的varchar(n)最大只能是64KB。PostgreSQL中的text类型相当于MySQL中的LONGTEXT类型</td>
+</tr>
+<tr>
+<td>二进制数据类型</td>
+<td>只有一种bytea</td>
+<td>对应MySQL的BLOB和LONGBLOB类型</td>
+</tr>
+<tr>
+<td>位串类型</td>
+<td>位串就是一串1和0的字符串，有bit(n)、bit varying(n)两种</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>日期和时间类型</td>
+<td>有date、time、timestamp，而time和timestamp又分是否包括时区的两种类型</td>
+<td>在PostgreSQL中，可以精确到秒以下，如毫秒。而MySQL的时间类型最多只能精确到秒，其日期时间的范围也与MySQL差异较大</td>
+</tr>
+<tr>
+<td>枚举类型</td>
+<td>枚举类型是一种包含一系列有序静态值集合的数据类型，等于某些编程语言中的enum类型</td>
+<td>PostgreSQL使用枚举类型前需要先使用CREATE TYPE创建这个类型。MySQL也有枚举类型(ENUM)</td>
+</tr>
+<tr>
+<td>几何类型</td>
+<td>包括了点(point)、直线(line)、线段(lseg)、路径(path)、多边形(polygon)、圆(cycle)等类型</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>网络地址类型</td>
+<td>有cidr、inet、macaddr三种类型</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>数组类型</td>
+<td>可以存储一个数组</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>复合类型</td>
+<td>可以把已有的简单类型组合成用户自定义的类型，就如C语言中的结构体一样</td>
+<td>对应其他数据库的自定义类型</td>
+</tr>
+<tr>
+<td>xml类型</td>
+<td>可以存储XML数据的类型</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>json类型</td>
+<td>可以存储json类型的数据</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>range类型</td>
+<td>可以存储范围数据</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>对象标识符类型</td>
+<td>PostgreSQL内部标识对象的类型，如oid类型、regproc类型、regclass类型等</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>伪类型</td>
+<td>伪类型不能作为字段的数据类型，但是它可以用于声明一个函数的参数或者结果类型。有any、anyarray、anyelement、cstring、internal、language_handler、record、trigger、void、opaque</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>其他类型</td>
+<td>一些不好分类的类型都放到这里，如UUID类型、pg_Isn类型</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>为了提高SQL的兼容性，部分类型还有很多别名。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>别名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>integer</td>
+<td>int、int4</td>
+</tr>
+<tr>
+<td>smallint</td>
+<td>int2</td>
+</tr>
+<tr>
+<td>bigint</td>
+<td>int8</td>
+</tr>
+<tr>
+<td>char varying(n)</td>
+<td>varchar(n)</td>
+</tr>
+<tr>
+<td>numeric(m,n)</td>
+<td>decimal(m,n)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="类型输入与转换">类型输入与转换</h3>
+<p>对于一些简单的类型，如数字及字符串，使用通常的方法输入就可以了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># select 1, 1.1421, &#39;hello world&#39;;</span>
+ ?column? <span class="p">|</span> ?column? <span class="p">|</span>  ?column?
+----------<span class="p">|</span>----------<span class="p">|</span>-------------
+        <span class="m">1</span> <span class="p">|</span>   1.1421 <span class="p">|</span> hello world
+<span class="o">(</span><span class="m">1</span> row<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>对于其他的复杂类型，可以使用“类型名”加上单引号括起来的类型值进行输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># select bit &#39;11100011&#39;;</span>
+   bit
+----------
+ <span class="m">11100011</span>
+<span class="o">(</span><span class="m">1</span> row<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>所有类型都可以使用上面的输入方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># select int &#39;2&#39; * int &#39;5&#39;;</span>
+ ?column?
+----------
+       <span class="m">10</span>
+<span class="o">(</span><span class="m">1</span> row<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>PostgreSQL支持使用标准SQL的类型转换函数<code>cast</code>进行类型转换：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># select cast(&#39;5&#39; as int), cast(&#39;2018-09-12&#39; as date);</span>
+ int4 <span class="p">|</span>    date
+------<span class="p">|</span>------------
+    <span class="m">5</span> <span class="p">|</span> 2018-09-12
+<span class="o">(</span><span class="m">1</span> row<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>此外，PostgreSQL还有一种更简洁的类型转换方式，即双冒号转换：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># select &#39;5&#39;::int, &#39;2018-09-12&#39;::date;</span>
+ int4 <span class="p">|</span>    date
+------<span class="p">|</span>------------
+    <span class="m">5</span> <span class="p">|</span> 2018-09-12
+<span class="o">(</span><span class="m">1</span> row<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="布尔类型">布尔类型</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bool</td>
+<td>true, false, &lsquo;true&rsquo;, &lsquo;false&rsquo;, &lsquo;yes&rsquo;, &lsquo;no&rsquo;（不区分大小写）</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># select true, false, &#39;true&#39;::bool, &#39;false&#39;::bool, &#39;yes&#39;::bool, &#39;no&#39;::bool;</span>
+ bool <span class="p">|</span> bool <span class="p">|</span> bool <span class="p">|</span> bool <span class="p">|</span> bool <span class="p">|</span> bool
+------<span class="p">|</span>------<span class="p">|</span>------<span class="p">|</span>------<span class="p">|</span>------<span class="p">|</span>------
+ t    <span class="p">|</span> f    <span class="p">|</span> t    <span class="p">|</span> f    <span class="p">|</span> t    <span class="p">|</span> f
+<span class="o">(</span><span class="m">1</span> row<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>SQL使用三值的布尔逻辑：TRUE、FALSE和NULL，其中NULL代表“未知“</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+<th>a and b</th>
+<th>a or b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>t</td>
+<td>t</td>
+<td>t</td>
+<td>t</td>
+</tr>
+<tr>
+<td>t</td>
+<td>f</td>
+<td>f</td>
+<td>t</td>
+</tr>
+<tr>
+<td>t</td>
+<td>null</td>
+<td>null</td>
+<td>t</td>
+</tr>
+<tr>
+<td>f</td>
+<td>f</td>
+<td>f</td>
+<td>f</td>
+</tr>
+<tr>
+<td>f</td>
+<td>null</td>
+<td>f</td>
+<td>null</td>
+</tr>
+<tr>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>not a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>t</td>
+<td>f</td>
+</tr>
+<tr>
+<td>f</td>
+<td>t</td>
+</tr>
+<tr>
+<td>null</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<p>布尔类型可以使用“IS”比较运算符：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">expression is <span class="nb">true</span>
+expression is not <span class="nb">true</span>
+expression is <span class="nb">false</span>
+expression is not <span class="nb">false</span>
+expression is unknown
+expression is not unknown
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="数值类型">数值类型</h2>
+<table>
+<thead>
+<tr>
+<th>类型名</th>
+<th>存储空间</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smallint</td>
+<td>2字节</td>
+<td>-2^15~2^15-1</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>4字节</td>
+<td>-2^31~2^31-1</td>
+</tr>
+<tr>
+<td>bigint</td>
+<td>8字节</td>
+<td>-2^63~2^63-1</td>
+</tr>
+<tr>
+<td>numeric</td>
+<td>变长</td>
+<td>无限制</td>
+</tr>
+<tr>
+<td>real</td>
+<td>4字节</td>
+<td>6位十进制数字精度</td>
+</tr>
+<tr>
+<td>double precision</td>
+<td>8字节</td>
+<td>15位十进制数字精度</td>
+</tr>
+<tr>
+<td>serial</td>
+<td>4字节</td>
+<td>1~2^31-1</td>
+</tr>
+<tr>
+<td>bigserial</td>
+<td>8字节</td>
+<td>1~2^63-1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="精确的小数类型">精确的小数类型</h3>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-01-22
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/postgresql/">PostgreSQL</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/custom_gpdb_installation/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">gpdb官方安装包自定义安装路径的方法</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/psql_intro/">
+            <span class="next-text nav-default">psql使用介绍</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/postgres_data_type/" class="leancloud_visitors" data-flag-title="PostgreSQL数据类型">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

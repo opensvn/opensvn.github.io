@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Greenplum TPC-H测试 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="首先从官网下载TPC-H_Tools_v2.18.0.zip，解压 1 $ unzip TPC-H_Tools_v2.18.0.zip 进入dbgen目录，拷贝Makefile 1 2 $ cd tpc/2.18.0_rc2/dbgen $ cp makefile.suite Makefile 修改Ma" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/tpch-test/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Greenplum TPC-H测试" />
+<meta property="og:description" content="首先从官网下载TPC-H_Tools_v2.18.0.zip，解压 1 $ unzip TPC-H_Tools_v2.18.0.zip 进入dbgen目录，拷贝Makefile 1 2 $ cd tpc/2.18.0_rc2/dbgen $ cp makefile.suite Makefile 修改Ma" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/tpch-test/" />
+<meta property="article:published_time" content="2019-04-14T15:40:23+08:00" />
+<meta property="article:modified_time" content="2019-04-14T15:40:23+08:00" />
+<meta itemprop="name" content="Greenplum TPC-H测试">
+<meta itemprop="description" content="首先从官网下载TPC-H_Tools_v2.18.0.zip，解压 1 $ unzip TPC-H_Tools_v2.18.0.zip 进入dbgen目录，拷贝Makefile 1 2 $ cd tpc/2.18.0_rc2/dbgen $ cp makefile.suite Makefile 修改Ma">
+<meta itemprop="datePublished" content="2019-04-14T15:40:23&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-14T15:40:23&#43;08:00" />
+<meta itemprop="wordCount" content="475">
+
+
+
+<meta itemprop="keywords" content="Greenplum," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Greenplum TPC-H测试"/>
+<meta name="twitter:description" content="首先从官网下载TPC-H_Tools_v2.18.0.zip，解压 1 $ unzip TPC-H_Tools_v2.18.0.zip 进入dbgen目录，拷贝Makefile 1 2 $ cd tpc/2.18.0_rc2/dbgen $ cp makefile.suite Makefile 修改Ma"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Greenplum TPC-H测试</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-04-14 </span>
+        <div class="post-category">
+            <a href="/categories/database/"> Database </a>
+            </div>
+          <span class="more-meta"> 约 475 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>首先从<a href="http://www.tpc.org">官网</a>下载TPC-H_Tools_v2.18.0.zip，解压</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ unzip TPC-H_Tools_v2.18.0.zip</code></pre></td></tr></table>
+</div>
+</div>
+<p>进入<code>dbgen</code>目录，拷贝Makefile</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> tpc/2.18.0_rc2/dbgen
+$ cp makefile.suite Makefile</code></pre></td></tr></table>
+</div>
+</div>
+<p>修改Makefile，主要修改如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">CC</span>      <span class="o">=</span> gcc
+<span class="nv">DATABASE</span> <span class="o">=</span> ORACLE
+<span class="nv">MACHINE</span> <span class="o">=</span> LINUX
+<span class="nv">WORKLOAD</span> <span class="o">=</span> TPCH</code></pre></td></tr></table>
+</div>
+</div>
+<p>编译<code>dbgen</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ make</code></pre></td></tr></table>
+</div>
+</div>
+<p><code>./dbgen -h</code>可以查看<code>dbgen</code>的用法</p>
+<p>使用<code>dbgen</code>产生一些测试数据，<code>-s</code>表示scale(单位GB)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ ./dbgen -s <span class="m">50</span> -f
+$ ll -h *.tbl</code></pre></td></tr></table>
+</div>
+</div>
+<p>将测试数据转换为PostgreSQL能够识别的格式，并删除末尾的分隔符<code>|</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="k">for</span> i in <span class="sb">`</span>ls *.tbl<span class="sb">`</span><span class="p">;</span> <span class="k">do</span> sed <span class="s1">&#39;s/|$//&#39;</span> <span class="nv">$i</span> &gt; <span class="si">${</span><span class="nv">i</span><span class="p">/tbl/csv</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
+$ ll -h *.csv</code></pre></td></tr></table>
+</div>
+</div>
+<p>创建软链接<code>/tmp/dss-data</code>指向包含csv文件的目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ ln -s <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span> /tmp/dss-data</code></pre></td></tr></table>
+</div>
+</div>
+<p>下载pg_tpch</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git clone https://github.com/digoal/pg_tpch.git</code></pre></td></tr></table>
+</div>
+</div>
+<p>将pg_tpch的文件逗拷贝到dbgen目录下面</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ cp -r ~/pg_tpch/* ~/tpc/2.18.0_rc2/dbgen</code></pre></td></tr></table>
+</div>
+</div>
+<p>创建一个<code>queries</code>目录，用于存放转换后的TPC-H测试SQL</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> ~/tpc/2.18.0_rc2/dbgen
+$ mkdir -p dss/queries</code></pre></td></tr></table>
+</div>
+</div>
+<p>生成测试SQL，<code>SF</code>用于dbgen指定scale值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">SF</span><span class="o">=</span><span class="m">50</span>
+$ <span class="k">for</span> q in <span class="sb">`</span>seq <span class="m">1</span> 22<span class="sb">`</span>
+<span class="k">do</span>
+    <span class="nv">DSS_QUERY</span><span class="o">=</span>dss/templates ./qgen -s <span class="nv">$SF</span> <span class="nv">$q</span> &gt; dss/queries/<span class="nv">$q</span>.sql
+    sed <span class="s1">&#39;s/^select/explain select/&#39;</span> dss/queries/<span class="nv">$q</span>.sql &gt; dss/queries/<span class="nv">$q</span>.explain.sql
+<span class="k">done</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>设置gpdb几个参数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ gpconfig -c enable_nestloop -v off
+$ gpconfig -c work_mem -v 256MB
+$ gpstop -u</code></pre></td></tr></table>
+</div>
+</div>
+<p>开始测试，结果输出到results目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ ./tpch.sh ./results tpch-db gpadmin</code></pre></td></tr></table>
+</div>
+</div>
+<p>结束后，可以使用以下方法生成CSV报告</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ php process.php ./results output.csv</code></pre></td></tr></table>
+</div>
+</div>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-04-14
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/greenplum/">Greenplum</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/git-multi-sshkey/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Git配置多个SSH-Key</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/custom_gpdb_installation/">
+            <span class="next-text nav-default">gpdb官方安装包自定义安装路径的方法</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/tpch-test/" class="leancloud_visitors" data-flag-title="Greenplum TPC-H测试">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

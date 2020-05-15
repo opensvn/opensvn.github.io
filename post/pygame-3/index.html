@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Pygame第3章 Pygame介绍 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="安装Pygame Ubuntu下安装Pygame: 1 sudo apt-get install python-pygame 装好后，查看Pygame版本: 1 2 &amp;gt;&amp;gt;&amp;gt; import pygame &amp;gt;&amp;gt;&amp;gt; print pygame.ver 使用Pygame Pygame有很多模" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/pygame-3/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Pygame第3章 Pygame介绍" />
+<meta property="og:description" content="安装Pygame Ubuntu下安装Pygame: 1 sudo apt-get install python-pygame 装好后，查看Pygame版本: 1 2 &gt;&gt;&gt; import pygame &gt;&gt;&gt; print pygame.ver 使用Pygame Pygame有很多模" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/pygame-3/" />
+<meta property="article:published_time" content="2015-11-02T08:16:02+00:00" />
+<meta property="article:modified_time" content="2015-11-02T08:16:02+00:00" />
+<meta itemprop="name" content="Pygame第3章 Pygame介绍">
+<meta itemprop="description" content="安装Pygame Ubuntu下安装Pygame: 1 sudo apt-get install python-pygame 装好后，查看Pygame版本: 1 2 &gt;&gt;&gt; import pygame &gt;&gt;&gt; print pygame.ver 使用Pygame Pygame有很多模">
+<meta itemprop="datePublished" content="2015-11-02T08:16:02&#43;00:00" />
+<meta itemprop="dateModified" content="2015-11-02T08:16:02&#43;00:00" />
+<meta itemprop="wordCount" content="6039">
+
+
+
+<meta itemprop="keywords" content="Python," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Pygame第3章 Pygame介绍"/>
+<meta name="twitter:description" content="安装Pygame Ubuntu下安装Pygame: 1 sudo apt-get install python-pygame 装好后，查看Pygame版本: 1 2 &gt;&gt;&gt; import pygame &gt;&gt;&gt; print pygame.ver 使用Pygame Pygame有很多模"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Pygame第3章 Pygame介绍</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-11-02 </span>
+        <div class="post-category">
+            <a href="/categories//">  </a>
+            </div>
+          <span class="more-meta"> 约 6039 字 </span>
+          <span class="more-meta"> 预计阅读 13 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#事件检索">事件检索</a></li>
+        <li><a href="#处理鼠标移动事件">处理鼠标移动事件</a></li>
+        <li><a href="#处理鼠标按钮事件">处理鼠标按钮事件</a></li>
+        <li><a href="#处理键盘事件">处理键盘事件</a></li>
+        <li><a href="#过滤事件">过滤事件</a></li>
+        <li><a href="#产生事件">产生事件</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#全屏显示">全屏显示</a></li>
+        <li><a href="#可变尺寸的pygame窗口">可变尺寸的Pygame窗口</a></li>
+        <li><a href="#无边框窗口">无边框窗口</a></li>
+        <li><a href="#其它显示标志">其它显示标志</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="安装pygame">安装Pygame</h1>
+<p>Ubuntu下安装Pygame:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">pygame</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>装好后，查看Pygame版本:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pygame</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">pygame</span><span class="o">.</span><span class="n">ver</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="使用pygame">使用Pygame</h1>
+<p>Pygame有很多模块。每一个设备都有一个对应的模块。Pygame模块一览：</p>
+<table>
+<thead>
+<tr>
+<th>模块名</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pygame.cdrom</td>
+<td align="left">访问和控制光驱</td>
+</tr>
+<tr>
+<td>pygame.cursors</td>
+<td align="left">加载光标图片</td>
+</tr>
+<tr>
+<td>pygame.display</td>
+<td align="left">访问显示设备</td>
+</tr>
+<tr>
+<td>pygame.draw</td>
+<td align="left">绘制形状、线和点</td>
+</tr>
+<tr>
+<td>pygame.event</td>
+<td align="left">管理事件</td>
+</tr>
+<tr>
+<td>pygame.font</td>
+<td align="left">使用字体</td>
+</tr>
+<tr>
+<td>pygame.image</td>
+<td align="left">加载和存储图片</td>
+</tr>
+<tr>
+<td>pygame.joystick</td>
+<td align="left">使用游戏手柄或者类似设备</td>
+</tr>
+<tr>
+<td>pygame.key</td>
+<td align="left">读取键盘按键</td>
+</tr>
+<tr>
+<td>pygame.mixer</td>
+<td align="left">加载和播放声音</td>
+</tr>
+<tr>
+<td>pygame.mouse</td>
+<td align="left">管理鼠标</td>
+</tr>
+<tr>
+<td>pygame.movie</td>
+<td align="left">播放视频</td>
+</tr>
+<tr>
+<td>pygame.music</td>
+<td align="left">处理音乐和音频流</td>
+</tr>
+<tr>
+<td>pygame.overlay</td>
+<td align="left">访问高级视频叠加</td>
+</tr>
+<tr>
+<td>pygame</td>
+<td align="left">包含高层Pygame函数</td>
+</tr>
+<tr>
+<td>pygame.rect</td>
+<td align="left">管理矩形区域</td>
+</tr>
+<tr>
+<td>pygame.sndarray</td>
+<td align="left">操作声音数据</td>
+</tr>
+<tr>
+<td>pygame.sprite</td>
+<td align="left">操作移动图像</td>
+</tr>
+<tr>
+<td>pygame.surface</td>
+<td align="left">管理图像和屏幕</td>
+</tr>
+<tr>
+<td>pygame.surfarray</td>
+<td align="left">管理点阵图像数据</td>
+</tr>
+<tr>
+<td>pygame.time</td>
+<td align="left">管理时间和帧信息</td>
+</tr>
+<tr>
+<td>pygame.transform</td>
+<td align="left">缩放和移动图像</td>
+</tr>
+</tbody>
+</table>
+<p>有些模块可能在某些平台上不存在，比如游戏运行的硬件驱动没有安装，这种情况下，Pygame将设置这个模块为None，可以使用None来测试。下面这段代码检测<code>pygame.font</code>是否可用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s1">&#39;The font module is not available!&#39;</span>
+    <span class="nb">exit</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="重温hello-world">重温Hello World</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
+<span class="n">mouse_image_filename</span> <span class="o">=</span> <span class="s1">&#39;fugu.png&#39;</span>
+
+<span class="kn">import</span> <span class="nn">pygame</span>
+<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s1">&#39;Hello, World!&#39;</span><span class="p">)</span>
+
+<span class="n">background</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">background_image_filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+<span class="n">mouse_cursor</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">mouse_image_filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert_alpha</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
+            <span class="nb">exit</span><span class="p">()</span>
+
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pos</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">-=</span> <span class="n">mouse_cursor</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">y</span> <span class="o">-=</span> <span class="n">mouse_cursor</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">mouse_cursor</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>第一行导入pygame包，使我们可以访问它的所有子模块。第二行导入一些常用函数和常量，这个不是必须的，但是更方便。</p>
+<p><strong>pygame.init()<strong>非常简单，实际上却做了非常多工作。它初始化每一个Pygame的子模块。可以单独初始化某一个模块，比如</strong>pygame.sound.init()</strong>。</p>
+<p><strong>pygame.display.set_mode</strong>返回一个Surface对象，代表桌面窗口。第一个参数为元祖，代表分辨率(必须)。第二个是一个标志位，具体意思见下表，如果不用什么特性，就指定0。第三个为色深，如果未提供或设置为0，Pygame将使用当前桌面的值。</p>
+<table>
+<thead>
+<tr>
+<th>标志位</th>
+<th align="left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FULLSCREEN</td>
+<td align="left">创建一个全屏窗口</td>
+</tr>
+<tr>
+<td>DOUBLEBUF</td>
+<td align="left">创建一个“双缓冲”窗口，建议在HWSURFACE或者OPENGL时使用</td>
+</tr>
+<tr>
+<td>HWSURFACE</td>
+<td align="left">创建一个硬件加速的窗口，必须和FULLSCREEN同时使用</td>
+</tr>
+<tr>
+<td>OPENGL</td>
+<td align="left">创建一个OpenGL渲染的窗口</td>
+</tr>
+<tr>
+<td>RESIZABLE</td>
+<td align="left">创建一个可变大小的窗口</td>
+</tr>
+<tr>
+<td>NOFRAME</td>
+<td align="left">创建一个没有边框的窗口</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>色深</th>
+<th align="left">颜色个数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 bits</td>
+<td align="left">256种颜色</td>
+</tr>
+<tr>
+<td>15 bits</td>
+<td align="left">32768种颜色，空闲一位</td>
+</tr>
+<tr>
+<td>16 bits</td>
+<td align="left">65536种颜色</td>
+</tr>
+<tr>
+<td>24 bits</td>
+<td align="left">16.7百万种颜色</td>
+</tr>
+<tr>
+<td>32 bits</td>
+<td align="left">16.7百万种颜色，空闲8位</td>
+</tr>
+</tbody>
+</table>
+<p><strong>load</strong>函数读取一个文件并返回一个包含图片数据的Surface对象，直到画出来之前是不可见的。
+<strong>convert</strong>函数是将图像数据转化为Surface对象，每次加载完图像以后就应该做这件事件(事实上因为它太常用了，如果你不写Pygame也会帮你做)；
+<strong>convert_alpha</strong>相比<strong>convert</strong>，保留了Alpha通道信息(可以简单理解为透明的部分)，这样我们的光标才可以是不规则的形状。</p>
+<p>游戏的主循环是一个无限循环，直到用户跳出。在这个主循环里做的事情就是不停地画背景和更新光标位置，虽然背景是不动的，我们还是需要每次都画它，否则鼠标覆盖过的位置就不能恢复正常了。
+画完以后一定要<strong>update</strong>更新一下，否则画面一片漆黑。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">init</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">():</span> <span class="k">return</span> <span class="p">(</span><span class="n">numpass</span><span class="p">,</span> <span class="n">numfail</span><span class="p">)</span>
+    <span class="n">initialize</span> <span class="nb">all</span> <span class="n">imported</span> <span class="n">pygame</span> <span class="n">modules</span>
+
+<span class="n">set_mode</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span> <span class="k">return</span> <span class="n">Surface</span>
+    <span class="n">initialize</span> <span class="n">a</span> <span class="n">window</span> <span class="ow">or</span> <span class="n">screen</span> <span class="k">for</span> <span class="n">display</span>
+
+<span class="n">set_caption</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">icontitle</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span> <span class="k">return</span> <span class="bp">None</span>
+    <span class="nb">set</span> <span class="n">the</span> <span class="n">current</span> <span class="n">window</span> <span class="n">caption</span>
+
+<span class="n">load</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span> <span class="k">return</span> <span class="n">Surface</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fileobj</span><span class="p">,</span> <span class="n">namehint</span><span class="o">=</span><span class="p">):</span> <span class="k">return</span> <span class="n">Surface</span>
+    <span class="n">load</span> <span class="n">new</span> <span class="n">image</span> <span class="kn">from</span> <span class="nn">a</span> <span class="nn">file</span>
+
+<span class="n">convert</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">Surface</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">Surface</span><span class="p">):</span> <span class="k">return</span> <span class="n">Surface</span>
+    <span class="n">Surface</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span> <span class="k">return</span> <span class="n">Surface</span>
+    <span class="n">Surface</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span> <span class="k">return</span> <span class="n">Surface</span>
+    <span class="n">Surface</span><span class="o">.</span><span class="n">convert</span><span class="p">():</span> <span class="k">return</span> <span class="n">Surface</span>
+    <span class="n">change</span> <span class="n">the</span> <span class="n">pixel</span> <span class="n">format</span> <span class="n">of</span> <span class="n">an</span> <span class="n">image</span>
+
+<span class="n">convert_alpha</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">Surface</span><span class="o">.</span><span class="n">convert_alpha</span><span class="p">(</span><span class="n">Surface</span><span class="p">):</span> <span class="k">return</span> <span class="n">Surface</span>
+    <span class="n">Surface</span><span class="o">.</span><span class="n">convert_alpha</span><span class="p">():</span> <span class="k">return</span> <span class="n">Surface</span>
+    <span class="n">change</span> <span class="n">the</span> <span class="n">pixel</span> <span class="n">format</span> <span class="n">of</span> <span class="n">an</span> <span class="n">image</span> <span class="n">including</span> <span class="n">per</span> <span class="n">pixel</span> <span class="n">alphas</span>
+
+<span class="n">get</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span> <span class="k">return</span> <span class="n">Eventlist</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span> <span class="k">return</span> <span class="n">Eventlist</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">typelist</span><span class="p">):</span> <span class="k">return</span> <span class="n">Eventlist</span>
+    <span class="n">get</span> <span class="n">events</span> <span class="kn">from</span> <span class="nn">the</span> <span class="nn">queue</span>
+
+<span class="n">blit</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">Surface</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">special_flags</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span> <span class="k">return</span> <span class="n">Rect</span>
+    <span class="n">draw</span> <span class="n">one</span> <span class="n">image</span> <span class="n">onto</span> <span class="n">another</span>
+
+<span class="n">get_pos</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pos</span><span class="p">():</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">get</span> <span class="n">the</span> <span class="n">mouse</span> <span class="n">cursor</span> <span class="n">position</span>
+
+<span class="n">get_width</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">Surface</span><span class="o">.</span><span class="n">get_width</span><span class="p">():</span> <span class="k">return</span> <span class="n">width</span>
+    <span class="n">get</span> <span class="n">the</span> <span class="n">width</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Surface</span>
+
+<span class="n">get_height</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">Surface</span><span class="o">.</span><span class="n">get_height</span><span class="p">():</span> <span class="k">return</span> <span class="n">height</span>
+    <span class="n">get</span> <span class="n">the</span> <span class="n">height</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Surface</span>
+
+<span class="n">update</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rectangle</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span> <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rectangle_list</span><span class="p">):</span> <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">update</span> <span class="n">portions</span> <span class="n">of</span> <span class="n">the</span> <span class="n">screen</span> <span class="k">for</span> <span class="n">software</span> <span class="n">displays</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="理解事件">理解事件</h1>
+<p>事件可以在任何时候产生，不管程序当前在做什么。因为你不能对发生的事件立刻做出反应，Pygame将事件存入一个队列，逐个处理。</p>
+<h3 id="事件检索">事件检索</h3>
+<p>上个程序中，使用<strong>pygame.event.get()<strong>来处理所有的事件，这就像打开大门让所有的人进入。如果我们使用</strong>pygame.event.wait()</strong>，Pygame就会等到一个事件发生才继续下去，就好像等在门口，直到有人来。这个函数不太常用，因为它会挂起程序直到有事情发生；而另外一个方法**pygame.event.poll()**就好一些，一旦调用，它会根据现在的情形返回一个真实的事件，否则返回一个类型为NOEVENT的假事件。</p>
+<p>每隔一段固定的时间调用事件处理函数很有必要，这样Pygame才能在内部处理事件。如果不使用任何事件处理函数，也可以调用**pygame.event.pump()**替代事件循环。</p>
+<p>事件对象包含一些描述事件发生的成员变量。所有事件对象都有一个事件类型。</p>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th align="left">产生途径</th>
+<th align="left">参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QUIT</td>
+<td align="left">用户点击关闭按钮</td>
+<td align="left">none</td>
+</tr>
+<tr>
+<td>ACTIVEEVENT</td>
+<td align="left">Pygame被激活或隐藏</td>
+<td align="left">gain,state</td>
+</tr>
+<tr>
+<td>KEYDOWN</td>
+<td align="left">键盘按下</td>
+<td align="left">unicode,key,mod</td>
+</tr>
+<tr>
+<td>KEYUP</td>
+<td align="left">键盘松开</td>
+<td align="left">key,mod</td>
+</tr>
+<tr>
+<td>MOUSEMOTION</td>
+<td align="left">鼠标移动</td>
+<td align="left">pos,rel,buttons</td>
+</tr>
+<tr>
+<td>MOUSEBUTTONDOWN</td>
+<td align="left">鼠标按下</td>
+<td align="left">pos,button</td>
+</tr>
+<tr>
+<td>MOUSEBUTTONUP</td>
+<td align="left">鼠标松开</td>
+<td align="left">pos,button</td>
+</tr>
+<tr>
+<td>JOYAXISMOTION</td>
+<td align="left">游戏手柄(Joystick or pad)移动</td>
+<td align="left">joy,axis,value</td>
+</tr>
+<tr>
+<td>JOYBALLMOTION</td>
+<td align="left">游戏球(Joy ball)移动</td>
+<td align="left">joy,ball,rel</td>
+</tr>
+<tr>
+<td>JOYHATMOTION</td>
+<td align="left">游戏手柄(Joystick)移动</td>
+<td align="left">joy,hat,value</td>
+</tr>
+<tr>
+<td>JOYBUTTONDOWN</td>
+<td align="left">游戏手柄按下</td>
+<td align="left">joy,button</td>
+</tr>
+<tr>
+<td>JOYBUTTONUP</td>
+<td align="left">游戏手柄放开</td>
+<td align="left">joy,button</td>
+</tr>
+<tr>
+<td>VIDEORESIZE</td>
+<td align="left">Pygame窗口缩放</td>
+<td align="left">size,w,h</td>
+</tr>
+<tr>
+<td>VIDEOEXPOSE</td>
+<td align="left">部分或所有Pygame窗口暴露</td>
+<td align="left">none</td>
+</tr>
+<tr>
+<td>USEREVENT</td>
+<td align="left">触发一个用户事件</td>
+<td align="left">code</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
+<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">SCREEN_SIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">SCREEN_SIZE</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+
+<span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">SysFont</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">font_height</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">get_linesize</span><span class="p">()</span>
+<span class="n">event_text</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="n">event_text</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">event</span><span class="p">))</span>
+    <span class="n">event_text</span> <span class="o">=</span> <span class="n">event_text</span><span class="p">[</span><span class="o">-</span><span class="n">SCREEN_SIZE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">font_height</span><span class="p">:]</span>
+
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
+        <span class="nb">exit</span><span class="p">()</span>
+
+    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">SCREEN_SIZE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">font_height</span>
+    <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">event_text</span><span class="p">):</span>
+        <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+        <span class="n">y</span> <span class="o">-=</span> <span class="n">font_height</span>
+
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>pygame.font.SysFont</strong>返回一个pygame.font.Font对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">SysFont</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">SysFont</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Font</span>
+    <span class="n">create</span> <span class="n">a</span> <span class="n">pygame</span> <span class="n">Font</span> <span class="kn">from</span> <span class="nn">system</span> <span class="nn">font</span> <span class="nn">resources</span>
+    
+    <span class="n">This</span> <span class="n">will</span> <span class="n">search</span> <span class="n">the</span> <span class="n">system</span> <span class="n">fonts</span> <span class="k">for</span> <span class="n">the</span> <span class="n">given</span> <span class="n">font</span>
+    <span class="n">name</span><span class="o">.</span> <span class="n">You</span> <span class="n">can</span> <span class="n">also</span> <span class="n">enable</span> <span class="n">bold</span> <span class="ow">or</span> <span class="n">italic</span> <span class="n">styles</span><span class="p">,</span> <span class="ow">and</span>
+    <span class="n">the</span> <span class="n">appropriate</span> <span class="n">system</span> <span class="n">font</span> <span class="n">will</span> <span class="n">be</span> <span class="n">selected</span> <span class="k">if</span> <span class="n">available</span><span class="o">.</span>
+    
+    <span class="n">This</span> <span class="n">will</span> <span class="n">always</span> <span class="k">return</span> <span class="n">a</span> <span class="n">valid</span> <span class="n">Font</span> <span class="nb">object</span><span class="p">,</span> <span class="ow">and</span> <span class="n">will</span>
+    <span class="n">fallback</span> <span class="n">on</span> <span class="n">the</span> <span class="n">builtin</span> <span class="n">pygame</span> <span class="n">font</span> <span class="k">if</span> <span class="n">the</span> <span class="n">given</span> <span class="n">font</span>
+    <span class="ow">is</span> <span class="ow">not</span> <span class="n">found</span><span class="o">.</span>
+    
+    <span class="n">Name</span> <span class="n">can</span> <span class="n">also</span> <span class="n">be</span> <span class="n">a</span> <span class="n">comma</span> <span class="n">separated</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">names</span><span class="p">,</span> <span class="ow">in</span>
+    <span class="n">which</span> <span class="n">case</span> <span class="nb">set</span> <span class="n">of</span> <span class="n">names</span> <span class="n">will</span> <span class="n">be</span> <span class="n">searched</span> <span class="ow">in</span> <span class="n">order</span><span class="o">.</span> <span class="n">Pygame</span>
+    <span class="n">uses</span> <span class="n">a</span> <span class="n">small</span> <span class="nb">set</span> <span class="n">of</span> <span class="n">common</span> <span class="n">font</span> <span class="n">aliases</span><span class="p">,</span> <span class="k">if</span> <span class="n">the</span> <span class="n">specific</span>
+    <span class="n">font</span> <span class="n">you</span> <span class="n">ask</span> <span class="k">for</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">available</span><span class="p">,</span> <span class="n">a</span> <span class="n">reasonable</span> <span class="n">alternative</span>
+    <span class="n">may</span> <span class="n">be</span> <span class="n">used</span><span class="o">.</span>
+
+<span class="n">get_linesize</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">Font</span><span class="o">.</span><span class="n">get_linesize</span><span class="p">():</span> <span class="k">return</span> <span class="nb">int</span>
+    <span class="n">get</span> <span class="n">the</span> <span class="n">line</span> <span class="n">space</span> <span class="n">of</span> <span class="n">the</span> <span class="n">font</span> <span class="n">text</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">wait</span><span class="p">():</span> <span class="k">return</span> <span class="n">Event</span>
+    <span class="n">wait</span> <span class="k">for</span> <span class="n">a</span> <span class="n">single</span> <span class="n">event</span> <span class="kn">from</span> <span class="nn">the</span> <span class="nn">queue</span>
+
+<span class="n">render</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">Font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">antialias</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span> <span class="k">return</span> <span class="n">Surface</span>
+    <span class="n">draw</span> <span class="n">text</span> <span class="n">on</span> <span class="n">a</span> <span class="n">new</span> <span class="n">Surface</span>
+
+<span class="n">fill</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">Surface</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">rect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">special_flags</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span> <span class="k">return</span> <span class="n">Rect</span>
+    <span class="n">fill</span> <span class="n">Surface</span> <span class="k">with</span> <span class="n">a</span> <span class="n">solid</span> <span class="n">color</span>
+
+<span class="n">pump</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">pump</span><span class="p">():</span> <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">internally</span> <span class="n">process</span> <span class="n">pygame</span> <span class="n">event</span> <span class="n">handlers</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="处理鼠标移动事件">处理鼠标移动事件</h3>
+<p>当鼠标移动时，<strong>MOUSEMOTION</strong>事件发生。包含下面三个值：</p>
+<ul>
+<li>buttons-一个对应鼠标按钮的元组。buttons[0]是鼠标左按钮，buttons[1]是鼠标中间按钮，buttons[2]是鼠标右按钮。如果按钮被按下，则值为1，反之为0。多个按钮可以同时按下。</li>
+<li>pos-一个元组，包含事件发生时鼠标所在位置。</li>
+<li>rel-一个元祖，包含现在距离上次产生鼠标事件时的距离。</li>
+</ul>
+<h3 id="处理鼠标按钮事件">处理鼠标按钮事件</h3>
+<p>除了鼠标移动事件，鼠标还能产生<strong>MOUSEBUTTONDOWN</strong>和<strong>MOUSEBUTTONUP</strong>事件。包含下面2个值：</p>
+<ul>
+<li>button-被按下的按钮的数字。1为鼠标左按钮，2为鼠标中间按钮，3为鼠标右按钮。</li>
+<li>pos-一个元组，包含事件发生时鼠标所在位置。</li>
+</ul>
+<h3 id="处理键盘事件">处理键盘事件</h3>
+<p>键盘和游戏手柄的事件类似。当一个键被按下<strong>KEYDOWN</strong>事件发生。当一个键松开<strong>KEYUP</strong>事件发生。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">bg_file</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
+
+<span class="kn">import</span> <span class="nn">pygame</span>
+<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="n">FULLSCREEN</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span class="n">background</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">bg_file</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">move_x</span><span class="p">,</span> <span class="n">move_y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
+            <span class="nb">exit</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">KEYDOWN</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">K_LEFT</span><span class="p">:</span>
+                <span class="n">move_x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">K_RIGHT</span><span class="p">:</span>
+                <span class="n">move_x</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">K_UP</span><span class="p">:</span>
+                <span class="n">move_y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">K_DOWN</span><span class="p">:</span>
+                <span class="n">move_y</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">KEYUP</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">K_LEFT</span> <span class="ow">or</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">K_RIGHT</span><span class="p">:</span>
+                <span class="n">move_x</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">K_UP</span> <span class="ow">or</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">K_DOWN</span><span class="p">:</span>
+                <span class="n">move_y</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">move_x</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="n">move_y</span>
+
+    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>KEYDOWN</strong>和<strong>KEYUP</strong>事件包含下面三个值：</p>
+<ul>
+<li>key-这是一个代表按下或松开的键值的数字。每一个键盘上的物理按钮都有一个以K_开头的常量。字母键为K_a到K_z，其它的如K_SPACE和K_RETURN。</li>
+<li>mod-这个值代表和key组合使用的其它键，比如Shift，Alt和Ctrl。每一个组合键以KMOD_开头，比如KMOD_SHIFT，KMOD_ALT和KMOD_CTRL。如果mod &amp; KMOD_CTRL为真，则表示按下了Ctrl键。</li>
+<li>unicode-这个是被按下的键的Unicode值。每一个符号都有一个Unicode值与它对应。</li>
+</ul>
+<h3 id="过滤事件">过滤事件</h3>
+<p>一个游戏不是所有的事件都需要处理，而且通常存在其它方式获取某个事件可能提供的信息。比如，使用<strong>pygame.mouse.get_pos()<strong>就不需要响应</strong>MOUSEMOTION</strong>事件了。</p>
+<p>使用<strong>pygame.event.set_blocked</strong>函数可以屏蔽事件，阻止事件进入事件队列。比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">set_blocked</span><span class="p">(</span><span class="n">MOUSEMOTION</span><span class="p">)</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">set_blocked</span><span class="p">([</span><span class="n">KEYDOWN</span><span class="p">,</span> <span class="n">KEYUP</span><span class="p">])</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">set_blocked</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+
+<span class="n">set_blocked</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">set_blocked</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span> <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">set_blocked</span><span class="p">(</span><span class="n">typelist</span><span class="p">):</span> <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">set_blocked</span><span class="p">(</span><span class="bp">None</span><span class="p">):</span> <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">control</span> <span class="n">which</span> <span class="n">events</span> <span class="n">are</span> <span class="n">allowed</span> <span class="n">on</span> <span class="n">the</span> <span class="n">queue</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>与之相对的，<strong>pygame.event.set_allowed</strong>设定允许的事件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">set_allowed</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">set_allowed</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span> <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">set_allowed</span><span class="p">(</span><span class="n">typelist</span><span class="p">):</span> <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">set_allowed</span><span class="p">(</span><span class="bp">None</span><span class="p">):</span> <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">control</span> <span class="n">which</span> <span class="n">events</span> <span class="n">are</span> <span class="n">allowed</span> <span class="n">on</span> <span class="n">the</span> <span class="n">queue</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>pygame.event.get_blocked</strong>可以查询一个事件是否被屏蔽。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">get_blocked</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get_blocked</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span> <span class="k">return</span> <span class="nb">bool</span>
+    <span class="n">test</span> <span class="k">if</span> <span class="n">a</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">event</span> <span class="ow">is</span> <span class="n">blocked</span> <span class="kn">from</span> <span class="nn">the</span> <span class="nn">queue</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="产生事件">产生事件</h3>
+<p>通常Pygame为你产生相应的事件，但是你也可以产生自己的事件。为了产生一个事件，必须首先使用<strong>pygame.event.Event</strong>创建一个事件对象，然后使用<strong>pygame.event.post</strong>发送到事件队列尾端。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">my_event</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="n">KEYDOWN</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">K_SPACE</span><span class="p">,</span> <span class="n">mod</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">unicode</span><span class="o">=</span><span class="sa">u</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="n">pgame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">my_event</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>事件构造函数接收事件类型和事件值参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Event</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span> <span class="k">return</span> <span class="n">Event</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">):</span> <span class="k">return</span> <span class="n">Event</span>
+    <span class="n">create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">event</span> <span class="nb">object</span>
+
+<span class="n">post</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">Event</span><span class="p">):</span> <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">place</span> <span class="n">a</span> <span class="n">new</span> <span class="n">event</span> <span class="n">on</span> <span class="n">the</span> <span class="n">queue</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>除了模拟Pygame产生的事件，也可以创建新的事件。你只需使用一个大于<strong>USEREVENT</strong>的值作为事件的值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">CATONKEYBOARD</span> <span class="o">=</span> <span class="n">USEREVENT</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">my_event</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="n">CATONKEYBOARD</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&#34;Bad cat!&#34;</span><span class="p">)</span>
+<span class="n">pgame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">my_event</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">CATONKEYBOARD</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">event</span><span class="o">.</span><span class="n">message</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="打开一个显示">打开一个显示</h1>
+<h3 id="全屏显示">全屏显示</h3>
+<p><strong>pygame.display.set_mode</strong>第二个参数设置为<strong>FULLSCREEN</strong>，就能得到一个全屏窗口了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="n">FULLSCREEN</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<blockquote>
+<p><strong>注意</strong>
+如果在全屏模式下出问题，有时候非常难回到桌面。因此进入全屏模式前，需要先在窗口模式下测试。同时提供一个退出程序方法，因为全屏模式下关闭按钮看不到。</p>
+</blockquote>
+<p>当进入全屏时，你的显卡可能会切换到不同的显示模式，这将改变显示的宽度，高度和一次显示颜色的数量。显卡只支持几种大小和颜色数量的组合。如果显示的大小不支持，Pygame将选择下一个大小，并居中显示。<strong>pygame.display.list_modes</strong>可以查看显卡支持的分辨率。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pygame</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">list_modes</span><span class="p">()</span>
+
+<span class="n">list_modes</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">list_modes</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">pygame</span><span class="o">.</span><span class="n">FULLSCREEN</span><span class="p">):</span> <span class="k">return</span> <span class="nb">list</span>
+    <span class="n">get</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">available</span> <span class="n">fullscreen</span> <span class="n">modes</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>如果显卡不支持你想要的颜色数量，Pygame将自动转换以适应当前显示设备。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
+
+<span class="kn">import</span> <span class="nn">pygame</span>
+<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span class="n">background</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">background_image_filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+
+<span class="n">Fullscreen</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
+            <span class="nb">exit</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">KEYDOWN</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">K_f</span><span class="p">:</span>
+            <span class="n">Fullscreen</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">Fullscreen</span>
+            <span class="k">if</span> <span class="n">Fullscreen</span><span class="p">:</span>
+                <span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="n">FULLSCREEN</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="可变尺寸的pygame窗口">可变尺寸的Pygame窗口</h3>
+<p>有时候用户想要能够改变窗口大小，调用<strong>pygame.display.set_mode</strong>时使用<strong>RESIZABLE</strong>标志位，可以达到这个目的。Pygame通过发送包含新宽高的<strong>VIDEORESIZE</strong>事件告诉用户窗口大小改变了。当收到这个事件时，我们应该再次调用<strong>pygame.display.set_mode</strong>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
+
+<span class="kn">import</span> <span class="nn">pygame</span>
+<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+
+<span class="n">SCREEN_SIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>
+
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">SCREEN_SIZE</span><span class="p">,</span> <span class="n">RESIZABLE</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+
+<span class="n">background</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">background_image_filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
+        <span class="nb">exit</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">VIDEORESIZE</span><span class="p">:</span>
+        <span class="n">SCREEN_SIZE</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">size</span>
+        <span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">SCREEN_SIZE</span><span class="p">,</span> <span class="n">RESIZABLE</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+        <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s1">&#39;Window resized to &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+
+    <span class="n">screen_width</span><span class="p">,</span> <span class="n">screen_height</span> <span class="o">=</span> <span class="n">SCREEN_SIZE</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">screen_height</span><span class="p">,</span> <span class="n">background</span><span class="o">.</span><span class="n">get_height</span><span class="p">()):</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">screen_width</span><span class="p">,</span> <span class="n">background</span><span class="o">.</span><span class="n">get_width</span><span class="p">()):</span>
+            <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>VIDEORESIZE</strong>事件包含下面的值：</p>
+<ul>
+<li>size-一个元组，包含更改后窗口的尺寸。size[0]代表宽度，size[1]代表高度。</li>
+<li>w-宽度，和size[0]一样，但是更方便</li>
+<li>h-高度，和size[1]一样，但是更方便</li>
+</ul>
+<h3 id="无边框窗口">无边框窗口</h3>
+<p>当调用<strong>set_mode</strong>时使用<strong>NOFRAME</strong>标志可以设置一个无边框窗口。</p>
+<h3 id="其它显示标志">其它显示标志</h3>
+<p>通常最好是使用0显示窗口而使用<strong>FULLSCREEN</strong>全屏以保证程序在所有平台都能运行。其它高级标志也许会有兼容问题。
+如果设置了<strong>HWSURFACE</strong>标志，将创建一个硬件显示，存储在显存里面，只能和<strong>FULLSCREEN</strong>一起使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">SCREEN_SIZE</span><span class="p">,</span> <span class="n">HWSURFACE</span> <span class="o">|</span> <span class="n">FULLSCREEN</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>硬件显示比常规显示更快，因为它能够利用显卡的特性加速显示，缺点是兼容性不够好。硬件显示也能从<strong>DOUBLEBUF</strong>标志受益。这个有效地创建2个硬件显示，但是一次只能看见一个。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">SCREEN_SIZE</span><span class="p">,</span> <span class="n">DOUBLEBUF</span> <span class="o">|</span> <span class="n">HWSURFACE</span> <span class="o">|</span> <span class="n">FULLSCREEN</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>通常当你调用**pygame.display.update()**时，整个屏幕从内存拷贝到显示设备，这会花费一些时间。而双缓冲允许你立刻切换到新的屏幕，使你的程序运行更快。</p>
+<blockquote>
+<p><strong>注意</strong>
+如果使用双缓冲显示，应该调用<strong>pygame.display.flip()<strong>而不是</strong>pygame.display.update()</strong>。这个做立即显示切换而不是拷贝屏幕数据。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">flip</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">():</span> <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">update</span> <span class="n">the</span> <span class="n">full</span> <span class="n">display</span> <span class="n">Surface</span> <span class="n">to</span> <span class="n">the</span> <span class="n">screen</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>最后一个显示标志是<strong>OPENGL</strong>，它能够使用3D加速显示。</p>
+<h1 id="使用字体模块">使用字体模块</h1>
+<p>字体模块使用TrueType字体(TTFs)。必须先创建一个Font对象才能使用字体。最简单的方式就是使用<strong>pygame.font.SysFont</strong>，它会使用系统自带的一个字体。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">my_font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">SysFont</span><span class="p">(</span><span class="s2">&#34;arial&#34;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>第一个参数是你想要创建字体的名字，第二个参数指定了字体的大小。Pygame会在系统字体里面查找，如果没找到则返回一个默认字体。<strong>pygame.font.get_fonts()<strong>可以获得当前系统所有可用字体。也可以使用</strong>pygame.font.Font</strong>直接从.ttf文件创建字体。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">my_font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="s2">&#34;my_font.ttf&#34;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Font</span><span class="p">(</span><span class="n">__builtin__</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
+ <span class="o">|</span>  <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span> <span class="k">return</span> <span class="n">Font</span>
+ <span class="o">|</span>  <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span> <span class="k">return</span> <span class="n">Font</span>
+ <span class="o">|</span>  <span class="n">create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">Font</span> <span class="nb">object</span> <span class="kn">from</span> <span class="nn">a</span> <span class="nn">file</span>
+
+<span class="n">get_fonts</span><span class="p">()</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">get_fonts</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span>
+    <span class="n">get</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">system</span> <span class="n">font</span> <span class="n">names</span>
+    
+    <span class="n">Returns</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">of</span> <span class="nb">all</span> <span class="n">found</span> <span class="n">system</span> <span class="n">fonts</span><span class="o">.</span> <span class="n">Note</span> <span class="n">that</span>
+    <span class="n">the</span> <span class="n">names</span> <span class="n">of</span> <span class="n">the</span> <span class="n">fonts</span> <span class="n">will</span> <span class="n">be</span> <span class="nb">all</span> <span class="n">lowercase</span> <span class="k">with</span> <span class="n">spaces</span>
+    <span class="n">removed</span><span class="o">.</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">how</span> <span class="n">pygame</span> <span class="n">internally</span> <span class="n">stores</span> <span class="n">the</span> <span class="n">font</span>
+    <span class="n">names</span> <span class="k">for</span> <span class="n">matching</span><span class="o">.</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>一旦创建了Font对象，就可以使用Font对象的<strong>render</strong>函数来渲染文字。它创建一个新的包含文字的Surface，可以输出到显示设备。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">text_surface</span> <span class="o">=</span> <span class="n">my_font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s2">&#34;Pygame is cool!&#34;</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+
+<span class="n">render</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">Font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">antialias</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span> <span class="k">return</span> <span class="n">Surface</span>
+    <span class="n">draw</span> <span class="n">text</span> <span class="n">on</span> <span class="n">a</span> <span class="n">new</span> <span class="n">Surface</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>render</strong>的第一个参数是你想渲染的文字，它必须是一行。如果有多行，必须使用多个<strong>render</strong>调用。第二个参数是一个布尔值，用来开启抗锯齿。如果设置为True，则文字看起来会比较平滑。后面两个参数是文字的颜色和背景颜色。背景色是可选的，默认为透明的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="n">my_name</span> <span class="o">=</span> <span class="s1">&#39;Smith&#39;</span>
+<span class="n">my_font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">SysFont</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+<span class="n">name_surface</span> <span class="o">=</span> <span class="n">my_font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">my_name</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">name_surface</span><span class="p">,</span> <span class="s1">&#39;name.png&#39;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>font模块详尽参考见<a href="http://www.pygame.org/docs/ref/font.html">http://www.pygame.org/docs/ref/font.html</a></p>
+<blockquote>
+<p><strong>注意</strong>
+安装的字体因机各异，不能保证某个字体一定存在。解决方法是.ttf文件同游戏一起发布，但必须得到字体作者的许可。</p>
+</blockquote>
+<h1 id="当pygame出错">当Pygame出错</h1>
+<p>当<strong>pygame.image.load</strong>不能读取图片时，Pygame会抛出<strong>pygame.error</strong>异常。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pygame</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<span class="n">File</span> <span class="s2">&#34;&lt;interactive input&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="err">?</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">error</span><span class="p">:</span> <span class="n">Cannot</span> <span class="nb">set</span> <span class="mi">0</span> <span class="n">sized</span> <span class="n">display</span> <span class="n">mode</span>
+
+<span class="k">class</span> <span class="nc">error</span><span class="p">(</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RuntimeError</span><span class="p">)</span>
+ <span class="o">|</span>  <span class="n">Method</span> <span class="n">resolution</span> <span class="n">order</span><span class="p">:</span>
+ <span class="o">|</span>      <span class="n">error</span>
+ <span class="o">|</span>      <span class="n">exceptions</span><span class="o">.</span><span class="n">RuntimeError</span>
+ <span class="o">|</span>      <span class="n">exceptions</span><span class="o">.</span><span class="n">StandardError</span>
+ <span class="o">|</span>      <span class="n">exceptions</span><span class="o">.</span><span class="n">Exception</span>
+ <span class="o">|</span>      <span class="n">exceptions</span><span class="o">.</span><span class="n">BaseException</span>
+ <span class="o">|</span>      <span class="n">__builtin__</span><span class="o">.</span><span class="n">object</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>一般而言，当你碰到<strong>pygame.error</strong>异常时，你也做不了什么事，因为这说明一个比较大的故障发生了。通常你能做的就是指导用户怎么做。在一个大的项目里面，检查错误很重要。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">try</span><span class="p">:</span>
+    <span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">SCREEN_SIZE</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">pygame</span><span class="o">.</span><span class="n">error</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&#34;Can&#39;t create the display :-(&#34;</span>
+    <span class="k">print</span> <span class="n">e</span>
+    <span class="nb">exit</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="pygame动起来">Pygame动起来</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
+<span class="n">SCREEN_SIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>
+<span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;    This is a demonstration of the scrolly message script.    &#39;</span>
+
+<span class="kn">import</span> <span class="nn">pygame</span>
+<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">SCREEN_SIZE</span><span class="p">)</span>
+
+<span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">SysFont</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="n">text_surface</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">SCREEN_SIZE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">text_surface</span><span class="o">.</span><span class="n">get_height</span><span class="p">())</span> <span class="o">/</span> <span class="mi">2</span>
+
+<span class="n">background</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">background_image_filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
+            <span class="nb">exit</span><span class="p">()</span>
+
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">x</span> <span class="o">-=</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">text_surface</span><span class="o">.</span><span class="n">get_width</span><span class="p">():</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">text_surface</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">text_surface</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">text_surface</span><span class="o">.</span><span class="n">get_width</span><span class="p">(),</span> <span class="n">y</span><span class="p">))</span>
+
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-11-02
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">Python</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/pygame-4/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Pygame第4章 创建视觉</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/pyqt-8/">
+            <span class="next-text nav-default">PyQt编程第8章 数据处理和自定义文件类型</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/pygame-3/" class="leancloud_visitors" data-flag-title="Pygame第3章 Pygame介绍">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

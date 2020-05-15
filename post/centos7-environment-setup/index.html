@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Centos7环境配置 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="开启EPEL仓库 EPEL(Extra Packages for Enterprise Linux)是Fedora小组维护的一个软件仓库项目，为RHEL/CentOS提供他们默认不提供的软件包。 1 2 3 wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/centos7-environment-setup/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Centos7环境配置" />
+<meta property="og:description" content="开启EPEL仓库 EPEL(Extra Packages for Enterprise Linux)是Fedora小组维护的一个软件仓库项目，为RHEL/CentOS提供他们默认不提供的软件包。 1 2 3 wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/centos7-environment-setup/" />
+<meta property="article:published_time" content="2018-08-02T20:31:02+08:00" />
+<meta property="article:modified_time" content="2018-08-02T20:31:02+08:00" />
+<meta itemprop="name" content="Centos7环境配置">
+<meta itemprop="description" content="开启EPEL仓库 EPEL(Extra Packages for Enterprise Linux)是Fedora小组维护的一个软件仓库项目，为RHEL/CentOS提供他们默认不提供的软件包。 1 2 3 wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm">
+<meta itemprop="datePublished" content="2018-08-02T20:31:02&#43;08:00" />
+<meta itemprop="dateModified" content="2018-08-02T20:31:02&#43;08:00" />
+<meta itemprop="wordCount" content="1688">
+
+
+
+<meta itemprop="keywords" content="CentOS," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Centos7环境配置"/>
+<meta name="twitter:description" content="开启EPEL仓库 EPEL(Extra Packages for Enterprise Linux)是Fedora小组维护的一个软件仓库项目，为RHEL/CentOS提供他们默认不提供的软件包。 1 2 3 wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Centos7环境配置</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-08-02 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 约 1688 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#开启epel仓库">开启EPEL仓库</a></li>
+        <li><a href="#安装git">安装git</a></li>
+        <li><a href="#安装zsh">安装zsh</a></li>
+        <li><a href="#安装开发工具">安装开发工具</a></li>
+        <li><a href="#安装cmake">安装cmake</a></li>
+        <li><a href="#安装jdk">安装JDK</a></li>
+        <li><a href="#安装svn">安装SVN</a></li>
+        <li><a href="#安装tomcat">安装tomcat</a></li>
+        <li><a href="#安装mariadb">安装mariadb</a></li>
+        <li><a href="#centos7防火墙命令">centos7防火墙命令</a></li>
+        <li><a href="#安装emacs">安装emacs</a></li>
+        <li><a href="#下载idea">下载IDEA</a></li>
+        <li><a href="#激活idea">激活IDEA</a></li>
+        <li><a href="#安装nginx">安装nginx</a></li>
+        <li><a href="#安装redis">安装redis</a></li>
+        <li><a href="#安装keepassx2">安装keepassx2</a></li>
+        <li><a href="#centos桌面美化">centos桌面美化</a></li>
+        <li><a href="#安装chromium">安装chromium</a></li>
+        <li><a href="#安装shadowsocks客户端">安装shadowsocks客户端</a></li>
+        <li><a href="#安装privoxy">安装privoxy</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h3 id="开启epel仓库">开启EPEL仓库</h3>
+<p>EPEL(Extra Packages for Enterprise Linux)是Fedora小组维护的一个软件仓库项目，为RHEL/CentOS提供他们默认不提供的软件包。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo rpm -ivh epel-release-latest-7.noarch.rpm
+sudo yum update</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装git">安装git</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum install git</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装zsh">安装zsh</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum install zsh</code></pre></td></tr></table>
+</div>
+</div>
+<p>安装<code>oh my zsh</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装开发工具">安装开发工具</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum groupinstall <span class="s2">&#34;Development Tools&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装cmake">安装cmake</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum install cmake</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装jdk">安装JDK</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.181-2.6.14.8.el7_5.x86_64
+sudo rpm -e --nodeps java-1.7.0-openjdk-1.7.0.181-2.6.14.8.el7_5.x86_64
+sudo yum install java-1.8.0-openjdk-devel
+sudo yum install java-1.8.0-openjdk-accessibility java-1.8.0-openjdk-demo java-1.8.0-openjdk-javadoc java-1.8.0-openjdk-src</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装svn">安装SVN</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum install subversion</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装tomcat">安装tomcat</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum install tomcat</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装mariadb">安装mariadb</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum install mariadb mariadb-server</code></pre></td></tr></table>
+</div>
+</div>
+<p>设置开机启动</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo systemctl <span class="nb">enable</span> mariadb</code></pre></td></tr></table>
+</div>
+</div>
+<p>配置<code>mariadb</code>字符集，修改<code>/etc/my.cnf</code>，在<code>[mysqld]</code>标签下面添加以下内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">init_connect</span><span class="o">=</span><span class="s1">&#39;SET collation_connection = utf8_unicode_ci&#39;</span>
+<span class="nv">init_connect</span><span class="o">=</span><span class="s1">&#39;SET NAMES utf8&#39;</span>
+character-set-server<span class="o">=</span>utf8
+collation-server<span class="o">=</span>utf8_unicode_ci
+skip-character-set-client-handshake</code></pre></td></tr></table>
+</div>
+</div>
+<p>修改<code>/etc/my.cnf.d/client.cnf</code>，在<code>[client]</code>标签添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">default-character-set<span class="o">=</span>utf8</code></pre></td></tr></table>
+</div>
+</div>
+<p>修改<code>/etc/my.cnf.d/mysql-clients.cnf </code>，在<code>[mysql]</code>标签添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">default-character-set<span class="o">=</span>utf8</code></pre></td></tr></table>
+</div>
+</div>
+<p>启动<code>mariadb</code></p>
+<p><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo systemctl start mariadb</code></pre></td></tr></table>
+</div>
+</div>
+简单配置<code>mariadb</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">mysql_secure_installation</code></pre></td></tr></table>
+</div>
+</div>
+<p>进入<code>mariadb</code>查看字符集</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">&#39;%character%&#39;</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">&#39;%collation%&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>添加用户，设置权限</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">USER</span> <span class="n">test</span><span class="o">@</span><span class="n">localhost</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;test901120&#39;</span><span class="p">;</span>
+<span class="k">DELETE</span> <span class="k">FROM</span> <span class="k">user</span> <span class="k">WHERE</span> <span class="k">USER</span><span class="o">=</span><span class="s2">&#34;test&#34;</span> <span class="k">AND</span> <span class="k">HOST</span><span class="o">=</span><span class="s2">&#34;localhost&#34;</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="n">test</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;test901120&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>防火墙开启3306端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span>3306/tcp --permanent
+sudo firewall-cmd --reload</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="centos7防火墙命令">centos7防火墙命令</h3>
+<p>查看已经开放的端口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo firewall-cmd --list-ports</code></pre></td></tr></table>
+</div>
+</div>
+<p>开启端口:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span>80/tcp --permanent</code></pre></td></tr></table>
+</div>
+</div>
+<p>重启防火墙：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo firewall-cmd --reload
+sudo systemctl stop firewalld.service
+sudo systemctl disable firewalld.service
+sudo firewall-cmd --state</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装emacs">安装emacs</h3>
+<p>CentOS7软件仓库里面的emacs版本是24的，版本低了一点，所以选择编译安装一个最新版的。删除原来的emacs</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum remove emacs
+sudo yum autoremove</code></pre></td></tr></table>
+</div>
+</div>
+<p>下载emacs-26.1.tar.gz，http://mirrors.ustc.edu.cn/gnu/emacs。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">tar zxf emacs-26.1.tar.gz
+<span class="nb">cd</span> emacs-26.1
+./configure --prefix<span class="o">=</span>/usr/local
+make
+sudo make install</code></pre></td></tr></table>
+</div>
+</div>
+<p>编译过程中可能会出错，提示缺少一些库，只需按照提示安装相应的开发库即可。可能会缺少的库如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">gtk3-devel
+libXpm-devel
+libjpeg-turbo-devel
+giflib-devel
+libtiff-devel
+gnutls-devel
+ncurses-devel</code></pre></td></tr></table>
+</div>
+</div>
+<p>安装spacemacs</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="下载idea">下载IDEA</h3>
+<p>下载地址：<a href="http://www.jetbrains.com/idea/download/">http://www.jetbrains.com/idea/download/</a></p>
+<p>解压ideaIU-2018.1.5.tar.gz</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">tar zxf ideaIU-2018.1.5.tar.gz</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="激活idea">激活IDEA</h3>
+<p>下载<a href="http://idea.lanyus.com/jar/JetbrainsCrack-2.8-release-enc.jar">JetbrainsCrack-2.8-release-enc.jar</a>，将它拷贝到idea的<code>bin</code>目录下面，编辑<code>idea64.vmoptions</code>，在最后添加如下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">-javaagent:/YourPath/idea-IU-181.5281.24/bin/JetbrainsCrack-2.8-release-enc.jar</code></pre></td></tr></table>
+</div>
+</div>
+<p>运行<code>bin</code>目录下面的<code>idea.sh</code>启动idea，然后在激活码输入任意字符激活idea。</p>
+<h3 id="安装nginx">安装nginx</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum install nginx</code></pre></td></tr></table>
+</div>
+</div>
+<p>启动nginx并设置开机启动</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo systemctl start nginx
+sudo systemctl <span class="nb">enable</span> nginx</code></pre></td></tr></table>
+</div>
+</div>
+<p>防火墙开启80端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span>80/tcp --permanent
+sudo firewall-cmd --reload</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装redis">安装redis</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum install redis</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装keepassx2">安装keepassx2</h3>
+<p>Keepassx是一个跨平台的密码管理工具，平时都用它来存储各个网站的账号密码，以防忘记</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum install keepassx2</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="centos桌面美化">centos桌面美化</h3>
+<p><strong>删除底部栏</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /usr/share/gnome-shell/extensions
+sudo mv window-list@gnome-shell-extensions.gcampax.github.com window-list@gnome-shell-extensions.gcampax.github.com.bak</code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>隐藏顶栏</strong>（不建议）</p>
+<p>修改<code>/usr/share/gnome-shell/modes/classic.json </code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /usr/share/gnome-shell/modes
+sudo cp classic.json classic.json.back</code></pre></td></tr></table>
+</div>
+</div>
+<p>修改panel为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;panel&#34;</span><span class="err">:</span> <span class="p">{</span> <span class="nt">&#34;left&#34;</span><span class="p">:</span> <span class="p">[],</span>
+               <span class="nt">&#34;center&#34;</span><span class="p">:</span> <span class="p">[],</span>
+               <span class="nt">&#34;right&#34;</span><span class="p">:</span> <span class="p">[]</span>
+             <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>修改<code>/usr/share/gnome-shell/theme/gnome-classic.css </code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /usr/share/gnome-shell/theme
+sudo cp gnome-classic.css gnome-classic.css.bak</code></pre></td></tr></table>
+</div>
+</div>
+<p>修改panel为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="p">#</span><span class="nn">panel</span> <span class="p">{</span>
+    <span class="k">background-color</span><span class="p">:</span> <span class="mh">#e9e9e9</span><span class="p">;</span>
+    <span class="n">background-gradient-direction</span><span class="p">:</span> <span class="kc">vertical</span><span class="p">;</span>
+    <span class="n">background-gradient-end</span><span class="p">:</span> <span class="mh">#d0d0d0</span><span class="p">;</span>
+    <span class="k">border-top-color</span><span class="p">:</span> <span class="mh">#666</span><span class="p">;</span> <span class="c">/* we don&#39;t supportnon-uniform border-colors and
+</span><span class="c">                               use the top bordercolor for any border, so we
+</span><span class="c">                               need to set iteven if all we want is a bottom
+</span><span class="c">                               border */</span>
+    <span class="k">border-bottom</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#666</span><span class="p">;</span>
+    <span class="n">app-icon-bottom-clip</span><span class="p">:</span> <span class="mi">0</span><span class="kt">px</span><span class="p">;</span>
+     <span class="k">color</span><span class="p">:</span> <span class="kc">transparent</span><span class="p">;</span>
+     <span class="c">/* hrm, still no multipoint gradients
+</span><span class="c">      background-image: linear-gradient(left,rgba(255, 255, 255, 0),rgba(255, 255, 255, 1) 50%，rgba(255, 255, 255, 0)) !important;*/</span>
+   <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装chromium">安装chromium</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum install chromium</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装shadowsocks客户端">安装shadowsocks客户端</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum install python-pip
+sudo pip install --upgrade pip <span class="c1"># 升级pip</span>
+sudo pip install shadowsocks</code></pre></td></tr></table>
+</div>
+</div>
+<p>启动shadowsocks客户端</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">nohup sslocal -s your_server_ip -p your_server_port -l <span class="m">1080</span> -k your_server_passwd -t <span class="m">600</span> -m rc4-md5 &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>为了更方便，建议新建一个json的文件，将上述信息放里面，比如<code>/etc/shadowsocks.json</code>内容为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;server&#34;</span><span class="p">:</span><span class="s2">&#34;your_server_ip&#34;</span><span class="p">,</span>      <span class="err">#ss服务器IP</span>
+    <span class="nt">&#34;server_port&#34;</span><span class="p">:</span><span class="err">your_server_port</span><span class="p">,</span> <span class="err">#端口</span>
+    <span class="nt">&#34;local_address&#34;</span><span class="p">:</span> <span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span>   <span class="err">#本地ip</span>
+    <span class="nt">&#34;local_port&#34;</span><span class="p">:</span><span class="mi">1080</span><span class="p">,</span>              <span class="err">#本地端口</span>
+    <span class="nt">&#34;password&#34;</span><span class="p">:</span><span class="s2">&#34;your_server_passwd&#34;</span><span class="p">,</span><span class="err">#连接ss密码</span>
+    <span class="nt">&#34;timeout&#34;</span><span class="p">:</span><span class="mi">300</span><span class="p">,</span>                  <span class="err">#等待超时</span>
+    <span class="nt">&#34;method&#34;</span><span class="p">:</span><span class="s2">&#34;rc4-md5&#34;</span><span class="p">,</span>             <span class="err">#加密方式</span>
+    <span class="nt">&#34;fast_open&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>             <span class="err">#</span> <span class="err">true</span> <span class="err">或</span> <span class="err">false。如果你的服务器</span> <span class="err">Linux</span> <span class="err">内核在3.7+，可以开启</span> <span class="err">fast_open</span> <span class="err">以降低延迟。开启方法：</span> <span class="err">echo</span> <span class="err">3</span> <span class="err">&gt;</span> <span class="err">/proc/sys/net/ipv4/tcp_fastopen</span> <span class="err">开启之后，将</span> <span class="err">fast_open</span> <span class="err">的配置设置为</span> <span class="err">true</span> <span class="err">即可</span>
+    <span class="nt">&#34;workers&#34;</span><span class="p">:</span> <span class="mi">1</span>                    <span class="err">#</span> <span class="err">工作线程数</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="安装privoxy">安装privoxy</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo yum install privoxy</code></pre></td></tr></table>
+</div>
+</div>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-08-02
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/centos/">CentOS</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/ubuntu-18.04/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Ubuntu 18.04</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/cpp-primer-12/">
+            <span class="next-text nav-default">第12章 动态内存</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/centos7-environment-setup/" class="leancloud_visitors" data-flag-title="Centos7环境配置">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

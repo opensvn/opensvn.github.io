@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GUI on 招财猫的博客</title>
+    <link>https://gitop.cc/categories/gui/</link>
+    <description>Recent content in GUI on 招财猫的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 30 Oct 2015 12:40:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gitop.cc/categories/gui/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PyQt编程第8章 数据处理和自定义文件类型</title>
+      <link>https://gitop.cc/post/pyqt-8/</link>
+      <pubDate>Fri, 30 Oct 2015 12:40:00 +0000</pubDate>
+      
+      <guid>https://gitop.cc/post/pyqt-8/</guid>
+      <description>主窗口的职责 主窗口的职责通常是为用户提供高级文件处理动作和展示程序数据。</description>
+    </item>
+    
+    <item>
+      <title>PyQt编程第7章 使用Qt Designer</title>
+      <link>https://gitop.cc/post/pyqt-7/</link>
+      <pubDate>Wed, 28 Oct 2015 08:50:57 +0000</pubDate>
+      
+      <guid>https://gitop.cc/post/pyqt-7/</guid>
+      <description>用户界面保存在.ui文件中，包含一个窗口部件和布局的详细情况。Qt Designer能够关联标签和它的伙伴， 设置tab顺序(这个也可以用QWi</description>
+    </item>
+    
+    <item>
+      <title>PyQt编程第6章 主窗口</title>
+      <link>https://gitop.cc/post/pyqt-6/</link>
+      <pubDate>Wed, 21 Oct 2015 11:25:57 +0000</pubDate>
+      
+      <guid>https://gitop.cc/post/pyqt-6/</guid>
+      <description>创建一个主窗口 1 2 3 4 5 6 7 8 9 import os import platform import sys from PyQt4.QtCore import * from PyQt4.QtGui import * import helpform import newimagedlg import qrc_resources __version__ = &amp;#34;1.0.0&amp;#34; import的顺序：先Python标准模块，然后第三方模块(比</description>
+    </item>
+    
+    <item>
+      <title>PyQt编程第5章 对话框</title>
+      <link>https://gitop.cc/post/pyqt-5/</link>
+      <pubDate>Wed, 14 Oct 2015 16:20:56 +0000</pubDate>
+      
+      <guid>https://gitop.cc/post/pyqt-5/</guid>
+      <description>对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。 对话框以“模式”分类为：模式对话框和无模式对话框。 应用模式对话框一</description>
+    </item>
+    
+    <item>
+      <title>PyQt编程第4章 GUI编程介绍</title>
+      <link>https://gitop.cc/post/pyqt-4/</link>
+      <pubDate>Mon, 12 Oct 2015 20:34:55 +0000</pubDate>
+      
+      <guid>https://gitop.cc/post/pyqt-4/</guid>
+      <description>一个25行的弹出警告 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 import sys import time from PyQt4.QtCore import * from PyQt4.QtGui import * app = QApplication(sys.argv) try: due = QTime.currentTime() message = &amp;#34;Alert!&amp;#34; if len(sys.argv) &amp;lt; 2: raise ValueError hours, mins =</description>
+    </item>
+    
+  </channel>
+</rss>

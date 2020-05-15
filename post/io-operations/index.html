@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Asio.Cookbook 第2章 IO操作 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/io-operations/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Asio.Cookbook 第2章 IO操作" />
+<meta property="og:description" content="介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/io-operations/" />
+<meta property="article:published_time" content="2016-08-18T08:55:42+00:00" />
+<meta property="article:modified_time" content="2016-08-18T08:55:42+00:00" />
+<meta itemprop="name" content="Asio.Cookbook 第2章 IO操作">
+<meta itemprop="description" content="介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络">
+<meta itemprop="datePublished" content="2016-08-18T08:55:42&#43;00:00" />
+<meta itemprop="dateModified" content="2016-08-18T08:55:42&#43;00:00" />
+<meta itemprop="wordCount" content="4284">
+
+
+
+<meta itemprop="keywords" content="C&#43;&#43;," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Asio.Cookbook 第2章 IO操作"/>
+<meta name="twitter:description" content="介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Asio.Cookbook 第2章 IO操作</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-08-18 </span>
+        <div class="post-category">
+            <a href="/categories/network/"> Network </a>
+            </div>
+          <span class="more-meta"> 约 4284 字 </span>
+          <span class="more-meta"> 预计阅读 9 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#介绍">介绍</a>
+      <ul>
+        <li><a href="#io缓冲区">IO缓冲区</a></li>
+        <li><a href="#同步和异步io操作">同步和异步IO操作</a></li>
+        <li><a href="#附加操作">附加操作</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用固定长度io缓冲区">使用固定长度IO缓冲区</a>
+      <ul>
+        <li><a href="#为输出操作准备缓冲区">为输出操作准备缓冲区</a></li>
+        <li><a href="#为输入操作准备缓冲区">为输入操作准备缓冲区</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用可扩展面向流的io缓冲区">使用可扩展面向流的IO缓冲区</a></li>
+    <li><a href="#同步写tcp套接字">同步写TCP套接字</a>
+      <ul>
+        <li><a href="#替代品send方法">替代品——send()方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#同步读tcp套接字">同步读TCP套接字</a>
+      <ul>
+        <li><a href="#替代品receive方法">替代品——receive()方法</a></li>
+        <li><a href="#asioread函数">asio::read()函数</a></li>
+        <li><a href="#read_until函数">read_until()函数</a></li>
+        <li><a href="#read_at函数">read_at()函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#异步写tcp套接字">异步写TCP套接字</a></li>
+    <li><a href="#异步读tcp套接字">异步读TCP套接字</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="介绍">介绍</h2>
+<p>IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。</p>
+<h3 id="io缓冲区">IO缓冲区</h3>
+<p>网络编程都是关于通过计算机网络进行进程间通信。像其他类型的IO操作一样，网络IO操作涉及使用内存缓冲区。</p>
+<h3 id="同步和异步io操作">同步和异步IO操作</h3>
+<p>Boost.Asio支持两种类型的IO操作：同步和异步。同步操作阻塞当前线程的执行直到操作完成。异步操作在初始化时关联一个回调函数，当操作完成时，Boost.Asio会调用回调函数。</p>
+<p>在一个或多个异步操作初始化后，程序使用一个线程来运行Boost.Asio库。Boost.Asio库使用这个线程运行事件循环并调用回调函数通知异步操作完成，异步操作的结果作为参数传递给回调函数。</p>
+<h3 id="附加操作">附加操作</h3>
+<ol>
+<li>
+<p>取消异步操作。
+取消之前初始化的异步操作的能力很重要。它允许程序声明之前初始化的异步操作不再有效。</p>
+</li>
+<li>
+<p>shutdown套接字。
+shutdown套接字很有用，如果需要通知另一个程序整个报文已发送。</p>
+</li>
+<li>
+<p>close套接字。</p>
+</li>
+</ol>
+<h2 id="使用固定长度io缓冲区">使用固定长度IO缓冲区</h2>
+<p>固定长度的IO缓冲区通常用在报文长度已知的情况下。在Boost.Asio里面，固定长度IO缓冲区由asio::mutable_buffer或asio::const_buffer表示。asio::mutable_buffer表示可写缓冲区，asio::const_buffer表示只读缓冲区。</p>
+<p>但是asio::mutable_buffer和asio::const_buffer并不能直接在Boost.Asio的IO函数中直接使用。相反MutableBufferSequence和ConstBufferSequence概念被引入。MutableBufferSequence指定一个对象表示asio::mutable_buffer对象的集合。相应地，ConstBufferSequence指定一个对象表示asio::const_buffer对象的集合。</p>
+<p>asio::buffer()自由函数拥有28个重载形式，接收多种缓冲区表示形式并返回一个asio::mutable_buffers_1或asio::const_buffers_1对象。如果传给asio::buffer()函数的参数是只读类型，则返回asio::const_buffers_1对象，反之返回asio::mutable_buffers_1对象。asio::mutable_buffers_1和asio::const_buffers_1是asio::mutable_buffer和asio::const_buffer相应的适配。</p>
+<h3 id="为输出操作准备缓冲区">为输出操作准备缓冲区</h3>
+<ol>
+<li>分配一个缓冲区。</li>
+<li>将输出数据填入缓冲区。</li>
+<li>将缓冲区表示为满足ConstBufferSequence需求的对象。</li>
+<li>缓冲区已经可以用在Boost.Asio的输出函数或方法。</li>
+</ol>
+<p><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">buf</span> <span class="o">=</span> <span class="s">&#34;Hello&#34;</span><span class="p">;</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">const_buffer_1</span> <span class="n">output_buf</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+<span class="c1">// output_buf can be used in Boost.Asio output operations
+</span></code></pre></td></tr></table>
+</div>
+</div>
+为了更好的理解为什么需要将缓冲区表示成满足ConstBufferSequence需求，可以看一下send()的声明：</p>
+<p><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">send</span><span class="p">(</span><span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+为了使用send()发送string对象，我们可以这样做：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">asio</span><span class="o">::</span><span class="n">const_buffer</span> <span class="n">asio_buf</span><span class="p">(</span><span class="n">buf</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">buf</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">asio</span><span class="o">::</span><span class="n">const_buffer</span><span class="o">&gt;</span> <span class="n">buffers_sequence</span><span class="p">;</span>
+<span class="n">buffers_sequence</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">asio_buf</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>但是这样没有使用asio::buffer()方便。</p>
+<h3 id="为输入操作准备缓冲区">为输入操作准备缓冲区</h3>
+<ol>
+<li>分配一个缓冲区。缓冲区的大小必须足以保存接收到的数据。</li>
+<li>将缓冲区表示为满足MutableBufferSequence需求的对象。</li>
+<li>缓冲区已经可以用在Boost.Asio的输入函数或方法。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="n">size_t</span> <span class="n">BUF_SIZE_BYTES</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">[]</span><span class="o">&gt;</span> <span class="n">buf</span><span class="p">(</span><span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">BUF_SIZE_BYTES</span><span class="p">]);</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">mutable_buffers_1</span> <span class="n">input_buf</span> <span class="o">=</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">buf</span><span class="p">.</span><span class="n">get</span><span class="p">()),</span> <span class="n">BUF_SIZE_BYTES</span><span class="p">);</span>
+<span class="c1">// input_buf can be used in Boost.Asio input operations
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<blockquote>
+<p>缓冲区所有权
+asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::const_buffers_1等并不拥有原始缓冲区的所有权，它们只提供访问缓冲区的接口，不控制其生命周期。</p>
+</blockquote>
+<h2 id="使用可扩展面向流的io缓冲区">使用可扩展面向流的IO缓冲区</h2>
+<p>可扩展缓冲区是当新数据写入时可以动态增长的缓冲区。它们经常用于从套接字读取未知大小的报文。</p>
+<p>可扩展面向流的缓冲区在Boost.Asio中由asio::streambuf类表示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="n">basic_streambuf</span><span class="o">&lt;&gt;</span> <span class="n">streambuf</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>asio::basic_streambuf&lt;&gt;类继承自std::streambuf。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">asio</span><span class="o">::</span><span class="n">streambuf</span> <span class="n">buf</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="n">output</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
+
+<span class="c1">// Writing the message to the stream-based buffer.
+</span><span class="c1"></span><span class="n">output</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Message&#34;</span><span class="p">;</span>
+
+<span class="c1">// Instantiate an input stream which uses our stream buffer.
+</span><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="n">input</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="同步写tcp套接字">同步写TCP套接字</h2>
+<p>写套接字最基本的方法是使用Boost.Asio中的asio::ip::tcp::socket类的write_some()方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">write_some</span><span class="p">(</span><span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>如果方法成功执行，返回写入的字节数。需要强调的是这个方法可能不会发送参数指定的所有数据，它只保证如果错误不发生至少发送一个字节。这意味着为了发送缓冲区中所有数据需要调用write_some()多次。</p>
+<ol>
+<li>在客户端程序中，分配，打开并连接一个主动TCP套接字。在服务端程序中，通过接收器套接字接收一个主动TCP套接字的连接请求。</li>
+<li>分配缓冲区并将要写到套接字的数据填充进缓冲区。</li>
+<li>在一个循环中调用套接字的write_some()方法多次直到缓冲区中的数据都发送完。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">writeToSocket</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">buf</span> <span class="o">=</span> <span class="s">&#34;Hello&#34;</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">total_bytes_written</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">total_bytes_written</span> <span class="o">!=</span> <span class="n">buf</span><span class="p">.</span><span class="n">length</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">total_bytes_written</span> <span class="o">+=</span> <span class="n">sock</span><span class="p">.</span><span class="n">write_some</span><span class="p">(</span>
+            <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">buf</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span> <span class="o">+</span> <span class="n">total_bytes_written</span><span class="p">,</span>
+                <span class="n">buf</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">-</span> <span class="n">total_bytes_written</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="替代品send方法">替代品——send()方法</h3>
+<p>asio::ip::tcp::socket类包含另外一个同步写数据的方法send()。它有3种重载形式。其中一个和write_some()方法一样，有一样的签名并提供同样的功能。</p>
+<p>第二个重载函数接收一个额外的参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">send</span><span class="p">(</span><span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">,</span>
+    <span class="n">socket_base</span><span class="o">::</span><span class="n">message_flags</span> <span class="n">flags</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>第三个重载函数和第二个一样，但是它不抛出异常，而是接收一个boost::system::error_code的参数。</p>
+<p>使用write_some()方法向套接字写数据看起来非常复杂，因为必须使用一个循环，并且每一次迭代都需要正确构造缓冲区并跟踪已写的数据。幸运的是，Boost.Asio提供一个自由函数asio::write()简化向套接字写数据。asio::write()有8种重载形式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">SyncWriteStream</span><span class="p">,</span> <span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">write</span><span class="p">(</span><span class="n">SyncWriteStream</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">WriteToSocketEnhanced</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">buf</span> <span class="o">=</span> <span class="s">&#34;hello&#34;</span><span class="p">;</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">write</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">buf</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="同步读tcp套接字">同步读TCP套接字</h2>
+<p>由Boost.Asio提供的从套接字读取数据最基本的方法是asio::ip::tcp::socket类的read_some()方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">MutableBufferSequence</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">read_some</span><span class="p">(</span><span class="k">const</span> <span class="n">MutableBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>需要注意的是没有办法控制read_some()将会读取多少数据。它只保证如果错误不发生至少读取一个字节。通常情况下，为了从套接字读取某一数量的数据需要调用read_some()多次。</p>
+<ol>
+<li>在客户端程序中，分配，打开并连接一个主动TCP套接字。在服务端程序中，通过接收器套接字接收一个主动TCP套接字的连接请求。</li>
+<li>分配足够大小的缓冲区使得能够装下预期的报文。</li>
+<li>在一个循环中调用套接字的read_some()方法多次直到读完数据。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">readFromSocket</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">MESSAGE_SIZE</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">MESSAGE_SIZE</span><span class="p">];</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">total_bytes_read</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">total_bytes_read</span> <span class="o">!=</span> <span class="n">MESSAGE_SIZE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">total_bytes_read</span> <span class="o">+=</span> <span class="n">sock</span><span class="p">.</span><span class="n">read_some</span><span class="p">(</span>
+            <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">buf</span> <span class="o">+</span> <span class="n">total_bytes_read</span><span class="p">,</span>
+                <span class="n">MESSAGE_SIZE</span> <span class="o">-</span> <span class="n">total_bytes_read</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">total_bytes_read</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="替代品receive方法">替代品——receive()方法</h3>
+<p>asio::ip::tcp::socket类包含另外一个同步读数据的方法receive()。它有3种重载形式。其中一个和read_some()方法一样，有一样的签名并提供同样的功能。</p>
+<p>第二个重载函数接收一个额外的参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">MutableBufferSequence</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">receive</span><span class="p">(</span><span class="k">const</span> <span class="n">MutableBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">,</span>
+    <span class="n">socket_base</span><span class="o">::</span><span class="n">message_flags</span> <span class="n">flags</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>第三个重载函数和第二个一样，但是它不抛出异常，而是接收一个boost::system::error_code的参数。</p>
+<p>使用read_some()方法向套接字写数据看起来非常复杂，因为必须使用一个循环，并且每一次迭代都需要正确构造缓冲区并跟踪已写的数据。幸运的是，Boost.Asio提供一组自由函数简化向套接字写数据。有3种读函数，每个有7种重载形式。</p>
+<h3 id="asioread函数">asio::read()函数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">SyncReadStream</span><span class="p">,</span> <span class="k">typename</span> <span class="n">MutableBufferSequence</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">read</span><span class="p">(</span><span class="n">SyncReadStream</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="n">MutableBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">)</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">readFromSocketEnhanced</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">MESSAGE_SIZE</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">MESSAGE_SIZE</span><span class="p">];</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">read</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">MESSAGE_SIZE</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">MESSAGE_SIZE</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="read_until函数">read_until()函数</h3>
+<p>asio::read_until()函数从套接字读取数据直到遇到指定的模式，它有8种重载形式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">SyncReadStream</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Allocator</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">read_until</span><span class="p">(</span>
+    <span class="n">SyncReadStream</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">basic_streambuf</span><span class="o">&lt;</span><span class="n">Allocator</span><span class="o">&gt;&amp;</span> <span class="n">b</span><span class="p">,</span>
+    <span class="kt">char</span> <span class="n">delim</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>asio::read_until从套接字s读取数据到缓冲区b直到遇到指定的字符delim。需要注意的是asio::read_until内部使用read_some()方法读取数据的。当函数返回时，缓冲区b中可能包含在delim后的数据。也就是说程序员需要处理这种情况。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">readFromSocketDelim</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">streambuf</span> <span class="n">buf</span><span class="p">;</span>
+    <span class="n">asio</span><span class="o">::</span><span class="n">read_until</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="sc">&#39;\n&#39;</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="n">input_stream</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">input_stream</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">message</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="read_at函数">read_at()函数</h3>
+<p>asio::read_at()函数从特定位置开始读数据，参考Boost文档。</p>
+<h2 id="异步写tcp套接字">异步写TCP套接字</h2>
+<p>Boost.Asio提供的异步写数据最基本的工具是asio::ip::tcp::socket类的async_write_some()方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="p">,</span> <span class="k">typename</span> <span class="n">WriteHandler</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">async_write_some</span><span class="p">(</span><span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">,</span>
+    <span class="n">WriteHandler</span> <span class="n">handler</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>async_write_some()方法初始化一个写操作并立即返回。第一个参数包含要写到套接字的数据，第二个参数是个回调函数，当初始化操作完成后由Boost.Asio调用。</p>
+<p>回调应该具有下述的签名：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">write_handler</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&amp;</span> <span class="n">ec</span><span class="p">,</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">bytes_transferred</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>async_write_some()方法保证如果不发生错误，至少写一个字节数据。这意味着通常情况下，为了将所有数据写到套接字，需要调用async_write_some()多次。</p>
+<ol>
+<li>定义一个数据结构，包含指向套接字的指针，一个缓冲区和一个用来统计已写数据的变量</li>
+<li>定义一个回调函数</li>
+<li>在客户端程序中，分配，打开并连接一个主动TCP套接字。在服务端程序中，通过接收器套接字接收一个主动TCP套接字的连接请求。</li>
+<li>分配一个缓冲区，并填充要写到套接字的数据</li>
+<li>调用async_write_some()方法初始化一个写操作，指定步骤2的函数为回调函数</li>
+<li>调用asio::io_service类的run()方法</li>
+<li>在回调中，增加已写的数据。如果已写数据小于需要写的总数据，再初始化一个异步写操作</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Session</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&gt;</span> <span class="n">sock</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">buf</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">total_bytes_written</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">callback</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&amp;</span> <span class="n">ec</span><span class="p">,</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">bytes_transferred</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Session</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ec</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Error code = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ec</span><span class="p">.</span><span class="n">value</span><span class="p">()</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&#34;. Message: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ec</span><span class="p">.</span><span class="n">message</span><span class="p">();</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="n">s</span><span class="o">-&gt;</span><span class="n">total_bytes_written</span> <span class="o">+=</span> <span class="n">bytes_transferred</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">total_bytes_written</span> <span class="o">==</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">buf</span><span class="p">.</span><span class="n">length</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="n">s</span><span class="o">-&gt;</span><span class="n">sock</span><span class="o">-&gt;</span><span class="n">async_write_some</span><span class="p">(</span>
+        <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">buf</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span> <span class="o">+</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">total_bytes_written</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">-&gt;</span><span class="n">buf</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">-</span> <span class="n">s</span><span class="o">-&gt;</span><span class="n">total_bytes_written</span><span class="p">),</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">placeholders</span><span class="o">::</span><span class="n">_1</span><span class="p">,</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">placeholders</span><span class="o">::</span><span class="n">_2</span><span class="p">,</span> <span class="n">s</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">writeToSocket</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&gt;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Session</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">(</span><span class="k">new</span> <span class="n">Session</span><span class="p">);</span>
+    
+    <span class="n">s</span><span class="o">-&gt;</span><span class="n">buf</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">);</span>
+    <span class="n">s</span><span class="o">-&gt;</span><span class="n">total_bytes_written</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">s</span><span class="o">-&gt;</span><span class="n">sock</span> <span class="o">=</span> <span class="n">sock</span><span class="p">;</span>
+    
+    <span class="n">s</span><span class="o">-&gt;</span><span class="n">sock</span><span class="o">-&gt;</span><span class="n">async_write_some</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">buf</span><span class="p">),</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">placeholders</span><span class="o">::</span><span class="n">_1</span><span class="p">,</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">placeholders</span><span class="o">::</span><span class="n">_2</span><span class="p">,</span> <span class="n">s</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">raw_ip_address</span> <span class="o">=</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">port_num</span> <span class="o">=</span> <span class="mi">3333</span><span class="p">;</span>
+    
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">(</span>
+            <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">address</span><span class="o">::</span><span class="n">from_string</span><span class="p">(</span><span class="n">raw_ip_address</span><span class="p">),</span> <span class="n">port_num</span><span class="p">);</span>
+        <span class="n">asio</span><span class="o">::</span><span class="n">io_service</span> <span class="n">ios</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&gt;</span> <span class="n">sock</span><span class="p">(</span>
+            <span class="k">new</span> <span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="p">(</span><span class="n">ios</span><span class="p">,</span> <span class="n">ep</span><span class="p">.</span><span class="n">protocol</span><span class="p">()));</span>
+        
+        <span class="n">sock</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">(</span><span class="n">ep</span><span class="p">);</span>
+        <span class="n">writeToSocket</span><span class="p">(</span><span class="n">sock</span><span class="p">);</span>
+        
+        <span class="n">ios</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">system</span><span class="o">::</span><span class="n">system_error</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">e</span><span class="p">.</span><span class="n">code</span><span class="p">().</span><span class="n">value</span><span class="p">();</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>Boost.Asio提供一个自由函数asio::async_write()方法可以更方便地异步写到套接字：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">AsyncWriteStream</span><span class="p">,</span> <span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="p">,</span>
+    <span class="k">typename</span> <span class="n">WriteHandler</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">async_write</span><span class="p">(</span><span class="n">AsyncWriteStream</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span>
+    <span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">,</span> <span class="n">WriteHandler</span> <span class="n">handler</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>asio::async_write()函数是通过多次调用async_write_some()方法实现的。</p>
+<h2 id="异步读tcp套接字">异步读TCP套接字</h2>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-08-18
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/cpp-primer-17/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">第17章 特殊的库设施</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/asio-cookbook-1/">
+            <span class="next-text nav-default">Asio.Cookbook 第1章 基础</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/io-operations/" class="leancloud_visitors" data-flag-title="Asio.Cookbook 第2章 IO操作">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

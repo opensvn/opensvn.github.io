@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tool on 招财猫的博客</title>
+    <link>https://gitop.cc/categories/tool/</link>
+    <description>Recent content in Tool on 招财猫的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 02 Nov 2019 13:49:25 +0800</lastBuildDate>
+    
+	<atom:link href="https://gitop.cc/categories/tool/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>XPath教程</title>
+      <link>https://gitop.cc/post/xpath/</link>
+      <pubDate>Sat, 02 Nov 2019 13:49:25 +0800</pubDate>
+      
+      <guid>https://gitop.cc/post/xpath/</guid>
+      <description>XPath是什么？ XPath代表XML路径语言 XPath使用“类似路径”的语法来标识和导航XML文档中的节点 XPath包含200多个内置函数</description>
+    </item>
+    
+    <item>
+      <title>Git配置多个SSH-Key</title>
+      <link>https://gitop.cc/post/git-multi-sshkey/</link>
+      <pubDate>Mon, 08 Jul 2019 16:59:22 +0800</pubDate>
+      
+      <guid>https://gitop.cc/post/git-multi-sshkey/</guid>
+      <description>转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 1.生成</description>
+    </item>
+    
+    <item>
+      <title>Idea快捷键</title>
+      <link>https://gitop.cc/post/idea-key-bindings/</link>
+      <pubDate>Sat, 18 Aug 2018 16:15:19 +0800</pubDate>
+      
+      <guid>https://gitop.cc/post/idea-key-bindings/</guid>
+      <description>编辑基础 快捷键 说明 Ctrl+Shift+向右箭头 向右选择一个单词 Ctrl+Shift+向左箭头 向左选择一个单词 Alt+Shift+向上箭头 逐</description>
+    </item>
+    
+    <item>
+      <title>Markdown语法</title>
+      <link>https://gitop.cc/post/syntax/</link>
+      <pubDate>Sat, 19 Sep 2015 19:47:02 +0000</pubDate>
+      
+      <guid>https://gitop.cc/post/syntax/</guid>
+      <description>原文拷贝自~~这里~~. NOTE: This is Simplelified Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to Markdown: Syntax. 声明： 这份文档派生(fork)于繁体中文版，在此基础上进行了繁体转简体</description>
+    </item>
+    
+  </channel>
+</rss>

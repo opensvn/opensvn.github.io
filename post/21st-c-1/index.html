@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>21世纪C语言 第1章 便利编译配置 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="使用包管理器 必须获取的包： 编译器。必须安装gcc；clang可能也有用。 gdb，调试器 Valgrind，测试C内存使用错误。 gprof，一个" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/21st-c-1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="21世纪C语言 第1章 便利编译配置" />
+<meta property="og:description" content="使用包管理器 必须获取的包： 编译器。必须安装gcc；clang可能也有用。 gdb，调试器 Valgrind，测试C内存使用错误。 gprof，一个" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/21st-c-1/" />
+<meta property="article:published_time" content="2015-12-15T19:55:08+00:00" />
+<meta property="article:modified_time" content="2015-12-15T19:55:08+00:00" />
+<meta itemprop="name" content="21世纪C语言 第1章 便利编译配置">
+<meta itemprop="description" content="使用包管理器 必须获取的包： 编译器。必须安装gcc；clang可能也有用。 gdb，调试器 Valgrind，测试C内存使用错误。 gprof，一个">
+<meta itemprop="datePublished" content="2015-12-15T19:55:08&#43;00:00" />
+<meta itemprop="dateModified" content="2015-12-15T19:55:08&#43;00:00" />
+<meta itemprop="wordCount" content="4250">
+
+
+
+<meta itemprop="keywords" content="C," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="21世纪C语言 第1章 便利编译配置"/>
+<meta name="twitter:description" content="使用包管理器 必须获取的包： 编译器。必须安装gcc；clang可能也有用。 gdb，调试器 Valgrind，测试C内存使用错误。 gprof，一个"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">21世纪C语言 第1章 便利编译配置</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/language/"> Language </a>
+            </div>
+          <span class="more-meta"> 约 4250 字 </span>
+          <span class="more-meta"> 预计阅读 9 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一些出名的标志">一些出名的标志</a></li>
+    <li><a href="#路径">路径</a></li>
+    <li><a href="#运行时链接">运行时链接</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#设置变量">设置变量</a>
+      <ul>
+        <li><a href="#c语言中的环境变量">C语言中的环境变量</a></li>
+      </ul>
+    </li>
+    <li><a href="#规则">规则</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#从命令行包含头文件">从命令行包含头文件</a></li>
+    <li><a href="#统一的头文件">统一的头文件</a></li>
+    <li><a href="#嵌入文档">嵌入文档</a></li>
+    <li><a href="#从标准输入编译">从标准输入编译</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="使用包管理器">使用包管理器</h1>
+<p>必须获取的包：</p>
+<ul>
+<li>编译器。必须安装<strong>gcc</strong>；<strong>clang</strong>可能也有用。</li>
+<li><strong>gdb</strong>，调试器</li>
+<li><strong>Valgrind</strong>，测试C内存使用错误。</li>
+<li><strong>gprof</strong>，一个分析工具</li>
+<li><strong>make</strong>，你永远不需要直接调用编译器</li>
+<li><strong>pkg-config</strong>，查找库</li>
+<li><strong>Doxygen</strong>，文档生成</li>
+<li>文本编辑器。<strong>Emacs</strong>或<strong>vim</strong>。</li>
+<li>自动工具：<strong>Autoconf</strong>，<strong>Automake</strong>，<strong>libtool</strong>。</li>
+<li><strong>Git</strong></li>
+<li>Shell替换品，比如Z shell。</li>
+</ul>
+<p>一些省去重复造轮子的C库：</p>
+<ul>
+<li><strong>libcURL</strong></li>
+<li><strong>libGLib</strong></li>
+<li><strong>libGSL</strong></li>
+<li><strong>libSQLite3</strong></li>
+<li><strong>libXML2</strong></li>
+</ul>
+<h1 id="通向库的路径">通向库的路径</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;  //erf, sqrt</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt; //printf</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;The integral of a Normal(0, 1) distribution &#34;</span>
+           <span class="s">&#34;between -1.96 and 1.96 is: %g</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">erf</span><span class="p">(</span><span class="mf">1.96</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.</span><span class="p">)));</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>编译器会将math.h和stdio.h文件内容粘贴进代码文件。math.h中的声明并没有说明erf函数做了什么。链接器负责找到erf，你需要告诉链接器-lm找到math库。-l指示一个库需要链接进来。你可以免费使用printf，因为链接器会用隐式的-lc将标准库libc链接进来。</p>
+<p>如果使用gcc编译器，完整的命令包括一些额外的标志就像这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="n">erf</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">erf</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">gnu11</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="一些出名的标志">一些出名的标志</h2>
+<p>推荐使用这些编译标志：</p>
+<ul>
+<li><strong>-g</strong>，为调试添加符号。</li>
+<li><strong>-std=gnu11</strong>，clang-和gcc-特定，指示编译器允许遵守C11和POSIX标准的代码。POSIX标准指定系统中要有c99程序。</li>
+<li><strong>-o3</strong>，指示优化等级3，会尝试任何手段编译更快的代码。如果不需要太多优化，也可以使用**-o0**。</li>
+<li><strong>-Wall</strong>，添加编译器警告。也可以使用**-w1**，只显示编译器警告，没有附注。**-Werror**，编译器将会把警告视为错误。</li>
+</ul>
+<h2 id="路径">路径</h2>
+<p>在一个典型配置中，库至少会安装在三个地方：</p>
+<ul>
+<li>操作系统供应商可能会定义1到2个标准目录来安装库。</li>
+<li>本地系统管理员可能有一个目录安装不想被供应商覆盖的包。</li>
+<li>用户在自己主目录可能有库目录。</li>
+</ul>
+<p>假设你有一个叫libuseful的库安装在/usr/local目录。你已经把#include &lt;useful.h&gt;写进代码，现在你需要使用下面的命令编译代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="o">-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">include</span> <span class="n">use_useful</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">use_useful</span> <span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span> <span class="o">-</span><span class="n">luseful</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li><strong>-I</strong>将指定路径添加进头文件搜索路径，编译器在搜索路径搜索你包含的头文件。</li>
+<li><strong>-L</strong>添加库搜索路径。</li>
+<li>链接的顺序有关系。如果你有一个名字为specific.o的文件，依赖libbroad库，且libbroad库依赖libgeneral库，那么你需要，gcc specific.o -lbroad -lgeneral。任何其它的顺序都可能会失败。</li>
+</ul>
+<p><strong>pkg-config</strong>返回已安装库的维护信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">libs</span> <span class="n">gsl</span> <span class="n">libxml</span><span class="o">-</span><span class="mf">2.0</span>
+<span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">cflags</span> <span class="n">gsl</span> <span class="n">libxml</span><span class="o">-</span><span class="mf">2.0</span>
+
+<span class="o">-</span><span class="n">lgsl</span> <span class="o">-</span><span class="n">lgslcblas</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">lxml2</span>
+<span class="o">-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">libxml2</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>回到前面那个命令，当你使用反撇号包含一个命令时，shell会使用其输出替换该命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="err">`</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">cflags</span> <span class="o">--</span><span class="n">libs</span> <span class="n">gsl</span> <span class="n">libxml</span><span class="o">-</span><span class="mf">2.0</span><span class="err">`</span> <span class="o">-</span><span class="n">o</span> <span class="n">specific</span> <span class="n">specific</span><span class="p">.</span><span class="n">c</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>等价于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="o">-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">libxml2</span> <span class="o">-</span><span class="n">lgsl</span> <span class="o">-</span><span class="n">lgslcblas</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">lxml2</span> <span class="o">-</span><span class="n">o</span> <span class="n">specific</span> <span class="n">specific</span><span class="p">.</span><span class="n">c</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="运行时链接">运行时链接</h2>
+<p>静态库由编译器通过拷贝库内容链接进可执行程序。共享库在运行时链接进程序，意味着和编译时一样存在库的查找问题。如果是一个在常见位置的库，运行时系统将没有查找库的问题。如果库不在标准路径，则你需要找到一种修改运行时路径查找的方法。</p>
+<ul>
+<li>如果使用Autotools打包程序，libtool知道如何添加正确的标志，你不需要担心它。</li>
+<li>当使用gcc，clang或icc基于libpath的库编译程序时，添加： LDADD=-Llibpath -Wl, -Rlibpath到makefile里面。-L标志告诉编译器去哪里查找库以确定符号；-Wl标志传递标志给链接器，链接器将指定-R标志的库嵌入运行时库的查找路径。pkg-config通常不知道运行时路径，因此需要手动输入。</li>
+<li>运行时，链接器将使用另一个路径查找不在常见位置也没有-Wl,R&hellip;指定的库。这个路径在shell的启动脚本里面设置：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">export</span> <span class="n">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nl">libpath</span><span class="p">:</span><span class="err">$</span><span class="n">LD_LIBRARY_PATH</span>     <span class="err">#</span><span class="n">Linux</span><span class="p">,</span> <span class="n">Cygwin</span>
+<span class="n">export</span> <span class="n">DYLD_LIBRARY_PATH</span><span class="o">=</span><span class="nl">libpath</span><span class="p">:</span><span class="err">$</span><span class="n">DYLD_LIBRARY_PATH</span>    <span class="err">#</span><span class="n">OS</span> <span class="n">X</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="使用makefile">使用Makefile</h1>
+<p><strong>makefile</strong>提供了所有这些无止境的调整的一种解决方案。它基本上是组织的一组变量和单行shell脚本的序列。POSIX标准的<strong>make</strong>程序读取<strong>makefile</strong>里面的指令和变量，并将长且单调的命令行组合给我们。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">P</span><span class="o">=</span><span class="n">program_name</span>
+<span class="n">OBJECTS</span><span class="o">=</span>
+<span class="n">CFLAGS</span> <span class="o">=</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span>
+<span class="n">LDLIBS</span><span class="o">=</span>
+<span class="n">CC</span><span class="o">=</span><span class="n">c99</span>
+<span class="err">$</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">:</span> <span class="err">$</span><span class="p">(</span><span class="n">OBJECTS</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>用法：</p>
+<ul>
+<li>一次就好：将这几行保存在.c文件同一个目录，并命名为Makefile（GNU Make）。在第一行设置你的程序名，没有.c后缀。</li>
+<li>每次需要重新编译：输入<strong>make</strong>。</li>
+</ul>
+<h2 id="设置变量">设置变量</h2>
+<p><strong>shell</strong>和<strong>make</strong>使用<strong>$</strong>指示变量的值。<strong>shell</strong>使用<strong>$var</strong>，而<strong>make</strong>需要任何变量名长度大于1个字符的变量包含在括号中：<strong>$(var)</strong>。</p>
+<p>有几种方法告诉<strong>make</strong>变量：</p>
+<ul>
+<li>调用<strong>make</strong>之前设置变量并<strong>export</strong>这个变量。POSIX标准命令行设置CFLAGS变量：<strong>export CFLAGS=&rsquo;-g -Wall -O3&rsquo;</strong></li>
+<li>你可以将这些<strong>export</strong>命令放进<strong>shell</strong>启动脚本，比如.bashrc或.zshrc。</li>
+<li>你可以在命令之前赋值设置一个变量。<strong>PANTS=kakhi env | grep PANTS</strong>。等号两边不能有空格，因为空格是用来区分命令和赋值的。</li>
+<li>早期的<strong>makefile</strong>可以在文件头设置变量。在<strong>makefile</strong>文件里面，等号两边可以有空格。</li>
+<li><strong>make</strong>允许在命令行设置变量，独立于<strong>shell</strong>。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">make</span> <span class="n">CFLAGS</span><span class="o">=</span><span class="s">&#34;-g -Wall&#34;</span>  <span class="err">#</span> <span class="n">Set</span> <span class="n">a</span> <span class="n">makefile</span> <span class="n">variable</span><span class="p">.</span>
+<span class="n">CFLAGS</span><span class="o">=</span><span class="s">&#34;-g -Wall&#34;</span> <span class="n">make</span>  <span class="err">#</span> <span class="n">Set</span> <span class="n">an</span> <span class="n">environment</span> <span class="n">variable</span> <span class="n">visible</span> <span class="n">to</span> <span class="n">make</span> <span class="n">and</span> <span class="n">its</span> <span class="n">children</span><span class="p">.</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="c语言中的环境变量">C语言中的环境变量</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; //getenv, atoi</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt; //printf</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">repstext</span> <span class="o">=</span> <span class="n">getenv</span><span class="p">(</span><span class="s">&#34;reps&#34;</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">reps</span> <span class="o">=</span> <span class="n">repstext</span> <span class="o">?</span> <span class="n">atoi</span><span class="p">(</span><span class="n">repstext</span><span class="p">)</span> <span class="o">:</span> <span class="mi">10</span><span class="p">;</span>
+
+    <span class="kt">char</span> <span class="o">*</span><span class="n">msg</span> <span class="o">=</span> <span class="n">getenv</span><span class="p">(</span><span class="s">&#34;msg&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">msg</span><span class="p">)</span> <span class="n">msg</span> <span class="o">=</span> <span class="s">&#34;Hello.&#34;</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">reps</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">reps</span><span class="o">=</span><span class="mi">10</span> <span class="n">msg</span><span class="o">=</span><span class="s">&#34;Ha&#34;</span> <span class="p">.</span><span class="o">/</span><span class="n">getenv</span>
+<span class="n">msg</span><span class="o">=</span><span class="s">&#34;Ha&#34;</span> <span class="p">.</span><span class="o">/</span><span class="n">getenv</span>
+<span class="n">reps</span><span class="o">=</span><span class="mi">20</span> <span class="n">msg</span><span class="o">=</span><span class="s">&#34; &#34;</span> <span class="p">.</span><span class="o">/</span><span class="n">getenv</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>make</strong>也提供一些内置变量：</p>
+<ul>
+<li><strong>$@</strong> 所有的目标文件。目标文件是源文件编译完生成的中间文件（.o文件）。</li>
+<li><strong>$</strong>* 去掉后缀的目标文件。如果目标文件是prog.o，则**$***是prog，且**$***.c就是prog.c</li>
+<li><strong>$&lt;</strong> 引起目标被触发并编译的文件名。如果我们编译prog.o，可能因为prog.c最近被修改了，所以<strong>$&lt;</strong>就是prog.c。</li>
+</ul>
+<h2 id="规则">规则</h2>
+<p>除了设置变量，<strong>makefile</strong>的片段具有以下形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="nl">target</span><span class="p">:</span> <span class="n">dependencies</span>
+        <span class="n">script</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>如果通过命令<strong>make target</strong>目标被调用，则依赖被检查。如果目标是一个文件，依赖也全部是文件，且目标比依赖新，则文件是最新的，没有什么事要做。否则，目标的处理被暂停，依赖被运行或生成，可能通过另一个目标，当依赖的脚本都完成了，目标的脚本开始运行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="nl">all</span><span class="p">:</span> <span class="n">html</span> <span class="n">doc</span> <span class="n">publish</span>
+<span class="nl">doc</span><span class="p">:</span>
+    <span class="n">pdflatex</span> <span class="err">$</span><span class="p">(</span><span class="n">f</span><span class="p">).</span><span class="n">tex</span>
+<span class="nl">html</span><span class="p">:</span>
+    <span class="n">latex</span> <span class="o">-</span><span class="n">interaction</span> <span class="n">batchmode</span> <span class="err">$</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">latex2html</span> <span class="err">$</span><span class="p">(</span><span class="n">f</span><span class="p">).</span><span class="n">tex</span>
+<span class="nl">publish</span><span class="p">:</span>
+    <span class="n">scp</span> <span class="err">$</span><span class="p">(</span><span class="n">f</span><span class="p">).</span><span class="n">pdf</span> <span class="err">$</span><span class="p">(</span><span class="n">Blogserver</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>在前面简单的makefile里面，我们只有一个目标/依赖/脚本组合。比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">P</span><span class="o">=</span><span class="n">domath</span>
+<span class="n">OBJECTS</span><span class="o">=</span><span class="n">addition</span><span class="p">.</span><span class="n">o</span> <span class="n">subtraction</span><span class="p">.</span><span class="n">o</span>
+<span class="err">$</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">:</span> <span class="err">$</span><span class="p">(</span><span class="n">OBJECTS</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>P=domath是需要编译的程序，它依赖对象文件addition.o和substration.o。因为addition.o没有作为目标列出来，<strong>make</strong>使用隐式规则将.c文件编译成.o文件。同样的操作处理substraction.o和domath.o（GNU make隐式假定domath依赖domath.o）。当所有对象被编译时，我们没有脚本规则建立$(P)目标，GNU make填写默认脚本，链接.o文件成可执行程序。</p>
+<p>POSIX标准<strong>make</strong>将.c文件编译成.o文件的默认规则：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span><span class="p">(</span><span class="n">CC</span><span class="p">)</span> <span class="err">$</span><span class="p">(</span><span class="n">CFLAGS</span><span class="p">)</span> <span class="err">$</span><span class="p">(</span><span class="n">LDFLAGS</span><span class="p">)</span> <span class="o">-</span><span class="n">o</span> <span class="err">$@</span> <span class="err">$</span><span class="o">*</span><span class="p">.</span><span class="n">c</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>$(CC)变量代表你的C编译器；POSIX标准指定默认CC=c99。$(CFLAGS)设置为之前的标志。$(LDFLAGS)没有设置因此为空。</p>
+<p>GNU make将目标文件编译成可执行程序的默认规则：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span><span class="p">(</span><span class="n">CC</span><span class="p">)</span> <span class="err">$</span><span class="p">(</span><span class="n">LDFLAGS</span><span class="p">)</span> <span class="err">$@</span> <span class="err">$</span><span class="p">(</span><span class="n">LDLIBS</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>回忆一下链接的顺序很重要，因此我们需要两个链接器变量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">cc</span> <span class="n">specific</span><span class="p">.</span><span class="n">o</span> <span class="o">-</span><span class="n">lbroad</span> <span class="o">-</span><span class="n">lgeneral</span>
+<span class="n">LDLIBS</span><span class="o">=-</span><span class="n">lbroad</span> <span class="o">-</span><span class="n">lgeneral</span></code></pre></td></tr></table>
+</div>
+</div>
+<blockquote>
+<p>如果想要看完整的make默认规则和内置变量，试一试：make -p &gt; default_rules</p>
+</blockquote>
+<p>这就是游戏规则：查找正确的变量并在makefile里面设置。</p>
+<ul>
+<li><strong>CFLAGS</strong>变量是一个根深蒂固的习俗，但是为链接器设置的变量在每个系统都不一样。甚至<strong>LDLIBS</strong>也不是POSIX标准，它只是GNU make使用。</li>
+<li><strong>CFLAGS</strong>和<strong>LDLIBS</strong>变量是我们指定所有编译器标志并查找和指定库。如果你有<strong>pkg-config</strong>，使用反撇号调用。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">CFLAGS</span><span class="o">=</span><span class="err">`</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">cflags</span> <span class="n">apophenia</span> <span class="n">glib</span><span class="o">-</span><span class="mf">2.0</span><span class="err">`</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">gnu11</span> <span class="o">-</span><span class="n">O3</span>
+<span class="n">LDLIBS</span><span class="o">=</span><span class="err">`</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">libs</span> <span class="n">apophenia</span> <span class="n">glib</span><span class="o">-</span><span class="mf">2.0</span><span class="err">`</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>或者手动指定**-I**，**-L**和**-l**标志：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">CFLAGS</span><span class="o">=-</span><span class="n">I</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">include</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span>
+<span class="n">LDLIBS</span><span class="o">=-</span><span class="n">L</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">lib</span> <span class="o">-</span><span class="n">lweirdlib</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>在你将一个库和其路径添加进<strong>LDLIBS</strong>和<strong>CFLAGS</strong>后，没有理由再去除它。你不会在意最终的可执行程序可能大一点。而且这样也可以makefile在各个工程里面不太需要修改。</li>
+<li>如果你的程序需要更多C文件，在makefile中添加name.o到OBJECTS。</li>
+<li>如果你的程序只有一个.c文件，你可能根本不需要makefile。你可以使用下面的方法使用make：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">export</span> <span class="n">CFLAGS</span><span class="o">=</span><span class="err">&#39;</span><span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">gnu11</span><span class="err">&#39;</span>
+<span class="n">export</span> <span class="n">LDLIBS</span><span class="o">=</span><span class="err">&#39;</span><span class="o">-</span><span class="n">lm</span><span class="err">&#39;</span>
+<span class="n">make</span> <span class="n">erf</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="从源文件使用库">从源文件使用库</h1>
+<p>可以通过编译源代码来安装库。下面用GSL（GNU Scientific Library）库作为例子。假设你有<strong>root</strong>权限：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">wget</span> <span class="nl">ftp</span><span class="p">:</span><span class="c1">//ftp.gnu.org/gnu/gsl/gsl-2.1.tar.gz
+</span><span class="c1"></span><span class="n">tar</span> <span class="n">xvzf</span> <span class="n">gsl</span><span class="o">-</span><span class="mf">2.1</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
+<span class="n">cd</span> <span class="n">gsl</span><span class="o">-</span><span class="mf">2.1</span>
+<span class="p">.</span><span class="o">/</span><span class="n">configure</span>
+<span class="n">make</span>
+<span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>如果没有出错的话，GSL就已经安装好了。下面是一个简单的使用gsl库的程序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;gsl/gsl_cdf.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="kt">double</span> <span class="n">bottom_tail</span> <span class="o">=</span> <span class="n">gsl_cdf_gaussian_P</span><span class="p">(</span><span class="o">-</span><span class="mf">1.96</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Area between [-1.96, 1.96]: %g</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">bottom_tail</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>要使用你安装的库，你需要修改你的makefile，取决与你是否有<strong>pkg-config</strong>，你可以使用其中一个：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">LDLIBS</span><span class="o">=</span><span class="err">`</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">libs</span> <span class="n">gsl</span><span class="err">`</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>或：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">LDLIBS</span><span class="o">=-</span><span class="n">lgsl</span> <span class="o">-</span><span class="n">lgslcblas</span> <span class="o">-</span><span class="n">lm</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>如果你没有安装在标准位置且没有<strong>pkg-config</strong>，你需要添加路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">CFLAGS</span><span class="o">=-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">include</span>
+<span class="n">LDLIBS</span><span class="o">=-</span><span class="n">L</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span> <span class="o">-</span><span class="n">Wl</span><span class="p">,</span><span class="o">-</span><span class="n">R</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="从源文件使用库即使你的系统管理员不允许">从源文件使用库（即使你的系统管理员不允许）</h1>
+<p>首先创建一个目录，比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">mkdir</span> <span class="o">~/</span><span class="n">root</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>接着添加路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">PATH</span><span class="o">=~/</span><span class="n">root</span><span class="o">/</span><span class="nl">bin</span><span class="p">:</span><span class="err">$</span><span class="n">PATH</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>在makefile中添加新路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">LDLIBS</span><span class="o">=-</span><span class="n">L</span><span class="err">$</span><span class="p">(</span><span class="n">HOME</span><span class="p">)</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">lib</span> <span class="p">(</span><span class="n">plus</span> <span class="n">the</span> <span class="n">other</span> <span class="n">flags</span><span class="p">,</span> <span class="n">like</span> <span class="o">-</span><span class="n">lgsl</span> <span class="o">-</span><span class="n">lm</span> <span class="p">...)</span>
+<span class="n">CFLAGS</span><span class="o">=-</span><span class="n">I</span><span class="err">$</span><span class="p">(</span><span class="n">HOME</span><span class="p">)</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">include</span> <span class="p">(</span><span class="n">plus</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span> <span class="p">...)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>将所要的库安装到指定路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="p">.</span><span class="o">/</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=</span><span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="n">root</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">install</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="通过嵌入文档编译c程序">通过嵌入文档编译C程序</h1>
+<p>你已经看过编译的模式很多次了：</p>
+<ol>
+<li>设置一个变量代表编译的标志</li>
+<li>设置一个变量代表链接的标志，每一个你使用的库包括一个-l标志</li>
+<li>使用<strong>make</strong>或IDE将变量转换为完整的编译和链接命令。</li>
+</ol>
+<h2 id="从命令行包含头文件">从命令行包含头文件</h2>
+<p><strong>gcc</strong>和<strong>clang</strong>有一个方便的标志包含头文件，比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="o">-</span><span class="n">include</span> <span class="n">stdio</span><span class="p">.</span><span class="n">h</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>和这句一样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>-include</strong>是编译器特定的。</p>
+<h2 id="统一的头文件">统一的头文件</h2>
+<p>为了有用，头文件必须包含<strong>typedefs</strong>，宏定义和函数声明，且不应该包含没有不会使用的定义或声明。而现在的趋势是节省用户时间，将多个头文件包含进一个头文件。</p>
+<h2 id="嵌入文档">嵌入文档</h2>
+<p>嵌入文档是一个POSIX标准shell的特性，你可以用在C，Python，Perl或其他。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">python</span> <span class="o">-</span> <span class="o">&lt;&lt;</span><span class="s">&#34;XXXX&#34;</span>
+<span class="n">lines</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">print</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">This script is %i lines long.</span><span class="se">\n</span><span class="s">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">lines</span><span class="p">,)</span>
+<span class="n">XXXX</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>嵌入文档是shell的标准特性，因此它应该能在任何POSIX系统上工作。</li>
+<li>&ldquo;XXXX&quot;是任意你喜欢的字符串；&ldquo;EOF&quot;很流行，&quot;&mdash;&ndash;&ldquo;看起来不错只要顶部和底部的破折号数量相同既可以。当shell看到你选择的字符串为独立的一行，它将停止发送脚本到程序stdin。</li>
+<li>有一个变体以&laquo;-开始，它会删除没一行开头的所有tab字符。</li>
+<li>作为另一个变体，&laquo;XXXX和&laquo;&quot;XXXX&quot;不同。前面那个可以插入$shell_variable。</li>
+</ul>
+<h2 id="从标准输入编译">从标准输入编译</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">go_libs</span><span class="o">=</span><span class="s">&#34;-lm&#34;</span>
+<span class="n">go_flags</span><span class="o">=</span><span class="s">&#34;-g -Wall -include allheads.h -O3&#34;</span>
+<span class="n">alias</span> <span class="n">go_c</span><span class="o">=</span><span class="s">&#34;c99 -xc - $go_libs $go_flags&#34;</span>
+<span class="n">go_c</span> <span class="o">&lt;&lt;</span> <span class="err">&#39;</span><span class="o">---</span><span class="err">&#39;</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;Hello from the command line.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);}</span>
+<span class="o">---</span>
+<span class="p">.</span><span class="o">/</span><span class="n">a</span><span class="p">.</span><span class="n">out</span></code></pre></td></tr></table>
+</div>
+</div>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-12-15
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/c/">C</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/21st-c-2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">21世纪C语言 第2章 调试，测试，文档</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/cpp-primer-16/">
+            <span class="next-text nav-default">第16章 模板和泛型编程</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/21st-c-1/" class="leancloud_visitors" data-flag-title="21世纪C语言 第1章 便利编译配置">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python核心编程 第3章 - 招财猫的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="招财猫" /><meta name="description" content="3.1 语句和语法 关于Python语句的一些规则和符号： 井号（#）指示Python注释。 换行（\n）是标准行分隔符（一个语句一行） 反斜杠（\）延续" /><meta name="keywords" content="Emacs, Cocos2d, Graphics" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.70.0 with theme even" />
+
+
+<link rel="canonical" href="https://gitop.cc/post/core-python-3/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python核心编程 第3章" />
+<meta property="og:description" content="3.1 语句和语法 关于Python语句的一些规则和符号： 井号（#）指示Python注释。 换行（\n）是标准行分隔符（一个语句一行） 反斜杠（\）延续" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gitop.cc/post/core-python-3/" />
+<meta property="article:published_time" content="2015-12-25T13:28:23+00:00" />
+<meta property="article:modified_time" content="2015-12-25T13:28:23+00:00" />
+<meta itemprop="name" content="Python核心编程 第3章">
+<meta itemprop="description" content="3.1 语句和语法 关于Python语句的一些规则和符号： 井号（#）指示Python注释。 换行（\n）是标准行分隔符（一个语句一行） 反斜杠（\）延续">
+<meta itemprop="datePublished" content="2015-12-25T13:28:23&#43;00:00" />
+<meta itemprop="dateModified" content="2015-12-25T13:28:23&#43;00:00" />
+<meta itemprop="wordCount" content="1994">
+
+
+
+<meta itemprop="keywords" content="Python," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python核心编程 第3章"/>
+<meta name="twitter:description" content="3.1 语句和语法 关于Python语句的一些规则和符号： 井号（#）指示Python注释。 换行（\n）是标准行分隔符（一个语句一行） 反斜杠（\）延续"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">招财猫的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">招财猫的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python核心编程 第3章</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-12-25 </span>
+        <div class="post-category">
+            <a href="/categories/language/"> Language </a>
+            </div>
+          <span class="more-meta"> 约 1994 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#31-语句和语法">3.1 语句和语法</a>
+      <ul>
+        <li><a href="#311-注释">3.1.1 注释（#）</a></li>
+        <li><a href="#312-延续">3.1.2 延续（\）</a></li>
+        <li><a href="#313-多个语句组成程序组">3.1.3 多个语句组成程序组（:）</a></li>
+        <li><a href="#314-通过缩进界定程序组">3.1.4 通过缩进界定程序组</a></li>
+        <li><a href="#315-多个语句在一行">3.1.5 多个语句在一行（;）</a></li>
+        <li><a href="#316-模块">3.1.6 模块</a></li>
+      </ul>
+    </li>
+    <li><a href="#32-变量赋值">3.2 变量赋值</a>
+      <ul>
+        <li><a href="#赋值操作符">赋值操作符</a></li>
+        <li><a href="#增量赋值操作符">增量赋值操作符</a></li>
+        <li><a href="#多个赋值">多个赋值</a></li>
+        <li><a href="#元组赋值">元组赋值</a></li>
+      </ul>
+    </li>
+    <li><a href="#33-标识符">3.3 标识符</a>
+      <ul>
+        <li><a href="#331-合法python标识符">3.3.1 合法Python标识符</a></li>
+        <li><a href="#332-关键字">3.3.2 关键字</a></li>
+        <li><a href="#333-built-ins">3.3.3 Built-ins</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="31-语句和语法">3.1 语句和语法</h2>
+<p>关于Python语句的一些规则和符号：</p>
+<ul>
+<li>井号（#）指示Python注释。</li>
+<li>换行（\n）是标准行分隔符（一个语句一行）</li>
+<li>反斜杠（\）延续一行</li>
+<li>分号（;）将2个语句连接在一行</li>
+<li>冒号（:）分隔标题行和其单元</li>
+<li>单元通过缩进界定</li>
+<li>Python文件组织成模块</li>
+</ul>
+<h3 id="311-注释">3.1.1 注释（#）</h3>
+<p>Python注释以井号开始。一个注释可以在一行的任何地方开始，所有跟在井号后面直到行尾的字符被解释器忽略。明智审慎地使用它们。</p>
+<h3 id="312-延续">3.1.2 延续（\）</h3>
+<p>Python语句通常由换行界定，意思是一个语句一行。单一语句可以通过反斜杠分成多行。反斜杠可以放在换行符前面使当前语句延续到下一行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># check conditions</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">weather_is_hot</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> \
+   <span class="p">(</span><span class="n">shark_warnings</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="n">send_goto_beach_mesg_to_pager</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>有两种例外可以不使用反斜杠延续到下一行。被括号，方括号或花括号包围的单一语句和包围在三重引号的字符串。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># display a string with triple quotes</span>
+<span class="k">print</span> <span class="s1">&#39;&#39;&#39;hi there, this is a long message for you
+</span><span class="s1">that goes over multiple lines... you will find
+</span><span class="s1">out soon that triple quotes in Python allows
+</span><span class="s1">this kind of fun! it is like a day on the beach!&#39;&#39;&#39;</span>
+<span class="c1"># set some variables</span>
+<span class="n">go_surf</span><span class="p">,</span> <span class="n">get_a_tan_while</span><span class="p">,</span> <span class="n">boat_size</span><span class="p">,</span> <span class="n">toll_money</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;windsurfing&#39;</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.00</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="313-多个语句组成程序组">3.1.3 多个语句组成程序组（:）</h3>
+<p>多个语句组成一个代码块在Python中称为程序组（suites）。复合语句如if，while，def和class都需要一个标题行和一个程序组。标题行以关键字开始一行语句并以冒号结尾。</p>
+<h3 id="314-通过缩进界定程序组">3.1.4 通过缩进界定程序组</h3>
+<p>Python利用缩进作为一种界定代码块的方法。内层的代码通过空格或制表符缩进。一个程序组的所有代码行必须处在同样的缩进级别上。</p>
+<blockquote>
+<p><strong>核心风格：使用4个空格缩进并避免使用制表符</strong></p>
+</blockquote>
+<p>当缩进的数量增加时，一个新的代码块被识别。而一个代码块的结束由缩进的数量减少并匹配上一层的缩进。没有缩进的代码（最高层的代码）被认为是脚本的主要部分。</p>
+<h3 id="315-多个语句在一行">3.1.5 多个语句在一行（;）</h3>
+<p>分号（;）允许多个语句在一行，这些语句都不开始一个新的代码块。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sys</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>不要多行语句放在一行，因为它使得代码更难阅读。</p>
+<h3 id="316-模块">3.1.6 模块</h3>
+<p>每一个Python脚本都是一个模块。模块物理表现为硬盘文件。当一个模块变得足够大时，将一些代码移到另一个模块更合理。</p>
+<h2 id="32-变量赋值">3.2 变量赋值</h2>
+<h3 id="赋值操作符">赋值操作符</h3>
+<p>等号是Python主要的赋值操作符，其它的是增量赋值操作符。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">anInt</span> <span class="o">=</span> <span class="o">-</span><span class="mi">12</span>
+<span class="n">aString</span> <span class="o">=</span> <span class="s1">&#39;cart&#39;</span>
+<span class="n">aFloat</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.1415</span> <span class="o">*</span> <span class="p">(</span><span class="mf">5.0</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">anotherString</span> <span class="o">=</span> <span class="s1">&#39;shop&#39;</span> <span class="o">+</span> <span class="s1">&#39;ping&#39;</span>
+<span class="n">aList</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.14e10</span><span class="p">,</span> <span class="s1">&#39;2nd elmt of a list&#39;</span><span class="p">,</span> <span class="mf">8.82</span><span class="o">-</span><span class="mf">4.371j</span><span class="p">]</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>注意赋值并没有显式将一个值赋给一个变量。在Python中，对象都是被引用的。因此当赋值时，一个对象的引用被赋值给变量，不管对象是刚刚创建还是已经存在。</p>
+<p>如果你熟悉C，赋值被当做表达式。Python中不是这样，下面这样的语句在Python中非法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># assignments not expressions!</span>
+  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+           <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">syntax</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>赋值可以链接在一起：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+<span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="增量赋值操作符">增量赋值操作符</h3>
+<p>从Python 2.0开始，等号可以和算术操作符一起使用，且产生的结果再赋值给原来的变量。比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=&gt;</span> <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>增量赋值操作符有，<strong>+=</strong>，<strong>-=</strong>，<em><strong>=</strong>，</em><em>/=</em>*，**%=**，****=**，**&laquo;=**，**&raquo;=**，**&amp;=**，**^=**，**|=**。</p>
+<p>除了明显的语法改变，最显著的不同是第一个对象只被检查一次。可变对象在原地改变，而不可变对象和可变对象有一样的效果（一个新对象被分配）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">m</span> <span class="o">%=</span> <span class="mi">7</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">m</span>
+<span class="mi">5</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">m</span> <span class="o">**=</span> <span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">m</span>
+<span class="mi">25</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">aList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;xyz&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">aList</span> <span class="o">+=</span> <span class="p">[</span><span class="mf">45.6e7</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">aList</span>
+<span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;xyz&#39;</span><span class="p">,</span> <span class="mf">456000000.0</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Python不支持前/后自增操作符，也不支持前/后自减操作符。</p>
+<h3 id="多个赋值">多个赋值</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>上面这个例子中，一个整形对象被创建，且x，y，z都引用到这个整形对象。Python也可以将多个对象赋值给多个变量。</p>
+<h3 id="元组赋值">元组赋值</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;a string&#39;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>上面这个例子中，2个整形对象和一个字符串对象被赋值给x，y，z。尽管括号是可选的，我们建议在任何使代码容易阅读的地方使用括号：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;a string&#39;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Python元组赋值的一个有趣副作用是我们不再需要一个临时变量来交换2个变量的值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>显然，Python在赋值前执行计算。</p>
+<h2 id="33-标识符">3.3 标识符</h2>
+<p>标识符是一组合法的允许作为计算机语言里的名字的字符串。从这个包罗万象的列表中，我们分离出一些形成语言结构的关键字。这些标识符是不应该用作其它意图的保留字，否则将发生语法错误。</p>
+<p>Python也有一组额外的标识符集被称为built-ins。尽管它们不是保留字，不推荐使用这些特殊名字。</p>
+<h3 id="331-合法python标识符">3.3.1 合法Python标识符</h3>
+<p>Python标识符的规则和其它来自C世界的高级语言一样：</p>
+<ul>
+<li>第一个字符必须是字母或是下划线（_）。</li>
+<li>任何其它的字符可以是字母，数字或下划线。</li>
+<li>大小写敏感。</li>
+</ul>
+<h3 id="332-关键字">3.3.2 关键字</h3>
+<p><strong>keyword</strong>模块包含关键字列表和一个**iskeyword()**函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">keyword</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span>
+<span class="p">[</span><span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;as&#39;</span><span class="p">,</span> <span class="s1">&#39;assert&#39;</span><span class="p">,</span> <span class="s1">&#39;break&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;continue&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;del&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;elif&#39;</span><span class="p">,</span> <span class="s1">&#39;else&#39;</span><span class="p">,</span> <span class="s1">&#39;except&#39;</span><span class="p">,</span> <span class="s1">&#39;exec&#39;</span><span class="p">,</span> <span class="s1">&#39;finally&#39;</span><span class="p">,</span> <span class="s1">&#39;for&#39;</span><span class="p">,</span> <span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;global&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;if&#39;</span><span class="p">,</span> <span class="s1">&#39;import&#39;</span><span class="p">,</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;lambda&#39;</span><span class="p">,</span> <span class="s1">&#39;not&#39;</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="s1">&#39;pass&#39;</span><span class="p">,</span> <span class="s1">&#39;print&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;raise&#39;</span><span class="p">,</span> <span class="s1">&#39;return&#39;</span><span class="p">,</span> <span class="s1">&#39;try&#39;</span><span class="p">,</span> <span class="s1">&#39;while&#39;</span><span class="p">,</span> <span class="s1">&#39;with&#39;</span><span class="p">,</span> <span class="s1">&#39;yield&#39;</span><span class="p">]</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="333-built-ins">3.3.3 Built-ins</h3>
+<p>除了关键字，Python还有一组内置名字集合。尽管不是关键字，内置名字应该被当做留给系统的，不应该用作任何其它意图。</p>
+<p>内置名字都是**__builtins__**模块的成员，这个模块在程序开始前由解释器自动导入。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">招财猫</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-12-25
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/weixin-donate.jpeg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/zhifubao-donate.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">Python</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/asio-network-programming-1/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Boost.Asio网络编程 第1章</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/core-python-2/">
+            <span class="next-text nav-default">Python核心编程 第2章</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/core-python-3/" class="leancloud_visitors" data-flag-title="Python核心编程 第3章">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'nTlkWW6BFHR3ekmRDf9ragQd-gzGzoHsz',
+        appKey: 'aGlzQgiAeX7JBeHOTXK9SgpC',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/opensvn" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.weibo.com/opensvn" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://gitop.cc/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">招财猫</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
