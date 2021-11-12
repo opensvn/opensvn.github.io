@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/collection-api-enhancements/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="Collection API增强" />
 <meta property="og:description" content="Collection工厂 Java 9引入了一些创建小型集合对象的方法，比如Arrays.asList()： 1 List&lt;String&gt; friends = Arrays.asList(&#34;Raphael&#34;, &#34;Olivia&#34;, &#34;Thibaut&#34;); Arrays.asList(" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/collection-api-enhancements/" />
+<meta property="og:url" content="https://gitop.cc/post/collection-api-enhancements/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-07-24T14:22:44+08:00" />
 <meta property="article:modified_time" content="2019-07-24T14:22:44+08:00" />
+
 <meta itemprop="name" content="Collection API增强">
-<meta itemprop="description" content="Collection工厂 Java 9引入了一些创建小型集合对象的方法，比如Arrays.asList()： 1 List&lt;String&gt; friends = Arrays.asList(&#34;Raphael&#34;, &#34;Olivia&#34;, &#34;Thibaut&#34;); Arrays.asList(">
-<meta itemprop="datePublished" content="2019-07-24T14:22:44&#43;08:00" />
-<meta itemprop="dateModified" content="2019-07-24T14:22:44&#43;08:00" />
+<meta itemprop="description" content="Collection工厂 Java 9引入了一些创建小型集合对象的方法，比如Arrays.asList()： 1 List&lt;String&gt; friends = Arrays.asList(&#34;Raphael&#34;, &#34;Olivia&#34;, &#34;Thibaut&#34;); Arrays.asList("><meta itemprop="datePublished" content="2019-07-24T14:22:44+08:00" />
+<meta itemprop="dateModified" content="2019-07-24T14:22:44+08:00" />
 <meta itemprop="wordCount" content="3192">
-
-
-
 <meta itemprop="keywords" content="Java," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Collection API增强"/>
 <meta name="twitter:description" content="Collection工厂 Java 9引入了一些创建小型集合对象的方法，比如Arrays.asList()： 1 List&lt;String&gt; friends = Arrays.asList(&#34;Raphael&#34;, &#34;Olivia&#34;, &#34;Thibaut&#34;); Arrays.asList("/>
@@ -180,21 +177,21 @@
 <p>Java 9引入了一些创建小型集合对象的方法，比如<code>Arrays.asList()</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">);</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><code>Arrays.asList()</code>返回一个固定大小的列表，可以对其进行更新，但不能添加或删除元素，否则抛出UnsupportedModificationException异常。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">);</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">);</span>
 <span class="n">friends</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="s">&#34;Richard&#34;</span><span class="o">);</span>
 <span class="n">friends</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Thibaut&#34;</span><span class="o">);</span> <span class="c1">// throws an UnsupportedOperationException
 </span></code></pre></td></tr></table>
@@ -202,19 +199,19 @@
 </div><p>没有<code>Arrays.asSet()</code>方法，但是可以使用一个小技巧，比如接受列表参数的HashSet构造函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">));</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">));</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>或者可以使用Streams API：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toSet</span><span class="o">());</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toSet</span><span class="o">());</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>然而，这两种解决方案都远远不够优雅，而且涉及不必要的对象分配。注意结果是一个可变Set。Java 9添加了工厂方法，让你可以更简单地创建小的List、Set或Map。</p>
@@ -222,20 +219,20 @@
 <p>你可以调用<code>List.of</code>工厂方法创建一个List：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">);</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><code>List.of</code>生成的列表是不可更改的，不能添加或删除元素，也不能修改元素。为了防止意外错误并使用更紧凑的内部表示，元素不许为空。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">);</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">);</span>
 <span class="n">friends</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Chih-Chun&#34;</span><span class="o">);</span> <span class="c1">// throws an UnsupportedOperationException
 </span></code></pre></td></tr></table>
 </div>
@@ -243,39 +240,39 @@
 <p>和<code>List.of</code>一样，可以使用<code>Set.of</code>从一组元素创建不可变Set：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">);</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>如果用重复元素来创建Set，将抛出IllegalArgumentException异常：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">);</span> <span class="c1">// java.lang.IllegalArgumentException: duplicate element: Olivia
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">);</span> <span class="c1">// java.lang.IllegalArgumentException: duplicate element: Olivia
 </span></code></pre></td></tr></table>
 </div>
 </div><h3 id="map工厂">Map工厂</h3>
 <p>在Java 9中初始化不可变Map有2中方法。第一种是使用<code>Map.of</code>，其参数在键值之间交替：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">ageOfFriends</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="n">30</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="n">25</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">,</span> <span class="n">26</span><span class="o">);</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">ageOfFriends</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="n">30</span><span class="o">,</span> <span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="n">25</span><span class="o">,</span> <span class="s">&#34;Thibaut&#34;</span><span class="o">,</span> <span class="n">26</span><span class="o">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>第二种方法是使用<code>Map.ofEntries</code>，其参数为一组<code>Map.Entry&lt;K, V&gt;</code>对象。该方法需要额外的对象分配来封装键和值：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import static</span> <span class="nn">java.util.Map.entry</span><span class="o">;</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import static</span> <span class="nn">java.util.Map.entry</span><span class="o">;</span>
 <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">ageOfFriends</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="n">entry</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="n">30</span><span class="o">),</span> <span class="n">entry</span><span class="o">(</span><span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="n">25</span><span class="o">),</span> <span class="n">entry</span><span class="o">(</span><span class="s">&#34;Thibaut&#34;</span><span class="o">,</span> <span class="n">26</span><span class="o">));</span>
 </code></pre></td></tr></table>
 </div>
@@ -291,14 +288,14 @@
 <p>考虑下面这个buggy例子：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="n">Transaction</span> <span class="n">transaction</span> <span class="o">:</span> <span class="n">transactions</span><span class="o">)</span> <span class="o">{</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="n">Transaction</span> <span class="n">transaction</span> <span class="o">:</span> <span class="n">transactions</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">Character</span><span class="o">.</span><span class="na">isDigit</span><span class="o">(</span><span class="n">transaction</span><span class="o">.</span><span class="na">getReferenceCode</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="n">0</span><span class="o">)))</span> <span class="o">{</span>
         <span class="n">transactions</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">transaction</span><span class="o">);</span>
     <span class="o">}</span>
@@ -308,22 +305,22 @@
 </div><p>遍历删除符合条件的元素是个很常见的用法，然而使用for循环很容易出错。<code>removeIf</code>不仅简单而且使你远离bug：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">transactions</span><span class="o">.</span><span class="na">removeIf</span><span class="o">(</span><span class="n">transaction</span> <span class="o">-&gt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">isDigit</span><span class="o">(</span><span class="n">transaction</span><span class="o">.</span><span class="na">getReferenceCode</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="n">0</span><span class="o">)));</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">transactions</span><span class="o">.</span><span class="na">removeIf</span><span class="o">(</span><span class="n">transaction</span> <span class="o">-&gt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">isDigit</span><span class="o">(</span><span class="n">transaction</span><span class="o">.</span><span class="na">getReferenceCode</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="n">0</span><span class="o">)));</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="replaceall">replaceAll</h3>
 <p><code>replaceAll</code>方法允许你用一个新的元素替换列表中的每个元素。使用Streams接口，可以如下处理：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">referenceCodes</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">referenceCodes</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
 <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">(</span><span class="n">code</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">0</span><span class="o">))</span> <span class="o">+</span> <span class="n">code</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">))</span>
 <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
 </code></pre></td></tr></table>
@@ -331,13 +328,13 @@
 </div><p>这个代码返回一个新的List，如果你想要修改原有List，可以使用ListIterator，如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="n">ListIterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">referenceCodes</span><span class="o">.</span><span class="na">listIterator</span><span class="o">();</span> <span class="n">iterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">();</span> <span class="o">)</span> <span class="o">{</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="n">ListIterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">referenceCodes</span><span class="o">.</span><span class="na">listIterator</span><span class="o">();</span> <span class="n">iterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">();</span> <span class="o">)</span> <span class="o">{</span>
     <span class="n">String</span> <span class="n">code</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
     <span class="n">iterator</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">Character</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">(</span><span class="n">code</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">0</span><span class="o">))</span> <span class="o">+</span> <span class="n">code</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">));</span>
 <span class="o">}</span>
@@ -346,10 +343,10 @@
 </div><p>这段代码相当冗长，而且将迭代器对象与集合对象结合使用很容易出错，因为混合了对集合的迭代和修改。在Java 8中，可以简单的使用<code>replaceAll</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">referenceCodes</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">(</span><span class="n">code</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">0</span><span class="o">))</span> <span class="o">+</span> <span class="n">code</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">));</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">referenceCodes</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">(</span><span class="n">code</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">0</span><span class="o">))</span> <span class="o">+</span> <span class="n">code</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">));</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="使用map">使用Map</h2>
@@ -357,14 +354,14 @@
 <p>遍历Map通常不太方便，你需要使用<code>Map.Entry&lt;K, V&gt;</code>的迭代器：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">entry</span> <span class="o">:</span> <span class="n">ageOfFriends</span><span class="o">.</span><span class="na">entrySet</span><span class="o">())</span> <span class="o">{</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">entry</span> <span class="o">:</span> <span class="n">ageOfFriends</span><span class="o">.</span><span class="na">entrySet</span><span class="o">())</span> <span class="o">{</span>
     <span class="n">String</span> <span class="n">friend</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="na">getKey</span><span class="o">();</span>
     <span class="n">Integer</span> <span class="n">age</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">friend</span> <span class="o">+</span> <span class="s">&#34; is &#34;</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="s">&#34; years old&#34;</span><span class="o">);</span>
@@ -374,11 +371,11 @@
 </div><p>从Java 8开始，Map接口支持<code>forEach</code>方法，接受一个<code>BiConsumer&lt;K, V&gt;</code>参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ageOfFriends</span><span class="o">.</span><span class="na">forEach</span><span class="o">((</span><span class="n">friend</span><span class="o">,</span> <span class="n">age</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">friend</span> <span class="o">+</span> <span class="s">&#34; is &#34;</span> <span class="o">+</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">ageOfFriends</span><span class="o">.</span><span class="na">forEach</span><span class="o">((</span><span class="n">friend</span><span class="o">,</span> <span class="n">age</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">friend</span> <span class="o">+</span> <span class="s">&#34; is &#34;</span> <span class="o">+</span>
 <span class="n">age</span> <span class="o">+</span> <span class="s">&#34; years old&#34;</span><span class="o">));</span>
 </code></pre></td></tr></table>
 </div>
@@ -390,13 +387,13 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">favouriteMovies</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="n">entry</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Star Wars&#34;</span><span class="o">),</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">favouriteMovies</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="n">entry</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Star Wars&#34;</span><span class="o">),</span>
     <span class="n">entry</span><span class="o">(</span><span class="s">&#34;Cristina&#34;</span><span class="o">,</span> <span class="s">&#34;Matrix&#34;</span><span class="o">),</span> <span class="n">entry</span><span class="o">(</span><span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;James Bond&#34;</span><span class="o">));</span>
 <span class="n">favouriteMovies</span><span class="o">.</span><span class="na">entrySet</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">sorted</span><span class="o">(</span><span class="n">Entry</span><span class="o">.</span><span class="na">comparingByKey</span><span class="o">())</span>
     <span class="o">.</span><span class="na">forEachOrdered</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
@@ -406,13 +403,13 @@
 <p>当查找的键不存在时，你将得到一个null值。Map支持<code>getOrDefault</code>方法，接受键和默认值作为参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">favouriteMovies</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="n">entry</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Star Wars&#34;</span><span class="o">),</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">favouriteMovies</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="n">entry</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Star Wars&#34;</span><span class="o">),</span>
     <span class="n">entry</span><span class="o">(</span><span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;James Bond&#34;</span><span class="o">));</span>
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">favouriteMovies</span><span class="o">.</span><span class="na">getOrDefault</span><span class="o">(</span><span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;Matrix&#34;</span><span class="o">));</span>
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">favouriteMovies</span><span class="o">.</span><span class="na">getOrDefault</span><span class="o">(</span><span class="s">&#34;Thibaut&#34;</span><span class="o">,</span> <span class="s">&#34;Matrix&#34;</span><span class="o">));</span>
@@ -429,24 +426,24 @@
 <p><code>computeIfAbsent</code>的一个用途是缓存信息。假设你需要计算一个每一行的SHA-256，如果已经处理就不需要再次计算。假设信息使用Map缓存，如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="kt">byte</span><span class="o">[]&gt;</span> <span class="n">dataToHash</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="kt">byte</span><span class="o">[]&gt;</span> <span class="n">dataToHash</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
 <span class="n">MessageDigest</span> <span class="n">messageDigest</span> <span class="o">=</span> <span class="n">MessageDigest</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">&#34;SHA-256&#34;</span><span class="o">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>然后你可以遍历数据并缓存结果：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">lines</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">line</span> <span class="o">-&gt;</span> <span class="n">dataToHash</span><span class="o">.</span><span class="na">computeIfAbsent</span><span class="o">(</span><span class="n">line</span><span class="o">,</span> <span class="k">this</span><span class="o">::</span><span class="n">calculateDigest</span><span class="o">));</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">lines</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">line</span> <span class="o">-&gt;</span> <span class="n">dataToHash</span><span class="o">.</span><span class="na">computeIfAbsent</span><span class="o">(</span><span class="n">line</span><span class="o">,</span> <span class="k">this</span><span class="o">::</span><span class="n">calculateDigest</span><span class="o">));</span>
 <span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">calculateDigest</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">messageDigest</span><span class="o">.</span><span class="na">digest</span><span class="o">(</span><span class="n">key</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="n">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">));</span>
 <span class="o">}</span>
@@ -457,10 +454,10 @@
 <p>从Java 8开始，Map的<code>remove</code>方法的一个重载版本，当key关联到指定的value才删除记录：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">favouriteMovies</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">favouriteMovies</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="替换模式">替换模式</h3>
@@ -471,14 +468,14 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">favouriteMovies</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">favouriteMovies</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
 <span class="n">favouriteMovies</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Star Wars&#34;</span><span class="o">);</span>
 <span class="n">favouriteMovies</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;Olivia&#34;</span><span class="o">,</span> <span class="s">&#34;james bond&#34;</span><span class="o">);</span>
 <span class="n">favouriteMovies</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">((</span><span class="n">friend</span><span class="o">,</span> <span class="n">movie</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">movie</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">());</span>
@@ -489,14 +486,14 @@
 <p><code>putAll</code>方法可以将2个Map合并：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">family</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="n">entry</span><span class="o">(</span><span class="s">&#34;Teo&#34;</span><span class="o">,</span> <span class="s">&#34;Star Wars&#34;</span><span class="o">),</span> <span class="n">entry</span><span class="o">(</span><span class="s">&#34;Cristina&#34;</span><span class="o">,</span> <span class="s">&#34;James Bond&#34;</span><span class="o">));</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">family</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="n">entry</span><span class="o">(</span><span class="s">&#34;Teo&#34;</span><span class="o">,</span> <span class="s">&#34;Star Wars&#34;</span><span class="o">),</span> <span class="n">entry</span><span class="o">(</span><span class="s">&#34;Cristina&#34;</span><span class="o">,</span> <span class="s">&#34;James Bond&#34;</span><span class="o">));</span>
 <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="n">entry</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Star Wars&#34;</span><span class="o">));</span>
 <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">everyone</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;(</span><span class="n">family</span><span class="o">);</span>
 <span class="n">everyone</span><span class="o">.</span><span class="na">putAll</span><span class="o">(</span><span class="n">friends</span><span class="o">);</span>
@@ -506,23 +503,23 @@
 </div><p>如果需要更灵活地合并值，可以使用<code>merge</code>方法。该方法使用<code>BiFunction</code>合并具有重复键的值。假设Cristina同时出现在family和friends的Map中，但与之相关的电影却各不相同：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">family</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="n">entry</span><span class="o">(</span><span class="s">&#34;Teo&#34;</span><span class="o">,</span> <span class="s">&#34;Star Wars&#34;</span><span class="o">),</span> <span class="n">entry</span><span class="o">(</span><span class="s">&#34;Cristina&#34;</span><span class="o">,</span> <span class="s">&#34;James Bond&#34;</span><span class="o">));</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">family</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="n">entry</span><span class="o">(</span><span class="s">&#34;Teo&#34;</span><span class="o">,</span> <span class="s">&#34;Star Wars&#34;</span><span class="o">),</span> <span class="n">entry</span><span class="o">(</span><span class="s">&#34;Cristina&#34;</span><span class="o">,</span> <span class="s">&#34;James Bond&#34;</span><span class="o">));</span>
 <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">friends</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="na">ofEntries</span><span class="o">(</span><span class="n">entry</span><span class="o">(</span><span class="s">&#34;Raphael&#34;</span><span class="o">,</span> <span class="s">&#34;Star Wars&#34;</span><span class="o">),</span> <span class="n">entry</span><span class="o">(</span><span class="s">&#34;Cristina&#34;</span><span class="o">,</span> <span class="s">&#34;Matrix&#34;</span><span class="o">));</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>使用<code>merge</code>方法可以如下处理键冲突：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">everyone</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;(</span><span class="n">family</span><span class="o">);</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">everyone</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;(</span><span class="n">family</span><span class="o">);</span>
 <span class="n">friends</span><span class="o">.</span><span class="na">forEach</span><span class="o">((</span><span class="n">k</span><span class="o">,</span> <span class="n">v</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">everyone</span><span class="o">.</span><span class="na">merge</span><span class="o">(</span><span class="n">k</span><span class="o">,</span> <span class="n">v</span><span class="o">,</span> <span class="o">(</span><span class="n">movie1</span><span class="o">,</span> <span class="n">movie2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">movie1</span> <span class="o">+</span> <span class="s">&#34; &amp; &#34;</span> <span class="o">+</span> <span class="n">movie2</span><span class="o">));</span>
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">everyone</span><span class="o">);</span>
 </code></pre></td></tr></table>
@@ -535,7 +532,7 @@
 <p>也可以用<code>merge</code>实现初始化检查。假设你有一个记录电影观看次数的Map，在增加次数前需要检查电影是否在Map中：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -545,7 +542,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">moviesToCount</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">moviesToCount</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
 <span class="n">String</span> <span class="n">movieName</span> <span class="o">=</span> <span class="s">&#34;JamesBond&#34;</span><span class="o">;</span>
 <span class="kt">long</span> <span class="n">count</span> <span class="o">=</span> <span class="n">moviesToCount</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">movieName</span><span class="o">);</span>
 <span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
@@ -558,10 +555,10 @@
 </div><p>上面的代码可以被重写为：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">moviesToCount</span><span class="o">.</span><span class="na">merge</span><span class="o">(</span><span class="n">movieName</span><span class="o">,</span> <span class="n">1L</span><span class="o">,</span> <span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">count</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">count</span> <span class="o">+</span> <span class="n">1L</span><span class="o">);</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">moviesToCount</span><span class="o">.</span><span class="na">merge</span><span class="o">(</span><span class="n">movieName</span><span class="o">,</span> <span class="n">1L</span><span class="o">,</span> <span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">count</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">count</span> <span class="o">+</span> <span class="n">1L</span><span class="o">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="改善的concurrenthashmap">改善的ConcurrentHashMap</h2>
@@ -584,13 +581,13 @@
 <p>此外，你需要为这些操作指定并行阈值。如果Map大小小于给定阈值，则按顺序执行操作。阈值1代表使用公共线程池实现最大的并行度，阈值为Long.MAX_VALUE表示在单个线程上运行该操作。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ConcurrentHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;&gt;();</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">ConcurrentHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;&gt;();</span>
 <span class="kt">long</span> <span class="n">parallelismThreshold</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
 <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">maxValue</span> <span class="o">=</span>
     <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">reduceValues</span><span class="o">(</span><span class="n">parallelismThreshold</span><span class="o">,</span> <span class="n">Long</span><span class="o">::</span><span class="n">max</span><span class="o">));</span>
@@ -705,7 +702,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -725,7 +722,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

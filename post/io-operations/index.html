@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/io-operations/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="Asio.Cookbook 第2章 IO操作" />
 <meta property="og:description" content="介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/io-operations/" />
+<meta property="og:url" content="https://gitop.cc/post/io-operations/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2016-08-18T08:55:42+00:00" />
 <meta property="article:modified_time" content="2016-08-18T08:55:42+00:00" />
+
 <meta itemprop="name" content="Asio.Cookbook 第2章 IO操作">
-<meta itemprop="description" content="介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络">
-<meta itemprop="datePublished" content="2016-08-18T08:55:42&#43;00:00" />
-<meta itemprop="dateModified" content="2016-08-18T08:55:42&#43;00:00" />
+<meta itemprop="description" content="介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络"><meta itemprop="datePublished" content="2016-08-18T08:55:42+00:00" />
+<meta itemprop="dateModified" content="2016-08-18T08:55:42+00:00" />
 <meta itemprop="wordCount" content="4284">
-
-
-
 <meta itemprop="keywords" content="C&#43;&#43;," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Asio.Cookbook 第2章 IO操作"/>
 <meta name="twitter:description" content="介绍 IO操作是任何分布式应用的网络基础设施的关键操作。它们直接参与数据交换的过程。输入操作用来接收数据，输出操作用来发送数据。 IO缓冲区 网络"/>
@@ -208,12 +205,12 @@ shutdown套接字很有用，如果需要通知另一个程序整个报文已发
 </ol>
 <p><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">buf</span> <span class="o">=</span> <span class="s">&#34;Hello&#34;</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">buf</span> <span class="o">=</span> <span class="s">&#34;Hello&#34;</span><span class="p">;</span>
 <span class="n">asio</span><span class="o">::</span><span class="n">const_buffer_1</span> <span class="n">output_buf</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
 <span class="c1">// output_buf can be used in Boost.Asio output operations
 </span></code></pre></td></tr></table>
@@ -222,27 +219,25 @@ shutdown套接字很有用，如果需要通知另一个程序整个报文已发
 为了更好的理解为什么需要将缓冲区表示成满足ConstBufferSequence需求，可以看一下send()的声明：</p>
 <p><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="o">&gt;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">send</span><span class="p">(</span><span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">send</span><span class="p">(</span><span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 为了使用send()发送string对象，我们可以这样做：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">asio</span><span class="o">::</span><span class="n">const_buffer</span> <span class="n">asio_buf</span><span class="p">(</span><span class="n">buf</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">buf</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">asio</span><span class="o">::</span><span class="n">const_buffer</span> <span class="n">asio_buf</span><span class="p">(</span><span class="n">buf</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">buf</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">asio</span><span class="o">::</span><span class="n">const_buffer</span><span class="o">&gt;</span> <span class="n">buffers_sequence</span><span class="p">;</span>
-<span class="n">buffers_sequence</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">asio_buf</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<span class="n">buffers_sequence</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">asio_buf</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>但是这样没有使用asio::buffer()方便。</p>
@@ -254,14 +249,14 @@ shutdown套接字很有用，如果需要通知另一个程序整个报文已发
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="n">size_t</span> <span class="n">BUF_SIZE_BYTES</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="n">size_t</span> <span class="n">BUF_SIZE_BYTES</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
 <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">[]</span><span class="o">&gt;</span> <span class="n">buf</span><span class="p">(</span><span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">BUF_SIZE_BYTES</span><span class="p">]);</span>
 <span class="n">asio</span><span class="o">::</span><span class="n">mutable_buffers_1</span> <span class="n">input_buf</span> <span class="o">=</span>
     <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">buf</span><span class="p">.</span><span class="n">get</span><span class="p">()),</span> <span class="n">BUF_SIZE_BYTES</span><span class="p">);</span>
@@ -278,17 +273,16 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 <p>可扩展面向流的缓冲区在Boost.Asio中由asio::streambuf类表示：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="n">basic_streambuf</span><span class="o">&lt;&gt;</span> <span class="n">streambuf</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="n">basic_streambuf</span><span class="o">&lt;&gt;</span> <span class="n">streambuf</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>asio::basic_streambuf&lt;&gt;类继承自std::streambuf。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -301,7 +295,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">asio</span><span class="o">::</span><span class="n">streambuf</span> <span class="n">buf</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">asio</span><span class="o">::</span><span class="n">streambuf</span> <span class="n">buf</span><span class="p">;</span>
 <span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="n">output</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
 
 <span class="c1">// Writing the message to the stream-based buffer.
@@ -311,21 +305,19 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 </span><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="n">input</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
 
 <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="同步写tcp套接字">同步写TCP套接字</h2>
 <p>写套接字最基本的方法是使用Boost.Asio中的asio::ip::tcp::socket类的write_some()方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="o">&gt;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">write_some</span><span class="p">(</span><span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">write_some</span><span class="p">(</span><span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>如果方法成功执行，返回写入的字节数。需要强调的是这个方法可能不会发送参数指定的所有数据，它只保证如果错误不发生至少发送一个字节。这意味着为了发送缓冲区中所有数据需要调用write_some()多次。</p>
@@ -336,7 +328,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -347,7 +339,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">writeToSocket</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">writeToSocket</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">buf</span> <span class="o">=</span> <span class="s">&#34;Hello&#34;</span><span class="p">;</span>
     <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">total_bytes_written</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">total_bytes_written</span> <span class="o">!=</span> <span class="n">buf</span><span class="p">.</span><span class="n">length</span><span class="p">())</span> <span class="p">{</span>
@@ -355,8 +347,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
             <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">buf</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span> <span class="o">+</span> <span class="n">total_bytes_written</span><span class="p">,</span>
                 <span class="n">buf</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">-</span> <span class="n">total_bytes_written</span><span class="p">));</span>
     <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="替代品send方法">替代品——send()方法</h3>
@@ -364,22 +355,21 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 <p>第二个重载函数接收一个额外的参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="o">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="o">&gt;</span>
 <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">send</span><span class="p">(</span><span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">,</span>
-    <span class="n">socket_base</span><span class="o">::</span><span class="n">message_flags</span> <span class="n">flags</span><span class="p">);</span>
-</code></pre></td></tr></table>
+    <span class="n">socket_base</span><span class="o">::</span><span class="n">message_flags</span> <span class="n">flags</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>第三个重载函数和第二个一样，但是它不抛出异常，而是接收一个boost::system::error_code的参数。</p>
 <p>使用write_some()方法向套接字写数据看起来非常复杂，因为必须使用一个循环，并且每一次迭代都需要正确构造缓冲区并跟踪已写的数据。幸运的是，Boost.Asio提供一个自由函数asio::write()简化向套接字写数据。asio::write()有8种重载形式。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -388,27 +378,25 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">SyncWriteStream</span><span class="p">,</span> <span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="o">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">SyncWriteStream</span><span class="p">,</span> <span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="o">&gt;</span>
 <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">write</span><span class="p">(</span><span class="n">SyncWriteStream</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">WriteToSocketEnhanced</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">buf</span> <span class="o">=</span> <span class="s">&#34;hello&#34;</span><span class="p">;</span>
     <span class="n">asio</span><span class="o">::</span><span class="n">write</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">buf</span><span class="p">));</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="同步读tcp套接字">同步读TCP套接字</h2>
 <p>由Boost.Asio提供的从套接字读取数据最基本的方法是asio::ip::tcp::socket类的read_some()方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">MutableBufferSequence</span><span class="o">&gt;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">read_some</span><span class="p">(</span><span class="k">const</span> <span class="n">MutableBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">MutableBufferSequence</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">read_some</span><span class="p">(</span><span class="k">const</span> <span class="n">MutableBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>需要注意的是没有办法控制read_some()将会读取多少数据。它只保证如果错误不发生至少读取一个字节。通常情况下，为了从套接字读取某一数量的数据需要调用read_some()多次。</p>
@@ -419,7 +407,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -432,7 +420,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">readFromSocket</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">readFromSocket</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">MESSAGE_SIZE</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
     <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">MESSAGE_SIZE</span><span class="p">];</span>
     <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">total_bytes_read</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -442,8 +430,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
                 <span class="n">MESSAGE_SIZE</span> <span class="o">-</span> <span class="n">total_bytes_read</span><span class="p">));</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">total_bytes_read</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="替代品receive方法">替代品——receive()方法</h3>
@@ -451,15 +438,14 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 <p>第二个重载函数接收一个额外的参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">MutableBufferSequence</span><span class="o">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">MutableBufferSequence</span><span class="o">&gt;</span>
 <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">receive</span><span class="p">(</span><span class="k">const</span> <span class="n">MutableBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">,</span>
-    <span class="n">socket_base</span><span class="o">::</span><span class="n">message_flags</span> <span class="n">flags</span><span class="p">);</span>
-</code></pre></td></tr></table>
+    <span class="n">socket_base</span><span class="o">::</span><span class="n">message_flags</span> <span class="n">flags</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>第三个重载函数和第二个一样，但是它不抛出异常，而是接收一个boost::system::error_code的参数。</p>
@@ -467,7 +453,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 <h3 id="asioread函数">asio::read()函数</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -478,7 +464,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">SyncReadStream</span><span class="p">,</span> <span class="k">typename</span> <span class="n">MutableBufferSequence</span><span class="o">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">SyncReadStream</span><span class="p">,</span> <span class="k">typename</span> <span class="n">MutableBufferSequence</span><span class="o">&gt;</span>
 <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">read</span><span class="p">(</span><span class="n">SyncReadStream</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="k">const</span> <span class="n">MutableBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">)</span>
 
 <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">readFromSocketEnhanced</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
@@ -486,33 +472,31 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
     <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">MESSAGE_SIZE</span><span class="p">];</span>
     <span class="n">asio</span><span class="o">::</span><span class="n">read</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">MESSAGE_SIZE</span><span class="p">));</span>
     <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">MESSAGE_SIZE</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="read_until函数">read_until()函数</h3>
 <p>asio::read_until()函数从套接字读取数据直到遇到指定的模式，它有8种重载形式。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">SyncReadStream</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Allocator</span><span class="o">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">SyncReadStream</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Allocator</span><span class="o">&gt;</span>
 <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">read_until</span><span class="p">(</span>
     <span class="n">SyncReadStream</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span>
     <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">basic_streambuf</span><span class="o">&lt;</span><span class="n">Allocator</span><span class="o">&gt;&amp;</span> <span class="n">b</span><span class="p">,</span>
-    <span class="kt">char</span> <span class="n">delim</span><span class="p">);</span>
-</code></pre></td></tr></table>
+    <span class="kt">char</span> <span class="n">delim</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>asio::read_until从套接字s读取数据到缓冲区b直到遇到指定的字符delim。需要注意的是asio::read_until内部使用read_some()方法读取数据的。当函数返回时，缓冲区b中可能包含在delim后的数据。也就是说程序员需要处理这种情况。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -522,15 +506,14 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">readFromSocketDelim</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">readFromSocketDelim</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&amp;</span> <span class="n">sock</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">asio</span><span class="o">::</span><span class="n">streambuf</span> <span class="n">buf</span><span class="p">;</span>
     <span class="n">asio</span><span class="o">::</span><span class="n">read_until</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="sc">&#39;\n&#39;</span><span class="p">);</span>
     <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">;</span>
     <span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="n">input_stream</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buf</span><span class="p">);</span>
     <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">input_stream</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">message</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="read_at函数">read_at()函数</h3>
@@ -539,28 +522,26 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 <p>Boost.Asio提供的异步写数据最基本的工具是asio::ip::tcp::socket类的async_write_some()方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="p">,</span> <span class="k">typename</span> <span class="n">WriteHandler</span><span class="o">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="p">,</span> <span class="k">typename</span> <span class="n">WriteHandler</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">async_write_some</span><span class="p">(</span><span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">,</span>
-    <span class="n">WriteHandler</span> <span class="n">handler</span><span class="p">);</span>
-</code></pre></td></tr></table>
+    <span class="n">WriteHandler</span> <span class="n">handler</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>async_write_some()方法初始化一个写操作并立即返回。第一个参数包含要写到套接字的数据，第二个参数是个回调函数，当初始化操作完成后由Boost.Asio调用。</p>
 <p>回调应该具有下述的签名：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">write_handler</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&amp;</span> <span class="n">ec</span><span class="p">,</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">bytes_transferred</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">write_handler</span><span class="p">(</span><span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&amp;</span> <span class="n">ec</span><span class="p">,</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">bytes_transferred</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>async_write_some()方法保证如果不发生错误，至少写一个字节数据。这意味着通常情况下，为了将所有数据写到套接字，需要调用async_write_some()多次。</p>
@@ -575,7 +556,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -636,7 +617,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 </span><span class="lnt">59
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Session</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Session</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&gt;</span> <span class="n">sock</span><span class="p">;</span>
     <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">buf</span><span class="p">;</span>
     <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">total_bytes_written</span><span class="p">;</span>
@@ -694,24 +675,22 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
     <span class="p">}</span>
     
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>Boost.Asio提供一个自由函数asio::async_write()方法可以更方便地异步写到套接字：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">AsyncWriteStream</span><span class="p">,</span> <span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="p">,</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">AsyncWriteStream</span><span class="p">,</span> <span class="k">typename</span> <span class="n">ConstBufferSequence</span><span class="p">,</span>
     <span class="k">typename</span> <span class="n">WriteHandler</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">async_write</span><span class="p">(</span><span class="n">AsyncWriteStream</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span>
-    <span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">,</span> <span class="n">WriteHandler</span> <span class="n">handler</span><span class="p">);</span>
-</code></pre></td></tr></table>
+    <span class="k">const</span> <span class="n">ConstBufferSequence</span><span class="o">&amp;</span> <span class="n">buffers</span><span class="p">,</span> <span class="n">WriteHandler</span> <span class="n">handler</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>asio::async_write()函数是通过多次调用async_write_some()方法实现的。</p>
@@ -820,7 +799,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -840,7 +819,7 @@ asio::mutable_buffer，asio::const_buffer，asio::mutable_buffers_1，asio::cons
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

@@ -51,6 +51,13 @@
   </url>
   
   <url>
+    <loc>https://gitop.cc/</loc>
+    <lastmod>2019-11-04T17:49:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://gitop.cc/categories/tool/</loc>
     <lastmod>2019-11-02T13:49:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -310,13 +317,6 @@
   </url>
   
   <url>
-    <loc>https://gitop.cc/tags/c/</loc>
-    <lastmod>2018-08-02T20:31:02+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://gitop.cc/tags/centos/</loc>
     <lastmod>2018-08-02T20:31:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -332,13 +332,6 @@
   
   <url>
     <loc>https://gitop.cc/about/</loc>
-    <lastmod>2018-08-01T16:29:22+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://gitop.cc/</loc>
     <lastmod>2018-08-01T16:29:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -472,6 +465,13 @@
   
   <url>
     <loc>https://gitop.cc/post/21st-c-2/</loc>
+    <lastmod>2015-12-18T15:48:18+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://gitop.cc/tags/c/</loc>
     <lastmod>2015-12-18T15:48:18+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

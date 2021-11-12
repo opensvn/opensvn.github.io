@@ -6,11 +6,7 @@
     <description>Recent content in Java on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 24 Jul 2019 20:30:19 +0800</lastBuildDate>
-    
-	<atom:link href="https://gitop.cc/tags/java/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 24 Jul 2019 20:30:19 +0800</lastBuildDate><atom:link href="https://gitop.cc/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>重构、测试和调试</title>
       <link>https://gitop.cc/post/refactoring-testing-debugging/</link>

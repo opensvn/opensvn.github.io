@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/pyqt-5/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="PyQt编程第5章 对话框" />
 <meta property="og:description" content="对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。 对话框以“模式”分类为：模式对话框和无模式对话框。 应用模式对话框一" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/pyqt-5/" />
+<meta property="og:url" content="https://gitop.cc/post/pyqt-5/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2015-10-14T16:20:56+00:00" />
 <meta property="article:modified_time" content="2015-10-14T16:20:56+00:00" />
+
 <meta itemprop="name" content="PyQt编程第5章 对话框">
-<meta itemprop="description" content="对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。 对话框以“模式”分类为：模式对话框和无模式对话框。 应用模式对话框一">
-<meta itemprop="datePublished" content="2015-10-14T16:20:56&#43;00:00" />
-<meta itemprop="dateModified" content="2015-10-14T16:20:56&#43;00:00" />
+<meta itemprop="description" content="对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。 对话框以“模式”分类为：模式对话框和无模式对话框。 应用模式对话框一"><meta itemprop="datePublished" content="2015-10-14T16:20:56+00:00" />
+<meta itemprop="dateModified" content="2015-10-14T16:20:56+00:00" />
 <meta itemprop="wordCount" content="2425">
-
-
-
 <meta itemprop="keywords" content="Python," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="PyQt编程第5章 对话框"/>
 <meta name="twitter:description" content="对话框以“智力”分类为：哑巴，标准和聪明，取决于对话框知道程序数据的多少。 对话框以“模式”分类为：模式对话框和无模式对话框。 应用模式对话框一"/>
@@ -163,7 +160,7 @@
 <p>哑巴对话框不知道其部件使用的数据。哑巴对话框通常是带有<code>accept</code>和<code>reject</code>按钮的模式对话框。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -176,7 +173,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setPenProperties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setPenProperties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">dialog</span> <span class="o">=</span> <span class="n">PenPropertiesDlg</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
     <span class="n">dialog</span><span class="o">.</span><span class="n">widthSpinBox</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
     <span class="n">dialog</span><span class="o">.</span><span class="n">beveledCheckBox</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beveled</span><span class="p">)</span>
@@ -185,7 +182,7 @@
     <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">widthSpinBox</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">beveled</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">beveledCheckBox</span><span class="o">.</span><span class="n">isChecked</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">dialog</span><span class="o">.</span><span class="n">styleComboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">unicode</span><span class="p">(</span><span class="n">dialog</span><span class="o">.</span><span class="n">styleComboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">updateData</span><span class="p">()</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -193,7 +190,7 @@
 否则返回<code>False</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -230,8 +227,8 @@
 </span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">PenPropertiesDlg</span><span class="p">(</span><span class="n">QDialog</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">PenPropertiesDlg</span><span class="p">(</span><span class="n">QDialog</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">PenPropertiesDlg</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
         <span class="n">widthLabel</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&#34;&amp;Width:&#34;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">widthSpinBox</span> <span class="o">=</span> <span class="n">QSpinBox</span><span class="p">()</span>
@@ -272,7 +269,7 @@
 <p><strong>对话框按钮布局</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -282,9 +279,9 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">buttonBox</span> <span class="o">=</span> <span class="n">QDialogButtonBox</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Ok</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">buttonBox</span> <span class="o">=</span> <span class="n">QDialogButtonBox</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Ok</span>
                              <span class="o">|</span> <span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Cancel</span><span class="p">)</span>
-<span class="n">buttonBox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span><span class="o">.</span><span class="n">setDefault</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">buttonBox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span><span class="o">.</span><span class="n">setDefault</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">buttonBox</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">buttonBox</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;accepted()&#34;</span><span class="p">),</span>
              <span class="bp">self</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="s2">&#34;accept()&#34;</span><span class="p">))</span>
@@ -300,45 +297,45 @@
 <thead>
 <tr>
 <th>语法</th>
-<th align="left">描述</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>b.addLayout(l)</td>
-<td align="left">添加QLayout l到QBoxLayout b中, b通常是QHBoxLayout或QVBoxLayout</td>
+<td style="text-align:left">添加QLayout l到QBoxLayout b中, b通常是QHBoxLayout或QVBoxLayout</td>
 </tr>
 <tr>
 <td>b.addSpacing(i)</td>
-<td align="left">添加一个指定数量为i的QSpacerItem到QBoxLayout b中</td>
+<td style="text-align:left">添加一个指定数量为i的QSpacerItem到QBoxLayout b中</td>
 </tr>
 <tr>
 <td>b.addStretch(i)</td>
-<td align="left">添加一个最小为0且伸展系数为i的QSpacerItem到QBoxLayout b中</td>
+<td style="text-align:left">添加一个最小为0且伸展系数为i的QSpacerItem到QBoxLayout b中</td>
 </tr>
 <tr>
 <td>b.addWidget(w)</td>
-<td align="left">添加QWidget w到QBoxLayout b中</td>
+<td style="text-align:left">添加QWidget w到QBoxLayout b中</td>
 </tr>
 <tr>
 <td>b.setStretchFactor(x, i)</td>
-<td align="left">设置QBoxLayout b的伸展系数或QWidget x为i</td>
+<td style="text-align:left">设置QBoxLayout b的伸展系数或QWidget x为i</td>
 </tr>
 <tr>
 <td>g.addLayout(l, r, c)</td>
-<td align="left">在行r列c添加QLayout l到QGridLayout g; 可以提供附加的行扩展和列扩展参数</td>
+<td style="text-align:left">在行r列c添加QLayout l到QGridLayout g; 可以提供附加的行扩展和列扩展参数</td>
 </tr>
 <tr>
 <td>g.addWidget(w, r, c)</td>
-<td align="left">在行r列c添加QWidget w到QGridLayout g; 可以提供附加的行扩展和列扩展参数</td>
+<td style="text-align:left">在行r列c添加QWidget w到QGridLayout g; 可以提供附加的行扩展和列扩展参数</td>
 </tr>
 <tr>
 <td>g.setRowStretch(r, i)</td>
-<td align="left">设置QGridLayout g行r的伸展为i</td>
+<td style="text-align:left">设置QGridLayout g行r的伸展为i</td>
 </tr>
 <tr>
 <td>g.setColumnStretch(c, i)</td>
-<td align="left">设置QGridLayout g列c的伸展为i</td>
+<td style="text-align:left">设置QGridLayout g列c的伸展为i</td>
 </tr>
 </tbody>
 </table>
@@ -347,14 +344,14 @@
 <h2 id="模式okcancel风格对话框">模式OK/Cancel风格对话框</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setNumberFormat1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setNumberFormat1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">dialog</span> <span class="o">=</span> <span class="n">numberformatdlg1</span><span class="o">.</span><span class="n">NumberFormatDlg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">numberFormat</span><span class="p">()</span>
@@ -365,53 +362,53 @@
 <thead>
 <tr>
 <th>语法</th>
-<th align="left">描述</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>d.addButton(b, r)</td>
-<td align="left">添加具有QDialogButtonBox.ButtonRole r的QPushButton b到QDialogButtonBox d中</td>
+<td style="text-align:left">添加具有QDialogButtonBox.ButtonRole r的QPushButton b到QDialogButtonBox d中</td>
 </tr>
 <tr>
 <td>d.addButton(t, r)</td>
-<td align="left">添加具有QDialogButtonBox.ButtonRole r且名字为t的QPushButton到QDialogButtonBox d中，返回所添加的按钮</td>
+<td style="text-align:left">添加具有QDialogButtonBox.ButtonRole r且名字为t的QPushButton到QDialogButtonBox d中，返回所添加的按钮</td>
 </tr>
 <tr>
 <td>d.addButton(s)</td>
-<td align="left">添加由QDialogButtonBox.StandardButton s指定的按钮QDialogButtonBox d中，返回所添加的按钮</td>
+<td style="text-align:left">添加由QDialogButtonBox.StandardButton s指定的按钮QDialogButtonBox d中，返回所添加的按钮</td>
 </tr>
 <tr>
 <td>d.setOrientation(o)</td>
-<td align="left">设置QDialogButtonBox d的方向为Qt.Orientation o(垂直或水平)</td>
+<td style="text-align:left">设置QDialogButtonBox d的方向为Qt.Orientation o(垂直或水平)</td>
 </tr>
 <tr>
 <td>d.button(s)</td>
-<td align="left">返回QDialogButtonBox d中由StandardButton s指定的按钮，或None</td>
+<td style="text-align:left">返回QDialogButtonBox d中由StandardButton s指定的按钮，或None</td>
 </tr>
 <tr>
 <td>d.accepted()</td>
-<td align="left">当角色为QDialogButtonBox.Accept的按钮被点击，发射该信号</td>
+<td style="text-align:left">当角色为QDialogButtonBox.Accept的按钮被点击，发射该信号</td>
 </tr>
 <tr>
 <td>d.rejected()</td>
-<td align="left">当角色为QDialogButtonBox.Reject的按钮被点击，发射该信号</td>
+<td style="text-align:left">当角色为QDialogButtonBox.Reject的按钮被点击，发射该信号</td>
 </tr>
 </tbody>
 </table>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">accept</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">accept</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">class</span> <span class="nc">ThousandsError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span> <span class="k">pass</span>
     <span class="k">class</span> <span class="nc">DecimalError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span> <span class="k">pass</span>
-    <span class="n">QMessageBox</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&#34;Decimal Marker Error&#34;</span><span class="p">,</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="n">QMessageBox</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&#34;Decimal Marker Error&#34;</span><span class="p">,</span> <span class="n">unicode</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
     <span class="n">QDialog</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -424,46 +421,46 @@
 <thead>
 <tr>
 <th>语法</th>
-<th align="left">描述</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>d.accept()</td>
-<td align="left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回True。如果设置了Qt.WA_DeleteOnClose，则对话框被删除</td>
+<td style="text-align:left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回True。如果设置了Qt.WA_DeleteOnClose，则对话框被删除</td>
 </tr>
 <tr>
 <td>d.reject()</td>
-<td align="left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回False。</td>
+<td style="text-align:left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回False。</td>
 </tr>
 <tr>
 <td>d.done(i)</td>
-<td align="left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回i。</td>
+<td style="text-align:left">关闭(隐藏)QDialog d，停止事件循环，并导致exec_()返回i。</td>
 </tr>
 <tr>
 <td>d.exec_()</td>
-<td align="left">模式显示QDialog d，阻塞直到对话框关闭</td>
+<td style="text-align:left">模式显示QDialog d，阻塞直到对话框关闭</td>
 </tr>
 <tr>
 <td>d.show()</td>
-<td align="left">无模式显示QDialog d；继承自QWidget</td>
+<td style="text-align:left">无模式显示QDialog d；继承自QWidget</td>
 </tr>
 <tr>
 <td>d.setSizeGripEnabled(b)</td>
-<td align="left">显示或隐藏QDialog d的size grip，基于bool b</td>
+<td style="text-align:left">显示或隐藏QDialog d的size grip，基于bool b</td>
 </tr>
 </tbody>
 </table>
 <h2 id="无模式applyclose风格对话框">无模式Apply/Close风格对话框</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setNumberFormat2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setNumberFormat2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">dialog</span> <span class="o">=</span> <span class="n">numberformatdlg2</span><span class="o">.</span><span class="n">NumberFormatDlg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dialog</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;changed&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">refreshTable</span><span class="p">)</span>
     <span class="n">dialog</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></td></tr></table>
@@ -473,7 +470,7 @@
 dialog的属性为Qt.WA_DeleteOnClose，则每次都删除对话框而不是隐藏。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -506,18 +503,18 @@ dialog的属性为Qt.WA_DeleteOnClose，则每次都删除对话框而不是隐�
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">(</span><span class="n">NumberFormatDlg</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">WA_DeleteOnClose</span><span class="p">)</span>
     <span class="n">punctuationRe</span> <span class="o">=</span> <span class="n">QRegExp</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;[ ,;:.]&#34;</span><span class="p">)</span>
     <span class="n">thousandsLabel</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&#34;&amp;Thousands separator&#34;</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">thousandsEdit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="n">format</span><span class="p">[</span><span class="s2">&#34;thousandsseparator&#34;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">thousandsEdit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="nb">format</span><span class="p">[</span><span class="s2">&#34;thousandsseparator&#34;</span><span class="p">])</span>
     <span class="n">thousandsLabel</span><span class="o">.</span><span class="n">setBuddy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thousandsEdit</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">thousandsEdit</span><span class="o">.</span><span class="n">setMaxLength</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">thousandsEdit</span><span class="o">.</span><span class="n">setValidator</span><span class="p">(</span>
             <span class="n">QRegExpValidator</span><span class="p">(</span><span class="n">punctuationRe</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
     <span class="n">decimalMarkerLabel</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s2">&#34;Decimal &amp;marker&#34;</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">decimalMarkerEdit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="n">format</span><span class="p">[</span><span class="s2">&#34;decimalmarker&#34;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decimalMarkerEdit</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="nb">format</span><span class="p">[</span><span class="s2">&#34;decimalmarker&#34;</span><span class="p">])</span>
     <span class="n">decimalMarkerLabel</span><span class="o">.</span><span class="n">setBuddy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decimalMarkerEdit</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">decimalMarkerEdit</span><span class="o">.</span><span class="n">setMaxLength</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">decimalMarkerEdit</span><span class="o">.</span><span class="n">setValidator</span><span class="p">(</span>
@@ -527,9 +524,9 @@ dialog的属性为Qt.WA_DeleteOnClose，则每次都删除对话框而不是隐�
     <span class="bp">self</span><span class="o">.</span><span class="n">decimalPlacesSpinBox</span> <span class="o">=</span> <span class="n">QSpinBox</span><span class="p">()</span>
     <span class="n">decimalPlacesLabel</span><span class="o">.</span><span class="n">setBuddy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decimalPlacesSpinBox</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">decimalPlacesSpinBox</span><span class="o">.</span><span class="n">setRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">decimalPlacesSpinBox</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">format</span><span class="p">[</span><span class="s2">&#34;decimalplaces&#34;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decimalPlacesSpinBox</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="nb">format</span><span class="p">[</span><span class="s2">&#34;decimalplaces&#34;</span><span class="p">])</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">redNegativesCheckBox</span> <span class="o">=</span> <span class="n">QCheckBox</span><span class="p">(</span><span class="s2">&#34;&amp;Red negative numbers&#34;</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">redNegativesCheckBox</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="n">format</span><span class="p">[</span><span class="s2">&#34;rednegatives&#34;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">redNegativesCheckBox</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="nb">format</span><span class="p">[</span><span class="s2">&#34;rednegatives&#34;</span><span class="p">])</span>
     <span class="n">buttonBox</span> <span class="o">=</span> <span class="n">QDialogButtonBox</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Apply</span><span class="o">|</span>
                                  <span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Close</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">buttonBox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Apply</span><span class="p">),</span>
@@ -544,7 +541,7 @@ dialog的属性为Qt.WA_DeleteOnClose，则每次都删除对话框而不是隐�
 <h2 id="无模式live对话框">无模式“Live”对话框</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -553,8 +550,8 @@ dialog的属性为Qt.WA_DeleteOnClose，则每次都删除对话框而不是隐�
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setNumberFormat3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberFormatDlg</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setNumberFormat3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberFormatDlg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">numberFormatDlg</span> <span class="o">=</span> <span class="n">numberformatdlg3</span><span class="o">.</span><span class="n">NumberFormatDlg</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">refreshTable</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">numberFormatDlg</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -566,7 +563,7 @@ dialog的属性为Qt.WA_DeleteOnClose，则每次都删除对话框而不是隐�
 <code>activateWindow</code>聚焦于对话框</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -576,7 +573,7 @@ dialog的属性为Qt.WA_DeleteOnClose，则每次都删除对话框而不是隐�
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thousandsEdit</span><span class="p">,</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thousandsEdit</span><span class="p">,</span>
              <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;textEdited(QString)&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkAndFix</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decimalMarkerEdit</span><span class="p">,</span>
              <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&#34;textEdited(QString)&#34;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkAndFix</span><span class="p">)</span>
@@ -690,7 +687,7 @@ dialog的属性为Qt.WA_DeleteOnClose，则每次都删除对话框而不是隐�
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -710,7 +707,7 @@ dialog的属性为Qt.WA_DeleteOnClose，则每次都删除对话框而不是隐�
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/scrapy-fundamental/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="Scrapy爬虫基础" />
 <meta property="og:description" content="安装Scrapy 推荐virtualenv安装，步骤如下： 如果没有virtualenv，先安装virtualenv 1 sudo pip3 install virtualenv 创建一个virtu" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/scrapy-fundamental/" />
+<meta property="og:url" content="https://gitop.cc/post/scrapy-fundamental/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-11-04T17:49:51+08:00" />
 <meta property="article:modified_time" content="2019-11-04T17:49:51+08:00" />
+
 <meta itemprop="name" content="Scrapy爬虫基础">
-<meta itemprop="description" content="安装Scrapy 推荐virtualenv安装，步骤如下： 如果没有virtualenv，先安装virtualenv 1 sudo pip3 install virtualenv 创建一个virtu">
-<meta itemprop="datePublished" content="2019-11-04T17:49:51&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-04T17:49:51&#43;08:00" />
+<meta itemprop="description" content="安装Scrapy 推荐virtualenv安装，步骤如下： 如果没有virtualenv，先安装virtualenv 1 sudo pip3 install virtualenv 创建一个virtu"><meta itemprop="datePublished" content="2019-11-04T17:49:51+08:00" />
+<meta itemprop="dateModified" content="2019-11-04T17:49:51+08:00" />
 <meta itemprop="wordCount" content="2026">
-
-
-
 <meta itemprop="keywords" content="Python,Scrapy," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Scrapy爬虫基础"/>
 <meta name="twitter:description" content="安装Scrapy 推荐virtualenv安装，步骤如下： 如果没有virtualenv，先安装virtualenv 1 sudo pip3 install virtualenv 创建一个virtu"/>
@@ -175,10 +172,10 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo pip3 install virtualenv
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo pip3 install virtualenv
 </code></pre></td></tr></table>
 </div>
 </div><ol start="2">
@@ -186,10 +183,10 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">virtualenv --no-site-packages scrapy
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">virtualenv --no-site-packages scrapy
 </code></pre></td></tr></table>
 </div>
 </div><ol start="3">
@@ -197,10 +194,10 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> bin/activate
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> bin/activate
 </code></pre></td></tr></table>
 </div>
 </div><ol start="4">
@@ -208,10 +205,10 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">pip install Scrapy
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install Scrapy
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="爬虫基本流程">爬虫基本流程</h2>
@@ -220,30 +217,30 @@
 <p>一切都从一个URL开始。您需要从您想要抓取的站点上获取一些示例url。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">scrapy shell -s <span class="nv">USER_AGENT</span><span class="o">=</span><span class="s2">&#34;Mozilla/5.0&#34;</span> http://www.gumtree.com/p/studios-bedsits-rent
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">scrapy shell -s <span class="nv">USER_AGENT</span><span class="o">=</span><span class="s2">&#34;Mozilla/5.0&#34;</span> http://www.gumtree.com/p/studios-bedsits-rent
 </code></pre></td></tr></table>
 </div>
 </div><p>要在使用scrapy shell时调试问题，请添加<code>--pdb</code>参数，以便在出现异常时启用交互式调试。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">scrapy shell --pdb https://gumtree.com
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">scrapy shell --pdb https://gumtree.com
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="请求和响应">请求和响应</h3>
 <p>Scrapy shell为我们做了一些工作，我们给它提供了一个URL，它执行了默认的GET请求并获得了返回码200的响应。这意味着该页面上的信息已经加载并可以使用。如果尝试打印response.body的前50个字符，则会得到以下内容：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
 <span class="s1">&#39;&lt;!DOCTYPE html&gt;</span><span class="se">\n</span><span class="s1">&lt;html&gt;</span><span class="se">\n</span><span class="s1">&lt;head&gt;</span><span class="se">\n</span><span class="s1">&lt;meta charset=&#34;UTF-8&#34;&#39;</span>
 </code></pre></td></tr></table>
 </div>
@@ -259,23 +256,23 @@
 <tbody>
 <tr>
 <td>title</td>
-<td>//*[@itemprop=&quot;name&rdquo;][1]/text()</td>
+<td>//*[@itemprop=&ldquo;name&rdquo;][1]/text()</td>
 </tr>
 <tr>
 <td>price</td>
-<td>//*[@itemprop=&quot;price&rdquo;][1]/text()</td>
+<td>//*[@itemprop=&ldquo;price&rdquo;][1]/text()</td>
 </tr>
 <tr>
 <td>description</td>
-<td>//*[@itemprop=&quot;description&rdquo;][1]/text()</td>
+<td>//*[@itemprop=&ldquo;description&rdquo;][1]/text()</td>
 </tr>
 <tr>
 <td>address</td>
-<td>//*[@itemtype=&quot;http://schema.org/Place&rdquo;][1]/text()</td>
+<td>//*[@itemtype=&ldquo;<a href="http://schema.org/Place%22">http://schema.org/Place&quot;</a>][1]/text()</td>
 </tr>
 <tr>
 <td>image_urls</td>
-<td>//*[@itemprop=&quot;image&rdquo;][1]/@src</td>
+<td>//*[@itemprop=&ldquo;image&rdquo;][1]/@src</td>
 </tr>
 </tbody>
 </table>
@@ -283,10 +280,10 @@
 <p>首先创建一个名为&quot;properties&quot;的工程：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ scrapy startproject properties
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ scrapy startproject properties
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="定义物品">定义物品</h3>
@@ -343,7 +340,7 @@
 <p>定义完这些字段，我们将items.py修改如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -366,7 +363,7 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">scrapy.item</span> <span class="kn">import</span> <span class="n">Item</span><span class="p">,</span> <span class="n">Field</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">scrapy.item</span> <span class="kn">import</span> <span class="n">Item</span><span class="p">,</span> <span class="n">Field</span>
 
 
 <span class="k">class</span> <span class="nc">PropertiesItem</span><span class="p">(</span><span class="n">Item</span><span class="p">):</span>
@@ -393,12 +390,12 @@
 <p>一个爬虫的代码实现了整个$UR^2IM$过程。使用如下命令生成爬虫：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ scrapy genspider basic web
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ scrapy genspider basic web
 Created spider <span class="s1">&#39;basic&#39;</span> using template <span class="s1">&#39;basic&#39;</span> in module:
 properties.spiders.basic
 </code></pre></td></tr></table>
@@ -406,16 +403,16 @@ properties.spiders.basic
 </div><p>使用如下命令查看爬虫模板列表：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">scrapy genspider -l 
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">scrapy genspider -l 
 </code></pre></td></tr></table>
 </div>
 </div><p>basic.py内容如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -429,7 +426,7 @@ properties.spiders.basic
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scrapy</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scrapy</span>
 
 
 <span class="k">class</span> <span class="nc">BasicSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
@@ -446,7 +443,7 @@ properties.spiders.basic
 </div><p>开始编码修改一下爬虫：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -470,7 +467,7 @@ properties.spiders.basic
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scrapy</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scrapy</span>
 
 
 <span class="k">class</span> <span class="nc">BasicSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
@@ -497,17 +494,17 @@ properties.spiders.basic
 </div><p>使用如下命令运行爬虫：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ scrapy crawl basic
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ scrapy crawl basic
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="填充物品">填充物品</h3>
 <p>首先我们需要导入PropertiesItem类。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -534,7 +531,7 @@ properties.spiders.basic
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scrapy</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scrapy</span>
 <span class="kn">from</span> <span class="nn">properties.items</span> <span class="kn">import</span> <span class="n">PropertiesItem</span>
 
 
@@ -565,7 +562,7 @@ properties.spiders.basic
 <p>以下命令可以将爬虫爬取到的数据保存到文件：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -573,7 +570,7 @@ properties.spiders.basic
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ scrapy crawl basic -o items.json
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ scrapy crawl basic -o items.json
 $ scrapy crawl basic -o items.jl
 $ scrapy crawl basic -o items.csv
 $ scrapy crawl basic -o items.xml
@@ -585,7 +582,7 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
 <p>我们首先使用一个很好的实用工具类ItemLoader来替换所有那些看起来很混乱的extract()和xpath()操作。通过使用它，我们的parse()方法改变如下:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -600,7 +597,7 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">ItemLoader</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">PropertiesItem</span><span class="p">(),</span> <span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
 
     <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@itemprop=&#34;name&#34;][1]/text()&#39;</span><span class="p">)</span>
@@ -653,7 +650,7 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
 <p>使用MapCompose修改过的爬虫如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -668,17 +665,17 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
     <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@itemprop=&#34;name&#34;][1]/text()&#39;</span><span class="p">,</span>
-                <span class="n">MapCompose</span><span class="p">(</span><span class="nb">unicode</span><span class="o">.</span><span class="n">strip</span><span class="p">,</span> <span class="nb">unicode</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
+                <span class="n">MapCompose</span><span class="p">(</span><span class="n">unicode</span><span class="o">.</span><span class="n">strip</span><span class="p">,</span> <span class="n">unicode</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
     <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;.//*[@itemprop=&#34;price&#34;][1]/text()&#39;</span><span class="p">,</span>
                 <span class="n">MapCompose</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="nb">float</span><span class="p">),</span>
                 <span class="n">re</span><span class="o">=</span><span class="s1">&#39;[,.0-9]+&#39;</span><span class="p">)</span>
     <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@itemprop=&#34;description&#34;][1]/text()&#39;</span><span class="p">,</span>
-                <span class="n">MapCompose</span><span class="p">(</span><span class="nb">unicode</span><span class="o">.</span><span class="n">strip</span><span class="p">),</span> <span class="n">Join</span><span class="p">())</span>
+                <span class="n">MapCompose</span><span class="p">(</span><span class="n">unicode</span><span class="o">.</span><span class="n">strip</span><span class="p">),</span> <span class="n">Join</span><span class="p">())</span>
     <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;//*[@itemtype=&#34;http://schema.org/Place&#34;][1]/text()&#39;</span><span class="p">,</span>
-                <span class="n">MapCompose</span><span class="p">(</span><span class="nb">unicode</span><span class="o">.</span><span class="n">strip</span><span class="p">))</span>
+                <span class="n">MapCompose</span><span class="p">(</span><span class="n">unicode</span><span class="o">.</span><span class="n">strip</span><span class="p">))</span>
     <span class="n">l</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span><span class="s1">&#39;image_urls&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@itemprop=&#34;image&#34;][1]/@src&#39;</span><span class="p">,</span>
                 <span class="n">MapCompose</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">i</span><span class="p">)))</span>
 </code></pre></td></tr></table>
@@ -687,7 +684,7 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
 <p>合约有点像spider的单元测试。它们能让你很快知道是否发生了什么坏了。合约包含在注释中，就在函数名(docstring)后面，并且以@开头。看下面一个例子：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -697,7 +694,7 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
     <span class="s2">&#34;&#34;&#34; This function parses a property page.
 </span><span class="s2">
 </span><span class="s2">    @url http://web:9312/properties/property_000000.html
@@ -710,10 +707,10 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
 </div><p>使用名<code>scrapy check</code>检查合约是否满足：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ scrapy check basic
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ scrapy check basic
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="提取更多url">提取更多URL</h2>
@@ -725,7 +722,7 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
 <p>将parse函数修改为：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -737,7 +734,7 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
     <span class="c1"># Get the next index URLs and yield Requests</span>
     <span class="n">next_selector</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[contains(@class, &#34;next&#34;)]//@href&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">next_selector</span><span class="o">.</span><span class="n">extract</span><span class="p">():</span>
@@ -753,15 +750,15 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
 <p>前面的代码太麻烦了，Scrapy使用CrawlSpider可以简单的实现同样的工作。首先使用crawl模板创建爬虫：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ scrapy genspider -t crawl easy web
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ scrapy genspider -t crawl easy web
 </code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -778,7 +775,7 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">EasySpider</span><span class="p">(</span><span class="n">CrawlSpider</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">EasySpider</span><span class="p">(</span><span class="n">CrawlSpider</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;easy&#39;</span>
     <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;web&#34;</span><span class="p">]</span>
 
@@ -896,7 +893,7 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -916,7 +913,7 @@ $ scrapy crawl basic -o <span class="s2">&#34;s3://aws_key:aws_secret@scrapybook
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

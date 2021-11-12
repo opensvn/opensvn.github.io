@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/mysql-cookbook-5/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="MySQL Cookbook 第5章 处理字符串" />
 <meta property="og:description" content="5.0. Introduction A string can be binary or nonbinary. Binary strings are used for raw data such as images, music files, or encrypted values. Nonbinary strings are used for character data such as text and are associated with a character set and collation (sort order). A character set determines which characters are legal in a string. You can choose collations according to whether you need comparisons to be case sensitive" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/mysql-cookbook-5/" />
+<meta property="og:url" content="https://gitop.cc/post/mysql-cookbook-5/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2016-04-07T22:45:02+00:00" />
 <meta property="article:modified_time" content="2016-04-07T22:45:02+00:00" />
+
 <meta itemprop="name" content="MySQL Cookbook 第5章 处理字符串">
-<meta itemprop="description" content="5.0. Introduction A string can be binary or nonbinary. Binary strings are used for raw data such as images, music files, or encrypted values. Nonbinary strings are used for character data such as text and are associated with a character set and collation (sort order). A character set determines which characters are legal in a string. You can choose collations according to whether you need comparisons to be case sensitive">
-<meta itemprop="datePublished" content="2016-04-07T22:45:02&#43;00:00" />
-<meta itemprop="dateModified" content="2016-04-07T22:45:02&#43;00:00" />
+<meta itemprop="description" content="5.0. Introduction A string can be binary or nonbinary. Binary strings are used for raw data such as images, music files, or encrypted values. Nonbinary strings are used for character data such as text and are associated with a character set and collation (sort order). A character set determines which characters are legal in a string. You can choose collations according to whether you need comparisons to be case sensitive"><meta itemprop="datePublished" content="2016-04-07T22:45:02+00:00" />
+<meta itemprop="dateModified" content="2016-04-07T22:45:02+00:00" />
 <meta itemprop="wordCount" content="3885">
-
-
-
 <meta itemprop="keywords" content="MySQL," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MySQL Cookbook 第5章 处理字符串"/>
 <meta name="twitter:description" content="5.0. Introduction A string can be binary or nonbinary. Binary strings are used for raw data such as images, music files, or encrypted values. Nonbinary strings are used for character data such as text and are associated with a character set and collation (sort order). A character set determines which characters are legal in a string. You can choose collations according to whether you need comparisons to be case sensitive"/>
@@ -195,7 +192,7 @@ might contain only single-byte characters, as in the following example:</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -204,7 +201,7 @@ might contain only single-byte characters, as in the following example:</li>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SET @s = CONVERT(&#39;abc&#39; USING utf8);
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SET @s = CONVERT(&#39;abc&#39; USING utf8);
     mysql&gt; SELECT LENGTH(@s), CHAR_LENGTH(@s);
     +------------|-----------------+
     | LENGTH(@s) | CHAR_LENGTH(@s) |
@@ -220,7 +217,7 @@ every ucs2 string contains multibyte characters:</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -229,7 +226,7 @@ every ucs2 string contains multibyte characters:</li>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SET @s = CONVERT(&#39;abc&#39; USING ucs2);
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SET @s = CONVERT(&#39;abc&#39; USING ucs2);
     mysql&gt; SELECT LENGTH(@s), CHAR_LENGTH(@s);
     +------------|-----------------+
     | LENGTH(@s) | CHAR_LENGTH(@s) |
@@ -243,7 +240,7 @@ characters in the character set. Use SHOW COLLATION to see all available collati
 LIKE clause to see the collations for a particular character set:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -258,7 +255,7 @@ LIKE clause to see the collations for a particular character set:</p>
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SHOW COLLATION LIKE &#39;latin1%&#39;;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SHOW COLLATION LIKE &#39;latin1%&#39;;
     +-------------------|---------|----|---------|----------|---------+
     | Collation         | Charset | Id | Default | Compiled | Sortlen |
     +-------------------|---------|----|---------|----------|---------+
@@ -304,7 +301,7 @@ other, as shown by the following result:</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -315,7 +312,7 @@ other, as shown by the following result:</li>
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT c FROM t ORDER BY c COLLATE latin1_swedish_ci;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT c FROM t ORDER BY c COLLATE latin1_swedish_ci;
     +------+
     | c    |
     +------+
@@ -332,7 +329,7 @@ lowercase:</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -343,7 +340,7 @@ lowercase:</li>
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT c FROM t ORDER BY c COLLATE latin1_general_cs;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT c FROM t ORDER BY c COLLATE latin1_general_cs;
     +------+
     | c    |
     +------+
@@ -361,7 +358,7 @@ collation results in the following ordering:</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -372,7 +369,7 @@ collation results in the following ordering:</li>
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT c FROM t ORDER BY c COLLATE latin1_bin;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT c FROM t ORDER BY c COLLATE latin1_bin;
     +------+
     | c    |
     +------+
@@ -390,13 +387,13 @@ characters that follow c and l, respectively, specify the utf8_spanish2_ci colla
 two collations produce different results, as shown here:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; CREATE TABLE t (c CHAR(2) CHARACTER SET utf8);
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; CREATE TABLE t (c CHAR(2) CHARACTER SET utf8);
     mysql&gt; INSERT INTO t (c) VALUES(&#39;cg&#39;),(&#39;ch&#39;),(&#39;ci&#39;),(&#39;lk&#39;),(&#39;ll&#39;),(&#39;lm&#39;);
     mysql&gt; SELECT c FROM t ORDER BY c COLLATE utf8_general_ci;
     mysql&gt; SELECT c FROM t ORDER BY c COLLATE utf8_spanish2_ci;
@@ -539,19 +536,19 @@ set. You have several ways to do this:</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SET NAMES &#39;utf8&#39;;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SET NAMES &#39;utf8&#39;;
 </code></pre></td></tr></table>
 </div>
 </div><p>SET NAMES permits the connection collation to be specified as well:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SET NAMES &#39;utf8&#39; COLLATE &#39;utf8_general_ci&#39;;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SET NAMES &#39;utf8&#39; COLLATE &#39;utf8_general_ci&#39;;
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -562,11 +559,11 @@ server:</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    [mysql]
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    [mysql]
     default-character-set=utf8
 </code></pre></td></tr></table>
 </div>
@@ -588,10 +585,10 @@ might use a connection URL like this:</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    jdbc:mysql://localhost/cookbook?characterEncoding=UTF-8
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    jdbc:mysql://localhost/cookbook?characterEncoding=UTF-8
 </code></pre></td></tr></table>
 </div>
 </div><p>This is preferable to SET NAMES because Connector/J performs character-set con‐
@@ -601,16 +598,16 @@ For PDO, use a charset option in your data source name (DSN) string (this works
 in PHP 5.3.6 or later):</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    $dsn = &#34;mysql:host=localhost;dbname=cookbook;charset=utf8&#34;;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    $dsn = &#34;mysql:host=localhost;dbname=cookbook;charset=utf8&#34;;
 </code></pre></td></tr></table>
 </div>
 </div><p>For Connector/Python, specify a charset connection parameter:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -619,7 +616,7 @@ in PHP 5.3.6 or later):</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    conn_params = {
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    conn_params = {
     &#34;database&#34;: &#34;cookbook&#34;,
     &#34;host&#34;: &#34;localhost&#34;,
     &#34;user&#34;: &#34;cbuser&#34;,
@@ -649,8 +646,8 @@ identifiers such as table or column names, and not for strings</p>
 <p>Use hexadecimal notation. Each pair of hex digits produces one byte of the string.
 abcd can be written using any of these formats:
 0x61626364
-X'61626364&rsquo;
-x'61626364&rsquo;
+X'61626364'
+x'61626364'
 MySQL treats strings written using hex notation as binary strings. Not coinciden‐
 tally, it’s common for applications to use hex strings when constructing SQL state‐
 ments that refer to binary values:</p>
@@ -679,7 +676,7 @@ quotes:</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -687,7 +684,7 @@ quotes:</li>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT &#34;I&#39;m asleep&#34;, &#39;He said, &#34;Boo!&#34;&#39;;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT &#34;I&#39;m asleep&#34;, &#39;He said, &#34;Boo!&#34;&#39;;
     +------------|-----------------+
     | I&#39;m asleep | He said, &#34;Boo!&#34; |
     +------------|-----------------+
@@ -702,7 +699,7 @@ it strips the extra quote or the backslash:</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -716,7 +713,7 @@ it strips the extra quote or the backslash:</li>
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT &#39;I&#39;&#39;m asleep&#39;, &#39;I\&#39;m wide awake&#39;;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT &#39;I&#39;&#39;m asleep&#39;, &#39;I\&#39;m wide awake&#39;;
     +------------|----------------+
     | I&#39;m asleep | I&#39;m wide awake |
     +------------|----------------+
@@ -734,7 +731,7 @@ it strips the extra quote or the backslash:</li>
 itself. To write a literal backslash within a string, double it:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -742,7 +739,7 @@ itself. To write a literal backslash within a string, double it:</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT &#39;Install MySQL in C:\\mysql on Windows&#39;;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT &#39;Install MySQL in C:\\mysql on Windows&#39;;
     +--------------------------------------+
     | Install MySQL in C:\mysql on Windows |
     +--------------------------------------+
@@ -755,7 +752,7 @@ itself. To write a literal backslash within a string, double it:</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -763,7 +760,7 @@ itself. To write a literal backslash within a string, double it:</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT 0x49276D2061736C656570;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mysql&gt; SELECT 0x49276D2061736C656570;
     +------------------------+
     | 0x49276D2061736C656570 |
     +------------------------+
@@ -1041,7 +1038,7 @@ define a stored function:</p>
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -1061,7 +1058,7 @@ define a stored function:</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

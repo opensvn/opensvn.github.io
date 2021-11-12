@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/cpp-primer-2/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="第2章 变量和基本类型" />
 <meta property="og:description" content="2.1 基础内置类型 C&#43;&#43;定义了一组基础类型，包括算术类型和一个特殊的void类型。算术类型表示字符，整型，布尔值和浮点数类型。void类型不关联" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/cpp-primer-2/" />
+<meta property="og:url" content="https://gitop.cc/post/cpp-primer-2/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2016-03-21T20:27:17+00:00" />
 <meta property="article:modified_time" content="2016-03-21T20:27:17+00:00" />
+
 <meta itemprop="name" content="第2章 变量和基本类型">
-<meta itemprop="description" content="2.1 基础内置类型 C&#43;&#43;定义了一组基础类型，包括算术类型和一个特殊的void类型。算术类型表示字符，整型，布尔值和浮点数类型。void类型不关联">
-<meta itemprop="datePublished" content="2016-03-21T20:27:17&#43;00:00" />
-<meta itemprop="dateModified" content="2016-03-21T20:27:17&#43;00:00" />
-<meta itemprop="wordCount" content="6702">
-
-
-
+<meta itemprop="description" content="2.1 基础内置类型 C&#43;&#43;定义了一组基础类型，包括算术类型和一个特殊的void类型。算术类型表示字符，整型，布尔值和浮点数类型。void类型不关联"><meta itemprop="datePublished" content="2016-03-21T20:27:17+00:00" />
+<meta itemprop="dateModified" content="2016-03-21T20:27:17+00:00" />
+<meta itemprop="wordCount" content="6696">
 <meta itemprop="keywords" content="C&#43;&#43;," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="第2章 变量和基本类型"/>
 <meta name="twitter:description" content="2.1 基础内置类型 C&#43;&#43;定义了一组基础类型，包括算术类型和一个特殊的void类型。算术类型表示字符，整型，布尔值和浮点数类型。void类型不关联"/>
@@ -129,7 +126,7 @@
         <div class="post-category">
             <a href="/categories/language/"> Language </a>
             </div>
-          <span class="more-meta"> 约 6702 字 </span>
+          <span class="more-meta"> 约 6696 字 </span>
           <span class="more-meta"> 预计阅读 14 分钟 </span>
         
       </div>
@@ -187,71 +184,71 @@
 <table>
 <thead>
 <tr>
-<th align="left">Type</th>
-<th align="left">Meaning</th>
-<th align="left">Minimum Size</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Meaning</th>
+<th style="text-align:left">Minimum Size</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">bool</td>
-<td align="left">boolean</td>
-<td align="left">NA</td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">NA</td>
 </tr>
 <tr>
-<td align="left">char</td>
-<td align="left">character</td>
-<td align="left">8 bits</td>
+<td style="text-align:left">char</td>
+<td style="text-align:left">character</td>
+<td style="text-align:left">8 bits</td>
 </tr>
 <tr>
-<td align="left">wchar_t</td>
-<td align="left">wide character</td>
-<td align="left">16 bits</td>
+<td style="text-align:left">wchar_t</td>
+<td style="text-align:left">wide character</td>
+<td style="text-align:left">16 bits</td>
 </tr>
 <tr>
-<td align="left">char16_t</td>
-<td align="left">Unicode character</td>
-<td align="left">16 bits</td>
+<td style="text-align:left">char16_t</td>
+<td style="text-align:left">Unicode character</td>
+<td style="text-align:left">16 bits</td>
 </tr>
 <tr>
-<td align="left">char32_t</td>
-<td align="left">Unicode character</td>
-<td align="left">32 bits</td>
+<td style="text-align:left">char32_t</td>
+<td style="text-align:left">Unicode character</td>
+<td style="text-align:left">32 bits</td>
 </tr>
 <tr>
-<td align="left">short</td>
-<td align="left">short integer</td>
-<td align="left">16 bits</td>
+<td style="text-align:left">short</td>
+<td style="text-align:left">short integer</td>
+<td style="text-align:left">16 bits</td>
 </tr>
 <tr>
-<td align="left">int</td>
-<td align="left">integer</td>
-<td align="left">16 bits</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">16 bits</td>
 </tr>
 <tr>
-<td align="left">long</td>
-<td align="left">long integer</td>
-<td align="left">32 bits</td>
+<td style="text-align:left">long</td>
+<td style="text-align:left">long integer</td>
+<td style="text-align:left">32 bits</td>
 </tr>
 <tr>
-<td align="left">long long</td>
-<td align="left">long integer</td>
-<td align="left">64 bits</td>
+<td style="text-align:left">long long</td>
+<td style="text-align:left">long integer</td>
+<td style="text-align:left">64 bits</td>
 </tr>
 <tr>
-<td align="left">float</td>
-<td align="left">single-precision floating-point</td>
-<td align="left">6 significant digits</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left">single-precision floating-point</td>
+<td style="text-align:left">6 significant digits</td>
 </tr>
 <tr>
-<td align="left">double</td>
-<td align="left">double-precision floating-point</td>
-<td align="left">10 significant digits</td>
+<td style="text-align:left">double</td>
+<td style="text-align:left">double-precision floating-point</td>
+<td style="text-align:left">10 significant digits</td>
 </tr>
 <tr>
-<td align="left">long double</td>
-<td align="left">extended-precision floating-point</td>
-<td align="left">10 significant digits</td>
+<td style="text-align:left">long double</td>
+<td style="text-align:left">extended-precision floating-point</td>
+<td style="text-align:left">10 significant digits</td>
 </tr>
 </tbody>
 </table>
@@ -292,13 +289,13 @@
 <p>尽管我们不太可能有意地将一个负值赋值给一个无符号类型，但是我们非常容易写出代码隐式地这样做。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">unsigned</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">unsigned</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="mi">42</span><span class="p">;</span>
 <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// prints -84
 </span><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// if 32-bit ints, prints 4294967264
@@ -308,12 +305,12 @@
 <p>不管一个或者两个操作数是无符号的，当用无符号数减去一个数时，我们必须确保结果不能是负数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">unsigned</span> <span class="n">u1</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span> <span class="n">u2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">unsigned</span> <span class="n">u1</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span> <span class="n">u2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u1</span> <span class="o">-</span> <span class="n">u2</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// ok: result is 32
 </span><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u2</span> <span class="o">-</span> <span class="n">u1</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// ok: but the result will wrap around
 </span></code></pre></td></tr></table>
@@ -322,15 +319,14 @@
 <p>无符号数不可能小于0也影响我们如何写循环。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// WRONG: u can never be less than 0; the condition will always succeed
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// WRONG: u can never be less than 0; the condition will always succeed
 </span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">u</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">u</span><span class="p">)</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</code></pre></td></tr></table>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -346,82 +342,81 @@
 <table>
 <thead>
 <tr>
-<th align="left">Prefix</th>
-<th align="left">Meaning</th>
-<th align="left">Type</th>
+<th style="text-align:left">Prefix</th>
+<th style="text-align:left">Meaning</th>
+<th style="text-align:left">Type</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">u</td>
-<td align="left">Unicode 16 character</td>
-<td align="left">char16_t</td>
+<td style="text-align:left">u</td>
+<td style="text-align:left">Unicode 16 character</td>
+<td style="text-align:left">char16_t</td>
 </tr>
 <tr>
-<td align="left">U</td>
-<td align="left">Unicode 32 character</td>
-<td align="left">char32_t</td>
+<td style="text-align:left">U</td>
+<td style="text-align:left">Unicode 32 character</td>
+<td style="text-align:left">char32_t</td>
 </tr>
 <tr>
-<td align="left">L</td>
-<td align="left">wide character</td>
-<td align="left">wchar_t</td>
+<td style="text-align:left">L</td>
+<td style="text-align:left">wide character</td>
+<td style="text-align:left">wchar_t</td>
 </tr>
 <tr>
-<td align="left">u8</td>
-<td align="left">utf-8(string literals only)</td>
-<td align="left">char</td>
+<td style="text-align:left">u8</td>
+<td style="text-align:left">utf-8(string literals only)</td>
+<td style="text-align:left">char</td>
 </tr>
 </tbody>
 </table>
 <table>
 <thead>
 <tr>
-<th align="left">Suffix</th>
-<th align="left">Minimum Type</th>
+<th style="text-align:left">Suffix</th>
+<th style="text-align:left">Minimum Type</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">u or U</td>
-<td align="left">unsigned</td>
+<td style="text-align:left">u or U</td>
+<td style="text-align:left">unsigned</td>
 </tr>
 <tr>
-<td align="left">l or L</td>
-<td align="left">long</td>
+<td style="text-align:left">l or L</td>
+<td style="text-align:left">long</td>
 </tr>
 <tr>
-<td align="left">ll or LL</td>
-<td align="left">long long</td>
+<td style="text-align:left">ll or LL</td>
+<td style="text-align:left">long long</td>
 </tr>
 </tbody>
 </table>
 <table>
 <thead>
 <tr>
-<th align="left">Suffix</th>
-<th align="left">Type</th>
+<th style="text-align:left">Suffix</th>
+<th style="text-align:left">Type</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">f or F</td>
-<td align="left">float</td>
+<td style="text-align:left">f or F</td>
+<td style="text-align:left">float</td>
 </tr>
 <tr>
-<td align="left">l or L</td>
-<td align="left">long double</td>
+<td style="text-align:left">l or L</td>
+<td style="text-align:left">long double</td>
 </tr>
 </tbody>
 </table>
 <p>浮点数字面值包含小数点或指数(E或e)指定使用科学计数法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="mf">3.14159</span>    <span class="mf">3.14159E0</span>    <span class="mf">0.</span>    <span class="mf">0e0</span>    <span class="mf">.001</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="mf">3.14159</span>    <span class="mf">3.14159E0</span>    <span class="mf">0.</span>    <span class="mf">0e0</span>    <span class="mf">.001</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>浮点数字面值默认为double类型。我们可以添加后缀覆盖默认行为。</p>
@@ -429,110 +424,107 @@
 <p>一个单引号包含的字符是一个类型为char的字面值。0个或多个双引号包含的字符是字符串字面值：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="sc">&#39;a&#39;</span>  <span class="c1">// character literal
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="sc">&#39;a&#39;</span>  <span class="c1">// character literal
 </span><span class="c1"></span><span class="s">&#34;Hello World!&#34;</span>  <span class="c1">// string literal
 </span></code></pre></td></tr></table>
 </div>
 </div>
-<p>一个字符串字面值的类型是一个const char数组。编译器给每一个字符串字面值追加一个空字符('\0&rsquo;)。</p>
+<p>一个字符串字面值的类型是一个const char数组。编译器给每一个字符串字面值追加一个空字符('\0')。</p>
 <p>两个相邻的仅仅由空白符分割的字符串字面值连接为一个字面值。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// multiline string literal
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// multiline string literal
 </span><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;a really, really long string literal &#34;</span>
-             <span class="s">&#34;that spans two lines&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</code></pre></td></tr></table>
+             <span class="s">&#34;that spans two lines&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>转义序列</strong></p>
 <table>
 <thead>
 <tr>
-<th align="left">Escape Sequence</th>
-<th align="left">Meaning</th>
+<th style="text-align:left">Escape Sequence</th>
+<th style="text-align:left">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">\n</td>
-<td align="left">newline</td>
+<td style="text-align:left">\n</td>
+<td style="text-align:left">newline</td>
 </tr>
 <tr>
-<td align="left">\t</td>
-<td align="left">horizontal tab</td>
+<td style="text-align:left">\t</td>
+<td style="text-align:left">horizontal tab</td>
 </tr>
 <tr>
-<td align="left">\a</td>
-<td align="left">alert(bell)</td>
+<td style="text-align:left">\a</td>
+<td style="text-align:left">alert(bell)</td>
 </tr>
 <tr>
-<td align="left">\v</td>
-<td align="left">vertical tab</td>
+<td style="text-align:left">\v</td>
+<td style="text-align:left">vertical tab</td>
 </tr>
 <tr>
-<td align="left">\b</td>
-<td align="left">backspace</td>
+<td style="text-align:left">\b</td>
+<td style="text-align:left">backspace</td>
 </tr>
 <tr>
-<td align="left">&quot;</td>
-<td align="left">double quote</td>
+<td style="text-align:left">&quot;</td>
+<td style="text-align:left">double quote</td>
 </tr>
 <tr>
-<td align="left">\<!-- raw HTML omitted --></td>
-<td align="left">backslash</td>
+<td style="text-align:left">\<!-- raw HTML omitted --></td>
+<td style="text-align:left">backslash</td>
 </tr>
 <tr>
-<td align="left">?</td>
-<td align="left">question mark</td>
+<td style="text-align:left">?</td>
+<td style="text-align:left">question mark</td>
 </tr>
 <tr>
-<td align="left">'</td>
-<td align="left">single quote</td>
+<td style="text-align:left">'</td>
+<td style="text-align:left">single quote</td>
 </tr>
 <tr>
-<td align="left">\r</td>
-<td align="left">carriage return</td>
+<td style="text-align:left">\r</td>
+<td style="text-align:left">carriage return</td>
 </tr>
 <tr>
-<td align="left">\f</td>
-<td align="left">formfeed</td>
+<td style="text-align:left">\f</td>
+<td style="text-align:left">formfeed</td>
 </tr>
 </tbody>
 </table>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">newline</span>            <span class="err">\</span><span class="n">n</span>     <span class="n">horizontal</span> <span class="n">tab</span>      <span class="err">\</span><span class="n">t</span>     <span class="n">alert</span> <span class="p">(</span><span class="n">bell</span><span class="p">)</span>       <span class="err">\</span><span class="n">a</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">newline</span>            <span class="err">\</span><span class="n">n</span>     <span class="n">horizontal</span> <span class="n">tab</span>      <span class="err">\</span><span class="n">t</span>     <span class="n">alert</span> <span class="p">(</span><span class="n">bell</span><span class="p">)</span>       <span class="err">\</span><span class="n">a</span>
 <span class="n">vertical</span> <span class="n">tab</span>       <span class="err">\</span><span class="n">v</span>     <span class="n">backspace</span>          <span class="err">\</span><span class="n">b</span>     <span class="kt">double</span> <span class="n">quote</span>  <span class="err">\</span><span class="s">&#34;</span>
 <span class="n">backslash</span>         <span class="err">\\</span>     <span class="n">question</span> <span class="n">mark</span>     <span class="err">\</span><span class="o">?</span>     <span class="n">single</span> <span class="n">quote</span>    <span class="err">\&#39;</span>
-<span class="n">carriage</span> <span class="k">return</span>   <span class="err">\</span><span class="n">r</span>     <span class="n">formfeed</span>       <span class="err">\</span><span class="n">f</span><span class="s">&#34;</span>
-</code></pre></td></tr></table>
+<span class="n">carriage</span> <span class="k">return</span>   <span class="err">\</span><span class="n">r</span>     <span class="n">formfeed</span>       <span class="err">\</span><span class="n">f</span><span class="s">&#34;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>我们也可以写通用的转义序列，即\x后跟一个或多个16进制数字或者\后跟1至3个8进制数字。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="err">\</span><span class="mi">7</span> <span class="p">(</span><span class="n">bell</span><span class="p">)</span>    <span class="err">\</span><span class="mi">12</span> <span class="p">(</span><span class="n">newline</span><span class="p">)</span>     <span class="err">\</span><span class="mi">40</span> <span class="p">(</span><span class="n">blank</span><span class="p">)</span>
-<span class="err">\</span><span class="mi">0</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>    <span class="err">\</span><span class="mi">115</span> <span class="p">(</span><span class="sc">&#39;M&#39;</span><span class="p">)</span>    <span class="err">\</span><span class="n">x4d</span> <span class="p">(</span><span class="sc">&#39;M&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="err">\</span><span class="mi">7</span> <span class="p">(</span><span class="n">bell</span><span class="p">)</span>    <span class="err">\</span><span class="mi">12</span> <span class="p">(</span><span class="n">newline</span><span class="p">)</span>     <span class="err">\</span><span class="mi">40</span> <span class="p">(</span><span class="n">blank</span><span class="p">)</span>
+<span class="err">\</span><span class="mi">0</span> <span class="p">(</span><span class="n">null</span><span class="p">)</span>    <span class="err">\</span><span class="mi">115</span> <span class="p">(</span><span class="sc">&#39;M&#39;</span><span class="p">)</span>    <span class="err">\</span><span class="n">x4d</span> <span class="p">(</span><span class="sc">&#39;M&#39;</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>注意如果\后面后跟3个以上8进制数字，只有前3个有效。相反\x使用所有后续16进制数字。</p>
@@ -540,14 +532,14 @@
 <p>我们可以提供前缀或后缀来覆盖整数，浮点数或字符字面值的默认类型。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="sa">L</span><span class="sc">&#39;a&#39;</span>     <span class="c1">// wide character literal, type is wchar_t
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="sa">L</span><span class="sc">&#39;a&#39;</span>     <span class="c1">// wide character literal, type is wchar_t
 </span><span class="c1"></span><span class="sa">u8</span><span class="s">&#34;hi!&#34;</span>  <span class="c1">// utf-8 string literal (utf-8 encodes a Unicode character in 8 bits)
 </span><span class="c1"></span><span class="mi">42ULL</span>    <span class="c1">// unsigned integer literal, type is unsigned long long
 </span><span class="c1"></span><span class="mf">1E-3</span><span class="n">F</span>    <span class="c1">// single-precision floating-point literal, type is float
@@ -567,14 +559,14 @@
 <p>一个简单的变量定义由类型说明符，一个或多个由逗号分隔的变量名组成，由分号结束。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="c1">// sum, value, and units_sold have type int
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="c1">// sum, value, and units_sold have type int
 </span><span class="c1"></span>    <span class="n">units_sold</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// sum and units_sold have initial value 0
 </span><span class="c1"></span><span class="n">Sales_item</span> <span class="n">item</span><span class="p">;</span>    <span class="c1">// item has type Sales_item (see § 1.5.1 (p. 20))
 </span><span class="c1">// string is a library type, representing a variable-length sequence of characters
@@ -586,17 +578,16 @@
 <p>一个被初始化的对象在它创建时获得指定的值。用来初始化一个变量的值可以是任意复杂的表达式。当一个定义语句定义多个变量时，前面定义的变量对后面的变量可见。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ok: price is defined and initialized before it is used to initialize discount
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ok: price is defined and initialized before it is used to initialize discount
 </span><span class="c1"></span><span class="kt">double</span> <span class="n">price</span> <span class="o">=</span> <span class="mf">109.99</span><span class="p">,</span> <span class="n">discount</span> <span class="o">=</span> <span class="n">price</span> <span class="o">*</span> <span class="mf">0.16</span><span class="p">;</span>
 <span class="c1">// ok: call applyDiscount and use the return value to initialize salePrice
-</span><span class="c1"></span><span class="kt">double</span> <span class="n">salePrice</span> <span class="o">=</span> <span class="n">applyDiscount</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">discount</span><span class="p">);</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="kt">double</span> <span class="n">salePrice</span> <span class="o">=</span> <span class="n">applyDiscount</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">discount</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -607,29 +598,28 @@
 <p>初始化的一个复杂主题是语言定义了几种不同形式的初始化方式。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">units_sold</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">units_sold</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">units_sold</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 <span class="kt">int</span> <span class="n">units_sold</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-<span class="kt">int</span> <span class="nf">units_sold</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<span class="kt">int</span> <span class="nf">units_sold</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>新标准引入花括号作为普遍使用的初始化方式。这种初始化方式称为列表初始化。列表初始化现在可以用在任何时候初始化一个对象以及某些情况下赋值给一个对象。</p>
 <p>当使用内置类型的变量时，列表初始化有一个重要的性质：编译器不允许会导致精度损失的内置类型列表初始化。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">long</span> <span class="kt">double</span> <span class="n">ld</span> <span class="o">=</span> <span class="mf">3.1415926536</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">long</span> <span class="kt">double</span> <span class="n">ld</span> <span class="o">=</span> <span class="mf">3.1415926536</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">a</span><span class="p">{</span><span class="n">ld</span><span class="p">},</span> <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">ld</span><span class="p">};</span> <span class="c1">// error: narrowing conversion required
 </span><span class="c1"></span><span class="kt">int</span> <span class="nf">c</span><span class="p">(</span><span class="n">ld</span><span class="p">),</span> <span class="n">d</span> <span class="o">=</span> <span class="n">ld</span><span class="p">;</span>   <span class="c1">// ok: but value will be truncated
 </span></code></pre></td></tr></table>
@@ -657,11 +647,11 @@
 <p>为了获得一个声明而不是定义，可以添加extern关键字且不需要提供初始化式：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">extern</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>   <span class="c1">// declares but does not define i
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">extern</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>   <span class="c1">// declares but does not define i
 </span><span class="c1"></span><span class="kt">int</span> <span class="n">j</span><span class="p">;</span>          <span class="c1">// declares and defines j
 </span></code></pre></td></tr></table>
 </div>
@@ -669,10 +659,10 @@
 <p>任何包含显式初始化式的声明都是一个定义。一个有初始化式的extern是一个定义：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">extern</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.1416</span><span class="p">;</span> <span class="c1">// definition
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">extern</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.1416</span><span class="p">;</span> <span class="c1">// definition
 </span></code></pre></td></tr></table>
 </div>
 </div>
@@ -687,7 +677,7 @@
 <p><em>C++关键字</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -704,7 +694,7 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">alignas</span>          <span class="k">continue</span>         <span class="k">friend</span>           <span class="k">register</span>         <span class="nb">true</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">alignas</span>          <span class="k">continue</span>         <span class="k">friend</span>           <span class="k">register</span>         <span class="nb">true</span>
 <span class="k">alignof</span>          <span class="k">decltype</span>         <span class="k">goto</span>             <span class="k">reinterpret_cast</span> <span class="k">try</span>
 <span class="k">asm</span>              <span class="k">default</span>          <span class="k">if</span>               <span class="k">return</span>           <span class="k">typedef</span>
 <span class="k">auto</span>             <span class="k">delete</span>           <span class="kr">inline</span>           <span class="kt">short</span>            <span class="k">typeid</span>
@@ -718,20 +708,18 @@
 <span class="k">class</span>            <span class="nc">extern</span>           <span class="k">operator</span>         <span class="k">template</span>         <span class="kt">wchar_t</span>
 <span class="k">const</span>            <span class="nb">false</span>            <span class="k">private</span>          <span class="k">this</span>             <span class="k">while</span>
 <span class="k">constexpr</span>        <span class="kt">float</span>            <span class="k">protected</span>        <span class="k">thread_local</span>
-<span class="k">const_cast</span>       <span class="k">for</span>              <span class="k">public</span>           <span class="k">throw</span>
-</code></pre></td></tr></table>
+<span class="k">const_cast</span>       <span class="k">for</span>              <span class="k">public</span>           <span class="k">throw</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><em>C++可选操作符名字</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">and</span>    <span class="n">bitand</span> <span class="n">compl</span> <span class="n">not_eq</span> <span class="n">or_eq</span> <span class="n">xor_eq</span>
-<span class="n">and_eq</span> <span class="n">bitor</span>  <span class="n">not</span>   <span class="n">or</span>     <span class="n">xor</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">and</span>    <span class="n">bitand</span> <span class="n">compl</span> <span class="n">not_eq</span> <span class="n">or_eq</span> <span class="n">xor_eq</span>
+<span class="n">and_eq</span> <span class="n">bitor</span>  <span class="n">not</span>   <span class="n">or</span>     <span class="n">xor</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>标准也同样保留了一组名字用于标准库。我们自己的程序最好不要使用两个连续的下划线或一个下划线紧跟一个大写字母开头的标识符。此外定义在函数外的标识符不要以下划线开头。</p>
@@ -756,7 +744,7 @@
 <p>作用域可以包含其他作用域。被包含的作用域称为内部作用域，包含的作用域称为外部作用域。外部作用域的名字对内部作用域可见。当名字相同时，内部作用域中的名字隐藏外部作用域的名字。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -766,15 +754,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">reused</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>  <span class="c1">// reused has global scope
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">reused</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>  <span class="c1">// reused has global scope
 </span><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">reused</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// global reused
 </span><span class="c1"></span>    <span class="kt">int</span> <span class="n">reused</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// local reused hides global one
 </span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">reused</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">::</span><span class="n">reused</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// explicitly requests the global reused
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -787,12 +774,12 @@
 <p>引用定义了对象的一个别名。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">ival</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">ival</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
 <span class="kt">int</span> <span class="o">&amp;</span><span class="n">refVal</span> <span class="o">=</span> <span class="n">ival</span><span class="p">;</span>  <span class="c1">// refVal refers to (is another name for) ival
 </span><span class="c1"></span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">refVal2</span><span class="p">;</span>        <span class="c1">// error: a reference must be initialized
 </span></code></pre></td></tr></table>
@@ -805,13 +792,13 @@
 <p>我们可以在一个定义里面定义多个引用。每一个标识符前面必须是&amp;。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">i2</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">;</span>  <span class="c1">// i and i2 are both ints
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">i2</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">;</span>  <span class="c1">// i and i2 are both ints
 </span><span class="c1"></span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">i2</span><span class="p">;</span>      <span class="c1">// r is a reference bound to i; r2 is an int
 </span><span class="c1"></span><span class="kt">int</span> <span class="n">i3</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ri</span> <span class="o">=</span> <span class="n">i3</span><span class="p">;</span>  <span class="c1">// i3 is an int; ri is a reference bound to i3
 </span><span class="c1"></span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">r3</span> <span class="o">=</span> <span class="n">i3</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r4</span> <span class="o">=</span> <span class="n">i2</span><span class="p">;</span>   <span class="c1">// both r3 and r4 are references
@@ -821,12 +808,12 @@
 <p>除了2个例外，引用的类型和它绑定对象的类型必须完全一致。而且引用只能绑定到一个对象，不能绑定到字面值或表达式的结果上。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="o">&amp;</span><span class="n">refVal4</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>   <span class="c1">// error: initializer must be an object
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="o">&amp;</span><span class="n">refVal4</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>   <span class="c1">// error: initializer must be an object
 </span><span class="c1"></span><span class="kt">double</span> <span class="n">dval</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
 <span class="kt">int</span> <span class="o">&amp;</span><span class="n">refVal5</span> <span class="o">=</span> <span class="n">dval</span><span class="p">;</span> <span class="c1">// error: initializer must be an int object
 </span></code></pre></td></tr></table>
@@ -836,11 +823,11 @@
 <p>指针是一个指向其他类型的复合类型。和引用一样，指针也是用来间接访问其他对象。和引用不一样的是，指针本身是一个对象。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="o">*</span><span class="n">ip1</span><span class="p">,</span> <span class="o">*</span><span class="n">ip2</span><span class="p">;</span>  <span class="c1">// both ip1 and ip2 are pointers to int
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="o">*</span><span class="n">ip1</span><span class="p">,</span> <span class="o">*</span><span class="n">ip2</span><span class="p">;</span>  <span class="c1">// both ip1 and ip2 are pointers to int
 </span><span class="c1"></span><span class="kt">double</span> <span class="n">dp</span><span class="p">,</span> <span class="o">*</span><span class="n">dp2</span><span class="p">;</span> <span class="c1">// dp2 is a pointer to double; dp is a double
 </span></code></pre></td></tr></table>
 </div>
@@ -849,11 +836,11 @@
 <p>指针保存了另一个对象的地址。我们使用取地址符获得一个对象的地址：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">ival</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">ival</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
 <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ival</span><span class="p">;</span> <span class="c1">// p holds the address of ival; p is a pointer to ival
 </span></code></pre></td></tr></table>
 </div>
@@ -862,14 +849,14 @@
 <p>除了2个例外，指针的类型和它指向的对象的类型必须匹配：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">dval</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">dval</span><span class="p">;</span>
 <span class="kt">double</span> <span class="o">*</span><span class="n">pd</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">dval</span><span class="p">;</span>  <span class="c1">// ok: initializer is the address of a double
 </span><span class="c1"></span><span class="kt">double</span> <span class="o">*</span><span class="n">pd2</span> <span class="o">=</span> <span class="n">pd</span><span class="p">;</span>    <span class="c1">// ok: initializer is a pointer to double
 </span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">pi</span> <span class="o">=</span> <span class="n">pd</span><span class="p">;</span>  <span class="c1">// error: types of pi and pd differ
@@ -889,12 +876,12 @@
 <p>我们可以使用一个解引用操作符访问指针指向的对象：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">ival</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">ival</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
 <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ival</span><span class="p">;</span> <span class="c1">// p holds the address of ival; p is a pointer to ival
 </span><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>     <span class="c1">// * yields the object to which p points; prints 42
 </span></code></pre></td></tr></table>
@@ -908,13 +895,13 @@
 <p>空指针不指向任何对象。在使用指针之前，代码可以检查指针是不是空指针。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span> <span class="c1">// equivalent to int *p1 = 0;
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span> <span class="c1">// equivalent to int *p1 = 0;
 </span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>       <span class="c1">// directly initializes p2 from the literal constant 0
 </span><span class="c1">// must #include cstdlib
 </span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">p3</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>    <span class="c1">// equivalent to int *p3 = 0;
@@ -935,11 +922,11 @@
 <p>当我们在constexpr声明中定义一个指针时，constexpr指示符应用到指针，而不是指针指向的对象。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>     <span class="c1">// p is a pointer to a const int
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>     <span class="c1">// p is a pointer to a const int
 </span><span class="c1"></span><span class="k">constexpr</span> <span class="kt">int</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span> <span class="c1">// q is a const pointer to int
 </span></code></pre></td></tr></table>
 </div>
@@ -950,11 +937,11 @@
 <p>传统上我们使用typedef定义类型别名</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>     <span class="c1">// p is a pointer to a const int
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>     <span class="c1">// p is a pointer to a const int
 </span><span class="c1"></span><span class="k">constexpr</span> <span class="kt">int</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span> <span class="c1">// q is a const pointer to int
 </span></code></pre></td></tr></table>
 </div>
@@ -962,14 +949,14 @@
 <p>C++11引入另一种定义类型别名的方法。别名声明。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="n">SI</span> <span class="o">=</span> <span class="n">Sales_item</span><span class="p">;</span>  <span class="c1">// SI is a synonym for Sales_item
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="n">SI</span> <span class="o">=</span> <span class="n">Sales_item</span><span class="p">;</span>  <span class="c1">// SI is a synonym for Sales_item
 </span><span class="c1"></span>
 <span class="k">typedef</span> <span class="kt">char</span> <span class="o">*</span><span class="n">pstring</span><span class="p">;</span>
 <span class="k">const</span> <span class="n">pstring</span> <span class="n">cstr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// cstr is a constant pointer to char
@@ -981,12 +968,12 @@
 <p>auto告诉编译器从初始值推导出类型。这暗示了使用auto的变量必须有一个初始值。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">item</span> <span class="o">=</span> <span class="n">val1</span> <span class="o">+</span> <span class="n">val2</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">item</span> <span class="o">=</span> <span class="n">val1</span> <span class="o">+</span> <span class="n">val2</span><span class="p">;</span>
 <span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>      <span class="c1">// ok: i is int and p is a pointer to int
 </span><span class="c1"></span><span class="k">auto</span> <span class="n">sz</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>   <span class="c1">// error: inconsistent types for sz and pi
 </span></code></pre></td></tr></table>
@@ -995,11 +982,11 @@
 <h3 id="复合类型const和auto">复合类型，const和auto</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
 <span class="k">auto</span> <span class="n">a</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>  <span class="c1">// a is an int (r is an alias for i, which has type int)
 </span></code></pre></td></tr></table>
 </div>
@@ -1007,14 +994,14 @@
 <p>auto一般忽略top-level const。low-level const保留。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cr</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cr</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>
 <span class="k">auto</span> <span class="n">b</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>  <span class="c1">// b is an int (top-level const in ci is dropped)
 </span><span class="c1"></span><span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cr</span><span class="p">;</span>  <span class="c1">// c is an int (cr is an alias for ci whose const is top-level)
 </span><span class="c1"></span><span class="k">auto</span> <span class="n">d</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>  <span class="c1">// d is an int*(&amp; of an int object is int*)
@@ -1025,17 +1012,17 @@
 <p>如果想要推导的类型有top-level const，必须显式指定</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span> <span class="c1">// deduced type of ci is int; f has type const int
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span> <span class="c1">// deduced type of ci is int; f has type const int
 </span></code></pre></td></tr></table>
 </div>
 </div>
 <p>我们也可以指定自动推导的类型为引用。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1045,24 +1032,23 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="o">&amp;</span><span class="n">g</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>       <span class="c1">// g is a const int&amp; that is bound to ci
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="o">&amp;</span><span class="n">g</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>       <span class="c1">// g is a const int&amp; that is bound to ci
 </span><span class="c1"></span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">h</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>       <span class="c1">// error: we can&#39;t bind a plain reference to a literal
 </span><span class="c1"></span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="n">j</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span> <span class="c1">// ok: we can bind a const reference to a literal
 </span><span class="c1"></span>
 <span class="k">auto</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ci</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">l</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>    <span class="c1">// k is int; l is int&amp;
 </span><span class="c1"></span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">m</span> <span class="o">=</span> <span class="n">ci</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ci</span><span class="p">;</span> <span class="c1">// m is a const int&amp;;p is a pointer to const int
 </span><span class="c1">// error: type deduced from i is int; type deduced from &amp;ci is const int
-</span><span class="c1"></span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">n</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ci</span><span class="p">;</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">n</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ci</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="253-decltype类型说明符">2.5.3 decltype类型说明符</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">decltype</span><span class="p">(</span><span class="n">f</span><span class="p">())</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// sum has whatever type f returns
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">decltype</span><span class="p">(</span><span class="n">f</span><span class="p">())</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// sum has whatever type f returns
 </span></code></pre></td></tr></table>
 </div>
 </div>
@@ -1070,13 +1056,13 @@
 decltype时，decltype返回这个变量的类型，包括top-level const和引用。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cj</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cj</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>
 <span class="k">decltype</span><span class="p">(</span><span class="n">ci</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// x has type const int
 </span><span class="c1"></span><span class="k">decltype</span><span class="p">(</span><span class="n">cj</span><span class="p">)</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// y has type const int&amp; and is bound to x
 </span><span class="c1"></span><span class="k">decltype</span><span class="p">(</span><span class="n">cj</span><span class="p">)</span> <span class="n">z</span><span class="p">;</span>     <span class="c1">// error: z is a reference and must be initialized
@@ -1087,7 +1073,7 @@ decltype时，decltype返回这个变量的类型，包括top-level const和引�
 <p>当我们应用decltype到非变量的表达式时，我们得到表达式产生的类型。decltype返回一个引用当表达式产生可以作为左值的对象时。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1096,7 +1082,7 @@ decltype时，decltype返回这个变量的类型，包括top-level const和引�
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
 <span class="k">decltype</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="mi">0</span><span class="p">)</span> <span class="n">b</span><span class="p">;</span>  <span class="c1">// ok: addition yields an int; b is an (uninitialized) int
 </span><span class="c1"></span><span class="k">decltype</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span> <span class="n">c</span><span class="p">;</span>     <span class="c1">// error: c is int&amp; and must be initialized
 </span><span class="c1"></span>
@@ -1212,7 +1198,7 @@ decltype时，decltype返回这个变量的类型，包括top-level const和引�
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -1232,7 +1218,7 @@ decltype时，decltype返回这个变量的类型，包括top-level const和引�
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

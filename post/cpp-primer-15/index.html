@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/cpp-primer-15/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="第15章 面向对象编程" />
 <meta property="og:description" content="15.1 OOP概述 面向对象编程的关键思想是数据抽象，继承和动态绑定。使用数据抽象，我们可以定义接口和实现分离的类。通过继承，我们可以定义相似类之间" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/cpp-primer-15/" />
+<meta property="og:url" content="https://gitop.cc/post/cpp-primer-15/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2015-09-21T09:04:53+00:00" />
 <meta property="article:modified_time" content="2015-09-21T09:04:53+00:00" />
+
 <meta itemprop="name" content="第15章 面向对象编程">
-<meta itemprop="description" content="15.1 OOP概述 面向对象编程的关键思想是数据抽象，继承和动态绑定。使用数据抽象，我们可以定义接口和实现分离的类。通过继承，我们可以定义相似类之间">
-<meta itemprop="datePublished" content="2015-09-21T09:04:53&#43;00:00" />
-<meta itemprop="dateModified" content="2015-09-21T09:04:53&#43;00:00" />
-<meta itemprop="wordCount" content="12287">
-
-
-
+<meta itemprop="description" content="15.1 OOP概述 面向对象编程的关键思想是数据抽象，继承和动态绑定。使用数据抽象，我们可以定义接口和实现分离的类。通过继承，我们可以定义相似类之间"><meta itemprop="datePublished" content="2015-09-21T09:04:53+00:00" />
+<meta itemprop="dateModified" content="2015-09-21T09:04:53+00:00" />
+<meta itemprop="wordCount" content="12295">
 <meta itemprop="keywords" content="C&#43;&#43;," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="第15章 面向对象编程"/>
 <meta name="twitter:description" content="15.1 OOP概述 面向对象编程的关键思想是数据抽象，继承和动态绑定。使用数据抽象，我们可以定义接口和实现分离的类。通过继承，我们可以定义相似类之间"/>
@@ -129,7 +126,7 @@
         <div class="post-category">
             <a href="/categories/language/"> Language </a>
             </div>
-          <span class="more-meta"> 约 12287 字 </span>
+          <span class="more-meta"> 约 12295 字 </span>
           <span class="more-meta"> 预计阅读 25 分钟 </span>
         
       </div>
@@ -251,42 +248,40 @@
 <p>通过继承联系的类构成一个层级关系。典型地，有一个基类在层级的顶端，其它类直接或间接继承这个类。这些继承类被称为派生类。基类定义层级中共同的成员。每一个派生类定义它自己特定的成员。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Quote</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Quote</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">isbn</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
     <span class="k">virtual</span> <span class="kt">double</span> <span class="nf">net_price</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">n</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>派生类必须指定继承自哪个（或哪些）基类。继承列表是逗号分隔的包含可选访问限定符的基类列表。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Bulk_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Quote</span> <span class="p">{</span> <span class="c1">// Bulk_quote继承自Quote
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Bulk_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Quote</span> <span class="p">{</span> <span class="c1">// Bulk_quote继承自Quote
 </span><span class="c1"></span><span class="k">public</span><span class="o">:</span>
     <span class="kt">double</span> <span class="n">net_price</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>派生类必须在类定义里面包含所有它想定义的虚函数的声明。派生类可以声明这些函数为<strong>virtual</strong>，但没有要求这么做。新标准让派生类可以显式指定想要覆盖的虚函数，在参数列表后面指定<strong>override</strong>就可以。</p>
 <h2 id="动态绑定">动态绑定</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -301,7 +296,7 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="nf">print_total</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">,</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="nf">print_total</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">,</span>
                    <span class="k">const</span> <span class="n">Quote</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">n</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">// 取决于绑定到item参数的类型调用Quote::net_price或Bulk_quote::net_price
@@ -326,7 +321,7 @@
 <h2 id="1521-定义一个基类">15.2.1 定义一个基类</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -343,7 +338,7 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Quote</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Quote</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">Quote</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
     <span class="n">Quote</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">book</span><span class="p">,</span> <span class="kt">double</span> <span class="n">sales_price</span><span class="p">)</span><span class="o">:</span>
@@ -357,8 +352,7 @@
     <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">bookNo</span><span class="p">;</span>
 <span class="k">protected</span><span class="o">:</span>
     <span class="kt">double</span> <span class="n">price</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -374,7 +368,7 @@
 <p>派生类必须指定继承自哪个类，子类在类继承列表中指定基类。类继承列表由逗号分隔的基类名组成，每个基类名前面可能有<strong>public</strong>，<strong>protected</strong>，<strong>private</strong>其中一个。派生类必须声明每一个想要覆盖的成员函数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -384,15 +378,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Bulk_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Quote</span> <span class="p">{</span> <span class="c1">// Bulk_quote继承自Quote
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Bulk_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Quote</span> <span class="p">{</span> <span class="c1">// Bulk_quote继承自Quote
 </span><span class="c1"></span>    <span class="n">Bulk_quote</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
     <span class="n">Bulk_quote</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="p">,</span> <span class="kt">double</span><span class="p">);</span>
     <span class="kt">double</span> <span class="nf">net_price</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
 <span class="k">private</span><span class="o">:</span>
     <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">min_qty</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 打折需要的最小购买量
 </span><span class="c1"></span>    <span class="kt">double</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>   <span class="c1">// 折扣
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>当继承为<strong>public</strong>时，基类的<strong>public</strong>成员成为派生类的接口。另外，我们能将<strong>public</strong>继承的派生类对象绑定到基类的指针或引用。</p>
@@ -404,14 +397,14 @@
 <p>因为派生类对象包含对应于基类的子部分，我们可以使用子类就好像它是基类一样。特别地，我们可以将子类对象的基类部分绑定到基类的引用或指针。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Quote</span> <span class="n">item</span><span class="p">;</span>        <span class="c1">// 基类对象
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Quote</span> <span class="n">item</span><span class="p">;</span>        <span class="c1">// 基类对象
 </span><span class="c1"></span><span class="n">Bulk_quote</span> <span class="n">bulk</span><span class="p">;</span>   <span class="c1">// 子类对象
 </span><span class="c1"></span><span class="n">Quote</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">;</span>  <span class="c1">// 指向基类的指针
 </span><span class="c1"></span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">bulk</span><span class="p">;</span>         <span class="c1">// p指向bulk的Quote部分
@@ -432,26 +425,25 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Bulk_quote</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">book</span><span class="p">,</span> <span class="kt">double</span> <span class="n">p</span><span class="p">,</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Bulk_quote</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">book</span><span class="p">,</span> <span class="kt">double</span> <span class="n">p</span><span class="p">,</span>
            <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">qty</span><span class="p">,</span> <span class="kt">double</span> <span class="n">disc</span><span class="p">)</span> <span class="o">:</span>
            <span class="n">Quote</span><span class="p">(</span><span class="n">book</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">min_qty</span><span class="p">(</span><span class="n">qty</span><span class="p">),</span> <span class="n">discount</span><span class="p">(</span><span class="n">disc</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
     <span class="c1">// as before
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="在派生类中使用基类的成员">在派生类中使用基类的成员</h3>
 <p>派生类可以使用基类的<strong>public</strong>和<strong>protected</strong>成员：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -461,15 +453,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// 如果购买了指定数量的商品，使用折扣价格
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// 如果购买了指定数量的商品，使用折扣价格
 </span><span class="c1"></span><span class="kt">double</span> <span class="n">Bulk_quote</span><span class="o">::</span><span class="n">net_price</span><span class="p">(</span><span class="n">size_t</span> <span class="n">cnt</span><span class="p">)</span> <span class="k">const</span>
 <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">cnt</span> <span class="o">&gt;=</span> <span class="n">min_qty</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cnt</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">discount</span><span class="p">)</span> <span class="o">*</span> <span class="n">price</span><span class="p">;</span>
     <span class="k">else</span>
         <span class="k">return</span> <span class="n">cnt</span> <span class="o">*</span> <span class="n">price</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>值得知道的是派生类的作用域嵌套在基类作用域里面。因此派生类使用基类和自己的成员没有差别。</p>
@@ -481,7 +472,7 @@
 <p>如果基类定义了<strong>static</strong>成员，那么在整个继承层次中只有一个这样的成员。不管有多少个派生类，每一个<strong>static</strong>成员只有一个实例。<strong>static</strong>成员遵守正常的访问控制。如果成员是<strong>private</strong>，则不能访问。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -498,7 +489,7 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="k">static</span> <span class="kt">void</span> <span class="n">statmem</span><span class="p">();</span>
 <span class="p">};</span>
@@ -512,19 +503,18 @@
 </span><span class="c1"></span>    <span class="c1">// ok: 派生类对象可以访问基类的static成员
 </span><span class="c1"></span>    <span class="n">derived_obj</span><span class="p">.</span><span class="n">statmem</span><span class="p">();</span>
     <span class="n">statmem</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="派生类的声明">派生类的声明</h3>
 <p>派生类的声明和其它类一样。声明包含类名字但不包括派生列表：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Bulk_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Quote</span><span class="p">;</span> <span class="c1">// error: 派生列表不能出现在这
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Bulk_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Quote</span><span class="p">;</span> <span class="c1">// error: 派生列表不能出现在这
 </span><span class="c1"></span><span class="k">class</span> <span class="nc">Bulk_quote</span><span class="p">;</span> <span class="c1">// ok: 声明派生类的正确方式
 </span></code></pre></td></tr></table>
 </div>
@@ -533,15 +523,14 @@
 <p>在使用类作为基类前，一个类必须定义，而不仅仅是声明：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Quote</span><span class="p">;</span>   <span class="c1">// 声明但是未定义
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Quote</span><span class="p">;</span>   <span class="c1">// 声明但是未定义
 </span><span class="c1">// error: Quote必须定义
-</span><span class="c1"></span><span class="k">class</span> <span class="nc">Bulk_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Quote</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">Bulk_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Quote</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>这个限制的原因很容易理解：每一个派生类包含从基类继承的成员。要使用这些成员，派生类必须知道它们是什么。这个规则暗示我们一个类不可能继承自己。一个基类本身也可以是派生类。</p>
@@ -550,14 +539,14 @@
 <p>在新标准下，我们可以在类名后面跟着<strong>final</strong>阻止类被继承：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">NoDerived</span> <span class="k">final</span> <span class="p">{</span> <span class="cm">/*  */</span> <span class="p">};</span> <span class="c1">// NoDerived不能作为基类
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">NoDerived</span> <span class="k">final</span> <span class="p">{</span> <span class="cm">/*  */</span> <span class="p">};</span> <span class="c1">// NoDerived不能作为基类
 </span><span class="c1"></span><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span> <span class="cm">/*  */</span> <span class="p">};</span>
 <span class="k">class</span> <span class="nc">Last</span> <span class="k">final</span> <span class="o">:</span> <span class="n">Base</span> <span class="p">{</span> <span class="cm">/*  */</span> <span class="p">};</span> <span class="c1">// Last不能作为基类
 </span><span class="c1"></span><span class="k">class</span> <span class="nc">Bad</span> <span class="o">:</span> <span class="n">NoDerived</span> <span class="p">{</span> <span class="cm">/*  */</span> <span class="p">};</span>   <span class="c1">// error: NoDerived is final
@@ -584,12 +573,12 @@
 <h3 id="没有基类到派生类的隐式转换">没有基类到派生类的隐式转换</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Quote</span> <span class="n">base</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Quote</span> <span class="n">base</span><span class="p">;</span>
 <span class="n">Bulk_quote</span><span class="o">*</span> <span class="n">bulkP</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">base</span><span class="p">;</span>  <span class="c1">// error: can&#39;t convert base to derived
 </span><span class="c1"></span><span class="n">Bulk_quote</span><span class="o">&amp;</span> <span class="n">bulkRef</span> <span class="o">=</span> <span class="n">base</span><span class="p">;</span> <span class="c1">// error: can&#39;t convert base to derived
 </span></code></pre></td></tr></table>
@@ -598,12 +587,12 @@
 <p>令人惊讶地是，即使基类指针或引用绑定的是派生类对象，我们也不能将基类转换到派生类：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Bulk_quote</span> <span class="n">bulk</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Bulk_quote</span> <span class="n">bulk</span><span class="p">;</span>
 <span class="n">Quote</span> <span class="o">*</span><span class="n">itemP</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">bulk</span><span class="p">;</span>        <span class="c1">// ok: dynamic type is Bulk_quote
 </span><span class="c1"></span><span class="n">Bulk_quote</span> <span class="o">*</span><span class="n">bulkP</span> <span class="o">=</span> <span class="n">itemP</span><span class="p">;</span>   <span class="c1">// error: can&#39;t convert base to derived
 </span></code></pre></td></tr></table>
@@ -614,12 +603,12 @@
 <p>派生类到基类的自动转换只发生在引用或指针类型的转换。派生类和基类之间没有这种转换。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Bulk_quote</span> <span class="n">bulk</span><span class="p">;</span>   <span class="c1">// object of derived type
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Bulk_quote</span> <span class="n">bulk</span><span class="p">;</span>   <span class="c1">// object of derived type
 </span><span class="c1"></span><span class="n">Quote</span> <span class="nf">item</span><span class="p">(</span><span class="n">bulk</span><span class="p">);</span>  <span class="c1">// uses the Quote::Quote(const Quote&amp;) constructor
 </span><span class="c1"></span><span class="n">item</span> <span class="o">=</span> <span class="n">bulk</span><span class="p">;</span>       <span class="c1">// calls Quote::operator=(const Quote&amp;)
 </span></code></pre></td></tr></table>
@@ -643,11 +632,11 @@
 <p>动态绑定仅仅发生在通过指针或引用调用虚函数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">base</span> <span class="o">=</span> <span class="n">derived</span><span class="p">;</span>         <span class="c1">// 从derived拷贝Quote部分到base 
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">base</span> <span class="o">=</span> <span class="n">derived</span><span class="p">;</span>         <span class="c1">// 从derived拷贝Quote部分到base 
 </span><span class="c1"></span><span class="n">base</span><span class="p">.</span><span class="n">net_price</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>     <span class="c1">// 调用Quote::net_price
 </span></code></pre></td></tr></table>
 </div>
@@ -673,7 +662,7 @@
 <p>新标准下我们可以在继承类中指定虚函数为<strong>override</strong>。编译器会拒绝程序如果函数标注为<strong>override</strong>却没有覆盖一个已存在的虚函数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -686,7 +675,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">B</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">B</span> <span class="p">{</span>
     <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">f1</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
     <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">f2</span><span class="p">();</span>
     <span class="kt">void</span> <span class="nf">f3</span><span class="p">();</span>
@@ -696,14 +685,13 @@
 </span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">f2</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span> <span class="c1">// error: B has no f2(int) function
 </span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">f3</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>    <span class="c1">// error: f3 not virtual
 </span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">f4</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>    <span class="c1">// error: B doesn&#39;t have a function named f4
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>我们也可以将一个函数指定为<strong>final</strong>。任何试图覆盖一个被定义为<strong>final</strong>的函数都被视为错误：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -713,15 +701,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">D2</span> <span class="o">:</span> <span class="n">B</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">D2</span> <span class="o">:</span> <span class="n">B</span> <span class="p">{</span>
     <span class="c1">// inherits f2() and f3() from B and overrides f1(int)
 </span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">f1</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="k">const</span> <span class="k">final</span><span class="p">;</span> <span class="c1">// 后续子类不能覆盖f1(int)
 </span><span class="c1"></span><span class="p">};</span>
 <span class="k">struct</span> <span class="nc">D3</span> <span class="o">:</span> <span class="n">D2</span> <span class="p">{</span>
     <span class="kt">void</span> <span class="nf">f2</span><span class="p">();</span> <span class="c1">// ok: overrides f2 inherited from the indirect base, B
 </span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">f1</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span> <span class="c1">// error: D2 declared f2 as final
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>final</strong>和<strong>override</strong>限定符出现在参数列表（包含const或引用修饰符）和尾返回之后。</p>
@@ -735,13 +722,12 @@
 <p>我们可以使用**::**操作符强制调用指定版本的虚函数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// 调用基类版本，不管baseP的动态类型
-</span><span class="c1"></span><span class="kt">double</span> <span class="n">undiscounted</span> <span class="o">=</span> <span class="n">baseP</span><span class="o">-&gt;</span><span class="n">Quote</span><span class="o">::</span><span class="n">net_price</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// 调用基类版本，不管baseP的动态类型
+</span><span class="c1"></span><span class="kt">double</span> <span class="n">undiscounted</span> <span class="o">=</span> <span class="n">baseP</span><span class="o">-&gt;</span><span class="n">Quote</span><span class="o">::</span><span class="n">net_price</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -755,10 +741,10 @@
 </blockquote>
 <h1 id="154-虚基类">15.4 虚基类</h1>
 <h2 id="纯虚函数">纯虚函数</h2>
-<p>和普通的虚函数不一样的是，纯虚函数没有必要定义。虚函数写上<strong>= 0</strong>替代函数体成为纯虚函数。<strong>= 0</strong>只出现在类里面函数声明处。</p>
+<p>和普通的虚函数不一样的是，纯虚函数没有必要定义。虚函数写上**= 0<strong>替代函数体成为纯虚函数。</strong>= 0**只出现在类里面函数声明处。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -774,7 +760,7 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// class to hold the discount rate and quantity
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// class to hold the discount rate and quantity
 </span><span class="c1">// derived classes will implement pricing strategies using these data
 </span><span class="c1"></span><span class="k">class</span> <span class="nc">Disc_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Quote</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -787,8 +773,7 @@
 <span class="k">protected</span><span class="o">:</span>
     <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">quantity</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//  purchase size for the discount to apply
 </span><span class="c1"></span>    <span class="kt">double</span> <span class="n">discount</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>    <span class="c1">//  fractional discount to apply
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>虽然我们不能直接定义Disc_quote对象，但是Disc_quote的派生类会使用Disc_quote的构造函数构造Disc_quote部分。</p>
@@ -797,12 +782,12 @@
 <p>包含纯虚函数的类（或继承而没有覆盖）是虚基类。虚基类为后续的子类定义了可覆盖的接口。不能直接创建虚基类的对象。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Disc_quote定义了Bulk_quote将要覆盖的纯虚函数
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Disc_quote定义了Bulk_quote将要覆盖的纯虚函数
 </span><span class="c1"></span><span class="n">Disc_quote</span> <span class="n">discounted</span><span class="p">;</span> <span class="c1">// error: can&#39;t define a Disc_quote object
 </span><span class="c1"></span><span class="n">Bulk_quote</span> <span class="n">bulk</span><span class="p">;</span>       <span class="c1">// ok: Bulk_quote has no pure virtual functions
 </span></code></pre></td></tr></table>
@@ -812,7 +797,7 @@
 <h2 id="派生类构造函数只初始化其直接基类">派生类构造函数只初始化其直接基类</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -825,7 +810,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// the discount kicks in when a specified number of copies of the same book are sold
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// the discount kicks in when a specified number of copies of the same book are sold
 </span><span class="c1">// the discount is expressed as a fraction to use to reduce the normal price
 </span><span class="c1"></span><span class="k">class</span> <span class="nc">Bulk_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Disc_quote</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -835,8 +820,7 @@
           <span class="n">Disc_quote</span><span class="p">(</span><span class="n">book</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">qty</span><span class="p">,</span> <span class="n">disc</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
     <span class="c1">// overrides the base version to implement the bulk purchase discount policy
 </span><span class="c1"></span>    <span class="kt">double</span> <span class="nf">net_price</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>每一个类控制自己类对象的初始化。</p>
@@ -859,7 +843,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -872,7 +856,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
 <span class="k">protected</span><span class="o">:</span>
     <span class="kt">int</span> <span class="n">prot_mem</span><span class="p">;</span>     <span class="c1">// protected member
 </span><span class="c1"></span><span class="p">};</span>
@@ -890,7 +874,7 @@
 <p>继承类成员的访问由基类中该成员访问控制符和派生列表访问控制符共同控制。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -910,7 +894,7 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="kt">void</span> <span class="n">pub_mem</span><span class="p">();</span>   <span class="c1">// public member
 </span><span class="c1"></span><span class="k">protected</span><span class="o">:</span>
@@ -927,14 +911,13 @@
 <span class="k">struct</span> <span class="nc">Priv_Derv</span> <span class="o">:</span> <span class="k">private</span> <span class="n">Base</span> <span class="p">{</span>
     <span class="c1">// private derivation doesn&#39;t affect access in the derived class
 </span><span class="c1"></span>    <span class="kt">int</span> <span class="nf">f1</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">prot_mem</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>派生类的访问控制符对派生类访问其直接基类的成员没有影响。基类成员的访问只由基类的访问控制符控制。派生类的访问控制符是用来控制派生类使用者及子类对其成员的使用。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -949,7 +932,7 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Pub_Derv</span> <span class="n">d1</span><span class="p">;</span>   <span class="c1">//  members inherited from Base are public
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Pub_Derv</span> <span class="n">d1</span><span class="p">;</span>   <span class="c1">//  members inherited from Base are public
 </span><span class="c1"></span><span class="n">Priv_Derv</span> <span class="n">d2</span><span class="p">;</span>  <span class="c1">//  members inherited from Base are private
 </span><span class="c1"></span><span class="n">d1</span><span class="p">.</span><span class="n">pub_mem</span><span class="p">();</span>  <span class="c1">//  ok: pub_mem is public in the derived class
 </span><span class="c1"></span><span class="n">d2</span><span class="p">.</span><span class="n">pub_mem</span><span class="p">();</span>  <span class="c1">//  error: pub_mem is private in the derived class
@@ -961,8 +944,7 @@
 <span class="k">struct</span> <span class="nc">Derived_from_Private</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Priv_Derv</span> <span class="p">{</span>
     <span class="c1">// error: Base::prot_mem is private in Priv_Derv
 </span><span class="c1"></span>    <span class="kt">int</span> <span class="nf">use_base</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">prot_mem</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="派生类到基类转换的可访问性">派生类到基类转换的可访问性</h2>
@@ -980,7 +962,7 @@
 <p>就像友元不能传递，友元也不能继承。基类的友元对派生类没有特殊访问权限，派生类的友元对基类也没有特殊访问权限。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -996,7 +978,7 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
     <span class="c1">// added friend declaration; other members as before
 </span><span class="c1"></span>    <span class="k">friend</span> <span class="k">class</span> <span class="nc">Pal</span><span class="p">;</span> <span class="c1">// Pal has no access to classes derived from Base
 </span><span class="c1"></span><span class="p">};</span>
@@ -1009,15 +991,14 @@
     <span class="c1">// access to a base class is controlled by the base class, even inside a derived
 </span><span class="c1"></span><span class="n">object</span>
     <span class="kt">int</span> <span class="n">f3</span><span class="p">(</span><span class="n">Sneaky</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">prot_mem</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// ok: Pal is a friend
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>f3的合法看似惊人，但是它直接遵循每一个类控制其成员的访问这条规则。类Pal是基类Base的友元，因此Pal可以访问基类对象的成员。这种访问包含嵌套在派生类对象中基类部分。</p>
 <p>当一个类将另一个类作为友元，只有这个类被赋予了友元关系，其基类或者子类都没有友元关系。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1025,13 +1006,12 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// D2 has no access to protected or private members in Base
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// D2 has no access to protected or private members in Base
 </span><span class="c1"></span><span class="k">class</span> <span class="nc">D2</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Pal</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
    <span class="kt">int</span> <span class="n">mem</span><span class="p">(</span><span class="n">Base</span> <span class="n">b</span><span class="p">)</span>
        <span class="p">{</span> <span class="k">return</span> <span class="n">b</span><span class="p">.</span><span class="n">prot_mem</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// error: friendship doesn&#39;t inherit
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -1042,7 +1022,7 @@
 <p>有时候需要改变派生类中成员的访问级别，可以使用<strong>using</strong>声明。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1057,7 +1037,7 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span> <span class="p">}</span>
 <span class="k">protected</span><span class="o">:</span>
@@ -1069,8 +1049,7 @@
 </span><span class="c1"></span>    <span class="k">using</span> <span class="n">Base</span><span class="o">::</span><span class="n">size</span><span class="p">;</span>
 <span class="k">protected</span><span class="o">:</span>
     <span class="k">using</span> <span class="n">Base</span><span class="o">::</span><span class="n">n</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>因为Derived使用<strong>private</strong>继承，则继承的成员默认为<strong>private</strong>成员。<strong>using</strong>声明调整了这些成员的可访问级别。</p>
@@ -1083,12 +1062,12 @@
 <p>默认地，<strong>class</strong>关键字定义的派生类使用<strong>private</strong>继承，<strong>struct</strong>定义的派生类使用<strong>public</strong>继承。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span> <span class="cm">/* ...   */</span> <span class="p">};</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span> <span class="cm">/* ...   */</span> <span class="p">};</span>
 <span class="k">struct</span> <span class="nc">D1</span> <span class="o">:</span> <span class="n">Base</span> <span class="p">{</span> <span class="cm">/* ...   */</span> <span class="p">};</span>   <span class="c1">// public inheritance by default
 </span><span class="c1"></span><span class="k">class</span> <span class="nc">D2</span> <span class="o">:</span> <span class="n">Base</span> <span class="p">{</span> <span class="cm">/* ...   */</span> <span class="p">};</span>    <span class="c1">// private inheritance by default
 </span></code></pre></td></tr></table>
@@ -1103,13 +1082,12 @@
 <p>每一个类定义自己的作用域，作用域里面定义其成员。在继承下，派生类的作用域嵌套在基类作用域里面。如果一个名字在派生类作用域找不到，则搜索外围基类作用域。正是这种分层嵌套的类作用域允许派生类成员使用基类成员就好像这些成员是派生类的一部分一样。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Bulk_quote</span> <span class="n">bulk</span><span class="p">;</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">bulk</span><span class="p">.</span><span class="n">isbn</span><span class="p">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Bulk_quote</span> <span class="n">bulk</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">bulk</span><span class="p">.</span><span class="n">isbn</span><span class="p">();</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>isbn的名字查找如下：</p>
@@ -1122,7 +1100,7 @@
 <p>对象，引用或指针的静态类型决定了对象的哪个成员可见，甚至当静态类型和动态类型不一样时。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1136,7 +1114,7 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Disc_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Quote</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Disc_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Quote</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">size_t</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">discount_policy</span><span class="p">()</span> <span class="k">const</span>
         <span class="p">{</span> <span class="k">return</span> <span class="p">{</span><span class="n">quantity</span><span class="p">,</span> <span class="n">discount</span><span class="p">};</span> <span class="p">}</span>
@@ -1165,7 +1143,7 @@
 <p>和其它作用域一样，继承类可以重用其直接或间接基类中的一个名字。和往常一样，定义在内部作用域(派生类）的名字，隐藏了外部作用域（基类）名字的使用。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1179,7 +1157,7 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Base</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Base</span> <span class="p">{</span>
     <span class="n">Base</span><span class="p">()</span><span class="o">:</span> <span class="n">mem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 <span class="k">protected</span><span class="o">:</span>
     <span class="kt">int</span> <span class="n">mem</span><span class="p">;</span>
@@ -1190,8 +1168,7 @@
 </span><span class="c1"></span>    <span class="kt">int</span> <span class="nf">get_mem</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">mem</span><span class="p">;</span> <span class="p">}</span>  <span class="c1">// returns Derived::mem
 </span><span class="c1"></span><span class="k">protected</span><span class="o">:</span>
     <span class="kt">int</span> <span class="n">mem</span><span class="p">;</span>   <span class="c1">// hides mem in the base
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -1202,17 +1179,16 @@
 <p>我们可以使用作用域操作符来使用被隐藏的基类成员。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="n">Base</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="n">Base</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="nf">get_base_mem</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">Base</span><span class="o">::</span><span class="n">mem</span><span class="p">;</span> <span class="p">}</span>
     <span class="c1">// ...
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>作用域操作符覆盖正常的名字查找，并指引编译器从指定的作用域开始查找。</p>
@@ -1224,7 +1200,7 @@
 <p>定义在派生类的同名函数不重载基类的函数。基类成员被隐藏了，即使参数列表不一样。一旦名字被找到，编译器不再继续查找。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1237,7 +1213,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Base</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Base</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="nf">memfcn</span><span class="p">();</span>
 <span class="p">};</span>
 <span class="k">struct</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="n">Base</span> <span class="p">{</span>
@@ -1255,7 +1231,7 @@
 <p>我们现在可以理解为什么派生类和基类中的虚函数必须有一样的参数列表。如果基类和派生类中虚函数参数不一样，那么没有办法通过基类的引用或指针调用派生类虚函数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1289,7 +1265,7 @@
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="k">virtual</span> <span class="kt">int</span> <span class="n">fcn</span><span class="p">();</span>
 <span class="p">};</span>
@@ -1333,7 +1309,7 @@
 <p>继承给基类的复制控制主要的直接影响是基类通常应该定义一个虚析构函数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1345,7 +1321,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Quote</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Quote</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="c1">// virtual destructor needed if a base pointer pointing to a derived object is deleted
 </span><span class="c1"></span>    <span class="k">virtual</span> <span class="o">~</span><span class="n">Quote</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span> <span class="c1">// dynamic binding for the destructor
@@ -1364,7 +1340,7 @@
 </blockquote>
 <p>对于如果一个类需要析构函数，它也需要复制和赋值操作符这个规则，基类的析构函数是个重要例外。</p>
 <h3 id="虚析构函数关闭了合成的move">虚析构函数关闭了合成的Move</h3>
-<p>如果一个类定义了虚析构函数，即使是<strong>= default</strong>使用合成版本，则编译器不会合成<strong>move</strong>操作。</p>
+<p>如果一个类定义了虚析构函数，即使是**= default<strong>使用合成版本，则编译器不会合成</strong>move**操作。</p>
 <h2 id="1572-合成复制控制和继承">15.7.2 合成复制控制和继承</h2>
 <p>基类或派生类中合成的复制控制成员和任何其它合成的复制控制成员一样：逐个初始化，复制或销毁类成员。另外，这些成员使用基类的相应操作初始化，复制或销毁其对象的直接基类部分。</p>
 <p>值得注意的是基类的成员是否是合成的或用户定义的并没有关系。重要的是相应的成员是可访问的且不是一个被删除的函数。</p>
@@ -1377,7 +1353,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1391,7 +1367,7 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">B</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">B</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">B</span><span class="p">();</span>
     <span class="n">B</span><span class="p">(</span><span class="k">const</span> <span class="n">B</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
@@ -1410,7 +1386,7 @@
 <p>我们已经看到，大多数基类定义了一个虚析构函数。因此基类通常没有合成的移动操作，同样派生类也没有合成的移动操作。由于基类缺少移动操作而限制了派生类合成移动操作，如果合理基类一般应该定义移动操作。如果显式定义了移动操作，基类一般也要显式定义复制操作。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1422,7 +1398,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Quote</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Quote</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">Quote</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>             <span class="c1">// memberwise default initialize
 </span><span class="c1"></span>    <span class="n">Quote</span><span class="p">(</span><span class="k">const</span> <span class="n">Quote</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span> <span class="c1">// memberwise copy
@@ -1431,8 +1407,7 @@
 </span><span class="c1"></span>    <span class="n">Quote</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Quote</span><span class="o">&amp;&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>      <span class="c1">// move assign
 </span><span class="c1"></span>    <span class="k">virtual</span> <span class="o">~</span><span class="n">Quote</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
     <span class="c1">// other members as before
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="1573-派生类复制控制成员">15.7.3 派生类复制控制成员</h2>
@@ -1446,7 +1421,7 @@
 <p>当我们为派生类定义一个复制或移动构造函数，我们通常使用相应的基类构造函数来初始化对象的基类部分：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1459,7 +1434,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span> <span class="cm">/* ...    */</span> <span class="p">}</span> <span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span> <span class="cm">/* ...    */</span> <span class="p">}</span> <span class="p">;</span>
 <span class="k">class</span> <span class="nc">D</span><span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="c1">// by default, the base class default constructor initializes the base part of an object
@@ -1469,8 +1444,7 @@
 </span><span class="c1"></span>                 <span class="cm">/* initializers for members of D */</span> <span class="p">{</span> <span class="cm">/* ...  */</span> <span class="p">}</span>
     <span class="n">D</span><span class="p">(</span><span class="n">D</span><span class="o">&amp;&amp;</span> <span class="n">d</span><span class="p">)</span><span class="o">:</span> <span class="n">Base</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">d</span><span class="p">))</span> <span class="c1">// move the base members
 </span><span class="c1"></span>                 <span class="cm">/* initializers for members of D */</span> <span class="p">{</span> <span class="cm">/* ...  */</span> <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -1481,7 +1455,7 @@
 <p>和复制或移动构造函数一样，派生类的赋值操作符必须显式赋值其基类部分：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1491,15 +1465,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Base::operator=(const Base&amp;) is not invoked automatically
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Base::operator=(const Base&amp;) is not invoked automatically
 </span><span class="c1"></span><span class="n">D</span> <span class="o">&amp;</span><span class="n">D</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">D</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">Base</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">rhs</span><span class="p">);</span> <span class="c1">// assigns the base part
 </span><span class="c1"></span>    <span class="c1">// assign the members in the derived class, as usual,
 </span><span class="c1"></span>    <span class="c1">// handling self-assignment and freeing existing resources as appropriate
 </span><span class="c1"></span>    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>值得注意的是派生类构造函数和赋值操作符可以使用基类的相应操作，不管基类是否定义了这些操作还是使用合成的版本。</p>
@@ -1507,19 +1480,18 @@
 <p>一个对象的数据成员在析构函数执行完毕之后被隐式销毁。类似地，对象的基类部分也是隐式销毁。因此和构造函数和赋值操作符不同的是，派生类析构函数只对销毁派生类申请的资源负责。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">D</span><span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">D</span><span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="c1">// Base::~Base invoked automatically
 </span><span class="c1"></span>    <span class="o">~</span><span class="n">D</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* do what it takes to clean up derived members   */</span> <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="在构造函数和析构函数调用虚函数">在构造函数和析构函数调用虚函数</h3>
@@ -1533,43 +1505,40 @@
 <p>新标准下，派生类可以重用基类定义的构造函数。和只能初始化直接基类的原因一样，一个类只能继承直接基类的构造函数，不能继承默认的复制和移动构造函数。使用<strong>using</strong>声明指定继承基类的构造函数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Bulk_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Disc_quote</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Bulk_quote</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Disc_quote</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="k">using</span> <span class="n">Disc_quote</span><span class="o">::</span><span class="n">Disc_quote</span><span class="p">;</span> <span class="c1">// inherit Disc_quote&#39;s constructors
 </span><span class="c1"></span>    <span class="kt">double</span> <span class="nf">net_price</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>using</strong>声明只是使一个名字在当前作用域可见。当应用到构造函数，一个<strong>using</strong>声明引起编译器生成代码。编译器生成对应于每一个基类构造函数的派生类构造函数。这些编译器生成的构造函数具有以下形式：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">derived</span><span class="p">(</span><span class="n">parms</span><span class="p">)</span> <span class="o">:</span> <span class="n">base</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">derived</span><span class="p">(</span><span class="n">parms</span><span class="p">)</span> <span class="o">:</span> <span class="n">base</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>在Bulk_quote类，继承的构造函数如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Bulk_quote</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">book</span><span class="p">,</span> <span class="kt">double</span> <span class="n">price</span><span class="p">,</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Bulk_quote</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">book</span><span class="p">,</span> <span class="kt">double</span> <span class="n">price</span><span class="p">,</span>
           <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">qty</span><span class="p">,</span> <span class="kt">double</span> <span class="n">disc</span><span class="p">)</span><span class="o">:</span>
-      <span class="n">Disc_quote</span><span class="p">(</span><span class="n">book</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">qty</span><span class="p">,</span> <span class="n">disc</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
-</code></pre></td></tr></table>
+      <span class="n">Disc_quote</span><span class="p">(</span><span class="n">book</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">qty</span><span class="p">,</span> <span class="n">disc</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="继承构造函数的特征">继承构造函数的特征</h3>
@@ -1581,7 +1550,7 @@
 <p>vector不能存放Quote类型可能不明显。这种情况下，我们能把Bulk_quote对象放进容器，但是这些对象不再是Bulk_quote对象了：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1589,13 +1558,12 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">vector</span><span class="o">&lt;</span><span class="n">Quote</span><span class="o">&gt;</span> <span class="n">basket</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">vector</span><span class="o">&lt;</span><span class="n">Quote</span><span class="o">&gt;</span> <span class="n">basket</span><span class="p">;</span>
 <span class="n">basket</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Quote</span><span class="p">(</span><span class="s">&#34;0-201-82470-1&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">));</span>
 <span class="c1">// ok, but copies only the Quote part of the object into basket
 </span><span class="c1"></span><span class="n">basket</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Bulk_quote</span><span class="p">(</span><span class="s">&#34;0-201-54848-8&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">.25</span><span class="p">));</span>
 <span class="c1">// calls version defined by Quote, prints 750, i.e., 15 * $50
-</span><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">basket</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">net_price</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">basket</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">net_price</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -1606,7 +1574,7 @@
 <p>当我们需要容器存放继承相关的对象，定义容器存放基类的指针。和往常一样，指针指向的对象的动态类型可能是基类类型或派生类类型：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1614,13 +1582,12 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">vector</span><span class="o">&lt;</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Quote</span><span class="o">&gt;&gt;</span> <span class="n">basket</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">vector</span><span class="o">&lt;</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Quote</span><span class="o">&gt;&gt;</span> <span class="n">basket</span><span class="p">;</span>
 <span class="n">basket</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Quote</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&#34;0-201-82470-1&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">));</span>
 <span class="n">basket</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span>
     <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Bulk_quote</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&#34;0-201-54848-8&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">.25</span><span class="p">));</span>
 <span class="c1">// calls the version defined by Quote; prints 562.5, i.e., 15 * $50 less the discount
-</span><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">basket</span><span class="p">.</span><span class="n">back</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">net_price</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">basket</span><span class="p">.</span><span class="n">back</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">net_price</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>就像我们能够转换指向派生类对象的普通指针为指向基类的普通指针，我们也能转换指向派生类的智能指针为指向基类的智能指针。</p>
@@ -1628,7 +1595,7 @@
 <p>C++中的面向对象编程的一个讽刺是我们不能使用对象直接支持它。反而，我们必须使用指针和引用。由于指针强加给程序的复杂性，我们通常定义辅助的类来帮助管理复杂性。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1647,7 +1614,7 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Basket</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Basket</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="c1">// Basket uses synthesized default constructor and copy-control members
 </span><span class="c1"></span>    <span class="kt">void</span> <span class="n">add_item</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Quote</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">sale</span><span class="p">)</span>
@@ -1663,14 +1630,13 @@
     <span class="c1">// multiset to hold multiple quotes, ordered by the compare member
 </span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">multiset</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Quote</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">decltype</span><span class="p">(</span><span class="n">compare</span><span class="p">)</span><span class="o">*&gt;</span>
                   <span class="n">items</span><span class="p">{</span><span class="n">compare</span><span class="p">};</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="定义basket的成员">定义Basket的成员</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1688,7 +1654,7 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">Basket</span><span class="o">::</span><span class="n">total_receipt</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">)</span> <span class="k">const</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">Basket</span><span class="o">::</span><span class="n">total_receipt</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">)</span> <span class="k">const</span>
 <span class="p">{</span>
     <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>   <span class="c1">// holds the running total
 </span><span class="c1"></span>    <span class="c1">// iter refers to the first element in a batch of elements with the same ISBN
@@ -1703,33 +1669,31 @@
     <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Total Sale: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// print the final overall
 </span><span class="c1"></span><span class="n">total</span>
     <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="隐藏指针">隐藏指针</h3>
 <p>Basket的用户仍然需要处理动态分配的内存，因为add_item带一个shared_ptr参数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Basket</span> <span class="n">bsk</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Basket</span> <span class="n">bsk</span><span class="p">;</span>
 <span class="n">bsk</span><span class="p">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Quote</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&#34;123&#34;</span><span class="p">,</span> <span class="mi">45</span><span class="p">));</span>
-<span class="n">bsk</span><span class="p">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Bulk_quote</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&#34;345&#34;</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">.15</span><span class="p">));</span>
-</code></pre></td></tr></table>
+<span class="n">bsk</span><span class="p">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Bulk_quote</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&#34;345&#34;</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">.15</span><span class="p">));</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>我们下一步将重定义add_item来接收Quote对象而不是shared_ptr。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">add_item</span><span class="p">(</span><span class="k">const</span> <span class="n">Quote</span><span class="o">&amp;</span> <span class="n">sale</span><span class="p">);</span>  <span class="c1">// copy the given object
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">add_item</span><span class="p">(</span><span class="k">const</span> <span class="n">Quote</span><span class="o">&amp;</span> <span class="n">sale</span><span class="p">);</span>  <span class="c1">// copy the given object
 </span><span class="c1"></span><span class="kt">void</span> <span class="nf">add_item</span><span class="p">(</span><span class="n">Quote</span><span class="o">&amp;&amp;</span> <span class="n">sale</span><span class="p">);</span>       <span class="c1">// move the given object
 </span></code></pre></td></tr></table>
 </div>
@@ -1738,7 +1702,7 @@
 <p>我们将通过给Quote类一个虚成员分配自己的拷贝来解决这个问题。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1763,7 +1727,7 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Quote</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Quote</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="c1">// virtual function to return a dynamically allocated copy of itself
 </span><span class="c1"></span>    <span class="c1">// these members use reference qualifiers; see §13.6.3 (p. 546)
@@ -1785,8 +1749,7 @@
 </span><span class="c1"></span>      <span class="p">{</span> <span class="n">items</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span>
           <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Quote</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">sale</span><span class="p">).</span><span class="n">clone</span><span class="p">()));</span> <span class="p">}</span>
     <span class="c1">// other members as before
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="159-文本查询重温">15.9 文本查询重温</h1>
@@ -1894,7 +1857,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -1914,7 +1877,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

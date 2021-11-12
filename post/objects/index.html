@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/objects/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="对象" />
 <meta property="og:description" content="对象的属性也有属性： 可写属性指定属性的值是否可以设置。 枚举属性指定属性名是否能由for/in循环返回。 可配置属性指定属性是否可以删除和更改。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/objects/" />
+<meta property="og:url" content="https://gitop.cc/post/objects/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-03T21:39:25+08:00" />
 <meta property="article:modified_time" content="2018-11-03T21:39:25+08:00" />
+
 <meta itemprop="name" content="对象">
-<meta itemprop="description" content="对象的属性也有属性： 可写属性指定属性的值是否可以设置。 枚举属性指定属性名是否能由for/in循环返回。 可配置属性指定属性是否可以删除和更改。">
-<meta itemprop="datePublished" content="2018-11-03T21:39:25&#43;08:00" />
-<meta itemprop="dateModified" content="2018-11-03T21:39:25&#43;08:00" />
-<meta itemprop="wordCount" content="9668">
-
-
-
+<meta itemprop="description" content="对象的属性也有属性： 可写属性指定属性的值是否可以设置。 枚举属性指定属性名是否能由for/in循环返回。 可配置属性指定属性是否可以删除和更改。"><meta itemprop="datePublished" content="2018-11-03T21:39:25+08:00" />
+<meta itemprop="dateModified" content="2018-11-03T21:39:25+08:00" />
+<meta itemprop="wordCount" content="9665">
 <meta itemprop="keywords" content="Javascript," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="对象"/>
 <meta name="twitter:description" content="对象的属性也有属性： 可写属性指定属性的值是否可以设置。 枚举属性指定属性名是否能由for/in循环返回。 可配置属性指定属性是否可以删除和更改。"/>
@@ -129,7 +126,7 @@
         <div class="post-category">
             <a href="/categories/language/"> Language </a>
             </div>
-          <span class="more-meta"> 约 9668 字 </span>
+          <span class="more-meta"> 约 9665 字 </span>
           <span class="more-meta"> 预计阅读 20 分钟 </span>
         
       </div>
@@ -184,11 +181,10 @@
 <p>对象字面值用逗号分隔的键值对。属性名是JavaScript标识符或字符串字面值（允许空字符串）。属性值是任何JavaScript表达式。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="o">:</span><span class="mi">2</span><span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="o">:</span><span class="mi">2</span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>在ES5中，保留字可以作为属性名使用，不需要用引号括起来。在ES3中保留字作为属性名必须用引号括起来。在ES5中，最后一个属性后面的逗号被忽略。在大多数ES3实现中，结尾逗号被忽略，但IE认为它们是错误的。</p>
@@ -196,13 +192,13 @@
 <p>new操作符创建并初始化一个新对象。其后面必须有一个构造函数，用于初始化新创建的对象。JavaScript包含原生类型的内置构造函数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span> <span class="c1">// Create an empty object: same as {}.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span> <span class="c1">// Create an empty object: same as {}.
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span> <span class="c1">// Create an empty array: same as [].
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="c1">// Create a Date object representing the current time
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&#34;js&#34;</span><span class="p">);</span> <span class="c1">// Create a RegExp object for pattern matching.
@@ -217,37 +213,37 @@
 <p>ES5定义了一个方法Object.create()用于创建对象。第一个参数指定对象的原型。第二个参数可选，用于描述新对象的属性。Object.create()是一个静态函数，而不是方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o1</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">});</span> <span class="c1">// o1 inherits properties x and y.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o1</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">});</span> <span class="c1">// o1 inherits properties x and y.
 </span></code></pre></td></tr></table>
 </div>
 </div>
 <p>您可以传递null来创建一个没有原型的新对象，该对象没有继承任何东西：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o2</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span> <span class="c1">// o2 inherits no props or methods.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o2</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span> <span class="c1">// o2 inherits no props or methods.
 </span></code></pre></td></tr></table>
 </div>
 </div>
 <p>如果您想创建一个普通的空对象（比如{}返回的对象或new object()），Object.prototype：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o3</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span> <span class="c1">// o3 is like {} or new Object().
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o3</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span> <span class="c1">// o3 is like {} or new Object().
 </span></code></pre></td></tr></table>
 </div>
 </div>
 <p>我们可以在ES3中用下面这个函数模拟它：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -262,7 +258,7 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// inherit() returns a newly created object that inherits properties from the
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// inherit() returns a newly created object that inherits properties from the
 </span><span class="c1">// prototype object p. It uses the ECMAScript 5 function Object.create() if
 </span><span class="c1">// it is defined, and otherwise falls back to an older technique.
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">inherit</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
@@ -274,18 +270,17 @@
     <span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{};</span> <span class="c1">// Define a dummy constructor function.
 </span><span class="c1"></span>    <span class="nx">f</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">p</span><span class="p">;</span> <span class="c1">// Set its prototype property to p.
 </span><span class="c1"></span>    <span class="k">return</span> <span class="k">new</span> <span class="nx">f</span><span class="p">();</span> <span class="c1">// Use f() to create an &#34;heir&#34; of p.
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>inherit()函数的一种用法是当你想防止你无法控制的库函数无意修改对象时使用。不直接将对象传递给函数，而是传递一个继承对象。如果函数读取继承对象的属性，它将看到继承的值。如果它设置属性，这些属性只会影响继承对象，而不会影响原始对象：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="s2">&#34;don&#39;t change this value&#34;</span> <span class="p">};</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="s2">&#34;don&#39;t change this value&#34;</span> <span class="p">};</span>
 <span class="nx">library_function</span><span class="p">(</span><span class="nx">inherit</span><span class="p">(</span><span class="nx">o</span><span class="p">));</span> <span class="c1">// Guard against accidental modifications of o
 </span></code></pre></td></tr></table>
 </div>
@@ -294,12 +289,12 @@
 <p>使用.或[]获取属性。运算符左边是一个值为对象的表达式。如果使用点运算符，右边必须是一个表示属性名字的简单的标识符。如果使用方括号，方括号中的值必须是结果为字符串的表达式，该字符串包含所需的属性名：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">author</span> <span class="o">=</span> <span class="nx">book</span><span class="p">.</span><span class="nx">author</span><span class="p">;</span> <span class="c1">// Get the &#34;author&#34; property of the book.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">author</span> <span class="o">=</span> <span class="nx">book</span><span class="p">.</span><span class="nx">author</span><span class="p">;</span> <span class="c1">// Get the &#34;author&#34; property of the book.
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">author</span><span class="p">.</span><span class="nx">surname</span> <span class="c1">// Get the &#34;surname&#34; property of the author.
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">book</span><span class="p">[</span><span class="s2">&#34;main title&#34;</span><span class="p">]</span> <span class="c1">// Get the &#34;main title&#34; property of the book.
 </span></code></pre></td></tr></table>
@@ -308,11 +303,11 @@
 <p>要创建或设置属性，将.或[]表达式放在等号左边：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">book</span><span class="p">.</span><span class="nx">edition</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// Create an &#34;edition&#34; property of book.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">book</span><span class="p">.</span><span class="nx">edition</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// Create an &#34;edition&#34; property of book.
 </span><span class="c1"></span><span class="nx">book</span><span class="p">[</span><span class="s2">&#34;main title&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;ECMAScript&#34;</span><span class="p">;</span> <span class="c1">// Set the &#34;main title&#34; property.
 </span></code></pre></td></tr></table>
 </div>
@@ -322,7 +317,7 @@
 <p>JavaScript对象有一组“自己的属性”，它们也从原型对象继承一组属性：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -332,7 +327,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">// o inherits object methods from Object.prototype
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">// o inherits object methods from Object.prototype
 </span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// and has an own property x.
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">inherit</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span> <span class="c1">// p inherits properties from o and Object.prototype
 </span><span class="c1"></span><span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// and has an own property y.
@@ -347,14 +342,14 @@
 <p>属性赋值检查原型链以确定是否允许赋值。如果o继承一个名为x的只读属性，则不允许赋值。如果允许赋值，则总是在原对象中创建或设置一个属性，并且从不修改原型链。继承发生在查询属性时，而不是设置属性时，这是JavaScript的一个关键特性，因为它允许我们有选择地覆盖继承属性：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">unitcircle</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">r</span><span class="o">:</span><span class="mi">1</span> <span class="p">};</span> <span class="c1">// An object to inherit from
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">unitcircle</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">r</span><span class="o">:</span><span class="mi">1</span> <span class="p">};</span> <span class="c1">// An object to inherit from
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">inherit</span><span class="p">(</span><span class="nx">unitcircle</span><span class="p">);</span> <span class="c1">// c inherits the property r
 </span><span class="c1"></span><span class="nx">c</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// c defines two properties of its own
 </span><span class="c1"></span><span class="nx">c</span><span class="p">.</span><span class="nx">r</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// c overrides its inherited property
@@ -367,7 +362,7 @@
 <p>查询不存在的属性不是错误。如果属性x不是o的自有属性或继承属性，则o.x值为undefined。null和undefined没有属性，查询或者设置它们的属性抛出TypeError。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -376,24 +371,23 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// A verbose and explicit technique
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// A verbose and explicit technique
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">book</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">book</span><span class="p">.</span><span class="nx">subtitle</span><span class="p">)</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">book</span><span class="p">.</span><span class="nx">subtitle</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="c1">// A concise and idiomatic alternative to get subtitle length or undefined
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">book</span> <span class="o">&amp;&amp;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">subtitle</span> <span class="o">&amp;&amp;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">subtitle</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">book</span> <span class="o">&amp;&amp;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">subtitle</span> <span class="o">&amp;&amp;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">subtitle</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>设置属性不总是成功的：有些属性是只读的，不能设置，有些对象不允许添加新属性。这些操作通常是悄悄失败的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// The prototype properties of built-in constructors are read-only.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// The prototype properties of built-in constructors are read-only.
 </span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Assignment fails silently; Object.prototype unchanged
 </span></code></pre></td></tr></table>
 </div>
@@ -408,11 +402,11 @@
 <p>delete从对象中删除属性，它的操作数是一个属性访问表达式。delete并不操作属性的值，而是操作属性本身：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">delete</span> <span class="nx">book</span><span class="p">.</span><span class="nx">author</span><span class="p">;</span> <span class="c1">// The book object now has no author property.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">delete</span> <span class="nx">book</span><span class="p">.</span><span class="nx">author</span><span class="p">;</span> <span class="c1">// The book object now has no author property.
 </span><span class="c1"></span><span class="k">delete</span> <span class="nx">book</span><span class="p">[</span><span class="s2">&#34;main title&#34;</span><span class="p">];</span> <span class="c1">// Now it doesn&#39;t have &#34;main title&#34;, either.
 </span></code></pre></td></tr></table>
 </div>
@@ -420,14 +414,14 @@
 <p>delete操作符只删除自己的属性，而不删除继承的属性。要删除继承的属性，必须从定义它的原型对象中删除它。这样做会影响从原型继承的每个对象。delete删除成功或删除没有效果时，返回true：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">};</span> <span class="c1">// o has own property x and inherits property toString
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">};</span> <span class="c1">// o has own property x and inherits property toString
 </span><span class="c1"></span><span class="k">delete</span> <span class="nx">o</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// Delete x, and return true
 </span><span class="c1"></span><span class="k">delete</span> <span class="nx">o</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// Do nothing (x doesn&#39;t exist), and return true
 </span><span class="c1"></span><span class="k">delete</span> <span class="nx">o</span><span class="p">.</span><span class="nx">toString</span><span class="p">;</span> <span class="c1">// Do nothing (toString isn&#39;t an own property), return true
@@ -438,14 +432,14 @@
 <p>delete不会删除不可配置的属性，但是它可以删除不可扩展对象的可配置属性。内置对象的某些属性是不可配置的，通过变量声明和函数声明创建的全局对象的属性也是不可配置的。在严格模式下，删除不可配置属性会导致TypeError。在非严格模式下，delete返回false：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">delete</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span> <span class="c1">// Can&#39;t delete; property is non-configurable
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">delete</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span> <span class="c1">// Can&#39;t delete; property is non-configurable
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Declare a global variable
 </span><span class="c1"></span><span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// Can&#39;t delete this property
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{}</span> <span class="c1">// Declare a global function
@@ -456,11 +450,11 @@
 <p>在非严格模式下删除全局对象的可配置属性时，可以省略this：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Create a configurable global property (no var)
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Create a configurable global property (no var)
 </span><span class="c1"></span><span class="k">delete</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">// And delete it
 </span></code></pre></td></tr></table>
 </div>
@@ -468,11 +462,11 @@
 <p>在严格模式下，如果delete的操作数是一个非限定的标识符，那么就会引发SyntaxError：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">delete</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">// SyntaxError in strict mode
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">delete</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">// SyntaxError in strict mode
 </span><span class="c1"></span><span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// This works
 </span></code></pre></td></tr></table>
 </div>
@@ -481,13 +475,13 @@
 <p>in操作符左边是一个属性名，右边是一个对象。如果对象这个名字的自有属性或继承的属性，则返回true：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span>
 <span class="s2">&#34;x&#34;</span> <span class="k">in</span> <span class="nx">o</span><span class="p">;</span> <span class="c1">// true: o has an own property &#34;x&#34;
 </span><span class="c1"></span><span class="s2">&#34;y&#34;</span> <span class="k">in</span> <span class="nx">o</span><span class="p">;</span> <span class="c1">// false: o doesn&#39;t have a property &#34;y&#34;
 </span><span class="c1"></span><span class="s2">&#34;toString&#34;</span> <span class="k">in</span> <span class="nx">o</span><span class="p">;</span> <span class="c1">// true: o inherits a toString property
@@ -497,24 +491,22 @@
 <p>对象的hasOwnProperty()方法测试该对象是否具有具有给定名称的自己的属性。对于继承的属性，返回false：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
+<pre tabindex="0" class="chroma"><code></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"></code></pre></td></tr></table>
 </div>
 </div>
 <p>propertyIsEnumerable()只有当指定的属性是自己的属性且是可枚举的时，它才返回true：</p>
 <p><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nx">inherit</span><span class="p">({</span><span class="nx">y</span><span class="o">:</span> <span class="mi">2</span><span class="p">});</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nx">inherit</span><span class="p">({</span><span class="nx">y</span><span class="o">:</span> <span class="mi">2</span><span class="p">});</span>
 <span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="nx">o</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&#34;x&#34;</span><span class="p">);</span> <span class="c1">// true: o has an own enumerable property x
 </span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&#34;y&#34;</span><span class="p">);</span> <span class="c1">// false: y is inherited, not own
@@ -525,14 +517,14 @@
 通常查询属性只需简单使用!==来确保它不是undefined：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span>
 <span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">// true: o has a property x
 </span><span class="c1"></span>
 <span class="nx">o</span><span class="p">.</span><span class="nx">y</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">// false: o doesn&#39;t have a property y
@@ -543,7 +535,7 @@
 <p>有一件事是in操作符可以做的，而上面所示的简单属性访问技术做不到的。in可以区分不存在的属性和设置为undefined 的属性：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -552,7 +544,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="kc">undefined</span> <span class="p">}</span> <span class="c1">// Property is explicitly set to undefined
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="kc">undefined</span> <span class="p">}</span> <span class="c1">// Property is explicitly set to undefined
 </span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">x</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="c1">// false: property exists but is undefined
 </span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">y</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="c1">// false: property doesn&#39;t even exist
 </span><span class="c1"></span><span class="s2">&#34;x&#34;</span> <span class="k">in</span> <span class="nx">o</span> <span class="c1">// true: the property exists
@@ -566,13 +558,13 @@
 <p>通常使用for/in循环来枚举属性。对象继承来的内置方法是不可枚举的，但是自己代码添加的属性是可枚举的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span> <span class="nx">z</span><span class="o">:</span><span class="mi">3</span><span class="p">};</span> <span class="c1">// Three enumerable own properties
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span> <span class="nx">z</span><span class="o">:</span><span class="mi">3</span><span class="p">};</span> <span class="c1">// Three enumerable own properties
 </span><span class="c1"></span><span class="nx">o</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&#34;toString&#34;</span><span class="p">)</span> <span class="c1">// =&gt; false: not enumerable
 </span><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">o</span><span class="p">)</span> <span class="c1">// Loop through the properties
 </span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// Prints x, y, and z, but not toString
@@ -582,7 +574,7 @@
 <p>一些库向会添加新方法或属性到Object.prototype，以便所有对象可以继承和使用用。在ES5之前，没有办法使这些属性不可枚举，因此for/in循环可以枚举它们。为了防止这种情况发生，您可能需要过滤for/in返回的属性：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -591,20 +583,19 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">o</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// Skip inherited properties
 </span><span class="c1"></span><span class="p">}</span>
 
 <span class="k">for</span><span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">o</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&#34;function&#34;</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// Skip methods
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>下面定义了几个实用函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -678,7 +669,7 @@
 </span><span class="lnt">72
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/*
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/*
 </span><span class="cm">* Copy the enumerable properties of p to o, and return o.
 </span><span class="cm">* If o and p have a property by the same name, o&#39;s property is overwritten.
 </span><span class="cm">* This function does not handle getters and setters or copy attributes.
@@ -749,8 +740,7 @@
 </span><span class="c1"></span>            <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">prop</span><span class="p">);</span> <span class="c1">// add it to the array.
 </span><span class="c1"></span>    <span class="p">}</span>
     <span class="k">return</span> <span class="nx">result</span><span class="p">;</span> <span class="c1">// Return the array.
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>ES5定义了两个新函数来枚举属性名。第一个是Object.keys()，它返回一个对象的可枚举属性名数组。第二个是Object.getOwnPropertyNames()，它返回指定对象的所有自身属性名。</p>
@@ -761,7 +751,7 @@
 <p>定义访问器属性的最简单方法是使用对象字面值语法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -770,20 +760,19 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1">// An ordinary data property
 </span><span class="c1"></span>    <span class="nx">data_prop</span><span class="o">:</span> <span class="nx">value</span><span class="p">,</span>
     <span class="c1">// An accessor property defined as a pair of functions
 </span><span class="c1"></span>    <span class="nx">get</span> <span class="nx">accessor_prop</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* function body here */</span> <span class="p">},</span>
     <span class="nx">set</span> <span class="nx">accessor_prop</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* function body here */</span> <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>访问器属性定义为一个或两个名称与属性名称相同的函数，并将function替换为get或set。没有使用冒号将属性的名称与访问该属性的函数分隔开，但是在函数体之后仍然需要使用逗号与下一个方法或数据属性分隔开。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -801,7 +790,7 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1">// x and y are regular read-write data properties.
 </span><span class="c1"></span>    <span class="nx">x</span><span class="o">:</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="nx">y</span><span class="o">:</span> <span class="mf">1.0</span><span class="p">,</span>
@@ -816,30 +805,28 @@
     <span class="p">},</span>
     <span class="c1">// theta is a read-only accessor property with getter only.
 </span><span class="c1"></span>    <span class="nx">get</span> <span class="nx">theta</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">atan2</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span> <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>JavaScript将getter和setter函数作为定义它们的对象的方法，这意味着这些函数可以引用对象的属性。访问器属性是可以继承的，就像数据属性一样：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">q</span> <span class="o">=</span> <span class="nx">inherit</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// Create a new object that inherits getters and setters
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">q</span> <span class="o">=</span> <span class="nx">inherit</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// Create a new object that inherits getters and setters
 </span><span class="c1"></span><span class="nx">q</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">q</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Create q&#39;s own data properties
 </span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">r</span><span class="p">);</span> <span class="c1">// And use the inherited accessor properties
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">theta</span><span class="p">);</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">theta</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>使用访问器属性的另一个原因是对属性写入进行完整性检查，并且可以在读取的属性返回不同的值：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -854,7 +841,7 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// This object generates strictly increasing serial numbers
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// This object generates strictly increasing serial numbers
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">serialnum</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1">// This data property holds the next serial number.
 </span><span class="c1"></span>    <span class="c1">// The $ in the property name hints that it is a private property.
@@ -866,14 +853,13 @@
         <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$n</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">$n</span> <span class="o">=</span> <span class="nx">n</span><span class="p">;</span>
         <span class="k">else</span> <span class="k">throw</span> <span class="s2">&#34;serial number can only be set to a larger value&#34;</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>最后，这里还有一个使用getter方法实现具有“神奇”行为的属性的示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -883,15 +869,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// This object has accessor properties that return random numbers.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// This object has accessor properties that return random numbers.
 </span><span class="c1">// The expression &#34;random.octet&#34;, for example, yields a random number
 </span><span class="c1">// between 0 and 255 each time it is evaluated.
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">random</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">get</span> <span class="nx">octet</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">256</span><span class="p">);</span> <span class="p">},</span>
     <span class="nx">get</span> <span class="nx">uint16</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">65536</span><span class="p">);</span> <span class="p">},</span>
     <span class="nx">get</span> <span class="nx">int16</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mi">65536</span><span class="p">)</span><span class="o">-</span><span class="mi">32768</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="属性的属性">属性的属性</h3>
@@ -899,7 +884,7 @@
 <p>ES5查询和设置属性的方法使用一个称为属性描述符的对象来表示四个属性的集合。使用Object.getOwnPropertyDescriptor()获得指定对象的属性描述符：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -909,7 +894,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Returns {value: 1, writable:true, enumerable:true, configurable:true}
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Returns {value: 1, writable:true, enumerable:true, configurable:true}
 </span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span> <span class="s2">&#34;x&#34;</span><span class="p">);</span>
 <span class="c1">// Now query the octet property of the random object defined above.
 </span><span class="c1">// Returns { get: /func/, set:undefined, enumerable:true, configurable:true}
@@ -924,7 +909,7 @@
 <p>object.defineproperty()用于设置指定对象属性：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -946,7 +931,7 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// Start with no properties at all
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// Start with no properties at all
 </span><span class="c1">// Add a nonenumerable data property x with value 1.
 </span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="s2">&#34;x&#34;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">value</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -973,7 +958,7 @@
 <p>如果要创建或修改多个属性，使用Object.defineProperties()。第一个参数是要修改的对象，第二个参数是一个对象，它将要创建或修改的属性名映射到相应的属性描述符：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -984,7 +969,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperties</span><span class="p">({},</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperties</span><span class="p">({},</span> <span class="p">{</span>
     <span class="nx">x</span><span class="o">:</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">enumerable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">configurable</span><span class="o">:</span><span class="kc">true</span> <span class="p">},</span>
     <span class="nx">y</span><span class="o">:</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">enumerable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">configurable</span><span class="o">:</span><span class="kc">true</span> <span class="p">},</span>
     <span class="nx">r</span><span class="o">:</span> <span class="p">{</span>
@@ -992,8 +977,7 @@
         <span class="nx">enumerable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
         <span class="nx">configurable</span><span class="o">:</span><span class="kc">true</span>
     <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></td></tr></table>
+<span class="p">});</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>Object.create方法的第一个参数是新创建对象的原型对象，它的第二个可选参数是与Object.defineProperties()的第二个参数相同的对象。如果您将一组属性描述符传递给object.create()，那么它们将用于向新创建的对象添加属性。</p>
@@ -1008,7 +992,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1037,7 +1021,7 @@
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/*
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/*
 </span><span class="cm">* Add a nonenumerable extend() method to Object.prototype.
 </span><span class="cm">* This method extends the object on which it is called by copying properties
 </span><span class="cm">* from the object passed as its argument. All property attributes are
@@ -1063,8 +1047,7 @@
 </span><span class="c1"></span>                <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">names</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">desc</span><span class="p">);</span>
             <span class="p">}</span>
         <span class="p">}</span>
-    <span class="p">});</span>
-</code></pre></td></tr></table>
+    <span class="p">});</span></code></pre></td></tr></table>
 </div>
 </div>
 <h4 id="getter和setter的遗留api">getter和setter的遗留API</h4>
@@ -1077,13 +1060,13 @@
 <p>要确定一个对象是另一个对象的原型或其原型链的一部分，使用isPrototypeOf()方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">};</span> <span class="c1">// Define a prototype object.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">};</span> <span class="c1">// Define a prototype object.
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// Create an object with that prototype.
 </span><span class="c1"></span><span class="nx">p</span><span class="p">.</span><span class="nx">isPrototypeOf</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="c1">// =&gt; true: o inherits from p
 </span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isPrototypeOf</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="c1">// =&gt; true: p inherits from Object.prototype
@@ -1095,35 +1078,33 @@
 <p>对象的类属性是一个字符串，它提供关于对象类型的信息。ES3和ES5都没有提供任何方法来设置这个属性，并且只有一种间接的技术来查询它。默认的toString()方法返回这种形式的字符串：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[</span><span class="nx">object</span> <span class="kr">class</span><span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[</span><span class="nx">object</span> <span class="kr">class</span><span class="p">]</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>因此要获得对象的类，可以在其上调用toString()方法，并通过返回的字符提取。棘手的是，许多对象继承了其他更有用的toString()方法，为了调用正确的toString()版本，我们必须使用Function.call()方法间接地这样做：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">classof</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">classof</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">o</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="s2">&#34;Null&#34;</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">o</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="k">return</span> <span class="s2">&#34;Undefined&#34;</span><span class="p">;</span>
     <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">o</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>数组和Date等对象具有与构造函数名称一样的类属性。宿主对象通常也具有有意义的类属性。通过对象字面值或Object.create创建的对象类属性为&quot;Object&rdquo;。自己定义的构造函数，创建的任何对象类属性都是&quot;Object&rdquo;：</p>
+<p>数组和Date等对象具有与构造函数名称一样的类属性。宿主对象通常也具有有意义的类属性。通过对象字面值或Object.create创建的对象类属性为&quot;Object&quot;。自己定义的构造函数，创建的任何对象类属性都是&quot;Object&quot;：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1136,7 +1117,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">classof</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span> <span class="c1">// =&gt; &#34;Null&#34;
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">classof</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span> <span class="c1">// =&gt; &#34;Null&#34;
 </span><span class="c1"></span><span class="nx">classof</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// =&gt; &#34;Number&#34;
 </span><span class="c1"></span><span class="nx">classof</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="c1">// =&gt; &#34;String&#34;
 </span><span class="c1"></span><span class="nx">classof</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span> <span class="c1">// =&gt; &#34;Boolean&#34;
@@ -1160,27 +1141,26 @@
 <p>Object.preventExtensions() ，Object.seal() 和Object.freeze()都返回传递给它们的对象：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Create a sealed object with a frozen prototype and a nonenumerable property
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Create a sealed object with a frozen prototype and a nonenumerable property
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">seal</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">freeze</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">}),</span>
-    <span class="p">{</span><span class="nx">y</span><span class="o">:</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">}}));</span>
-</code></pre></td></tr></table>
+    <span class="p">{</span><span class="nx">y</span><span class="o">:</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">}}));</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="序列化对象">序列化对象</h3>
 <p>ES5提供JSON.stringify()和JSON.parse()来序列化和反序列化JavaScript对象：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="p">{</span><span class="nx">z</span><span class="o">:</span><span class="p">[</span><span class="kc">false</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">]}};</span> <span class="c1">// Define a test object
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="p">{</span><span class="nx">z</span><span class="o">:</span><span class="p">[</span><span class="kc">false</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">]}};</span> <span class="c1">// Define a test object
 </span><span class="c1"></span><span class="nx">s</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span> <span class="c1">// s is &#39;{&#34;x&#34;:1,&#34;y&#34;:{&#34;z&#34;:[false,null,&#34;&#34;]}}&#39;
 </span><span class="c1"></span><span class="nx">p</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="c1">// p is a deep copy of o
 </span></code></pre></td></tr></table>
@@ -1300,7 +1280,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -1320,7 +1300,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

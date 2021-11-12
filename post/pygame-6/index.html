@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/pygame-6/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="Pygame第6章 接受用户输入" />
 <meta property="og:description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/pygame-6/" />
+<meta property="og:url" content="https://gitop.cc/post/pygame-6/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2015-11-16T16:39:23+00:00" />
 <meta property="article:modified_time" content="2015-11-16T16:39:23+00:00" />
+
 <meta itemprop="name" content="Pygame第6章 接受用户输入">
-<meta itemprop="description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容">
-<meta itemprop="datePublished" content="2015-11-16T16:39:23&#43;00:00" />
-<meta itemprop="dateModified" content="2015-11-16T16:39:23&#43;00:00" />
+<meta itemprop="description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容"><meta itemprop="datePublished" content="2015-11-16T16:39:23+00:00" />
+<meta itemprop="dateModified" content="2015-11-16T16:39:23+00:00" />
 <meta itemprop="wordCount" content="1764">
-
-
-
 <meta itemprop="keywords" content="Python," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Pygame第6章 接受用户输入"/>
 <meta name="twitter:description" content="用户可以有很多种方式与游戏交互，这一章详细讲解多种输入设备。除了从设备获取信息，我们也要探索如何将用户所做的事情翻译成游戏中有意义的事件。容"/>
@@ -163,13 +160,13 @@
 <p>我们可以使用<strong>pygame.key.get_pressed</strong>函数检查一个键是否被按下。它返回一个布尔值列表，每一个布尔值对应一个键值常量。要查询某一个键，使用其键值常量作为列表下标。比如查看空格是否被按下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pressed_keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">pressed_keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
 <span class="k">if</span> <span class="n">pressed_keys</span><span class="p">[</span><span class="n">K_SPACE</span><span class="p">]:</span>
     <span class="c1"># Space key has been pressed</span>
     <span class="n">fire</span><span class="p">()</span></code></pre></td></tr></table>
@@ -180,7 +177,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -211,9 +208,9 @@
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
 <span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">exit</span>
 
 <span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 <span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
@@ -221,10 +218,10 @@
 <span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">SysFont</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
 <span class="n">font_height</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">get_linesize</span><span class="p">()</span>
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+            <span class="n">exit</span><span class="p">()</span>
 
     <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
 
@@ -235,7 +232,7 @@
     <span class="k">for</span> <span class="n">key_constant</span><span class="p">,</span> <span class="n">pressed</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pressed_keys</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">pressed</span><span class="p">:</span>
             <span class="n">key_name</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">key_constant</span><span class="p">)</span>
-            <span class="n">text_surface</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">key_name</span> <span class="o">+</span> <span class="s1">&#39; pressed&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+            <span class="n">text_surface</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">key_name</span> <span class="o">+</span> <span class="s1">&#39; pressed&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
             <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">text_surface</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
             <span class="n">y</span> <span class="o">+=</span> <span class="n">font_height</span>
 
@@ -257,31 +254,31 @@
 <thead>
 <tr>
 <th>方向</th>
-<th align="left">向量</th>
+<th style="text-align:left">向量</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Left</td>
-<td align="left">(-1.0, 0.0)</td>
+<td style="text-align:left">(-1.0, 0.0)</td>
 </tr>
 <tr>
 <td>Right</td>
-<td align="left">(1.0, 0.0)</td>
+<td style="text-align:left">(1.0, 0.0)</td>
 </tr>
 <tr>
 <td>Up</td>
-<td align="left">(0.0, –1.0)</td>
+<td style="text-align:left">(0.0, –1.0)</td>
 </tr>
 <tr>
 <td>Down</td>
-<td align="left">(0.0, 1.0)</td>
+<td style="text-align:left">(0.0, 1.0)</td>
 </tr>
 </tbody>
 </table>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -329,12 +326,12 @@
 </span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
 <span class="n">sprite_iamge_filename</span> <span class="o">=</span> <span class="s1">&#39;fugu.png&#39;</span>
 
 <span class="kn">import</span> <span class="nn">pygame</span>
 <span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">exit</span>
 <span class="kn">from</span> <span class="nn">gameobjects.vector2</span> <span class="kn">import</span> <span class="n">Vector2</span>
 
 <span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
@@ -348,10 +345,10 @@
 <span class="n">sprite_pos</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
 <span class="n">sprite_speed</span> <span class="o">=</span> <span class="mf">300.</span>
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+            <span class="n">exit</span><span class="p">()</span>
 
     <span class="n">pressed_keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
     <span class="n">key_direction</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -381,7 +378,7 @@
 <p>往八个方向移动有点像人造的，现实中很少看到这样移动的，大多数东西都能自由转向。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -445,12 +442,12 @@
 </span><span class="lnt">62
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
 <span class="n">sprite_image_filename</span> <span class="o">=</span> <span class="s1">&#39;fugu.png&#39;</span>
 
 <span class="kn">import</span> <span class="nn">pygame</span>
 <span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">exit</span>
 <span class="kn">from</span> <span class="nn">gameobjects.vector2</span> <span class="kn">import</span> <span class="n">Vector2</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -468,10 +465,10 @@
 <span class="n">sprite_rotation</span> <span class="o">=</span> <span class="mf">0.</span>
 <span class="n">sprite_rotation_speed</span> <span class="o">=</span> <span class="mf">360.</span> <span class="c1"># Degrees per second</span>
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+            <span class="n">exit</span><span class="p">()</span>
 
     <span class="n">pressed_keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
 
@@ -613,7 +610,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -633,7 +630,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

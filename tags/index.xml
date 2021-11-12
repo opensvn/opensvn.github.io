@@ -6,11 +6,7 @@
     <description>Recent content in Tags on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 04 Nov 2019 17:49:51 +0800</lastBuildDate>
-    
-	<atom:link href="https://gitop.cc/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 04 Nov 2019 17:49:51 +0800</lastBuildDate><atom:link href="https://gitop.cc/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python</title>
       <link>https://gitop.cc/tags/python/</link>
@@ -111,15 +107,6 @@
     </item>
     
     <item>
-      <title>C</title>
-      <link>https://gitop.cc/tags/c/</link>
-      <pubDate>Thu, 02 Aug 2018 20:31:02 +0800</pubDate>
-      
-      <guid>https://gitop.cc/tags/c/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>CentOS</title>
       <link>https://gitop.cc/tags/centos/</link>
       <pubDate>Thu, 02 Aug 2018 20:31:02 +0800</pubDate>
@@ -143,6 +130,15 @@
       <pubDate>Thu, 07 Apr 2016 22:45:02 +0000</pubDate>
       
       <guid>https://gitop.cc/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C</title>
+      <link>https://gitop.cc/tags/c/</link>
+      <pubDate>Fri, 18 Dec 2015 15:48:18 +0000</pubDate>
+      
+      <guid>https://gitop.cc/tags/c/</guid>
       <description></description>
     </item>
     

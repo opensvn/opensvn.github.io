@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/git-multi-sshkey/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="Git配置多个SSH-Key" />
 <meta property="og:description" content="转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 1.生成" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/git-multi-sshkey/" />
+<meta property="og:url" content="https://gitop.cc/post/git-multi-sshkey/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-07-08T16:59:22+08:00" />
 <meta property="article:modified_time" content="2019-07-08T16:59:22+08:00" />
+
 <meta itemprop="name" content="Git配置多个SSH-Key">
-<meta itemprop="description" content="转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 1.生成">
-<meta itemprop="datePublished" content="2019-07-08T16:59:22&#43;08:00" />
-<meta itemprop="dateModified" content="2019-07-08T16:59:22&#43;08:00" />
+<meta itemprop="description" content="转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 1.生成"><meta itemprop="datePublished" content="2019-07-08T16:59:22+08:00" />
+<meta itemprop="dateModified" content="2019-07-08T16:59:22+08:00" />
 <meta itemprop="wordCount" content="270">
-
-
-
 <meta itemprop="keywords" content="Git," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Git配置多个SSH-Key"/>
 <meta name="twitter:description" content="转自这里 背景 当有多个git账号时，比如： 一个gitee，用于公司内部的工作开发； 一个github，用于自己进行一些开发活动； 解决方法 1.生成"/>
@@ -162,25 +159,25 @@
 <p>1.生成一个公司用的SSH-Key</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s1">&#39;xxxxx@company.com&#39;</span> -f ~/.ssh/gitee_id_rsa
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s1">&#39;xxxxx@company.com&#39;</span> -f ~/.ssh/gitee_id_rsa
 </code></pre></td></tr></table>
 </div>
 </div><p>2.生成一个github用的SSH-Key</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s1">&#39;xxxxx@qq.com&#39;</span> -f ~/.ssh/github_id_rsa
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s1">&#39;xxxxx@qq.com&#39;</span> -f ~/.ssh/github_id_rsa
 </code></pre></td></tr></table>
 </div>
 </div><p>3.在 ~/.ssh 目录下新建一个config文件，添加如下内容（其中Host和HostName填写git服务器的域名，IdentityFile指定私钥的路径）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -192,7 +189,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># gitee</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># gitee</span>
 Host gitee.com
 HostName gitee.com
 PreferredAuthentications publickey
@@ -207,11 +204,11 @@ IdentityFile ~/.ssh/github_id_rsa
 </div><p>4.用ssh命令分别测试</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh -T git@gitee.com
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ssh -T git@gitee.com
 $ ssh -T git@github.com
 </code></pre></td></tr></table>
 </div>
@@ -321,7 +318,7 @@ $ ssh -T git@github.com
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -341,7 +338,7 @@ $ ssh -T git@github.com
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

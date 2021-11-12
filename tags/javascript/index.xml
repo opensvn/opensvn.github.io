@@ -6,11 +6,7 @@
     <description>Recent content in Javascript on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 12 Nov 2018 19:37:34 +0800</lastBuildDate>
-    
-	<atom:link href="https://gitop.cc/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 12 Nov 2018 19:37:34 +0800</lastBuildDate><atom:link href="https://gitop.cc/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>数组</title>
       <link>https://gitop.cc/post/arrays/</link>

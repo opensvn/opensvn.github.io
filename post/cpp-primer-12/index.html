@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/cpp-primer-12/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="第12章 动态内存" />
 <meta property="og:description" content="静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/cpp-primer-12/" />
+<meta property="og:url" content="https://gitop.cc/post/cpp-primer-12/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2016-10-28T14:46:23+00:00" />
 <meta property="article:modified_time" content="2016-10-28T14:46:23+00:00" />
+
 <meta itemprop="name" content="第12章 动态内存">
-<meta itemprop="description" content="静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈">
-<meta itemprop="datePublished" content="2016-10-28T14:46:23&#43;00:00" />
-<meta itemprop="dateModified" content="2016-10-28T14:46:23&#43;00:00" />
+<meta itemprop="description" content="静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈"><meta itemprop="datePublished" content="2016-10-28T14:46:23+00:00" />
+<meta itemprop="dateModified" content="2016-10-28T14:46:23+00:00" />
 <meta itemprop="wordCount" content="5637">
-
-
-
 <meta itemprop="keywords" content="C&#43;&#43;," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="第12章 动态内存"/>
 <meta name="twitter:description" content="静态内存用来存储静态局部对象，类静态成员和全局对象。栈内存用于定义在函数内的非静态对象。静态内存和栈内存分配的对象由编译器自动创建和销毁。栈"/>
@@ -164,11 +161,11 @@
 <p>和<code>vector</code>一样，智能指针是模板。因此当创建智能指针时，需要提供指向的类型信息：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">;</span>    <span class="c1">// shared_ptr that can point at a string
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">;</span>    <span class="c1">// shared_ptr that can point at a string
 </span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">p2</span><span class="p">;</span> <span class="c1">// shared_ptr that can point at a list of ints
 </span></code></pre></td></tr></table>
 </div>
@@ -176,12 +173,12 @@
 <p>默认初始化的智能指针保存一个空指针。智能指针的用法和普通指针类似。解引用智能指针返回所指向的对象，当在条件中使用智能指针时，其效果是测试指针是否为空：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// if p1 is not null, check whether it&#39;s the empty string
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// if p1 is not null, check whether it&#39;s the empty string
 </span><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="n">p1</span> <span class="o">&amp;&amp;</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">empty</span><span class="p">())</span>
     <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="s">&#34;hi&#34;</span><span class="p">;</span>  <span class="c1">// if so, dereference p1 to assign a new value to that string
 </span></code></pre></td></tr></table>
@@ -191,38 +188,38 @@
 <table>
 <thead>
 <tr>
-<th align="left">操作</th>
-<th align="left">说明</th>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">shared_ptr&lt;T&gt; sp<!-- raw HTML omitted -->unique_ptr&lt;T&gt; up</td>
-<td align="left">指向T的空指针</td>
+<td style="text-align:left">shared_ptr&lt;T&gt; sp<!-- raw HTML omitted -->unique_ptr&lt;T&gt; up</td>
+<td style="text-align:left">指向T的空指针</td>
 </tr>
 <tr>
-<td align="left">p</td>
-<td align="left">使用p作为条件，如果p指向对象则为true</td>
+<td style="text-align:left">p</td>
+<td style="text-align:left">使用p作为条件，如果p指向对象则为true</td>
 </tr>
 <tr>
-<td align="left">*p</td>
-<td align="left">解引用p获得p指向的对象</td>
+<td style="text-align:left">*p</td>
+<td style="text-align:left">解引用p获得p指向的对象</td>
 </tr>
 <tr>
-<td align="left">p-&gt;mem</td>
-<td align="left">等同于(*p).mem</td>
+<td style="text-align:left">p-&gt;mem</td>
+<td style="text-align:left">等同于(*p).mem</td>
 </tr>
 <tr>
-<td align="left">p.get()</td>
-<td align="left">返回p维护的底层指针。小心使用，返回指针指向的对象可能被智能指针删除</td>
+<td style="text-align:left">p.get()</td>
+<td style="text-align:left">返回p维护的底层指针。小心使用，返回指针指向的对象可能被智能指针删除</td>
 </tr>
 <tr>
-<td align="left">swap(p, q)</td>
-<td align="left">交换p和q的底层指针</td>
+<td style="text-align:left">swap(p, q)</td>
+<td style="text-align:left">交换p和q的底层指针</td>
 </tr>
 <tr>
-<td align="left">p.swap(q)</td>
-<td align="left">同上</td>
+<td style="text-align:left">p.swap(q)</td>
+<td style="text-align:left">同上</td>
 </tr>
 </tbody>
 </table>
@@ -230,30 +227,30 @@
 <table>
 <thead>
 <tr>
-<th align="left">操作</th>
-<th align="left">说明</th>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">make_shared&lt;T&gt;(args)</td>
-<td align="left">返回指向动态创建的T类型对象的shared_ptr，使用args初始化该对象</td>
+<td style="text-align:left">make_shared&lt;T&gt;(args)</td>
+<td style="text-align:left">返回指向动态创建的T类型对象的shared_ptr，使用args初始化该对象</td>
 </tr>
 <tr>
-<td align="left">shared_ptr&lt;T&gt; p(q)</td>
-<td align="left">p是q的一个拷贝，增加q的引用计数。q包含的指针必须能转换成T*</td>
+<td style="text-align:left">shared_ptr&lt;T&gt; p(q)</td>
+<td style="text-align:left">p是q的一个拷贝，增加q的引用计数。q包含的指针必须能转换成T*</td>
 </tr>
 <tr>
-<td align="left">p = q</td>
-<td align="left">p和q包含的指针可以转换为另一个。减少p的引用计数，增加q的引用计数。如果p的引用计数为0，删除p指向的对象</td>
+<td style="text-align:left">p = q</td>
+<td style="text-align:left">p和q包含的指针可以转换为另一个。减少p的引用计数，增加q的引用计数。如果p的引用计数为0，删除p指向的对象</td>
 </tr>
 <tr>
-<td align="left">p.unique()</td>
-<td align="left">如果p.use_count()为1，返回true，否则返回false</td>
+<td style="text-align:left">p.unique()</td>
+<td style="text-align:left">如果p.use_count()为1，返回true，否则返回false</td>
 </tr>
 <tr>
-<td align="left">p.use_count()</td>
-<td align="left">返回引用计数的个数。可能是一个慢操作，主要用于调试</td>
+<td style="text-align:left">p.use_count()</td>
+<td style="text-align:left">返回引用计数的个数。可能是一个慢操作，主要用于调试</td>
 </tr>
 </tbody>
 </table>
@@ -261,7 +258,7 @@
 <p>分配和使用动态内存最安全的方式是调用<code>make_shared</code>库函数。它定义在<strong>memory</strong>头文件中，是一个函数模板。这个函数在堆上分配和初始化一个对象并返回指向该对象的<code>shared_ptr</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -269,37 +266,35 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// shared_ptr that points to an int with value 42
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// shared_ptr that points to an int with value 42
 </span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p3</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
 <span class="c1">// p4 points to a string with value 9999999999
 </span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p4</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="sc">&#39;9&#39;</span><span class="p">);</span>
 <span class="c1">// p5 points to an int that is value initialized (§ 3.3.1 (p. 98)) to 0
-</span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p5</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">();</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p5</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">();</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>和顺序容器的<code>emplace</code>成员函数一样，<code>make_shared</code>使用其参数构造一个指定类型的对象。如果不传任何参数，则对象被值初始化。当然通常使用<code>auto</code>可以简化<code>make_shared</code>返回指针的定义：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// p6 points to a dynamically allocated, empty vector&lt;string&gt;
-</span><span class="c1"></span><span class="k">auto</span> <span class="n">p6</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&gt;</span><span class="p">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// p6 points to a dynamically allocated, empty vector&lt;string&gt;
+</span><span class="c1"></span><span class="k">auto</span> <span class="n">p6</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&gt;</span><span class="p">();</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>复制和赋值shared_ptr</strong></p>
 <p>当复制或赋值一个<code>shared_ptr</code>时，每一个<code>shared_ptr</code>跟踪指向同一个对象的<code>shared_ptr</code>的个数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span> <span class="c1">// object to which p points has one user
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span> <span class="c1">// object to which p points has one user
 </span><span class="c1"></span><span class="k">auto</span> <span class="nf">q</span><span class="p">(</span><span class="n">p</span><span class="p">);</span> <span class="c1">// p and q point to the same object
 </span><span class="c1"></span>           <span class="c1">// object to which p and q point has two users
 </span></code></pre></td></tr></table>
@@ -320,14 +315,14 @@
 <p>当引用计数为0时，<code>shared_ptr</code>自动销毁它管理的对象：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">r</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span> <span class="c1">// int to which r points has one user
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">r</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span> <span class="c1">// int to which r points has one user
 </span><span class="c1"></span><span class="n">r</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span>  <span class="c1">// assign to r, making it point to a different address
 </span><span class="c1"></span>        <span class="c1">// increase the use count for the object to which q points
 </span><span class="c1"></span>    　　<span class="c1">// reduce the use count of the object to which r had pointed
@@ -355,7 +350,7 @@
 <p>实现一个新的集合类型最简单的方法是使用一个标准库容器管理元素。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -375,7 +370,7 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">StrBlob</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">StrBlob</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">size_type</span> <span class="n">size_type</span><span class="p">;</span>
     <span class="n">StrBlob</span><span class="p">();</span>
@@ -392,8 +387,7 @@
     <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">data</span><span class="p">;</span>
     <span class="c1">// throws msg if data[i] isn&#39;t valid
 </span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">check</span><span class="p">(</span><span class="n">size_type</span> <span class="n">i</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">msg</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="1212-直接管理内存">12.1.2 直接管理内存</h3>
@@ -402,11 +396,11 @@
 <p>动态分配的对象默认初始化，这意味着内置类型或组合类型的值未定义，类对象的值由默认构造函数初始化。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="o">*</span><span class="n">ps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">string</span><span class="p">;</span>  <span class="c1">// initialized to empty string
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="o">*</span><span class="n">ps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">string</span><span class="p">;</span>  <span class="c1">// initialized to empty string
 </span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">pi</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">;</span>        <span class="c1">// pi points to an uninitialized int
 </span></code></pre></td></tr></table>
 </div>
@@ -414,29 +408,28 @@
 <p>可以直接初始化动态分配的对象，可以使用传统的()，也可以使用新标准的列表初始化{}</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="o">*</span><span class="n">pi</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span> <span class="c1">// object to which pi points has value 1024
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="o">*</span><span class="n">pi</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span> <span class="c1">// object to which pi points has value 1024
 </span><span class="c1"></span><span class="n">string</span> <span class="o">*</span><span class="n">ps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">string</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="sc">&#39;9&#39;</span><span class="p">);</span>   <span class="c1">// *ps is &#34;9999999999&#34;
 </span><span class="c1">// vector with ten elements with values from 0 to 9
-</span><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">pv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">};</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">pv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>也可以值初始化动态对象，通过类型名加一对空括号：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="o">*</span><span class="n">ps1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">string</span><span class="p">;</span>  <span class="c1">// default initialized to the empty string
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="o">*</span><span class="n">ps1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">string</span><span class="p">;</span>  <span class="c1">// default initialized to the empty string
 </span><span class="c1"></span><span class="n">string</span> <span class="o">*</span><span class="n">ps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">string</span><span class="p">();</span> <span class="c1">// value initialized to the empty string
 </span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">pi1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">;</span>        <span class="c1">// default initialized; *pi1 is undefined
 </span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">pi2</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">();</span>      <span class="c1">// value initialized to 0; *pi2 is 0
@@ -450,12 +443,12 @@
 <p><strong>C++11</strong>：当在括号里面提供初始值时，可以使用<code>auto</code>推导出我们要分配的对象。由于编译器使用初始值的类型推导要动态分配的对象类型，因此<code>auto</code>只能使用括号初始化，新分配的对象用括号里面的值初始化：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="k">auto</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>   <span class="c1">// p points to an object of the type of obj
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="k">auto</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>   <span class="c1">// p points to an object of the type of obj
 </span><span class="c1"></span>                           <span class="c1">// that object is initialized from obj
 </span><span class="c1"></span><span class="k">auto</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="k">auto</span><span class="p">{</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">};</span> <span class="c1">// error: must use parentheses for the initializer
 </span></code></pre></td></tr></table>
@@ -465,29 +458,28 @@
 <p>使用<code>new</code>动态分配const对象合法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// allocate and initialize a const int
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// allocate and initialize a const int
 </span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">pci</span> <span class="o">=</span> <span class="k">new</span> <span class="k">const</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
 <span class="c1">// allocate a default-initialized const empty string
-</span><span class="c1"></span><span class="k">const</span> <span class="n">string</span> <span class="o">*</span><span class="n">pcs</span> <span class="o">=</span> <span class="k">new</span> <span class="k">const</span> <span class="n">string</span><span class="p">;</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="k">const</span> <span class="n">string</span> <span class="o">*</span><span class="n">pcs</span> <span class="o">=</span> <span class="k">new</span> <span class="k">const</span> <span class="n">string</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>内存耗尽</strong></p>
 <p>如果<code>new</code>不能分配内存，默认抛出<code>bad_alloc</code>异常。可以使用另一种形式的<code>new</code>阻止抛出异常：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// if allocation fails, new returns a null pointer
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// if allocation fails, new returns a null pointer
 </span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">;</span> <span class="c1">// if allocation fails, new throws std::bad_alloc
 </span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">nothrow</span><span class="p">)</span> <span class="kt">int</span><span class="p">;</span> <span class="c1">// if allocation fails, new returns a null pointer
 </span></code></pre></td></tr></table>
@@ -498,7 +490,7 @@
 <p>delete销毁指针指向的对象，并释放相应的内存。传给delete的指针必须是指向动态分配的内存的指针或者是空指针。删除非new返回的指针或删除同一个指针多次是未定义的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -507,7 +499,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">pi1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">pi2</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">pi1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">pi2</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
 <span class="kt">double</span> <span class="o">*</span><span class="n">pd</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">(</span><span class="mi">33</span><span class="p">),</span> <span class="o">*</span><span class="n">pd2</span> <span class="o">=</span> <span class="n">pd</span><span class="p">;</span>
 <span class="k">delete</span> <span class="n">i</span><span class="p">;</span>   <span class="c1">// error: i is not a pointer
 </span><span class="c1"></span><span class="k">delete</span> <span class="n">pi1</span><span class="p">;</span> <span class="c1">// undefined: pi1 refers to a local
@@ -530,11 +522,11 @@
 <p>可以使用<code>new</code>返回的指针初始化智能指针：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">;</span> <span class="c1">// shared_ptr that can point at a double
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">;</span> <span class="c1">// shared_ptr that can point at a double
 </span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p2</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">42</span><span class="p">));</span> <span class="c1">// p2 points to an int with value 42
 </span></code></pre></td></tr></table>
 </div>
@@ -543,41 +535,41 @@
 <table>
 <thead>
 <tr>
-<th align="left">操作</th>
-<th align="left">说明</th>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">shared_ptr&lt;T&gt; p(q)</td>
-<td align="left">p管理内置指针q指向的对象，q必须是new返回的指针且能转换为T*</td>
+<td style="text-align:left">shared_ptr&lt;T&gt; p(q)</td>
+<td style="text-align:left">p管理内置指针q指向的对象，q必须是new返回的指针且能转换为T*</td>
 </tr>
 <tr>
-<td align="left">shared_ptr&lt;T&gt; p(u)</td>
-<td align="left">p从unique_ptr指针u接管所有权，使u变成nullptr</td>
+<td style="text-align:left">shared_ptr&lt;T&gt; p(u)</td>
+<td style="text-align:left">p从unique_ptr指针u接管所有权，使u变成nullptr</td>
 </tr>
 <tr>
-<td align="left">shared_ptr&lt;T&gt; p(q, d)</td>
-<td align="left">p接管内置指针q所指向的对象，q必须能转化为T*，p使用可调用对象d替代delete释放内存</td>
+<td style="text-align:left">shared_ptr&lt;T&gt; p(q, d)</td>
+<td style="text-align:left">p接管内置指针q所指向的对象，q必须能转化为T*，p使用可调用对象d替代delete释放内存</td>
 </tr>
 <tr>
-<td align="left">shared_ptr&lt;T&gt; p(p2, d)</td>
-<td align="left">p是shared_ptr p2的拷贝，使用可调用对象d释放内存</td>
+<td style="text-align:left">shared_ptr&lt;T&gt; p(p2, d)</td>
+<td style="text-align:left">p是shared_ptr p2的拷贝，使用可调用对象d释放内存</td>
 </tr>
 <tr>
-<td align="left">p.reset()<!-- raw HTML omitted -->p.reset(q)<!-- raw HTML omitted -->p.reset(q, d)</td>
-<td align="left">如果p是指向对象的唯一shared_ptr，reset释放指向的对象。如果传递了可选的内置指针q，则使p指向q，否则使p为空指针。如果提供了可调用对象d，则用d释放内存</td>
+<td style="text-align:left">p.reset()<!-- raw HTML omitted -->p.reset(q)<!-- raw HTML omitted -->p.reset(q, d)</td>
+<td style="text-align:left">如果p是指向对象的唯一shared_ptr，reset释放指向的对象。如果传递了可选的内置指针q，则使p指向q，否则使p为空指针。如果提供了可调用对象d，则用d释放内存</td>
 </tr>
 </tbody>
 </table>
 <p>智能指针带指针参数的构造函数是<code>explicit</code>的，因此不能隐式将内置指针转换为智能指针，必须使用直接初始化形式初始化智能指针：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>  <span class="c1">// error: must use direct initialization
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>  <span class="c1">// error: must use direct initialization
 </span><span class="c1"></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p2</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1024</span><span class="p">));</span>   <span class="c1">// ok: uses direct initialization
 </span></code></pre></td></tr></table>
 </div>
@@ -587,7 +579,7 @@
 <p>考虑下面的代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -599,7 +591,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ptr is created and initialized when process is called
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ptr is created and initialized when process is called
 </span><span class="c1"></span><span class="kt">void</span> <span class="nf">process</span><span class="p">(</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ptr</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">// use ptr
@@ -620,7 +612,7 @@
 <p>智能指针类型定义了一个get函数返回其管理对象的内置指针。使用get返回指针的代码不能删除该指针。将get返回的指针绑定到另外一个智能指针是错的。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -629,7 +621,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">42</span><span class="p">));</span> <span class="c1">// reference count is 1
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">42</span><span class="p">));</span> <span class="c1">// reference count is 1
 </span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>  <span class="c1">// ok: but don&#39;t use q in any way that might delete its pointer
 </span><span class="c1"></span><span class="p">{</span> <span class="c1">// new block
 </span><span class="c1"></span>    <span class="c1">// undefined: two independent shared_ptrs point to the same memory
@@ -645,7 +637,7 @@
 <p>我们通常可以使用管理动态内存一样的技巧管理没有良好析构函数的类。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -668,7 +660,7 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">destination</span><span class="p">;</span>  <span class="c1">// represents what we are connecting to
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">destination</span><span class="p">;</span>  <span class="c1">// represents what we are connecting to
 </span><span class="c1"></span><span class="k">struct</span> <span class="nc">connection</span><span class="p">;</span>   <span class="c1">// information needed to use the connection
 </span><span class="c1"></span><span class="n">connection</span> <span class="nf">connect</span><span class="p">(</span><span class="n">destination</span><span class="o">*</span><span class="p">);</span>  <span class="c1">// open the connection
 </span><span class="c1"></span><span class="kt">void</span> <span class="nf">disconnect</span><span class="p">(</span><span class="n">connection</span><span class="p">);</span>       <span class="c1">// close the given connection
@@ -688,8 +680,7 @@
     <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">connection</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="o">&amp;</span><span class="n">c</span><span class="p">,</span> <span class="n">end_connection</span><span class="p">);</span>
     <span class="c1">// use the connection
 </span><span class="c1"></span>    <span class="c1">// when f exits, even if by an exception, the connection will be properly closed
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>警告：智能指针陷阱</strong></p>
@@ -706,43 +697,43 @@
 <table>
 <thead>
 <tr>
-<th align="left">操作</th>
-<th align="left">说明</th>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">unique_ptr&lt;T&gt; u1<!-- raw HTML omitted -->unique_ptr&lt;T, D&gt; u2</td>
-<td align="left">指向T的空指针。u1使用delete释放指针，u2使用可调用对象D释放指针</td>
+<td style="text-align:left">unique_ptr&lt;T&gt; u1<!-- raw HTML omitted -->unique_ptr&lt;T, D&gt; u2</td>
+<td style="text-align:left">指向T的空指针。u1使用delete释放指针，u2使用可调用对象D释放指针</td>
 </tr>
 <tr>
-<td align="left">unique_ptr&lt;T, D&gt; u(d)</td>
-<td align="left">指向T的空指针，使用d替代delete，d必须是D类型的对象</td>
+<td style="text-align:left">unique_ptr&lt;T, D&gt; u(d)</td>
+<td style="text-align:left">指向T的空指针，使用d替代delete，d必须是D类型的对象</td>
 </tr>
 <tr>
-<td align="left">u=nullptr</td>
-<td align="left">删除u指向的对象，使u为空指针</td>
+<td style="text-align:left">u=nullptr</td>
+<td style="text-align:left">删除u指向的对象，使u为空指针</td>
 </tr>
 <tr>
-<td align="left">u.release()</td>
-<td align="left">释放指针u的控制，返回u保存的指针，使u为空指针</td>
+<td style="text-align:left">u.release()</td>
+<td style="text-align:left">释放指针u的控制，返回u保存的指针，使u为空指针</td>
 </tr>
 <tr>
-<td align="left">u.reset()<!-- raw HTML omitted -->u.reset(q)<!-- raw HTML omitted -->u.reset(nullptr)</td>
-<td align="left">删除u指向的对象。如果提供内置指针q，则是u指向那个对象，否则使u为空指针</td>
+<td style="text-align:left">u.reset()<!-- raw HTML omitted -->u.reset(q)<!-- raw HTML omitted -->u.reset(nullptr)</td>
+<td style="text-align:left">删除u指向的对象。如果提供内置指针q，则是u指向那个对象，否则使u为空指针</td>
 </tr>
 </tbody>
 </table>
 <p>因为unique_ptr拥有其指向的对象，所以它不支持复制或赋值：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">(</span><span class="k">new</span> <span class="n">string</span><span class="p">(</span><span class="s">&#34;Stegosaurus&#34;</span><span class="p">));</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">(</span><span class="k">new</span> <span class="n">string</span><span class="p">(</span><span class="s">&#34;Stegosaurus&#34;</span><span class="p">));</span>
 <span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p2</span><span class="p">(</span><span class="n">p1</span><span class="p">);</span>  <span class="c1">// error: no copy for unique_ptr
 </span><span class="c1"></span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p3</span><span class="p">;</span>
 <span class="n">p3</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>                    <span class="c1">// error: no assign for unique_ptr
@@ -752,14 +743,14 @@
 <p>尽管不支持复制和赋值操作，可以通过调用release或reset转移所有权：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// transfers ownership from p1 (which points to the string Stegosaurus) to p2
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// transfers ownership from p1 (which points to the string Stegosaurus) to p2
 </span><span class="c1"></span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p2</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">release</span><span class="p">());</span> <span class="c1">// release makes p1 null
 </span><span class="c1"></span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p3</span><span class="p">(</span><span class="k">new</span> <span class="n">string</span><span class="p">(</span><span class="s">&#34;Trex&#34;</span><span class="p">));</span>
 <span class="c1">// transfers ownership from p3 to p2
@@ -772,7 +763,7 @@
 <p>不能复制unique_ptr有一个例外，可以复制或赋值一个即将销毁的unique_ptr。最常见的例子是从函数返回一个unique_ptr：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -783,7 +774,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">clone</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">clone</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// ok: explicitly create a unique_ptr&lt;int&gt; from int*
 </span><span class="c1"></span>    <span class="k">return</span> <span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="n">p</span><span class="p">));</span>
 <span class="p">}</span>
@@ -791,8 +782,7 @@
     <span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ret</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span> <span class="p">(</span><span class="n">p</span><span class="p">));</span>
     <span class="c1">// . . .
 </span><span class="c1"></span>    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -803,17 +793,16 @@
 <p>和shared_ptr一样，unique_ptr默认使用delete释放其指向的对象。同样，可以覆盖unique_ptr的默认deleter。必须在尖括号里面提供deleter类型</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// p points to an object of type objT and uses an object of type delT to free that
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// p points to an object of type objT and uses an object of type delT to free that
 </span><span class="c1"></span><span class="n">object</span>
 <span class="c1">// it will call an object named fcn of type delT
-</span><span class="c1"></span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">objT</span><span class="p">,</span> <span class="n">delT</span><span class="o">&gt;</span> <span class="n">p</span> <span class="p">(</span><span class="k">new</span> <span class="n">objT</span><span class="p">,</span> <span class="n">fcn</span><span class="p">);</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">objT</span><span class="p">,</span> <span class="n">delT</span><span class="o">&gt;</span> <span class="n">p</span> <span class="p">(</span><span class="k">new</span> <span class="n">objT</span><span class="p">,</span> <span class="n">fcn</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="1216-weak_ptr">12.1.6 weak_ptr</h3>
@@ -822,49 +811,49 @@
 <table>
 <thead>
 <tr>
-<th align="left">操作</th>
-<th align="left">说明</th>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">weak_ptr&lt;T&gt; w</td>
-<td align="left">可以指向T的空weak_ptr</td>
+<td style="text-align:left">weak_ptr&lt;T&gt; w</td>
+<td style="text-align:left">可以指向T的空weak_ptr</td>
 </tr>
 <tr>
-<td align="left">weak_ptr&lt;T&gt; w(sp)</td>
-<td align="left">和shared_ptr sp指向相同对象的weak_ptr，T必须可以转换为sp指向的类型</td>
+<td style="text-align:left">weak_ptr&lt;T&gt; w(sp)</td>
+<td style="text-align:left">和shared_ptr sp指向相同对象的weak_ptr，T必须可以转换为sp指向的类型</td>
 </tr>
 <tr>
-<td align="left">w = p</td>
-<td align="left">p可以是shared_ptr或weak_ptr。赋值后，w于p共享所有权</td>
+<td style="text-align:left">w = p</td>
+<td style="text-align:left">p可以是shared_ptr或weak_ptr。赋值后，w于p共享所有权</td>
 </tr>
 <tr>
-<td align="left">w.reset()</td>
-<td align="left">使用w为空</td>
+<td style="text-align:left">w.reset()</td>
+<td style="text-align:left">使用w为空</td>
 </tr>
 <tr>
-<td align="left">w.use_count()</td>
-<td align="left">和w共享所有权的shared_ptr的数量</td>
+<td style="text-align:left">w.use_count()</td>
+<td style="text-align:left">和w共享所有权的shared_ptr的数量</td>
 </tr>
 <tr>
-<td align="left">w.expired()</td>
-<td align="left">返回true如果w.use_count()为0，否则返回false</td>
+<td style="text-align:left">w.expired()</td>
+<td style="text-align:left">返回true如果w.use_count()为0，否则返回false</td>
 </tr>
 <tr>
-<td align="left">w.lock()</td>
-<td align="left">如果expired为true，返回一个空的shared_ptr，否则返回一个指向w所指对象的shared_ptr</td>
+<td style="text-align:left">w.lock()</td>
+<td style="text-align:left">如果expired为true，返回一个空的shared_ptr，否则返回一个指向w所指对象的shared_ptr</td>
 </tr>
 </tbody>
 </table>
 <p>当创建一个weak_ptr时，用shared_ptr初始化它：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
 <span class="n">weak_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">wp</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>  <span class="c1">// wp weakly shares with p; use count in p is unchanged
 </span></code></pre></td></tr></table>
 </div>
@@ -872,15 +861,14 @@
 <p>因为对象可能不再存在，不能使用weak_ptr直接访问对象。为了访问对象，必须调用lock。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">if</span> <span class="p">(</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">np</span> <span class="o">=</span> <span class="n">wp</span><span class="p">.</span><span class="n">lock</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// true if np is not null
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">if</span> <span class="p">(</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">np</span> <span class="o">=</span> <span class="n">wp</span><span class="p">.</span><span class="n">lock</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// true if np is not null
 </span><span class="c1"></span>    <span class="c1">// inside the if, np shares its object with p
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 
@@ -987,7 +975,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -1007,7 +995,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

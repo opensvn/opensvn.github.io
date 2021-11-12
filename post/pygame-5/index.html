@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/pygame-5/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="Pygame第5章 让画面动起来" />
 <meta property="og:description" content="这一章描述如何以一种可以预测的方式在屏幕上移动对象，和如何使运动在其他人电脑里面一致。 理解帧率 我们需要知道计算机游戏中关于运动的第一件事情就" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/pygame-5/" />
+<meta property="og:url" content="https://gitop.cc/post/pygame-5/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2015-11-10T20:21:33+00:00" />
 <meta property="article:modified_time" content="2015-11-10T20:21:33+00:00" />
+
 <meta itemprop="name" content="Pygame第5章 让画面动起来">
-<meta itemprop="description" content="这一章描述如何以一种可以预测的方式在屏幕上移动对象，和如何使运动在其他人电脑里面一致。 理解帧率 我们需要知道计算机游戏中关于运动的第一件事情就">
-<meta itemprop="datePublished" content="2015-11-10T20:21:33&#43;00:00" />
-<meta itemprop="dateModified" content="2015-11-10T20:21:33&#43;00:00" />
+<meta itemprop="description" content="这一章描述如何以一种可以预测的方式在屏幕上移动对象，和如何使运动在其他人电脑里面一致。 理解帧率 我们需要知道计算机游戏中关于运动的第一件事情就"><meta itemprop="datePublished" content="2015-11-10T20:21:33+00:00" />
+<meta itemprop="dateModified" content="2015-11-10T20:21:33+00:00" />
 <meta itemprop="wordCount" content="3180">
-
-
-
 <meta itemprop="keywords" content="Python," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Pygame第5章 让画面动起来"/>
 <meta name="twitter:description" content="这一章描述如何以一种可以预测的方式在屏幕上移动对象，和如何使运动在其他人电脑里面一致。 理解帧率 我们需要知道计算机游戏中关于运动的第一件事情就"/>
@@ -183,7 +180,7 @@
 <h1 id="直线运动">直线运动</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -216,12 +213,12 @@
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
 <span class="n">sprite_image_filename</span> <span class="o">=</span> <span class="s1">&#39;fugu.png&#39;</span>
 
 <span class="kn">import</span> <span class="nn">pygame</span>
 <span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">exit</span>
 
 <span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 
@@ -233,10 +230,10 @@
 <span class="c1"># The x coordinate of our sprite</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mf">0.</span>
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+            <span class="n">exit</span><span class="p">()</span>
 
     <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
     <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">sprite</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
@@ -254,30 +251,30 @@
 <p>解决第一个问题的技巧是使运动基于时间。我们需要知道距离上一个帧已经过去多长时间，据此我们能相应地在屏幕上放置任何物体。<strong>pygame.time</strong>模块有一个Clock对象可以用来跟踪时间。使用**pygame.time.Clock()**创建clock对象。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">clock</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">Clock</span><span class="p">()</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">clock</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">Clock</span><span class="p">()</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>一旦创建了clock对象，你应该每一帧调用一次<strong>tick</strong>函数，返回上次调用该函数已过去的时间，单位毫秒。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">time_passed</span> <span class="o">=</span> <span class="n">clock</span><span class="o">.</span><span class="n">tick</span><span class="p">()</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">time_passed</span> <span class="o">=</span> <span class="n">clock</span><span class="o">.</span><span class="n">tick</span><span class="p">()</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>tick</strong>函数也接收一个可选参数表示最大帧率。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Game will run at a maximum 30 frames per second</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Game will run at a maximum 30 frames per second</span>
 <span class="n">time_passed</span> <span class="o">=</span> <span class="n">clock</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">time_passed_seconds</span> <span class="o">=</span> <span class="n">time_passed</span> <span class="o">/</span> <span class="mf">1000.0</span></code></pre></td></tr></table>
 </div>
@@ -285,7 +282,7 @@
 <p>我们要怎样使用这个time_passed_seconds来移动精灵呢？需要做的第一件事就是选择一个精灵移动的速度。接下来只要用这个速度乘于时间就能得出精灵该移动多远。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -327,12 +324,12 @@
 </span><span class="lnt">40
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
 <span class="n">sprite_image_filename</span> <span class="o">=</span> <span class="s1">&#39;fugu.png&#39;</span>
 
 <span class="kn">import</span> <span class="nn">pygame</span>
 <span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">exit</span>
 
 <span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 
@@ -349,10 +346,10 @@
 <span class="c1"># Speed in pixels per second</span>
 <span class="n">speed</span> <span class="o">=</span> <span class="mf">250.</span>
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+            <span class="n">exit</span><span class="p">()</span>
 
     <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
     <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">sprite</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
@@ -372,7 +369,7 @@
 <p>理解帧率和精灵移动速度的不同很重要。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -425,12 +422,12 @@
 </span><span class="lnt">51
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
 <span class="n">sprite_image_filename</span> <span class="o">=</span> <span class="s1">&#39;fugu.png&#39;</span>
 
 <span class="kn">import</span> <span class="nn">pygame</span>
 <span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">exit</span>
 
 <span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 
@@ -449,10 +446,10 @@
 
 <span class="n">frame_no</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+            <span class="n">exit</span><span class="p">()</span>
 
     <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
     <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">sprite</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
@@ -482,7 +479,7 @@
 <p>直线运动很有用，但是一个游戏如果所有物体都水平或垂直移动看起来就很笨。我们需要能够在任何方向移动精灵。可以通过调整每个帧的x和y坐标做到。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -534,12 +531,12 @@
 </span><span class="lnt">50
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
 <span class="n">sprite_image_filename</span> <span class="o">=</span> <span class="s1">&#39;fugu.png&#39;</span>
 
 <span class="kn">import</span> <span class="nn">pygame</span>
 <span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">exit</span>
 
 <span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 
@@ -553,10 +550,10 @@
 <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">100.</span><span class="p">,</span> <span class="mf">100.</span>
 <span class="n">speed_x</span><span class="p">,</span> <span class="n">speed_y</span> <span class="o">=</span> <span class="mf">133.</span><span class="p">,</span> <span class="mf">170.</span>
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+            <span class="n">exit</span><span class="p">()</span>
 
     <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
     <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">sprite</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
@@ -595,7 +592,7 @@
 <p>在Python里面没有内置的向量类型，但是你可以将向量存入list，或者自己定义向量类。方便起见，我们选择定义自己的向量类。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -608,7 +605,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Vector2</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Vector2</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
@@ -626,11 +623,11 @@
 <p>从A到B的向量大小就是2个点之间的距离。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -638,13 +635,13 @@
 <p>向量实际描述了两件事情：大小和方向。通常这两个信息绑定在一个向量里面，但有时候你只需其中一个。有一种特殊的向量叫单位向量，它的大小总是为1。我们可以把任意向量缩放到一个单位向量，这叫向量的规格化。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">magnitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_magnitude</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">/=</span> <span class="n">magnitude</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">/=</span> <span class="n">magnitude</span></code></pre></td></tr></table>
@@ -654,11 +651,11 @@
 <p>向量加法是将两个向量组合产生一个向量，它有两个向量组合的效果。也就是AC=AB+BC。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">Vector2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -666,11 +663,11 @@
 <p>向量减法和加法类似。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">Vector2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -678,11 +675,11 @@
 <p>如果想要改变向量的方向，使向量AB变成向量BA，需要将向量每个元素都改变符号。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -690,17 +687,17 @@
 <p>将一个向量乘于或除于一个系数(数字)，效果是改变向量的大小。如果向量乘于一个整数，则产生同一方向的向量，如果乘于一个负数，则产生相反方向的向量。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">Vector2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="fm">__div__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">__div__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">Vector2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">scalar</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="n">scalar</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -710,7 +707,7 @@
 <p>向量乘法如何使用呢？基于时间把向量分解为很多步，向量乘法很有用。如果我们知道从A到B需要10秒，我们可以计算出每一秒我们到达的坐标。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -720,14 +717,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">)</span>
 <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">35.0</span><span class="p">)</span>
 <span class="n">AB</span> <span class="o">=</span> <span class="n">Vector2</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
-<span class="n">step</span> <span class="o">=</span> <span class="n">AB</span> <span class="o">*</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">step</span> <span class="o">=</span> <span class="n">AB</span> <span class="o">*</span> <span class="mf">.1</span>
 <span class="n">position</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">position</span> <span class="o">+=</span> <span class="n">step</span>
-    <span class="k">print</span> <span class="n">position</span></code></pre></td></tr></table>
+    <span class="nb">print</span> <span class="n">position</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>当在两个点之间移动，计算中间位置是基本的。你还可以用向量计算在重力，外部作用力和摩擦力作用下很多现实的运动。</p>
@@ -735,7 +732,7 @@
 <p>作者已经写了一个二维向量类作为游戏对象的一部分。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -747,16 +744,16 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">gameobjects.vector2</span> <span class="kn">import</span> <span class="o">*</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">gameobjects.vector2</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">)</span>
 <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">35.0</span><span class="p">)</span>
 <span class="n">AB</span> <span class="o">=</span> <span class="n">Vector2</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&#34;Vector AB is&#34;</span><span class="p">,</span> <span class="n">AB</span>
-<span class="k">print</span> <span class="s2">&#34;AB * 2 is&#34;</span><span class="p">,</span> <span class="n">AB</span> <span class="o">*</span> <span class="mi">2</span>
-<span class="k">print</span> <span class="s2">&#34;AB / 2 is&#34;</span><span class="p">,</span> <span class="n">AB</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="k">print</span> <span class="s2">&#34;AB + (-10, 5) is&#34;</span><span class="p">,</span> <span class="n">AB</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&#34;Magnitude of AB is&#34;</span><span class="p">,</span> <span class="n">AB</span><span class="o">.</span><span class="n">get_magnitude</span><span class="p">()</span>
-<span class="k">print</span> <span class="s2">&#34;AB normalized is&#34;</span><span class="p">,</span> <span class="n">AB</span><span class="o">.</span><span class="n">get_normalized</span><span class="p">()</span></code></pre></td></tr></table>
+<span class="nb">print</span> <span class="s2">&#34;Vector AB is&#34;</span><span class="p">,</span> <span class="n">AB</span>
+<span class="nb">print</span> <span class="s2">&#34;AB * 2 is&#34;</span><span class="p">,</span> <span class="n">AB</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="nb">print</span> <span class="s2">&#34;AB / 2 is&#34;</span><span class="p">,</span> <span class="n">AB</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="nb">print</span> <span class="s2">&#34;AB + (-10, 5) is&#34;</span><span class="p">,</span> <span class="n">AB</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span> <span class="s2">&#34;Magnitude of AB is&#34;</span><span class="p">,</span> <span class="n">AB</span><span class="o">.</span><span class="n">get_magnitude</span><span class="p">()</span>
+<span class="nb">print</span> <span class="s2">&#34;AB normalized is&#34;</span><span class="p">,</span> <span class="n">AB</span><span class="o">.</span><span class="n">get_normalized</span><span class="p">()</span></code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="使用向量创建运动">使用向量创建运动</h1>
@@ -765,7 +762,7 @@
 <p>让我们使用向量创建更加精确的斜线运动。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -806,10 +803,10 @@
 </span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">background_image_filename</span> <span class="o">=</span> <span class="s1">&#39;sushiplate.jpg&#39;</span>
 <span class="n">sprite_image_filename</span> <span class="o">=</span> <span class="s1">&#39;fugu.png&#39;</span>
 
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="nb">exit</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">exit</span>
 <span class="kn">import</span> <span class="nn">pygame</span>
 <span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">gameobjects.vector2</span> <span class="kn">import</span> <span class="n">Vector2</span>
@@ -827,10 +824,10 @@
 <span class="n">speed</span> <span class="o">=</span> <span class="mi">250</span>
 <span class="n">heading</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">()</span>
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">QUIT</span><span class="p">:</span>
-            <span class="nb">exit</span><span class="p">()</span>
+            <span class="n">exit</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">MOUSEBUTTONDOWN</span><span class="p">:</span>
             <span class="n">destination</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="o">*</span><span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">)</span> <span class="o">-</span> <span class="n">Vector2</span><span class="p">(</span><span class="o">*</span><span class="n">sprite</span><span class="o">.</span><span class="n">get_size</span><span class="p">())</span> <span class="o">/</span> <span class="mf">2.</span>
             <span class="n">heading</span> <span class="o">=</span> <span class="n">Vector2</span><span class="o">.</span><span class="n">from_points</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">destination</span><span class="p">)</span>
@@ -952,7 +949,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -972,7 +969,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

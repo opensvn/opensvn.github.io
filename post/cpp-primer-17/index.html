@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/cpp-primer-17/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="第17章 特殊的库设施" />
 <meta property="og:description" content="17.1 tuple类型 tuple是一个类似pair的模板。每一个pair类型有2个不同类型的成员。一个tuple同样有不同类型的成员，但是它可以有" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/cpp-primer-17/" />
+<meta property="og:url" content="https://gitop.cc/post/cpp-primer-17/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2016-10-17T09:15:58+00:00" />
 <meta property="article:modified_time" content="2016-10-17T09:15:58+00:00" />
+
 <meta itemprop="name" content="第17章 特殊的库设施">
-<meta itemprop="description" content="17.1 tuple类型 tuple是一个类似pair的模板。每一个pair类型有2个不同类型的成员。一个tuple同样有不同类型的成员，但是它可以有">
-<meta itemprop="datePublished" content="2016-10-17T09:15:58&#43;00:00" />
-<meta itemprop="dateModified" content="2016-10-17T09:15:58&#43;00:00" />
+<meta itemprop="description" content="17.1 tuple类型 tuple是一个类似pair的模板。每一个pair类型有2个不同类型的成员。一个tuple同样有不同类型的成员，但是它可以有"><meta itemprop="datePublished" content="2016-10-17T09:15:58+00:00" />
+<meta itemprop="dateModified" content="2016-10-17T09:15:58+00:00" />
 <meta itemprop="wordCount" content="2892">
-
-
-
 <meta itemprop="keywords" content="C&#43;&#43;," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="第17章 特殊的库设施"/>
 <meta name="twitter:description" content="17.1 tuple类型 tuple是一个类似pair的模板。每一个pair类型有2个不同类型的成员。一个tuple同样有不同类型的成员，但是它可以有"/>
@@ -172,25 +169,24 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 <p>当我们定义一个tuple，需要指定每个成员的类型：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">tuple</span><span class="o">&lt;</span><span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="o">&gt;</span> <span class="n">threeD</span><span class="p">;</span> <span class="c1">// all three members set to 0
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">tuple</span><span class="o">&lt;</span><span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="o">&gt;</span> <span class="n">threeD</span><span class="p">;</span> <span class="c1">// all three members set to 0
 </span><span class="c1"></span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span>
-    <span class="n">someVal</span><span class="p">(</span><span class="s">&#34;constants&#34;</span><span class="p">,</span> <span class="p">{</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">2.718</span><span class="p">},</span> <span class="mi">42</span><span class="p">,</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">});</span>
-</code></pre></td></tr></table>
+    <span class="n">someVal</span><span class="p">(</span><span class="s">&#34;constants&#34;</span><span class="p">,</span> <span class="p">{</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">2.718</span><span class="p">},</span> <span class="mi">42</span><span class="p">,</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">});</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>tuple默认构造函数值初始化每一个成员。tuple构造函数是explicit的，因此必须使用直接初始化语法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">tuple</span><span class="o">&lt;</span><span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="o">&gt;</span> <span class="n">threeD</span> <span class="o">=</span>  <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>  <span class="c1">// error
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">tuple</span><span class="o">&lt;</span><span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="o">&gt;</span> <span class="n">threeD</span> <span class="o">=</span>  <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>  <span class="c1">// error
 </span><span class="c1"></span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="o">&gt;</span> <span class="n">threeD</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>      <span class="c1">// ok
 </span></code></pre></td></tr></table>
 </div>
@@ -198,13 +194,12 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 <p>类似于make_pair函数，标准库定义了一个make_tuple函数生成tuple对象：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// tuple that represents a bookstore transaction: ISBN, count, price per book
-</span><span class="c1"></span><span class="k">auto</span> <span class="n">item</span> <span class="o">=</span> <span class="n">make_tuple</span><span class="p">(</span><span class="s">&#34;0-999-78345-X&#34;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">20.00</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// tuple that represents a bookstore transaction: ISBN, count, price per book
+</span><span class="c1"></span><span class="k">auto</span> <span class="n">item</span> <span class="o">=</span> <span class="n">make_tuple</span><span class="p">(</span><span class="s">&#34;0-999-78345-X&#34;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">20.00</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>和make_pair一样，make_tuple函数使用其参数的类型推导tuple的类型。上面这个例子种，item类型为tupple&lt;const char*, int, double&gt;。</p>
@@ -212,13 +207,13 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 <p>tuple的成员是未命名的，我们通过一个标准库函数模板get访问其成员。为了使用get我们必须指定一个显式模板实参，这个实参是我们想要访问的成员的位置。传递tuple对象给get，get返回指定成员的引用：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">book</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>      <span class="c1">// returns the first member of item
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">book</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>      <span class="c1">// returns the first member of item
 </span><span class="c1"></span><span class="k">auto</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>       <span class="c1">// returns the second member of item
 </span><span class="c1"></span><span class="k">auto</span> <span class="n">price</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="o">/</span><span class="n">cnt</span><span class="p">;</span> <span class="c1">// returns the last member of item
 </span><span class="c1"></span><span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">*=</span> <span class="mf">0.8</span><span class="p">;</span>           <span class="c1">// apply 20% discount
@@ -229,14 +224,14 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 <p>如果不知道tuple的类型，我们可以使用2个辅助的类模板找出tuple成员的数量和类型：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="nf">decltype</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="n">trans</span><span class="p">;</span> <span class="c1">// trans is the type of item
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">typedef</span> <span class="nf">decltype</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="n">trans</span><span class="p">;</span> <span class="c1">// trans is the type of item
 </span><span class="c1">// returns the number of members in object&#39;s of type trans
 </span><span class="c1"></span><span class="n">size_t</span> <span class="n">sz</span> <span class="o">=</span> <span class="n">tuple_size</span><span class="o">&lt;</span><span class="n">trans</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">;</span>  <span class="c1">// returns 3
 </span><span class="c1">// cnt has the same type as the second member in item
@@ -250,7 +245,7 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 <p>只有当2个tuple有相同数量的成员时，才能进行比较。为使用==操作符，tuple之间的每一对成员必须可以使用==操作符。关系操作符同样的规则。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -259,7 +254,7 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">tuple</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;</span> <span class="n">duo</span><span class="p">(</span><span class="s">&#34;1&#34;</span><span class="p">,</span> <span class="s">&#34;2&#34;</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">tuple</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;</span> <span class="n">duo</span><span class="p">(</span><span class="s">&#34;1&#34;</span><span class="p">,</span> <span class="s">&#34;2&#34;</span><span class="p">);</span>
 <span class="n">tuple</span><span class="o">&lt;</span><span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="o">&gt;</span> <span class="n">twoD</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 <span class="kt">bool</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">duo</span> <span class="o">==</span> <span class="n">twoD</span><span class="p">);</span> <span class="c1">// error: can&#39;t compare a size_t and a string
 </span><span class="c1"></span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="o">&gt;</span> <span class="n">threeD</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
@@ -278,7 +273,7 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 <h4 id="返回tuple的函数">返回tuple的函数</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -304,7 +299,7 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// matches has three members: an index of a store and iterators into that store&#39;s vector
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// matches has three members: an index of a store and iterators into that store&#39;s vector
 </span><span class="c1"></span><span class="k">typedef</span> <span class="n">tuple</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Sales_data</span><span class="o">&gt;::</span><span class="n">size_type</span><span class="p">,</span>
     <span class="n">vector</span><span class="o">&lt;</span><span class="n">Sales_data</span><span class="o">&gt;::</span><span class="n">const_iterator</span><span class="p">,</span>
     <span class="n">vector</span><span class="o">&lt;</span><span class="n">Sales_data</span><span class="o">&gt;::</span><span class="n">const_iterator</span><span class="o">&gt;</span> <span class="n">matches</span><span class="p">;</span>
@@ -327,14 +322,13 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
                 <span class="n">found</span><span class="p">.</span><span class="n">second</span><span class="p">));</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">ret</span><span class="p">;</span> <span class="c1">// empty if no matches found
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h4 id="使用函数返回的tuple">使用函数返回的tuple</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -353,7 +347,7 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">reportResults</span><span class="p">(</span><span class="n">istream</span> <span class="o">&amp;</span><span class="n">in</span><span class="p">,</span> <span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">,</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">reportResults</span><span class="p">(</span><span class="n">istream</span> <span class="o">&amp;</span><span class="n">in</span><span class="p">,</span> <span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">,</span>
     <span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Sales_data</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">files</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">string</span> <span class="n">s</span><span class="p">;</span>  <span class="c1">// book to look for
@@ -369,8 +363,7 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
                 <span class="o">&lt;&lt;</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">store</span><span class="p">),</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">store</span><span class="p">),</span> <span class="n">Sales_data</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
                 <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="172-bitset类型">17.2 bitset类型</h2>
@@ -379,10 +372,10 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 <p>bitset类是一个类模板，和array类一样，拥有固定长度。当定义bitset对象时，需要指定bitset将要包含的位数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;</span> <span class="n">bitvec</span><span class="p">(</span><span class="mi">1U</span><span class="p">);</span> <span class="c1">// 32 bits; low-order bit is 1, remaining bits are 0
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;</span> <span class="n">bitvec</span><span class="p">(</span><span class="mi">1U</span><span class="p">);</span> <span class="c1">// 32 bits; low-order bit is 1, remaining bits are 0
 </span></code></pre></td></tr></table>
 </div>
 </div>
@@ -391,7 +384,7 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 <p>当使用一个整型值初始化一个bitset时，值被转化为unsigned long long的位模式。如果bitset大小比unsigned long long大，则剩下的高位置为0，否则超出bitset大小的高位被丢弃。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -399,7 +392,7 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// bitvec1 is smaller than the initializer; high-order bits from the initializer are discarded
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// bitvec1 is smaller than the initializer; high-order bits from the initializer are discarded
 </span><span class="c1"></span><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">13</span><span class="o">&gt;</span> <span class="n">bitvec1</span> <span class="p">(</span><span class="mh">0xbeef</span><span class="p">);</span>  <span class="c1">// bits are 1111011101111
 </span><span class="c1">// bitvec2 is larger than the initializer; high-order bits in bitvec2 are set to zero
 </span><span class="c1"></span><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">20</span><span class="o">&gt;</span> <span class="n">bitvec2</span><span class="p">(</span><span class="mh">0xbeef</span><span class="p">);</span>  <span class="c1">// bits are 00001011111011101111
@@ -412,10 +405,10 @@ tuple可以认为是一个“快捷且脏”的数据结构。</p>
 <p>可以使用string或指向字符数组的指针初始化bitset。任一种情况，字符直接表示位模式。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;</span> <span class="n">bitvec4</span><span class="p">(</span><span class="s">&#34;1100&#34;</span><span class="p">);</span> <span class="c1">// bits 2 and 3 are 1, all others are 0
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;</span> <span class="n">bitvec4</span><span class="p">(</span><span class="s">&#34;1100&#34;</span><span class="p">);</span> <span class="c1">// bits 2 and 3 are 1, all others are 0
 </span></code></pre></td></tr></table>
 </div>
 </div>
@@ -427,12 +420,12 @@ string和bitset的下标是相反关联的：string最右边的字符用来初�
 <p>可以使用子字符串初始化bitset：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="nf">str</span><span class="p">(</span><span class="s">&#34;1111111000000011001101&#34;</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="nf">str</span><span class="p">(</span><span class="s">&#34;1111111000000011001101&#34;</span><span class="p">);</span>
 <span class="n">bitset</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;</span> <span class="n">bitvec5</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// four bits starting at str[5], 1100
 </span><span class="c1"></span><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;</span> <span class="n">bitvec6</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">str</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">4</span><span class="p">);</span> <span class="c1">// use last four characters
 </span></code></pre></td></tr></table>
@@ -441,7 +434,7 @@ string和bitset的下标是相反关联的：string最右边的字符用来初�
 <h3 id="bitset操作">bitset操作</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -462,7 +455,7 @@ string和bitset的下标是相反关联的：string最右边的字符用来初�
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;</span> <span class="n">bitvec</span><span class="p">(</span><span class="mi">1U</span><span class="p">);</span> <span class="c1">// 32 bits; low-order bit is 1, remaining bits are 0
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;</span> <span class="n">bitvec</span><span class="p">(</span><span class="mi">1U</span><span class="p">);</span> <span class="c1">// 32 bits; low-order bit is 1, remaining bits are 0
 </span><span class="c1"></span><span class="kt">bool</span> <span class="n">is_set</span> <span class="o">=</span> <span class="n">bitvec</span><span class="p">.</span><span class="n">any</span><span class="p">();</span>      <span class="c1">// true, one bit is set
 </span><span class="c1"></span><span class="kt">bool</span> <span class="n">is_not_set</span> <span class="o">=</span> <span class="n">bitvec</span><span class="p">.</span><span class="n">none</span><span class="p">();</span> <span class="c1">// false, one bit is set
 </span><span class="c1"></span><span class="kt">bool</span> <span class="n">all_set</span> <span class="o">=</span> <span class="n">bitvec</span><span class="p">.</span><span class="n">all</span><span class="p">();</span>     <span class="c1">// false, only one bit is set
@@ -488,11 +481,10 @@ string和bitset的下标是相反关联的：string最右边的字符用来初�
 <p>to_ulong和to_ullong操作返回和bitset对象同样位模式的数值。只有在bitset大小小于或等于unsigned long或unsigned long long类型时才可用：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">ulong</span> <span class="o">=</span> <span class="n">bitvec3</span><span class="p">.</span><span class="n">to_ulong</span><span class="p">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">ulong</span> <span class="o">=</span> <span class="n">bitvec3</span><span class="p">.</span><span class="n">to_ulong</span><span class="p">();</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -503,12 +495,12 @@ string和bitset的下标是相反关联的：string最右边的字符用来初�
 <p>输入操作符从输入流读取字符到一个临时string对象，直到读满bitset大小或遇到一个不是0或1的字符，或者遇到输入操作。然后bitset由这个临时string初始化。输出操作符打印bitset对象的位模式。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">16</span><span class="o">&gt;</span> <span class="n">bits</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">16</span><span class="o">&gt;</span> <span class="n">bits</span><span class="p">;</span>
 <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">bits</span><span class="p">;</span>  <span class="c1">// read up to 16 1 or 0 characters from cin
 </span><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;bits: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">bits</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// print what we just read
 </span></code></pre></td></tr></table>
@@ -517,7 +509,7 @@ string和bitset的下标是相反关联的：string最右边的字符用来初�
 <h4 id="使用bitset">使用bitset</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -530,7 +522,7 @@ string和bitset的下标是相反关联的：string最右边的字符用来初�
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">status</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">status</span><span class="p">;</span>
 <span class="c1">// version using bitwise operators
 </span><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">quizA</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>      <span class="c1">// this value is used as a collection of bits
 </span><span class="c1"></span><span class="n">quizA</span> <span class="o">|=</span> <span class="mi">1UL</span> <span class="o">&lt;&lt;</span> <span class="mi">27</span><span class="p">;</span>           <span class="c1">// indicate student number 27 passed
@@ -550,37 +542,37 @@ string和bitset的下标是相反关联的：string最右边的字符用来初�
 <thead>
 <tr>
 <th>类</th>
-<th align="left">说明</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>regex</td>
-<td align="left">正则表达式类</td>
+<td style="text-align:left">正则表达式类</td>
 </tr>
 <tr>
 <td>regex_match</td>
-<td align="left">根据正则表达式匹配字符串</td>
+<td style="text-align:left">根据正则表达式匹配字符串</td>
 </tr>
 <tr>
 <td>regex_search</td>
-<td align="left">查找第一个匹配正则表达式的子串</td>
+<td style="text-align:left">查找第一个匹配正则表达式的子串</td>
 </tr>
 <tr>
 <td>regex_replace</td>
-<td align="left">使用指定的格式替换正则表达式</td>
+<td style="text-align:left">使用指定的格式替换正则表达式</td>
 </tr>
 <tr>
 <td>sregex_iterator</td>
-<td align="left">迭代器适配器，调用regex_search遍历字符串中匹配项</td>
+<td style="text-align:left">迭代器适配器，调用regex_search遍历字符串中匹配项</td>
 </tr>
 <tr>
 <td>smatch</td>
-<td align="left">容器类，包含查找的结果集</td>
+<td style="text-align:left">容器类，包含查找的结果集</td>
 </tr>
 <tr>
 <td>ssub_match</td>
-<td align="left">匹配子表达式的结果集</td>
+<td style="text-align:left">匹配子表达式的结果集</td>
 </tr>
 </tbody>
 </table>
@@ -693,7 +685,7 @@ string和bitset的下标是相反关联的：string最右边的字符用来初�
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -713,7 +705,7 @@ string和bitset的下标是相反关联的：string最右边的字符用来初�
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

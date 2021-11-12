@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/docker_install_gpdb_dev_env/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="Docker安装gpdb测试数据库" />
 <meta property="og:description" content="下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/docker_install_gpdb_dev_env/" />
+<meta property="og:url" content="https://gitop.cc/post/docker_install_gpdb_dev_env/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-01-17T15:02:33+08:00" />
 <meta property="article:modified_time" content="2019-01-17T15:02:33+08:00" />
+
 <meta itemprop="name" content="Docker安装gpdb测试数据库">
-<meta itemprop="description" content="下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便">
-<meta itemprop="datePublished" content="2019-01-17T15:02:33&#43;08:00" />
-<meta itemprop="dateModified" content="2019-01-17T15:02:33&#43;08:00" />
-<meta itemprop="wordCount" content="568">
-
-
-
+<meta itemprop="description" content="下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便"><meta itemprop="datePublished" content="2019-01-17T15:02:33+08:00" />
+<meta itemprop="dateModified" content="2019-01-17T15:02:33+08:00" />
+<meta itemprop="wordCount" content="564">
 <meta itemprop="keywords" content="Docker,Greenplum," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker安装gpdb测试数据库"/>
 <meta name="twitter:description" content="下载gpdb-dev镜像 pivotaldata/gpdb-dev:centos7是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便"/>
@@ -129,7 +126,7 @@
         <div class="post-category">
             <a href="/categories/database/"> Database </a>
             </div>
-          <span class="more-meta"> 约 568 字 </span>
+          <span class="more-meta"> 约 564 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
@@ -146,59 +143,59 @@
 <p><code>pivotaldata/gpdb-dev:centos7</code>是官方的开发镜像，里面已经装好了一些依赖，所以使用起来会方便一点。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">docker pull pivotaldata/gpdb-dev:centos7</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker pull pivotaldata/gpdb-dev:centos7</code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>下载gpdb源码到指定目录</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/greenplum-db/gpdb.git ~/github</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/greenplum-db/gpdb.git ~/github</code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>创建目录用于容器数据库</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /var/lib/centos-gpdb-dev-data
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /var/lib/centos-gpdb-dev-data
 sudo chown xiaoyu:xiaoyu /var/lib/centos-gpdb-dev-data</code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>运行容器</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">docker run -it --name centos-gpdb-dev -v ~/github/gpdb:/home/gpadmin/gpdb_src -v /var/lib/centos-gpdb-dev-data:/home/gpadmin/data -p 15432:15432 pivotaldata/gpdb-dev:centos7</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run -it --name centos-gpdb-dev -v ~/github/gpdb:/home/gpadmin/gpdb_src -v /var/lib/centos-gpdb-dev-data:/home/gpadmin/data -p 15432:15432 pivotaldata/gpdb-dev:centos7</code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>安装依赖</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">/home/gpadmin/gpdb_src/README.CentOS.bash</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">/home/gpadmin/gpdb_src/README.CentOS.bash</code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>添加动态库搜索路径，并使之生效</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> /usr/local/lib &gt;&gt; /etc/ld.so.conf
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> /usr/local/lib &gt;&gt; /etc/ld.so.conf
 <span class="nb">echo</span> /usr/local/lib64 &gt;&gt; /etc/ld.so.conf
 ldconfig</code></pre></td></tr></table>
 </div>
@@ -206,23 +203,23 @@ ldconfig</code></pre></td></tr></table>
 <p><strong>设置启动sshd</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> /usr/sbin/sshd &gt;&gt; ~/.bashrc
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> /usr/sbin/sshd &gt;&gt; ~/.bashrc
 /usr/sbin/sshd <span class="c1"># 第一次手动启动</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>切换到gpadmin用户，并进入源码目录</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">su - gpadmin
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">su - gpadmin
 mkdir gpdb <span class="c1"># 创建gpdb目录作为gpdb安装目录</span>
 <span class="nb">cd</span> /home/gpadmin/gpdb_src</code></pre></td></tr></table>
 </div>
@@ -230,14 +227,14 @@ mkdir gpdb <span class="c1"># 创建gpdb目录作为gpdb安装目录</span>
 <p><strong>编译gp-xerces</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/greenplum-db/gp-xerces.git
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/greenplum-db/gp-xerces.git
 <span class="nb">cd</span> gp-xerces
 ./configure <span class="o">&amp;&amp;</span> make -j4
 sudo make install
@@ -247,25 +244,25 @@ sudo make install
 <p><strong>安装conan</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo pip install --upgrade pip
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo pip install --upgrade pip
 sudo pip install -I conan <span class="c1"># -I忽略已安装的包</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>编译ORCA</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> depends
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> depends
 ./configure <span class="o">&amp;&amp;</span> make -j4 orca
 sudo make install_local
 sudo ldconfig
@@ -275,35 +272,35 @@ sudo ldconfig
 <p><strong>编译gpdb</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">./configure --enable-debug --with-perl --with-python --with-libxml --with-gssapi --prefix<span class="o">=</span>/home/gpadmin/gpdb
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">./configure --enable-debug --with-perl --with-python --with-libxml --with-gssapi --prefix<span class="o">=</span>/home/gpadmin/gpdb
 make -j4 <span class="o">&amp;&amp;</span> make -j4 install</code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>使greenplum环境变量生效</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="nb">source</span> /home/gpadmin/gpdb/greenplum_path.sh &gt;&gt; ~/.bashrc
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="nb">source</span> /home/gpadmin/gpdb/greenplum_path.sh &gt;&gt; ~/.bashrc
 <span class="nb">source</span> ~/.bashrc</code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>创建测试数据库</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">MASTER_DATADIR</span><span class="o">=</span>~/data <span class="c1"># 脚本demo_cluster.sh中用到</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">MASTER_DATADIR</span><span class="o">=</span>~/data <span class="c1"># 脚本demo_cluster.sh中用到</span>
 make create-demo-cluster
 <span class="nb">echo</span> <span class="nb">source</span> /home/gpadmin/gpdb_src/gpAux/gpdemo/gpdemo-env.sh &gt;&gt; ~/.bashrc
 <span class="nb">source</span> ~/.bashrc</code></pre></td></tr></table>
@@ -312,28 +309,28 @@ make create-demo-cluster
 <p><strong>修改数据库用户名密码</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">USER</span> <span class="n">gpadmin</span> <span class="n">PASSWORD</span> <span class="s1">&#39;gpadmin&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">gpadmin</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="s1">&#39;gpadmin&#39;</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>修改master数据目录的配置文件pg_hba.conf，在最后添加以下内容</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">host    all     all     192.168.0.0/16  md5</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">host    all     all     192.168.0.0/16  md5</code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>修改master数据目录的配置文件postgresql.conf，找到listen_addresses，去掉前面的#，让gpdb重新加载配置文件</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">gpstop -ua</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gpstop -ua</code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>至此，gpdb测试数据库可以接受内网的访问。</strong></p>
@@ -442,7 +439,7 @@ make create-demo-cluster
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -462,7 +459,7 @@ make create-demo-cluster
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

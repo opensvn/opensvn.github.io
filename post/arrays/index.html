@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/arrays/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="数组" />
 <meta property="og:description" content="创建数组 创建数组的最简单方法是使用数组字面值： 1 2 3 var empty = []; // An array with no elements var primes = [2, 3, 5, 7, 11]; // An array with 5 numeric elements var misc = [1.1, true, &#34;a&#34;,]; // 3 elements of various types &#43; trailing comma 数组字面" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/arrays/" />
+<meta property="og:url" content="https://gitop.cc/post/arrays/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-12T19:37:34+08:00" />
 <meta property="article:modified_time" content="2018-11-12T19:37:34+08:00" />
+
 <meta itemprop="name" content="数组">
-<meta itemprop="description" content="创建数组 创建数组的最简单方法是使用数组字面值： 1 2 3 var empty = []; // An array with no elements var primes = [2, 3, 5, 7, 11]; // An array with 5 numeric elements var misc = [1.1, true, &#34;a&#34;,]; // 3 elements of various types &#43; trailing comma 数组字面">
-<meta itemprop="datePublished" content="2018-11-12T19:37:34&#43;08:00" />
-<meta itemprop="dateModified" content="2018-11-12T19:37:34&#43;08:00" />
+<meta itemprop="description" content="创建数组 创建数组的最简单方法是使用数组字面值： 1 2 3 var empty = []; // An array with no elements var primes = [2, 3, 5, 7, 11]; // An array with 5 numeric elements var misc = [1.1, true, &#34;a&#34;,]; // 3 elements of various types &#43; trailing comma 数组字面"><meta itemprop="datePublished" content="2018-11-12T19:37:34+08:00" />
+<meta itemprop="dateModified" content="2018-11-12T19:37:34+08:00" />
 <meta itemprop="wordCount" content="6504">
-
-
-
 <meta itemprop="keywords" content="Javascript," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="数组"/>
 <meta name="twitter:description" content="创建数组 创建数组的最简单方法是使用数组字面值： 1 2 3 var empty = []; // An array with no elements var primes = [2, 3, 5, 7, 11]; // An array with 5 numeric elements var misc = [1.1, true, &#34;a&#34;,]; // 3 elements of various types &#43; trailing comma 数组字面"/>
@@ -164,12 +161,12 @@
 <p>创建数组的最简单方法是使用数组字面值：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">empty</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// An array with no elements
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">empty</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// An array with no elements
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">primes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">];</span> <span class="c1">// An array with 5 numeric elements
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">misc</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,];</span> <span class="c1">// 3 elements of various types + trailing comma
 </span></code></pre></td></tr></table>
@@ -178,11 +175,11 @@
 <p>数组字面值中的元素可以是任意的表达式。如果数组中有省略的元素，其值为<code>undefined</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,,</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// An array with 3 elements, the middle one undefined.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,,</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// An array with 3 elements, the middle one undefined.
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">undefs</span> <span class="o">=</span> <span class="p">[,,];</span> <span class="c1">// An array with 2 elements, both undefined.
 </span></code></pre></td></tr></table>
 </div>
@@ -190,12 +187,12 @@
 <p>另一种方式是使用<code>Array</code>构造函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span> <span class="c1">// equivalent to []
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span> <span class="c1">// equivalent to []
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// length 10, but has no values
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;testing, testing&#34;</span><span class="p">);</span> <span class="c1">// arguments become array&#39;s elements
 </span></code></pre></td></tr></table>
@@ -207,12 +204,12 @@
 <p>数组索引只是一种特殊类型的属性名，这意味着数组没有“越界”的概念：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">];</span> <span class="c1">// This array has elements at indexes 0 and 1
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">];</span> <span class="c1">// This array has elements at indexes 0 and 1
 </span><span class="c1"></span><span class="nx">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1">// =&gt; undefined. No element at this index.
 </span><span class="c1"></span><span class="nx">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1">// =&gt; undefined. No property with this name.
 </span></code></pre></td></tr></table>
@@ -222,12 +219,12 @@
 <p>稀疏数组是没有连续索引的数组。稀疏数组的<code>length</code>属性的值大于元素的数量：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// No elements, but a.length is 5.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// No elements, but a.length is 5.
 </span><span class="c1"></span><span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// Create an array with no elements and length = 0.
 </span><span class="c1"></span><span class="nx">a</span><span class="p">[</span><span class="mi">1000</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Assignment adds one element but sets length to 1001.
 </span></code></pre></td></tr></table>
@@ -236,13 +233,13 @@
 <p>创建数组时忽略的元素和稀疏数组中不存在的元素是有区别的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a1</span> <span class="o">=</span> <span class="p">[,,,];</span> <span class="c1">// This array is [undefined, undefined, undefined]
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a1</span> <span class="o">=</span> <span class="p">[,,,];</span> <span class="c1">// This array is [undefined, undefined, undefined]
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">a2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// This array has no values at all
 </span><span class="c1"></span><span class="mi">0</span> <span class="k">in</span> <span class="nx">a1</span> <span class="c1">// =&gt; true: a1 has an element with index 0
 </span><span class="c1"></span><span class="mi">0</span> <span class="k">in</span> <span class="nx">a2</span> <span class="c1">// =&gt; false: a2 has no element with index 0
@@ -253,11 +250,11 @@
 <p>数组的<code>length</code>属性使得数组不同于普通的JavaScript对象。对于密集的数组， <code>length</code>属性指定数组中元素的数量。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[].</span><span class="nx">length</span> <span class="c1">// =&gt; 0: the array has no elements
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[].</span><span class="nx">length</span> <span class="c1">// =&gt; 0: the array has no elements
 </span><span class="c1"></span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">].</span><span class="nx">length</span> <span class="c1">// =&gt; 3: highest index is 2, length is 3
 </span></code></pre></td></tr></table>
 </div>
@@ -270,12 +267,12 @@
 <p>将<code>length</code>属性设置为大于其当前的值，这样做实际上只是在数组末尾创建一个稀疏区域。在ES5中，可以使用<code>Object.defineProperty</code>将数组的<code>length</code>属性设置为只读：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// Start with a 3-element array.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// Start with a 3-element array.
 </span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="s2">&#34;length&#34;</span><span class="p">,</span> <span class="p">{</span><span class="nx">writable</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span>  <span class="c1">// Make the length property readonly.
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// a is unchanged.
 </span></code></pre></td></tr></table>
@@ -286,26 +283,25 @@
 <p>最简单的添加元素方法是赋值给新索引：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">// Start with an empty array.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">// Start with an empty array.
 </span><span class="c1"></span><span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;zero&#34;</span><span class="p">;</span> <span class="c1">// And add elements to it.
-</span><span class="c1"></span><span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;one&#34;</span><span class="p">;</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;one&#34;</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>还可以使用<code>push</code>方法向数组末尾添加一个或多个值：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// Start with an empty array
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// Start with an empty array
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;zero&#34;</span><span class="p">)</span> <span class="c1">// Add a value at the end. a = [&#34;zero&#34;]
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;one&#34;</span><span class="p">,</span> <span class="s2">&#34;two&#34;</span><span class="p">)</span> <span class="c1">// Add two more values. a = [&#34;zero&#34;, &#34;one&#34;, &#34;two&#34;]
 </span></code></pre></td></tr></table>
@@ -315,13 +311,13 @@
 <p>使用<code>delete</code>删除数组元素：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
 <span class="k">delete</span> <span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// a now has no element at index 1
 </span><span class="c1"></span><span class="mi">1</span> <span class="k">in</span> <span class="nx">a</span> <span class="c1">// =&gt; false: no array index 1 is defined
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span> <span class="c1">// =&gt; 3: delete does not affect array length
@@ -336,7 +332,7 @@
 <p>遍历数组元素最常见的方法是使用for循环：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -344,33 +340,31 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span> <span class="c1">// Get an array of property names for object o
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span> <span class="c1">// Get an array of property names for object o
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">// Store matching property values in this array
 </span><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">keys</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// For each index in the array
 </span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">keys</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="c1">// Get the key at that index
 </span><span class="c1"></span>    <span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">o</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span> <span class="c1">// Store the value in the values array
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>for循环一个小小的优化，不用每次查询<code>length</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">keys</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">keys</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// loop body remains the same
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>循环中检查数组元素的几种情况：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -381,7 +375,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// Skip null, undefined, and nonexistent elements
 </span><span class="c1"></span><span class="p">}</span>
 <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -389,30 +383,28 @@
 </span><span class="c1"></span><span class="p">}</span>
 <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">a</span><span class="p">))</span> <span class="k">continue</span> <span class="p">;</span> <span class="c1">// Skip nonexistent elements
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>for/in循环可以用于稀疏阵列。每次循环给循环变量分配一个可枚举的属性名（包括数组索引），不存在的索引将不会被遍历：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">index</span> <span class="k">in</span> <span class="nx">sparseArray</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">index</span> <span class="k">in</span> <span class="nx">sparseArray</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">sparseArray</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
     <span class="c1">// Now do something with index and value
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>for/in循环可以返回继承属性的名字，比如添加到<code>Array.prototype</code>的属性。因此在数组上使用for/in循环，应该过滤掉不需要的属性：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -421,20 +413,19 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">a</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// Skip inherited properties
 </span><span class="c1"></span><span class="p">}</span>
 <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Skip i if it is not a non-negative integer
 </span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">i</span><span class="p">))))</span> <span class="o">!==</span> <span class="nx">i</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>ES5定义了许多用于迭代数组元素的新方法，<code>forEach</code>方法是最通用的一个：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -442,7 +433,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span> <span class="c1">// This is the array we want to iterate
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span> <span class="c1">// This is the array we want to iterate
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">sumOfSquares</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// We want to compute the sum of the squares of data
 </span><span class="c1"></span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Pass each element of data to this function
 </span><span class="c1"></span>    <span class="nx">sumOfSquares</span> <span class="o">+=</span> <span class="nx">x</span><span class="o">*</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// add up the squares
@@ -455,7 +446,7 @@
 <p>JavaScript不支持真正的多维数组，但可以用数组的数组模拟它们：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -468,7 +459,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Create a multidimensional array
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Create a multidimensional array
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">table</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// 10 rows of the table
 </span><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">table</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
     <span class="nx">table</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// Each row has 10 columns
@@ -488,7 +479,7 @@
 <p><code>join</code>方法将数组元素转换为字符串，并连接起来，返回字符串。可以指定一个可选的字符串来分隔元素，默认使用逗号：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -496,7 +487,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span> <span class="c1">// Create a new array with these three elements
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span> <span class="c1">// Create a new array with these three elements
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">();</span> <span class="c1">// =&gt; &#34;1,2,3&#34;
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">);</span> <span class="c1">// =&gt; &#34;1 2 3&#34;
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">);</span> <span class="c1">// =&gt; &#34;123&#34;
@@ -513,7 +504,7 @@
 <p>要将数组按其它顺序排序，必须传递一个比较函数作为<code>sort</code>的参数。这个函数决定它的两个参数中的哪个应该先出现在数组中：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -531,7 +522,7 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1111</span><span class="p">,</span> <span class="mi">222</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1111</span><span class="p">,</span> <span class="mi">222</span><span class="p">];</span>
 <span class="nx">a</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span> <span class="c1">// Alphabetical order: 1111, 222, 33, 4
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Numerical order: 4, 33, 222, 1111
 </span><span class="c1"></span>    <span class="k">return</span> <span class="nx">a</span><span class="o">-</span><span class="nx">b</span><span class="p">;</span>
@@ -554,14 +545,14 @@
 <p><code>concat</code>方法连接调用它的数组元素和它的参数，并返回一个新数组。如果参数是一个数组，那么连接的是数组元素，而不是数组本身，但是<code>concat</code>只处理最外层数组：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
 <span class="nx">a</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">// Returns [1,2,3,4,5]
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">concat</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span> <span class="c1">// Returns [1,2,3,4,5]
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">concat</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span> <span class="c1">// Returns [1,2,3,4,5,6,7]
@@ -573,11 +564,11 @@
 <p>语法如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Array</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span> <span class="nx">end</span><span class="p">)</span> <span class="c1">// 返回包含[start, end)元素的数组
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Array</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span> <span class="nx">end</span><span class="p">)</span> <span class="c1">// 返回包含[start, end)元素的数组
 </span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">start</span><span class="p">)</span> <span class="c1">// 等价于Array.slice(start, Array.length)
 </span></code></pre></td></tr></table>
 </div>
@@ -585,7 +576,7 @@
 <p>如果参数为负数，它表示是数组倒数第几个元素：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -593,7 +584,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
 <span class="nx">a</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// Returns [1,2,3]
 </span><span class="c1"></span>
 <span class="nx">a</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// Returns [4,5]
@@ -606,13 +597,13 @@
 <p><code>splice</code>方法是用于插入或删除数组元素的通用方法，它会修改数组。<code>splice</code>第一个参数指定开始插入或删除的数组位置。第二个参数指定应该从数组中删除的元素个数。如果省略了第二个参数，那么从开始元素到数组末尾的所有数组元素都将被删除。<code>splice</code>返回删除元素的数组，如果没有删除元素，返回空数组：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">];</span>
 <span class="nx">a</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">// Returns [5,6,7,8]; a is [1,2,3,4]
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// Returns [2,3]; a is [1,4]
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// Returns [4]; a is [1]
@@ -622,12 +613,12 @@
 <p><code>splice</code>的前两个参数指定要删除的数组元素。它们后面可以跟任意数量的附加参数，这些参数指定要插入到数组中的元素，从第一个参数指定的位置开始：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
 <span class="nx">a</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">);</span> <span class="c1">// Returns []; a is [1,2,&#39;a&#39;,&#39;b&#39;,3,4,5]
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// Returns [&#39;a&#39;,&#39;b&#39;]; a is [1,2,[1,2],3,3,4,5]
 </span></code></pre></td></tr></table>
@@ -639,7 +630,7 @@
 <p><code>unshift</code>在开头添加一个或多个元素，将现有的数组元素移动到更高的索引位置，并返回数组的新长度。<code>shift</code>删除并返回数组的第一个元素，将所有后续元素向下移动一个位置：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -649,7 +640,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// a:[]
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// a:[]
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// a:[1] Returns: 1
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="mi">22</span><span class="p">);</span> <span class="c1">// a:[22,1] Returns: 2
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span> <span class="c1">// a:[1] Returns: 22
@@ -665,12 +656,12 @@
 <p>数组的<code>toString</code>方法将每个元素转换为一个字符串，并用逗号连接这些字符串：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// Yields &#39;1,2,3&#39;
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// Yields &#39;1,2,3&#39;
 </span><span class="c1"></span><span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// Yields &#39;a,b,c&#39;
 </span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]].</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// Yields &#39;1,2,c&#39;
 </span></code></pre></td></tr></table>
@@ -685,17 +676,16 @@
 <p>语法如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">fn</span><span class="p">[,</span> <span class="nx">o</span><span class="p">])</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">fn</span><span class="p">[,</span> <span class="nx">o</span><span class="p">])</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><code>forEach</code>遍历数组，并为每个元素调用指定的函数。<code>forEach</code>使用3个参数调用函数：数组元素的值、数组元素的索引和数组本身：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -705,7 +695,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span> <span class="c1">// An array to sum
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span> <span class="c1">// An array to sum
 </span><span class="c1">// Compute the sum of the array elements
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Start at 0
 </span><span class="c1"></span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span> <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">value</span><span class="p">;</span> <span class="p">});</span> <span class="c1">// Add each value to sum
@@ -719,7 +709,7 @@
 <p><code>forEach</code>不能中止循环。如果需要提前终止，可以抛出异常：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -732,7 +722,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">foreach</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">f</span><span class="p">,</span><span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">foreach</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">f</span><span class="p">,</span><span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">try</span> <span class="p">{</span>
         <span class="nx">a</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span><span class="nx">t</span><span class="p">);</span>
     <span class="p">}</span>
@@ -742,29 +732,27 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="nx">foreach</span><span class="p">.</span><span class="k">break</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;StopIteration&#34;</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<span class="nx">foreach</span><span class="p">.</span><span class="k">break</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;StopIteration&#34;</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <h4 id="map">map</h4>
 <p>语法如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>map方法将数组的每个元素传递给指定的函数，并返回一个包含该函数返回值的新数组：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
 <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span><span class="o">*</span><span class="nx">x</span><span class="p">;</span> <span class="p">});</span> <span class="c1">// b is [1, 4, 9]
 </span></code></pre></td></tr></table>
 </div>
@@ -774,22 +762,21 @@
 <p>语法如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><code>filter</code>方法返回数组元素子集的数组。传递给<code>filter</code>的函数应该是谓词。如果谓词返回值为true，则该元素是返回数组的一个元素：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
 <span class="nx">smallvalues</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="p">});</span> <span class="c1">// [2, 1]
 </span><span class="c1"></span><span class="nx">everyother</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span> <span class="p">});</span> <span class="c1">// [5, 3, 1]
 </span></code></pre></td></tr></table>
@@ -798,37 +785,35 @@
 <p><code>filter</code>忽略稀疏数组中不存在的元素，它的返回值不是稀疏数组：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">dense</span> <span class="o">=</span> <span class="nx">sparse</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">});</span>
-<span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="o">&amp;&amp;</span> <span class="nx">x</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span> <span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">dense</span> <span class="o">=</span> <span class="nx">sparse</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">});</span>
+<span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="o">&amp;&amp;</span> <span class="nx">x</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span> <span class="p">});</span></code></pre></td></tr></table>
 </div>
 </div>
 <h4 id="every和some">every和some</h4>
 <p>语法如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
-<span class="nx">a</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><code>every</code>方法类似数学符号<code>∀</code>： 当且仅当谓词函数对数组所有元素返回true时，它才返回true。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
 <span class="nx">a</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="p">})</span> <span class="c1">// =&gt; true: all values &lt; 10.
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span> <span class="p">})</span> <span class="c1">// =&gt; false: not all values even.
 </span></code></pre></td></tr></table>
@@ -837,12 +822,12 @@
 <p><code>some</code>方法类似数学符号<code>∃</code>：如果存在一个元素使谓词函数返回true，则返回true。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
 <span class="nx">a</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span><span class="o">%</span><span class="mi">2</span><span class="o">===</span><span class="mi">0</span><span class="p">;</span> <span class="p">})</span> <span class="c1">// =&gt; true a has some even numbers.
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="nb">isNaN</span><span class="p">)</span> <span class="c1">// =&gt; false: a has no non-numbers.
 </span></code></pre></td></tr></table>
@@ -853,25 +838,24 @@
 <p>语法如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">fn</span><span class="p">[,</span> <span class="nx">initial</span><span class="p">])</span> <span class="c1">// initial为初始值
-</span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">reduceRight</span><span class="p">(</span><span class="nx">fn</span><span class="p">[,</span> <span class="nx">initial</span><span class="p">])</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">fn</span><span class="p">[,</span> <span class="nx">initial</span><span class="p">])</span> <span class="c1">// initial为初始值
+</span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">reduceRight</span><span class="p">(</span><span class="nx">fn</span><span class="p">[,</span> <span class="nx">initial</span><span class="p">])</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><code>reduce</code>和<code>reduceRight</code> 方法使用指定函数计算数组元素：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
 <span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span><span class="o">+</span><span class="nx">y</span> <span class="p">},</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// Sum of values
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">product</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span><span class="o">*</span><span class="nx">y</span> <span class="p">},</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// Product of values
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="nx">x</span><span class="o">&gt;</span><span class="nx">y</span><span class="p">)</span><span class="o">?</span><span class="nx">x</span><span class="o">:</span><span class="nx">y</span><span class="p">;</span> <span class="p">});</span> <span class="c1">// Largest value
@@ -888,30 +872,29 @@
 <p><code>reduceRight</code>的工作原理与<code>reduce</code>类似，只是它从高到低处理数组：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <span class="c1">// Compute 2^(3^4). Exponentiation has right-to-left precedence
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">big</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">reduceRight</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">accumulator</span><span class="p">,</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span><span class="nx">accumulator</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></td></tr></table>
+<span class="p">});</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><code>reduce</code>和<code>reduceRight</code>不支持方法调用。如果想要调用方法，可以使用<code>Function.bind</code>。</p>
 <p><code>reduce</code>和<code>reduceRight</code>不仅仅用于数学计算，考虑上一章的<code>union</code>函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">objects</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">z</span><span class="o">:</span><span class="mi">3</span><span class="p">}];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">objects</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">z</span><span class="o">:</span><span class="mi">3</span><span class="p">}];</span>
 <span class="kd">var</span> <span class="nx">merged</span> <span class="o">=</span> <span class="nx">objects</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">union</span><span class="p">);</span> <span class="c1">// =&gt; {x:1, y:2, z:3}
 </span></code></pre></td></tr></table>
 </div>
@@ -919,12 +902,12 @@
 <p>当两个对象具有相同名称的属性时，union函数从第一个参数使用该属性的值。因此<code>reduce</code>和<code>reduceRight</code>可能会返回不同的结果：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">objects</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="nx">a</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="nx">a</span><span class="o">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">z</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="nx">a</span><span class="o">:</span><span class="mi">3</span><span class="p">}];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">objects</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="nx">a</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="nx">a</span><span class="o">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">z</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="nx">a</span><span class="o">:</span><span class="mi">3</span><span class="p">}];</span>
 <span class="kd">var</span> <span class="nx">leftunion</span> <span class="o">=</span> <span class="nx">objects</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">union</span><span class="p">);</span> <span class="c1">// {x:1, y:2, z:3, a:1}
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">rightunion</span> <span class="o">=</span> <span class="nx">objects</span><span class="p">.</span><span class="nx">reduceRight</span><span class="p">(</span><span class="nx">union</span><span class="p">);</span> <span class="c1">// {x:1, y:2, z:3, a:3}
 </span></code></pre></td></tr></table>
@@ -934,11 +917,11 @@
 <p>语法如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">value</span><span class="p">[,</span> <span class="nx">start</span><span class="p">])</span> <span class="c1">// 从头到尾搜索数组
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">value</span><span class="p">[,</span> <span class="nx">start</span><span class="p">])</span> <span class="c1">// 从头到尾搜索数组
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="nx">value</span><span class="p">[,</span> <span class="nx">start</span><span class="p">])</span> <span class="c1">// 与indexOf相反
 </span></code></pre></td></tr></table>
 </div>
@@ -946,13 +929,13 @@
 <p>返回找到的第一个元素的索引，如果没找到则返回-1：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
 <span class="nx">a</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// =&gt; 1: a[1] is 1
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// =&gt; 3: a[3] is 1
 </span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">// =&gt; -1: no element has value 3
@@ -962,7 +945,7 @@
 <p>第二可选参数指定搜索的起始位置，它可以是负值，像<code>splice</code>方法一样当作与数组末尾的偏移量：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -978,7 +961,7 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Find all occurrences of a value x in an array a and return an array
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Find all occurrences of a value x in an array a and return an array
 </span><span class="c1">// of matching indexes
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">findall</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1">// The array of indexes we&#39;ll return
@@ -991,19 +974,18 @@
 </span><span class="c1"></span>        <span class="nx">pos</span> <span class="o">=</span> <span class="nx">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// And start next search at next element
 </span><span class="c1"></span>    <span class="p">}</span>
     <span class="k">return</span> <span class="nx">results</span><span class="p">;</span> <span class="c1">// Return array of indexes
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h4 id="数组类型">数组类型</h4>
 <p>在ES5中，可以使用<code>Array.isArray</code>来判断一个对象是否是数组：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">([])</span> <span class="c1">// =&gt; true
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">([])</span> <span class="c1">// =&gt; true
 </span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">({})</span> <span class="c1">// =&gt; false
 </span></code></pre></td></tr></table>
 </div>
@@ -1011,11 +993,11 @@
 <p>在ES5之前，区分数组和非数组对象是非常困难的。除了函数，<code>typeof</code>一个对象返回<code>object</code>。<code>instanceof</code>在简单的情况下工作：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[]</span> <span class="k">instanceof</span> <span class="nb">Array</span> <span class="c1">// =&gt; true
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[]</span> <span class="k">instanceof</span> <span class="nb">Array</span> <span class="c1">// =&gt; true
 </span><span class="c1"></span><span class="p">({})</span> <span class="k">instanceof</span> <span class="nb">Array</span> <span class="c1">// =&gt; false
 </span></code></pre></td></tr></table>
 </div>
@@ -1023,17 +1005,16 @@
 <p>解决方案是检查对象的<code>class</code>属性。对于数组，这个属性总是有值“Array”，因此我们可以这样在ES3中这样编写<code>isArray</code>函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">isArray</span> <span class="o">=</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">isArray</span> <span class="o">||</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">isArray</span> <span class="o">=</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">isArray</span> <span class="o">||</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="k">typeof</span> <span class="nx">o</span> <span class="o">===</span> <span class="s2">&#34;object&#34;</span> <span class="o">&amp;&amp;</span>
         <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="o">===</span> <span class="s2">&#34;[object Array]&#34;</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="类数组对象">类数组对象</h3>
@@ -1047,7 +1028,7 @@
 <p>事实证明，许多数组算法对类数组对象的工作效果与对数组的工作效果一样好。<code>arguments</code>对象是一个类数组对象，<code>document.getElementsByTagName</code>方法返回一个类数组对象。以下是一个测试像数组一样工作的对象：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1065,7 +1046,7 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Determine if o is an array-like object.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Determine if o is an array-like object.
 </span><span class="c1">// Strings and functions have numeric length properties, but are
 </span><span class="c1">// excluded by the typeof test. In client-side JavaScript, DOM text
 </span><span class="c1">// nodes have a numeric length property, and may need to be excluded
@@ -1080,14 +1061,13 @@
 </span><span class="c1"></span>        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// Then o is array-like
 </span><span class="c1"></span>    <span class="k">else</span>
         <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// Otherwise it is not
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>JavaScript数组方法被特意定义为通用的，以便数组和类数组对象都能正确工作。在ES5中，所有数组方法都是通用的。在ES3中，除了<code>toString</code>和<code>toLocaleString</code>之外的所有方法都是通用的。因为类数组对象不继承<code>Array.prototype</code>，你不能直接调用数组方法。但你可以使用<code>Function.call</code>函数间接调用它们：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1095,7 +1075,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;0&#34;</span><span class="o">:</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;1&#34;</span><span class="o">:</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;2&#34;</span><span class="o">:</span><span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="nx">length</span><span class="o">:</span><span class="mi">3</span><span class="p">};</span> <span class="c1">// An array-like object
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;0&#34;</span><span class="o">:</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;1&#34;</span><span class="o">:</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;2&#34;</span><span class="o">:</span><span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="nx">length</span><span class="o">:</span><span class="mi">3</span><span class="p">};</span> <span class="c1">// An array-like object
 </span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">join</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="s2">&#34;+&#34;</span><span class="p">)</span> <span class="c1">// =&gt; &#34;a+b+c&#34;
 </span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">// =&gt; [&#34;a&#34;,&#34;b&#34;,&#34;c&#34;]: true array copy
 </span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">map</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
@@ -1107,23 +1087,22 @@
 <p>Firefox很早就在数组构造函数上定义了函数，上面的例子可以这样重写：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;0&#34;</span><span class="o">:</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;1&#34;</span><span class="o">:</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;2&#34;</span><span class="o">:</span><span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="nx">length</span><span class="o">:</span><span class="mi">3</span><span class="p">};</span> <span class="c1">// An array-like object
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;0&#34;</span><span class="o">:</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;1&#34;</span><span class="o">:</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;2&#34;</span><span class="o">:</span><span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="nx">length</span><span class="o">:</span><span class="mi">3</span><span class="p">};</span> <span class="c1">// An array-like object
 </span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="s2">&#34;+&#34;</span><span class="p">)</span>
 <span class="nb">Array</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="nb">Array</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span> <span class="p">})</span>
-</code></pre></td></tr></table>
+<span class="nb">Array</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span> <span class="p">})</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>这些数组方法的静态函数版本在处理类数组对象时非常有用，但是由于它们是非标准的，所以不能指望在所有浏览器中都定义它们。在使用之前，你可以这样确保所需的函数存在：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1134,7 +1113,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Array</span><span class="p">.</span><span class="nx">join</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">join</span> <span class="o">||</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">sep</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Array</span><span class="p">.</span><span class="nx">join</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">join</span> <span class="o">||</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">sep</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">join</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">sep</span><span class="p">);</span>
 <span class="p">};</span>
 <span class="nb">Array</span><span class="p">.</span><span class="nx">slice</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">slice</span> <span class="o">||</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">from</span><span class="p">,</span><span class="nx">to</span><span class="p">)</span> <span class="p">{</span>
@@ -1142,20 +1121,19 @@
 <span class="p">};</span>
 <span class="nb">Array</span><span class="p">.</span><span class="nx">map</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">map</span> <span class="o">||</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">f</span><span class="p">,</span> <span class="nx">thisArg</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">map</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">f</span><span class="p">,</span> <span class="nx">thisArg</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="字符串作为类数组">字符串作为类数组</h3>
 <p>在ES5（以及在ES5之前的许多浏览器实现）中，字符串表现得像只读数组。你可以使用<code>[]</code>，而不是<code>charAt</code>方法访问单个字符：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">test</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">test</span><span class="p">;</span>
 <span class="nx">s</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">// =&gt; &#34;t&#34;
 </span><span class="c1"></span><span class="nx">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">// =&gt; &#34;e&#34;
 </span></code></pre></td></tr></table>
@@ -1164,7 +1142,7 @@
 <p>字符串表现得像数组也意味着，我们可以对它们使用通用数组方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1172,7 +1150,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">s</span> <span class="o">=</span> <span class="s2">&#34;JavaScript&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">s</span> <span class="o">=</span> <span class="s2">&#34;JavaScript&#34;</span>
 <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">join</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">)</span> <span class="c1">// =&gt; &#34;J a v a S c r i p t&#34;
 </span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">filter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="c1">// Filter the characters of the string
 </span><span class="c1"></span>    <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
@@ -1286,7 +1264,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -1306,7 +1284,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

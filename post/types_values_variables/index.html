@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/types_values_variables/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="类型、值和变量" />
 <meta property="og:description" content="Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefine" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/types_values_variables/" />
+<meta property="og:url" content="https://gitop.cc/post/types_values_variables/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-10-28T14:24:21+08:00" />
 <meta property="article:modified_time" content="2018-10-28T14:24:21+08:00" />
+
 <meta itemprop="name" content="类型、值和变量">
-<meta itemprop="description" content="Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefine">
-<meta itemprop="datePublished" content="2018-10-28T14:24:21&#43;08:00" />
-<meta itemprop="dateModified" content="2018-10-28T14:24:21&#43;08:00" />
-<meta itemprop="wordCount" content="8687">
-
-
-
+<meta itemprop="description" content="Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefine"><meta itemprop="datePublished" content="2018-10-28T14:24:21+08:00" />
+<meta itemprop="dateModified" content="2018-10-28T14:24:21+08:00" />
+<meta itemprop="wordCount" content="8684">
 <meta itemprop="keywords" content="Javascript," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="类型、值和变量"/>
 <meta name="twitter:description" content="Javascript类型可以分为两大类：原始类型和对象类型。JavaScript原始类型包括数字、字符串、布尔值、null和undefine"/>
@@ -129,7 +126,7 @@
         <div class="post-category">
             <a href="/categories/language/"> Language </a>
             </div>
-          <span class="more-meta"> 约 8687 字 </span>
+          <span class="more-meta"> 约 8684 字 </span>
           <span class="more-meta"> 预计阅读 18 分钟 </span>
         
       </div>
@@ -217,7 +214,7 @@
 <p>JavaScript提供几种算术运算符：+, -, *, /, %。Math对象支持更复杂的数学运算：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -236,10 +233,10 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">53</span><span class="p">)</span> <span class="c1">// =&gt; 9007199254740992: 2 to the power 53
-</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mf">.6</span><span class="p">)</span> <span class="c1">// =&gt; 1.0: round to the nearest integer
-</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="mf">.6</span><span class="p">)</span> <span class="c1">// =&gt; 1.0: round up to an integer
-</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="mf">.6</span><span class="p">)</span> <span class="c1">// =&gt; 0.0: round down to an integer
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">53</span><span class="p">)</span> <span class="c1">// =&gt; 9007199254740992: 2 to the power 53
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(.</span><span class="mi">6</span><span class="p">)</span> <span class="c1">// =&gt; 1.0: round to the nearest integer
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(.</span><span class="mi">6</span><span class="p">)</span> <span class="c1">// =&gt; 1.0: round up to an integer
+</span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(.</span><span class="mi">6</span><span class="p">)</span> <span class="c1">// =&gt; 0.0: round down to an integer
 </span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// =&gt; 5: absolute value
 </span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">z</span><span class="p">)</span> <span class="c1">// Return the largest argument
 </span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">z</span><span class="p">)</span> <span class="c1">// Return the smallest argument
@@ -259,7 +256,7 @@
 <p>JavaScript中算术运算不会抛出异常。当算术操作的值比最大可表示的值大时，得到Infinity，类似当一个负数比最小可表示的值小时，得到-Infinity。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -268,7 +265,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="c1">//=&gt;NaN
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="c1">//=&gt;NaN
 </span><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">//=&gt;NaN
 </span><span class="c1"></span><span class="mi">1</span> <span class="o">-</span> <span class="s1">&#39;a&#39;</span> <span class="c1">//=&gt;NaN  对不能转换为数字的运算对象使用算术运算符结果为NaN
 </span><span class="c1"></span><span class="kc">Infinity</span> <span class="o">+</span> <span class="kc">Infinity</span> <span class="c1">//=&gt;Infinity
@@ -281,7 +278,7 @@
 <p>JavaScript预定义了全局变量Infinity和NaN保存正无穷大和非数值。在ES3标准中，这些值是可以改变的。ES5中更正为只读。ES3中Number对象定义了只读的替代品：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -298,7 +295,7 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kc">Infinity</span> <span class="c1">// A read/write variable initialized to Infinity.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kc">Infinity</span> <span class="c1">// A read/write variable initialized to Infinity.
 </span><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nx">POSITIVE_INFINITY</span> <span class="c1">// Same value, read-only.
 </span><span class="c1"></span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span> <span class="c1">// This is also the same value.
 </span><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nx">MAX_VALUE</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1">// This also evaluates to Infinity.
@@ -312,21 +309,20 @@
 </span><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nx">MIN_VALUE</span><span class="o">/</span><span class="mi">2</span> <span class="c1">// Underflow: evaluates to 0
 </span><span class="c1"></span><span class="o">-</span><span class="nb">Number</span><span class="p">.</span><span class="nx">MIN_VALUE</span><span class="o">/</span><span class="mi">2</span> <span class="c1">// Negative zero
 </span><span class="c1"></span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="kc">Infinity</span> <span class="c1">// Also negative 0
-</span><span class="c1"></span><span class="o">-</span><span class="mi">0</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="o">-</span><span class="mi">0</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>NaN和任何值都不相等包括它自己。你可以使用<code>x != x</code>来判断是否是NaN。函数isNaN()判断参数是否为NaN，相关函数isFinite()判断函数参数是否是一个非NaN, Infinity或-Infinity的数字。</p>
 <p>负0和正0只有用在除数上不一样，其他情况相等：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">zero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Regular zero
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">zero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Regular zero
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">negz</span> <span class="o">=</span> <span class="o">-</span><span class="mi">0</span><span class="p">;</span> <span class="c1">// Negative zero
 </span><span class="c1"></span><span class="nx">zero</span> <span class="o">===</span> <span class="nx">negz</span> <span class="c1">// =&gt; true: zero and negative zero are equal
 </span><span class="c1"></span><span class="mi">1</span><span class="o">/</span><span class="nx">zero</span> <span class="o">===</span> <span class="mi">1</span><span class="o">/</span><span class="nx">negz</span> <span class="c1">// =&gt; false: infinity and -infinity are not equal
@@ -339,7 +335,7 @@
 <p>核心JavaScript包含一个Date()构造函数，用于创建表示日期和时间的对象：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -357,7 +353,7 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">then</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// The 1st day of the 1st month of 2010
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">then</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// The 1st day of the 1st month of 2010
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">later</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span> <span class="c1">// Same day, at 5:10:30pm, local time
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="c1">// The current date and time
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">elapsed</span> <span class="o">=</span> <span class="nx">now</span> <span class="o">-</span> <span class="nx">then</span><span class="p">;</span> <span class="c1">// Date subtraction: interval in milliseconds
@@ -385,7 +381,7 @@
 <p>反斜杠在JavaScript字符串中有特殊的用途。与其后的字符组合，它表示字符串中不能表示的字符：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -399,7 +395,7 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="err">\</span><span class="mi">0</span> <span class="nx">The</span> <span class="nx">NUL</span> <span class="nx">character</span> <span class="p">(</span> <span class="nx">\u0000</span> <span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="err">\</span><span class="mi">0</span> <span class="nx">The</span> <span class="nx">NUL</span> <span class="nx">character</span> <span class="p">(</span> <span class="nx">\u0000</span> <span class="p">)</span>
 <span class="err">\</span><span class="nx">b</span> <span class="nx">Backspace</span> <span class="p">(</span> <span class="nx">\u0008</span> <span class="p">)</span>
 <span class="err">\</span><span class="nx">t</span> <span class="nx">Horizontal</span> <span class="nx">tab</span> <span class="p">(</span> <span class="nx">\u0009</span> <span class="p">)</span>
 <span class="err">\</span><span class="nx">n</span> <span class="nx">Newline</span> <span class="p">(</span> <span class="nx">\u000A</span> <span class="p">)</span>
@@ -410,8 +406,7 @@
 <span class="err">\&#39;</span> <span class="nx">Apostrophe</span> <span class="nx">or</span> <span class="nx">single</span> <span class="nx">quote</span> <span class="p">(</span> <span class="nx">\u0027</span> <span class="p">)</span>
 <span class="err">\\</span> <span class="nx">Backslash</span> <span class="p">(</span> <span class="nx">\u005C</span> <span class="p">)</span>
 <span class="err">\</span><span class="nx">x</span> <span class="nx">XX</span> <span class="nx">The</span> <span class="nx">Latin</span><span class="o">-</span><span class="mi">1</span> <span class="nx">character</span> <span class="nx">specified</span> <span class="nx">by</span> <span class="nx">the</span> <span class="nx">two</span> <span class="nx">hexadecimal</span> <span class="nx">digits</span> <span class="nx">XX</span>
-<span class="err">\</span><span class="nx">u</span> <span class="nx">XXXX</span> <span class="nx">The</span> <span class="nx">Unicode</span> <span class="nx">character</span> <span class="nx">specified</span> <span class="nx">by</span> <span class="nx">the</span> <span class="nx">four</span> <span class="nx">hexadecimal</span> <span class="nx">digits</span> <span class="nx">XXXX</span>
-</code></pre></td></tr></table>
+<span class="err">\</span><span class="nx">u</span> <span class="nx">XXXX</span> <span class="nx">The</span> <span class="nx">Unicode</span> <span class="nx">character</span> <span class="nx">specified</span> <span class="nx">by</span> <span class="nx">the</span> <span class="nx">four</span> <span class="nx">hexadecimal</span> <span class="nx">digits</span> <span class="nx">XXXX</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>反斜杠后跟任何其它字符，反斜杠被忽略。</p>
@@ -419,7 +414,7 @@
 <p>对字符串使用+连接字符串，使用length属性获取字符串的长度。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -433,7 +428,7 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&#34;hello, world&#34;</span> <span class="c1">// Start with some text.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&#34;hello, world&#34;</span> <span class="c1">// Start with some text.
 </span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">// =&gt; &#34;h&#34;: the first character.
 </span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// =&gt; &#34;d&#34;: the last character.
 </span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="c1">// =&gt; &#34;ell&#34;: the 2nd, 3rd and 4th characters.
@@ -451,12 +446,12 @@
 <p>在ES5中，字符串可以被认为是只读数组，可以使用下标访问单个字符：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">s</span> <span class="o">=</span> <span class="s2">&#34;hello, world&#34;</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">s</span> <span class="o">=</span> <span class="s2">&#34;hello, world&#34;</span><span class="p">;</span>
 <span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// =&gt; &#34;h&#34;
 </span><span class="c1"></span><span class="nx">s</span><span class="p">[</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1">// =&gt; &#34;d&#34;
 </span></code></pre></td></tr></table>
@@ -466,12 +461,12 @@
 <p>JavaScript定义了RegExp()构造函数，用于创建表示文本模式的对象。Javascript使用一对斜杠之间的文本组成正则表达式：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="sr">/^HTML/</span> <span class="c1">// Match the letters HTML at the start of a string
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="sr">/^HTML/</span> <span class="c1">// Match the letters HTML at the start of a string
 </span><span class="c1"></span><span class="sr">/1-9*/</span> <span class="c1">// Match a non-zero digit, followed by any # of digits
 </span><span class="c1"></span><span class="sr">/\bjavascript\b/i</span> <span class="c1">// Match &#34;javascript&#34; as a word, case-insensitive
 </span></code></pre></td></tr></table>
@@ -480,7 +475,7 @@
 <p>RegExp对象定义了许多有用的方法，字符串也有接受RegExp参数的方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -489,7 +484,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;testing: 1, 2, 3&#34;</span><span class="p">;</span> <span class="c1">// Sample text
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;testing: 1, 2, 3&#34;</span><span class="p">;</span> <span class="c1">// Sample text
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="sr">/\d+/g</span> <span class="c1">// Matches all instances of one or more digits
 </span><span class="c1"></span><span class="nx">pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="c1">// =&gt; true: a match exists
 </span><span class="c1"></span><span class="nx">text</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span> <span class="c1">// =&gt; 9: position of first match
@@ -503,7 +498,7 @@
 <p>布尔值只有2个值：true, false。任何JavaScript值都可以转换为布尔值，下面这些值转换为false：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -511,7 +506,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kc">undefined</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kc">undefined</span>
 <span class="kc">null</span>
 <span class="mi">0</span>
 <span class="o">-</span><span class="mi">0</span>
@@ -520,7 +515,7 @@
 </span></code></pre></td></tr></table>
 </div>
 </div>
-<p>所有其他值转换为true。布尔值有个toString()方法将它们转换为&quot;true&quot;或&quot;false&rdquo;。</p>
+<p>所有其他值转换为true。布尔值有个toString()方法将它们转换为&quot;true&quot;或&quot;false&quot;。</p>
 <h3 id="null和undefined">null和undefined</h3>
 <table>
 <thead>
@@ -553,8 +548,8 @@
 </tr>
 </tbody>
 </table>
-<p><strong>null表示&quot;没有对象&rdquo;，即该处不应该有值。</strong></p>
-<p>**undefined表示&quot;缺少值&rdquo;，就是此处应该有一个值，但是还没有定义。**以下情况均为undefined：</p>
+<p><strong>null表示&quot;没有对象&quot;，即该处不应该有值。</strong></p>
+<p>**undefined表示&quot;缺少值&quot;，就是此处应该有一个值，但是还没有定义。**以下情况均为undefined：</p>
 <ul>
 <li>
 <p>声明变量却没有赋值</p>
@@ -586,10 +581,10 @@
 <p>全局对象的初始属性不是保留字，但是它们应该被视为保留字。对于客户端JavaScript，window对象定义了其他全局变量。在顶级代码中（不属于函数的javascript代码），可以使用JavaScript关键字this来引用全局对象。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">global</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span> <span class="c1">// Define a global variable to refer to the global object
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">global</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span> <span class="c1">// Define a global variable to refer to the global object
 </span></code></pre></td></tr></table>
 </div>
 </div>
@@ -600,12 +595,12 @@
 <p>考虑下面这段代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&#34;test&#34;</span><span class="p">;</span> <span class="c1">// Start with a string value.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&#34;test&#34;</span><span class="p">;</span> <span class="c1">// Start with a string value.
 </span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">len</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// Set a property on it.
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">len</span><span class="p">;</span> <span class="c1">// Now query the property. t is undefined
 </span></code></pre></td></tr></table>
@@ -616,7 +611,7 @@
 <p>原始类型值是不可变的，它们通过值进行比较。对象是可变的，它们通过引用进行比较。2个对象值是相同的当且仅当它们引用相同的底层对象。这段代码定义了一个用来比较两个数组的函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -624,27 +619,26 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">equalArrays</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">equalArrays</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span> <span class="o">!=</span> <span class="nx">b</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// Different-size arrays not equal
 </span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="c1">// Loop through all elements
 </span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!==</span> <span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// If any differ, arrays not equal
 </span><span class="c1"></span>    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// Otherwise they are equal
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="类型转换">类型转换</h3>
 <p>当JavaScript需要布尔值时，你可以提供任何类型的值，JavaScript将根据需要对其进行转换。如果JavaScript想要一个字符串，它会将你给它的任何值转换成字符串。如果JavaScript想要一个数字，它会尝试将你给它的值转换为一个数字(如果它不能执行有意义的转换，则转换为NaN)。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">10</span> <span class="o">+</span> <span class="s2">&#34; objects&#34;</span> <span class="c1">// =&gt; &#34;10 objects&#34;. Number 10 converts to a string
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">10</span> <span class="o">+</span> <span class="s2">&#34; objects&#34;</span> <span class="c1">// =&gt; &#34;10 objects&#34;. Number 10 converts to a string
 </span><span class="c1"></span><span class="s2">&#34;7&#34;</span> <span class="o">*</span> <span class="s2">&#34;4&#34;</span> <span class="c1">// =&gt; 28: both strings convert to numbers
 </span><span class="c1"></span>
 <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="s2">&#34;x&#34;</span><span class="p">;</span> <span class="c1">// =&gt; NaN: string &#34;x&#34; can&#39;t convert to a number
@@ -657,13 +651,13 @@
 <p>因为JavaScript可以灵活地转换值，所以它的==等号操作符也可以灵活地转换相等的概念：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kc">null</span> <span class="o">==</span> <span class="kc">undefined</span> <span class="c1">// These two values are treated as equal.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kc">null</span> <span class="o">==</span> <span class="kc">undefined</span> <span class="c1">// These two values are treated as equal.
 </span><span class="c1"></span><span class="s2">&#34;0&#34;</span> <span class="o">==</span> <span class="mi">0</span> <span class="c1">// String converts to a number before comparing.
 </span><span class="c1"></span><span class="mi">0</span> <span class="o">==</span> <span class="kc">false</span> <span class="c1">// Boolean converts to number before comparing.
 </span><span class="c1"></span><span class="s2">&#34;0&#34;</span> <span class="o">==</span> <span class="kc">false</span> <span class="c1">// Both operands convert to numbers before comparing.
@@ -676,12 +670,12 @@
 <p>某些JavaScript操作符执行隐式类型转换，有时特意用于类型转换。如果+运算符的一个操作数是字符串，它将把另一个转换为字符串。一元+运算符将其操作数转换为数字。!运算符将其操作数转换为布尔值并否定它。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">x</span> <span class="o">+</span> <span class="s2">&#34;&#34;</span> <span class="c1">// Same as String(x)
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">x</span> <span class="o">+</span> <span class="s2">&#34;&#34;</span> <span class="c1">// Same as String(x)
 </span><span class="c1"></span><span class="o">+</span><span class="nx">x</span> <span class="c1">// Same as Number(x). You may also see x-0
 </span><span class="c1"></span><span class="o">!!</span><span class="nx">x</span> <span class="c1">// Same as Boolean(x). Note double !
 </span></code></pre></td></tr></table>
@@ -690,13 +684,13 @@
 <p>Number类定义的toString()方法接受一个可选参数，该参数指定一个基数。默认以10进制进行转换，也可以使用在其他基数（2-36）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
 <span class="nx">binary_string</span> <span class="o">=</span> <span class="nx">n</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// Evaluates to &#34;10001&#34;
 </span><span class="c1"></span><span class="nx">octal_string</span> <span class="o">=</span> <span class="s2">&#34;0&#34;</span> <span class="o">+</span> <span class="nx">n</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span> <span class="c1">// Evaluates to &#34;021&#34;
 </span><span class="c1"></span><span class="nx">hex_string</span> <span class="o">=</span> <span class="s2">&#34;0x&#34;</span> <span class="o">+</span> <span class="nx">n</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span> <span class="c1">// Evaluates to &#34;0x11&#34;
@@ -709,7 +703,7 @@
 <p>这三个方法会适当地舍弃结尾数字或在后面添加0。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -720,7 +714,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mf">123456.789</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mf">123456.789</span><span class="p">;</span>
 <span class="nx">n</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// &#34;123457&#34;
 </span><span class="c1"></span><span class="nx">n</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// &#34;123456.79&#34;
 </span><span class="c1"></span><span class="nx">n</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// &#34;123456.78900&#34;
@@ -735,7 +729,7 @@
 <p>Number()函数只适用于10进制数，且不允许后接不属于数字的字符。parseInt()和parseFloat()函数更灵活，它们是全局函数，不是任何类的方法。parseInt()只解析整数，而parseFloat()解析整数和浮点数。如果字符串以“0x”或“0x”开头，parseInt()将其解释为十六进制数。parseInt()和parseFloat()都跳过前导空白，尽可能多地解析数字字符，并忽略后面的任何内容。如果第一个非空格字符不是有效数字文字的一部分，则返回NaN：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -747,7 +741,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;3 blind mice&#34;</span><span class="p">)</span> <span class="c1">// =&gt; 3
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;3 blind mice&#34;</span><span class="p">)</span> <span class="c1">// =&gt; 3
 </span><span class="c1"></span><span class="nb">parseFloat</span><span class="p">(</span><span class="s2">&#34; 3.14 meters&#34;</span><span class="p">)</span> <span class="c1">// =&gt; 3.14
 </span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;-12.34&#34;</span><span class="p">)</span> <span class="c1">// =&gt; -12
 </span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;0xFF&#34;</span><span class="p">)</span> <span class="c1">// =&gt; 255
@@ -763,14 +757,14 @@
 <p>parseInt()接受第二个可选参数，指定要解析数字的基数，合法值在2到36之间：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;11&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// =&gt; 3 (12 + 1)
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;11&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// =&gt; 3 (12 + 1)
 </span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;ff&#34;</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> <span class="c1">// =&gt; 255 (1516 + 15)
 </span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;zz&#34;</span><span class="p">,</span> <span class="mi">36</span><span class="p">);</span> <span class="c1">// =&gt; 1295 (3536 + 35)
 </span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s2">&#34;077&#34;</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span> <span class="c1">// =&gt; 63 (78 + 7)
@@ -782,10 +776,10 @@
 <p>对象到布尔转换很简单：所有对象都转换为true。甚至对于包装器对象也是如此：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Boolean</span><span class="p">(</span><span class="kc">false</span><span class="p">))</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">//=&gt; true
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Boolean</span><span class="p">(</span><span class="kc">false</span><span class="p">))</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">//=&gt; true
 </span></code></pre></td></tr></table>
 </div>
 </div>
@@ -793,13 +787,13 @@
 <p>许多类定义了自己的toString()方法。数组的toString()方法将每个数组元素转换为字符串，并用逗号连接在一起。函数的toString()方法返回一个由实现定义的函数表示。Date类的toString()方法，返回人类可读的日期和时间字符串。RegExp类的toString()方法，将RegExp对象转换为一个看起来像RegExp字面值的字符串：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;1,2,3&#34;
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;1,2,3&#34;
 </span><span class="c1"></span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="nx">f</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="p">}).</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;function(x) {\n f(x);\n}&#34;
 </span><span class="c1"></span><span class="sr">/\d+/g</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;/\d+/g&#34;
 </span><span class="c1"></span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">).</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; &#34;Fri Jan 01 2010 00:00:00 GMT-0800 (PST)&#34;
@@ -809,11 +803,11 @@
 <p>另一个转换方法是valueOf()。包装类的valueOf()返回其原始类型。数组，函数和正则表达式只是继承默认方法。调用这些类型实例的valueOf()只是返回对象本身。Date类的valueOf()返回自1970年1月1日以来的毫秒数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// January 1st, 2010, (Pacific time)
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// January 1st, 2010, (Pacific time)
 </span><span class="c1"></span><span class="nx">d</span><span class="p">.</span><span class="nx">valueOf</span><span class="p">()</span> <span class="c1">// =&gt; 1262332800000
 </span></code></pre></td></tr></table>
 </div>
@@ -835,14 +829,14 @@
 <p>只有+，==，!=和关系运算符是执行这种特殊的字符串到原始类型转换。其他操作符显示地转换为指定类型：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="c1">// Create a Date object
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="c1">// Create a Date object
 </span><span class="c1"></span><span class="k">typeof</span> <span class="p">(</span><span class="nx">now</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// =&gt; &#34;string&#34;: + converts dates to strings
 </span><span class="c1"></span><span class="k">typeof</span> <span class="p">(</span><span class="nx">now</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// =&gt; &#34;number&#34;: - uses object-to-number conversion
 </span><span class="c1"></span><span class="nx">now</span> <span class="o">==</span> <span class="nx">now</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// =&gt; true: implicit and explicit string conversions
@@ -854,19 +848,18 @@
 <p>在JavaScript程序中使用变量之前，应该声明它。变量用var关键字声明，如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">i</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">i</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">sum</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">sum</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="s2">&#34;hello&#34;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <h4 id="重复和省略声明">重复和省略声明</h4>
@@ -876,7 +869,7 @@
 <p>在函数体中，局部变量优先于同名的全局变量。如果声明了一个与全局变量同名的局部变量或函数参数，则可以有效地隐藏全局变量：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -884,7 +877,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;global&#34;</span><span class="p">;</span> <span class="c1">// Declare a global variable
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;global&#34;</span><span class="p">;</span> <span class="c1">// Declare a global variable
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">checkscope</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;local&#34;</span><span class="p">;</span> <span class="c1">// Declare a local variable with the same name
 </span><span class="c1"></span>    <span class="k">return</span> <span class="nx">scope</span><span class="p">;</span> <span class="c1">// Return the local value, not the global one
@@ -896,7 +889,7 @@
 <p>虽然在全局作用域内编写代码时可以避免使用var语句，但是必须始终使用var来声明局部变量：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -907,7 +900,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;global&#34;</span><span class="p">;</span> <span class="c1">// Declare a global variable, even without var.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;global&#34;</span><span class="p">;</span> <span class="c1">// Declare a global variable, even without var.
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">checkscope2</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;local&#34;</span><span class="p">;</span> <span class="c1">// Oops! We just changed the global variable.
 </span><span class="c1"></span>    <span class="nx">myscope</span> <span class="o">=</span> <span class="s2">&#34;local&#34;</span><span class="p">;</span> <span class="c1">// This implicitly declares a new global variable.
@@ -922,7 +915,7 @@
 <p>函数定义可以嵌套。每个函数都有自己的局部作用域，因此可以有几个嵌套的局部作用域：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -934,7 +927,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;global scope&#34;</span><span class="p">;</span> <span class="c1">// A global variable
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;global scope&#34;</span><span class="p">;</span> <span class="c1">// A global variable
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">checkscope</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;local scope&#34;</span><span class="p">;</span> <span class="c1">// A local variable
 </span><span class="c1"></span>    <span class="kd">function</span> <span class="nx">nested</span><span class="p">()</span> <span class="p">{</span>
@@ -951,7 +944,7 @@
 <p>JavaScript的函数作用域意味着函数中声明的所有变量在函数体中都是可见的。这意味着变量在声明之前是可见的。JavaScript的这个特性通常被称为<strong>hoisting</strong>：函数中的所有变量声明，不包括赋值，都被“提升”到函数的顶部。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -959,20 +952,19 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;global&#34;</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;global&#34;</span><span class="p">;</span>
 <span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">scope</span><span class="p">);</span> <span class="c1">// Prints &#34;undefined&#34;, not &#34;global&#34;
 </span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">&#34;local&#34;</span><span class="p">;</span> <span class="c1">// Variable initialized here, but defined everywhere
 </span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">scope</span><span class="p">);</span> <span class="c1">// Prints &#34;local&#34;
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h4 id="变量作为属性">变量作为属性</h4>
 <p>当你声明一个全局JavaScript变量，你实际上做的是定义一个全局对象的属性，如果你使用var声明变量，创建的属性是不可配置的，这意味着它不能被删除。如果不使用严格模式，并且为未声明的变量赋值，JavaScript会自动为您创建一个全局变量。以这种方式创建的变量是全局对象的常规可配置属性，可以删除它们：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -980,7 +972,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">truevar</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// A properly declared global variable, nondeletable.
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">truevar</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// A properly declared global variable, nondeletable.
 </span><span class="c1"></span><span class="nx">fakevar</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Creates a deletable property of the global object.
 </span><span class="c1"></span><span class="k">this</span><span class="p">.</span><span class="nx">fakevar2</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// This does the same thing.
 </span><span class="c1"></span><span class="k">delete</span> <span class="nx">truevar</span> <span class="c1">// =&gt; false: variable not deleted
@@ -1097,7 +1089,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -1117,7 +1109,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

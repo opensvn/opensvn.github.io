@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/core-python-3/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="Python核心编程 第3章" />
 <meta property="og:description" content="3.1 语句和语法 关于Python语句的一些规则和符号： 井号（#）指示Python注释。 换行（\n）是标准行分隔符（一个语句一行） 反斜杠（\）延续" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/core-python-3/" />
+<meta property="og:url" content="https://gitop.cc/post/core-python-3/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2015-12-25T13:28:23+00:00" />
 <meta property="article:modified_time" content="2015-12-25T13:28:23+00:00" />
+
 <meta itemprop="name" content="Python核心编程 第3章">
-<meta itemprop="description" content="3.1 语句和语法 关于Python语句的一些规则和符号： 井号（#）指示Python注释。 换行（\n）是标准行分隔符（一个语句一行） 反斜杠（\）延续">
-<meta itemprop="datePublished" content="2015-12-25T13:28:23&#43;00:00" />
-<meta itemprop="dateModified" content="2015-12-25T13:28:23&#43;00:00" />
-<meta itemprop="wordCount" content="1994">
-
-
-
+<meta itemprop="description" content="3.1 语句和语法 关于Python语句的一些规则和符号： 井号（#）指示Python注释。 换行（\n）是标准行分隔符（一个语句一行） 反斜杠（\）延续"><meta itemprop="datePublished" content="2015-12-25T13:28:23+00:00" />
+<meta itemprop="dateModified" content="2015-12-25T13:28:23+00:00" />
+<meta itemprop="wordCount" content="1962">
 <meta itemprop="keywords" content="Python," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python核心编程 第3章"/>
 <meta name="twitter:description" content="3.1 语句和语法 关于Python语句的一些规则和符号： 井号（#）指示Python注释。 换行（\n）是标准行分隔符（一个语句一行） 反斜杠（\）延续"/>
@@ -129,7 +126,7 @@
         <div class="post-category">
             <a href="/categories/language/"> Language </a>
             </div>
-          <span class="more-meta"> 约 1994 字 </span>
+          <span class="more-meta"> 约 1962 字 </span>
           <span class="more-meta"> 预计阅读 4 分钟 </span>
         
       </div>
@@ -187,13 +184,13 @@
 <p>Python语句通常由换行界定，意思是一个语句一行。单一语句可以通过反斜杠分成多行。反斜杠可以放在换行符前面使当前语句延续到下一行。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># check conditions</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># check conditions</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">weather_is_hot</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> \
    <span class="p">(</span><span class="n">shark_warnings</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
     <span class="n">send_goto_beach_mesg_to_pager</span><span class="p">()</span></code></pre></td></tr></table>
@@ -202,7 +199,7 @@
 <p>有两种例外可以不使用反斜杠延续到下一行。被括号，方括号或花括号包围的单一语句和包围在三重引号的字符串。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -212,8 +209,8 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># display a string with triple quotes</span>
-<span class="k">print</span> <span class="s1">&#39;&#39;&#39;hi there, this is a long message for you
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># display a string with triple quotes</span>
+<span class="nb">print</span> <span class="s1">&#39;&#39;&#39;hi there, this is a long message for you
 </span><span class="s1">that goes over multiple lines... you will find
 </span><span class="s1">out soon that triple quotes in Python allows
 </span><span class="s1">this kind of fun! it is like a day on the beach!&#39;&#39;&#39;</span>
@@ -234,10 +231,10 @@
 <p>分号（;）允许多个语句在一行，这些语句都不开始一个新的代码块。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sys</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sys</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>不要多行语句放在一行，因为它使得代码更难阅读。</p>
@@ -248,25 +245,25 @@
 <p>等号是Python主要的赋值操作符，其它的是增量赋值操作符。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">anInt</span> <span class="o">=</span> <span class="o">-</span><span class="mi">12</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">anInt</span> <span class="o">=</span> <span class="o">-</span><span class="mi">12</span>
 <span class="n">aString</span> <span class="o">=</span> <span class="s1">&#39;cart&#39;</span>
 <span class="n">aFloat</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.1415</span> <span class="o">*</span> <span class="p">(</span><span class="mf">5.0</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">anotherString</span> <span class="o">=</span> <span class="s1">&#39;shop&#39;</span> <span class="o">+</span> <span class="s1">&#39;ping&#39;</span>
-<span class="n">aList</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.14e10</span><span class="p">,</span> <span class="s1">&#39;2nd elmt of a list&#39;</span><span class="p">,</span> <span class="mf">8.82</span><span class="o">-</span><span class="mf">4.371j</span><span class="p">]</span></code></pre></td></tr></table>
+<span class="n">aList</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.14e10</span><span class="p">,</span> <span class="s1">&#39;2nd elmt of a list&#39;</span><span class="p">,</span> <span class="mf">8.82</span><span class="o">-</span><span class="mf">4.371</span><span class="n">j</span><span class="p">]</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>注意赋值并没有显式将一个值赋给一个变量。在Python中，对象都是被引用的。因此当赋值时，一个对象的引用被赋值给变量，不管对象是刚刚创建还是已经存在。</p>
 <p>如果你熟悉C，赋值被当做表达式。Python中不是这样，下面这样的语句在Python中非法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -274,7 +271,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># assignments not expressions!</span>
   <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -285,12 +282,12 @@
 <p>赋值可以链接在一起：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
@@ -299,17 +296,17 @@
 <p>从Python 2.0开始，等号可以和算术操作符一起使用，且产生的结果再赋值给原来的变量。比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=&gt;</span> <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=&gt;</span> <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>增量赋值操作符有，<strong>+=</strong>，<strong>-=</strong>，<em><strong>=</strong>，</em><em>/=</em>*，**%=**，****=**，**&laquo;=**，**&raquo;=**，**&amp;=**，**^=**，**|=**。</p>
+<p>增量赋值操作符有，<strong>+=</strong>，<strong>-=</strong>，<em><strong>=</strong>，</em><em>/=</em><em>，</em><em>%=</em><em>，</em><em>**=</em><em>，</em><em>&laquo;=</em><em>，</em><em>&raquo;=</em><em>，</em><em>&amp;=</em><em>，</em><em>^=</em><em>，</em><em>|=</em>*。</p>
 <p>除了明显的语法改变，最显著的不同是第一个对象只被检查一次。可变对象在原地改变，而不可变对象和可变对象有一样的效果（一个新对象被分配）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -322,7 +319,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">12</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">12</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">m</span> <span class="o">%=</span> <span class="mi">7</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">m</span>
 <span class="mi">5</span>
@@ -339,38 +336,38 @@
 <h3 id="多个赋值">多个赋值</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>上面这个例子中，一个整形对象被创建，且x，y，z都引用到这个整形对象。Python也可以将多个对象赋值给多个变量。</p>
 <h3 id="元组赋值">元组赋值</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;a string&#39;</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;a string&#39;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>上面这个例子中，2个整形对象和一个字符串对象被赋值给x，y，z。尽管括号是可选的，我们建议在任何使代码容易阅读的地方使用括号：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;a string&#39;</span><span class="p">)</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;a string&#39;</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>Python元组赋值的一个有趣副作用是我们不再需要一个临时变量来交换2个变量的值：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>显然，Python在赋值前执行计算。</p>
@@ -388,7 +385,7 @@
 <p><strong>keyword</strong>模块包含关键字列表和一个**iskeyword()**函数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -396,7 +393,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">keyword</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">keyword</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span>
 <span class="p">[</span><span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;as&#39;</span><span class="p">,</span> <span class="s1">&#39;assert&#39;</span><span class="p">,</span> <span class="s1">&#39;break&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;continue&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;del&#39;</span><span class="p">,</span>
  <span class="s1">&#39;elif&#39;</span><span class="p">,</span> <span class="s1">&#39;else&#39;</span><span class="p">,</span> <span class="s1">&#39;except&#39;</span><span class="p">,</span> <span class="s1">&#39;exec&#39;</span><span class="p">,</span> <span class="s1">&#39;finally&#39;</span><span class="p">,</span> <span class="s1">&#39;for&#39;</span><span class="p">,</span> <span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;global&#39;</span><span class="p">,</span>
@@ -406,7 +403,7 @@
 </div>
 <h3 id="333-built-ins">3.3.3 Built-ins</h3>
 <p>除了关键字，Python还有一组内置名字集合。尽管不是关键字，内置名字应该被当做留给系统的，不应该用作任何其它意图。</p>
-<p>内置名字都是**__builtins__**模块的成员，这个模块在程序开始前由解释器自动导入。</p>
+<p>内置名字都是**<strong>builtins</strong>**模块的成员，这个模块在程序开始前由解释器自动导入。</p>
 
     </div>
 
@@ -511,7 +508,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -531,7 +528,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

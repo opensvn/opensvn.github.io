@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/21st-c-1/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="21世纪C语言 第1章 便利编译配置" />
 <meta property="og:description" content="使用包管理器 必须获取的包： 编译器。必须安装gcc；clang可能也有用。 gdb，调试器 Valgrind，测试C内存使用错误。 gprof，一个" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/21st-c-1/" />
+<meta property="og:url" content="https://gitop.cc/post/21st-c-1/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2015-12-15T19:55:08+00:00" />
 <meta property="article:modified_time" content="2015-12-15T19:55:08+00:00" />
+
 <meta itemprop="name" content="21世纪C语言 第1章 便利编译配置">
-<meta itemprop="description" content="使用包管理器 必须获取的包： 编译器。必须安装gcc；clang可能也有用。 gdb，调试器 Valgrind，测试C内存使用错误。 gprof，一个">
-<meta itemprop="datePublished" content="2015-12-15T19:55:08&#43;00:00" />
-<meta itemprop="dateModified" content="2015-12-15T19:55:08&#43;00:00" />
-<meta itemprop="wordCount" content="4250">
-
-
-
+<meta itemprop="description" content="使用包管理器 必须获取的包： 编译器。必须安装gcc；clang可能也有用。 gdb，调试器 Valgrind，测试C内存使用错误。 gprof，一个"><meta itemprop="datePublished" content="2015-12-15T19:55:08+00:00" />
+<meta itemprop="dateModified" content="2015-12-15T19:55:08+00:00" />
+<meta itemprop="wordCount" content="4245">
 <meta itemprop="keywords" content="C," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="21世纪C语言 第1章 便利编译配置"/>
 <meta name="twitter:description" content="使用包管理器 必须获取的包： 编译器。必须安装gcc；clang可能也有用。 gdb，调试器 Valgrind，测试C内存使用错误。 gprof，一个"/>
@@ -129,7 +126,7 @@
         <div class="post-category">
             <a href="/categories/language/"> Language </a>
             </div>
-          <span class="more-meta"> 约 4250 字 </span>
+          <span class="more-meta"> 约 4245 字 </span>
           <span class="more-meta"> 预计阅读 9 分钟 </span>
         
       </div>
@@ -190,7 +187,7 @@
 <h1 id="通向库的路径">通向库的路径</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -199,7 +196,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;  //erf, sqrt</span><span class="cp">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;  //erf, sqrt</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt; //printf</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
@@ -212,10 +209,10 @@
 <p>如果使用gcc编译器，完整的命令包括一些额外的标志就像这样：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="n">erf</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">erf</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">gnu11</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="n">erf</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">erf</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">gnu11</span></code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="一些出名的标志">一些出名的标志</h2>
@@ -224,7 +221,7 @@
 <li><strong>-g</strong>，为调试添加符号。</li>
 <li><strong>-std=gnu11</strong>，clang-和gcc-特定，指示编译器允许遵守C11和POSIX标准的代码。POSIX标准指定系统中要有c99程序。</li>
 <li><strong>-o3</strong>，指示优化等级3，会尝试任何手段编译更快的代码。如果不需要太多优化，也可以使用**-o0**。</li>
-<li><strong>-Wall</strong>，添加编译器警告。也可以使用**-w1**，只显示编译器警告，没有附注。**-Werror**，编译器将会把警告视为错误。</li>
+<li><strong>-Wall</strong>，添加编译器警告。也可以使用**-w1**，只显示编译器警告，没有附注。<strong>-Werror</strong>，编译器将会把警告视为错误。</li>
 </ul>
 <h2 id="路径">路径</h2>
 <p>在一个典型配置中，库至少会安装在三个地方：</p>
@@ -236,10 +233,10 @@
 <p>假设你有一个叫libuseful的库安装在/usr/local目录。你已经把#include &lt;useful.h&gt;写进代码，现在你需要使用下面的命令编译代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="o">-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">include</span> <span class="n">use_useful</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">use_useful</span> <span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span> <span class="o">-</span><span class="n">luseful</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="o">-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">include</span> <span class="n">use_useful</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">use_useful</span> <span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span> <span class="o">-</span><span class="n">luseful</span></code></pre></td></tr></table>
 </div>
 </div>
 <ul>
@@ -250,14 +247,14 @@
 <p><strong>pkg-config</strong>返回已安装库的维护信息。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">libs</span> <span class="n">gsl</span> <span class="n">libxml</span><span class="o">-</span><span class="mf">2.0</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">libs</span> <span class="n">gsl</span> <span class="n">libxml</span><span class="o">-</span><span class="mf">2.0</span>
 <span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">cflags</span> <span class="n">gsl</span> <span class="n">libxml</span><span class="o">-</span><span class="mf">2.0</span>
 
 <span class="o">-</span><span class="n">lgsl</span> <span class="o">-</span><span class="n">lgslcblas</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">lxml2</span>
@@ -267,19 +264,19 @@
 <p>回到前面那个命令，当你使用反撇号包含一个命令时，shell会使用其输出替换该命令。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="err">`</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">cflags</span> <span class="o">--</span><span class="n">libs</span> <span class="n">gsl</span> <span class="n">libxml</span><span class="o">-</span><span class="mf">2.0</span><span class="err">`</span> <span class="o">-</span><span class="n">o</span> <span class="n">specific</span> <span class="n">specific</span><span class="p">.</span><span class="n">c</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="err">`</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">cflags</span> <span class="o">--</span><span class="n">libs</span> <span class="n">gsl</span> <span class="n">libxml</span><span class="o">-</span><span class="mf">2.0</span><span class="err">`</span> <span class="o">-</span><span class="n">o</span> <span class="n">specific</span> <span class="n">specific</span><span class="p">.</span><span class="n">c</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>等价于：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="o">-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">libxml2</span> <span class="o">-</span><span class="n">lgsl</span> <span class="o">-</span><span class="n">lgslcblas</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">lxml2</span> <span class="o">-</span><span class="n">o</span> <span class="n">specific</span> <span class="n">specific</span><span class="p">.</span><span class="n">c</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="o">-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">libxml2</span> <span class="o">-</span><span class="n">lgsl</span> <span class="o">-</span><span class="n">lgslcblas</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">lxml2</span> <span class="o">-</span><span class="n">o</span> <span class="n">specific</span> <span class="n">specific</span><span class="p">.</span><span class="n">c</span></code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="运行时链接">运行时链接</h2>
@@ -291,11 +288,11 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">export</span> <span class="n">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nl">libpath</span><span class="p">:</span><span class="err">$</span><span class="n">LD_LIBRARY_PATH</span>     <span class="err">#</span><span class="n">Linux</span><span class="p">,</span> <span class="n">Cygwin</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">export</span> <span class="n">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nl">libpath</span><span class="p">:</span><span class="err">$</span><span class="n">LD_LIBRARY_PATH</span>     <span class="err">#</span><span class="n">Linux</span><span class="p">,</span> <span class="n">Cygwin</span>
 <span class="n">export</span> <span class="n">DYLD_LIBRARY_PATH</span><span class="o">=</span><span class="nl">libpath</span><span class="p">:</span><span class="err">$</span><span class="n">DYLD_LIBRARY_PATH</span>    <span class="err">#</span><span class="n">OS</span> <span class="n">X</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -303,7 +300,7 @@
 <p><strong>makefile</strong>提供了所有这些无止境的调整的一种解决方案。它基本上是组织的一组变量和单行shell脚本的序列。POSIX标准的<strong>make</strong>程序读取<strong>makefile</strong>里面的指令和变量，并将长且单调的命令行组合给我们。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -311,7 +308,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">P</span><span class="o">=</span><span class="n">program_name</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">P</span><span class="o">=</span><span class="n">program_name</span>
 <span class="n">OBJECTS</span><span class="o">=</span>
 <span class="n">CFLAGS</span> <span class="o">=</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span>
 <span class="n">LDLIBS</span><span class="o">=</span>
@@ -325,10 +322,10 @@
 <li>每次需要重新编译：输入<strong>make</strong>。</li>
 </ul>
 <h2 id="设置变量">设置变量</h2>
-<p><strong>shell</strong>和<strong>make</strong>使用<strong>$</strong>指示变量的值。<strong>shell</strong>使用<strong>$var</strong>，而<strong>make</strong>需要任何变量名长度大于1个字符的变量包含在括号中：<strong>$(var)</strong>。</p>
+<p><strong>shell</strong>和<strong>make</strong>使用**$<strong>指示变量的值。<strong>shell</strong>使用</strong>$var**，而<strong>make</strong>需要任何变量名长度大于1个字符的变量包含在括号中：<strong>$(var)</strong>。</p>
 <p>有几种方法告诉<strong>make</strong>变量：</p>
 <ul>
-<li>调用<strong>make</strong>之前设置变量并<strong>export</strong>这个变量。POSIX标准命令行设置CFLAGS变量：<strong>export CFLAGS=&rsquo;-g -Wall -O3&rsquo;</strong></li>
+<li>调用<strong>make</strong>之前设置变量并<strong>export</strong>这个变量。POSIX标准命令行设置CFLAGS变量：<strong>export CFLAGS='-g -Wall -O3'</strong></li>
 <li>你可以将这些<strong>export</strong>命令放进<strong>shell</strong>启动脚本，比如.bashrc或.zshrc。</li>
 <li>你可以在命令之前赋值设置一个变量。<strong>PANTS=kakhi env | grep PANTS</strong>。等号两边不能有空格，因为空格是用来区分命令和赋值的。</li>
 <li>早期的<strong>makefile</strong>可以在文件头设置变量。在<strong>makefile</strong>文件里面，等号两边可以有空格。</li>
@@ -336,18 +333,18 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">make</span> <span class="n">CFLAGS</span><span class="o">=</span><span class="s">&#34;-g -Wall&#34;</span>  <span class="err">#</span> <span class="n">Set</span> <span class="n">a</span> <span class="n">makefile</span> <span class="n">variable</span><span class="p">.</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">make</span> <span class="n">CFLAGS</span><span class="o">=</span><span class="s">&#34;-g -Wall&#34;</span>  <span class="err">#</span> <span class="n">Set</span> <span class="n">a</span> <span class="n">makefile</span> <span class="n">variable</span><span class="p">.</span>
 <span class="n">CFLAGS</span><span class="o">=</span><span class="s">&#34;-g -Wall&#34;</span> <span class="n">make</span>  <span class="err">#</span> <span class="n">Set</span> <span class="n">an</span> <span class="n">environment</span> <span class="n">variable</span> <span class="n">visible</span> <span class="n">to</span> <span class="n">make</span> <span class="n">and</span> <span class="n">its</span> <span class="n">children</span><span class="p">.</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="c语言中的环境变量">C语言中的环境变量</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -366,7 +363,7 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; //getenv, atoi</span><span class="cp">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; //getenv, atoi</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt; //printf</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
@@ -388,25 +385,25 @@
 <p><strong>make</strong>也提供一些内置变量：</p>
 <ul>
 <li><strong>$@</strong> 所有的目标文件。目标文件是源文件编译完生成的中间文件（.o文件）。</li>
-<li><strong>$</strong>* 去掉后缀的目标文件。如果目标文件是prog.o，则**$***是prog，且**$***.c就是prog.c</li>
-<li><strong>$&lt;</strong> 引起目标被触发并编译的文件名。如果我们编译prog.o，可能因为prog.c最近被修改了，所以<strong>$&lt;</strong>就是prog.c。</li>
+<li><strong>$</strong>* 去掉后缀的目标文件。如果目标文件是prog.o，则**$<em><strong>是prog，且</strong>$</em>**.c就是prog.c</li>
+<li><strong>$&lt;</strong> 引起目标被触发并编译的文件名。如果我们编译prog.o，可能因为prog.c最近被修改了，所以**$&lt;**就是prog.c。</li>
 </ul>
 <h2 id="规则">规则</h2>
 <p>除了设置变量，<strong>makefile</strong>的片段具有以下形式：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="nl">target</span><span class="p">:</span> <span class="n">dependencies</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="nl">target</span><span class="p">:</span> <span class="n">dependencies</span>
         <span class="n">script</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>如果通过命令<strong>make target</strong>目标被调用，则依赖被检查。如果目标是一个文件，依赖也全部是文件，且目标比依赖新，则文件是最新的，没有什么事要做。否则，目标的处理被暂停，依赖被运行或生成，可能通过另一个目标，当依赖的脚本都完成了，目标的脚本开始运行。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -416,7 +413,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="nl">all</span><span class="p">:</span> <span class="n">html</span> <span class="n">doc</span> <span class="n">publish</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="nl">all</span><span class="p">:</span> <span class="n">html</span> <span class="n">doc</span> <span class="n">publish</span>
 <span class="nl">doc</span><span class="p">:</span>
     <span class="n">pdflatex</span> <span class="err">$</span><span class="p">(</span><span class="n">f</span><span class="p">).</span><span class="n">tex</span>
 <span class="nl">html</span><span class="p">:</span>
@@ -429,12 +426,12 @@
 <p>在前面简单的makefile里面，我们只有一个目标/依赖/脚本组合。比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">P</span><span class="o">=</span><span class="n">domath</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">P</span><span class="o">=</span><span class="n">domath</span>
 <span class="n">OBJECTS</span><span class="o">=</span><span class="n">addition</span><span class="p">.</span><span class="n">o</span> <span class="n">subtraction</span><span class="p">.</span><span class="n">o</span>
 <span class="err">$</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">:</span> <span class="err">$</span><span class="p">(</span><span class="n">OBJECTS</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
@@ -443,30 +440,30 @@
 <p>POSIX标准<strong>make</strong>将.c文件编译成.o文件的默认规则：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span><span class="p">(</span><span class="n">CC</span><span class="p">)</span> <span class="err">$</span><span class="p">(</span><span class="n">CFLAGS</span><span class="p">)</span> <span class="err">$</span><span class="p">(</span><span class="n">LDFLAGS</span><span class="p">)</span> <span class="o">-</span><span class="n">o</span> <span class="err">$@</span> <span class="err">$</span><span class="o">*</span><span class="p">.</span><span class="n">c</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span><span class="p">(</span><span class="n">CC</span><span class="p">)</span> <span class="err">$</span><span class="p">(</span><span class="n">CFLAGS</span><span class="p">)</span> <span class="err">$</span><span class="p">(</span><span class="n">LDFLAGS</span><span class="p">)</span> <span class="o">-</span><span class="n">o</span> <span class="err">$@</span> <span class="err">$</span><span class="o">*</span><span class="p">.</span><span class="n">c</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>$(CC)变量代表你的C编译器；POSIX标准指定默认CC=c99。$(CFLAGS)设置为之前的标志。$(LDFLAGS)没有设置因此为空。</p>
 <p>GNU make将目标文件编译成可执行程序的默认规则：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span><span class="p">(</span><span class="n">CC</span><span class="p">)</span> <span class="err">$</span><span class="p">(</span><span class="n">LDFLAGS</span><span class="p">)</span> <span class="err">$@</span> <span class="err">$</span><span class="p">(</span><span class="n">LDLIBS</span><span class="p">)</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span><span class="p">(</span><span class="n">CC</span><span class="p">)</span> <span class="err">$</span><span class="p">(</span><span class="n">LDFLAGS</span><span class="p">)</span> <span class="err">$@</span> <span class="err">$</span><span class="p">(</span><span class="n">LDLIBS</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>回忆一下链接的顺序很重要，因此我们需要两个链接器变量。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">cc</span> <span class="n">specific</span><span class="p">.</span><span class="n">o</span> <span class="o">-</span><span class="n">lbroad</span> <span class="o">-</span><span class="n">lgeneral</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">cc</span> <span class="n">specific</span><span class="p">.</span><span class="n">o</span> <span class="o">-</span><span class="n">lbroad</span> <span class="o">-</span><span class="n">lgeneral</span>
 <span class="n">LDLIBS</span><span class="o">=-</span><span class="n">lbroad</span> <span class="o">-</span><span class="n">lgeneral</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -480,22 +477,22 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">CFLAGS</span><span class="o">=</span><span class="err">`</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">cflags</span> <span class="n">apophenia</span> <span class="n">glib</span><span class="o">-</span><span class="mf">2.0</span><span class="err">`</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">gnu11</span> <span class="o">-</span><span class="n">O3</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">CFLAGS</span><span class="o">=</span><span class="err">`</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">cflags</span> <span class="n">apophenia</span> <span class="n">glib</span><span class="o">-</span><span class="mf">2.0</span><span class="err">`</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">gnu11</span> <span class="o">-</span><span class="n">O3</span>
 <span class="n">LDLIBS</span><span class="o">=</span><span class="err">`</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">libs</span> <span class="n">apophenia</span> <span class="n">glib</span><span class="o">-</span><span class="mf">2.0</span><span class="err">`</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>或者手动指定**-I**，**-L**和**-l**标志：</p>
+<p>或者手动指定**-I**，<strong>-L</strong>和**-l**标志：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">CFLAGS</span><span class="o">=-</span><span class="n">I</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">include</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">CFLAGS</span><span class="o">=-</span><span class="n">I</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">include</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span>
 <span class="n">LDLIBS</span><span class="o">=-</span><span class="n">L</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">b</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">lib</span> <span class="o">-</span><span class="n">lweirdlib</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -506,12 +503,12 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">export</span> <span class="n">CFLAGS</span><span class="o">=</span><span class="err">&#39;</span><span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">gnu11</span><span class="err">&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">export</span> <span class="n">CFLAGS</span><span class="o">=</span><span class="err">&#39;</span><span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">gnu11</span><span class="err">&#39;</span>
 <span class="n">export</span> <span class="n">LDLIBS</span><span class="o">=</span><span class="err">&#39;</span><span class="o">-</span><span class="n">lm</span><span class="err">&#39;</span>
 <span class="n">make</span> <span class="n">erf</span></code></pre></td></tr></table>
 </div>
@@ -520,7 +517,7 @@
 <p>可以通过编译源代码来安装库。下面用GSL（GNU Scientific Library）库作为例子。假设你有<strong>root</strong>权限：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -528,7 +525,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">wget</span> <span class="nl">ftp</span><span class="p">:</span><span class="c1">//ftp.gnu.org/gnu/gsl/gsl-2.1.tar.gz
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">wget</span> <span class="nl">ftp</span><span class="p">:</span><span class="c1">//ftp.gnu.org/gnu/gsl/gsl-2.1.tar.gz
 </span><span class="c1"></span><span class="n">tar</span> <span class="n">xvzf</span> <span class="n">gsl</span><span class="o">-</span><span class="mf">2.1</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
 <span class="n">cd</span> <span class="n">gsl</span><span class="o">-</span><span class="mf">2.1</span>
 <span class="p">.</span><span class="o">/</span><span class="n">configure</span>
@@ -539,7 +536,7 @@
 <p>如果没有出错的话，GSL就已经安装好了。下面是一个简单的使用gsl库的程序：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -548,7 +545,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;gsl/gsl_cdf.h&gt;</span><span class="cp">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;gsl/gsl_cdf.h&gt;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
@@ -560,29 +557,29 @@
 <p>要使用你安装的库，你需要修改你的makefile，取决与你是否有<strong>pkg-config</strong>，你可以使用其中一个：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">LDLIBS</span><span class="o">=</span><span class="err">`</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">libs</span> <span class="n">gsl</span><span class="err">`</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">LDLIBS</span><span class="o">=</span><span class="err">`</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="o">--</span><span class="n">libs</span> <span class="n">gsl</span><span class="err">`</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>或：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">LDLIBS</span><span class="o">=-</span><span class="n">lgsl</span> <span class="o">-</span><span class="n">lgslcblas</span> <span class="o">-</span><span class="n">lm</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">LDLIBS</span><span class="o">=-</span><span class="n">lgsl</span> <span class="o">-</span><span class="n">lgslcblas</span> <span class="o">-</span><span class="n">lm</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>如果你没有安装在标准位置且没有<strong>pkg-config</strong>，你需要添加路径：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">CFLAGS</span><span class="o">=-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">include</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">CFLAGS</span><span class="o">=-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">include</span>
 <span class="n">LDLIBS</span><span class="o">=-</span><span class="n">L</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span> <span class="o">-</span><span class="n">Wl</span><span class="p">,</span><span class="o">-</span><span class="n">R</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -590,39 +587,39 @@
 <p>首先创建一个目录，比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">mkdir</span> <span class="o">~/</span><span class="n">root</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">mkdir</span> <span class="o">~/</span><span class="n">root</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>接着添加路径：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">PATH</span><span class="o">=~/</span><span class="n">root</span><span class="o">/</span><span class="nl">bin</span><span class="p">:</span><span class="err">$</span><span class="n">PATH</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">PATH</span><span class="o">=~/</span><span class="n">root</span><span class="o">/</span><span class="nl">bin</span><span class="p">:</span><span class="err">$</span><span class="n">PATH</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>在makefile中添加新路径：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">LDLIBS</span><span class="o">=-</span><span class="n">L</span><span class="err">$</span><span class="p">(</span><span class="n">HOME</span><span class="p">)</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">lib</span> <span class="p">(</span><span class="n">plus</span> <span class="n">the</span> <span class="n">other</span> <span class="n">flags</span><span class="p">,</span> <span class="n">like</span> <span class="o">-</span><span class="n">lgsl</span> <span class="o">-</span><span class="n">lm</span> <span class="p">...)</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">LDLIBS</span><span class="o">=-</span><span class="n">L</span><span class="err">$</span><span class="p">(</span><span class="n">HOME</span><span class="p">)</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">lib</span> <span class="p">(</span><span class="n">plus</span> <span class="n">the</span> <span class="n">other</span> <span class="n">flags</span><span class="p">,</span> <span class="n">like</span> <span class="o">-</span><span class="n">lgsl</span> <span class="o">-</span><span class="n">lm</span> <span class="p">...)</span>
 <span class="n">CFLAGS</span><span class="o">=-</span><span class="n">I</span><span class="err">$</span><span class="p">(</span><span class="n">HOME</span><span class="p">)</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">include</span> <span class="p">(</span><span class="n">plus</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">O3</span> <span class="p">...)</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>将所要的库安装到指定路径：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="p">.</span><span class="o">/</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=</span><span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="n">root</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">install</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="p">.</span><span class="o">/</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=</span><span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="n">root</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">install</span></code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="通过嵌入文档编译c程序">通过嵌入文档编译C程序</h1>
@@ -636,19 +633,19 @@
 <p><strong>gcc</strong>和<strong>clang</strong>有一个方便的标志包含头文件，比如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="o">-</span><span class="n">include</span> <span class="n">stdio</span><span class="p">.</span><span class="n">h</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">gcc</span> <span class="o">-</span><span class="n">include</span> <span class="n">stdio</span><span class="p">.</span><span class="n">h</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>和这句一样：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>-include</strong>是编译器特定的。</p>
@@ -658,13 +655,13 @@
 <p>嵌入文档是一个POSIX标准shell的特性，你可以用在C，Python，Perl或其他。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">python</span> <span class="o">-</span> <span class="o">&lt;&lt;</span><span class="s">&#34;XXXX&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">python</span> <span class="o">-</span> <span class="o">&lt;&lt;</span><span class="s">&#34;XXXX&#34;</span>
 <span class="n">lines</span><span class="o">=</span><span class="mi">2</span>
 <span class="n">print</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">This script is %i lines long.</span><span class="se">\n</span><span class="s">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">lines</span><span class="p">,)</span>
 <span class="n">XXXX</span></code></pre></td></tr></table>
@@ -674,12 +671,12 @@
 <li>嵌入文档是shell的标准特性，因此它应该能在任何POSIX系统上工作。</li>
 <li>&ldquo;XXXX&quot;是任意你喜欢的字符串；&ldquo;EOF&quot;很流行，&quot;&mdash;&ndash;&ldquo;看起来不错只要顶部和底部的破折号数量相同既可以。当shell看到你选择的字符串为独立的一行，它将停止发送脚本到程序stdin。</li>
 <li>有一个变体以&laquo;-开始，它会删除没一行开头的所有tab字符。</li>
-<li>作为另一个变体，&laquo;XXXX和&laquo;&quot;XXXX&quot;不同。前面那个可以插入$shell_variable。</li>
+<li>作为另一个变体，&laquo;XXXX和&laquo;&ldquo;XXXX&quot;不同。前面那个可以插入$shell_variable。</li>
 </ul>
 <h2 id="从标准输入编译">从标准输入编译</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -688,7 +685,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">go_libs</span><span class="o">=</span><span class="s">&#34;-lm&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">go_libs</span><span class="o">=</span><span class="s">&#34;-lm&#34;</span>
 <span class="n">go_flags</span><span class="o">=</span><span class="s">&#34;-g -Wall -include allheads.h -O3&#34;</span>
 <span class="n">alias</span> <span class="n">go_c</span><span class="o">=</span><span class="s">&#34;c99 -xc - $go_libs $go_flags&#34;</span>
 <span class="n">go_c</span> <span class="o">&lt;&lt;</span> <span class="err">&#39;</span><span class="o">---</span><span class="err">&#39;</span>
@@ -801,7 +798,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -821,7 +818,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

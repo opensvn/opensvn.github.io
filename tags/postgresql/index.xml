@@ -6,11 +6,7 @@
     <description>Recent content in PostgreSQL on 招财猫的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 22 Jan 2019 16:20:20 +0800</lastBuildDate>
-    
-	<atom:link href="https://gitop.cc/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 22 Jan 2019 16:20:20 +0800</lastBuildDate><atom:link href="https://gitop.cc/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>PostgreSQL数据类型</title>
       <link>https://gitop.cc/post/postgres_data_type/</link>

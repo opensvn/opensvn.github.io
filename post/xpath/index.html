@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/xpath/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="XPath教程" />
 <meta property="og:description" content="XPath是什么？ XPath代表XML路径语言 XPath使用“类似路径”的语法来标识和导航XML文档中的节点 XPath包含200多个内置函数" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/xpath/" />
+<meta property="og:url" content="https://gitop.cc/post/xpath/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-11-02T13:49:25+08:00" />
 <meta property="article:modified_time" content="2019-11-02T13:49:25+08:00" />
+
 <meta itemprop="name" content="XPath教程">
-<meta itemprop="description" content="XPath是什么？ XPath代表XML路径语言 XPath使用“类似路径”的语法来标识和导航XML文档中的节点 XPath包含200多个内置函数">
-<meta itemprop="datePublished" content="2019-11-02T13:49:25&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-02T13:49:25&#43;08:00" />
-<meta itemprop="wordCount" content="2643">
-
-
-
+<meta itemprop="description" content="XPath是什么？ XPath代表XML路径语言 XPath使用“类似路径”的语法来标识和导航XML文档中的节点 XPath包含200多个内置函数"><meta itemprop="datePublished" content="2019-11-02T13:49:25+08:00" />
+<meta itemprop="dateModified" content="2019-11-02T13:49:25+08:00" />
+<meta itemprop="wordCount" content="2642">
 <meta itemprop="keywords" content="XPath," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="XPath教程"/>
 <meta name="twitter:description" content="XPath是什么？ XPath代表XML路径语言 XPath使用“类似路径”的语法来标识和导航XML文档中的节点 XPath包含200多个内置函数"/>
@@ -129,7 +126,7 @@
         <div class="post-category">
             <a href="/categories/tool/"> Tool </a>
             </div>
-          <span class="more-meta"> 约 2643 字 </span>
+          <span class="more-meta"> 约 2642 字 </span>
           <span class="more-meta"> 预计阅读 6 分钟 </span>
         
       </div>
@@ -191,7 +188,7 @@
 <p>在XPath中，有七种节点：元素，属性，文本，名称空间，处理指令，注释和文档节点。XML文档被视为节点树。树的最顶端的元素叫做根元素。请看下面的XML文档：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -203,7 +200,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
 
 <span class="nt">&lt;bookstore&gt;</span>
     <span class="nt">&lt;book&gt;</span>
@@ -218,12 +215,12 @@
 </div><p>上面的XML文档中的节点示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bookstore&gt;</span>  (根节点)
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bookstore&gt;</span>  (根节点)
 <span class="nt">&lt;author&gt;</span>J K. Rowling<span class="nt">&lt;/author&gt;</span>  (元素节点)
 lang=&#34;en&#34; (属性节点)
 </code></pre></td></tr></table>
@@ -232,11 +229,11 @@ lang=&#34;en&#34; (属性节点)
 <p>原子值是没有子节点或父节点的节点。原子值的例子：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">J K. Rowling
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml">J K. Rowling
 &#34;en&#34;
 </code></pre></td></tr></table>
 </div>
@@ -258,7 +255,7 @@ lang=&#34;en&#34; (属性节点)
 <p>在以下的例子中，我们将使用下面的XML文档。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -271,7 +268,7 @@ lang=&#34;en&#34; (属性节点)
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
 <span class="nt">&lt;bookstore&gt;</span>
     <span class="nt">&lt;book&gt;</span>
         <span class="nt">&lt;title</span> <span class="na">lang=</span><span class="s">&#34;en&#34;</span><span class="nt">&gt;</span>Harry Potter<span class="nt">&lt;/title&gt;</span>
@@ -386,7 +383,7 @@ lang=&#34;en&#34; (属性节点)
 <td>选择所有具有lang属性的title节点</td>
 </tr>
 <tr>
-<td>//title[@lang='en&rsquo;]</td>
+<td>//title[@lang=&lsquo;en&rsquo;]</td>
 <td>选择所有lang属性值为&quot;en&quot;的title节点</td>
 </tr>
 <tr>
@@ -403,7 +400,7 @@ lang=&#34;en&#34; (属性节点)
 </tr>
 <tr>
 <td>/bookstore/book/price[.&gt;35.00]</td>
-<td>选择所有大于35的&rdquo;/bookstore/book&quot;的price子元素</td>
+<td>选择所有大于35的&quot;/bookstore/book&quot;的price子元素</td>
 </tr>
 </tbody>
 </table>
@@ -546,11 +543,11 @@ lang=&#34;en&#34; (属性节点)
 <p>位置路径可以是绝对路径或相对路径。绝对位置路径以<code>/</code>开头，而相对位置路径则不是。这两种情况下，位置路径都包含一个或多个步骤，每个步骤之间都用斜杠分隔：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">/step/step/...
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/step/step/...
 step/step/...
 </code></pre></td></tr></table>
 </div>
@@ -563,10 +560,10 @@ step/step/...
 <p>步骤的语法是：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">axisname::nodetest[predicate]
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">axisname::nodetest[predicate]
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="例子">例子</h3>
@@ -807,7 +804,7 @@ step/step/...
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -827,7 +824,7 @@ step/step/...
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 

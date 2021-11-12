@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.70.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
 
 
 <link rel="canonical" href="https://gitop.cc/post/cpp-primer-14/" />
@@ -42,17 +42,14 @@
 <meta property="og:title" content="第14章 重载操作和转换" />
 <meta property="og:description" content="基本概念 重载操作符是具有特殊名字的函数：关键字operator后面跟着需要被定义的操作符的符号。像其它函数一样，重载操作符有返回值，参数列表" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://gitop.cc/post/cpp-primer-14/" />
+<meta property="og:url" content="https://gitop.cc/post/cpp-primer-14/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2015-09-20T10:47:02+00:00" />
 <meta property="article:modified_time" content="2015-09-20T10:47:02+00:00" />
+
 <meta itemprop="name" content="第14章 重载操作和转换">
-<meta itemprop="description" content="基本概念 重载操作符是具有特殊名字的函数：关键字operator后面跟着需要被定义的操作符的符号。像其它函数一样，重载操作符有返回值，参数列表">
-<meta itemprop="datePublished" content="2015-09-20T10:47:02&#43;00:00" />
-<meta itemprop="dateModified" content="2015-09-20T10:47:02&#43;00:00" />
+<meta itemprop="description" content="基本概念 重载操作符是具有特殊名字的函数：关键字operator后面跟着需要被定义的操作符的符号。像其它函数一样，重载操作符有返回值，参数列表"><meta itemprop="datePublished" content="2015-09-20T10:47:02+00:00" />
+<meta itemprop="dateModified" content="2015-09-20T10:47:02+00:00" />
 <meta itemprop="wordCount" content="7125">
-
-
-
 <meta itemprop="keywords" content="C&#43;&#43;," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="第14章 重载操作和转换"/>
 <meta name="twitter:description" content="基本概念 重载操作符是具有特殊名字的函数：关键字operator后面跟着需要被定义的操作符的符号。像其它函数一样，重载操作符有返回值，参数列表"/>
@@ -208,19 +205,18 @@
 <p>操作符函数必须为类的成员或至少有一个类类型参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// error: cannot redefine the built-in operator for ints
-</span><span class="c1"></span><span class="kt">int</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// error: cannot redefine the built-in operator for ints
+</span><span class="c1"></span><span class="kt">int</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>我们可以重载大多数操作符，而且只能重载已经存在的操作符：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -232,7 +228,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp">              <span class="c1">//可以重载的操作符
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp">              <span class="c1">//可以重载的操作符
 </span><span class="c1"></span><span class="o">+</span>       <span class="o">-</span>       <span class="o">*</span>       <span class="o">/</span>       <span class="o">%</span>       <span class="o">^</span>
 <span class="o">&amp;</span>       <span class="o">|</span>       <span class="o">~</span>       <span class="o">!</span>       <span class="p">,</span>       <span class="o">=</span>
 <span class="o">&lt;</span>       <span class="o">&gt;</span>       <span class="o">&lt;=</span>      <span class="o">&gt;=</span>      <span class="o">++</span>      <span class="o">--</span>
@@ -241,21 +237,20 @@
 <span class="o">|=</span>      <span class="o">*=</span>      <span class="o">&lt;&lt;=</span>     <span class="o">&gt;&gt;=</span>     <span class="p">[]</span>      <span class="p">()</span>
 <span class="o">-&gt;</span>      <span class="o">-&gt;*</span>     <span class="k">new</span>     <span class="k">new</span><span class="p">[]</span>   <span class="k">delete</span>  <span class="k">delete</span><span class="p">[]</span>
               <span class="c1">//不能重载的操作符
-</span><span class="c1"></span>        <span class="o">::</span>      <span class="p">.</span><span class="o">*</span>      <span class="p">.</span>       <span class="o">?:</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span>        <span class="o">::</span>      <span class="p">.</span><span class="o">*</span>      <span class="p">.</span>       <span class="o">?:</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>重载操作符和相应的内置操作符有相同的优先级和结合性。</p>
 <h3 id="直接调用重载操作符函数">直接调用重载操作符函数</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">data1</span> <span class="o">+</span> <span class="n">data2</span><span class="p">;</span>           <span class="c1">// 表达式调用
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">data1</span> <span class="o">+</span> <span class="n">data2</span><span class="p">;</span>           <span class="c1">// 表达式调用
 </span><span class="c1"></span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">);</span> <span class="c1">// 等价的函数调用
 </span><span class="c1"></span><span class="n">data1</span> <span class="o">+=</span> <span class="n">data2</span><span class="p">;</span>          <span class="c1">// 表达式调用
 </span><span class="c1"></span><span class="n">data1</span><span class="p">.</span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="n">data2</span><span class="p">);</span> <span class="c1">// 等价的成员函数调用
@@ -291,7 +286,7 @@
 <h3 id="重载输出操作符-">重载输出操作符 &laquo;</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -299,13 +294,12 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">ostream</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">ostream</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="n">item</span><span class="p">.</span><span class="n">isbn</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">item</span><span class="p">.</span><span class="n">units_sold</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span>
         <span class="o">&lt;&lt;</span> <span class="n">item</span><span class="p">.</span><span class="n">revenue</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">item</span><span class="p">.</span><span class="n">avg_price</span><span class="p">();</span>
     <span class="k">return</span> <span class="n">os</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -316,11 +310,11 @@
 <p>输入输出操作符遵循库<strong>iostream</strong>的惯例必须为普通的非成员函数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Sales_data</span> <span class="n">data</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Sales_data</span> <span class="n">data</span><span class="p">;</span>
 <span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">cout</span><span class="p">;</span> <span class="c1">// 如果operator&lt;&lt;是Sales_data的一个成员
 </span></code></pre></td></tr></table>
 </div>
@@ -329,7 +323,7 @@
 <h3 id="重载输入操作符-">重载输入操作符 &raquo;</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -341,7 +335,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">istream</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">istream</span> <span class="o">&amp;</span><span class="n">is</span><span class="p">,</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">istream</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">istream</span> <span class="o">&amp;</span><span class="n">is</span><span class="p">,</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="kt">double</span> <span class="n">price</span><span class="p">;</span>
     <span class="n">is</span> <span class="o">&gt;&gt;</span> <span class="n">item</span><span class="p">.</span><span class="n">bookNo</span> <span class="o">&gt;&gt;</span> <span class="n">item</span><span class="p">.</span><span class="n">units_sold</span> <span class="o">&gt;&gt;</span> <span class="n">price</span><span class="p">;</span>
@@ -350,8 +344,7 @@
     <span class="k">else</span>
         <span class="n">item</span> <span class="o">=</span> <span class="n">Sales_data</span><span class="p">();</span> <span class="c1">// 输入失败：给对象一个默认值
 </span><span class="c1"></span>    <span class="k">return</span> <span class="n">is</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -369,7 +362,7 @@
 **引用。定义了算术操作符的类通常也要定义相应的复合赋值操作符。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -378,14 +371,13 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Sales_data</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Sales_data</span>
 <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">Sales_data</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">lhs</span><span class="p">;</span>
     <span class="n">sum</span> <span class="o">+=</span> <span class="n">rhs</span><span class="p">;</span>
     <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -395,7 +387,7 @@
 <h3 id="相等操作符">相等操作符</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -407,7 +399,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="n">lhs</span><span class="p">.</span><span class="n">isbn</span><span class="p">()</span> <span class="o">==</span> <span class="n">rhs</span><span class="p">.</span><span class="n">isbn</span><span class="p">()</span> <span class="o">&amp;&amp;</span>
         <span class="n">lhs</span><span class="p">.</span><span class="n">units_sold</span> <span class="o">==</span> <span class="n">rhs</span><span class="p">.</span><span class="n">units_sold</span> <span class="o">&amp;&amp;</span>
@@ -416,8 +408,7 @@
 <span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">lhs</span> <span class="o">==</span> <span class="n">rhs</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>相等操作符的设计原理：</p>
@@ -430,24 +421,24 @@
 </ul>
 <blockquote>
 <p><strong>最佳实践</strong>
-相等性具有逻辑意义的类通常应该定义<strong>operator==</strong>，定义了<strong>operator==</strong>的类使得用户容易使用标准库算法。</p>
+相等性具有逻辑意义的类通常应该定义<strong>operator==</strong>，定义了**operator==**的类使得用户容易使用标准库算法。</p>
 </blockquote>
 <h3 id="关系操作符">关系操作符</h3>
-<p>定义了相等操作符的类通常（不总是）也会定义关系操作符。特别地，关系容器和有些算法使用<strong>&lt;</strong>操作符，定义<strong>operator&lt;</strong>会很有用。</p>
+<p>定义了相等操作符的类通常（不总是）也会定义关系操作符。特别地，关系容器和有些算法使用**&lt;<strong>操作符，定义</strong>operator&lt;**会很有用。</p>
 <p>通常关系操作符应该：</p>
 <ul>
 <li>定义一个顺序关系和关联容器的key的需求一致。</li>
-<li>定义一个关系和<strong>==</strong>一致，如果类2种操作符都定义了。特别地，如果2个对象**!=**，则其中一个应该**&lt;**另一个。</li>
+<li>定义一个关系和**==<strong>一致，如果类2种操作符都定义了。特别地，如果2个对象</strong>!=<strong>，则其中一个应该</strong>&lt;**另一个。</li>
 </ul>
 <blockquote>
 <p><strong>最佳实践</strong>
-如果只有一个逻辑定义<strong>&lt;</strong>存在，类通常应该定义<strong>&lt;</strong>操作符。然而，如果类也有<strong>==</strong>，只有当<strong>&lt;</strong>和<strong>==</strong>产生的结果一致时，定义<strong>&lt;</strong>。</p>
+如果只有一个逻辑定义**&lt;<strong>存在，类通常应该定义</strong>&lt;<strong>操作符。然而，如果类也有</strong>==<strong>，只有当</strong>&lt;<strong>和</strong>==<strong>产生的结果一致时，定义</strong>&lt;**。</p>
 </blockquote>
 <h3 id="赋值操作符">赋值操作符</h3>
 <p>除了**copy-<strong>和</strong>move-**赋值操作符之外，类还可以定义其它的赋值操作符允许其它类型作为右操作数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -463,7 +454,7 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
 <span class="n">v</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="s">&#34;an&#34;</span><span class="p">,</span> <span class="s">&#34;the&#34;</span><span class="p">};</span>
 <span class="k">class</span> <span class="nc">StrVec</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -476,8 +467,7 @@
     <span class="n">elements</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
     <span class="n">first_free</span> <span class="o">=</span> <span class="n">cap</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
     <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>不像**copy-<strong>和</strong>move-**赋值操作符，这个操作符不需要检查自我赋值。</p>
@@ -488,7 +478,7 @@
 <p>复合赋值操作符不需要是类成员。然而，我们倾向于定义所有的赋值操作符，包括复合赋值操作符为类成员。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -496,13 +486,12 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Sales_data</span><span class="o">&amp;</span> <span class="n">Sales_data</span><span class="o">::</span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Sales_data</span><span class="o">&amp;</span> <span class="n">Sales_data</span><span class="o">::</span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">units_sold</span> <span class="o">+=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">units_sold</span><span class="p">;</span>
     <span class="n">revenue</span> <span class="o">+=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">revenue</span><span class="p">;</span>
     <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -521,7 +510,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -538,7 +527,7 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">StrVec</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">StrVec</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">n</span><span class="p">)</span>
     <span class="p">{</span> <span class="k">return</span> <span class="n">elements</span><span class="p">[</span><span class="n">n</span><span class="p">];</span> <span class="p">}</span>
@@ -552,8 +541,7 @@
 <span class="k">if</span> <span class="p">(</span><span class="n">svec</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">svec</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">empty</span><span class="p">())</span>  <span class="p">{</span>
     <span class="n">svec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;zero&#34;</span><span class="p">;</span> <span class="c1">// ok: 返回一个普通引用
 </span><span class="c1"></span>    <span class="n">cvec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;Zip&#34;</span><span class="p">;</span>  <span class="c1">// error: 返回一个const引用
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="自增和自减操作符">自增和自减操作符</h3>
@@ -564,7 +552,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -585,7 +573,7 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">StrBlobPtr</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">StrBlobPtr</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">StrBlobPtr</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">();</span> <span class="c1">// 前自增操作符
 </span><span class="c1"></span>    <span class="n">StrBlobPtr</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">--</span><span class="p">();</span> <span class="c1">// 前自减操作符
@@ -603,8 +591,7 @@
     <span class="o">--</span><span class="n">curr</span><span class="p">;</span>
     <span class="n">check</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#34;decrement past begin of StrBlobPtr&#34;</span><span class="p">);</span>
     <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -613,7 +600,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -634,7 +621,7 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">StrBlobPtr</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">StrBlobPtr</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">StrBlobPtr</span> <span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>    <span class="c1">// 后置操作符
 </span><span class="c1"></span>    <span class="n">StrBlobPtr</span> <span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
@@ -652,8 +639,7 @@
     <span class="n">StrBlobPtr</span> <span class="n">ret</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
     <span class="o">--*</span><span class="k">this</span><span class="p">;</span>
     <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -666,12 +652,12 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">StrBlobPtr</span> <span class="nf">p</span><span class="p">(</span><span class="n">a1</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">StrBlobPtr</span> <span class="nf">p</span><span class="p">(</span><span class="n">a1</span><span class="p">);</span>
 <span class="n">p</span><span class="p">.</span><span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>  <span class="c1">// 调用后自增操作符
 </span><span class="c1"></span><span class="n">p</span><span class="p">.</span><span class="k">operator</span><span class="o">++</span><span class="p">();</span>   <span class="c1">// 调用前自增操作符
 </span></code></pre></td></tr></table>
@@ -681,7 +667,7 @@
 <p>解引用（*）和箭头（-&gt;）操作符经常使用在迭代器类和智能指针类中。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -695,7 +681,7 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">StrBlobPtr</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">StrBlobPtr</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">()</span> <span class="k">const</span>
     <span class="p">{</span> 
@@ -706,8 +692,7 @@
     <span class="p">{</span>
         <span class="k">return</span> <span class="o">&amp;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="k">operator</span><span class="o">*</span><span class="p">();</span> <span class="c1">// 将实际工作委托给解引用操作符
 </span><span class="c1"></span>    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -717,14 +702,14 @@
 <p>值得注意的是我们定义这些操作符为<strong>const</strong>成员，获取一个元素不会改变这个对象的状态。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">StrBlob</span> <span class="n">a1</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#34;hi&#34;</span><span class="p">,</span> <span class="s">&#34;bye&#34;</span><span class="p">,</span> <span class="s">&#34;now&#34;</span><span class="p">};</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">StrBlob</span> <span class="n">a1</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#34;hi&#34;</span><span class="p">,</span> <span class="s">&#34;bye&#34;</span><span class="p">,</span> <span class="s">&#34;now&#34;</span><span class="p">};</span>
 <span class="n">StrBlobPtr</span> <span class="nf">p</span><span class="p">(</span><span class="n">a1</span><span class="p">);</span>            <span class="c1">// p指向a1里面的vector
 </span><span class="c1"></span><span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="s">&#34;okay&#34;</span><span class="p">;</span>                 <span class="c1">// 给a1中第一个元素赋值
 </span><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>   <span class="c1">// 第一个元素的size()
@@ -732,14 +717,14 @@
 </span></code></pre></td></tr></table>
 </div>
 </div>
-<p>当我们写<strong>point-&gt;mem</strong>时，<strong>point</strong>必须是指向一个类对象的指针或是一个重载了<strong>operator-&gt;</strong>的类的对象。取决于<strong>point</strong>的类型，<strong>point-&gt;mem</strong>等价于：</p>
+<p>当我们写<strong>point-&gt;mem</strong>时，<strong>point</strong>必须是指向一个类对象的指针或是一个重载了<strong>operator-&gt;<strong>的类的对象。取决于</strong>point</strong>的类型，<strong>point-&gt;mem</strong>等价于：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="p">(</span><span class="o">*</span><span class="n">point</span><span class="p">).</span><span class="n">mem</span><span class="p">;</span>          <span class="c1">// point是一个内置指针类型
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="p">(</span><span class="o">*</span><span class="n">point</span><span class="p">).</span><span class="n">mem</span><span class="p">;</span>          <span class="c1">// point是一个内置指针类型
 </span><span class="c1"></span><span class="n">point</span><span class="p">.</span><span class="k">operator</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">mem</span><span class="p">;</span> <span class="c1">// point是一个类的对象
 </span></code></pre></td></tr></table>
 </div>
@@ -752,33 +737,31 @@
 <p>重载了函数调用操作符的类允许它的对象像函数一样使用。因为这种类可以保存状态，它们比普通函数更灵活。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">absInt</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">absInt</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="nf">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="o">-</span><span class="nl">val</span> <span class="p">:</span> <span class="n">val</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<span class="p">};</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>定义了函数调用操作符的类的对象被称为函数对象，我们可以像函数调用一样提供一个参数列表给函数对象：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="mi">42</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="mi">42</span><span class="p">;</span>
 <span class="n">absInt</span> <span class="n">absObj</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">ui</span> <span class="o">=</span> <span class="n">absObj</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<span class="kt">int</span> <span class="n">ui</span> <span class="o">=</span> <span class="n">absObj</span><span class="p">(</span><span class="n">i</span><span class="p">);</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -788,7 +771,7 @@
 <p>和其他类一样，一个函数对象类除了<strong>operator()</strong>，还可以有其它成员。函数对象类通常包含其它成员用来调整函数调用操作符的操作。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -804,7 +787,7 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">PrintString</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">PrintString</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">PrintString</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">o</span> <span class="o">=</span> <span class="n">cout</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="sc">&#39; &#39;</span><span class="p">)</span><span class="o">:</span>
         <span class="n">os</span><span class="p">(</span><span class="n">o</span><span class="p">),</span> <span class="n">sep</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
@@ -824,32 +807,30 @@
 <p>函数对象最常用于泛型算法的参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">for_each</span><span class="p">(</span><span class="n">vs</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vs</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">PrintString</span><span class="p">(</span><span class="n">cerr</span><span class="p">,</span> <span class="sc">&#39;\n&#39;</span><span class="p">));</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">for_each</span><span class="p">(</span><span class="n">vs</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vs</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">PrintString</span><span class="p">(</span><span class="n">cerr</span><span class="p">,</span> <span class="sc">&#39;\n&#39;</span><span class="p">));</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="lambdas是函数对象">Lambdas是函数对象</h3>
 <p>当我们写一个<strong>lambda</strong>时，编译器将表达式翻译成一个匿名类的匿名对象。由<strong>lambda</strong>生成的类包含了一个重载的函数调用操作符。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">stable_sort</span><span class="p">(</span><span class="n">words</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">words</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">stable_sort</span><span class="p">(</span><span class="n">words</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">words</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
             <span class="p">[](</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
-              <span class="p">{</span> <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">();});</span>
-</code></pre></td></tr></table>
+              <span class="p">{</span> <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">();});</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>行为就像一个匿名对象的类，看起来像：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -858,32 +839,30 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">ShorterString</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">ShorterString</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">s1</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">s2</span><span class="p">)</span> <span class="k">const</span>
     <span class="p">{</span> <span class="k">return</span> <span class="n">s1</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">s2</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="n">stable_sort</span><span class="p">(</span><span class="n">words</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">words</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">ShorterString</span><span class="p">());</span>
-</code></pre></td></tr></table>
+<span class="n">stable_sort</span><span class="p">(</span><span class="n">words</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">words</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">ShorterString</span><span class="p">());</span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="类表示lambdas带捕获成员">类表示Lambdas带捕获成员</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">wc</span> <span class="o">=</span> <span class="n">find_if</span><span class="p">(</span><span class="n">words</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">words</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
-            <span class="p">[</span><span class="n">sz</span><span class="p">](</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">){</span> <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">sz</span><span class="p">;});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">wc</span> <span class="o">=</span> <span class="n">find_if</span><span class="p">(</span><span class="n">words</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">words</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
+            <span class="p">[</span><span class="n">sz</span><span class="p">](</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">){</span> <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">sz</span><span class="p">;});</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>会生成像这样的类：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -895,7 +874,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">SizeComp</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">SizeComp</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">SizeComp</span><span class="p">(</span><span class="n">size_t</span> <span class="n">n</span><span class="p">)</span><span class="o">:</span> <span class="n">sz</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span> <span class="c1">// parameter for each captured variable
 </span><span class="c1"></span>    <span class="kt">bool</span> <span class="nf">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">)</span> <span class="k">const</span>
@@ -904,26 +883,25 @@
     <span class="n">size_t</span> <span class="n">sz</span><span class="p">;</span> <span class="c1">// a data member for each variable captured by value
 </span><span class="c1"></span><span class="p">};</span>
 
-<span class="k">auto</span> <span class="n">wc</span> <span class="o">=</span> <span class="n">find_if</span><span class="p">(</span><span class="n">words</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">words</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">SizeComp</span><span class="p">(</span><span class="n">sz</span><span class="p">));</span>
-</code></pre></td></tr></table>
+<span class="k">auto</span> <span class="n">wc</span> <span class="o">=</span> <span class="n">find_if</span><span class="p">(</span><span class="n">words</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">words</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">SizeComp</span><span class="p">(</span><span class="n">sz</span><span class="p">));</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>由lambda表达式生成的类有一个<strong>deleted</strong>默认构造函数，<strong>deleted</strong>赋值操作符和一个默认析构函数。是否有<strong>deleted</strong>或默认的<strong>copy/move</strong>构造函数取决于捕获的数据成员。</p>
 <h3 id="标准库定义的函数对象">标准库定义的函数对象</h3>
 <p>标准库定义了一个类集合，表示算术，关系和逻辑运算符。
-<strong>plus</strong>类有一个函数调用操作符，应用<strong>+</strong>操作符。
-<strong>modulus</strong>类有一个函数调用操作符，应用**%**操作符。
-**equal_to**类有一个函数调用操作符，应用**==**操作符。</p>
+<strong>plus</strong>类有一个函数调用操作符，应用**+<strong>操作符。
+<strong>modulus</strong>类有一个函数调用操作符，应用</strong>%<strong>操作符。
+<strong>equal_to</strong>类有一个函数调用操作符，应用</strong>==**操作符。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">plus</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">intAdd</span><span class="p">;</span>       <span class="c1">// function object that can add two int values
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">plus</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">intAdd</span><span class="p">;</span>       <span class="c1">// function object that can add two int values
 </span><span class="c1"></span><span class="n">negate</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">intNegate</span><span class="p">;</span>  <span class="c1">// function object that can negate an int value
 </span><span class="c1"></span><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">intAdd</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>         <span class="c1">// sum = 30
 </span><span class="c1"></span><span class="n">sum</span> <span class="o">=</span> <span class="n">intNegate</span><span class="p">(</span><span class="n">intAdd</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">));</span>  <span class="c1">// sum = -30
@@ -934,19 +912,18 @@
 <h3 id="算法中使用标准库函数对象">算法中使用标准库函数对象</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// passes a temporary function object that applies the &lt; operator to two strings
-</span><span class="c1"></span><span class="n">sort</span><span class="p">(</span><span class="n">svec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">svec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">greater</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">());</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// passes a temporary function object that applies the &lt; operator to two strings
+</span><span class="c1"></span><span class="n">sort</span><span class="p">(</span><span class="n">svec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">svec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">greater</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">());</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>标准库函数对象保证对指针也有作用。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -954,22 +931,21 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span> <span class="o">*&gt;</span> <span class="n">nameTable</span><span class="p">;</span>  <span class="c1">// vector of pointers
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span> <span class="o">*&gt;</span> <span class="n">nameTable</span><span class="p">;</span>  <span class="c1">// vector of pointers
 </span><span class="c1">// error: the pointers in nameTable are unrelated, so &lt; is undefined
 </span><span class="c1"></span><span class="n">sort</span><span class="p">(</span><span class="n">nameTable</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">nameTable</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
      <span class="p">[](</span><span class="n">string</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="n">string</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">;</span> <span class="p">});</span>
 <span class="c1">// ok: library guarantees that less on pointer types is well defined
-</span><span class="c1"></span><span class="n">sort</span><span class="p">(</span><span class="n">nameTable</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">nameTable</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">less</span><span class="o">&lt;</span><span class="n">string</span><span class="o">*&gt;</span><span class="p">());</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="n">sort</span><span class="p">(</span><span class="n">nameTable</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">nameTable</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">less</span><span class="o">&lt;</span><span class="n">string</span><span class="o">*&gt;</span><span class="p">());</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>值得注意的是关联容器使用<strong>less&lt;key_type&gt;</strong>排序它们的元素。因此，我们能定义一个指针集合，或者使用一个指针作为<strong>key</strong>的<strong>map</strong>容器而不用直接指定<strong>less</strong>。</p>
+<p>值得注意的是关联容器使用<strong>less&lt;key_type&gt;<strong>排序它们的元素。因此，我们能定义一个指针集合，或者使用一个指针作为</strong>key</strong>的<strong>map</strong>容器而不用直接指定<strong>less</strong>。</p>
 <h3 id="可调用对象和函数">可调用对象和函数</h3>
 <p>C++有几种可调用对象：函数和函数指针，lambdas，由<strong>bind</strong>创建的对象和重载了函数调用操作符的类。</p>
 <p>不同类型可以有相同的调用签名：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -984,7 +960,7 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// 普通函数
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// 普通函数
 </span><span class="c1"></span><span class="k">auto</span> <span class="n">mod</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span> <span class="o">%</span> <span class="n">j</span><span class="p">;</span> <span class="p">};</span> <span class="c1">// 匿名函数
 </span><span class="c1">// 函数对象类
 </span><span class="c1"></span><span class="k">struct</span> <span class="nc">div</span> <span class="p">{</span>
@@ -1004,7 +980,7 @@
 <p>function定义在头文件functional里面。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1017,7 +993,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">function</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">;</span>          <span class="c1">//空函数对象。
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">function</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">;</span>          <span class="c1">//空函数对象。
 </span><span class="c1"></span><span class="n">function</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span> <span class="c1">//显式构造空函数对象。
 </span><span class="c1"></span><span class="n">function</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>     <span class="c1">//保存一个obj的副本。
 </span><span class="c1"></span><span class="n">f</span>                       <span class="c1">//true当f拥有一个可调用对象，否则false。
@@ -1027,14 +1003,13 @@
 </span><span class="c1"></span><span class="n">result_type</span>             <span class="c1">//可调用对象的返回类型。
 </span><span class="c1"></span><span class="n">argument_type</span>           <span class="c1">//当参数为1个或2个时的类型。
 </span><span class="c1"></span><span class="n">first_argument_type</span>
-<span class="n">second_argument_type</span>
-</code></pre></td></tr></table>
+<span class="n">second_argument_type</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><strong>function</strong>是一个模板。和其它模板一样，我们必须指定<strong>function</strong>的函数类型。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1055,7 +1030,7 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">add</span><span class="p">;</span>    <span class="c1">// 函数指针
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">add</span><span class="p">;</span>    <span class="c1">// 函数指针
 </span><span class="c1"></span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">div</span><span class="p">();</span>  <span class="c1">// 函数对象
 </span><span class="c1"></span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">f3</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span><span class="p">;};</span> <span class="c1">// 匿名函数
 </span><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f1</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// prints 6
@@ -1081,13 +1056,13 @@
 <p>我们不能直接保存一个重载函数的函数名：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span> <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span> <span class="p">}</span>
 <span class="n">Sales_data</span> <span class="nf">add</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Sales_data</span><span class="o">&amp;</span><span class="p">);</span>
 <span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span><span class="o">&gt;&gt;</span> <span class="n">binops</span><span class="p">;</span>
 <span class="n">binops</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">&#34;+&#34;</span><span class="p">,</span> <span class="n">add</span><span class="p">});</span> <span class="c1">// error: which add?
@@ -1097,23 +1072,21 @@
 <p>解决二义性的一个方法是存储函数指针：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">fp</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">)</span> <span class="o">=</span> <span class="n">add</span><span class="p">;</span>
-<span class="n">binops</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">&#34;+&#34;</span><span class="p">,</span> <span class="n">fp</span><span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">fp</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">)</span> <span class="o">=</span> <span class="n">add</span><span class="p">;</span>
+<span class="n">binops</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">&#34;+&#34;</span><span class="p">,</span> <span class="n">fp</span><span class="p">});</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>或者使用lambda消除歧义：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">binops</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">&#34;+&#34;</span><span class="p">,</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);}});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">binops</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">&#34;+&#34;</span><span class="p">,</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);}});</span></code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="重载转换和操作符">重载，转换和操作符</h1>
@@ -1122,11 +1095,10 @@
 <p>转换操作符是一种特殊的成员函数，将一个类类型的值转换为其它类型的值。一个典型的转换函数具有形式：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">operator</span> <span class="nf">type</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">operator</span> <span class="nf">type</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>转换操作符可以为任意（除了<strong>void</strong>）函数返回的类型定义转换。不允许转换为数组或函数类型。允许转换为指针（数据指针和函数指针）和引用。</p>
@@ -1137,7 +1109,7 @@
 <h3 id="定义一个具有转换操作符的类">定义一个具有转换操作符的类</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1154,7 +1126,7 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">SmallInt</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">SmallInt</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">SmallInt</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="p">{</span>
@@ -1175,19 +1147,18 @@
 <p>尽管编译器每次只应用一个用户定义的转换操作，隐式调用用户定义的转换可以在之前或之后跟着一个标准转换。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">SmallInt</span> <span class="n">si</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
-<span class="n">si</span> <span class="o">+</span> <span class="mf">3.14</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">SmallInt</span> <span class="n">si</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+<span class="n">si</span> <span class="o">+</span> <span class="mf">3.14</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>因为转换操作符是隐式调用的，没有办法给它们传递参数。因此，转换操作符不带参数。尽管转换函数没有指定返回值，每一个转换函数必须返回相应的转换类型。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1196,7 +1167,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">SmallInt</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">SmallInt</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="kt">int</span> <span class="k">operator</span> <span class="kt">int</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>            <span class="c1">// error: return type
 </span><span class="c1"></span>    <span class="k">operator</span> <span class="nf">int</span><span class="p">(</span><span class="kt">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>         <span class="c1">// error: parameter list
@@ -1214,11 +1185,11 @@
 <p>实际上，类很少定义转换操作符。然而一个例外是：类定义转换为bool类型并不罕见。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
 <span class="n">cin</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// this code would be legal if the conversion to bool were not explicit!
 </span></code></pre></td></tr></table>
 </div>
@@ -1227,7 +1198,7 @@
 <p>为了防止前面的问题，新标准引入<strong>explicit</strong>转换。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1238,7 +1209,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">SmallInt</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">SmallInt</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="c1">// the compiler won&#39;t automatically apply this conversion
 </span><span class="c1"></span>    <span class="k">explicit</span> <span class="k">operator</span> <span class="kt">int</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
@@ -1261,11 +1232,10 @@
 <p>当我们在条件测试中使用流对象，我们使用定义在IO类型里面的<strong>operator bool</strong>转换操作：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">value</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">value</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
@@ -1281,7 +1251,7 @@
 <h4 id="参数匹配和相互转换">参数匹配和相互转换</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1299,7 +1269,7 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">B</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">B</span><span class="p">;</span>
 <span class="k">struct</span> <span class="nc">A</span> <span class="p">{</span>
     <span class="n">A</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
     <span class="n">A</span><span class="p">(</span><span class="k">const</span> <span class="n">B</span><span class="o">&amp;</span><span class="p">);</span>        <span class="c1">// converts a B to an A
@@ -1322,7 +1292,7 @@
 <h4 id="内置类型的多个转换和歧义">内置类型的多个转换和歧义</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1341,7 +1311,7 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">A</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">A</span> <span class="p">{</span>
     <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>   <span class="c1">// usually a bad idea to have two
 </span><span class="c1"></span>    <span class="n">A</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span>    <span class="c1">// conversions from arithmetic types
 </span><span class="c1"></span>    <span class="k">operator</span> <span class="nf">int</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>    <span class="c1">// usually a bad idea to have two
@@ -1378,7 +1348,7 @@
 <h4 id="重载函数和转换构造函数">重载函数和转换构造函数</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1392,7 +1362,7 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">C</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">C</span> <span class="p">{</span>
     <span class="n">C</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
 <span class="p">};</span>
 <span class="k">struct</span> <span class="nc">D</span> <span class="p">{</span>
@@ -1415,7 +1385,7 @@
 <p>在重载函数调用中，如果有2个或更多用户定义的转换提供可行的匹配，转换被认为是一样好。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1424,7 +1394,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">E</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">E</span> <span class="p">{</span>
     <span class="n">E</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span>
 <span class="p">};</span>
 <span class="kt">void</span> <span class="nf">manip2</span><span class="p">(</span><span class="k">const</span> <span class="n">C</span><span class="o">&amp;</span><span class="p">);</span>
@@ -1442,11 +1412,11 @@
 <p>如果a是一个类类型，a sym b表达式可能是：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">a</span><span class="p">.</span><span class="n">operatorsym</span><span class="p">(</span><span class="n">b</span><span class="p">);</span> <span class="c1">// a has operatorsym as a member function
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">a</span><span class="p">.</span><span class="n">operatorsym</span><span class="p">(</span><span class="n">b</span><span class="p">);</span> <span class="c1">// a has operatorsym as a member function
 </span><span class="c1"></span><span class="n">operatorsym</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// operatorsym is an ordinary function
 </span></code></pre></td></tr></table>
 </div>
@@ -1457,7 +1427,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1471,7 +1441,7 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">SmallInt</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">SmallInt</span> <span class="p">{</span>
     <span class="k">friend</span> <span class="n">SmallInt</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">SmallInt</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">SmallInt</span><span class="o">&amp;</span><span class="p">);</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">SmallInt</span><span class="p">(</span><span class="kt">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>                   <span class="c1">// conversion from int
@@ -1594,7 +1564,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -1614,7 +1584,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
 
 
 
